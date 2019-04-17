@@ -18,3 +18,6 @@ let dashboard = {
 export default dashboard;
 </script>
 
+<style lang="scss" scoped>
+	@import './src/assets/company/dashboard.scss'
+</style>

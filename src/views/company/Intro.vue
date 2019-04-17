@@ -24,26 +24,29 @@
             <thead>
               <tr>
                 <th>
-                  <span>1</span>
-                  <h1>Select plan and provide company information</h1>
+                  <span class="num-circle">1</span>
+                  <h1>Select plan and
+                  <br> provide company information</h1>
                 </th>
                 <th>
-                  <span>2</span>
-                  <h1>Input payment details and send payment</h1>
+                  <span class="num-circle">2</span>
+                  <h1>Input payment details
+                  <br> and send payment</h1>
                 </th>
                 <th>
-                  <span>3</span>
-                  <h1>Enroll all full time employess into this plan</h1>
+                  <span class="num-circle">3</span>
+                  <h1>Enroll all full time
+                  <br> employess into this plan</h1>
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>
+                <td class="verified-img-container">
                   <img :src="'../assets/img/icons/verified.png'">
                 </td>
-                 <td>
-                  <span>Required Information</span>
+                <td class="required-info-wrapper">
+                  <p class="required-info-text">Required Information:</p>
                   <div>
                     <p>Payee cheque information (company name, address,ACRA number) can be found in invoice</p>
                   </div>
@@ -51,7 +54,7 @@
                     <p>You may download the invoice from Welcome Email or the company portal under Account & Billing.</p>
                   </div>
                 </td>
-                <td>
+                <td class="verified-img-container">
                   <img :src="'../assets/img/icons/verified.png'">
                 </td>
               </tr>

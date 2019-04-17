@@ -13,3 +13,6 @@ let intro = {
 export default intro
 </script>
 
+<style lang="scss" scoped>
+	@import './src/assets/company/intro.scss'
+</style>

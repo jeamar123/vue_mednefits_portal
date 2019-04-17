@@ -846,7 +846,7 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
 
   *::-webkit-scrollbar{
     width: 3px;
-    background-color: #0086D3;
+    /*background-color: #0086D3;*/
   }
 
   *::-webkit-scrollbar-thumb{
