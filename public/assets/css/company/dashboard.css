@@ -1,5 +1,8 @@
+.main-ui-container {
+	height: 100vh;
+}
 .top-navbar-wrapper {
-	display: none;
+	/* display: none; */
 	width: 100%;
 	padding-top: 10px;
 	position: fixed;

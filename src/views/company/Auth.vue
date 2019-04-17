@@ -101,7 +101,39 @@
       		this.isResetPasswordShow = false;
       	}
       	this.hideLoading();
-      }
+      },
+      submitLogin(){
+      	if( !this.login_data.email ){
+      		this.swal('Error!','Email Address is required','error');
+      		return false;
+      	}
+      	if( !this.login_data.password ){
+      		this.swal('Error!','Password is required','error');
+      		return false;
+      	}
+      	this.showLoading();
+     //  	var data = {
+     //  		email: this.login_data.email,
+     //      password: this.login_data.password,
+     //      stay_signed_in: this.login_data.stay_signed_in == true ? true : false,
+     //  	}
+     //  	axios.post( axios.defaults.serverUrl + '/app/e_claim/login', data)
+					// .then(res => {
+						this.hideLoading();
+					// 	console.log(res);
+					// 	if( res.data.status ){
+					// 		localStorage.setItem('vue_session', res.data.data.UserID);
+							location.href = "/company/dashboard";
+					// 	}else{
+					// 		this.swal('Error!', res.data.message, 'error');
+					// 	}
+					// })
+					// .catch(err => {
+					// 	console.log( err );
+					// 	this.hideLoading();
+					// 	this.swal('Error!', err,'error');
+					// });
+      },
     }
 	}
 </script>

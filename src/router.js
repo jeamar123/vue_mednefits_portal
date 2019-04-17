@@ -6,6 +6,8 @@ axios.defaults.baseURL = process.env.BASE_URL;
 axios.defaults.serverUrl = 'http://medicloud.local';
 axios.defaults.user_id = null;
 
+
+
 import Portal from './views/Portal.vue'
 
 // MEMBER views 
@@ -18,7 +20,17 @@ import Portal from './views/Portal.vue'
   import CompanyAuth from './views/company/Auth.vue'
   import CompanyIntro from './views/company/Intro.vue'
   import CompanyDashboard from './views/company/Dashboard.vue'
+  import CompanyBenefitsDashboard from './views/company/Benefits-dashboard.vue'
+  import CompanyEmployee from './views/company/Employee.vue'
+  import CompanyActivity from './views/company/Activity.vue'
+  import CompanyClaim from './views/company/Claim.vue'
+  import CompanyStatement from './views/company/Statement.vue'
+  import CompanyAccount from './views/company/Account.vue'
+  import CompanyOverview from './views/company/Overview.vue'
+  import CompanyCreditAllocation from './views/company/CreditAllocation.vue'
 // CLINIC views
+
+
 
 Vue.use(Router)
 Vue.use(axios)
@@ -38,7 +50,7 @@ export default new Router({
       name: 'member-dashboard',
       redirect: '/member/dashboard',
       component: MemberDashboard,
-      // meta: { auth: true },
+      meta: { auth: true },
       children: [
         { name: 'MemberHome', path: '/member/dashboard', component: MemberHome },
         { name: 'MemberActivity', path: '/member/activity', component: MemberActivity },
@@ -50,9 +62,10 @@ export default new Router({
       name: 'company-dashboard',
       redirect: '/company/dashboard',
       component: CompanyDashboard,
-      // meta: { auth: true },
+      meta: { auth: true },
       children: [
         { name: 'CompanyIntro', path: '/company/intro', component: CompanyIntro },
+        { name: 'CompanyHome', path: '/company/dashboard', component: CompanyBenefitsDashboard },
       ]
     },
     
