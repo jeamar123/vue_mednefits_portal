@@ -123,7 +123,7 @@
 					// 	console.log(res);
 					// 	if( res.data.status ){
 					// 		localStorage.setItem('vue_session', res.data.data.UserID);
-							location.href = "/company/dashboard";
+							location.href = "/company/intro";
 					// 	}else{
 					// 		this.swal('Error!', res.data.message, 'error');
 					// 	}

@@ -69,7 +69,7 @@
       </div>
     </div>
     <div class="lets-go-container">
-      <router-link to="/app/benefits-dashboard">
+      <router-link to="/company/dashboard">
         <button to="app/home" class="btn-info btn-lets-go">Let's Go</button>
       </router-link>
     </div>

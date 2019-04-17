@@ -60,12 +60,19 @@ export default new Router({
     {
       path: '/company',
       name: 'company-dashboard',
-      redirect: '/company/dashboard',
+      redirect: '/company/intro',
       component: CompanyDashboard,
       meta: { auth: true },
       children: [
         { name: 'CompanyIntro', path: '/company/intro', component: CompanyIntro },
         { name: 'CompanyHome', path: '/company/dashboard', component: CompanyBenefitsDashboard },
+        { name: 'CompanyEmployee', path: '/company/employee', component: CompanyEmployee },
+        { name: 'CompanyActivity', path: '/company/activity', component: CompanyActivity },
+        { name: 'CompanyClaim', path: '/company/claim', component: CompanyClaim },
+        { name: 'CompanyStatement', path: '/company/statement', component: CompanyStatement },
+        { name: 'CompanyAccount', path: '/company/account', component: CompanyAccount },
+        { name: 'CompanyOverview', path: '/company/overview', component: CompanyOverview },
+        { name: 'CompanyCreditAllocation', path: '/company/credit-allocation', component: CompanyCreditAllocation },
       ]
     },
     
