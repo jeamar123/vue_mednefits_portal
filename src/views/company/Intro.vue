@@ -19,7 +19,7 @@
           </div>
         </div>
         <div class="body-summary-content">
-          <p>What to expect:</p>
+          <p class="what-to-expect-text">What to expect:</p>
           <table class="table-bordered summary-table">
             <thead>
               <tr>
