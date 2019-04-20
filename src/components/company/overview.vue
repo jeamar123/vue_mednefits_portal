@@ -11,3 +11,6 @@ let overview = {
 export default overview
 </script>
 
+<style lang="scss" scoped>
+	@import './src/assets/company/overview.scss'
+</style>
