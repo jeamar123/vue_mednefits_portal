@@ -77,8 +77,10 @@
 	width: 95%;
 	padding-left: 15px;
 	padding-right: 15px;
+	padding-bottom: 8px;
 	margin-left: auto;
 	margin-right: auto;
+
 }
 .welcome-container:first-child {
 	margin: 0;
@@ -104,14 +106,16 @@
   margin-top: 10px;
   font-weight: 700;
 }
-.line-bottom {
+.router-active{
 	width: 100%;
-	background-color: #ECF0F1;
-  margin-top: 5px;
-  height: 4px;
+	border-bottom: 4px solid #ECF0F1;
+	/* background-color: #ECF0F1; */
+	padding-bottom: 6px;
+	/* margin-top: 5px; */
+	/* height: 4px; */
 }
 .welcome-container .dropdown-menu {
-	display: none;
+	// display: none;
 	position: absolute;
 	left: 0;
 	top: 30px;
