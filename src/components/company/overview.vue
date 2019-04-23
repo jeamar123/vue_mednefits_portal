@@ -12,5 +12,5 @@ export default overview
 </script>
 
 <style lang="scss" scoped>
-	@import './src/assets/company/overview.scss'
+	@import './src/assets/css/company/overview.scss'
 </style>

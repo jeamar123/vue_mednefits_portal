@@ -307,7 +307,7 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
   }
 
   table thead tr th{
-    color: rgba(0,0,0,.54);
+    /*color: rgba(0,0,0,.54);*/
     padding: 15px;
     border-bottom: 1px solid #eee;
   }
@@ -319,7 +319,7 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
 
   table tbody tr td{
     padding: 5px 15px;
-    color: #000;
+    /*color: #000;*/
   }
 
   table thead tr th:last-child,
