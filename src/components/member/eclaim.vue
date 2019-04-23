@@ -313,3 +313,7 @@
 
 	export default eclaim
 </script>
+
+<style lang="scss" scoped>
+	@import './src/assets/css/member/eclaim.scss'
+</style>

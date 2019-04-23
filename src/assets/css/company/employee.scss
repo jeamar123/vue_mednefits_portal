@@ -78,11 +78,17 @@
 	}
 	table {
 		width: 100%;
+		color: #283e52;
 		thead tr th,
 		tbody tr td {
 			&:last-child {
 				text-align: left;
 			}
+			&:nth-child(3),
+			&:nth-child(5),
+			&:nth-child(6) {
+				padding: 10px;
+			}	
 		}
 		thead {
 			border-bottom: 2px solid #ddd;
@@ -96,8 +102,8 @@
 			padding: 10px 20px 10px 40px;
 			position: relative;
 			border-bottom: none;
-			color: #283e52;
 			line-height: 1.3;
+			float: left;
 		}
 		tbody {
 			display: block;
@@ -122,59 +128,47 @@
 		}
 		tbody tr td {
 			padding: 10px 20px 25px 40px;
-			font-weight: 700;
 			border-bottom: none;
-			color: #283e52;
+			float: left;
 		}
 		.name-title,
 		.emp-name-container {
 			width: 15%;
-			float: left;
 		}
 		.status-title,
 		.status-details-container {
 			width: 13%;
-			float: left;
 		}
 		.nric-fin-title,
 		.nric-fin-container {
-			padding: 10px;
 			width: 8%;
-			float: left;
 		}
 		.plan-details-title,
 		.plan-start-container {
 			width: 18.5%;
-			float: left;
 		}
 		.family-coverage-title,
 		.family-coverage-container {
-			padding: 10px;
 			width: 12%;
-			float: left;
 		}
 		.spending-account-medical-title,
 		.medical-details-container {
-			padding: 10px;
 			width: 15%;
-			float: left;
 		}
 		.spending-account-wellness-title,
 		.wellness-details-container {
 			width: 15%;
-			float: left;
 		}
 		.status-details-container {
 			.status-details {
-				display: inline-block;
-				width: 100%;
-				line-height: 1;
+				display: inline-flex;
+		    align-items: center;
+		    width: 100%;
 			}
-			.status-details span {
+			.status-details>span {
 				display: inline-block;
 			}
 			.status-color {
-				display: inline-block;
 		    border-radius: 50%;
 		    height: 10px;
 		    width: 10px;
@@ -231,6 +225,7 @@
     width: 100%;
     background: #FFF;
     font-weight: 700;
+    line-height: 24px;
 
     .employee-pagination {
     	display: inline-flex;
@@ -238,10 +233,20 @@
     	font-size: 12px;
     	span {
 	    	display: inline-block;
+	    	vertical-align: middle;
+	    }
+	    img {
+	    	vertical-align: middle;
+	    	height: 16px;
 	    }
 	    .numeric-pagination {
 	    	padding: 5px 10px;
     		margin: 0 5px;
+	    }
+	    .numeric-pagination.active {
+	    	background-color: #cce9f5;
+	    	border-radius: 4px;
+	    	border: 1px solid #d6dade;
 	    }
 	    .numeric-pagination,
 	    .next-pagination,
@@ -250,31 +255,27 @@
 	    	color: #0392cf;
     		cursor: pointer;
 	    }
+    }
+    .prev-pagination span {
+	    margin-right: 10px;
     } 
     .prev-pagination img {
-    	height: 16px;
-    	vertical-align: middle;
     	margin-right: 10px;
     	transform: rotate(180deg);
     }
-    .next-pagination img {
-    	height: 16px;
-    	vertical-align: middle;
-    	margin-left: 10px;
-    }
     .next-pagination span {
-    	display: inline-block;
-    	vertical-align: middle;
     	margin-left: 10px;
     }
-    .per-page-pagination img {
-    	height: 12px;
-    	vertical-align: middle;
-    	margin-left: 5px;
-    	transform: rotate(90deg);
+    .next-pagination img {
+    	margin-left: 10px;
     }
     .per-page-pagination span {
     	margin-left: 30px;
+    }
+    .per-page-pagination img {
+    	height: 12px;
+    	margin-left: 5px;
+    	transform: rotate(90deg);
     }
 	}
 

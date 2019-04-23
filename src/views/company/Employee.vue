@@ -105,7 +105,7 @@
     			<img :src="'../assets/img/icons/right-arrow-angle-blue.svg'">
     			<span>Prev</span>
     		</div>
-    		<span class="numeric-pagination">1</span>
+    		<span class="numeric-pagination active">1</span>
     		<span class="numeric-pagination">2</span>
     		<span class="numeric-pagination">3</span>
     		<span class="numeric-pagination">4</span>

@@ -14,5 +14,5 @@ export default intro
 </script>
 
 <style lang="scss" scoped>
-	@import './src/assets/company/intro.scss'
+	@import './src/assets/css/company/intro.scss'
 </style>
