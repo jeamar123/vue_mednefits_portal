@@ -125,12 +125,12 @@
   	background-color: #fff;
     height: 330px;
     margin-bottom: 20px;
+    font-weight: 700;
 
     .home-spending-type-container {
     	display: inline-block;
     	width: 100%;
     	padding: 20px 0 10px 30px;
-    	font-weight: 700;
     	font-size: 16px;
 
     	p {
@@ -145,13 +145,13 @@
 		    border: 1px solid #adadad;
 		    letter-spacing: .5px;
 		    line-height: 1.4;
+		    font-weight: 700;
     	}
     	.btn-medical {
     		border-radius: 4px 0 0 4px;
     		border-width: 2px 1px 2px 2px;
     	}
     	.btn-wellness {
-		    margin-left: -5px;
 		    border-radius: 0 4px 4px 0;
     		border-width: 2px 2px 2px 1px;
     	}

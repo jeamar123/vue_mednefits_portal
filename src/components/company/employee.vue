@@ -12,3 +12,6 @@ export default employee
 
 </script>
 
+<style lang="scss" scoped>
+	@import './src/assets/company/employee.scss'
+</style>

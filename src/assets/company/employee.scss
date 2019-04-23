@@ -1,0 +1,281 @@
+.employee-body-container {
+	padding: 110px 80px 49px 80px;
+	background-color: #fff;
+	height: 100vh;
+
+	.employee-overview-header {
+    margin: 30px 0 0;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+
+    .overview-title {
+    	line-height: 1.1;
+    	color: #283e52;
+    	font-weight: 700;
+    	h1 {
+    		font-size: 25px;
+    	}
+    	h4 {
+    		font-size: 14px;
+    		margin: 16px 0;
+    	}
+    }
+    .overview-menu {
+    	text-align: right;
+    }
+    .overview-input-wrapper {
+    	display: inline-block;
+    	position: relative;
+    }
+   	.overview-input-wrapper input{
+   		background-color: #f9f9f9;
+		  border-radius: 4px;
+		  border: 2px solid #d8d8d8;
+		  color: #333;
+		  font-weight: 700;
+		  font-size: 12px;
+		  letter-spacing: .5px;
+		  padding: 10px 37px 11px 15px;
+		  width: 218px;
+   	}
+   	::placeholder {
+   		color: #9c9c9c;
+   	}
+   	button {
+   		line-height: 24px;
+   		margin-left: 10px;
+   		font-weight: 700;
+   		font-size: 12px;
+   		border-radius: 4px;
+   	}
+   	.magnifying-img {
+   		position: absolute;
+	    top: 12px;
+	    right: 0;
+	    height: 16px;
+	    margin-right: 10px;
+   	}
+   	.download-img {
+   		height: 16px;
+    	margin-right: 7px;
+   	}
+   	.btn-export-members {
+   		background-color: transparent;
+	    border: 2px solid #d8d8d8;
+	    color: #283e52;
+	    padding: 6px 18px;
+   	}
+   	.btn-enroll-employees {
+   		background-color: #0392cf;
+    	color: #fff;
+    	border: 2px solid #0392cf;
+    	padding: 6px 30px;
+   	}
+    
+	}
+	.employee-overview-table {
+		margin: 0 0 0 -40px;
+	}
+	table {
+		width: 100%;
+		thead tr th,
+		tbody tr td {
+			&:last-child {
+				text-align: left;
+			}
+		}
+		thead {
+			border-bottom: 2px solid #ddd;
+			font-size: 13px;
+		}
+		thead tr {
+			width: calc(100% - 8px);
+		}
+		thead tr th {
+			font-family: 'Helvetica Medium';
+			padding: 10px 20px 10px 40px;
+			position: relative;
+			border-bottom: none;
+			color: #283e52;
+			line-height: 1.3;
+		}
+		tbody {
+			display: block;
+			height: 287px;
+			font-size: 12px;
+			overflow-y: auto;
+			padding: 10px 20px;
+			margin: 0px -20px;
+			border-bottom: none;
+		}
+		tbody tr {
+			border-top: 1px solid transparent;
+	    border-bottom: 1px solid #e5e5e5;
+	    cursor: pointer;
+	    transition: all .5s ease;
+	    min-height: 65px;
+		}
+		tbody tr:hover {
+			box-shadow: 2px 2px 12px 5px rgba(185,185,185,.5);
+	    border-top: 1px solid #fff;
+	    transition: all .5s ease;
+		}
+		tbody tr td {
+			padding: 10px 20px 25px 40px;
+			font-weight: 700;
+			border-bottom: none;
+			color: #283e52;
+		}
+		.name-title,
+		.emp-name-container {
+			width: 15%;
+			float: left;
+		}
+		.status-title,
+		.status-details-container {
+			width: 13%;
+			float: left;
+		}
+		.nric-fin-title,
+		.nric-fin-container {
+			padding: 10px;
+			width: 8%;
+			float: left;
+		}
+		.plan-details-title,
+		.plan-start-container {
+			width: 18.5%;
+			float: left;
+		}
+		.family-coverage-title,
+		.family-coverage-container {
+			padding: 10px;
+			width: 12%;
+			float: left;
+		}
+		.spending-account-medical-title,
+		.medical-details-container {
+			padding: 10px;
+			width: 15%;
+			float: left;
+		}
+		.spending-account-wellness-title,
+		.wellness-details-container {
+			width: 15%;
+			float: left;
+		}
+		.status-details-container {
+			.status-details {
+				display: inline-block;
+				width: 100%;
+				line-height: 1;
+			}
+			.status-details span {
+				display: inline-block;
+			}
+			.status-color {
+				display: inline-block;
+		    border-radius: 50%;
+		    height: 10px;
+		    width: 10px;
+		    margin-right: 10px;
+			}
+			.status-color.active {
+				background-color: #33cccc;
+			}
+			.status-color.pending {
+				background-color: #F7c421;
+			}
+			.status-color.removed {
+				background-color: #F7444e;
+			}
+		}
+		.status-expired-details {
+			display: inline-block;
+			margin-top: 5px;
+
+			span {
+				color: #F7444e;
+    		font-size: 10px;
+			}
+		}
+		.plan-details, 
+		.medical-details, 
+		.wellness-details {
+	    display: grid;
+	    grid-template-columns: 70px 110px;
+	    grid-column-gap: 1.5em;
+		}
+		.family-dependent-details {
+		    display: grid;
+		    grid-template-columns: 70px 35px;
+		    grid-column-gap: 1.5em;
+		}
+		.emp-name-container,
+		.nric-fin-container, 
+		.plan-details strong, 
+		.family-coverage-container strong, 
+		.medical-details strong, 
+		.wellness-details strong {
+    	font-family: 'Helvetica Medium';
+		}
+	}
+	.employee-pagination-wrapper {
+    text-align: center;
+    border-top: 1px solid #cbcbcb;
+    border-bottom: 1px solid #cbcbcb;
+    padding: 18px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #FFF;
+    font-weight: 700;
+
+    .employee-pagination {
+    	display: inline-flex;
+    	align-items: center;
+    	font-size: 12px;
+    	span {
+	    	display: inline-block;
+	    }
+	    .numeric-pagination {
+	    	padding: 5px 10px;
+    		margin: 0 5px;
+	    }
+	    .numeric-pagination,
+	    .next-pagination,
+	    .prev-pagination,
+	    .per-page-pagination {
+	    	color: #0392cf;
+    		cursor: pointer;
+	    }
+    } 
+    .prev-pagination img {
+    	height: 16px;
+    	vertical-align: middle;
+    	margin-right: 10px;
+    	transform: rotate(180deg);
+    }
+    .next-pagination img {
+    	height: 16px;
+    	vertical-align: middle;
+    	margin-left: 10px;
+    }
+    .next-pagination span {
+    	display: inline-block;
+    	vertical-align: middle;
+    	margin-left: 10px;
+    }
+    .per-page-pagination img {
+    	height: 12px;
+    	vertical-align: middle;
+    	margin-left: 5px;
+    	transform: rotate(90deg);
+    }
+    .per-page-pagination span {
+    	margin-left: 30px;
+    }
+	}
+
+}

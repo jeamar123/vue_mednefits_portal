@@ -24,6 +24,11 @@
         src: url('../fonts/helveticaneue/HelveticaNeue Light.ttf')  format('truetype');
     }
 
+    @font-face {
+        font-family: 'Helvetica Medium'; /* Global font */
+        src: url('../fonts/helveticaneue/HelveticaNeue Medium.ttf')  format('truetype');
+    }
+
 
 
 

@@ -1,6 +1,6 @@
 <template>
 	<div class="main-ui-container">
-    <div v-if="" class="top-navbar-wrapper">
+    <div v-if="$route.name != 'CompanyIntro'" class="top-navbar-wrapper">
       <div class="top-navbar">
         <img class="top-logo" :src="'../assets/img/mednefits_logo_v3_(white).png'">
         <div class="need-help-wrapper">
