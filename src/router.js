@@ -20,7 +20,6 @@ import Portal from './views/Portal.vue'
   import CompanyAuth from './views/company/Auth.vue'
   import CompanyIntro from './views/company/Intro.vue'
   import CompanyDashboard from './views/company/Dashboard.vue'
-  import CompanyBenefitsDashboard from './views/company/Benefits-dashboard.vue'
   import CompanyEmployee from './views/company/Employee.vue'
   import CompanyActivity from './views/company/Activity.vue'
   import CompanyClaim from './views/company/Claim.vue'
@@ -39,7 +38,7 @@ Vue.use(axios)
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  linkActiveClass: 'active',
+  linkActiveClass: 'router-active',
   routes: [
     { path: '*', redirect: '/portal'},
     { path: '/portal', name: 'portal', component: Portal },
@@ -60,18 +59,18 @@ export default new Router({
     {
       path: '/company',
       name: 'company-dashboard',
-      redirect: '/company/intro',
+      redirect: '/company/auth',
       component: CompanyDashboard,
       meta: { auth: true },
       children: [
         { name: 'CompanyIntro', path: '/company/intro', component: CompanyIntro },
-        { name: 'CompanyHome', path: '/company/dashboard', component: CompanyBenefitsDashboard },
-        { name: 'CompanyEmployee', path: '/company/employee', component: CompanyEmployee },
+        { name: 'CompanyHome', path: '/company/dashboard', component: CompanyOverview },
+        { name: 'CompanyEmployee', path: '/company/employee-overview', component: CompanyEmployee },
         { name: 'CompanyActivity', path: '/company/activity', component: CompanyActivity },
         { name: 'CompanyClaim', path: '/company/claim', component: CompanyClaim },
         { name: 'CompanyStatement', path: '/company/statement', component: CompanyStatement },
         { name: 'CompanyAccount', path: '/company/account', component: CompanyAccount },
-        { name: 'CompanyOverview', path: '/company/overview', component: CompanyOverview },
+        // { name: 'CompanyOverview', path: '/company/overview', component: CompanyOverview },
         { name: 'CompanyCreditAllocation', path: '/company/credit-allocation', component: CompanyCreditAllocation },
       ]
     },
