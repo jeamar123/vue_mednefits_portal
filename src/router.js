@@ -27,6 +27,7 @@ import Portal from './views/Portal.vue'
   import CompanyAccount from './views/company/Account.vue'
   import CompanyOverview from './views/company/Overview.vue'
   import CompanyCreditAllocation from './views/company/CreditAllocation.vue'
+  import CompanyEnrollment from './views/company/Enrollment.vue'
 // CLINIC views
 
 
@@ -72,6 +73,7 @@ export default new Router({
         { name: 'CompanyAccount', path: '/company/account', component: CompanyAccount },
         // { name: 'CompanyOverview', path: '/company/overview', component: CompanyOverview },
         { name: 'CompanyCreditAllocation', path: '/company/credit-allocation', component: CompanyCreditAllocation },
+        { name: 'CompanyEnrollment', path: '/company/enrollment', component: CompanyEnrollment },
       ]
     },
     

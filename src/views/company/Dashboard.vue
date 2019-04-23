@@ -1,6 +1,6 @@
 <template>
   <div class="main-ui-container">
-    <div v-if="$route.name != 'CompanyIntro'" class="top-navbar-wrapper">
+    <div v-if="$route.name != 'CompanyIntro' && $route.name != 'CompanyEnrollment'" class="top-navbar-wrapper">
       <div class="top-navbar">
         <img class="top-logo" :src="'../assets/img/mednefits_logo_v3_(white).png'">
 
@@ -109,7 +109,7 @@
       </div>
     </div>
 
-    <div v-if="$route.name === 'CompanyIntro'" class="welcome-top-navbar-wrapper">
+    <div v-if="$route.name === 'CompanyIntro' || $route.name === 'CompanyEnrollment'" class="welcome-top-navbar-wrapper">
       <div class="top-navbar">
         <img class="top-logo" :src="'../assets/img/mednefits_logo_v3_(white).png'">
 
@@ -139,7 +139,8 @@
       <div class="navbar-blue-bg">
         <div class="container">
           <div class="welcome-container">
-            <h4>Welcome</h4>
+            <h4 v-if="$route.name === 'CompanyIntro'">Welcome</h4>
+            <h4 v-if="$route.name === 'CompanyEnrollment'">Enrollment</h4>
 
             <div class="line-bottom"></div>
           </div>
