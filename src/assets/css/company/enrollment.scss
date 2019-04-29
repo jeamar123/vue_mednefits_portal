@@ -1,11 +1,18 @@
-.enrollment-method-wrapper {
+.enrollment-wrapper {
 	background-color: #fff;
 	height: 100vh;
 	padding-top: 150px;
 	padding-bottom: 100px;
 	color: #2c3e50;
+	position: relative;
 	overflow-y: auto;
 
+	.enrollment-method-wrapper {
+		/*display: none;*/
+	}
+	.employee-details-wrapper {
+		display: none;
+	}
 	.enrollment-method-title {
 		line-height: 1.1;
 		text-align: center;
@@ -13,7 +20,6 @@
 		margin: .67em 0 37px;
 		font-weight: 700;
 	}
-
 	.pick-enrollment-method {
 		margin: 0px auto;
     width: 700px;
@@ -33,6 +39,9 @@
     	&:nth-child(2) {
     		margin-left: 12px;
     	}
+		}
+		.enrollment-method-box.active {
+			border: 2px solid #0392cf;
 		}
 		img {
 			height: 80px;
@@ -107,3 +116,163 @@
     }
 	}
 }
+/*----- EMPLOYEE DETAILS -----*/
+	.employee-details-wrapper {
+		padding: 40px 15px 0px 15px;
+		font-size: 16px;
+
+		form {
+			width: 650px;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 50px;
+		}
+	}
+	.employee-tier-title {
+		text-align: center;
+		display: block;
+		color: #9c9c9c;
+	}
+	.employee-details-header {
+		position: relative;
+
+		h1 {
+			color: #2c3e50;
+			font-size: 32px;
+			font-weight: 400;
+			margin-top: 20px;
+			margin-bottom: 30px;
+			text-align: center;
+		}
+		.add-dependent-btn {
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+		h4 {
+			display: inline-block;
+			color: #2c3e50;
+			font-weight: 600;
+			font-size: 18px;
+			margin: 10px 20px 10px 0px;
+		}
+		button {
+			color: #333;
+    	background-color: transparent;
+    	border: 1px solid #d6d6d6;
+    	border-radius: 4px;
+    	width: 70px;
+    	padding: 5px 0;
+    	font-size: 14px;
+    	line-height: 24px;
+
+    	img {
+    		margin-right: 5px;
+    		height: 16px;
+    	}
+		}
+	}
+	.employee-input-container {
+		display: flex;
+
+		.employee-input-wrapper {
+			position: relative;
+			margin-bottom: 10px;
+			width: 100%;
+
+			&:nth-child(1) {
+				margin-right: 16px;
+			}
+			&:nth-child(2) {
+				margin-left: 16px;
+			}
+			label {
+				display: block;
+				color: #848484;
+				margin-bottom: 5px;
+				font-weight: 700;
+				font-size: .8rem;
+				line-height: 24px;
+			}
+			input {
+				border: 0;
+				border-bottom: 1px solid #d6d6d6;
+		    width: 100%;
+		    color: #2c3e50;
+		    font-size: 14px;
+		    font-weight: 600;
+		    outline: none;
+		    padding: 6px 0;
+			}
+			.medical-text,
+			.wellness-text {
+				line-height: 1;
+			}
+			.subtext {
+				font-size: 10px;
+    		line-height: 1.5;
+			}
+		}
+		.nric {
+			label {
+				display: inline-block;
+				margin-right: 5px;
+			} 
+			label input {
+				display: inline-block;
+				width: auto;
+				position: relative;
+				top: 2px;
+				left: 0;
+				opacity: 1;
+			}
+		}
+		.dob label {
+			margin-bottom: 6px;
+		}
+		.dob input::placeholder {
+			color: #9c9c9c;
+		}
+	}
+	.summary-right-container {
+		position: absolute;
+    right: 0;
+    top: 40%;
+
+		.summary-right-button {
+			position: absolute;
+			right: 253px;
+			background-color: #0392cf;
+	    color: #fff;
+	    font-size: 12px;
+	    padding: 10px 60px;
+	    border-radius: 4px;
+	    transform: rotate(90deg);
+	    margin-right: -68px;
+	    margin-top: 15px;
+	    transition: all 1s ease;
+	    border: solid 1px transparent;
+	    line-height: 24px;
+		}
+		.list-of-employee {
+			position: absolute;
+			right: 0;
+			margin-top: -52px;
+			width: 255px;
+			background-color: #f7f7f7;
+			box-shadow: 0px 0px 10px 0px rgba(148,148,148,1);
+	    min-height: 180px;
+	    max-height: 400px;
+	    overflow-y: auto;
+
+	    h4 {
+	    	margin: 10px 0;
+	    	padding-left: 24px;
+    		font-size: 13px;
+    		color: #737373;
+    		font-weight: bold;
+    		line-height: 1.1;
+	    }
+		}
+	}
+/*----------------------------*/
