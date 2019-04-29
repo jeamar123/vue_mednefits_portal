@@ -1,1 +1,109 @@
-// css enrollment
+.enrollment-method-wrapper {
+	background-color: #fff;
+	height: 100vh;
+	padding-top: 150px;
+	padding-bottom: 100px;
+	color: #2c3e50;
+	overflow-y: auto;
+
+	.enrollment-method-title {
+		line-height: 1.1;
+		text-align: center;
+		font-size: 25px;
+		margin: .67em 0 37px;
+		font-weight: 700;
+	}
+
+	.pick-enrollment-method {
+		margin: 0px auto;
+    width: 700px;
+    text-align: center;
+    padding: 10px 10px 0 10px;
+		button {	
+			background-color: transparent;
+			width: 200px;
+    	padding: 45px 20px 40px;
+    	display: inline-block;
+   		border: solid 2px #ccc;
+    	border-radius: 8px;
+
+    	&:nth-child(1) {
+    		margin-right: 12px;
+    	}
+    	&:nth-child(2) {
+    		margin-left: 12px;
+    	}
+		}
+		img {
+			height: 80px;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		h4 {
+			color: #727272;
+			line-height: 1.1;
+			font-size: 18px;
+			font-weight: 700;
+			margin: 35px 0 0 0;
+		}
+	}
+	.pick-enrollment-text {
+		width: 460px;
+    display: flex;
+    margin: 0 auto;
+    font-size: 14px;
+
+    .enrollment-method-box-text {
+    	padding: 20px 0px;
+    	flex: 1;
+    }
+    .download-below-text {
+    	font-weight: 700;
+    	color: #2c3e50;
+    	width: 78%;
+   		margin-left: auto;
+    	margin-right: auto;
+    	line-height: 1.4
+    }
+	}
+	.prev-next-button-container {
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+    height: auto;
+    background-color: #f5f8fa;
+    padding: 15px 0;
+    margin: 30px 0 0 0;
+    border-top: solid 1px #d0d1d1;
+    border-bottom: solid 1px #d0d1d1;
+
+    .button-container {
+    	width: 95%;
+    	margin: 0 auto;
+    	padding: 0 15px;
+    }
+    button {
+    	font-weight: 700;
+    	font-size: 16px;
+    	padding: 11px 39px;
+    	border: 2px solid transparent;
+    	background-color: transparent;
+    	text-transform: uppercase;
+    	border-radius: 4px;
+    	line-height: 1.42857143;
+  		letter-spacing: .5px;
+
+    	&:nth-child(1) {
+    		color: #2c3e50;
+    		border: 2px solid #d6d6d6;
+    	}
+    	&:nth-child(2) {
+    		color: #fff;
+    		background-color: #0392cf;
+    		border: 2px solid #0392cf;
+    		float: right;
+    	}
+    }
+	}
+}

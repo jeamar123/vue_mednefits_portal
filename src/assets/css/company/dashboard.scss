@@ -77,7 +77,6 @@
 	width: 95%;
 	padding-left: 15px;
 	padding-right: 15px;
-	padding-bottom: 8px;
 	margin-left: auto;
 	margin-right: auto;
 
@@ -104,7 +103,14 @@
   z-index: 1;
   cursor: pointer;
   margin-top: 10px;
+  margin-bottom:8px;
   font-weight: 700;
+}
+.welcome-container .web-input-title {
+	font-size: 20px;
+  margin: 20px 0;
+  line-height: 1.1;
+  display: none;
 }
 .router-active{
 	width: 100%;
@@ -128,7 +134,7 @@
 	-webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
   box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
-.welcome-container .dropdown-menu li a {
+.welcome-container .dropdown-menu li>a {
 	cursor: pointer;
 	display: block;
 	padding: 3px 20px;

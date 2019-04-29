@@ -123,7 +123,8 @@
       	</div>
       </div>
     </div>
-    <div class="employee-information-wrapper">
+
+    <div class="employee-overview-wrapper">
       <div class="employee-information-container">
         <div class="person-information">
           <div class="person-image-name-info">
@@ -149,24 +150,216 @@
                 <span>Plan</span>
               </strong>
               <div>
-                <span>Employee</span>
+                <span>Employee</span> - 
                 <span>Pro Plan</span>
               </div>
                <div>
-                <span>Dependents</span>
+                <span>Dependents</span> - 
                 <span>Lite Plan</span>
               </div>
             </div>
+            <div class="employee-plan-cover">
+              <strong>Plan Covers</strong> 
+              <span>
+                <span>4</span> People
+              </span>
+            </div>
+            <div class="employee-info-start-date">
+              <strong>Start Date</strong> 
+              <span>01/01/2018</span>
+            </div>
+            <div class="employee-info-end-date">
+              <strong>End Date</strong> 
+              <span>01/01/2020</span>
+            </div>
           </div>
           <div class="medical-spending-account">
-            
+            <h4>
+              <strong>Medical Spending Account</strong>
+            </h4>
+            <div class="allocation-container">
+              <strong>Allocation</strong>
+              <span>S$ <span>100.00</span></span>
+            </div>
+            <div class="usage-container-wrapper">
+              <div class="usage-container">
+                <strong>Usage</strong>
+                <span>S$ <span>10.00</span></span>
+              </div>
+              <img :src="'../assets/img/icons/right.png'">
+              <div class="usage-dropdown-details">
+                <div class="usage-details">
+                  <span>Spent:</span>
+                  <span>S$ <span>0.00</span></span>
+                </div>
+                <div class="usage-details">
+                  <span>Pending claim:</span>
+                  <span>S$ <span>0.00</span></span>
+                </div>
+              </div>
+            </div>
+            <div class="balance-container">
+              <strong>Balance</strong>
+              <span>S$ <span>100.00</span></span>
+            </div>
           </div>
-          <div class="wellness-spending-accoung">
-            
+          <div class="wellness-spending-account">
+            <h4>
+              <strong>Wellness Spending Account</strong>
+            </h4>
+            <div class="allocation-container">
+              <strong>Allocation</strong>
+              <span>S$ <span>100.00</span></span>
+            </div>
+            <div class="usage-container-wrapper">
+              <div class="usage-container">
+                <strong>Usage</strong>
+                <span>S$ <span>0.00</span></span>
+              </div>
+              <img :src="'../assets/img/icons/right.png'">
+              <div class="usage-dropdown-details">
+                <div class="usage-details">
+                  <span>Spent:</span>
+                  <span>S$ <span>0.00</span></span>
+                </div>
+                <div class="usage-details">
+                  <span>Pending claim:</span>
+                  <span>S$ <span>0.00</span></span>
+                </div>
+              </div>
+            </div>
+            <div class="balance-container">
+              <strong>Balance</strong>
+              <span>S$ <span>100.00</span></span>
+            </div>
+          </div>
+          <div class="btn-person-info-container">
+            <button class="btn-remove-employee">Remove Employee</button>
+            <button class="btn-health-spending">Health Spending Account Summary</button>
           </div>
         </div>
-        <div class="employee-information">
-          
+        <div class="employee-information-wrapper">
+          <div class="employee-info-selection">
+            <div class="employee-selection active">Employee</div>
+            <div class="employee-selection">Dependent</div>
+            <div class="employee-selection">Settings</div>
+          </div>
+          <div class="employee-information">
+            <div class="employee-details-wrapper">
+              <h3 class="employee-details-title">Employee Information</h3>
+              <div class="dependent-btn-container">
+                <button>
+                  <img :src="'../assets/img/icons/edit.png'">Edit
+                </button>
+              </div>
+              <div class="employee-info-details">
+                <div class="col-1-employee-information-details">
+                  <div>
+                    <strong>First Name</strong>
+                    <span>unique</span>
+                  </div>
+                  <div>
+                    <strong>Last Name</strong>
+                    <span>nina</span>
+                  </div>
+                  <div>
+                    <strong>NRIC/FIN</strong>
+                    <span>S7506591D</span>
+                  </div>
+                  <div>
+                    <strong>Member ID</strong>
+                    <span>000003</span>
+                  </div>
+                  <div>
+                    <strong>Date of Birth</strong>
+                    <span>08/08/1993</span>
+                  </div>
+                </div>
+                <div class="col-2-employee-information-details">
+                  <div>
+                    <strong>Work Email</strong>
+                    <span>allan.alzula@gmail.com</span>
+                  </div> 
+                  <div>
+                    <strong>Mobile Number</strong>
+                    <span>63906431792</span>
+                  </div>
+                  <div>
+                    <strong>Postal Code</strong>
+                    <span>9000</span>
+                  </div>
+                  <div>
+                    <strong>Job Title</strong>
+                    <span>Building and Estate Management</span>
+                  </div>
+                  <div>
+                    <strong>Bank Account Number</strong>
+                    <span>Building and Estate Management</span>
+                  </div>
+                </div>
+              </div>
+              <div class="employee-btn-add-seat-wrapper">
+                <h3>Add a Dependent?</h3>
+                <button class="btn-add-seat"><img :src="'../assets/img/icons/add-employee.svg'">Add</button>
+              </div>
+            </div>
+          </div>
+          <div class="dependent-information">
+            <div class="employee-details-wrapper">
+              <h3 class="employee-details-title">Dependent Information</h3>
+              <div class="dependent-btn-container">
+                <button>
+                  <img :src="'../assets/img/icons/dustbin.png'">Remove
+                </button>
+                <button>
+                  <img :src="'../assets/img/icons/edit.png'">Edit
+                </button>
+              </div>
+              <div class="employee-info-details">
+                <div class="col-1-employee-information-details">
+                  <div>
+                    <strong>First Name</strong>
+                    <span>unique</span>
+                  </div>
+                  <div>
+                    <strong>Last Name</strong>
+                    <span>nina</span>
+                  </div>
+                  <div>
+                    <strong>NRIC/FIN</strong>
+                    <span>S7506591D</span>
+                  </div>
+                </div>
+                <div class="col-2-employee-information-details">
+                  <div>
+                    <strong>Date of Birth</strong>
+                    <span>06/03/1996</span>
+                  </div> 
+                  <div>
+                    <strong>Relationship</strong>
+                    <span>family</span>
+                  </div>
+                  <div>
+                    <strong>Member ID</strong>
+                    <span>000308</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="settings-information">
+            <div class="employee-settings-wrapper">
+              <button>Resend/Reset Account</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="employee-prev-next-button">
+        <button class="employee-btn-back">Back to employee overview</button>
+        <div class="pull-right">
+          <button class="employee-btn-prev disabled">Previous</button>
+          <button class="employee-btn-next">Next employee</button>
         </div>
       </div>
     </div>

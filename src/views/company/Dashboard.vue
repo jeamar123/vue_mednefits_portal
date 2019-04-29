@@ -141,7 +141,7 @@
           <div class="welcome-container">
             <h4 v-if="$route.name === 'CompanyIntro'">Welcome</h4>
             <h4 v-if="$route.name === 'CompanyEnrollment'">Enrollment</h4>
-
+            <h4 v-if="$route.name === 'CompanyEnrollment'" class="web-input-title">WEB INPUT</h4>
             <div class="line-bottom"></div>
           </div>
         </div>
