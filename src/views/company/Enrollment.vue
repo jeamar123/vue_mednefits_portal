@@ -98,17 +98,60 @@
           </form>
            <div class="summary-right-container">
             <button class="summary-right-button">SUMMARY</button>
-            <div class="list-of-employee list-employee-active">
+            <div class="list-of-employee list-employee-active" v-if="false">
               <h4>Employee Summary</h4>
             </div>
           </div>
+        </div>
+        <div class="dependent-details-wrapper">
+          <span class="employee-tier-title">DEPENDENT <span>4</span> OF <span>4</span></span>
+          <div class="employee-details-header">
+            <h1>Dependent details</h1>
+          </div>
+          <form class="form-input-container">
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label for="fname">First / Given Name</label>
+                <input type="text" name="fname">
+              </div>
+              <div class="employee-input-wrapper">
+                <label for="fname">Last / Family Name</label>
+                <input type="text" name="lname">
+              </div>
+            </div>
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper nric">
+                <label>NRIC</label>
+                <label>FIN</label>
+                <input type="text" name="nric-fin">
+              </div>
+              <div class="employee-input-wrapper dob">
+                <label for="fname">Date of Birth</label>
+                <input type="text" name="lname" placeholder="DD/MM/YYYY">
+              </div>
+            </div>
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label for="fname">Relationship</label>
+                <input type="text" name="relationship">
+              </div>
+              <div class="employee-input-wrapper">
+                <label for="fname">Start Date</label>
+                <input type="text" name="stard-date">
+              </div>
+            </div>
+          </form>
         </div>
   		</div>
 
       <div class="prev-next-button-container">
         <div class="button-container">
-          <button>Back</button>
-          <button>Next</button>
+          <button class="back-btn">Back</button>
+          <button class="next-btn">Next</button>
+          <div class="btn-enroll-container" v-if="false">
+            <button class="btn-next-employee">NEXT EMPLOYEE</button>
+            <button class="btn-enroll">ENROLL</button>
+          </div>
         </div>
       </div>
   	</div>
