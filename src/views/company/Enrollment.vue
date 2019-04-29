@@ -2,14 +2,15 @@
   <div>
   	<div class="enrollment-wrapper">
   		<div class="container">
-  			<div class="enrollment-method-wrapper">
+        <!-- Enrollment -->
+  			<div v-if="isState === 'enrollment'" class="enrollment-method-wrapper">
   				<h1 class="enrollment-method-title">Pick your preferred enrollment method.</h1>
   				<div class="pick-enrollment-method">
-  					<button class="enrollment-method-box">
+  					<button v-on:click="type('excel')" v-bind:class="{'active': isType === 'excel'}" class="enrollment-method-box">
               <img :src="'../assets/img/excel.png'">
               <h4>EXCEL IMPORT</h4>     
             </button>
-            <button class="enrollment-method-box active">
+            <button v-on:click="type('web')" v-bind:class="{'active': isType === 'web'}" class="enrollment-method-box">
               <img :src="'../assets/img/web-input.png'">
               <h4>WEB INPUT</h4>
             </button>
@@ -24,7 +25,7 @@
           </div>
   			</div>
         <!-------- WEB INPUT -------->
-        <div class="employee-details-wrapper">
+        <div v-if="isState === 'web'" class="employee-details-wrapper">
           <span class="employee-tier-title">EMPLOYEE 
             <span>17</span> OF <span>27</span>
           </span>
@@ -108,7 +109,9 @@
       <div class="prev-next-button-container">
         <div class="button-container">
           <button>Back</button>
-          <button>Next</button>
+          <button v-if="isState === 'enrollment'" v-on:click="next">Next</button>
+          <button v-if="isState === 'web'" v-on:click="employeeDetails">Next</button>
+          <button v-if="isState === 'excel'" v-on:click="excel">Next</button>
         </div>
       </div>
   	</div>

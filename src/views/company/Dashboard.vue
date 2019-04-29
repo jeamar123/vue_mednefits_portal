@@ -1,6 +1,7 @@
 <template>
   <div class="main-ui-container">
-    <div v-if="$route.name != 'CompanyIntro' && $route.name != 'CompanyEnrollment'" class="top-navbar-wrapper">
+    <div v-if="$route.name != 'CompanyIntro' && $route.name != 'CompanyEnrollment'"
+      class="top-navbar-wrapper">
       <div class="top-navbar">
         <img class="top-logo" :src="'../assets/img/mednefits_logo_v3_(white).png'">
 
@@ -109,7 +110,8 @@
       </div>
     </div>
 
-    <div v-if="$route.name === 'CompanyIntro' || $route.name === 'CompanyEnrollment'" class="welcome-top-navbar-wrapper">
+    <div v-if="$route.name === 'CompanyIntro' || $route.name === 'CompanyEnrollment'"
+      class="welcome-top-navbar-wrapper">
       <div class="top-navbar">
         <img class="top-logo" :src="'../assets/img/mednefits_logo_v3_(white).png'">
 
@@ -134,21 +136,51 @@
             </div>
           </a>
         </div>
+
+        <div
+          v-if="$route.name === 'CompanyEnrollment' && isState === 'enrollment' || isState === 'web' "
+          class="account-dropdown"
+        >
+          <img class="user-icon" :src="'../assets/img/user-nav.png'">
+
+          <img class="arrow-down" :src="'../assets/img/icons/down-arrow.svg'">
+
+          <div class="account-list-container">
+            <ul>
+              <li>
+                <a href="#">Account &amp; Billing</a>
+              </li>
+
+              <li>
+                <a href>Plan Coverage</a>
+              </li>
+
+              <li>
+                <!-- <a href="/company-benefits-dashboard-logout">Log Out</a> -->
+
+                <a href id="logout-btn">Log Out</a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       <div class="navbar-blue-bg">
         <div class="container">
           <div class="welcome-container">
             <h4 v-if="$route.name === 'CompanyIntro'">Welcome</h4>
-            <h4 v-if="$route.name === 'CompanyEnrollment'">Enrollment</h4>
-            <h4 v-if="$route.name === 'CompanyEnrollment'" class="web-input-title">WEB INPUT</h4>
+            <h4 v-if="$route.name === 'CompanyEnrollment' && isState === 'enrollment'">Enrollment</h4>
+            <h4
+              v-if="isState === 'web' && $route.name === 'CompanyEnrollment'"
+              class="web-input-title"
+            >WEB INPUT</h4>
             <div class="line-bottom"></div>
           </div>
         </div>
       </div>
     </div>
 
-    <router-view></router-view>
+    <router-view v-on:title-change="titleChange"></router-view>
   </div>
 </template>
 
