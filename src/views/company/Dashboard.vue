@@ -27,11 +27,12 @@
         </div>
 
         <div class="account-dropdown">
-          <img class="user-icon" :src="'../assets/img/user-nav.png'">
+          <div class="account-img-container">
+            <img class="user-icon" :src="'../assets/img/user-nav.png'">
+            <img class="arrow-down" :src="'../assets/img/icons/down-arrow.svg'">
+          </div>
 
-          <img class="arrow-down" :src="'../assets/img/icons/down-arrow.svg'">
-
-          <div class="account-list-container">
+          <div class="account-list-container" v-if="false">
             <ul>
               <li>
                 <a href="#">Account &amp; Billing</a>
@@ -110,7 +111,6 @@
           <div v-if="$route.name === 'CompanyEnrollment'" class="enrollment-navbar-container welcome-container">
             <h4 v-if="$route.name === 'CompanyEnrollment' && isState === 'enrollment'">Enrollment</h4>
             <h4 v-if="isState === 'web' && $route.name != 'CompanyHome'" class="web-input-title">WEB INPUT</h4>
-            <div class="line-bottom"></div>
           </div>
         </div>
       </div>
@@ -146,10 +146,10 @@
           v-if="$route.name === 'CompanyEnrollment' && isState === 'enrollment' || isState === 'web' "
           class="account-dropdown"
         >
-          <img class="user-icon" :src="'../assets/img/user-nav.png'">
-
-          <img class="arrow-down" :src="'../assets/img/icons/down-arrow.svg'">
-
+          <div class="account-img-container">
+            <img class="user-icon" :src="'../assets/img/user-nav.png'">
+            <img class="arrow-down" :src="'../assets/img/icons/down-arrow.svg'">
+          </div>
           <div class="account-list-container">
             <ul>
               <li>
