@@ -76,7 +76,7 @@
                 </li>
 
                 <li>
-                  <router-link v-bind:class="{ 'remove-active': ($route.name == 'CompanyEmployee') }" to="/company/credit-allocation">
+                  <router-link v-bind:class="{ 'remove-active': ($route.name == 'CompanyCreditAllocation') }" to="/company/credit-allocation">
                     <a @click="dropdownClicked">Credit Allocation</a>
                   </router-link>
                 </li>
