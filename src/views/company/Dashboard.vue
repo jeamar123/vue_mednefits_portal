@@ -70,13 +70,13 @@
 
               <ul v-show="isDropdown" class="dropdown-menu">
                 <li>
-                  <router-link to="/company/employee-overview">
+                  <router-link v-bind:class="{ 'remove-active': ($route.name == 'CompanyEmployee') }" to="/company/employee-overview">
                     <a @click="dropdownClicked">Overview</a>
                   </router-link>
                 </li>
 
                 <li>
-                  <router-link to="/company/credit-allocation">
+                  <router-link v-bind:class="{ 'remove-active': ($route.name == 'CompanyEmployee') }" to="/company/credit-allocation">
                     <a @click="dropdownClicked">Credit Allocation</a>
                   </router-link>
                 </li>
@@ -178,7 +178,7 @@
         </div>
       </div>
     </div>
-
+    <!-- v-on:emitName="methodName" holds data from imported component -->
     <router-view v-on:enrollmentData="enrollmentData" v-on:overviewData="overviewData"></router-view>
   </div>
 </template>

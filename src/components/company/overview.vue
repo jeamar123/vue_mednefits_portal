@@ -3,10 +3,15 @@
 let overview = {
   data() {
     return {
-      sampleData: true
+      spendingType: 'medical' //default is medical
     };
   },
   methods: {
+    spendType(data){
+      //spending either medical or wellness
+      this.spendingType = data;
+    },
+    //emit/transfer data data to another component
     toEnrollment(data) {
       this.$emit('overviewData',{
         isState: data

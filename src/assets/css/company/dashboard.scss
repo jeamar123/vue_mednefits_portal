@@ -114,10 +114,11 @@
 .router-active{
 	width: 100%;
 	border-bottom: 4px solid #ECF0F1;
-	/* background-color: #ECF0F1; */
 	padding-bottom: 6px;
-	/* margin-top: 5px; */
-	/* height: 4px; */
+}
+
+.remove-active {
+	border-bottom: unset;
 }
 .welcome-container .dropdown-menu {
 	// display: none;
