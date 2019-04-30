@@ -2,21 +2,28 @@
 /* eslint-disable */
 // methods here
 import Enrollment from "./enrollment";
+import Overview from "./overview";
 
 let dashboard = {
   components: {
-    Enrollment
+    Enrollment,
+    Overview
   },
   data() {
     return {
-      isState: 'enrollment',
+      isState: '',
       isActive: false,
       isDropdown: false //hide show Dropdown
     };
   },
   methods: {
-    // change the title on navigation to Web Input
-    titleChange(state) {
+    // change the title on navigation to Web Input and Enrollment and excel
+    // functions from $emit data from another component
+    enrollmentData(state) {
+      this.isState = state.isState;
+      console.log(this.isState);
+    },
+    overviewData(state){
       this.isState = state.isState;
       console.log(this.isState);
     },

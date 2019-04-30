@@ -6,6 +6,13 @@ let overview = {
       sampleData: true
     };
   },
+  methods: {
+    toEnrollment(data) {
+      this.$emit('overviewData',{
+        isState: data
+      });
+    }
+  }
 };
 
 export default overview

@@ -19,7 +19,7 @@
                 <strong>01 January 2020</strong>
               </h5>
               <router-link to="/company/enrollment">
-                <button class="btn-info">Employee Enrollment</button>
+                <button class="btn-info" @click="toEnrollment('enrollment')">Employee Enrollment</button>
               </router-link>
             </div>
           </div>
