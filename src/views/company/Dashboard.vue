@@ -1,7 +1,6 @@
 <template>
   <div class="main-ui-container">
-    <div v-if="$route.name != 'CompanyIntro' && $route.name != 'CompanyEnrollment'"
-      class="top-navbar-wrapper">
+    <div v-if="$route.name != 'CompanyIntro'" class="top-navbar-wrapper">
       <div class="top-navbar">
         <img class="top-logo" :src="'../assets/img/mednefits_logo_v3_(white).png'">
 
@@ -54,7 +53,7 @@
 
       <div class="navbar-blue-bg">
         <div class="container">
-          <div class="dashboard-navbar-container">
+          <div v-if="$route.name != 'CompanyEnrollment'" class="dashboard-navbar-container">
             <div class="welcome-container">
               <router-link to="/company/dashboard">
                 <h4>Overview</h4>
@@ -108,18 +107,16 @@
               </router-link>
             </div>
           </div>
-          <div class="enrollment-navbar-container">
+          <div v-if="$route.name === 'CompanyEnrollment'" class="enrollment-navbar-container welcome-container">
             <h4 v-if="$route.name === 'CompanyEnrollment' && isState === 'enrollment'">Enrollment</h4>
-            <h4 v-if="isState === 'web' && $route.name === 'CompanyEnrollment'" class="web-input-title"
-            >WEB INPUT</h4>
+            <h4 v-if="isState === 'web' && $route.name != 'CompanyHome'" class="web-input-title">WEB INPUT</h4>
             <div class="line-bottom"></div>
           </div>
         </div>
       </div>
     </div>
 
-    <div v-if="$route.name === 'CompanyIntro' || $route.name === 'CompanyEnrollment'"
-      class="welcome-top-navbar-wrapper">
+    <div v-if="$route.name === 'CompanyIntro'" class="welcome-top-navbar-wrapper">
       <div class="top-navbar">
         <img class="top-logo" :src="'../assets/img/mednefits_logo_v3_(white).png'">
 
@@ -182,7 +179,7 @@
       </div>
     </div>
 
-    <router-view v-on:title-change="titleChange"></router-view>
+    <router-view v-on:enrollmentData="enrollmentData" v-on:overviewData="overviewData"></router-view>
   </div>
 </template>
 

@@ -15,7 +15,7 @@ let enrollment = {
     next() {
       if (this.isType === 'web') {
         this.isState = 'web';
-        this.$emit('title-change', {
+        this.$emit('enrollmentData', {
           isState: 'web'
         });
         console.log(this.isState);
