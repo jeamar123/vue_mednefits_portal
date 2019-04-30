@@ -146,8 +146,8 @@
             </div>
             <div class="home-spending-type-container">
               <p>Spending Account</p>
-              <button class="btn btn-medical active">Medical</button>
-              <button class="btn btn-wellness">Wellness</button>
+              <button @click="spendType('medical')" v-bind:class="{'active': spendingType === 'medical'}" class="btn btn-medical">Medical</button>
+              <button @click="spendType('wellness')" v-bind:class="{'active': spendingType === 'wellness'}" class="btn btn-wellness">Wellness</button>
             </div>
             <div class="credit-box">
               <div class="credit-allocated-container">
