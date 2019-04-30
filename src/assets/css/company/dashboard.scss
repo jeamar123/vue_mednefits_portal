@@ -174,7 +174,7 @@
 }
 .need-help-text-container:hover div.tooltip-container {
   visibility: visible;
-  right: 0;
+  right: -17px;
   top: 30px;
   margin-top: 15px;
   z-index: 999;
@@ -188,53 +188,42 @@
   padding: 35px 35px;
   visibility: hidden;
   z-index: 9999;
-}
-.tooltip-container h3 {
-	font-family: "Open Sans";
-	font-weight: 800;
-}
-.tooltip-container h3:hover {
-	text-decoration: none;
-  color: #909090;
-}
-.tooltip-container:after {
-  content: '';
-  position: absolute;
-  bottom: 100%;
-  left: 90%;
-  margin-left: -8px;
-  width: 0;
-  height: 0;
-  border-bottom: 8px solid #efefef;
-  border-right: 8px solid transparent;
-  border-left: 8px solid transparent;
-}
-h3.tooltip-title {
+
+  h3 {
+		font-family: "Open Sans";
+		font-weight: 800;
+		&:hover {
+    	color: #909090;
+    }
+	}
+	.tooltip-title {
     color: #0392cf;
     font-size: 22px;
     margin-bottom: 40px;
     margin-top: 0px;
-}
-h3.tooltip-phone-email-title {
-    color: #494949;
-    font-size: 18px;
-}
-h3.tooltip-phone-email-details {
+	}
+	.tooltip-phone-email-title {
+	  color: #494949;
+	  font-size: 18px;
+	}
+	.tooltip-phone-email-details {
     color: #8a8a8a;
     font-size: 16px;
+	}
+	.tooltip-phone-container {
+		margin-bottom: 45px;
+	}
+	&:after {
+		content: '';
+	  position: absolute;
+	  bottom: 100%;
+	  left: 90%;
+	  margin-left: -8px;
+	  width: 0;
+	  height: 0;
+	  border-bottom: 8px solid #efefef;
+	  border-right: 8px solid transparent;
+	  border-left: 8px solid transparent;
+	}
 }
-h3.tooltip-phone-email-details {
-    color: #8a8a8a;
-    font-size: 16px;
-}
-.tooltip-phone-container {
-	margin-bottom: 45px;
-}
-h3.tooltip-phone-email-title {
-    color: #494949;
-    font-size: 18px;
-}
-h3.tooltip-phone-email-details {
-    color: #8a8a8a;
-    font-size: 16px;
-}
+
