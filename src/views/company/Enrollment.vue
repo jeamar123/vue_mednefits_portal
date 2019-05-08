@@ -104,7 +104,8 @@
             </div>
           </div>
         </div>
-        <div class="dependent-details-wrapper" v-if="false">
+        <!-- side content summary -->
+        <div class="dependent-details-wrapper" v-if="true">
           <span class="employee-tier-title">DEPENDENT <span>4</span> OF <span>4</span></span>
           <div class="employee-details-header">
             <h1>Dependent details</h1>
