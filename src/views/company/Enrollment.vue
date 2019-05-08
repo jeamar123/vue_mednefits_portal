@@ -99,8 +99,71 @@
           </form>
            <div class="summary-right-container">
             <button class="summary-right-button">SUMMARY</button>
-            <div class="list-of-employee list-employee-active" v-if="false">
+            <div class="list-of-employee list-employee-active" v-if="true">
               <h4>Employee Summary</h4>
+              <ul class="list-of-employee-details">
+                <li>
+                  <div>
+                    <span>1</span>.
+                    <span>Jeamar </span> 
+                    <span>Libres</span>
+                  </div>
+                  <div>
+                    <span>a</span>.
+                    <span>Jeamar </span> 
+                    <span>Libres</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span>1</span>.
+                    <span>Jeamar </span> 
+                    <span>Libres</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span>1</span>.
+                    <span>Jeamar </span> 
+                    <span>Libres</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span>1</span>.
+                    <span>Jeamar </span> 
+                    <span>Libres</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span>1</span>.
+                    <span>Jeamar </span> 
+                    <span>Libres</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span>1</span>.
+                    <span>Jeamar </span> 
+                    <span>Libres</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span>1</span>.
+                    <span>Jeamar </span> 
+                    <span>Libres</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span>1</span>.
+                    <span>Jeamar </span> 
+                    <span>Libres</span>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -143,6 +206,13 @@
               </div>
             </div>
           </form>
+          <div class="dependent-details-btn">
+            <button class="btn-cancel">CANCEL</button>
+            <div class="btn-right-container">
+              <button class="btn-add">ADD</button>
+              <button class="btn-save-continue">SAVE & CONTINUE</button>
+            </div>
+          </div>
         </div>
   		</div>
 

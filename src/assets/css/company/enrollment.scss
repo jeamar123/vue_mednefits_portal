@@ -242,6 +242,38 @@
 			color: #9c9c9c;
 		}
 	}
+	.dependent-details-wrapper {
+		padding-bottom: 50px;
+	}
+	.dependent-details-btn {
+		width: 650px;
+		margin: 40px auto auto auto;
+
+		button {
+			color: #2c3e50;
+			background-color: transparent;
+			border-radius: 4px;
+			border: 2px solid #d6d6d6;
+			height: 45px;
+			font-weight: 300;
+		}
+		.btn-cancel {
+			width: 110px;
+		}
+		.btn-add {
+			width: 80px;
+			margin-right: 10px;
+		}
+		.btn-save-continue {
+			width: 175px;
+			color: #fff;
+			background-color: #0291CE;
+			border-color: #0291CE;
+		}
+	}
+	.btn-right-container {
+		float: right;
+	}
 	.summary-right-container {
 		position: absolute;
     right: 0;
@@ -249,7 +281,7 @@
 
 		.summary-right-button {
 			position: absolute;
-			right: 0;
+			/*right: 0;*/
 			background-color: #0392cf;
 	    color: #fff;
 	    font-size: 12px;
@@ -262,10 +294,10 @@
 	    border: solid 1px transparent;
 	    line-height: 24px;
 		}
-		/* WHEN CLICKING THE SUMMARY BUTTON 
+		 /*WHEN CLICKING THE SUMMARY BUTTON */
 		.summary-right-button {
 			right: 253px;
-		} */
+		} 
 		.list-of-employee {
 			position: absolute;
 			right: 0;
@@ -285,6 +317,28 @@
     		font-weight: bold;
     		line-height: 1.1;
 	    }
+		}
+		.list-of-employee-details {
+			max-height: 280px;
+			overflow-y: auto;
+			li {
+				color: #8c8c8c;
+		    margin-bottom: 10px;
+			}
+			li div:nth-child(1) {
+				cursor: pointer;
+				padding: 2px 0 5px 24px;
+		    border-bottom: solid 1px #d2d2d2;
+			}	
+			li div:nth-child(2) {
+				cursor: pointer;
+				padding: 2px 0 5px 80px;
+				border-bottom: solid 1px #d2d2d2;
+			}
+			span:nth-child(1) {
+				font-weight: 700;
+				color: #000;
+			}
 		}
 	}
 
