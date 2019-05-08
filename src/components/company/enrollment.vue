@@ -3,8 +3,8 @@
 let enrollment = {
   data() {
     return {
-      isType: '',
-      isState: 'enrollment',
+      isType: '', //excel or web input
+      isState: 'enrollment', //navigation title
     };
   },
   methods: {
@@ -25,6 +25,9 @@ let enrollment = {
       } else {
         console.log('select 1 item');
       }
+    },
+    back(data) {
+      this.isState = data;
     },
     employeeDetails() {
       console.log('submit employee details');

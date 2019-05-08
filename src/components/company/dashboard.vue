@@ -13,7 +13,8 @@ let dashboard = {
     return {
       isState: '',
       isActive: false,
-      isDropdown: false //hide show Dropdown
+      isDropdown: false, //hide show Dropdown,
+      accountDropdown: false, 
     };
   },
   methods: {
@@ -28,27 +29,41 @@ let dashboard = {
       console.log(this.isState);
     },
     //Dropdown methods toggle show hide dropdown
-    dropdownClicked() {
-      this.isDropdown = !this.isDropdown;
+    dropdownClicked(data) {
+      if (data === 'employee') {
+        this.isDropdown = !this.isDropdown;
+      } else if (data === 'account') {
+        this.accountDropdown = !this.accountDropdown;
+      }
+      
     },
     // if dropdown open then close dropdown when click anywhere in page
-    documentClick(e) {
-      let el = this.$refs.dropdownMenu;
+    employeeDocumentClick(e) {
+      let el = this.$refs.employeeDropdownMenu;
       let target = e.target;
       if (el !== target && !el.contains(target)) {
         this.isDropdown = false;
-      }
+      };
+    },
+    accountDocumentClick(e) {
+      let el = this.$refs.accountDropdownMenu;
+      let target = e.target;
+      if (el !== target && !el.contains(target)) {
+        this.accountDropdown = false;
+      };
     }
     // Your Methods here
   },
   created() {
     // close dropdown when click anywhere in page
-    document.addEventListener("click", this.documentClick);
+    document.addEventListener("click", this.employeeDocumentClick);
+    document.addEventListener("click", this.accountDocumentClick);
   },
   destroyed() {
     // close dropdown when click anywhere in page
     // important to clean up!!
-    document.removeEventListener("click", this.documentClick);
+    document.removeEventListener("click", this.employeeDocumentClick);
+    document.removeEventListener("click", this.accountDocumentClick);
   }
 };
 

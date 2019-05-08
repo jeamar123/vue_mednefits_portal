@@ -154,7 +154,9 @@
 
       <div class="prev-next-button-container">
         <div class="button-container">
-          <button class="back-btn">Back</button>
+          <button v-if="isState === 'enrollment'" @click="$router.go(-1)" class="back-btn">Back</button>
+          <button v-if="isState === 'web' || isState === 'excel'" @click="back('enrollment')" class="back-btn">Back</button>
+          
           <button class="next-btn" v-if="isState === 'enrollment'" v-on:click="next">Next</button>
           <button class="next-btn" v-if="isState === 'web'" v-on:click="employeeDetails">Next</button>
           <button class="next-btn" v-if="isState === 'excel'" v-on:click="excel">Next</button>

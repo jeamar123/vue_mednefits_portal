@@ -27,25 +27,28 @@
         </div>
 
         <div class="account-dropdown">
-          <div class="account-img-container">
-            <img class="user-icon" :src="'../assets/img/user-nav.png'">
-            <img class="arrow-down" :src="'../assets/img/icons/down-arrow.svg'">
+          <div class="account-img-container" ref="accountDropdownMenu">
+            <a @click="dropdownClicked('account')" >
+              <img class="user-icon" :src="'../assets/img/user-nav.png'">
+
+              <img class="arrow-down" :src="'../assets/img/icons/down-arrow.svg'">
+            </a>
           </div>
 
-          <div class="account-list-container" v-if="false">
-            <ul>
+          <div class="account-list-container">
+            <ul v-if="accountDropdown" >
               <li>
-                <a href="#">Account &amp; Billing</a>
+                <a>Account &amp; Billing</a>
               </li>
 
               <li>
-                <a href>Plan Coverage</a>
+                <a>Plan Coverage</a>
               </li>
 
               <li>
                 <!-- <a href="/company-benefits-dashboard-logout">Log Out</a> -->
 
-                <a href id="logout-btn">Log Out</a>
+                <a id="logout-btn">Log Out</a>
               </li>
             </ul>
           </div>
@@ -62,23 +65,27 @@
             </div>
 
             <div class="welcome-container">
-              <a
-                v-bind:class="{ 'router-active': ($route.name == 'CompanyEmployee') }"
-                ref="dropdownMenu"
-              >
-                <h4 @click="dropdownClicked">Employee</h4>
+              <a v-bind:class="{ 'router-active': ($route.name == 'CompanyEmployee') }"
+                ref="employeeDropdownMenu">
+                <h4 @click="dropdownClicked('employee')">Employee</h4>
               </a>
 
               <ul v-show="isDropdown" class="dropdown-menu">
                 <li>
-                  <router-link v-bind:class="{ 'remove-active': ($route.name == 'CompanyEmployee') }" to="/company/employee-overview">
-                    <a @click="dropdownClicked">Overview</a>
+                  <router-link
+                    v-bind:class="{ 'remove-active': ($route.name == 'CompanyEmployee') }"
+                    to="/company/employee-overview"
+                  >
+                    <a>Overview</a>
                   </router-link>
                 </li>
 
                 <li>
-                  <router-link v-bind:class="{ 'remove-active': ($route.name == 'CompanyCreditAllocation') }" to="/company/credit-allocation">
-                    <a @click="dropdownClicked">Credit Allocation</a>
+                  <router-link
+                    v-bind:class="{ 'remove-active': ($route.name == 'CompanyCreditAllocation') }"
+                    to="/company/credit-allocation"
+                  >
+                    <a>Credit Allocation</a>
                   </router-link>
                 </li>
               </ul>
@@ -108,9 +115,17 @@
               </router-link>
             </div>
           </div>
-          <div v-if="$route.name === 'CompanyEnrollment'" class="enrollment-navbar-container welcome-container">
+
+          <div
+            v-if="$route.name === 'CompanyEnrollment'"
+            class="enrollment-navbar-container welcome-container"
+          >
             <h4 v-if="$route.name === 'CompanyEnrollment' && isState === 'enrollment'">Enrollment</h4>
-            <h4 v-if="isState === 'web' && $route.name != 'CompanyHome'" class="web-input-title">WEB INPUT</h4>
+
+            <h4
+              v-if="isState === 'web' && $route.name != 'CompanyHome'"
+              class="web-input-title"
+            >WEB INPUT</h4>
           </div>
         </div>
       </div>
@@ -148,8 +163,10 @@
         >
           <div class="account-img-container">
             <img class="user-icon" :src="'../assets/img/user-nav.png'">
+
             <img class="arrow-down" :src="'../assets/img/icons/down-arrow.svg'">
           </div>
+
           <div class="account-list-container">
             <ul>
               <li>
@@ -178,7 +195,9 @@
         </div>
       </div>
     </div>
+
     <!-- v-on:emitName="methodName" holds data from imported component -->
+
     <router-view v-on:enrollmentData="enrollmentData" v-on:overviewData="overviewData"></router-view>
   </div>
 </template>
