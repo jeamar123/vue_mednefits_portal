@@ -296,18 +296,19 @@
 		}
 		 /*WHEN CLICKING THE SUMMARY BUTTON */
 		.summary-right-button {
-			right: 253px;
-		} 
+			right: 0; //255px
+		}
 		.list-of-employee {
 			position: absolute;
 			right: 0;
 			margin-top: -52px;
-			width: 255px;
+			width: 0; //255px
 			background-color: #f7f7f7;
 			box-shadow: 0px 0px 10px 0px rgba(148,148,148,1);
 	    min-height: 180px;
 	    max-height: 400px;
-	    overflow-y: auto;
+			overflow-y: auto;
+			transition: all 1s ease;
 
 	    h4 {
 	    	margin: 10px 0;
