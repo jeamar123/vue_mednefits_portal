@@ -142,6 +142,13 @@
               </div>
             </div>
           </form>
+          <div class="dependent-details-btn">
+            <button class="btn-cancel">CANCEL</button>
+            <div class="btn-right-container">
+              <button class="btn-add">ADD</button>
+              <button class="btn-save-continue">SAVE & CONTINUE</button>
+            </div>
+          </div>
         </div>
   		</div>
 
