@@ -143,9 +143,10 @@
 	}
 	.employee-details-header {
 		position: relative;
+		color: #2c3e50;
 
 		h1 {
-			color: #2c3e50;
+			line-height: 1.1;
 			font-size: 32px;
 			font-weight: 400;
 			margin-top: 20px;
@@ -158,8 +159,8 @@
 			right: 0;
 		}
 		h4 {
+			line-height: 1.1;
 			display: inline-block;
-			color: #2c3e50;
 			font-weight: 600;
 			font-size: 18px;
 			margin: 10px 20px 10px 0px;
@@ -178,6 +179,21 @@
     		margin-right: 5px;
     		height: 16px;
     	}
+		}
+		.btn-remove {
+			margin-right: 70px;
+			border: 2px solid #dedede;
+			height: 40px;
+			width: auto;
+			padding: 0 15px;
+			font-weight: 700;
+			position: absolute;
+			top: 0;
+			right: 0;
+
+			img {
+				margin-right: 10px;
+			}
 		}
 	}
 	.employee-input-container {
@@ -202,7 +218,7 @@
 				font-size: .8rem;
 				line-height: 24px;
 			}
-			input {
+			input,select {
 				border: 0;
 				border-bottom: 1px solid #d6d6d6;
 		    width: 100%;
@@ -211,6 +227,13 @@
 		    font-weight: 600;
 		    outline: none;
 		    padding: 6px 0;
+		    -webkit-appearance: none;
+			}
+			img {
+				height: 15px;
+				position: absolute;
+				top: 38px;
+				right: 0;
 			}
 			.medical-text,
 			.wellness-text {
@@ -243,7 +266,24 @@
 		}
 	}
 	.dependent-details-wrapper {
-		padding-bottom: 50px;
+		position: relative;
+		padding: 50px 0px 0px;
+	}
+	.summary-left-right-btn {
+			position: absolute;
+			width: 100%;
+	   	top: 200px;
+		img {
+			position: absolute;
+			width: 40px;
+			cursor: pointer;	
+		}
+		img:nth-child(1) {
+	    left: 0;
+		}
+		img:nth-child(2) {
+	    right: 0;
+		}
 	}
 	.dependent-details-btn {
 		width: 650px;
@@ -281,7 +321,7 @@
 
 		.summary-right-button {
 			position: absolute;
-			/*right: 0;*/
+			right: 0;
 			background-color: #0392cf;
 	    color: #fff;
 	    font-size: 12px;
@@ -296,7 +336,7 @@
 		}
 		 /*WHEN CLICKING THE SUMMARY BUTTON */
 		.summary-right-button {
-			right: 253px;
+			/*right: 253px;*/
 		} 
 		.list-of-employee {
 			position: absolute;
