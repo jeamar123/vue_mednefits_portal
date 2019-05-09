@@ -98,8 +98,8 @@
             </div>
           </form>
           <div class="summary-right-container">
-            <button class="summary-right-button">SUMMARY</button>
-            <div class="list-of-employee list-employee-active" v-if="false">
+            <button id="summary-btn" class="summary-right-button" @click="toggleSummary">SUMMARY</button>
+            <div id="summary-content" class="list-of-employee list-employee-active">
               <h4>Employee Summary</h4>
               <ul class="list-of-employee-details">
                 <li>
@@ -167,6 +167,7 @@
             </div>
           </div>
         </div>
+        <!-- side content summary -->
         <div class="dependent-details-wrapper" v-if="false">
           <span class="employee-tier-title">DEPENDENT <span>4</span> OF <span>4</span></span>
           <div class="employee-details-header">

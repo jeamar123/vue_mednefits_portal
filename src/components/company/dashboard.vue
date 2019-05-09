@@ -11,7 +11,7 @@ let dashboard = {
   },
   data() {
     return {
-      isState: '',
+      isState: 'enrollment',
       isActive: false,
       isDropdown: false, //hide show Dropdown,
       accountDropdown: false, 
