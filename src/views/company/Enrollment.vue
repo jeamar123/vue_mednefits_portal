@@ -33,7 +33,7 @@
             <h1>Employee Details</h1>
             <div class="add-dependent-btn">
               <h4>Add a Dependent?</h4>
-              <button> <img :src="'../assets/img/icons/add-employee.svg'"> Add</button>
+              <button @click="addDependent"> <img :src="'../assets/img/icons/add-employee.svg'"> Add</button>
             </div>
           </div>
           <form>
@@ -97,6 +97,7 @@
               </div>
             </div>
           </form>
+          <!-- side content summary -->
            <div class="summary-right-container">
             <button id="summary-btn" class="summary-right-button" @click="toggleSummary">SUMMARY</button>
             <div id="summary-content" class="list-of-employee list-employee-active">
@@ -167,8 +168,8 @@
             </div>
           </div>
         </div>
-        <!-- side content summary -->
-        <div class="dependent-details-wrapper" v-if="false">
+        <!-- Add dependent section -->
+        <div class="dependent-details-wrapper" v-if="depdentState">
           <span class="employee-tier-title">DEPENDENT <span>4</span> OF <span>4</span></span>
           <div class="employee-details-header">
             <h1>Dependent details</h1>
@@ -207,7 +208,7 @@
             </div>
           </form>
           <div class="dependent-details-btn">
-            <button class="btn-cancel">CANCEL</button>
+            <button @click="addDependent" class="btn-cancel">CANCEL</button>
             <div class="btn-right-container">
               <button class="btn-add">ADD</button>
               <button class="btn-save-continue">SAVE & CONTINUE</button>
@@ -219,10 +220,10 @@
       <div class="prev-next-button-container">
         <div class="button-container">
           <button v-if="isState === 'enrollment'" @click="$router.go(-1)" class="back-btn">Back</button>
-          <button v-if="isState === 'web' || isState === 'excel'" @click="back('enrollment')" class="back-btn">Back</button>
+          <button v-if="isState === 'web' || isState === 'excel' || isState === 'dependent'" @click="back('enrollment')" class="back-btn">Back</button>
           
           <button class="next-btn" v-if="isState === 'enrollment'" v-on:click="next">Next</button>
-          <button class="next-btn" v-if="isState === 'web'" v-on:click="employeeDetails">Next</button>
+          <button class="next-btn" v-if="isState === 'web' || isState === 'dependent'" v-on:click="employeeDetails">Next</button>
           <button class="next-btn" v-if="isState === 'excel'" v-on:click="excel">Next</button>
           <div class="btn-enroll-container" v-if="false">
             <button class="btn-next-employee">NEXT EMPLOYEE</button>

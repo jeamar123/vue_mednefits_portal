@@ -10,7 +10,8 @@ let enrollment = {
     return {
       isType: "", //excel or web input
       isState: "enrollment", //navigation title
-      summaryBtn: false // summary state
+      summaryBtn: false, // summary state
+      depdentState: false
     };
   },
   methods: {
@@ -28,6 +29,15 @@ let enrollment = {
         $("#summary-btn").css({ right: "0" });
         $("#summary-content").css({ width: "0" });
       }
+    },
+    addDependent() {
+      this.depdentState = !this.depdentState;
+      if ( this.depdentState === true ) {
+        this.isState = 'dependent';
+      }else {
+        this.isState = 'web';
+      }
+      console.log(this.isState);
     },
     next() {
       if (this.isType === "web") {
