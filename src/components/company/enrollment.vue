@@ -11,7 +11,10 @@ let enrollment = {
       isType: "", //excel or web input
       isState: "enrollment", //navigation title
       summaryBtn: false, // summary state
-      depdentState: false
+      depdentState: false,
+      // data binding store data from WEB INPUT forms 
+      employeeDetails: {},
+      dataStorage: [{}]
     };
   },
   methods: {
