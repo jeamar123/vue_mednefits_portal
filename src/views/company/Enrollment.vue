@@ -59,11 +59,11 @@
             <div class="employee-input-container">
               <div class="employee-input-wrapper">
                 <label for="fname">First / Given Name</label>
-                <input type="text" name="fname">
+                <input type="text" name="fname" v-model="employeeDetails.fname">
               </div>
               <div class="employee-input-wrapper">
                 <label for="fname">Last / Family Name</label>
-                <input type="text" name="lname">
+                <input type="text" name="lname" v-model="employeeDetails.lname">
               </div>
             </div>
             <div class="employee-input-container">
@@ -122,65 +122,18 @@
             <div id="summary-content" class="list-of-employee list-employee-active">
               <h4>Employee Summary</h4>
               <ul class="list-of-employee-details">
-                <li>
+                <li v-for="(summary,index) in employeeStorage" v-bind:key="summary.id">
                   <div>
-                    <span>1</span>.
-                    <span>Jeamar</span>
-                    <span>Libres</span>
+                    <span>{{index + 1}}</span>.
+                    <span>{{summary.fname}} </span> 
+                    <span>{{summary.lname}}</span>
                   </div>
-                  <div>
-                    <span>a</span>.
-                    <span>Jeamar</span>
-                    <span>Libres</span>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>1</span>.
-                    <span>Jeamar</span>
-                    <span>Libres</span>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>1</span>.
-                    <span>Jeamar</span>
-                    <span>Libres</span>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>1</span>.
-                    <span>Jeamar</span>
-                    <span>Libres</span>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>1</span>.
-                    <span>Jeamar</span>
-                    <span>Libres</span>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>1</span>.
-                    <span>Jeamar</span>
-                    <span>Libres</span>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>1</span>.
-                    <span>Jeamar</span>
-                    <span>Libres</span>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>1</span>.
-                    <span>Jeamar</span>
-                    <span>Libres</span>
+                  <div v-if="summary.dependents !=null">
+                    <div class="summary-dependent" v-for="(dependent, letter) in summary.dependents" :key="dependent">
+                      <span>{{ String.fromCharCode('a'.charCodeAt() + letter) }}</span>.
+                      <span>{{dependent.fname}}</span>
+                      <span>{{dependent.fname}}</span>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -264,9 +217,9 @@
           <div class="btn-enroll-container">
             <button v-if="isState === 'false'" class="btn-next-employee">DELETE</button>
             <button v-if="isState === 'false'" class="btn-next-employee">PREVIOUS EMPLOYEE</button>
-            <button v-if="isState === 'web'" class="btn-next-employee">NEXT EMPLOYEE</button>
+            <button v-if="isState === 'web'" class="btn-next-employee" @click="getEmployeeDetails" >NEXT EMPLOYEE</button>
             <button class="next-btn" v-if="isState === 'enrollment'" v-on:click="next">Next</button>
-            <button class="next-btn" v-if="isState === 'web' || isState === 'dependent'" v-on:click="employeeDetails">Next</button>
+            <button class="next-btn" v-if="isState === 'web' || isState === 'dependent'">Next</button>
             <button class="next-btn" v-if="isState === 'excel'" v-on:click="excel">Next</button>
             <button v-if="false" class="btn-enroll">ENROLL</button>
           </div>

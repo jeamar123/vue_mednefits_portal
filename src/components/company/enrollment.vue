@@ -1,4 +1,5 @@
 <script>
+/* eslint-disable */
 // imports here
 import jQuery from "jquery";
 const $ = jQuery;
@@ -12,9 +13,26 @@ let enrollment = {
       isState: "enrollment", //navigation title
       summaryBtn: false, // summary state
       depdentState: false,
-      // data binding store data from WEB INPUT forms 
+      // data binding store data from WEB INPUT forms
       employeeDetails: {},
-      dataStorage: [{}]
+      dpendentDetails: {},
+      employeeStorage: [
+        // {
+        //   id: 1,
+        //   fname: "jazer",
+        //   lname: "zayas",
+        //   dependents: [
+        //     {
+        //       fname: "jazer",
+        //       lname: "zayas"
+        //     },
+        //     {
+        //       fname: "jazer",
+        //       lname: "zayas"
+        //     }
+        //   ]
+        // }
+      ],
     };
   },
   methods: {
@@ -35,12 +53,25 @@ let enrollment = {
     },
     addDependent() {
       this.depdentState = !this.depdentState;
-      if ( this.depdentState === true ) {
-        this.isState = 'dependent';
-      }else {
-        this.isState = 'web';
+      if (this.depdentState === true) {
+        this.isState = "dependent";
+      } else {
+        this.isState = "web";
       }
       console.log(this.isState);
+    },
+    getEmployeeDetails() { // store to temp storage when adding employees
+      const maxID = Math.max.apply(Math, this.employeeStorage.map(q => { return q.id;}));
+      // check max number of id inside the quizzes list
+      const nextId = maxID + 1;
+      this.employeeStorage.push({
+        id: nextId,
+        fname: this.employeeDetails.fname,
+        lname: this.employeeDetails.lname,
+        dependents: []
+      });
+      console.log(this.employeeDetails);
+      console.log(this.employeeStorage);
     },
     next() {
       if (this.isType === "web") {
@@ -58,9 +89,6 @@ let enrollment = {
     },
     back(data) {
       this.isState = data;
-    },
-    employeeDetails() {
-      console.log("submit employee details");
     },
     excel() {
       console.log("excel details");
