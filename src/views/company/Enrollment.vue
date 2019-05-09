@@ -173,6 +173,7 @@
           <span class="employee-tier-title">DEPENDENT <span>4</span> OF <span>4</span></span>
           <div class="employee-details-header">
             <h1>Dependent details</h1>
+            <button v-if="false" class="btn-remove"><img :src="'../assets/img/icons/dustbin.png'">Remove</button>
           </div>
           <form class="form-input-container">
             <div class="employee-input-container">
@@ -199,7 +200,12 @@
             <div class="employee-input-container">
               <div class="employee-input-wrapper">
                 <label for="fname">Relationship</label>
-                <input type="text" name="relationship">
+                <select>
+                  <option>Spouse</option>
+                  <option>Child</option>
+                  <option>Family</option>
+                </select>
+                <img :src="'../assets/img/icons/down-arrow.svg'">
               </div>
               <div class="employee-input-wrapper">
                 <label for="fname">Start Date</label>
@@ -207,6 +213,10 @@
               </div>
             </div>
           </form>
+          <div class="summary-left-right-btn" v-if="false">
+            <img :src="'../assets/img/icons/left.png'">
+            <img :src="'../assets/img/icons/right.png'">
+          </div>
           <div class="dependent-details-btn">
             <button @click="addDependent" class="btn-cancel">CANCEL</button>
             <div class="btn-right-container">
