@@ -252,6 +252,52 @@
               </ul>
             </div>
           </div>
+          <!-- details enroll summary -->
+          <div class="details-enroll" v-if="false">
+            <h1>Please check the details below before we enroll them.</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    <input type="checkbox">
+                  </th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>NRIC/FIN</th>
+                  <th>Date of Birth</th>
+                  <th>Work Email</th>
+                  <th>Mobile</th>
+                  <th>Medical Credits</th>
+                  <th>Wellness Credits</th>
+                  <th>Start Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="dependent-hover-container has-error ng-scope">
+                  <td>
+                    <input type="checkbox" ng-model="temp_employees[0].checkboxSelected">
+                  </td>
+                  <td>
+                    <!-- <span class="icon">
+                      <i class="fa fa-check" style="display: none;"></i>
+                      <i class="fa fa-times" style="display: none;"></i>
+                      <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
+                    </span> -->
+                    <span class="fname">Garth</span>
+                    <button class="dependent-hover-btn">Edit</button>
+                  </td>
+                  <td>Billedo</td>
+                  <td>S4687955D</td>
+                  <td>21/05/2019</td>
+                  <td>garth@gmail.com</td>
+                  <td>0912786581</td>
+                  <td>1.00</td>
+                  <td>1.00</td>
+                  <td>03/01/2018</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -271,7 +317,10 @@
             <button class="next-btn" v-if="isState === 'enrollment'" v-on:click="next">Next</button>
             <button class="next-btn" v-if="isState === 'web' || isState === 'dependent'" v-on:click="employeeDetails">Next</button>
             <button class="next-btn" v-if="isState === 'excel'" v-on:click="excel">Next</button>
-            <button v-if="false" class="btn-enroll">ENROLL</button>
+            <button v-if="isState === 'web' && false" class="btn-enroll">ENROLL</button>
+            <div class="">
+              
+            </div>
           </div>
         </div>
       </div>

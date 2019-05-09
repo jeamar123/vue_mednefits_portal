@@ -1014,16 +1014,13 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
 /*------------------------------------*/
 
 
-::-webkit-scrollbar {
-  width: 4px;
-}
 
 ::-webkit-scrollbar-track {
   background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 6px;
+  border-radius: 2px;
   background-color: #31b0d5;
 }
 
