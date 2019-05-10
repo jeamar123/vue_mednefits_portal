@@ -2,6 +2,7 @@
 /* eslint-disable */
 // imports here
 import jQuery from "jquery";
+import { isNull } from "util";
 const $ = jQuery;
 window.$ = $;
 
@@ -12,16 +13,27 @@ let enrollment = {
       isType: "", //excel or web input
       isState: "enrollment", //navigation title
       summaryBtn: false, // summary state
-      depdentState: false,
+      dependentState: false,
       // data binding store data from WEB INPUT forms
       employeeDetails: {},
-      dpendentDetails: {},
+      dependentDetails: {},
       employeeStorage: [
         // {
-        //   id: 1,
-        //   fname: "jazer",
-        //   lname: "zayas",
-        //   dependents: [
+        // //   fname: "jazer",
+        // //   lname: "zayas",
+        // //   dependents: [
+        // //     {
+        // //       fname: "jazer",
+        // //       lname: "zayas"
+        // //     },
+        // //     {
+        // //       fname: "jazer",
+        // //       lname: "zayas"
+        // //     }
+        // //   ]
+        // }
+      ],
+      dependentStorage: [
         //     {
         //       fname: "jazer",
         //       lname: "zayas"
@@ -30,9 +42,7 @@ let enrollment = {
         //       fname: "jazer",
         //       lname: "zayas"
         //     }
-        //   ]
-        // }
-      ],
+      ]
     };
   },
   methods: {
@@ -52,26 +62,34 @@ let enrollment = {
       }
     },
     addDependent() {
-      this.depdentState = !this.depdentState;
-      if (this.depdentState === true) {
+      this.dependentState = !this.dependentState;
+      if (this.dependentState === true) {
         this.isState = "dependent";
       } else {
         this.isState = "web";
       }
-      console.log(this.isState);
     },
-    getEmployeeDetails() { // store to temp storage when adding employees
-      const maxID = Math.max.apply(Math, this.employeeStorage.map(q => { return q.id;}));
-      // check max number of id inside the quizzes list
-      const nextId = maxID + 1;
+    getEmployeeDetails() {
+      // store to temp storage when adding employees
       this.employeeStorage.push({
-        id: nextId,
         fname: this.employeeDetails.fname,
         lname: this.employeeDetails.lname,
-        dependents: []
+        dependents: [this.dependentStorage]
       });
-      console.log(this.employeeDetails);
-      console.log(this.employeeStorage);
+      this.dependentStorage = [];
+      this.employeeDetails = {};
+    },
+    addDependentDetails() {
+      this.dependentState = !this.dependentState;
+      if (this.dependentState === false) {
+        this.isState = "web";
+      }
+      // store to temp storage when adding employees
+      this.dependentStorage.push({
+        fname: this.dependentDetails.fname,
+        lname: this.dependentDetails.lname
+      });
+      this.dependentDetails = {};
     },
     next() {
       if (this.isType === "web") {
@@ -79,10 +97,8 @@ let enrollment = {
         this.$emit("enrollmentData", {
           isState: "web"
         });
-        console.log(this.isState);
       } else if (this.isType === "excel") {
         this.isState = "excel";
-        console.log(this.isState);
       } else {
         console.log("select 1 item");
       }
