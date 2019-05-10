@@ -1,6 +1,8 @@
 <script>
+/* eslint-disable */
 // imports here
 import jQuery from "jquery";
+import { isNull } from "util";
 const $ = jQuery;
 window.$ = $;
 
@@ -11,10 +13,36 @@ let enrollment = {
       isType: "", //excel or web input
       isState: "enrollment", //navigation title
       summaryBtn: false, // summary state
-      depdentState: false,
-      // data binding store data from WEB INPUT forms 
+      dependentState: false,
+      // data binding store data from WEB INPUT forms
       employeeDetails: {},
-      dataStorage: [{}]
+      dependentDetails: {},
+      employeeStorage: [
+        // {
+        // //   fname: "jazer",
+        // //   lname: "zayas",
+        // //   dependents: [
+        // //     {
+        // //       fname: "jazer",
+        // //       lname: "zayas"
+        // //     },
+        // //     {
+        // //       fname: "jazer",
+        // //       lname: "zayas"
+        // //     }
+        // //   ]
+        // }
+      ],
+      dependentStorage: [
+        //     {
+        //       fname: "jazer",
+        //       lname: "zayas"
+        //     },
+        //     {
+        //       fname: "jazer",
+        //       lname: "zayas"
+        //     }
+      ]
     };
   },
   methods: {
@@ -34,13 +62,34 @@ let enrollment = {
       }
     },
     addDependent() {
-      this.depdentState = !this.depdentState;
-      if ( this.depdentState === true ) {
-        this.isState = 'dependent';
-      }else {
-        this.isState = 'web';
+      this.dependentState = !this.dependentState;
+      if (this.dependentState === true) {
+        this.isState = "dependent";
+      } else {
+        this.isState = "web";
       }
-      console.log(this.isState);
+    },
+    getEmployeeDetails() {
+      // store to temp storage when adding employees
+      this.employeeStorage.push({
+        fname: this.employeeDetails.fname,
+        lname: this.employeeDetails.lname,
+        dependents: [this.dependentStorage]
+      });
+      this.dependentStorage = [];
+      this.employeeDetails = {};
+    },
+    addDependentDetails() {
+      this.dependentState = !this.dependentState;
+      if (this.dependentState === false) {
+        this.isState = "web";
+      }
+      // store to temp storage when adding employees
+      this.dependentStorage.push({
+        fname: this.dependentDetails.fname,
+        lname: this.dependentDetails.lname
+      });
+      this.dependentDetails = {};
     },
     next() {
       if (this.isType === "web") {
@@ -48,19 +97,14 @@ let enrollment = {
         this.$emit("enrollmentData", {
           isState: "web"
         });
-        console.log(this.isState);
       } else if (this.isType === "excel") {
         this.isState = "excel";
-        console.log(this.isState);
       } else {
         console.log("select 1 item");
       }
     },
     back(data) {
       this.isState = data;
-    },
-    employeeDetails() {
-      console.log("submit employee details");
     },
     excel() {
       console.log("excel details");

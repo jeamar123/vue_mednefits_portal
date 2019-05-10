@@ -60,11 +60,11 @@
               <div class="employee-input-container">
                 <div class="employee-input-wrapper">
                   <label for="fname">First / Given Name</label>
-                  <input type="text" name="fname">
+                  <input type="text" name="fname" v-model="employeeDetails.fname">
                 </div>
                 <div class="employee-input-wrapper">
                   <label for="fname">Last / Family Name</label>
-                  <input type="text" name="lname">
+                  <input type="text" name="lname" v-model="employeeDetails.lname">
                 </div>
               </div>
               <div class="employee-input-container">
@@ -120,7 +120,7 @@
            
           </div>
           <!-- Add dependent section -->
-          <div class="dependent-details-wrapper" v-if="depdentState && false">
+          <div class="dependent-details-wrapper" v-if="dependentState">
             <span class="employee-tier-title">
               DEPENDENT
               <span>4</span> OF
@@ -136,11 +136,11 @@
               <div class="employee-input-container">
                 <div class="employee-input-wrapper">
                   <label for="fname">First / Given Name</label>
-                  <input type="text" name="fname">
+                  <input type="text" name="fname" v-model="dependentDetails.fname">
                 </div>
                 <div class="employee-input-wrapper">
                   <label for="fname">Last / Family Name</label>
-                  <input type="text" name="lname">
+                  <input type="text" name="lname" v-model="dependentDetails.lname">
                 </div>
               </div>
               <div class="employee-input-container">
@@ -177,7 +177,7 @@
             <div class="dependent-details-btn">
               <button @click="addDependent" class="btn-cancel">CANCEL</button>
               <div class="btn-right-container">
-                <button class="btn-add">ADD</button>
+                <button class="btn-add" @click="addDependentDetails()">ADD</button>
                 <button class="btn-save-continue">SAVE & CONTINUE</button>
               </div>
             </div>
@@ -188,65 +188,18 @@
             <div id="summary-content" class="list-of-employee list-employee-active">
               <h4>Employee Summary</h4>
               <ul class="list-of-employee-details">
-                <li>
+                <li v-for="(summary,index) in employeeStorage" v-bind:key="summary.id">
                   <div>
-                    <span>1</span>.
-                    <span>Jeamar</span>
-                    <span>Libres</span>
+                    <span>{{index + 1}}</span>.
+                    <span>{{summary.fname}} </span> 
+                    <span>{{summary.lname}}</span>
                   </div>
-                  <div>
-                    <span>a</span>.
-                    <span>Jeamar</span>
-                    <span>Libres</span>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>1</span>.
-                    <span>Jeamar</span>
-                    <span>Libres</span>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>1</span>.
-                    <span>Jeamar</span>
-                    <span>Libres</span>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>1</span>.
-                    <span>Jeamar</span>
-                    <span>Libres</span>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>1</span>.
-                    <span>Jeamar</span>
-                    <span>Libres</span>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>1</span>.
-                    <span>Jeamar</span>
-                    <span>Libres</span>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>1</span>.
-                    <span>Jeamar</span>
-                    <span>Libres</span>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <span>1</span>.
-                    <span>Jeamar</span>
-                    <span>Libres</span>
+                  <div v-if="summary.dependents[0] !=null">
+                    <div class="summary-dependent" v-for="(dependent, letter) in summary.dependents[0]" :key="dependent.id">
+                      <span>{{ String.fromCharCode('a'.charCodeAt() + letter) }}</span>.
+                      <span>{{dependent.fname}} </span>
+                      <span>{{dependent.lname}}</span>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -314,9 +267,9 @@
           <div class="btn-enroll-container">
             <button v-if="isState === 'false'" class="btn-employee">DELETE</button>
             <button v-if="isState === 'false'" class="btn-employee">PREVIOUS EMPLOYEE</button>
-            <button v-if="isState === 'web' && false" class="btn-employee">NEXT EMPLOYEE</button>
+            <button v-if="isState === 'web'" class="btn-employee" @click="getEmployeeDetails">NEXT EMPLOYEE</button>
             <button class="next-btn" v-if="isState === 'enrollment'" v-on:click="next">Next</button>
-            <button class="next-btn" v-if="isState === 'web' || isState === 'dependent'" v-on:click="employeeDetails">Next</button>
+            <button class="next-btn" v-if="isState === 'web' || isState === 'dependent'">Next</button>
             <button class="next-btn" v-if="isState === 'excel'" v-on:click="excel">Next</button>
             <button v-if="isState === 'web' && false" class="btn-enroll">ENROLL</button>
             <div v-if="false" class="btn-summary-enroll-container">
