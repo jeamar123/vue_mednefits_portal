@@ -110,6 +110,14 @@
 		.back-btn {
 			border: 2px solid #d6d6d6;
 		}
+		
+		.delete-btn {
+			text-transform: inherit;
+			margin-left: 20px;
+			color: #fff;
+			background-color: #ff6262;
+			padding: 11px 39px;
+		}
 
 		.next-btn {
 			color: #fff;
@@ -131,10 +139,40 @@
 		}
 
 		.btn-enroll {
+			position: relative;
 			color: #fff;
 			background-color: #0291CE;
 			border: 2px solid #0291CE;
 			width: 154px;
+		}
+	}
+	.btn-summary-enroll-container {
+		.pending-enroll-text {
+			font-weight: 700;
+			font-size: 16px;
+			color: #0291CE;
+			margin-right: 20px;
+		}
+
+		.btn-enroll {
+			padding: 11px 20px;
+	    display: inline-flex;
+	    align-items: center;
+	    width: inherit;
+		}
+
+		.enroll-badge {
+			background-color: #fff;
+	    color: #0291CE;
+	    border-radius: 50%;
+	    height: 30px;
+	    width: 30px;
+	    display: inline-block;
+	    font-weight: 600;
+	    font-size: 12px;
+	    line-height: 30px;
+	    margin-left: 10px;
+	    text-align: center;
 		}
 	}
 }
@@ -420,11 +458,15 @@
 	}
 
 	.details-enroll {
+		padding: 30px 15px 50px 15px;
+
 		h1 {
 			text-align: center;
 			font-weight: 700;
 			font-size: 25px;
 			color: #2c3e50;
+			margin-top: 25px;
+			line-height: 1.1;
 		}
 		table {
 			display: block;
@@ -432,6 +474,7 @@
 			overflow-x: auto;
 			white-space: nowrap;
 			font-size: 14px; 
+			margin-top: 60px;
 
 			&::-webkit-scrollbar {
 				height: 6px;
@@ -441,12 +484,22 @@
 				border-radius: 2px;
     		background-color: #cecece;
 			}
+			thead tr {
+				background-color: #f5f8fa;	
+			}
 
-			thead th,td {
-				color: #2c3e50;
-		    background-color: #f5f8fa;
+			thead th,tbody td {
 		    padding: 7px 20px;
 		    min-width: 130px;
+		    border-bottom: 1px solid #ccd3d6;
+			}
+
+			th input,
+			td input {
+				position: relative;
+				top: 3px;
+				height: 16px;
+				width: 16px;
 			}
 
 			th:first-child,
@@ -456,6 +509,41 @@
 			}
 			th:nth-child(2) {
 				min-width: 160px;
+			}
+			th:nth-child(6) {
+				min-width: 170px;
+			}
+			th:last-child {
+				background-color: #e2e7e8;
+		    text-align: center;
+		    padding: 0 15px;
+			}
+			td:last-child {
+				text-align: left;
+			}
+		}
+		button {
+			background-color: #d6e0e5;
+	    border: 1px solid #d6d6d6;
+	    border-radius: 2px;
+	    width: 55px;
+	    height: 20px;
+	    font-size: 12px;
+	    float: right;
+	    display: none;
+		}
+		tbody tr {
+			color: #888;
+
+			.has-error {
+				background-color: #fee2e2;
+			}
+		}
+		tbody tr:hover {
+			background-color: #f5f8fa;
+
+			.dependent-hover-btn {
+				display: inline-block;
 			}
 		}
 	}

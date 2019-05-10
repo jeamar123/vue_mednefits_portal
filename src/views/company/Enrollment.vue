@@ -120,7 +120,7 @@
            
           </div>
           <!-- Add dependent section -->
-          <div class="dependent-details-wrapper" v-if="depdentState">
+          <div class="dependent-details-wrapper" v-if="depdentState && false">
             <span class="employee-tier-title">
               DEPENDENT
               <span>4</span> OF
@@ -273,9 +273,9 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="dependent-hover-container has-error ng-scope">
+                <tr class="dependent-hover-container">
                   <td>
-                    <input type="checkbox" ng-model="temp_employees[0].checkboxSelected">
+                    <input type="checkbox">
                   </td>
                   <td>
                     <!-- <span class="icon">
@@ -309,17 +309,21 @@
             @click="back('enrollment')"
             class="back-btn"
           >Back</button>
+          <button v-if="false "class="delete-btn">Delete</button>
 
           <div class="btn-enroll-container">
             <button v-if="isState === 'false'" class="btn-employee">DELETE</button>
             <button v-if="isState === 'false'" class="btn-employee">PREVIOUS EMPLOYEE</button>
-            <button v-if="isState === 'web'" class="btn-employee">NEXT EMPLOYEE</button>
+            <button v-if="isState === 'web' && false" class="btn-employee">NEXT EMPLOYEE</button>
             <button class="next-btn" v-if="isState === 'enrollment'" v-on:click="next">Next</button>
             <button class="next-btn" v-if="isState === 'web' || isState === 'dependent'" v-on:click="employeeDetails">Next</button>
             <button class="next-btn" v-if="isState === 'excel'" v-on:click="excel">Next</button>
             <button v-if="isState === 'web' && false" class="btn-enroll">ENROLL</button>
-            <div class="">
-              
+            <div v-if="false" class="btn-summary-enroll-container">
+              <span class="pending-enroll-text">
+                <span>7</span> PENDING TO ENROLL
+              </span>
+              <button class="btn-enroll">ENROLL<span class="enroll-badge">4</span></button>
             </div>
           </div>
         </div>
