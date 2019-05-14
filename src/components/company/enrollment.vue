@@ -124,8 +124,6 @@ export default enrollment;
 
 <style lang="scss" scoped>
 @import "./src/assets/css/company/enrollment.scss";
-
-
 // for the view transition
 
 
