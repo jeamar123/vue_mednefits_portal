@@ -7,7 +7,7 @@
             <div class="mednefits-body-box">
               <img :src="'../assets/img/overview.png'">
               <h2>
-                <span>Good afternoon,</span>
+                <span>Good afternoon, </span>
                 <span>Allan Alzula</span>
               </h2>
               <h5 class="text-center text-white body-subtext">

@@ -71,5 +71,5 @@ export default dashboard;
 </script>
 
 <style lang="scss" scoped>
-	@import './src/assets/css/company/dashboard.scss'
+	@import './src/assets/css/company/dashboard.scss';
 </style>

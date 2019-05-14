@@ -107,6 +107,12 @@
 			letter-spacing: .5px;
 		}
 
+		.btn-disabled {
+			opacity: .65;
+			background-color: #dfdfdf;
+			cursor: not-allowed;
+		}
+
 		.back-btn {
 			border: 2px solid #d6d6d6;
 		}
@@ -572,5 +578,7 @@
 			height: 60px;
 		}
 	}
+
+
 
 /*----------------------------------------*/
