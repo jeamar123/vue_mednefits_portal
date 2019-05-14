@@ -186,7 +186,7 @@
               </div>
             </div>
             <!-- side content summary -->
-            <div v-if="isState === 'web' || isState == 'dependent'" class="summary-right-container">
+            <div v-if="isState === 'web' || isState === 'dependent'" class="summary-right-container">
               <button id="summary-btn" class="summary-right-button" @click="toggleSummary">SUMMARY</button>
               <div id="summary-content" class="list-of-employee list-employee-active">
                 <h4>Employee Summary</h4>
