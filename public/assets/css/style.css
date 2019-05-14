@@ -23,6 +23,9 @@ html{
 button{
   font-family: 'Helvetica Light';
 }
+button:hover {
+  transition: all .2s ease-in-out;
+}
 
 input, select, textarea{
   font-family: 'Helvetica Light';
@@ -1040,15 +1043,15 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
 }
 
 /*----- SWAL -----*/
-  .cancel-container {
+  .warning-global-container {
     padding: 0 !important;
     box-shadow: 0 5px 15px rgba(0,0,0,.5);
     border-radius: 0px !important;
   }
-  .cancel-container .swal2-icon {
+  .warning-global-container .swal2-icon {
     display: none !important;
   }
-  .cancel-container.swal2-popup .swal2-title {
+  .warning-global-container.swal2-popup .swal2-title {
     width: 100%;
     font-size: 30px;
     letter-spacing: .5px;
@@ -1058,7 +1061,7 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
     text-align: left;
     margin: 0;
   }
-  .cancel-container.swal2-popup #swal2-content {
+  .warning-global-container.swal2-popup #swal2-content {
     text-align: left;
     background-color: #0392CF;
     padding: 10px 20px 0 40px;
@@ -1066,22 +1069,26 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
     height: 100px;
     letter-spacing: .5px;
   }
-  .cancel-container.swal2-popup .swal2-actions {
+  .warning-global-container.swal2-popup .swal2-actions {
     margin: 0;
     justify-content: left;
     padding: 20px 30px;
   }
-  .cancel-container.swal2-popup .swal2-styled {
+  .warning-global-container.swal2-popup .swal2-styled {
     border-radius: 2px !important;
     padding: 15px 35px;
     letter-spacing: .5px;
     font-size: 17px !important;
+    transition: all .2s ease-in-out;
   }
-  .cancel-container.swal2-popup .swal2-styled.swal2-confirm {
-    background-color: #0392CF;
+  .warning-global-container.swal2-popup .swal2-styled.swal2-confirm:hover {
+    background-color: #2b77c0 !important;
   }
-  .cancel-container.swal2-popup .swal2-styled.swal2-cancel {
+  .warning-global-container.swal2-popup .swal2-styled.swal2-cancel {
     background-color: #C1C1C1 !important;
+  }
+  .warning-global-container.swal2-popup .swal2-styled.swal2-cancel:hover {
+    background-color: #aeaeae !important;
   }
 /*----------------*/
 

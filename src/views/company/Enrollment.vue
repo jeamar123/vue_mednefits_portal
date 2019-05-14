@@ -214,8 +214,10 @@
                 </li>
               </ul>
             </div>
-            <!-- details enroll summary -->
-            <div class="details-enroll-wrapper" v-if="false">
+          </div>
+          <!-- details enroll summary -->
+          <transition name="fade">
+            <div class="details-enroll-wrapper" v-if="isState === 'enrollsum'">
               <h1>Please check the details below before we enroll them.</h1>
               <table>
                 <thead>
@@ -241,10 +243,10 @@
                     </td>
                     <td>
                       <!-- <span class="icon">
-                        <i class="fa fa-check" style="display: none;"></i>
-                        <i class="fa fa-times" style="display: none;"></i>
-                        <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
-                      </span> -->
+                          <i class="fa fa-check" style="display: none;"></i>
+                          <i class="fa fa-times" style="display: none;"></i>
+                          <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
+                      </span>-->
                       <span class="fname">Garth</span>
                       <button class="dependent-hover-btn">Edit</button>
                     </td>
@@ -262,7 +264,6 @@
               <div class="modal-mask" v-if="false">
                 <div class="modal-wrapper">
                   <div class="modal-container">
-
                     <div class="modal-header">
                       <slot name="header">
                         <h4>Edit Employee Details</h4>
@@ -272,26 +273,62 @@
 
                     <div class="modal-body">
                       <slot name="body">
-                        <div class="modal-input-wrapper">
-                          <label>First Name</label>
-                          <input type="text">
-                        </div>
+                        <form>
+                          <div class="modal-input-wrapper">
+                            <label>First Name</label>
+                            <input type="text">
+                          </div>
+                          <div class="modal-input-wrapper">
+                            <label>Last Name</label>
+                            <input type="text">
+                          </div>
+                          <div class="modal-input-wrapper">
+                            <label>NRIC/FIN</label>
+                            <input type="text">
+                          </div>
+                          <div class="modal-input-wrapper">
+                            <label>Date of Birth</label>
+                            <input type="text">
+                          </div>
+                          <div class="modal-input-wrapper">
+                            <label>Work Email</label>
+                            <input type="text">
+                          </div>
+                          <div class="modal-input-wrapper">
+                            <label>Mobile</label>
+                            <input type="text">
+                          </div>
+                          <div class="modal-input-wrapper">
+                            <label>Mobile Area Code</label>
+                            <input type="text">
+                          </div>
+                          <div class="modal-input-wrapper">
+                            <label>Medical Credits</label>
+                            <input type="text">
+                          </div>
+                          <div class="modal-input-wrapper">
+                            <label>Wellness Credits</label>
+                            <input type="text">
+                          </div>
+                          <div class="modal-input-wrapper">
+                            <label>Start Date</label>
+                            <input type="text">
+                          </div>
+                        </form>
                       </slot>
                     </div>
 
                     <div class="modal-footer">
                       <slot name="footer">
-                        default footer
-                        <button class="modal-default-button" @click="$emit('close')">
-                          OK
-                        </button>
+                        <button>REMOVE</button>
+                        <button>UPDATE</button>
                       </slot>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </transition>
         </div>
       </div>
 
@@ -304,21 +341,17 @@
             class="back-btn"
           >Back</button>
           <button v-if="isState === 'dependent'" :disabled="true" class="back-btn btn-disabled">Back</button>
+          <button v-if="isState === 'enrollsum'" @click="back('web')" class="back-btn">Back</button>
           <button v-if="false" class="delete-btn">Delete</button>
 
           <div class="btn-enroll-container">
             <button v-if="isState === 'false'" class="btn-employee">DELETE</button>
             <button v-if="isState === 'false'" class="btn-employee">PREVIOUS EMPLOYEE</button>
-            <button
-              v-if="isState === 'web'"
-              class="btn-employee"
-              @click="getEmployeeDetails"
-            >NEXT EMPLOYEE</button>
+            <button v-if="isState === 'web'" class="btn-employee" @click="getEmployeeDetails">NEXT EMPLOYEE</button>
             <button class="next-btn" v-if="isState === 'enrollment'" v-on:click="next">Next</button>
-            <button class="next-btn" v-if="isState === 'web'">Enroll</button>
+            <button class="next-btn" v-if="isState === 'web'" @click="enroll">Enroll</button>
             <button class="next-btn" v-if="isState === 'excel'" v-on:click="excel">Next</button>
-            <button v-if="isState === 'web' && false" class="btn-enroll">ENROLL</button>
-            <div v-if="false" class="btn-summary-enroll-container">
+            <div v-if="isState === 'enrollsum'" class="btn-summary-enroll-container">
               <span class="pending-enroll-text">
                 <span>7</span> PENDING TO ENROLL
               </span>
