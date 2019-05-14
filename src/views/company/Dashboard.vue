@@ -120,7 +120,7 @@
             v-if="$route.name === 'CompanyEnrollment'"
             class="enrollment-navbar-container welcome-container"
           >
-            <h4 v-if="$route.name === 'CompanyEnrollment' && isState === 'enrollment'">Enrollment</h4>
+            <h4 v-if="$route.name === 'CompanyEnrollment' && isState === 'enrollment' || isState == 'enrollsum'">Enrollment</h4>
 
             <h4
               v-if="isState === 'web' && $route.name != 'CompanyHome'"

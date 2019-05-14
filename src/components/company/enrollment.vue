@@ -89,6 +89,28 @@ let enrollment = {
       });
       this.dependentDetails = {};
     },
+    cancelDep() {
+      this.$swal({
+        title: "Confirm",
+        text: "Unsaved data will be deleted, Proceed?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Confirm"
+      }).then(result => {
+        if (result.value) {
+          this.dependentState = false;
+          this.isState = "web";
+        }
+      });
+    },
+    enroll() {
+      this.isState = "enrollsum";
+      this.$emit("enrollmentData", {
+        isState: "enrollsum"
+      });
+    },
     next() {
       if (this.isType === "web") {
         this.isState = "web";
@@ -108,26 +130,15 @@ let enrollment = {
         this.$emit("enrollmentData", {
           isState: "enrollment"
         });
+      } else if (this.isState === "web") {
+        this.isState = "web";
+        this.$emit("enrollmentData", {
+        isState: "web"
+      });
       }
     },
     excel() {
       console.log("excel details");
-    },
-    cancelDep() {
-      this.$swal({
-        title: "Confirm",
-        text: "Unsaved data will be deleted, Proceed?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Confirm",
-      }).then((result) => {
-        if (result.value) {
-          this.dependentState = false;
-          this.isState = "web";
-        }
-      });
     }
   }
 };
