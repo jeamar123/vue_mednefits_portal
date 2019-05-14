@@ -1040,105 +1040,48 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
 }
 
 /*----- SWAL -----*/
-  .removeEmp,
-  .updateEmp,
-  .alertPendingEmp{
-      top: 34% !important;
-      border-radius: 0px;
-      padding: 0 !important;
-      text-align: left;
-      box-shadow: 0 5px 15px rgba(0,0,0,.5);
+  .cancel-container {
+    padding: 0 !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    border-radius: 0px !important;
   }
-
-  .removeEmp .sa-icon,
-  .updateEmp .sa-icon,
-  .alertPendingEmp .sa-icon{
-      display: none !important;
+  .cancel-container .swal2-icon {
+    display: none !important;
   }
-
-  .removeEmp h2,
-  .removeEmp p{
-      background-color: #ff6864;
-      padding: 20px;
-      height: 100px;
-      color: #fff;
-      text-align: left;
-      margin: 0;
+  .cancel-container.swal2-popup .swal2-title {
+    width: 100%;
+    font-size: 30px;
+    letter-spacing: .5px;
+    background-color: #0392CF;
+    padding: 50px 20px 0 40px;
+    color: #fff;
+    text-align: left;
+    margin: 0;
   }
-
-  .updateEmp h2,
-  .updateEmp p{
-      background-color: #0392CF;
-      padding: 20px;
-      height: 100px;
-      color: #fff;
-      text-align: left;
-      margin: 0;
+  .cancel-container.swal2-popup #swal2-content {
+    text-align: left;
+    background-color: #0392CF;
+    padding: 10px 20px 0 40px;
+    color: #fff;
+    height: 100px;
+    letter-spacing: .5px;
   }
-
-  .alertPendingEmp h2{
-      display: none;
+  .cancel-container.swal2-popup .swal2-actions {
+    margin: 0;
+    justify-content: left;
+    padding: 20px 30px;
   }
-
-  .alertPendingEmp p{
-      background-color: #0392CF;
-      padding: 20px;
-      height: 130px;
-      color: #fff;
-      text-align: left;
-      margin: 0;
+  .cancel-container.swal2-popup .swal2-styled {
+    border-radius: 2px !important;
+    padding: 15px 35px;
+    letter-spacing: .5px;
+    font-size: 17px !important;
   }
-
-  .removeEmp h2,
-  .updateEmp h2{
-      padding: 50px 20px 0 40px !important;
+  .cancel-container.swal2-popup .swal2-styled.swal2-confirm {
+    background-color: #0392CF;
   }
-
-  .removeEmp p,
-  .updateEmp p{
-      padding: 10px 20px 0 40px !important;
-  }
-
-  .alertPendingEmp p{
-      padding: 40px !important;
-  }
-
-  .removeEmp .sa-button-container,
-  .updateEmp .sa-button-container,
-  .alertPendingEmp .sa-button-container{
-      padding: 0 20px 20px 30px;
-      display: inline-block;
-  }
-  .removeEmp .sa-confirm-button-container,
-  .updateEmp .sa-confirm-button-container,
-  .alertPendingEmp .sa-confirm-button-container{
-      float: left;
-  }
-  .removeEmp button,
-  .updateEmp button,
-  .alertPendingEmp button{
-      margin-top: 0px !important;
-      padding: 15px 35px;
-      border-radius: 2px;
-  }
-
-  .removeEmp .confirm{
-      background-color: #ff6864 !important;
-      box-shadow: none !important;
-  }
-
-  .updateEmp .confirm,
-  .alertPendingEmp .confirm{
-      background-color: #0392CF !important;
-      box-shadow: none !important;
-  }
-
-  .removeEmp .cancel,
-  .updateEmp .cancel,
-  .alertPendingEmp .cancel,{
-      background-color: #f9f4f4 !important;
-      color: #6f6f6f !important;
-      border: solid 1px #ccc;
+  .cancel-container.swal2-popup .swal2-styled.swal2-cancel {
+    background-color: #C1C1C1 !important;
   }
 /*----------------*/
 
