@@ -41,7 +41,7 @@
         </div>
         <!-------- WEB INPUT -------->
         <div class="web-input-wrapper">
-          <div v-if="isState === 'web'" class="employee-details-wrapper">
+          <div v-if="isState === 'web' && false" class="employee-details-wrapper">
             <span class="employee-tier-title">
               EMPLOYEE
               <span>17</span> OF
@@ -120,7 +120,7 @@
            
           </div>
           <!-- Add dependent section -->
-          <div class="dependent-details-wrapper" v-if="dependentState">
+          <div class="dependent-details-wrapper" v-if="dependentState && false">
             <span class="employee-tier-title">
               DEPENDENT
               <span>4</span> OF
@@ -183,7 +183,7 @@
             </div>
           </div>
            <!-- side content summary -->
-          <div class="summary-right-container">
+          <div class="summary-right-container" v-if="false">
             <button id="summary-btn" class="summary-right-button" @click="toggleSummary">SUMMARY</button>
             <div id="summary-content" class="list-of-employee list-employee-active">
               <h4>Employee Summary</h4>
@@ -206,7 +206,7 @@
             </div>
           </div>
           <!-- details enroll summary -->
-          <div class="details-enroll" v-if="false">
+          <div class="details-enroll-wrapper" v-if="false">
             <h1>Please check the details below before we enroll them.</h1>
             <table>
               <thead>
@@ -251,25 +251,36 @@
               </tbody>
             </table>
           </div>
+          <!-- -->
+          <div class="successfully-enrolled-wrapper">
+            <h1>We've succesfully enrolled 
+              <span>1</span> employees and 
+              <span>0</span> dependents to the selected tier plan
+            </h1>
+            <div class="successfully-enrolled-img">
+              <img :src="'../assets/img/successful.png'">
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="prev-next-button-container">
         <div class="button-container">
-          <button v-if="isState === 'enrollment'" @click="$router.go(-1)" class="back-btn">Back</button>
+          <!-- <button v-if="isState === 'enrollment'" @click="$router.go(-1)" class="back-btn">Back</button>
           <button
             v-if="isState === 'web' || isState === 'excel' || isState === 'dependent'"
             @click="back('enrollment')"
             class="back-btn"
-          >Back</button>
+          >Back</button> -->
+          <button class="back-btn">BACK TO HOME</button>
           <button v-if="false "class="delete-btn">Delete</button>
 
           <div class="btn-enroll-container">
             <button v-if="isState === 'false'" class="btn-employee">DELETE</button>
             <button v-if="isState === 'false'" class="btn-employee">PREVIOUS EMPLOYEE</button>
-            <button v-if="isState === 'web'" class="btn-employee" @click="getEmployeeDetails">NEXT EMPLOYEE</button>
+            <button v-if="isState === 'web' && false" class="btn-employee" @click="getEmployeeDetails">NEXT EMPLOYEE</button>
             <button class="next-btn" v-if="isState === 'enrollment'" v-on:click="next">Next</button>
-            <button class="next-btn" v-if="isState === 'web' || isState === 'dependent'">Next</button>
+            <!-- <button class="next-btn" v-if="isState === 'web' || isState === 'dependent'">Next</button> -->
             <button class="next-btn" v-if="isState === 'excel'" v-on:click="excel">Next</button>
             <button v-if="isState === 'web' && false" class="btn-enroll">ENROLL</button>
             <div v-if="false" class="btn-summary-enroll-container">
@@ -277,6 +288,9 @@
                 <span>7</span> PENDING TO ENROLL
               </span>
               <button class="btn-enroll">ENROLL<span class="enroll-badge">4</span></button>
+            </div>
+            <div class="btn-successfully-enrolled-container" v-if="true">
+              <button>CONTINUE WITH ENROLLMENT</button>
             </div>
           </div>
         </div>

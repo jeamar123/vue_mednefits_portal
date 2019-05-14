@@ -97,7 +97,7 @@
 
 		button {
 			font-weight: 700;
-			font-size: 16px;
+			font-size: 14px;
 			padding: 11px 39px;
 			border: 2px solid transparent;
 			background-color: transparent;
@@ -149,7 +149,7 @@
 	.btn-summary-enroll-container {
 		.pending-enroll-text {
 			font-weight: 700;
-			font-size: 16px;
+			font-size: 14px;
 			color: #0291CE;
 			margin-right: 20px;
 		}
@@ -173,6 +173,14 @@
 	    line-height: 30px;
 	    margin-left: 10px;
 	    text-align: center;
+		}
+	}
+	.btn-successfully-enrolled-container {
+		button {
+			background-color: #0291CE;
+    	color: #fff;
+    	width: 260px;
+    	padding: 11px 0;
 		}
 	}
 }
@@ -457,7 +465,7 @@
 		}
 	}
 
-	.details-enroll {
+	.details-enroll-wrapper {
 		padding: 30px 15px 50px 15px;
 
 		h1 {
@@ -548,5 +556,21 @@
 		}
 	}
 
+	.successfully-enrolled-wrapper {
+		text-align: center;
+		margin-top: 70px;
+		h1 {
+			line-height: 1.1;
+			width: 520px;
+			margin-left: auto;
+			margin-right: auto;
+			font-weight: 700;
+			font-size: 25px;
+		}		
+		img {
+			margin-top: 55px;
+			height: 60px;
+		}
+	}
 
 /*----------------------------------------*/
