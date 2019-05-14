@@ -105,6 +105,13 @@ let enrollment = {
     },
     back(data) {
       this.isState = data;
+      if (this.isState === 'enrollment') {
+        this.dependentState = false;
+        this.$emit("enrollmentData", {
+          isState: "enrollment"
+        });
+      }
+
     },
     excel() {
       console.log("excel details");
@@ -117,4 +124,16 @@ export default enrollment;
 
 <style lang="scss" scoped>
 @import "./src/assets/css/company/enrollment.scss";
+
+
+// for the view transition
+
+
+//fade transtion <tranisition name="fade">
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>
