@@ -44,7 +44,7 @@
         <!-------- WEB INPUT -------->
         <transition name="fade">
           <div class="web-input-wrapper">
-            <div v-if="isState === 'web'" class="employee-details-wrapper">
+            <div v-if="isState === 'web' && true" class="employee-details-wrapper">
               <span class="employee-tier-title">
                 EMPLOYEE
                 <span>17</span> OF
@@ -209,7 +209,7 @@
               </div>
             </div>
             <!-- details enroll summary -->
-            <div class="details-enroll" v-if="false">
+            <div class="details-enroll-wrapper" v-if="false">
               <h1>Please check the details below before we enroll them.</h1>
               <table>
                 <thead>
@@ -253,6 +253,37 @@
                   </tr>
                 </tbody>
               </table>
+              <div class="modal-mask" v-if="false">
+                <div class="modal-wrapper">
+                  <div class="modal-container">
+
+                    <div class="modal-header">
+                      <slot name="header">
+                        <h4>Edit Employee Details</h4>
+                        <img :src="'../assets/img/icons/close.svg'">
+                      </slot>
+                    </div>
+
+                    <div class="modal-body">
+                      <slot name="body">
+                        <div class="modal-input-wrapper">
+                          <label>First Name</label>
+                          <input type="text">
+                        </div>
+                      </slot>
+                    </div>
+
+                    <div class="modal-footer">
+                      <slot name="footer">
+                        default footer
+                        <button class="modal-default-button" @click="$emit('close')">
+                          OK
+                        </button>
+                      </slot>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </transition>
