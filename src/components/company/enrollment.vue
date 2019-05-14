@@ -65,8 +65,6 @@ let enrollment = {
       this.dependentState = !this.dependentState;
       if (this.dependentState === true) {
         this.isState = "dependent";
-      } else {
-        this.isState = "web";
       }
     },
     getEmployeeDetails() {
@@ -105,16 +103,31 @@ let enrollment = {
     },
     back(data) {
       this.isState = data;
-      if (this.isState === 'enrollment') {
+      if (this.isState === "enrollment") {
         this.dependentState = false;
         this.$emit("enrollmentData", {
           isState: "enrollment"
         });
       }
-
     },
     excel() {
       console.log("excel details");
+    },
+    cancelDep() {
+      this.$swal({
+        title: "Confirm",
+        text: "Unsaved data will be deleted, Proceed?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Confirm",
+      }).then((result) => {
+        if (result.value) {
+          this.dependentState = false;
+          this.isState = "web";
+        }
+      });
     }
   }
 };
@@ -126,10 +139,10 @@ export default enrollment;
 @import "./src/assets/css/company/enrollment.scss";
 // for the view transition
 
-
 //fade transtion <tranisition name="fade">
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;

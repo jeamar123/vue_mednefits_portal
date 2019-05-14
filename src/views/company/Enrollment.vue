@@ -42,8 +42,9 @@
           </div>
         </transition>
         <!-------- WEB INPUT -------->
-        <transition name="fade">
-          <div class="web-input-wrapper">
+
+        <div class="web-input-wrapper">
+          <transition name="fade">
             <div v-if="isState === 'web'" class="employee-details-wrapper">
               <span class="employee-tier-title">
                 EMPLOYEE
@@ -120,9 +121,10 @@
                   </div>
                 </div>
               </form>
-            
             </div>
-            <!-- Add dependent section -->
+          </transition>
+          <!-- Add dependent section -->
+          <transition name="fade">
             <div class="dependent-details-wrapper" v-if="dependentState">
               <span class="employee-tier-title">
                 DEPENDENT
@@ -178,97 +180,109 @@
                 <img :src="'../assets/img/icons/right.png'">
               </div>
               <div class="dependent-details-btn">
-                <button @click="addDependent" class="btn-cancel">CANCEL</button>
+                <button @click="cancelDep" class="btn-cancel">CANCEL</button>
                 <div class="btn-right-container">
                   <button class="btn-add" @click="addDependentDetails()">ADD</button>
                   <button class="btn-save-continue">SAVE & CONTINUE</button>
                 </div>
               </div>
             </div>
-            <!-- side content summary -->
-            <div v-if="isState === 'web' || isState === 'dependent'" class="summary-right-container">
-              <button id="summary-btn" class="summary-right-button" @click="toggleSummary">SUMMARY</button>
-              <div id="summary-content" class="list-of-employee list-employee-active">
-                <h4>Employee Summary</h4>
-                <ul class="list-of-employee-details">
-                  <li v-for="(summary,index) in employeeStorage" v-bind:key="summary.id">
-                    <div>
-                      <span>{{index + 1}}</span>.
-                      <span>{{summary.fname}} </span> 
-                      <span>{{summary.lname}}</span>
+          </transition>
+          <!-- side content summary -->
+          <div v-if="isState === 'web' || isState === 'dependent'" class="summary-right-container">
+            <button id="summary-btn" class="summary-right-button" @click="toggleSummary">SUMMARY</button>
+            <div id="summary-content" class="list-of-employee list-employee-active">
+              <h4>Employee Summary</h4>
+              <ul class="list-of-employee-details">
+                <li v-for="(summary,index) in employeeStorage" v-bind:key="summary.id">
+                  <div>
+                    <span>{{index + 1}}</span>.
+                    <span>{{summary.fname}}</span>
+                    <span>{{summary.lname}}</span>
+                  </div>
+                  <div v-if="summary.dependents[0] !=null">
+                    <div
+                      class="summary-dependent"
+                      v-for="(dependent, letter) in summary.dependents[0]"
+                      :key="dependent.id"
+                    >
+                      <span>{{ String.fromCharCode('a'.charCodeAt() + letter) }}</span>.
+                      <span>{{dependent.fname}}</span>
+                      <span>{{dependent.lname}}</span>
                     </div>
-                    <div v-if="summary.dependents[0] !=null">
-                      <div class="summary-dependent" v-for="(dependent, letter) in summary.dependents[0]" :key="dependent.id">
-                        <span>{{ String.fromCharCode('a'.charCodeAt() + letter) }}</span>.
-                        <span>{{dependent.fname}} </span>
-                        <span>{{dependent.lname}}</span>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+                  </div>
+                </li>
+              </ul>
             </div>
-            <!-- details enroll summary -->
-            <div class="details-enroll" v-if="false">
-              <h1>Please check the details below before we enroll them.</h1>
-              <table>
-                <thead>
-                  <tr>
-                    <th>
-                      <input type="checkbox">
-                    </th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>NRIC/FIN</th>
-                    <th>Date of Birth</th>
-                    <th>Work Email</th>
-                    <th>Mobile</th>
-                    <th>Medical Credits</th>
-                    <th>Wellness Credits</th>
-                    <th>Start Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="dependent-hover-container">
-                    <td>
-                      <input type="checkbox">
-                    </td>
-                    <td>
-                      <!-- <span class="icon">
+          </div>
+          <!-- details enroll summary -->
+          <div class="details-enroll" v-if="false">
+            <h1>Please check the details below before we enroll them.</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    <input type="checkbox">
+                  </th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>NRIC/FIN</th>
+                  <th>Date of Birth</th>
+                  <th>Work Email</th>
+                  <th>Mobile</th>
+                  <th>Medical Credits</th>
+                  <th>Wellness Credits</th>
+                  <th>Start Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="dependent-hover-container">
+                  <td>
+                    <input type="checkbox">
+                  </td>
+                  <td>
+                    <!-- <span class="icon">
                         <i class="fa fa-check" style="display: none;"></i>
                         <i class="fa fa-times" style="display: none;"></i>
                         <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
-                      </span> -->
-                      <span class="fname">Garth</span>
-                      <button class="dependent-hover-btn">Edit</button>
-                    </td>
-                    <td>Billedo</td>
-                    <td>S4687955D</td>
-                    <td>21/05/2019</td>
-                    <td>garth@gmail.com</td>
-                    <td>0912786581</td>
-                    <td>1.00</td>
-                    <td>1.00</td>
-                    <td>03/01/2018</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                    </span>-->
+                    <span class="fname">Garth</span>
+                    <button class="dependent-hover-btn">Edit</button>
+                  </td>
+                  <td>Billedo</td>
+                  <td>S4687955D</td>
+                  <td>21/05/2019</td>
+                  <td>garth@gmail.com</td>
+                  <td>0912786581</td>
+                  <td>1.00</td>
+                  <td>1.00</td>
+                  <td>03/01/2018</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </transition>
+        </div>
       </div>
 
       <div class="prev-next-button-container">
         <div class="button-container">
           <button v-if="isState === 'enrollment'" @click="back('enrollment')" class="back-btn">Back</button>
-          <button v-if="isState === 'web' || isState === 'excel'" @click="back('enrollment')" class="back-btn">Back</button>
+          <button
+            v-if="isState === 'web' || isState === 'excel'"
+            @click="back('enrollment')"
+            class="back-btn"
+          >Back</button>
           <button v-if="isState === 'dependent'" :disabled="true" class="back-btn btn-disabled">Back</button>
           <button v-if="false" class="delete-btn">Delete</button>
 
           <div class="btn-enroll-container">
             <button v-if="isState === 'false'" class="btn-employee">DELETE</button>
             <button v-if="isState === 'false'" class="btn-employee">PREVIOUS EMPLOYEE</button>
-            <button v-if="isState === 'web'" class="btn-employee" @click="getEmployeeDetails">NEXT EMPLOYEE</button>
+            <button
+              v-if="isState === 'web'"
+              class="btn-employee"
+              @click="getEmployeeDetails"
+            >NEXT EMPLOYEE</button>
             <button class="next-btn" v-if="isState === 'enrollment'" v-on:click="next">Next</button>
             <button class="next-btn" v-if="isState === 'web'">Enroll</button>
             <button class="next-btn" v-if="isState === 'excel'" v-on:click="excel">Next</button>
@@ -277,7 +291,10 @@
               <span class="pending-enroll-text">
                 <span>7</span> PENDING TO ENROLL
               </span>
-              <button class="btn-enroll">ENROLL<span class="enroll-badge">4</span></button>
+              <button class="btn-enroll">
+                ENROLL
+                <span class="enroll-badge">4</span>
+              </button>
             </div>
           </div>
         </div>
