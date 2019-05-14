@@ -214,52 +214,83 @@
                 </li>
               </ul>
             </div>
-          </div>
-          <!-- details enroll summary -->
-          <div class="details-enroll" v-if="false">
-            <h1>Please check the details below before we enroll them.</h1>
-            <table>
-              <thead>
-                <tr>
-                  <th>
-                    <input type="checkbox">
-                  </th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>NRIC/FIN</th>
-                  <th>Date of Birth</th>
-                  <th>Work Email</th>
-                  <th>Mobile</th>
-                  <th>Medical Credits</th>
-                  <th>Wellness Credits</th>
-                  <th>Start Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="dependent-hover-container">
-                  <td>
-                    <input type="checkbox">
-                  </td>
-                  <td>
-                    <!-- <span class="icon">
+            <!-- details enroll summary -->
+            <div class="details-enroll-wrapper" v-if="false">
+              <h1>Please check the details below before we enroll them.</h1>
+              <table>
+                <thead>
+                  <tr>
+                    <th>
+                      <input type="checkbox">
+                    </th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>NRIC/FIN</th>
+                    <th>Date of Birth</th>
+                    <th>Work Email</th>
+                    <th>Mobile</th>
+                    <th>Medical Credits</th>
+                    <th>Wellness Credits</th>
+                    <th>Start Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="dependent-hover-container">
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <!-- <span class="icon">
                         <i class="fa fa-check" style="display: none;"></i>
                         <i class="fa fa-times" style="display: none;"></i>
                         <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
-                    </span>-->
-                    <span class="fname">Garth</span>
-                    <button class="dependent-hover-btn">Edit</button>
-                  </td>
-                  <td>Billedo</td>
-                  <td>S4687955D</td>
-                  <td>21/05/2019</td>
-                  <td>garth@gmail.com</td>
-                  <td>0912786581</td>
-                  <td>1.00</td>
-                  <td>1.00</td>
-                  <td>03/01/2018</td>
-                </tr>
-              </tbody>
-            </table>
+                      </span> -->
+                      <span class="fname">Garth</span>
+                      <button class="dependent-hover-btn">Edit</button>
+                    </td>
+                    <td>Billedo</td>
+                    <td>S4687955D</td>
+                    <td>21/05/2019</td>
+                    <td>garth@gmail.com</td>
+                    <td>0912786581</td>
+                    <td>1.00</td>
+                    <td>1.00</td>
+                    <td>03/01/2018</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="modal-mask" v-if="false">
+                <div class="modal-wrapper">
+                  <div class="modal-container">
+
+                    <div class="modal-header">
+                      <slot name="header">
+                        <h4>Edit Employee Details</h4>
+                        <img :src="'../assets/img/icons/close.svg'">
+                      </slot>
+                    </div>
+
+                    <div class="modal-body">
+                      <slot name="body">
+                        <div class="modal-input-wrapper">
+                          <label>First Name</label>
+                          <input type="text">
+                        </div>
+                      </slot>
+                    </div>
+
+                    <div class="modal-footer">
+                      <slot name="footer">
+                        default footer
+                        <button class="modal-default-button" @click="$emit('close')">
+                          OK
+                        </button>
+                      </slot>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
