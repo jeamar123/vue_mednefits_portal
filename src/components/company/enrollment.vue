@@ -178,6 +178,7 @@ let enrollment = {
       }).then(result => {
         if (result.value) {
           this.modalEdit = false;
+          this.$swal("Updated!", "Employee details has been updated.", "success");
         }
       });
     },
