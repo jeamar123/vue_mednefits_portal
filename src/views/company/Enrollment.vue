@@ -95,14 +95,13 @@
                   </div>
                   <div class="employee-input-wrapper dob">
                     <label for="fname">Date of Birth</label>
-                    <v-date-picker v-model='date' 
-                      :input-props='{
-                        class: "vDatepicker",
-                        placeholder: "DD/MM/YYYY",
-                        readonly: true
-                      }'
-                    />
-                    <input type="text" name="lname" placeholder="DD/MM/YYYY">
+                    <v-date-picker
+                        :max-date='new Date()'
+                        v-model="employeeDetails.dob"
+                        :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                    >
+                    </v-date-picker>
+                    <!-- <input type="text" name="lname" placeholder="DD/MM/YYYY"> -->
                   </div>
                 </div>
                 <div class="employee-input-container">

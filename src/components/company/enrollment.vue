@@ -10,7 +10,7 @@ window.$ = $;
 
 // Methods here
 let enrollment = {
-  components:{
+  components: {
     FadeTransition,
     ModalTransition
   },
@@ -50,7 +50,7 @@ let enrollment = {
         //       lname: "zayas"
         //     }
       ],
-       date: new Date(2018, 0, 25) // Jan 25th, 2018
+      date: new Date(), // Jan 25th, 2018
     };
   },
   methods: {
@@ -77,6 +77,7 @@ let enrollment = {
     },
     getEmployeeDetails() {
       // store to temp storage when adding employees
+      console.log( this.employeeDetails);
       this.employeeStorage.push({
         fname: this.employeeDetails.fname,
         lname: this.employeeDetails.lname,
@@ -84,6 +85,7 @@ let enrollment = {
       });
       this.dependentStorage = [];
       this.employeeDetails = {};
+      
     },
     addDependentDetails() {
       this.dependentState = !this.dependentState;
@@ -143,19 +145,19 @@ let enrollment = {
       } else if (this.isState === "web") {
         this.isState = "web";
         this.$emit("enrollmentData", {
-        isState: "web"
-      });
+          isState: "web"
+        });
       }
     },
     modalTrigger(data) {
       let x = data;
-      if (x === 'edit' || x === 'close') {
+      if (x === "edit" || x === "close") {
         this.modalEdit = !this.modalEdit;
       }
     },
     excel() {
       console.log("excel details");
-    },
+    }
   }
 };
 
