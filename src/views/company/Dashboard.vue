@@ -35,8 +35,8 @@
             </a>
           </div>
 
-          <div class="account-list-container">
-            <ul v-if="accountDropdown" >
+          <div class="account-list-container" v-if="accountDropdown">
+            <ul  >
               <li>
                 <a>Account &amp; Billing</a>
               </li>
