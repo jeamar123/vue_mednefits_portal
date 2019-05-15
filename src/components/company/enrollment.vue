@@ -62,7 +62,6 @@ let enrollment = {
     },
     empBtnType(data) {
       this.empType = data;
-      console.log(data);
     },
     toggleSummary() {
       console.log(this.summaryBtn);

@@ -133,12 +133,12 @@
 
           <div class="template-menu-accordion" v-if="isState === 'excel'">
             <div class="menu-accordion-list">
-              <span class="number step">1</span>
+              <span class="number step done-step">1</span>
               <span class="menu-accordion-label step">Download</span>
             </div>
             <div class="menu-accordion-list">
-              <span class="number">2</span>
-              <span class="menu-accordion-label">Prepare</span>
+              <span class="number step">2</span>
+              <span class="menu-accordion-label step">Prepare</span>
             </div>
             <div class="menu-accordion-list">
               <span class="number">3</span>
