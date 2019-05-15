@@ -46,8 +46,117 @@
         
         <div class="excel-import-wrapper" v-if="isState === 'excel'">
           <FadeTransition>
-            <div>
-              <h1>EXCEL IMPORT SAMPLE TEXT</h1>
+            <div class="download-template-wrapper" v-if="true">
+              <h1>Download template.</h1>
+              <p>We've put together the fields that are needed for enrollements in the excel template file, first row (aka header). Please download, complete and submit the excel file on the step 3 (Upload).</p>
+              <div class="download-template-btn">
+                <button class="active"><img :src="'../assets/img/download-gray.png'"> Employees only</button>
+                <button class=""><img :src="'../assets/img/download-gray.png'">Employees + Dependents</button>
+              </div>
+            </div>
+            <!-- Employees only-->
+             <div class="review-with-dependents" v-if="false">
+              <h1>Let us help you with the review before upload.</h1>
+              <div class="review-tick-container">
+                <p class="review-tick-title">Review your file type:</p>
+                <label class="review-container">
+                  <input type="checkbox">
+                  <span class="review-prepare-template-text">Save the file .xlsx or .xls format. </span>
+                  <span class="review-checkmark"></span>
+                </label>
+                <p class="review-tick-title">Review the data in your file:</p>
+                <label class="review-container">
+                  <input type="checkbox">
+                  <span class="review-prepare-template-text">Employee's first name and last name are separated.</span>
+                  <span class="review-prepare-template-subtext">Separate the full name to first name as given name; last name as family name.</span>
+                  <span class="review-checkmark"></span>
+                </label>
+                <label class="review-container">
+                  <input type="checkbox">
+                  <span class="review-prepare-template-text">Input employee's date of birth according to the format (dd/mm/yyyy).</span>
+                  <span class="review-prepare-template-subtext">Our system will only pick and capture date in the stated format.</span>
+                  <span class="review-checkmark"></span>
+                </label>
+                <label class="review-container">
+                  <input type="checkbox">
+                  <span class="review-prepare-template-text">A valid employee's email address.</span>
+                  <span class="review-prepare-template-subtext">Login credential will be sent to this email address once account is set up.</span>
+                  <span class="review-checkmark"></span>
+                </label>
+                <label class="review-container">
+                  <input type="checkbox">
+                  <span class="review-prepare-template-text">Input employee's 6 digit postal code</span>
+                  <span class="review-prepare-template-subtext">It should be the local residential postal code where the employee reside.</span>
+                  <span class="review-checkmark"></span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Employee + Dependents-->
+            <div class="review-with-dependents" v-if="false">
+              <h1>Let us help you with the review before upload.</h1>
+              <div class="review-tick-container">
+                <p class="review-tick-title">Review your file type:</p>
+                <label class="review-container">
+                  <input type="checkbox">
+                  <span class="review-prepare-template-text">Save the file .xlsx or .xls format. </span>
+                  <span class="review-checkmark"></span>
+                </label>
+                <p class="review-tick-title">Review the data in your file:</p>
+                <label class="review-container">
+                  <input type="checkbox">
+                  <span class="review-prepare-template-text">Employee, dependent/s first name and last name are separated.</span>
+                  <span class="review-prepare-template-subtext">Separate the full name to first name as given name; last name as family name.</span>
+                  <span class="review-checkmark"></span>
+                </label>
+                <label class="review-container">
+                  <input type="checkbox">
+                  <span class="review-prepare-template-text">Input employee, dependent/s date of birth according to the format (dd/mm/yyyy).</span>
+                  <span class="review-prepare-template-subtext">Our system will only pick and capture date in the stated format.</span>
+                  <span class="review-checkmark"></span>
+                </label>
+                <label class="review-container">
+                  <input type="checkbox">
+                  <span class="review-prepare-template-text">A valid employee's email address.</span>
+                  <span class="review-prepare-template-subtext">Login credential will be sent to this email address once account is set up.</span>
+                  <span class="review-checkmark"></span>
+                </label>
+                <label class="review-container">
+                  <input type="checkbox">
+                  <span class="review-prepare-template-text">Input employee's 6 digit postal code</span>
+                  <span class="review-prepare-template-subtext">It should be the local residential postal code where the employee reside.</span>
+                  <span class="review-checkmark"></span>
+                </label>
+                <label class="review-container">
+                  <input type="checkbox">
+                  <span class="review-prepare-template-text">Under dependent/s relationship column only select from drop down list.</span>
+                  <span class="review-checkmark"></span>
+                </label>
+              </div>
+            </div>
+            <div class="upload-file-wrapper" v-if="false">
+              <h1>Upload your file</h1>
+              <div class="upload-box">
+                <label class="fileupload-text ng-scope">
+                  <img :src="'../assets/img/Upload-Receipt.png'" class="upload-icon center-block">
+                  <div v-if="false">
+                    <span>
+                      Drag and drop an Excel file here to upload
+                      <br>
+                      or
+                      <br>
+                    </span>
+                    <span>Select file</span>
+                  </div>
+                  <div>
+                    <span>
+                      Successfully Uploaded.
+                      <br>
+                    </span>
+                    <span>Change file</span>
+                  </div>
+                </label>
+              </div>
             </div>
           </FadeTransition>
         </div>
@@ -365,6 +474,7 @@
           <button v-if="isState === 'web' || isState === 'excel'"  @click="back('enrollment')" class="back-btn">Back</button>
           <button v-if="isState === 'dependent'" :disabled="true" class="back-btn btn-disabled">Back</button>
           <button v-if="isState === 'enrollsum'" @click="back('web')" class="back-btn">Back</button>
+          <button v-if="false" class="back-btn">BACK TO HOME</button>
           <button v-if="false" class="delete-btn">Delete</button>
 
           <div class="btn-enroll-container">

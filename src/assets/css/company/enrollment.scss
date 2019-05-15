@@ -198,7 +198,173 @@
 	}
 }
 
-/*----- EMPLOYEE DETAILS (WEB INPUT) -----*/
+/*----- (EXCEL IMPORT) -----*/
+	.excel-import-wrapper {
+		color: #2c3e50;	
+	}
+	.download-template-wrapper {
+		text-align: center;
+		padding-top: 70px;
+		h1 {
+			font-weight: 700;
+			font-size: 25px;
+		}
+		p {
+			line-height: 24px;		
+	    font-size: 12px;
+	    font-weight: 700;
+	    width: 350px;
+	    margin: 35px auto 40px;
+		}
+		button {
+			background-color: transparent;
+	    width: 200px;
+	    border: 2px solid #dcdbdb;
+	    color: #a8a8a8;
+	    padding: 10px 0;
+	    border-radius: 4px;
+	    font-size: 12px;
+	    font-weight: 700;
+	    line-height: 24px;
+	    &:nth-child(1) {
+	    	margin-right: 8px;
+	    }
+	    &:nth-child(2) {
+	    	margin-left: 8px;
+	    }
+	    &.active {
+	    	border: 2px solid #62b9e0;
+	    }
+		}
+		img {
+			height: 18px;
+		}
+	}
+
+	.review-with-dependents {
+		width: 800px;
+    margin: 0 auto;
+    padding: 50px 0;
+    font-size: 16px;
+    line-height: 24px;
+
+    h1 {
+    	font-weight: 700;
+    	font-size: 25px;
+    	margin: 20px 0 38px;
+    }
+
+    p {
+    	margin: 0 0 10px;
+    }
+
+    .review-tick-title, 
+    .review-prepare-template-text {
+	    font-weight: 600;
+		}
+		.review-prepare-template-subtext {
+	    color: #939ba0;
+		}
+	}
+
+	.upload-file-wrapper {
+		text-align: center;
+		padding-top: 65px;
+		h1 {
+			font-size: 25px;
+			font-weight: 700;
+		}
+		img {
+			width: 55px;
+			margin: 0 auto 15px;
+    	display: block;
+		}
+		.upload-box {
+			border: dashed 2px #d5d5d5;
+	    width: 850px;
+	    margin: 55px auto auto;
+	    height: 250px;
+	    text-align: center;
+	    padding: 50px 100px;
+	    background-color: #fafdff;
+		}
+		span {
+			line-height: 30px;
+	    font-size: 18px;
+	    font-weight: 700;
+	    color: #848484;
+		}
+	}
+
+	/* The container */
+	.review-container {
+	  display: block;
+	  position: relative;
+	  padding-left: 35px;
+	  margin-bottom: 12px;
+	  cursor: pointer;
+	  -webkit-user-select: none;
+	  -moz-user-select: none;
+	  -ms-user-select: none;
+	  user-select: none;
+
+	  span {
+	  	display: block;
+	  }
+		/* Hide the browser's default checkbox */
+	  input {
+	  	position: absolute;
+		  opacity: 0;
+		  cursor: pointer;
+		  height: 0;
+		  width: 0;
+	  }
+	  /* When the checkbox is checked, add a blue background */
+	  input:checked ~ .review-checkmark {
+		  border: 2px solid #26a69a;
+		  border-radius: 4px;
+
+		  /* Show the checkmark when checked */
+		  &:after {
+		  	display: block;
+		  }
+		}
+	}
+
+	/* Create a custom checkbox */
+	.review-checkmark {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  height: 23px;
+	  width: 23px;
+	  border: 2px solid #d6d6d6;
+	  border-radius: 4px;
+
+	  /* Create the checkmark/indicator (hidden when not checked) */
+	  &:after {
+	  	content: "";
+		  position: absolute;
+		  display: none;
+
+		  /* Style the checkmark/indicator */
+		  left: 6px;
+			top: 1px;
+			width: 5px;
+			height: 11px;
+			border: solid #26a69a;
+			border-width: 0 2px 2px 0;
+			-webkit-transform: rotate(45deg);
+			-ms-transform: rotate(45deg);
+			transform: rotate(45deg);
+	  }
+	}
+
+
+/*--------------------------*/
+
+
+/*----- (WEB INPUT) -----*/
 	.employee-details-wrapper,
 	.dependent-details-wrapper {
 		padding: 40px 15px 0px 15px;
@@ -654,6 +820,4 @@
 	}
 
 
-
-
-/*----------------------------------------*/
+/*-----------------------*/
