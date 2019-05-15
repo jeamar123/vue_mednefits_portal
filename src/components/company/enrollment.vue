@@ -164,6 +164,6 @@ let enrollment = {
 export default enrollment;
 </script>
 
-<style lang="scss" scoped>
-@import "./src/assets/css/company/enrollment.scss";
+<style lang="scss">
+@import "./src/assets/css/company/enrollment.scss"
 </style>

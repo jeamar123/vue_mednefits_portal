@@ -367,6 +367,7 @@
             <button v-if="isState === 'web'" class="btn-employee" @click="getEmployeeDetails">NEXT EMPLOYEE</button>
             <button class="next-btn" v-if="isState === 'enrollment'" v-on:click="next">Next</button>
             <button class="next-btn" v-if="isState === 'web'" @click="enroll">Enroll</button>
+            <button class="btn-download-template" v-if="isState === 'excel'">DOWNLOAD TEMPLATE</button>
             <button class="next-btn" v-if="isState === 'excel'" v-on:click="excel">Next</button>
             <div v-if="isState === 'enrollsum'" class="btn-summary-enroll-container">
               <span class="pending-enroll-text">
