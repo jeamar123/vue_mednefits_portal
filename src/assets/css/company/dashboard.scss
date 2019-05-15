@@ -110,6 +110,12 @@
 	  margin: 20px 0;
 	  line-height: 1.1;
 	}
+	.excel-import-title {
+		font-size: 20px;
+		position: absolute;
+		width: 145px;
+		margin: 0;
+	}
 	.dropdown-menu {
 		position: absolute;
 		left: 0;
@@ -133,6 +139,45 @@
 			color: #fff;
 			background-color: #c4c4c4;
 		}
+	}
+}
+.template-menu-accordion {
+	display: inline-flex;
+  width: 100%;
+  justify-content: center;
+  padding: 15px 0;
+
+	.menu-accordion-list {
+		display: inline-block;
+    margin: 0 42px auto;
+    span {
+    	display: block;	
+    	text-align: center;
+    	color: #a5d2e9;
+    }
+	}
+	.number {
+		border: 2px solid #a5d2e9;
+    border-radius: 50%;
+    height: 26px;
+    width: 25px;
+    margin: 0 auto;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 2px;
+
+    &.done-step {
+    	background-color: #fff;
+    	color: #0392cf;
+    }
+	}
+	.menu-accordion-label {
+		font-size: 16px;
+    margin-top: 8px;
+	}
+	span.step {
+		color: #fff;
+    border-color: #fff;
 	}
 }
 .remove-active {

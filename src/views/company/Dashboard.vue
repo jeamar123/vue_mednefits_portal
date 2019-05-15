@@ -57,6 +57,21 @@
 
       <div class="navbar-blue-bg">
         <div class="container">
+          <div
+            v-if="$route.name === 'CompanyEnrollment'"
+            class="enrollment-navbar-container welcome-container"
+          >
+            <h4 v-if="$route.name === 'CompanyEnrollment' && isState === 'enrollment' || isState == 'enrollsum'">Enrollment</h4>
+
+            <h4
+              v-if="isState === 'web' && $route.name != 'CompanyHome'"
+              class="web-input-title"
+            >WEB INPUT</h4>
+            <h4 class="excel-import-title" v-if="isState === 'excel' && $route.name != 'CompanyHome'">
+              EXCEL IMPORT
+            </h4>
+          </div>
+
           <div v-if="$route.name != 'CompanyEnrollment'" class="dashboard-navbar-container">
             <div class="welcome-container">
               <router-link to="/company/dashboard">
@@ -116,17 +131,26 @@
             </div>
           </div>
 
-          <div
-            v-if="$route.name === 'CompanyEnrollment'"
-            class="enrollment-navbar-container welcome-container"
-          >
-            <h4 v-if="$route.name === 'CompanyEnrollment' && isState === 'enrollment' || isState == 'enrollsum'">Enrollment</h4>
-
-            <h4
-              v-if="isState === 'web' && $route.name != 'CompanyHome'"
-              class="web-input-title"
-            >WEB INPUT</h4>
+          <div class="template-menu-accordion" v-if="isState === 'excel'">
+            <div class="menu-accordion-list">
+              <span class="number step">1</span>
+              <span class="menu-accordion-label step">Download</span>
+            </div>
+            <div class="menu-accordion-list">
+              <span class="number">2</span>
+              <span class="menu-accordion-label">Prepare</span>
+            </div>
+            <div class="menu-accordion-list">
+              <span class="number">3</span>
+              <span class="menu-accordion-label">Upload</span>
+            </div>
+            <div class="menu-accordion-list">
+              <span class="number">4</span>
+              <span class="menu-accordion-label">Preview</span>
+            </div>
           </div>
+
+          
         </div>
       </div>
     </div>

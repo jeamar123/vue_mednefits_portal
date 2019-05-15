@@ -41,6 +41,16 @@
             </div>
           </div>
         </transition>
+        <!-------- EXCEL IMPORT -------->
+        
+        <div class="excel-import-wrapper" v-if="isState === 'excel'">
+          <transition name="fade">
+            <div>
+              <h1>EXCEL IMPORT SAMPLE TEXT</h1>
+            </div>
+          </transition>
+        </div>
+
         <!-------- WEB INPUT -------->
 
         <div class="web-input-wrapper">

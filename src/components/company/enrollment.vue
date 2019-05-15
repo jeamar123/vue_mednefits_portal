@@ -118,6 +118,9 @@ let enrollment = {
         });
       } else if (this.isType === "excel") {
         this.isState = "excel";
+        this.$emit("enrollmentData", {
+          isState: "excel"
+        });
       } else {
         console.log("select 1 item");
       }
