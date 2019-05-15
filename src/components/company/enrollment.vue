@@ -19,6 +19,7 @@ let enrollment = {
     return {
       isType: "", //excel or web input
       isState: "enrollment", //navigation title
+      empType: "empOnly",
       summaryBtn: false, // summary state
       dependentState: false,
       modalEdit: false, //edit modal
@@ -58,6 +59,10 @@ let enrollment = {
     type(data) {
       this.isType = data;
       console.log(this.isType);
+    },
+    empBtnType(data) {
+      this.empType = data;
+      console.log(data);
     },
     toggleSummary() {
       console.log(this.summaryBtn);
