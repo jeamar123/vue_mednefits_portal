@@ -3,7 +3,7 @@
     <div class="enrollment-wrapper">
       <div class="container">
         <!-- Enrollment -->
-        <transition name="fade">
+        <FadeTransition>
           <div v-if="isState === 'enrollment'" class="enrollment-method-wrapper">
             <h1 class="enrollment-method-title">Pick your preferred enrollment method.</h1>
             <div class="pick-enrollment-method">
@@ -40,11 +40,10 @@
               </div>
             </div>
           </div>
-        </transition>
+        </FadeTransition>
         <!-------- WEB INPUT -------->
-
         <div class="web-input-wrapper">
-          <transition name="fade">
+          <FadeTransition>
             <div v-if="isState === 'web'" class="employee-details-wrapper">
               <span class="employee-tier-title">
                 EMPLOYEE
@@ -122,9 +121,9 @@
                 </div>
               </form>
             </div>
-          </transition>
+          </FadeTransition>
           <!-- Add dependent section -->
-          <transition name="fade">
+          <FadeTransition>
             <div class="dependent-details-wrapper" v-if="dependentState">
               <span class="employee-tier-title">
                 DEPENDENT
@@ -187,7 +186,7 @@
                 </div>
               </div>
             </div>
-          </transition>
+          </FadeTransition>
           <!-- side content summary -->
           <div v-if="isState === 'web' || isState === 'dependent'" class="summary-right-container">
             <button id="summary-btn" class="summary-right-button" @click="toggleSummary">SUMMARY</button>
@@ -197,7 +196,7 @@
                 <li v-for="(summary,index) in employeeStorage" v-bind:key="summary.id">
                   <div>
                     <span>{{index + 1}}</span>.
-                    <span>{{summary.fname}}</span>
+                    <span>{{summary.fname}} </span>
                     <span>{{summary.lname}}</span>
                   </div>
                   <div v-if="summary.dependents[0] !=null">
@@ -216,9 +215,11 @@
             </div>
           </div>
           <!-- details enroll summary -->
-          <transition name="fade">
+          <FadeTransition>
+            
             <div class="details-enroll-wrapper" v-if="isState === 'enrollsum'">
               <h1>Please check the details below before we enroll them.</h1>
+              <!-- table summary -->
               <table>
                 <thead>
                   <tr>
@@ -237,7 +238,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="dependent-hover-container">
+                  <tr class="dependent-hover-container" v-for="enroll in employeeStorage" v-bind:key="enroll.id">
                     <td>
                       <input type="checkbox">
                     </td>
@@ -247,10 +248,10 @@
                           <i class="fa fa-times" style="display: none;"></i>
                           <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
                       </span>-->
-                      <span class="fname">Garth</span>
-                      <button class="dependent-hover-btn">Edit</button>
+                      <span class="fname">{{enroll.fname}}</span>
+                      <button @click="modalTrigger('edit')" class="dependent-hover-btn">Edit</button>
                     </td>
-                    <td>Billedo</td>
+                    <td>{{enroll.lname}}</td>
                     <td>S4687955D</td>
                     <td>21/05/2019</td>
                     <td>garth@gmail.com</td>
@@ -261,85 +262,84 @@
                   </tr>
                 </tbody>
               </table>
-              <div class="modal-mask" v-if="false">
-                <div class="modal-wrapper">
-                  <div class="modal-container">
-                    <div class="modal-header">
-                      <slot name="header">
-                        <h4>Edit Employee Details</h4>
-                        <img :src="'../assets/img/icons/close.svg'">
-                      </slot>
-                    </div>
+              <!-- modal edit -->
+              <ModalTransition>
+                <div class="modal-mask" v-if="modalEdit">
+                  <div class="modal-wrapper">
+                    <div class="modal-container">
+                      <div class="modal-header">
+                        <slot name="header">
+                          <h4>Edit Employee Details</h4>
+                          <img @click="modalTrigger('close')" :src="'../assets/img/icons/close.svg'">
+                        </slot>
+                      </div>
 
-                    <div class="modal-body">
-                      <slot name="body">
-                        <form>
-                          <div class="modal-input-wrapper">
-                            <label>First Name</label>
-                            <input type="text">
-                          </div>
-                          <div class="modal-input-wrapper">
-                            <label>Last Name</label>
-                            <input type="text">
-                          </div>
-                          <div class="modal-input-wrapper">
-                            <label>NRIC/FIN</label>
-                            <input type="text">
-                          </div>
-                          <div class="modal-input-wrapper">
-                            <label>Date of Birth</label>
-                            <input type="text">
-                          </div>
-                          <div class="modal-input-wrapper">
-                            <label>Work Email</label>
-                            <input type="text">
-                          </div>
-                          <div class="modal-input-wrapper">
-                            <label>Mobile</label>
-                            <input type="text">
-                          </div>
-                          <div class="modal-input-wrapper">
-                            <label>Mobile Area Code</label>
-                            <input type="text">
-                          </div>
-                          <div class="modal-input-wrapper">
-                            <label>Medical Credits</label>
-                            <input type="text">
-                          </div>
-                          <div class="modal-input-wrapper">
-                            <label>Wellness Credits</label>
-                            <input type="text">
-                          </div>
-                          <div class="modal-input-wrapper">
-                            <label>Start Date</label>
-                            <input type="text">
-                          </div>
-                        </form>
-                      </slot>
-                    </div>
+                      <div class="modal-body">
+                        <slot name="body">
+                          <form>
+                            <div class="modal-input-wrapper">
+                              <label>First Name</label>
+                              <input type="text">
+                            </div>
+                            <div class="modal-input-wrapper">
+                              <label>Last Name</label>
+                              <input type="text">
+                            </div>
+                            <div class="modal-input-wrapper">
+                              <label>NRIC/FIN</label>
+                              <input type="text">
+                            </div>
+                            <div class="modal-input-wrapper">
+                              <label>Date of Birth</label>
+                              <input type="text">
+                            </div>
+                            <div class="modal-input-wrapper">
+                              <label>Work Email</label>
+                              <input type="text">
+                            </div>
+                            <div class="modal-input-wrapper">
+                              <label>Mobile</label>
+                              <input type="text">
+                            </div>
+                            <div class="modal-input-wrapper">
+                              <label>Mobile Area Code</label>
+                              <input type="text">
+                            </div>
+                            <div class="modal-input-wrapper">
+                              <label>Medical Credits</label>
+                              <input type="text">
+                            </div>
+                            <div class="modal-input-wrapper">
+                              <label>Wellness Credits</label>
+                              <input type="text">
+                            </div>
+                            <div class="modal-input-wrapper">
+                              <label>Start Date</label>
+                              <input type="text">
+                            </div>
+                          </form>
+                        </slot>
+                      </div>
 
-                    <div class="modal-footer">
-                      <slot name="footer">
-                        <button>REMOVE</button>
-                        <button>UPDATE</button>
-                      </slot>
+                      <div class="modal-footer">
+                        <slot name="footer">
+                          <button>REMOVE</button>
+                          <button>UPDATE</button>
+                        </slot>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </ModalTransition>
             </div>
-          </transition>
+          </FadeTransition>
         </div>
       </div>
 
       <div class="prev-next-button-container">
         <div class="button-container">
-          <button v-if="isState === 'enrollment'" @click="back('enrollment')" class="back-btn">Back</button>
-          <button
-            v-if="isState === 'web' || isState === 'excel'"
-            @click="back('enrollment')"
-            class="back-btn"
-          >Back</button>
+          <button v-if="isState === 'enrollment'" @click="$router.go(-1)" class="back-btn">Back</button>
+          <button v-if="isState === 'web' || isState === 'excel'"  @click="back('enrollment')" class="back-btn">Back</button>
           <button v-if="isState === 'dependent'" :disabled="true" class="back-btn btn-disabled">Back</button>
           <button v-if="isState === 'enrollsum'" @click="back('web')" class="back-btn">Back</button>
           <button v-if="false" class="delete-btn">Delete</button>
