@@ -1,6 +1,8 @@
 <script>
 /* eslint-disable */
 // imports here
+import FadeTransition from "../../assets/transitions/FadeTransition";
+import ModalTransition from "../../assets/transitions/ModalTransition";
 import jQuery from "jquery";
 import { isNull } from "util";
 const $ = jQuery;
@@ -8,12 +10,17 @@ window.$ = $;
 
 // Methods here
 let enrollment = {
+  components:{
+    FadeTransition,
+    ModalTransition
+  },
   data() {
     return {
       isType: "", //excel or web input
       isState: "enrollment", //navigation title
       summaryBtn: false, // summary state
       dependentState: false,
+      modalEdit: false, //edit modal
       // data binding store data from WEB INPUT forms
       employeeDetails: {},
       dependentDetails: {},
@@ -139,6 +146,12 @@ let enrollment = {
       });
       }
     },
+    modalTrigger(data) {
+      let x = data;
+      if (x === 'edit' || x === 'close') {
+        this.modalEdit = !this.modalEdit;
+      }
+    },
     excel() {
       console.log("excel details");
     },
@@ -150,14 +163,4 @@ export default enrollment;
 
 <style lang="scss" scoped>
 @import "./src/assets/css/company/enrollment.scss";
-// for the view transition
-
-//fade transtion <tranisition name="fade">
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
 </style>

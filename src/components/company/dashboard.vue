@@ -11,10 +11,10 @@ let dashboard = {
   },
   data() {
     return {
-      isState: 'enrollment',
+      isState: "enrollment",
       isActive: false,
       isDropdown: false, //hide show Dropdown,
-      accountDropdown: false, 
+      accountDropdown: false
     };
   },
   methods: {
@@ -24,33 +24,36 @@ let dashboard = {
       this.isState = state.isState;
       console.log(this.isState);
     },
-    overviewData(state){
+    overviewData(state) {
       this.isState = state.isState;
       console.log(this.isState);
     },
     //Dropdown methods toggle show hide dropdown
     dropdownClicked(data) {
-      if (data === 'employee') {
+      if (data === "employee") {
         this.isDropdown = !this.isDropdown;
-      } else if (data === 'account') {
+      } else if (data === "account") {
         this.accountDropdown = !this.accountDropdown;
       }
-      
     },
     // if dropdown open then close dropdown when click anywhere in page
     employeeDocumentClick(e) {
-      let el = this.$refs.employeeDropdownMenu;
-      let target = e.target;
-      if (el !== target && !el.contains(target)) {
-        this.isDropdown = false;
-      };
+      if (this.isDropdown === true) {
+        let el = this.$refs.employeeDropdownMenu;
+        let target = e.target;
+        if (el !== target && !el.contains(target)) {
+          this.isDropdown = false;
+        }
+      }
     },
     accountDocumentClick(e) {
-      let el = this.$refs.accountDropdownMenu;
-      let target = e.target;
-      if (el !== target && !el.contains(target)) {
-        this.accountDropdown = false;
-      };
+      if (this.accountDropdown === true) {
+        let el = this.$refs.accountDropdownMenu;
+        let target = e.target;
+        if (el !== target && !el.contains(target)) {
+          this.accountDropdown = false;
+        }
+      }
     }
     // Your Methods here
   },
@@ -71,5 +74,5 @@ export default dashboard;
 </script>
 
 <style lang="scss" scoped>
-	@import './src/assets/css/company/dashboard.scss';
+@import "./src/assets/css/company/dashboard.scss";
 </style>
