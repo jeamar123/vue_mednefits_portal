@@ -50,8 +50,8 @@
               <h1>Download template.</h1>
               <p>We've put together the fields that are needed for enrollements in the excel template file, first row (aka header). Please download, complete and submit the excel file on the step 3 (Upload).</p>
               <div class="download-template-btn">
-                <button class="active"><img :src="'../assets/img/download-gray.png'"> Employees only</button>
-                <button class=""><img :src="'../assets/img/download-gray.png'">Employees + Dependents</button>
+                <button @click=" empBtnType('empOnly')" v-bind:class="{'active': empType === 'empOnly'}" class=""><img :src="'../assets/img/download-gray.png'"> Employees only</button>
+                <button @click=" empBtnType('empDependents')" v-bind:class="{'active': empType === 'empDependents'}" lass=""><img :src="'../assets/img/download-gray.png'">Employees + Dependents</button>
               </div>
             </div>
             <!-- Employees only-->
