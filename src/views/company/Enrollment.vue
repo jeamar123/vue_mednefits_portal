@@ -370,7 +370,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="dependent-hover-container" v-for="enroll in employeeStorage" v-bind:key="enroll.id">
+                  <tr class="dependent-hover-container" v-for="(enroll, index) in employeeStorage" v-bind:key="enroll.id">
                     <td>
                       <input type="checkbox">
                     </td>
@@ -381,7 +381,7 @@
                           <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
                       </span>-->
                       <span class="fname">{{enroll.fname}}</span>
-                      <button @click="modalTrigger('edit')" class="dependent-hover-btn">Edit</button>
+                      <button @click="modalTrigger('edit', index)" class="dependent-hover-btn">Edit</button>
                     </td>
                     <td>{{enroll.lname}}</td>
                     <td>{{enroll.nricFinNo}}</td>

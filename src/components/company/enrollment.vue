@@ -3,7 +3,7 @@
 // imports here
 import FadeTransition from "../../assets/transitions/FadeTransition";
 import ModalTransition from "../../assets/transitions/ModalTransition";
-import moment from 'moment'
+import moment from "moment";
 import jQuery from "jquery";
 import { isNull } from "util";
 const $ = jQuery;
@@ -52,7 +52,7 @@ let enrollment = {
         //       lname: "zayas"
         //     }
       ],
-      date: new Date(), // Jan 25th, 2018
+      date: new Date() // Jan 25th, 2018
     };
   },
   methods: {
@@ -83,7 +83,7 @@ let enrollment = {
     },
     getEmployeeDetails() {
       // store to temp storage when adding employees
-      console.log( this.employeeDetails);
+      console.log(this.employeeDetails);
       this.employeeStorage.push({
         fname: this.employeeDetails.fname,
         lname: this.employeeDetails.lname,
@@ -97,12 +97,10 @@ let enrollment = {
         mCredits: this.employeeDetails.mCredits,
         wCredits: this.employeeDetails.wCredits,
         dependents: [this.dependentStorage]
-      }
-      );
-      console.log( this.employeeStorage);
+      });
+      console.log(this.employeeStorage);
       this.dependentStorage = [];
       this.employeeDetails = {};
-      
     },
     addDependentDetails() {
       this.dependentState = !this.dependentState;
@@ -126,7 +124,7 @@ let enrollment = {
         customClass: "warning-global-container"
       }).then(result => {
         if (result.value) {
-          this.dependentState = false;
+          this.dependentState = !this.dependentState;
           this.isState = "web";
         }
       });
@@ -173,7 +171,7 @@ let enrollment = {
         console.log(index);
       }
     },
-    update(){
+    update() {
       this.$swal({
         title: "Confirm",
         text: "Are you sure you want to update this employee?",
@@ -193,9 +191,9 @@ let enrollment = {
     }
   },
   filters: {
-    formatDate : function(value) {
+    formatDate: function(value) {
       if (value) {
-        return moment(String(value)).format('MM/DD//YYYY')
+        return moment(String(value)).format("MM/DD//YYYY");
       }
     }
   }
@@ -205,5 +203,5 @@ export default enrollment;
 </script>
 
 <style lang="scss">
-@import "./src/assets/css/company/enrollment.scss"
+@import "./src/assets/css/company/enrollment.scss";
 </style>
