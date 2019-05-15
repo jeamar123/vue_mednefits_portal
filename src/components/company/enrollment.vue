@@ -49,7 +49,8 @@ let enrollment = {
         //       fname: "jazer",
         //       lname: "zayas"
         //     }
-      ]
+      ],
+       date: new Date(2018, 0, 25) // Jan 25th, 2018
     };
   },
   methods: {
