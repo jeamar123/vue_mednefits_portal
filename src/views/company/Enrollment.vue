@@ -84,14 +84,14 @@
                 <div class="employee-input-container">
                   <div class="employee-input-wrapper nric">
                     <label>
-                      <input type="radio" name="id_status">
+                      <input type="radio" name="id_status" value="nric" v-model="employeeDetails.idType">
                       NRIC
                     </label>
                     <label>
-                      <input type="radio" name="id_status">
+                      <input type="radio" name="id_status" value="fin" v-model="employeeDetails.idType">
                       FIN
                     </label>
-                    <input type="text" name="nric-fin">
+                    <input type="number" name="nric-fin" v-model="employeeDetails.nricFinNo">
                   </div>
                   <div class="employee-input-wrapper dob">
                     <label for="fname">Date of Birth</label>
@@ -107,33 +107,39 @@
                 <div class="employee-input-container">
                   <div class="employee-input-wrapper">
                     <label for="fname">Work Email</label>
-                    <input type="text" name="work-email">
+                    <input type="email" name="work-email" v-model="employeeDetails.email">
                   </div>
                   <div class="employee-input-wrapper">
                     <label for="fname">Mobile</label>
-                    <input type="text" name="mobile">
+                    <input type="number" name="mobile" v-model="employeeDetails.mNumber">
                   </div>
                 </div>
                 <div class="employee-input-container">
                   <div class="employee-input-wrapper">
                     <label for="fname">Postal Code</label>
-                    <input type="text" name="postal-code">
+                    <input type="text" name="postal-code" v-model="employeeDetails.postal">
                   </div>
                   <div class="employee-input-wrapper">
                     <label for="fname">Start Date</label>
-                    <input type="text" name="start-date">
+                    <v-date-picker
+                        :max-date='new Date()'
+                        v-model="employeeDetails.startDate"
+                        :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                    >
+                    </v-date-picker>
+                    <!-- <input type="text" name="start-date"> -->
                   </div>
                 </div>
                 <div class="employee-input-container">
                   <div class="employee-input-wrapper">
                     <label for="fname" class="medical-text">Medical Credits</label>
                     <label class="subtext">*If there are no credits to allocate, please key in 0</label>
-                    <input type="number" min="0" value="0" name="medical-credits">
+                    <input type="number" min="0" value="0" name="medical-credits" v-model="employeeDetails.mCredits">
                   </div>
                   <div class="employee-input-wrapper">
                     <label for="fname" class="wellness-text">Wellness Credits</label>
                     <label class="subtext">*If there are no credits to allocate, please key in 0</label>
-                    <input type="number" min="0" value="0" name="wellness-credits">
+                    <input type="number" min="0" value="0" name="wellness-credits" v-model="employeeDetails.wCredits">
                   </div>
                 </div>
               </form>
@@ -255,7 +261,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="dependent-hover-container" v-for="enroll in employeeStorage" v-bind:key="enroll.id">
+                  <tr class="dependent-hover-container" v-for="(enroll,index) in employeeStorage" v-bind:key="enroll.id">
                     <td>
                       <input type="checkbox">
                     </td>
@@ -266,16 +272,16 @@
                           <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
                       </span>-->
                       <span class="fname">{{enroll.fname}}</span>
-                      <button @click="modalTrigger('edit')" class="dependent-hover-btn">Edit</button>
+                      <button @click="modalTrigger('edit', enroll.index)" class="dependent-hover-btn">Edit</button>
                     </td>
                     <td>{{enroll.lname}}</td>
-                    <td>S4687955D</td>
-                    <td>21/05/2019</td>
-                    <td>garth@gmail.com</td>
-                    <td>0912786581</td>
-                    <td>1.00</td>
-                    <td>1.00</td>
-                    <td>03/01/2018</td>
+                    <td>{{enroll.nricFinNo}}</td>
+                    <td>{{enroll.dob | formatDate}}</td>
+                    <td>{{enroll.email}}</td>
+                    <td>{{enroll.mNumber}}</td>
+                    <td>{{enroll.mCredits}}</td>
+                    <td>{{enroll.wCredits}}</td>
+                    <td>{{enroll.startDate | formatDate}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -341,7 +347,7 @@
                       <div class="modal-footer">
                         <slot name="footer">
                           <button>REMOVE</button>
-                          <button>UPDATE</button>
+                          <button @click="update">UPDATE</button>
                         </slot>
                       </div>
                     </div>

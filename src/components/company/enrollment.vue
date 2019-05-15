@@ -3,6 +3,7 @@
 // imports here
 import FadeTransition from "../../assets/transitions/FadeTransition";
 import ModalTransition from "../../assets/transitions/ModalTransition";
+import moment from 'moment'
 import jQuery from "jquery";
 import { isNull } from "util";
 const $ = jQuery;
@@ -81,8 +82,19 @@ let enrollment = {
       this.employeeStorage.push({
         fname: this.employeeDetails.fname,
         lname: this.employeeDetails.lname,
+        idType: this.employeeDetails.idType,
+        nricFinNo: this.employeeDetails.nricFinNo,
+        dob: this.employeeDetails.dob,
+        email: this.employeeDetails.email,
+        mNumber: this.employeeDetails.mNumber,
+        postal: this.employeeDetails.postal,
+        startDate: this.employeeDetails.startDate,
+        mCredits: this.employeeDetails.mCredits,
+        wCredits: this.employeeDetails.wCredits,
         dependents: [this.dependentStorage]
-      });
+      }
+      );
+      console.log( this.employeeStorage);
       this.dependentStorage = [];
       this.employeeDetails = {};
       
@@ -149,14 +161,37 @@ let enrollment = {
         });
       }
     },
-    modalTrigger(data) {
+    modalTrigger(data, index) {
       let x = data;
       if (x === "edit" || x === "close") {
         this.modalEdit = !this.modalEdit;
+        console.log(index);
       }
+    },
+    update(){
+      this.$swal({
+        title: "Confirm",
+        text: "Are you sure you want to update this employee?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Update",
+        cancelButtonText: "No",
+        customClass: "warning-global-container"
+      }).then(result => {
+        if (result.value) {
+          this.modalEdit = false;
+        }
+      });
     },
     excel() {
       console.log("excel details");
+    }
+  },
+  filters: {
+    formatDate : function(value) {
+      if (value) {
+        return moment(String(value)).format('MM/DD//YYYY')
+      }
     }
   }
 };
