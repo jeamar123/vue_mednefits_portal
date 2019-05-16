@@ -200,7 +200,7 @@
                       <input type="radio" name="id_status" value="fin" v-model="employeeDetails.idType">
                       FIN
                     </label>
-                    <input type="number" name="nric-fin" v-model="employeeDetails.nricFinNo">
+                    <input type="text" name="nric-fin" v-model="employeeDetails.nricFinNo">
                   </div>
                   <div class="employee-input-wrapper dob">
                     <label for="fname">Date of Birth</label>
@@ -231,7 +231,7 @@
                   <div class="employee-input-wrapper">
                     <label for="fname">Start Date</label>
                     <v-date-picker
-                        :max-date='new Date()'
+                        :date='new Date()'
                         v-model="employeeDetails.startDate"
                         :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
                     >
@@ -381,7 +381,7 @@
                           <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
                       </span>-->
                       <span class="fname">{{enroll.fname}}</span>
-                      <button @click="modalTrigger('edit', index)" class="dependent-hover-btn">Edit</button>
+                      <button @click="editEmployee('edit', index)" class="dependent-hover-btn">Edit</button>
                     </td>
                     <td>{{enroll.lname}}</td>
                     <td>{{enroll.nricFinNo}}</td>
@@ -402,7 +402,7 @@
                       <div class="modal-header">
                         <slot name="header">
                           <h4>Edit Employee Details</h4>
-                          <img @click="modalTrigger('close')" :src="'../assets/img/icons/close.svg'">
+                          <img @click="editEmployee('close')" :src="'../assets/img/icons/close.svg'">
                         </slot>
                       </div>
 
@@ -411,43 +411,57 @@
                           <form>
                             <div class="modal-input-wrapper">
                               <label>First Name</label>
-                              <input type="text">
+                              <input type="text" v-model="employeeDetails.fname">
                             </div>
                             <div class="modal-input-wrapper">
                               <label>Last Name</label>
-                              <input type="text">
+                              <input type="text" v-model="employeeDetails.lname">  
                             </div>
                             <div class="modal-input-wrapper">
                               <label>NRIC/FIN</label>
-                              <input type="text">
+                              <input type="text" v-model="employeeDetails.nricFinNo">
                             </div>
                             <div class="modal-input-wrapper">
                               <label>Date of Birth</label>
-                              <input type="text">
+                              <v-date-picker
+                                  popoverDirection="top"
+                                  :max-date='new Date()'
+                                  v-model="employeeDetails.dob"
+                                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                              >
+                              </v-date-picker>
+                              <!-- <input type="text"  v-model="employeeDetails.dob"> -->
                             </div>
                             <div class="modal-input-wrapper">
                               <label>Work Email</label>
-                              <input type="text">
+                              <input type="text"  v-model="employeeDetails.email">
                             </div>
                             <div class="modal-input-wrapper">
                               <label>Mobile</label>
-                              <input type="text">
+                              <input type="text"  v-model="employeeDetails.mNumber">
                             </div>
                             <div class="modal-input-wrapper">
                               <label>Mobile Area Code</label>
-                              <input type="text">
+                              <input type="text" v-model="employeeDetails.mAreaCode">
                             </div>
                             <div class="modal-input-wrapper">
                               <label>Medical Credits</label>
-                              <input type="text">
+                              <input type="number" v-model="employeeDetails.mCredits">
                             </div>
                             <div class="modal-input-wrapper">
                               <label>Wellness Credits</label>
-                              <input type="text">
+                              <input type="number" v-model="employeeDetails.wCredits">
                             </div>
                             <div class="modal-input-wrapper">
                               <label>Start Date</label>
-                              <input type="text">
+                              <v-date-picker
+                                  popoverDirection="top"
+                                  :date='new Date()'
+                                  v-model="employeeDetails.startDate"
+                                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                              >
+                              </v-date-picker>
+                              <!-- <input type="text" v-model="employeeDetails.startDate"> -->
                             </div>
                           </form>
                         </slot>
@@ -455,7 +469,7 @@
 
                       <div class="modal-footer">
                         <slot name="footer">
-                          <button>REMOVE</button>
+                          <button @click="remove">REMOVE</button>
                           <button @click="update">UPDATE</button>
                         </slot>
                       </div>
@@ -480,7 +494,7 @@
           <div class="btn-enroll-container">
             <button v-if="isState === 'false'" class="btn-employee">DELETE</button>
             <button v-if="isState === 'false'" class="btn-employee">PREVIOUS EMPLOYEE</button>
-            <button v-if="isState === 'web'" class="btn-employee" @click="getEmployeeDetails">NEXT EMPLOYEE</button>
+            <button v-if="isState === 'web'" class="btn-employee" @click="addToStorage">NEXT EMPLOYEE</button>
             <button class="next-btn" v-if="isState === 'enrollment'" v-on:click="next">Next</button>
             <button class="next-btn" v-if="isState === 'web'" @click="enroll">Enroll</button>
             <button class="btn-download-template" v-if="isState === 'excel'">DOWNLOAD TEMPLATE</button>
