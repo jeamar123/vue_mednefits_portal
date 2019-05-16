@@ -304,6 +304,91 @@
                     <h3>Add a Dependent?</h3>
                     <button class="btn-add-seat"><img :src="'../assets/img/icons/add-employee.svg'">Add</button>
                   </div>
+
+                  <!-- modal edit -->
+                  <ModalTransition>
+                    <div class="modal-mask" v-if="false">
+                      <div class="modal-wrapper">
+                        <div class="modal-container">
+                        
+                          <div class="modal-body">
+                            <slot name="body">
+                              <div class="employee-name-container">
+                                <span>allan cheam alzula</span>
+                                <img :src="'../assets/img/icons/close-blue.svg'">
+                              </div>
+                              <h1>Edit employee details</h1>
+                              <form>
+                                <div class="employee-input-container">
+                                  <div class="employee-input-wrapper">
+                                    <label for="fname">First Name</label>
+                                    <input type="text" name="fname">
+                                  </div>
+                                  <div class="employee-input-wrapper">
+                                    <label for="work-email">Work Email</label>
+                                    <input type="text" name="work-email">
+                                  </div>
+                                </div>
+                                <div class="employee-input-container">
+                                  <div class="employee-input-wrapper">
+                                    <label for="lname">Last Name</label>
+                                    <input type="text" name="lname">
+                                  </div>
+                                  <div class="employee-input-wrapper">
+                                    <label for="number">Mobile Number</label>
+                                    <input type="number" name="number">
+                                  </div>
+                                </div>
+                                <div class="employee-input-container">
+                                  <div class="employee-input-wrapper">
+                                    <label>NRIC</label>
+                                    <input type="text" name="nric-fin">
+                                  </div>
+                                  <div class="employee-input-wrapper">
+                                    <label for="postal-code">Postal Code</label>
+                                    <input type="number" name="postal-code">
+                                  </div>
+                                </div>
+                                <div class="employee-input-container">
+                                  <div class="employee-input-wrapper">
+                                    <label>Member ID</label>
+                                    <input type="number" name="member-id">
+                                  </div>
+                                  <div class="employee-input-wrapper">
+                                    <label for="postal-code">Postal Code</label>
+                                    <select>
+                                      <option>Building and Estate Management</option>
+                                      <option>Education</option>
+                                      <option>Engineering</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="employee-input-container">
+                                  <div class="employee-input-wrapper dob">
+                                    <label for="fname">Date of Birth</label>
+                                    <v-date-picker
+                                        :max-date='new Date()'
+                                        :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                                    >
+                                    </v-date-picker>
+                                    <!-- <input type="text" name="lname" placeholder="DD/MM/YYYY"> -->
+                                  </div>
+                                  <div class="employee-input-wrapper">
+                                    <label>Bank Account Number</label>
+                                    <input type="number" name="bank-account-number">
+                                  </div>
+                                </div>
+                              </form>
+                              <div class="modal-btn-container">
+                                <button>CANCEL</button>
+                                <button>SAVE & CONTINUE</button>
+                              </div>
+                            </slot>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ModalTransition>
                 </div>
               </div>
             </FadeTransition>
