@@ -6,6 +6,7 @@ import ModalTransition from "../../assets/transitions/ModalTransition";
 import moment from "moment";
 import jQuery from "jquery";
 import { isNull } from "util";
+import { parse } from "path";
 const $ = jQuery;
 window.$ = $;
 
@@ -22,8 +23,10 @@ let enrollment = {
       empType: "empOnly",
       summaryBtn: false, // summary state
       dependentState: false,
+      selected_emp_dep_tab: 1,
       modalEdit: false, //edit modal
       // data binding store data from WEB INPUT forms
+      indexData: 0,
       employeeDetails: {},
       dependentDetails: {},
       employeeStorage: [
@@ -80,26 +83,74 @@ let enrollment = {
         this.isState = "dependent";
       }
     },
-    getEmployeeDetails() {
+    prevNextEmp(data) {
+      let arrStorage = this.employeeStorage;
+      
+      if (data == 'prev') {
+        let total = arrStorage.length -1;
+        this.indexData = total--;
+        let index = parseInt(this.indexData);
+        console.log("length", index, total);
+        console.log(arrStorage ,arrStorage[index]);
+      }
+      // console.log("index", index, "length", index);
+      // this.employeeDetails = {
+      //   fname: arrStorage[index].fname,
+      //   lname: arrStorage[index].lname,
+      //   nricFinNo: arrStorage[index].nricFinNo,
+      //   dob: arrStorage[index].dob,
+      //   email: arrStorage[index].email,
+      //   mNumber: arrStorage[index].mNumber,
+      //   mAreaCode: arrStorage[index].mAreaCode,
+      //   mCredits: arrStorage[index].mCredits,
+      //   wCredits: arrStorage[index].wCredits,
+      //   startDate: arrStorage[index].startDate
+      // };
+    },
+    addToStorage(source, index) {
       // store to temp storage when adding employees
       console.log(this.employeeDetails);
-      this.employeeStorage.push({
-        fname: this.employeeDetails.fname,
-        lname: this.employeeDetails.lname,
-        idType: this.employeeDetails.idType,
-        nricFinNo: this.employeeDetails.nricFinNo,
-        dob: this.employeeDetails.dob,
-        email: this.employeeDetails.email,
-        mNumber: this.employeeDetails.mNumber,
-        postal: this.employeeDetails.postal,
-        startDate: this.employeeDetails.startDate,
-        mCredits: this.employeeDetails.mCredits,
-        wCredits: this.employeeDetails.wCredits,
-        dependents: [this.dependentStorage]
-      });
+      console.log(this.indexData);
+      if (source == "edit") {
+        this.employeeStorage[index] = {
+          fname: this.employeeDetails.fname,
+          lname: this.employeeDetails.lname,
+          idType: this.employeeDetails.idType,
+          nricFinNo: this.employeeDetails.nricFinNo,
+          dob: this.employeeDetails.dob,
+          email: this.employeeDetails.email,
+          mNumber: this.employeeDetails.mNumber,
+          mAreaCode: this.employeeDetails.mAreaCode,
+          postal: this.employeeDetails.postal,
+          startDate: this.employeeDetails.startDate,
+          mCredits: this.employeeDetails.mCredits,
+          wCredits: this.employeeDetails.wCredits,
+          dependents: [this.dependentStorage]
+        };
+      } else if (this.employeeDetails.fname != undefined) {
+        this.employeeStorage.push({
+          fname: this.employeeDetails.fname,
+          lname: this.employeeDetails.lname,
+          idType: this.employeeDetails.idType,
+          nricFinNo: this.employeeDetails.nricFinNo,
+          dob: this.employeeDetails.dob,
+          email: this.employeeDetails.email,
+          mNumber: this.employeeDetails.mNumber,
+          mAreaCode: this.employeeDetails.mAreaCode,
+          postal: this.employeeDetails.postal,
+          startDate: this.employeeDetails.startDate,
+          mCredits: this.employeeDetails.mCredits,
+          wCredits: this.employeeDetails.wCredits,
+          dependents: [this.dependentStorage]
+        });
+      } else {
+        console.log("no data to be pushed");
+      }
       console.log(this.employeeStorage);
       this.dependentStorage = [];
       this.employeeDetails = {};
+      this.employeeDetails.dob = undefined;
+      this.indexData = 0;
     },
     addDependentDetails() {
       this.dependentState = !this.dependentState;
@@ -113,6 +164,9 @@ let enrollment = {
       });
       this.dependentDetails = {};
     },
+    selectEmpDepTab( opt ) {
+      this.selected_emp_dep_tab = opt;
+    },
     cancelDep() {
       this.$swal({
         title: "Confirm",
@@ -120,7 +174,7 @@ let enrollment = {
         type: "warning",
         showCancelButton: true,
         confirmButtonText: "Confirm",
-        customClass: "warning-global-container"
+        customClass: "warning-global-container primary"
       }).then(result => {
         if (result.value) {
           this.dependentState = !this.dependentState;
@@ -133,6 +187,7 @@ let enrollment = {
       this.$emit("enrollmentData", {
         isState: "enrollsum"
       });
+      this.addToStorage();
     },
     next() {
       if (this.isType === "web") {
@@ -163,11 +218,26 @@ let enrollment = {
         });
       }
     },
-    modalTrigger(data, index) {
+    editEmployee(data, index) {
       let x = data;
-      if (x === "edit" || x === "close") {
+      this.indexData = index;
+      if (x === "edit") {
         this.modalEdit = !this.modalEdit;
-        console.log(index);
+        console.log(this.employeeStorage[index]);
+        this.employeeDetails = {
+          fname: this.employeeStorage[index].fname,
+          lname: this.employeeStorage[index].lname,
+          nricFinNo: this.employeeStorage[index].nricFinNo,
+          dob: this.employeeStorage[index].dob,
+          email: this.employeeStorage[index].email,
+          mNumber: this.employeeStorage[index].mNumber,
+          mAreaCode: this.employeeStorage[index].mAreaCode,
+          mCredits: this.employeeStorage[index].mCredits,
+          wCredits: this.employeeStorage[index].wCredits,
+          startDate: this.employeeStorage[index].startDate
+        };
+      } else if (x === "close") {
+        this.modalEdit = !this.modalEdit;
       }
     },
     update() {
@@ -176,13 +246,44 @@ let enrollment = {
         text: "Are you sure you want to update this employee?",
         type: "warning",
         showCancelButton: true,
-        confirmButtonText: "Update",
+        confirmButtonText: "Yes",
         cancelButtonText: "No",
         customClass: "warning-global-container"
       }).then(result => {
         if (result.value) {
           this.modalEdit = false;
-          this.$swal("Updated!", "Employee details has been updated.", "success");
+          let index = this.indexData;
+          this.addToStorage("edit", index);
+          this.$swal(
+            "Updated!",
+            "Employee details has been updated.",
+            "success"
+          );
+        }
+      });
+    },
+    remove() {
+      this.$swal({
+        title: "Confirm",
+        text: "Are you sure you want to remove this employee?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        customClass: "warning-global-container"
+      }).then(result => {
+        if (result.value) {
+          this.modalEdit = false;
+          //delete employee
+          let index = this.indexData;
+          const data = this.employeeStorage.indexOf(index);
+          this.employeeStorage.splice(data, 1);
+          //succes SWAL
+          this.$swal(
+            "Deleted!",
+            "Employee details has been deleted.",
+            "success"
+          );
         }
       });
     },

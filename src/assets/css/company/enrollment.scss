@@ -6,6 +6,30 @@
 	color: #2c3e50;
 	overflow-y: auto;
 
+	.employee-dependent-header {
+		background-color: #F4F4F4;
+    padding: 0 50px;
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+    transform: translateY(-40px);
+
+    span {
+    	padding: 5px 0;
+	    display: inline-block;
+	    color: #727272;
+	    margin-right: 50px;
+	    cursor: pointer;
+	    font-weight: 700;
+	    line-height: 24px;
+    }
+
+    span.active {
+    	color: #2c3e50;
+    	border-bottom: 2px solid #2c3e50;
+    }
+	}
+
 	.enrollment-method-title {
 		line-height: 1.1;
 		text-align: center;
@@ -44,8 +68,7 @@
 		img {
 			height: 80px;
 			display: block;
-			margin-left: auto;
-			margin-right: auto;
+			margin: 0 auto;
 		}
 
 		h4 {
@@ -61,7 +84,6 @@
 		width: 460px;
 		display: flex;
 		margin: 0 auto;
-		font-size: 14px;
 
 		.enrollment-method-box-text {
 			padding: 20px 0px;
@@ -70,15 +92,13 @@
 
 		.download-below-text {
 			font-weight: 700;
-			color: #2c3e50;
 			width: 78%;
-			margin-left: auto;
-			margin-right: auto;
+			margin: 0 auto;
 			line-height: 1.4
 		}
 	}
 
-	.prev-next-button-container {
+	.prev-next-button-container {	
 		position: fixed;
 		bottom: 0;
 		width: 100%;
@@ -199,9 +219,7 @@
 }
 
 /*----- (EXCEL IMPORT) -----*/
-	.excel-import-wrapper {
-		color: #2c3e50;	
-	}
+	
 	.download-template-wrapper {
 		text-align: center;
 		padding-top: 70px;
@@ -386,13 +404,11 @@
 
 	.employee-details-header {
 		position: relative;
-		color: #2c3e50;
 
 		h1 {
 			font-size: 32px;
 			font-weight: 400;
-			margin-top: 20px;
-			margin-bottom: 30px;
+			margin: 20px 0 30px;
 			text-align: center;
 		}
 
@@ -400,6 +416,17 @@
 			position: absolute;
 			top: 0;
 			right: 0;
+		}
+
+		.btn-remove {
+			border: 2px solid #dedede;
+			width: inherit;
+			height: 40px;
+			padding: 0 15px;
+			position: absolute;
+			font-weight: 700;
+			bottom: 0;
+			right: 70px;
 		}
 
 		h4 {
@@ -455,7 +482,6 @@
 				border: 0;
 				border-bottom: 1px solid #d6d6d6;
 				width: 100%;
-				color: #2c3e50;
 				font-size: 14px;
 				font-weight: 600;
 				outline: none;
@@ -560,8 +586,7 @@
 			padding: 10px 60px;
 			border-radius: 4px;
 			transform: rotate(90deg);
-			margin-right: -68px;
-			margin-top: 15px;
+			margin: 15px -68px 0 0;
 			border: solid 1px transparent;
 			line-height: 24px;
 
@@ -653,7 +678,6 @@
 			text-align: center;
 			font-weight: 700;
 			font-size: 25px;
-			color: #2c3e50;
 			margin-top: 25px;
 			line-height: 1.1;
 		}
@@ -681,6 +705,14 @@
 		    padding: 7px 20px;
 		    min-width: 130px;
 		    border-bottom: 1px solid #ccd3d6;
+			}
+
+			.fname-container {
+				display: flex;
+				span {
+					display: block;
+					margin-right: 10px;
+				}
 			}
 
 			th input,
@@ -808,8 +840,7 @@
 		h1 {
 			line-height: 1.1;
 			width: 520px;
-			margin-left: auto;
-			margin-right: auto;
+			margin: 0 auto;
 			font-weight: 700;
 			font-size: 25px;
 		}		
