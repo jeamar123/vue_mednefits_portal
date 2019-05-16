@@ -1,8 +1,7 @@
-.employee-overview-container {
+.overview-wrapper {
 	padding: 110px 80px 49px 80px;
 	background-color: #fff;
 	height: 100vh;
-	display: none;
 
 	.employee-overview-header {
     margin: 30px 0 0;
@@ -282,7 +281,7 @@
 	}
 }
 
-.employee-overview-wrapper {
+.overview-info-wrapper {
 	background-color: #fff;	
 	padding-top: 100px;
 
@@ -472,12 +471,6 @@
 		    color: #283e52;
     	}
     }
-	}
-	.employee-information {
-		display: none;
-	}
-	.dependent-information {
-		display: none;
 	}
 	.employee-information,
 	.dependent-information {
