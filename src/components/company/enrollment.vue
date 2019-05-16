@@ -23,6 +23,7 @@ let enrollment = {
       empType: "empOnly",
       summaryBtn: false, // summary state
       dependentState: false,
+      selected_emp_dep_tab: 1,
       modalEdit: false, //edit modal
       // data binding store data from WEB INPUT forms
       indexData: 0,
@@ -163,6 +164,9 @@ let enrollment = {
       });
       this.dependentDetails = {};
     },
+    selectEmpDepTab( opt ) {
+      this.selected_emp_dep_tab = opt;
+    },
     cancelDep() {
       this.$swal({
         title: "Confirm",
@@ -170,7 +174,7 @@ let enrollment = {
         type: "warning",
         showCancelButton: true,
         confirmButtonText: "Confirm",
-        customClass: "warning-global-container"
+        customClass: "warning-global-container primary"
       }).then(result => {
         if (result.value) {
           this.dependentState = !this.dependentState;
