@@ -493,7 +493,7 @@
 
           <div class="btn-enroll-container">
             <button v-if="isState === 'false'" class="btn-employee">DELETE</button>
-            <button v-if="isState === 'false'" class="btn-employee">PREVIOUS EMPLOYEE</button>
+            <button v-if="employeeStorage.length != 0" class="btn-employee" @click="prevNextEmp('prev')">PREVIOUS EMPLOYEE</button>
             <button v-if="isState === 'web'" class="btn-employee" @click="addToStorage">NEXT EMPLOYEE</button>
             <button class="next-btn" v-if="isState === 'enrollment'" v-on:click="next">Next</button>
             <button class="next-btn" v-if="isState === 'web'" @click="enroll">Enroll</button>

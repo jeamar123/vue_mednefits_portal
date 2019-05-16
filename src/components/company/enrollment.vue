@@ -6,6 +6,7 @@ import ModalTransition from "../../assets/transitions/ModalTransition";
 import moment from "moment";
 import jQuery from "jquery";
 import { isNull } from "util";
+import { parse } from "path";
 const $ = jQuery;
 window.$ = $;
 
@@ -81,6 +82,30 @@ let enrollment = {
         this.isState = "dependent";
       }
     },
+    prevNextEmp(data) {
+      let arrStorage = this.employeeStorage;
+      
+      if (data == 'prev') {
+        let total = arrStorage.length -1;
+        this.indexData = total--;
+        let index = parseInt(this.indexData);
+        console.log("length", index, total);
+        console.log(arrStorage ,arrStorage[index]);
+      }
+      // console.log("index", index, "length", index);
+      // this.employeeDetails = {
+      //   fname: arrStorage[index].fname,
+      //   lname: arrStorage[index].lname,
+      //   nricFinNo: arrStorage[index].nricFinNo,
+      //   dob: arrStorage[index].dob,
+      //   email: arrStorage[index].email,
+      //   mNumber: arrStorage[index].mNumber,
+      //   mAreaCode: arrStorage[index].mAreaCode,
+      //   mCredits: arrStorage[index].mCredits,
+      //   wCredits: arrStorage[index].wCredits,
+      //   startDate: arrStorage[index].startDate
+      // };
+    },
     addToStorage(source, index) {
       // store to temp storage when adding employees
       console.log(this.employeeDetails);
@@ -118,7 +143,7 @@ let enrollment = {
           dependents: [this.dependentStorage]
         });
       } else {
-        console.log('no data to be pushed');
+        console.log("no data to be pushed");
       }
       console.log(this.employeeStorage);
       this.dependentStorage = [];
@@ -224,7 +249,7 @@ let enrollment = {
         if (result.value) {
           this.modalEdit = false;
           let index = this.indexData;
-          this.addToStorage('edit', index);
+          this.addToStorage("edit", index);
           this.$swal(
             "Updated!",
             "Employee details has been updated.",
@@ -248,7 +273,7 @@ let enrollment = {
           //delete employee
           let index = this.indexData;
           const data = this.employeeStorage.indexOf(index);
-          this.employeeStorage.splice(data,1);
+          this.employeeStorage.splice(data, 1);
           //succes SWAL
           this.$swal(
             "Deleted!",
