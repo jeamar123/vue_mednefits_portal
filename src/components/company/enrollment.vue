@@ -22,6 +22,7 @@ let enrollment = {
       empType: "empOnly",
       summaryBtn: false, // summary state
       dependentState: false,
+      selected_emp_dep_tab: 1,
       modalEdit: false, //edit modal
       // data binding store data from WEB INPUT forms
       employeeDetails: {},
@@ -112,6 +113,9 @@ let enrollment = {
         lname: this.dependentDetails.lname
       });
       this.dependentDetails = {};
+    },
+    selectEmpDepTab( opt ) {
+      this.selected_emp_dep_tab = opt;
     },
     cancelDep() {
       this.$swal({

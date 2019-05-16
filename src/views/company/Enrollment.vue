@@ -1,6 +1,10 @@
 <template>
   <div>
     <div class="enrollment-wrapper">
+      <div class="employee-dependent-header" v-if="isState === 'web' && false">
+        <span v-bind:class="{'active' : selected_emp_dep_tab  == 1}" v-on:click="selectEmpDepTab(1)">Employee</span>
+        <span v-bind:class="{'active' : selected_emp_dep_tab  == 2}" v-on:click="selectEmpDepTab(2)">Dependent</span>
+      </div>
       <div class="container">
         <!-- Enrollment -->
         <FadeTransition>
@@ -164,7 +168,7 @@
         <!-------- WEB INPUT -------->
         <div class="web-input-wrapper">
           <FadeTransition>
-            <div v-if="isState === 'web'" class="employee-details-wrapper">
+            <div v-if="isState === 'web' && selected_emp_dep_tab  == 1" class="employee-details-wrapper">
               <span class="employee-tier-title">
                 EMPLOYEE
                 <span>17</span> OF
@@ -254,9 +258,10 @@
               </form>
             </div>
           </FadeTransition>
-          <!-- Add dependent section -->
+
+          <!-- View dependent sercion-->
           <FadeTransition>
-            <div class="dependent-details-wrapper" v-if="dependentState">
+            <div class="dependent-details-wrapper" v-if="selected_emp_dep_tab  == 2">
               <span class="employee-tier-title">
                 DEPENDENT
                 <span>4</span> OF
@@ -264,9 +269,65 @@
               </span>
               <div class="employee-details-header">
                 <h1>Dependent details</h1>
-                <button v-if="false" class="btn-remove">
+                <button class="btn-remove">
                   <img :src="'../assets/img/icons/dustbin.png'">Remove
                 </button>
+              </div>
+              <form class="form-input-container">
+                <div class="employee-input-container">
+                  <div class="employee-input-wrapper">
+                    <label for="fname">First / Given Name</label>
+                    <input type="text" name="fname" v-model="dependentDetails.fname">
+                  </div>
+                  <div class="employee-input-wrapper">
+                    <label for="fname">Last / Family Name</label>
+                    <input type="text" name="lname" v-model="dependentDetails.lname">
+                  </div>
+                </div>
+                <div class="employee-input-container">
+                  <div class="employee-input-wrapper nric">
+                    <label>NRIC</label>
+                    <label>FIN</label>
+                    <input type="text" name="nric-fin">
+                  </div>
+                  <div class="employee-input-wrapper dob">
+                    <label for="">Date of Birth</label>
+                    <input type="text" name="lname" placeholder="DD/MM/YYYY">
+                  </div>
+                </div>
+                <div class="employee-input-container">
+                  <div class="employee-input-wrapper">
+                    <label for="fname">Relationship</label>
+                    <select>
+                      <option>Spouse</option>
+                      <option>Child</option>
+                      <option>Family</option>
+                    </select>
+                    <img :src="'../assets/img/icons/down-arrow.svg'">
+                  </div>
+                  <div class="employee-input-wrapper">
+                    <label for="fname">Start Date</label>
+                    <input type="text" name="stard-date">
+                  </div>
+                </div>
+              </form>
+              <div class="summary-left-right-btn" v-if="false">
+                <img :src="'../assets/img/icons/left.png'">
+                <img :src="'../assets/img/icons/right.png'">
+              </div>
+            </div>
+          </FadeTransition>
+
+          <!-- Add dependent section -->
+          <FadeTransition>
+            <div class="dependent-details-wrapper" v-if="dependentState ">
+              <span class="employee-tier-title">
+                DEPENDENT
+                <span>4</span> OF
+                <span>4</span>
+              </span>
+              <div class="employee-details-header">
+                <h1>Dependent details</h1>
               </div>
               <form class="form-input-container">
                 <div class="employee-input-container">
@@ -319,6 +380,7 @@
               </div>
             </div>
           </FadeTransition>
+
           <!-- side content summary -->
           <div v-if="isState === 'web' || isState === 'dependent'" class="summary-right-container">
             <button id="summary-btn" class="summary-right-button" @click="toggleSummary">SUMMARY</button>
@@ -346,6 +408,7 @@
               </ul>
             </div>
           </div>
+
           <!-- details enroll summary -->
           <FadeTransition>
             
@@ -375,13 +438,15 @@
                       <input type="checkbox">
                     </td>
                     <td>
-                      <!-- <span class="icon">
-                          <i class="fa fa-check" style="display: none;"></i>
-                          <i class="fa fa-times" style="display: none;"></i>
-                          <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
-                      </span>-->
-                      <span class="fname">{{enroll.fname}}</span>
-                      <button @click="modalTrigger('edit', index)" class="dependent-hover-btn">Edit</button>
+                      <div class="fname-container">
+                        <!-- <span class="icon">
+                            <i class="fa fa-check" style="display: none;"></i>
+                            <i class="fa fa-times" style="display: none;"></i>
+                            <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
+                        </span>-->
+                        <span class="fname">{{enroll.fname}}</span>
+                        <button @click="modalTrigger('edit', index)" class="dependent-hover-btn">Edit</button>
+                      </div>
                     </td>
                     <td>{{enroll.lname}}</td>
                     <td>{{enroll.nricFinNo}}</td>
@@ -465,6 +530,19 @@
               </ModalTransition>
             </div>
           </FadeTransition>
+
+          <!-- succesfully enroll -->
+          <FadeTransition>
+            <div class="successfully-enrolled-wrapper" v-if="false">
+              <h1>We've succesfully enrolled 
+                <span>1</span> employees and 
+                <span>0</span> dependents to the selected tier plan
+              </h1>
+              <div class="successfully-enrolled-img">
+                <img :src="'../assets/img/successful.png'">
+              </div>
+            </div>
+          </FadeTransition>
         </div>
       </div>
 
@@ -493,6 +571,9 @@
                 ENROLL
                 <span class="enroll-badge">4</span>
               </button>
+            </div>
+            <div class="btn-successfully-enrolled-container" v-if="false">
+              <button>CONTINUE WITH ENROLLMENT</button>
             </div>
           </div>
         </div>
