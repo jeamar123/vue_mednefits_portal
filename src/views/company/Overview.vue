@@ -7,7 +7,7 @@
             <div class="mednefits-body-box">
               <img :src="'../assets/img/overview.png'">
               <h2>
-                <span>Good afternoon,</span>
+                <span>Good afternoon, </span>
                 <span>Allan Alzula</span>
               </h2>
               <h5 class="text-center text-white body-subtext">
@@ -19,7 +19,7 @@
                 <strong>01 January 2020</strong>
               </h5>
               <router-link to="/company/enrollment">
-                <button class="btn-info">Employee Enrollment</button>
+                <button class="btn-info" @click="toEnrollment('enrollment')">Employee Enrollment</button>
               </router-link>
             </div>
           </div>
@@ -146,8 +146,8 @@
             </div>
             <div class="home-spending-type-container">
               <p>Spending Account</p>
-              <button class="btn btn-medical active">Medical</button>
-              <button class="btn btn-wellness">Wellness</button>
+              <button @click="spendType('medical')" v-bind:class="{'active': spendingType === 'medical'}" class="btn btn-medical">Medical</button>
+              <button @click="spendType('wellness')" v-bind:class="{'active': spendingType === 'wellness'}" class="btn btn-wellness">Wellness</button>
             </div>
             <div class="credit-box">
               <div class="credit-allocated-container">

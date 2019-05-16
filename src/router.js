@@ -37,8 +37,8 @@ Vue.use(axios)
 
 
 export default new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
+  // mode: 'history',
+  // base: process.env.BASE_URL,
   linkActiveClass: 'router-active',
   routes: [
     { path: '*', redirect: '/portal'},
