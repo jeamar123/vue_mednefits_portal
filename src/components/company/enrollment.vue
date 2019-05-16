@@ -149,7 +149,7 @@ let enrollment = {
         type: "warning",
         showCancelButton: true,
         confirmButtonText: "Confirm",
-        customClass: "warning-global-container"
+        customClass: "warning-global-container primary"
       }).then(result => {
         if (result.value) {
           this.dependentState = !this.dependentState;
