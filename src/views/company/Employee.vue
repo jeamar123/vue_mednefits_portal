@@ -250,7 +250,7 @@
                 <div class="employee-details-wrapper">
                   <h3 class="employee-details-title">Employee Information</h3>
                   <div class="dependent-btn-container">
-                    <button>
+                    <button @click="editEmp( 'edit' )">
                       <img :src="'../assets/img/icons/edit.png'">Edit
                     </button>
                   </div>
@@ -307,7 +307,7 @@
 
                   <!-- modal edit -->
                   <ModalTransition>
-                    <div class="modal-mask" v-if="false">
+                    <div class="modal-mask" v-if="modalEdit">
                       <div class="modal-wrapper">
                         <div class="modal-container">
                         
@@ -315,7 +315,7 @@
                             <slot name="body">
                               <div class="employee-name-container">
                                 <span>allan cheam alzula</span>
-                                <img :src="'../assets/img/icons/close-blue.svg'">
+                                <img @click="editEmp( 'close' )" :src="'../assets/img/icons/close-blue.svg'">
                               </div>
                               <h1>Edit employee details</h1>
                               <form>
@@ -378,11 +378,11 @@
                                     <input type="number" name="bank-account-number">
                                   </div>
                                 </div>
+                                <div class="modal-btn-container">
+                                  <button @click="editEmp( 'close' )">CANCEL</button>
+                                  <button>SAVE & CONTINUE</button>
+                                </div>
                               </form>
-                              <div class="modal-btn-container">
-                                <button>CANCEL</button>
-                                <button>SAVE & CONTINUE</button>
-                              </div>
                             </slot>
                           </div>
                         </div>

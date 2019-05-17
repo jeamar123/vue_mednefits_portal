@@ -12,6 +12,7 @@ let employee = {
     return {
       sampleData: false,
       overviewInfoShow: false,
+      modalEdit: false,
       toggle_overiew_type: 1
     };
   },
@@ -26,6 +27,14 @@ let employee = {
 			}
 			else {
 				this.overviewInfoShow = false;
+			}
+		},
+		editEmp( data ) {
+			let x = data;
+			if( x === 'edit' ) {
+				this.modalEdit = !this.modalEdit;
+			} else if( x === 'close' ) {
+				this.modalEdit = !this.modalEdit;
 			}
 		}
 	}

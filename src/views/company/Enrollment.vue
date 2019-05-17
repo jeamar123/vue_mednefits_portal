@@ -445,7 +445,7 @@
                             <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
                         </span>-->
                         <span class="fname">{{enroll.fname}}</span>
-                        <button @click="modalTrigger('edit', index)" class="dependent-hover-btn">Edit</button>
+                        <button @click="editEmployee('edit', index)" class="dependent-hover-btn">Edit</button>
                       </div>
                     </td>
                     <td>{{enroll.lname}}</td>
