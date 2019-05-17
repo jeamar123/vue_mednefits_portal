@@ -27,6 +27,7 @@ let enrollment = {
       modalEdit: false, //edit modal
       // data binding store data from WEB INPUT forms
       indexData: 0,
+      counter: 0,
       employeeDetails: {},
       dependentDetails: {},
       employeeStorage: [
@@ -83,15 +84,25 @@ let enrollment = {
         this.isState = "dependent";
       }
     },
-    prevNextEmp(data) {
+    prevNextEmp(data, toStore) {
       let arrStorage = this.employeeStorage;
-      
+      let index = 0;
       if (data == 'prev') {
-        let total = arrStorage.length -1;
-        this.indexData = total--;
-        let index = parseInt(this.indexData);
-        console.log("length", index, total);
+         index = --this.indexData;
+        console.log("prev", index,);
         console.log(arrStorage ,arrStorage[index]);
+      } else if (data == 'next') {
+          if (toStore.fname != undefined) {
+             index = ++this.indexData;
+            this.addToStorage();
+            console.log("index", index);
+          }else if(true){
+             index = ++this.indexData;
+            console.log('next', index);
+            console.log(arrStorage ,arrStorage[index]);
+          }
+
+        //code here
       }
       // console.log("index", index, "length", index);
       // this.employeeDetails = {
@@ -297,6 +308,9 @@ let enrollment = {
         return moment(String(value)).format("MM/DD//YYYY");
       }
     }
+  },
+  created() {
+    console.log('enrolment page');
   }
 };
 
