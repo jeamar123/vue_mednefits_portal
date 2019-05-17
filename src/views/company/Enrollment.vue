@@ -571,8 +571,8 @@
 
           <div class="btn-enroll-container">
             <button v-if="isState === 'false'" class="btn-employee">DELETE</button>
-            <button v-if="employeeStorage.length != 0 || true" class="btn-employee" @click="prevNextEmp('prev')">PREVIOUS EMPLOYEE</button>
-            <button v-if="isState === 'web'" class="btn-employee" @click="prevNextEmp('next', employeeDetails)">NEXT EMPLOYEE</button>
+            <button v-if="employeeStorage.length != 0 && isState === 'web'" :disabled="prevDisabled" class="btn-employee" @click="prevNextEmp('prev')">PREVIOUS EMPLOYEE</button>
+            <button v-if="isState === 'web'" class="btn-employee" @click="prevNextEmp('next')">NEXT EMPLOYEE</button>
             <button class="next-btn" v-if="isState === 'enrollment'" v-on:click="next">Next</button>
             <button class="next-btn" v-if="isState === 'web'" @click="enroll">Enroll</button>
             <button class="btn-download-template" v-if="isState === 'excel'">DOWNLOAD TEMPLATE</button>

@@ -28,6 +28,7 @@ let enrollment = {
       // data binding store data from WEB INPUT forms
       indexData: 0,
       counter: 0,
+      prevDisabled: false,
       employeeDetails: {},
       dependentDetails: {},
       employeeStorage: [
@@ -84,24 +85,73 @@ let enrollment = {
         this.isState = "dependent";
       }
     },
-    prevNextEmp(data, toStore) {
+    prevNextEmp(data, type) {
       let arrStorage = this.employeeStorage;
-      let index = 0;
-      if (data == 'prev') {
-         index = --this.indexData;
-        console.log("prev", index,);
-        console.log(arrStorage ,arrStorage[index]);
-      } else if (data == 'next') {
-          if (toStore.fname != undefined) {
-             index = ++this.indexData;
-            this.addToStorage();
-            console.log("index", index);
-          }else if(true){
-             index = ++this.indexData;
-            console.log('next', index);
-            console.log(arrStorage ,arrStorage[index]);
-          }
+      let index = this.indexData;
 
+      if (data == "prev") {
+        if(index == 0) {
+            console.log('prev is disabled');
+        }else {
+        index = --this.indexData;
+        console.log("prev", index);
+        console.log(arrStorage, arrStorage[index]);
+        this.employeeDetails = {
+          fname: arrStorage[index].fname,
+          lname: arrStorage[index].lname,
+          nricFinNo: arrStorage[index].nricFinNo,
+          dob: arrStorage[index].dob,
+          email: arrStorage[index].email,
+          mNumber: arrStorage[index].mNumber,
+          mAreaCode: arrStorage[index].mAreaCode,
+          mCredits: arrStorage[index].mCredits,
+          wCredits: arrStorage[index].wCredits,
+          startDate: arrStorage[index].startDate
+          };
+          if (index == 0) {
+            this.prevDisabled = true;
+          }
+        }
+      } else if (data == "next") {
+        this.prevDisabled = false;
+        let limit = arrStorage.length;
+        if (limit == index && !this.isEmpty(this.employeeDetails)) { // !this.isEmpty(this.employeeDetails)
+          this.addToStorage();
+          limit = arrStorage.length;
+          index = ++this.indexData;
+          this.employeeDetails = {};
+          console.log(this.employeeDetails);
+          console.log("add", index);
+          console.log("limit", limit);
+        } 
+        else if (index >= limit) {
+          console.log('next is disabled');
+          console.log("limit", limit);
+          console.log("index", index);
+        } 
+        else {
+          index = ++this.indexData;
+          console.log("next", index);
+          console.log("limit", limit);
+          console.log(arrStorage, arrStorage[index]);
+          if(arrStorage[index] === undefined) {
+            this.employeeDetails = {}
+          }else {
+            this.employeeDetails = {
+              fname: arrStorage[index].fname,
+              lname: arrStorage[index].lname,
+              nricFinNo: arrStorage[index].nricFinNo,
+              dob: arrStorage[index].dob,
+              email: arrStorage[index].email,
+              mNumber: arrStorage[index].mNumber,
+              mAreaCode: arrStorage[index].mAreaCode,
+              mCredits: arrStorage[index].mCredits,
+              wCredits: arrStorage[index].wCredits,
+              startDate: arrStorage[index].startDate
+            };
+          }
+        }
+        // console.log("limit", limit, 'index', index);
         //code here
       }
       // console.log("index", index, "length", index);
@@ -138,7 +188,8 @@ let enrollment = {
           wCredits: this.employeeDetails.wCredits,
           dependents: [this.dependentStorage]
         };
-      } else if (this.employeeDetails.fname != undefined) {
+        // this.indexData = 0;
+      } else if (!this.isEmpty(this.employeeDetails)) {
         this.employeeStorage.push({
           fname: this.employeeDetails.fname,
           lname: this.employeeDetails.lname,
@@ -161,7 +212,6 @@ let enrollment = {
       this.dependentStorage = [];
       this.employeeDetails = {};
       this.employeeDetails.dob = undefined;
-      this.indexData = 0;
     },
     addDependentDetails() {
       this.dependentState = !this.dependentState;
@@ -175,7 +225,7 @@ let enrollment = {
       });
       this.dependentDetails = {};
     },
-    selectEmpDepTab( opt ) {
+    selectEmpDepTab(opt) {
       this.selected_emp_dep_tab = opt;
     },
     cancelDep() {
@@ -300,6 +350,13 @@ let enrollment = {
     },
     excel() {
       console.log("excel details");
+    },
+    //to check is object empty
+    isEmpty(obj) {
+      for (var key in obj) {
+        if (obj.hasOwnProperty(key)) return false;
+      }
+      return true;
     }
   },
   filters: {
@@ -310,7 +367,7 @@ let enrollment = {
     }
   },
   created() {
-    console.log('enrolment page');
+    console.log("enrolment page");
   }
 };
 
