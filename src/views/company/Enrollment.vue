@@ -463,7 +463,7 @@
               <ModalTransition>
                 <div class="modal-mask" v-if="modalEdit">
                   <div class="modal-wrapper">
-                    <div class="modal-container">
+                    <div class="modal-container" @click.self>
                       <div class="modal-header">
                         <slot name="header">
                           <h4>Edit Employee Details</h4>
