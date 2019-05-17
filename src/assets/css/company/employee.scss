@@ -483,12 +483,16 @@
 	}
 	.employee-details-wrapper {
 		position: relative;
-		.employee-details-title {
-			line-height: 1.1;
-			position: absolute;
-			font-weight: 700;
-			font-size: 24px;
-		}
+	}
+	.employee-details-title {
+		line-height: 1.1;
+		position: absolute;
+		font-weight: 700;
+		font-size: 24px;
+	}
+	.dependent-information h3 {
+		transform: translateY(36px);
+		padding-left: 15px;
 	}
 	/* modal edit*/
 	.modal-container {

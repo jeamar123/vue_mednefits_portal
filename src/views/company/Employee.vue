@@ -394,8 +394,8 @@
             </FadeTransition>
             <FadeTransition>
               <div class="dependent-information" v-if="toggle_overiew_type == 2">
+                <h3 class="employee-details-title">Dependent Information</h3>
                 <div class="employee-details-wrapper">
-                  <h3 class="employee-details-title">Dependent Information</h3>
                   <div class="dependent-btn-container">
                     <button>
                       <img :src="'../assets/img/icons/dustbin.png'">Remove
@@ -505,7 +505,7 @@
             <FadeTransition>
               <div class="settings-information" v-if="toggle_overiew_type == 3">
                 <div class="employee-settings-wrapper">
-                  <button>Resend/Reset Account</button>
+                  <button @click="reset()">Resend/Reset Account</button>
                 </div>
               </div>
             </FadeTransition>
