@@ -250,7 +250,7 @@
                 <div class="employee-details-wrapper">
                   <h3 class="employee-details-title">Employee Information</h3>
                   <div class="dependent-btn-container">
-                    <button @click="editEmp( 'edit' )">
+                    <button @click="openUpdateEmployeeModal( 'edit' )">
                       <img :src="'../assets/img/icons/edit.png'">Edit
                     </button>
                   </div>
@@ -307,7 +307,7 @@
 
                   <!-- modal edit -->
                   <ModalTransition>
-                    <div class="modal-mask" v-if="modalEdit">
+                    <div class="modal-mask" v-if="modalEditEmployee">
                       <div class="modal-wrapper">
                         <div class="modal-container">
                         
@@ -315,7 +315,7 @@
                             <slot name="body">
                               <div class="employee-name-container">
                                 <span>allan cheam alzula</span>
-                                <img @click="editEmp( 'close' )" :src="'../assets/img/icons/close-blue.svg'">
+                                <img @click="openUpdateEmployeeModal( 'close' )" :src="'../assets/img/icons/close-blue.svg'">
                               </div>
                               <h1>Edit employee details</h1>
                               <form>
@@ -361,6 +361,7 @@
                                       <option>Education</option>
                                       <option>Engineering</option>
                                     </select>
+                                    <img :src="'../assets/img/icons/down-arrow.svg'">
                                   </div>
                                 </div>
                                 <div class="employee-input-container">
@@ -371,7 +372,6 @@
                                         :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
                                     >
                                     </v-date-picker>
-                                    <!-- <input type="text" name="lname" placeholder="DD/MM/YYYY"> -->
                                   </div>
                                   <div class="employee-input-wrapper">
                                     <label>Bank Account Number</label>
@@ -379,7 +379,7 @@
                                   </div>
                                 </div>
                                 <div class="modal-btn-container">
-                                  <button @click="editEmp( 'close' )">CANCEL</button>
+                                  <button>CANCEL</button>
                                   <button>SAVE & CONTINUE</button>
                                 </div>
                               </form>
@@ -400,7 +400,7 @@
                     <button>
                       <img :src="'../assets/img/icons/dustbin.png'">Remove
                     </button>
-                    <button>
+                    <button @click="openUpdateDependentModal( 'edit' )">
                       <img :src="'../assets/img/icons/edit.png'">Edit
                     </button>
                   </div>
@@ -434,6 +434,71 @@
                       </div>
                     </div>
                   </div>
+
+                  <!-- modal edit -->
+                  <ModalTransition>
+                    <div class="modal-mask" v-if="modalEditDependent">
+                      <div class="modal-wrapper">
+                        <div class="modal-container">
+                        
+                          <div class="modal-body">
+                            <slot name="body">
+                              <div class="employee-name-container">
+                                <img @click="openUpdateDependentModal( 'close' )" :src="'../assets/img/icons/close-blue.svg'">
+                              </div>
+                              <h1>Edit dependent details</h1>
+                              <form>
+                                <div class="employee-input-container">
+                                  <div class="employee-input-wrapper">
+                                    <label for="fname">First Name</label>
+                                    <input type="text" name="fname">
+                                  </div>
+                                   <div class="employee-input-wrapper dob">
+                                    <label for="fname">Date of Birth</label>
+                                    <v-date-picker
+                                        :max-date='new Date()'
+                                        :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                                    >
+                                    </v-date-picker>
+                                  </div>
+                                </div>
+                                <div class="employee-input-container">
+                                  <div class="employee-input-wrapper">
+                                    <label for="lname">Last Name</label>
+                                    <input type="text" name="lname">
+                                  </div>
+                                  <div class="employee-input-wrapper">
+                                    <label for="postal-code">Relationship</label>
+                                    <select>
+                                      <option>Spouse</option>
+                                      <option>Child</option>
+                                      <option>Family</option>
+                                      <option>Parent</option>
+                                    </select>
+                                    <img :src="'../assets/img/icons/down-arrow.svg'">
+                                  </div>
+                                </div>
+                                <div class="employee-input-container">
+                                  <div class="employee-input-wrapper">
+                                    <label>Member ID</label>
+                                    <input type="number" name="member-id">
+                                  </div>
+                                  <div class="employee-input-wrapper">
+                                    <label>NRIC/FIN</label>
+                                    <input type="number" name="member-id">
+                                  </div>
+                                </div>
+                                <div class="modal-btn-container">
+                                  <button>CANCEL</button>
+                                  <button>SAVE & CONTINUE</button>
+                                </div>
+                              </form>
+                            </slot>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ModalTransition>
                 </div>
               </div>
             </FadeTransition>
