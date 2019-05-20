@@ -380,8 +380,8 @@
                 </div>
               </form>
               <div class="summary-left-right-btn" v-if="dependentStorage.length !=0">
-                <img @click="prevNextEmp('prev', 1)" :src="'../assets/img/icons/left.png'">
-                <img @click="prevNextEmp('next', 1)" :src="'../assets/img/icons/right.png'">
+                <img class="summary-left-btn" @click="prevNextEmp('prev', 1)" :src="'../assets/img/icons/left.png'">
+                <img class="summary-right-btn" @click="prevNextEmp('next', 1)" :src="'../assets/img/icons/right.png'">
               </div>
               <div class="dependent-details-btn">
                 <button @click="cancelDep" class="btn-cancel">CANCEL</button>
