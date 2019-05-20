@@ -538,19 +538,19 @@
 		padding-bottom: 50px;
 		position: relative;
 
-		.summary-left-btn {
-			position: absolute;
-	    top: 200px;
-	    left: 0;
-	    width: 40px;
-	    cursor: pointer;
-		}
-		.summary-right-btn {
-			position: absolute;
-	    top: 200px;
-	    right: 0;
-	    width: 40px;
-	    cursor: pointer;
+		.summary-left-right-btn {
+			img {
+				position: absolute;
+		    top: 200px;
+		    width: 40px;
+		    cursor: pointer;
+			}
+			.summary-left-btn {
+		    left: 0;
+			}
+			.summary-right-btn {
+		    right: 0;
+			}
 		}
 	}
 

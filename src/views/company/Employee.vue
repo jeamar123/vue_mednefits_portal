@@ -391,11 +391,6 @@
                       </div>
                     </div>
                   </ModalTransition>
-
-                  <!-- add dependents -->
-                  <div class="add-dependent-wrapper">
-                    <h1>Add a dependent</h1>
-                  </div>
                 </div>
               </div>
             </FadeTransition>
@@ -516,6 +511,11 @@
                 </div>
               </div>
             </FadeTransition>
+          </div>
+
+          <!-- add dependents -->
+          <div class="add-dependent-wrapper">
+            <h1>Add a dependent</h1>
           </div>
         </div>
 
