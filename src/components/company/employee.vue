@@ -16,6 +16,7 @@ let employee = {
       modalEditDependent: false,
       isMedicalUsageShow: false,
       isWellnessUsageShow: false,
+      showAddDependents: false,
       toggle_overiew_type: 1
     };
   },
@@ -37,8 +38,13 @@ let employee = {
 				this.isWellnessUsageShow = false;
 			}
 		},
-		toggleAddDependents() {
-			console.log("wazzup");
+		toggleAddDependents( data ) {
+			let x = data;
+			if( x === 'add' ) {
+				this.showAddDependents = !this.showAddDependents;
+			} else if( x === 'cancel' ) {
+				this.showAddDependents = !this.showAddDependents;
+			}
 		},
 		overviewInfo() {
 			if(this.overviewInfoShow == false) {

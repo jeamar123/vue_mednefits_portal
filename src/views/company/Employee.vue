@@ -304,7 +304,7 @@
                   </div>
                   <div class="employee-btn-add-seat-wrapper">
                     <h3>Add a Dependent?</h3>
-                    <button @click="toggleAddDependents()" class="btn-add-seat"><img :src="'../assets/img/icons/add-employee.svg'">Add</button>
+                    <button @click="toggleAddDependents( 'add' )" class="btn-add-seat"><img :src="'../assets/img/icons/add-employee.svg'">Add</button>
                   </div>
 
                   <!-- modal edit -->
@@ -507,17 +507,88 @@
             <FadeTransition>
               <div class="settings-information" v-if="toggle_overiew_type == 3">
                 <div class="employee-settings-wrapper">
-                  <button @click="reset()">Resend/Reset Account</button>
+                  <button @click="reset()"><img :src="'../assets/img/open-wrench-tool.png'">Resend/Reset Account</button>
                 </div>
               </div>
             </FadeTransition>
           </div>
 
           <!-- add dependents -->
-          <div class="add-dependent-wrapper">
-            <h1>Add a dependent</h1>
-          </div>
-        </div>
+          <FadeTransition>
+            <div class="add-dependent-wrapper" v-if="showAddDependents">
+              <div class="dependent-details">
+                <div class="employee-name">Filbert Tan</div>
+                <div class="employee-details-header">
+                  <h1>Add a dependent</h1>
+                </div>
+                <div class="employee-tier-title">
+                  DEPENDENT
+                  <span>4</span> OF
+                  <span>4</span>
+                </div>
+                <form class="form-input-container">
+                  <div class="employee-input-container">
+                    <div class="employee-input-wrapper">
+                      <label for="fname">First / Given Name</label>
+                      <input type="text" name="fname">
+                    </div>
+                    <div class="employee-input-wrapper">
+                      <label for="fname">Last / Family Name</label>
+                      <input type="text" name="lname">
+                    </div>
+                  </div>
+                  <div class="employee-input-container">
+                    <div class="employee-input-wrapper nric">
+                      <label>NRIC</label>
+                      <label>FIN</label>
+                      <input type="text" name="nric-fin">
+                    </div>
+                    <div class="employee-input-wrapper dob">
+                      <label for="">Date of Birth</label>
+                      <v-date-picker
+                          :max-date='new Date()'
+                          :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                      >
+                      </v-date-picker>
+                      <!-- <input type="text" name="lname" placeholder="DD/MM/YYYY"> -->
+                    </div>
+                  </div>
+                  <div class="employee-input-container">
+                    <div class="employee-input-wrapper">
+                      <label for="fname">Relationship</label>
+                      <select>
+                        <option value="Spouse">Spouse</option>
+                        <option value="Child">Child</option>
+                        <option value="Family">Family</option>
+                      </select>
+                      <img :src="'../assets/img/icons/down-arrow.svg'">
+                    </div>
+                    <div class="employee-input-wrapper">
+                      <label for="fname">Start Date</label>
+                      <v-date-picker
+                          :max-date='new Date()'
+                          :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                      >
+                      </v-date-picker>
+                      <!-- <input type="text" name="stard-date"> -->
+                    </div>
+                  </div>
+                </form>
+                <div class="summary-left-right-btn" v-if="false">
+                  <img class="summary-left-btn" :src="'../assets/img/icons/left.png'">
+                  <img class="summary-right-btn" :src="'../assets/img/icons/right.png'">
+                </div>
+                <div class="dependent-details-btn">
+                  <button @click="toggleAddDependents( 'cancel' )" class="btn-cancel">CANCEL</button>
+                  <div class="btn-right-container">
+                    <button class="btn-add">ADD</button>
+                    <button class="btn-save-continue">SAVE & CONTINUE</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeTransition>
+        </div> 
 
         <div class="employee-prev-next-button">
           <button class="employee-btn-back">Back to employee overview</button>
