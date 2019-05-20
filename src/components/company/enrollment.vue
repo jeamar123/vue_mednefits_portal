@@ -23,11 +23,12 @@ let enrollment = {
       empType: "empOnly",
       summaryBtn: false, // summary state
       dependentState: false,
+      empDepNavState: false,
       selected_emp_dep_tab: 1,
       modalEdit: false, //edit modal
       // data binding store data from WEB INPUT forms
-      indexData: 0,
-      counter: 0,
+      indexData: 0, // counter for employee
+      depIndexData: 0, // counter for dependent
       prevDisabled: false,
       employeeDetails: {},
       dependentDetails: {},
@@ -87,56 +88,18 @@ let enrollment = {
     },
     prevNextEmp(data, type) {
       let arrStorage = this.employeeStorage;
-      let index = this.indexData;
+      let depArrStorage = this.dependentStorage;
+      let index = this.indexData;//for employee index
+      let depIndex = this.depIndexData// for dependent index
 
-      if (data == "prev") {
-        if(index == 0) {
-            console.log('prev is disabled');
-        }else {
-        index = --this.indexData;
-        console.log("prev", index);
-        console.log(arrStorage, arrStorage[index]);
-        this.employeeDetails = {
-          fname: arrStorage[index].fname,
-          lname: arrStorage[index].lname,
-          nricFinNo: arrStorage[index].nricFinNo,
-          dob: arrStorage[index].dob,
-          email: arrStorage[index].email,
-          mNumber: arrStorage[index].mNumber,
-          mAreaCode: arrStorage[index].mAreaCode,
-          mCredits: arrStorage[index].mCredits,
-          wCredits: arrStorage[index].wCredits,
-          startDate: arrStorage[index].startDate
-          };
-          if (index == 0) {
-            this.prevDisabled = true;
-          }
-        }
-      } else if (data == "next") {
-        this.prevDisabled = false;
-        let limit = arrStorage.length;
-        if (limit == index && !this.isEmpty(this.employeeDetails)) { // !this.isEmpty(this.employeeDetails)
-          this.addToStorage();
-          limit = arrStorage.length;
-          index = ++this.indexData;
-          this.employeeDetails = {};
-          console.log(this.employeeDetails);
-          console.log("add", index);
-          console.log("limit", limit);
-        } 
-        else if (index >= limit) {
-          console.log('next is disabled');
-          console.log("limit", limit);
-          console.log("index", index);
-        } 
-        else {
-          index = ++this.indexData;
-          console.log("next", index);
-          console.log("limit", limit);
-          console.log(arrStorage, arrStorage[index]);
-          if(arrStorage[index] === undefined) {
-            this.employeeDetails = {}
-          }else {
+      if (type == 0) {
+        if (data == "prev") {
+            if(index == 0) {
+                console.log('prev is disabled');
+            }else {
+            index = --this.indexData;
+            console.log("prev", index);
+            console.log(arrStorage, arrStorage[index]);
             this.employeeDetails = {
               fname: arrStorage[index].fname,
               lname: arrStorage[index].lname,
@@ -148,11 +111,104 @@ let enrollment = {
               mCredits: arrStorage[index].mCredits,
               wCredits: arrStorage[index].wCredits,
               startDate: arrStorage[index].startDate
-            };
+              };
+              if (index == 0) {
+                this.prevDisabled = true;
+              }
+            }
+        } else if (data == "next") {
+          this.prevDisabled = false;
+          let limit = arrStorage.length;
+          if (limit == index && !this.isEmpty(this.employeeDetails)) { // !this.isEmpty(this.employeeDetails)
+            this.addToStorage();
+            limit = arrStorage.length;
+            index = ++this.indexData;
+            this.employeeDetails = {};
+            console.log(this.employeeDetails);
+            console.log("add", index);
+            console.log("limit", limit);
+          } 
+          else if (index >= limit) {
+            console.log('next is disabled');
+            console.log("limit", limit);
+            console.log("index", index);
+          } 
+          else {
+            index = ++this.indexData;
+            console.log("next", index);
+            console.log("limit", limit);
+            console.log(arrStorage, arrStorage[index]);
+            if(arrStorage[index] === undefined) {
+              this.employeeDetails = {}
+            }else {
+              this.employeeDetails = {
+                fname: arrStorage[index].fname,
+                lname: arrStorage[index].lname,
+                nricFinNo: arrStorage[index].nricFinNo,
+                dob: arrStorage[index].dob,
+                email: arrStorage[index].email,
+                mNumber: arrStorage[index].mNumber,
+                mAreaCode: arrStorage[index].mAreaCode,
+                mCredits: arrStorage[index].mCredits,
+                wCredits: arrStorage[index].wCredits,
+                startDate: arrStorage[index].startDate
+              };
+            }
           }
         }
-        // console.log("limit", limit, 'index', index);
-        //code here
+      } else if ( type == 1) {
+        if (data == 'prev') {
+          if (depIndex == 0) {
+            console.log('prev is disabled');
+          } else {
+            depIndex = --this.depIndexData;
+            console.log("prev", depIndex);
+            console.log(depArrStorage, depArrStorage[depIndex]);
+            this.dependentDetails = {
+              fname: depArrStorage[depIndex].fname,
+              lname: depArrStorage[depIndex].lname,
+              relation: depArrStorage[depIndex].relation,
+              nricFinNo: depArrStorage[depIndex].nricFinNo,
+              dob: depArrStorage[depIndex].dob,
+              startDate: depArrStorage[depIndex].startDate
+            };
+          }
+        } else if (data == 'add') {
+          let limit = depArrStorage.length;
+          if (limit == depIndex && !this.isEmpty(this.dependentDetails)) { // !this.isEmpty(this.employeeDetails)
+            this.addDependentStorage('add');
+            limit = depArrStorage.length;
+            depIndex = ++this.depIndexData;
+            console.log("dependent", depArrStorage);
+            this.dependentDetails = {};
+            console.log("add", depIndex);
+            console.log("limit", limit);
+          } 
+        } else if (data == 'next') {
+          let limit = depArrStorage.length;
+          if (depIndex >= limit) {
+            console.log('next is disabled');
+            console.log("limit", limit);
+            console.log("index", depIndex);
+          } else {
+            depIndex = ++this.depIndexData;
+            console.log("next", depIndex);
+            console.log("limit", limit);
+            console.log(depArrStorage, depArrStorage[index]);
+            if(depArrStorage[depIndex] === undefined) {
+              this.dependentDetails = {}
+            }else {
+              this.dependentDetails = {
+                fname: depArrStorage[depIndex].fname,
+                lname: depArrStorage[depIndex].lname,
+                relation: depArrStorage[depIndex].relation,
+                nricFinNo: depArrStorage[depIndex].nricFinNo,
+                dob: depArrStorage[depIndex].dob,
+                startDate: depArrStorage[depIndex].startDate
+              };
+            }
+          }
+        }
       }
       // console.log("index", index, "length", index);
       // this.employeeDetails = {
@@ -213,17 +269,42 @@ let enrollment = {
       this.employeeDetails = {};
       this.employeeDetails.dob = undefined;
     },
-    addDependentDetails() {
-      this.dependentState = !this.dependentState;
-      if (this.dependentState === false) {
-        this.isState = "web";
+    addDependentStorage(data) {
+      if ( data = 'add' ) {
+        //if add button click
+        // this.dependentState = !this.dependentState;
+        // if (this.dependentState === false) {
+        //   this.isState = "web";
+        // }
+        // store to temp storage when adding employees
+        this.dependentStorage.push({
+          fname: this.dependentDetails.fname,
+          lname: this.dependentDetails.lname,
+          relation: this.dependentDetails.relation,
+          nricFinNo: this.dependentDetails.nricFinNo,
+          dob: this.dependentDetails.dob,
+          startDate: this.dependentDetails.startDate
+        });
+        this.dependentDetails = {};
+      } else {
+        //else Save and Continue click
+        this.dependentState = !this.dependentState;
+        if (this.dependentState === false) {
+          this.isState = "web";
+          this.empDepNavState = true;
+        }
+        // store to temp storage when adding employees
+        this.dependentStorage.push({
+          fname: this.dependentDetails.fname,
+          lname: this.dependentDetails.lname,
+          relation: this.dependentDetails.relation,
+          nricFinNo: this.dependentDetails.nricFinNo,
+          dob: this.dependentDetails.dob,
+          startDate: this.dependentDetails.startDate
+        });
+        this.dependentDetails = {};
       }
-      // store to temp storage when adding employees
-      this.dependentStorage.push({
-        fname: this.dependentDetails.fname,
-        lname: this.dependentDetails.lname
-      });
-      this.dependentDetails = {};
+      
     },
     selectEmpDepTab(opt) {
       this.selected_emp_dep_tab = opt;
