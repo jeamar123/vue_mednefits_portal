@@ -434,7 +434,6 @@
 		text-align: center;
 		margin-top: 30px;
 		line-height: 24px;
-		display: none;
   
 		.btn-remove-employee {
 			background-color: #FF5757;
@@ -668,6 +667,42 @@
 		form {
 			width: 650px;
     	margin: 50px auto auto;
+		}
+	}
+	.remove-employee-wrapper {
+		height: 100%;
+		width: 100%;
+		padding: 45px 80px;
+		background-color: #fff;
+    color: #9c9c9c;
+    position: fixed;
+    z-index: 1;
+
+		img {
+			height: 23px;
+			float: right;
+			cursor: pointer;
+		}
+		h1 {
+			clear: both;
+			display: inline-block;
+			width: 100%;
+			color: #283e52;
+	    margin: 30px 0 50px;
+	    font-size: 32px;
+	    font-weight: 700;
+	    text-align: center;
+		}
+		form {
+			width: 550px;
+			margin: 0 auto;	
+		}
+		label {
+			font-size: 12px;
+		}
+		.dob {
+			margin-right: 0;
+			width: 47%;
 		}
 	}
 	.employee-prev-next-button {

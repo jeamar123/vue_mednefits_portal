@@ -17,6 +17,7 @@ let employee = {
       isMedicalUsageShow: false,
       isWellnessUsageShow: false,
       showAddDependents: false,
+      showRemoveEmployee: false,
       toggle_overiew_type: 1
     };
   },
@@ -41,9 +42,17 @@ let employee = {
 		toggleAddDependents( data ) {
 			let x = data;
 			if( x === 'add' ) {
-				this.showAddDependents = !this.showAddDependents;
+				this.showAddDependents = true;
 			} else if( x === 'cancel' ) {
-				this.showAddDependents = !this.showAddDependents;
+				this.showAddDependents = false;
+			}
+		},
+		removeEmployee( data ) {
+			let x = data;
+			if( x === 'showRemove' ) {
+				this.showRemoveEmployee = true;
+			} else if( x === 'cancel' ) {
+				this.showRemoveEmployee = false;
 			}
 		},
 		overviewInfo() {
