@@ -183,12 +183,13 @@
                 <span>S$ <span>100.00</span></span>
               </div>
               <div class="usage-container-wrapper">
-                <div class="usage-container">
+                <div @click="toggleMedicalUsage()" class="usage-container">
                   <strong>Usage</strong>
                   <span>S$ <span>10.00</span></span>
                 </div>
-                <img :src="'../assets/img/icons/right.png'">
-                <div class="usage-dropdown-details">
+                <img v-if="!isMedicalUsageShow" @click="toggleMedicalUsage()" :src="'../assets/img/arrow-right.png'">
+                <img v-if="isMedicalUsageShow" @click="toggleMedicalUsage()" :src="'../assets/img/arrow-down.png'">
+                <div v-if="isMedicalUsageShow" class="usage-dropdown-details">
                   <div class="usage-details">
                     <span>Spent:</span>
                     <span>S$ <span>0.00</span></span>
@@ -213,12 +214,13 @@
                 <span>S$ <span>100.00</span></span>
               </div>
               <div class="usage-container-wrapper">
-                <div class="usage-container">
+                <div @click="toggleWellnessUsage()" class="usage-container">
                   <strong>Usage</strong>
                   <span>S$ <span>0.00</span></span>
                 </div>
-                <img :src="'../assets/img/icons/right.png'">
-                <div class="usage-dropdown-details">
+                <img v-if="!isWellnessUsageShow" @click="toggleWellnessUsage()" :src="'../assets/img/arrow-right.png'">
+                <img v-if="isWellnessUsageShow" @click="toggleWellnessUsage()" :src="'../assets/img/arrow-down.png'">
+                <div v-if="isWellnessUsageShow" class="usage-dropdown-details">
                   <div class="usage-details">
                     <span>Spent:</span>
                     <span>S$ <span>0.00</span></span>
@@ -302,7 +304,7 @@
                   </div>
                   <div class="employee-btn-add-seat-wrapper">
                     <h3>Add a Dependent?</h3>
-                    <button class="btn-add-seat"><img :src="'../assets/img/icons/add-employee.svg'">Add</button>
+                    <button @click="toggleAddDependents()" class="btn-add-seat"><img :src="'../assets/img/icons/add-employee.svg'">Add</button>
                   </div>
 
                   <!-- modal edit -->
@@ -389,13 +391,18 @@
                       </div>
                     </div>
                   </ModalTransition>
+
+                  <!-- add dependents -->
+                  <div class="add-dependent-wrapper">
+                    <h1>Add a dependent</h1>
+                  </div>
                 </div>
               </div>
             </FadeTransition>
             <FadeTransition>
               <div class="dependent-information" v-if="toggle_overiew_type == 2">
+                <h3 class="employee-details-title">Dependent Information</h3>
                 <div class="employee-details-wrapper">
-                  <h3 class="employee-details-title">Dependent Information</h3>
                   <div class="dependent-btn-container">
                     <button>
                       <img :src="'../assets/img/icons/dustbin.png'">Remove
@@ -505,7 +512,7 @@
             <FadeTransition>
               <div class="settings-information" v-if="toggle_overiew_type == 3">
                 <div class="employee-settings-wrapper">
-                  <button>Resend/Reset Account</button>
+                  <button @click="reset()">Resend/Reset Account</button>
                 </div>
               </div>
             </FadeTransition>
