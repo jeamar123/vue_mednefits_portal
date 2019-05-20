@@ -37,6 +37,9 @@ let employee = {
 				this.isWellnessUsageShow = false;
 			}
 		},
+		toggleAddDependents() {
+			console.log("wazzup");
+		},
 		overviewInfo() {
 			if(this.overviewInfoShow == false) {
 				this.overviewInfoShow = true;

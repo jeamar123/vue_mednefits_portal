@@ -311,9 +311,9 @@
                   </div>
                 </div>
               </form>
-              <div class="summary-left-right-btn" v-if="false">
-                <img :src="'../assets/img/icons/left.png'">
-                <img :src="'../assets/img/icons/right.png'">
+              <div class="summary-left-right-btn" v-if="true">
+                <img class="summary-left-btn" :src="'../assets/img/icons/left.png'">
+                <img class="summary-right-btn" :src="'../assets/img/icons/right.png'">
               </div>
             </div>
           </FadeTransition>
@@ -367,9 +367,9 @@
                   </div>
                 </div>
               </form>
-              <div class="summary-left-right-btn" v-if="false">
-                <img :src="'../assets/img/icons/left.png'">
-                <img :src="'../assets/img/icons/right.png'">
+              <div class="summary-left-right-btn" v-if="true">
+                <img class="summary-left-btn" :src="'../assets/img/icons/left.png'">
+                <img class="summary-right-btn" :src="'../assets/img/icons/right.png'">
               </div>
               <div class="dependent-details-btn">
                 <button @click="cancelDep" class="btn-cancel">CANCEL</button>

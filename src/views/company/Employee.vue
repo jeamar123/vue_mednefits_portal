@@ -304,7 +304,7 @@
                   </div>
                   <div class="employee-btn-add-seat-wrapper">
                     <h3>Add a Dependent?</h3>
-                    <button class="btn-add-seat"><img :src="'../assets/img/icons/add-employee.svg'">Add</button>
+                    <button @click="toggleAddDependents()" class="btn-add-seat"><img :src="'../assets/img/icons/add-employee.svg'">Add</button>
                   </div>
 
                   <!-- modal edit -->
@@ -391,6 +391,11 @@
                       </div>
                     </div>
                   </ModalTransition>
+
+                  <!-- add dependents -->
+                  <div class="add-dependent-wrapper">
+                    <h1>Add a dependent</h1>
+                  </div>
                 </div>
               </div>
             </FadeTransition>
