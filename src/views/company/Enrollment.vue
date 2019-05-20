@@ -169,11 +169,11 @@
         <div class="web-input-wrapper">
           <FadeTransition>
             <div v-if="isState === 'web' && selected_emp_dep_tab  == 1" class="employee-details-wrapper">
-              <span class="employee-tier-title">
+              <div class="employee-tier-title">
                 EMPLOYEE
                 <span>17</span> OF
                 <span>27</span>
-              </span>
+              </div>
               <div class="employee-details-header">
                 <h1>Employee Details</h1>
                 <div class="add-dependent-btn">
@@ -262,11 +262,11 @@
           <!-- View dependent sercion-->
           <FadeTransition>
             <div class="dependent-details-wrapper" v-if="selected_emp_dep_tab  == 2">
-              <span class="employee-tier-title">
+              <div class="employee-tier-title">
                 DEPENDENT
                 <span>4</span> OF
                 <span>4</span>
-              </span>
+              </div>
               <div class="employee-details-header">
                 <h1>Dependent details</h1>
                 <button class="btn-remove">
@@ -321,11 +321,11 @@
           <!-- Add dependent section -->
           <FadeTransition>
             <div class="dependent-details-wrapper" v-if="dependentState ">
-              <span class="employee-tier-title">
+              <div class="employee-tier-title">
                 DEPENDENT
                 <span>4</span> OF
                 <span>4</span>
-              </span>
+              </div>
               <div class="employee-details-header">
                 <h1>Dependent details</h1>
               </div>

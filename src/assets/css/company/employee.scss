@@ -283,7 +283,7 @@
 
 .overview-info-wrapper {
 	background-color: #fff;	
-	padding-top: 100px;
+	padding-top: 99px;
 
 	.employee-information-container {
     display: grid;
@@ -624,6 +624,11 @@
 	}
 	.settings-information {
 		padding: 20px 40px 0px 40px;
+		img {
+			height: 16px;
+			margin-right: 10px;
+			vertical-align: bottom;
+		}
 		button {
 			background-color: transparent;
 	    border: 2px solid #e8e8e8;
@@ -637,7 +642,32 @@
 	    width: 220px;
 	    text-align: left;
 	    margin: 10px 0;
-	    vertical-align: middle;
+		}
+	}
+	.add-dependent-wrapper {
+		background-color: #fff;
+		color: #9c9c9c;
+		position: fixed;
+		z-index: 1;
+		height: 100vh;
+		width: 100%;
+		padding-top: 20px;
+		
+		.employee-name,
+		.employee-tier-title {
+			text-align: center;
+			font-size: 16px;
+			font-weight: 700;
+		}
+		h1 {
+			margin: 15px 0 15px;
+	    font-size: 30px;
+	    color: #283e52;
+	    font-weight: 700;
+		}
+		form {
+			width: 650px;
+    	margin: 50px auto auto;
 		}
 	}
 	.employee-prev-next-button {
