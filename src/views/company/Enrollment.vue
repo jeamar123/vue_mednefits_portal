@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="enrollment-wrapper">
-      <div class="employee-dependent-header" v-if="isState === 'web' && true">
+      <div class="employee-dependent-header" v-if="isState === 'web' && empDepNavState">
         <span v-bind:class="{'active' : selected_emp_dep_tab  == 1}" v-on:click="selectEmpDepTab(1)">Employee</span>
         <span v-bind:class="{'active' : selected_emp_dep_tab  == 2}" v-on:click="selectEmpDepTab(2)">Dependent</span>
       </div>
@@ -344,37 +344,49 @@
                   <div class="employee-input-wrapper nric">
                     <label>NRIC</label>
                     <label>FIN</label>
-                    <input type="text" name="nric-fin">
+                    <input type="text" name="nric-fin" v-model="dependentDetails.nricFinNo">
                   </div>
                   <div class="employee-input-wrapper dob">
                     <label for="">Date of Birth</label>
-                    <input type="text" name="lname" placeholder="DD/MM/YYYY">
+                    <v-date-picker
+                        :max-date='new Date()'
+                        v-model="dependentDetails.dob"
+                        :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                    >
+                    </v-date-picker>
+                    <!-- <input type="text" name="lname" placeholder="DD/MM/YYYY"> -->
                   </div>
                 </div>
                 <div class="employee-input-container">
                   <div class="employee-input-wrapper">
                     <label for="fname">Relationship</label>
-                    <select>
-                      <option>Spouse</option>
-                      <option>Child</option>
-                      <option>Family</option>
+                    <select v-model="dependentDetails.relation">
+                      <option value="Spouse">Spouse</option>
+                      <option value="Child">Child</option>
+                      <option value="Family">Family</option>
                     </select>
                     <img :src="'../assets/img/icons/down-arrow.svg'">
                   </div>
                   <div class="employee-input-wrapper">
                     <label for="fname">Start Date</label>
-                    <input type="text" name="stard-date">
+                    <v-date-picker
+                        :max-date='new Date()'
+                        v-model="dependentDetails.startDate"
+                        :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                    >
+                    </v-date-picker>
+                    <!-- <input type="text" name="stard-date"> -->
                   </div>
                 </div>
               </form>
-              <div class="summary-left-right-btn" v-if="true">
-                <img class="summary-left-btn" :src="'../assets/img/icons/left.png'">
-                <img class="summary-right-btn" :src="'../assets/img/icons/right.png'">
+              <div class="summary-left-right-btn" v-if="dependentStorage.length !=0">
+                <img @click="prevNextEmp('prev', 1)" :src="'../assets/img/icons/left.png'">
+                <img @click="prevNextEmp('next', 1)" :src="'../assets/img/icons/right.png'">
               </div>
               <div class="dependent-details-btn">
                 <button @click="cancelDep" class="btn-cancel">CANCEL</button>
                 <div class="btn-right-container">
-                  <button class="btn-add" @click="addDependentDetails()">ADD</button>
+                  <button class="btn-add" @click="prevNextEmp('add', 1)">ADD</button>
                   <button class="btn-save-continue">SAVE & CONTINUE</button>
                 </div>
               </div>
@@ -571,8 +583,8 @@
 
           <div class="btn-enroll-container">
             <button v-if="isState === 'false'" class="btn-employee">DELETE</button>
-            <button v-if="employeeStorage.length != 0 && isState === 'web'" :disabled="prevDisabled" class="btn-employee" @click="prevNextEmp('prev')">PREVIOUS EMPLOYEE</button>
-            <button v-if="isState === 'web'" class="btn-employee" @click="prevNextEmp('next')">NEXT EMPLOYEE</button>
+            <button v-if="employeeStorage.length != 0 && isState === 'web'" :disabled="prevDisabled" class="btn-employee" @click="prevNextEmp('prev', 0)">PREVIOUS EMPLOYEE</button>
+            <button v-if="isState === 'web'" class="btn-employee" @click="prevNextEmp('next', 0)">NEXT EMPLOYEE</button>
             <button class="next-btn" v-if="isState === 'enrollment'" v-on:click="next">Next</button>
             <button class="next-btn" v-if="isState === 'web'" @click="enroll">Enroll</button>
             <button class="btn-download-template" v-if="isState === 'excel'">DOWNLOAD TEMPLATE</button>
