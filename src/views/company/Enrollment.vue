@@ -380,14 +380,14 @@
                 </div>
               </form>
               <div class="summary-left-right-btn" v-if="dependentStorage.length !=0">
-                <img class="summary-left-btn" @click="prevNextEmp('prev', 1)" :src="'../assets/img/icons/left.png'">
-                <img class="summary-right-btn" @click="prevNextEmp('next', 1)" :src="'../assets/img/icons/right.png'">
+                <img v-show="depPrevChevronState" class="summary-left-btn" @click="prevNextEmp('prev', 1)" :src="'../assets/img/icons/left.png'">
+                <img v-show="depNextChevronState" class="summary-right-btn" @click="prevNextEmp('next', 1)" :src="'../assets/img/icons/right.png'">
               </div>
               <div class="dependent-details-btn">
                 <button @click="cancelDep" class="btn-cancel">CANCEL</button>
                 <div class="btn-right-container">
                   <button class="btn-add" @click="prevNextEmp('add', 1)">ADD</button>
-                  <button class="btn-save-continue">SAVE & CONTINUE</button>
+                  <button class="btn-save-continue" @click="addDependentStorage('save')">SAVE & CONTINUE</button>
                 </div>
               </div>
             </div>
