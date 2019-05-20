@@ -379,7 +379,7 @@
                   </div>
                 </div>
               </form>
-              <div class="summary-left-right-btn" v-if="dependentStorage.length !=0">
+              <div class="summary-left-right-btn" v-if="dependentStorage.length !=0 || true">
                 <img @click="prevNextEmp('prev', 1)" :src="'../assets/img/icons/left.png'">
                 <img @click="prevNextEmp('next', 1)" :src="'../assets/img/icons/right.png'">
               </div>
