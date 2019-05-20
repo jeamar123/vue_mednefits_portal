@@ -14,12 +14,28 @@ let employee = {
       overviewInfoShow: false,
       modalEditEmployee: false,
       modalEditDependent: false,
+      isMedicalUsageShow: false,
+      isWellnessUsageShow: false,
       toggle_overiew_type: 1
     };
   },
   methods: {
 		toggleTabOverview( opt ) {
 			this.toggle_overiew_type = opt;
+		},
+		toggleMedicalUsage() {
+			if(this.isMedicalUsageShow == false ) {
+				this.isMedicalUsageShow = true;
+			}else {
+				this.isMedicalUsageShow = false;
+			}
+		},
+		toggleWellnessUsage() {
+			if(this.isWellnessUsageShow == false ) {
+				this.isWellnessUsageShow = true;
+			}else {
+				this.isWellnessUsageShow = false;
+			}
 		},
 		overviewInfo() {
 			if(this.overviewInfoShow == false) {

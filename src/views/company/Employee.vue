@@ -183,12 +183,13 @@
                 <span>S$ <span>100.00</span></span>
               </div>
               <div class="usage-container-wrapper">
-                <div class="usage-container">
+                <div @click="toggleMedicalUsage()" class="usage-container">
                   <strong>Usage</strong>
                   <span>S$ <span>10.00</span></span>
                 </div>
-                <img :src="'../assets/img/icons/right.png'">
-                <div class="usage-dropdown-details">
+                <img v-if="!isMedicalUsageShow" @click="toggleMedicalUsage()" :src="'../assets/img/arrow-right.png'">
+                <img v-if="isMedicalUsageShow" @click="toggleMedicalUsage()" :src="'../assets/img/arrow-down.png'">
+                <div v-if="isMedicalUsageShow" class="usage-dropdown-details">
                   <div class="usage-details">
                     <span>Spent:</span>
                     <span>S$ <span>0.00</span></span>
@@ -213,12 +214,13 @@
                 <span>S$ <span>100.00</span></span>
               </div>
               <div class="usage-container-wrapper">
-                <div class="usage-container">
+                <div @click="toggleWellnessUsage()" class="usage-container">
                   <strong>Usage</strong>
                   <span>S$ <span>0.00</span></span>
                 </div>
-                <img :src="'../assets/img/icons/right.png'">
-                <div class="usage-dropdown-details">
+                <img v-if="!isWellnessUsageShow" @click="toggleWellnessUsage()" :src="'../assets/img/arrow-right.png'">
+                <img v-if="isWellnessUsageShow" @click="toggleWellnessUsage()" :src="'../assets/img/arrow-down.png'">
+                <div v-if="isWellnessUsageShow" class="usage-dropdown-details">
                   <div class="usage-details">
                     <span>Spent:</span>
                     <span>S$ <span>0.00</span></span>
