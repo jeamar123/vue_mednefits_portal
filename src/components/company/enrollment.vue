@@ -19,10 +19,12 @@ let enrollment = {
   data() {
     return {
       isType: "", //excel or web input
-      isState: "enrollment", //navigation title
+      isState: 'enrollment', //navigation title
       empType: "empOnly",
       summaryBtn: false, // summary state
       dependentState: false,
+      isRequiredTiering: null,
+      temp: true,
       empDepNavState: false,
       selected_emp_dep_tab: 1,
       modalEdit: false, //edit modal
@@ -498,7 +500,7 @@ let enrollment = {
       this.prevDisabled = false;
       console.log(this.indexData);
     },
-    next() {
+    next( data ) {
       if (this.isType === "web") {
         this.isState = "web";
         this.$emit("enrollmentData", {

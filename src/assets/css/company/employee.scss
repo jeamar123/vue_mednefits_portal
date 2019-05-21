@@ -672,7 +672,7 @@
 	.remove-employee-wrapper {
 		height: 100%;
 		width: 100%;
-		padding: 45px 80px;
+		padding: 45px 0px;
 		background-color: #fff;
     color: #9c9c9c;
     position: fixed;
@@ -681,6 +681,7 @@
 		img {
 			height: 23px;
 			float: right;
+			margin-right: 80px;
 			cursor: pointer;
 		}
 		h1 {
