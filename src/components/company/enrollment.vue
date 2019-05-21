@@ -19,10 +19,12 @@ let enrollment = {
   data() {
     return {
       isType: "", //excel or web input
-      isState: "enrollment", //navigation title
+      isState: 'enrollment', //navigation title
       empType: "empOnly",
       summaryBtn: false, // summary state
       dependentState: false,
+      isRequiredTiering: null,
+      temp: true,
       empDepNavState: false,
       selected_emp_dep_tab: 1,
       modalEdit: false, //edit modal
@@ -400,7 +402,7 @@ let enrollment = {
       });
       this.addToStorage();
     },
-    next() {
+    next( data ) {
       if (this.isType === "web") {
         this.isState = "web";
         this.$emit("enrollmentData", {
@@ -411,6 +413,14 @@ let enrollment = {
         this.$emit("enrollmentData", {
           isState: "excel"
         });
+      } else if ( this.isRequiredTiering === 0 ) {
+        this.isState = 'enrollment';
+        this.temp = false;
+        this.isRequiredTiering = null;
+      } else if (this.isRequiredTiering === 1) {
+        this.isState = 'enrollTier';
+        this.temp = false;
+        this.isRequiredTiering = null;
       } else {
         console.log("select 1 item");
       }

@@ -787,6 +787,88 @@
 
 /*-----------------------*/
 
+.enroll-option-wrapper {
+  text-align: center;
+  width: 100%;
+  background-color: #fff;
+  height: 100vh;
+  position: fixed;
+  padding-top: 150px;
+  color: #2c3e50;
+
+  h1 {
+    font-weight: 700;
+    font-size: 25px;
+    margin: 17px 0 37px;
+    line-height: 1.1;
+  }
+  .enrollment-options-subheading {
+    font-weight: 700;
+    margin: 20px 0;
+    display: inline-block;
+    width: 100%;
+    line-height: 24px;
+  }
+  button {
+    width: 85px;
+    padding: 8px 0;
+    background-color: transparent;
+    border: 2px solid #d6d6d6;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+  button.active {
+    border-color: #0392cf;
+  }
+  button:first-child {
+    margin-right: 10px;
+  }
+}
+
+.benefits-tier-wrapper {
+	background-color: #fff;
+	padding-top: 150px;
+	height: 100vh;
+}
+
+.benefits-tier-content-wrapper {
+	text-align: center;
+	color: #2c3e50;
+
+	h1 {
+		font-weight: 700;
+		font-size: 25px;
+		line-height: 1.1;
+		margin: 17px 0 47px;
+	}
+
+	h4 {
+		font-weight: 700;
+		margin: 0px 0 20px;
+		line-height: 1.1;
+		font-size: 18px;
+	}
+
+	button {
+		background: transparent;
+    border: 2px dashed #d6d6d6;
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+
+    &:hover {
+    	border: 2px solid #0392cf;
+    }
+	}
+
+	img {
+		height: 16px;
+	}
+}
+
 
 .prev-next-button-container {	
 	position: fixed;
@@ -815,6 +897,13 @@
 		border-radius: 4px;
 		line-height: 1.42857143;
 		letter-spacing: .5px;
+
+		&.btn-next-disabled {
+			background-color: #DFDFDF;
+	    border: 2px solid #DFDFDF;
+	    color: #9F9F9F;
+	    cursor: not-allowed;
+		}
 	}
 
 	.btn-disabled {

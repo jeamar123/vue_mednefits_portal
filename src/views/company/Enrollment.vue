@@ -2,10 +2,11 @@
   <div>
     <div class="enrollment-wrapper">
       <div class="employee-dependent-header" v-if="isState === 'web' && empDepNavState">
-        <span v-bind:class="{'active' : selected_emp_dep_tab  == 1}" v-on:click="selectEmpDepTab(1)">Employee</span>
-        <span v-bind:class="{'active' : selected_emp_dep_tab  == 2}" v-on:click="selectEmpDepTab(2)">Dependent</span>
+        <span v-bind:class="{'active' : selected_emp_dep_tab  == 1}" @click="selectEmpDepTab(1)">Employee</span>
+        <span v-bind:class="{'active' : selected_emp_dep_tab  == 2}" @click="selectEmpDepTab(2)">Dependent</span>
       </div>
       <div class="container">
+    
         <!-- Enrollment -->
         <FadeTransition>
           <div v-if="isState === 'enrollment'" class="enrollment-method-wrapper">
@@ -585,7 +586,8 @@
             <button v-if="isState === 'false'" class="btn-employee">DELETE</button>
             <button v-if="employeeStorage.length != 0 && isState === 'web'" :disabled="prevDisabled" class="btn-employee" @click="prevNextEmp('prev', 0)">PREVIOUS EMPLOYEE</button>
             <button v-if="isState === 'web'" class="btn-employee" @click="prevNextEmp('next', 0)">NEXT EMPLOYEE</button>
-            <button class="next-btn" v-if="isState === 'enrollment'" v-on:click="next">Next</button>
+            <button class="next-btn" v-if="isState === 'enrollment' && isState === 'web'" v-on:click="next">Next</button>
+            <button class="next-btn" v-if="isState === 'enrollment' && temp" v-on:click="next">Next</button>
             <button class="next-btn" v-if="isState === 'web'" @click="enroll">Enroll</button>
             <button class="btn-download-template" v-if="isState === 'excel'">DOWNLOAD TEMPLATE</button>
             <button class="next-btn" v-if="isState === 'excel'" v-on:click="excel">Next</button>
