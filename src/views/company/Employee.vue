@@ -620,7 +620,14 @@
                   </v-date-picker>
                 </div>
               </div>
-            </form>     
+            </form>
+
+            <div class="prev-next-button-container">
+              <div class="button-container">
+                <button class="back-btn">Back</button>
+                <button class="next-btn">Next</button>
+              </div>
+            </div>     
           </div>
         </FadeTransition>
         
