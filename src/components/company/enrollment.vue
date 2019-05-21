@@ -86,11 +86,16 @@ let enrollment = {
       this.dependentState = !this.dependentState;
       if (this.dependentState === true) {
         this.isState = "dependent";
+        this.depPrevChevronState = false;
+        this.depNextChevronState = false;
+        this.dependentDetails = {};
+        this.depIndexData = 0;
       }
     },
     prevNextEmp(data, type) {
       let arrStorage = this.employeeStorage;
       let depArrStorage = this.dependentStorage;
+      let viewDept = this.employeeStorage[this.indexData];
       let index = this.indexData; //for employee index
       let depIndex = this.depIndexData; // for dependent index
 
@@ -117,6 +122,9 @@ let enrollment = {
             if (index == 0) {
               this.prevDisabled = true;
             }
+            if (arrStorage[index].dependents[0].length != 0){
+              this.empDepNavState = true;
+            }
           }
         } else if (data == "next") {
           this.prevDisabled = false;
@@ -131,6 +139,7 @@ let enrollment = {
             console.log("add", index);
             console.log("limit", limit);
           } else if (index >= limit) {
+            this.empDepNavState = false;
             console.log("next is disabled");
             console.log("limit", limit);
             console.log("index", index);
@@ -140,6 +149,7 @@ let enrollment = {
             console.log("limit", limit);
             console.log(arrStorage, arrStorage[index]);
             if (arrStorage[index] === undefined) {
+              this.empDepNavState = false;
               this.employeeDetails = {};
             } else {
               this.employeeDetails = {
@@ -232,20 +242,71 @@ let enrollment = {
             }
           }
         }
+      } else if (type == 2) {
+        if (data == 'prev') {
+          console.log('prev click');
+         if (depIndex == 0) {
+            console.log("prev is disabled");
+          } else {
+            let limit = viewDept.dependents[0].length;
+            depIndex = --this.depIndexData;
+            console.log("prev dependent", depIndex);
+            this.dependentDetails = {
+              fname: viewDept.dependents[0][depIndex].fname,
+              lname: viewDept.dependents[0][depIndex].lname,
+              relation: viewDept.dependents[0][depIndex].relation,
+              nricFinNo: viewDept.dependents[0][depIndex].nricFinNo,
+              // dob: viewDept.dependents[0].dob,
+              // startDate: viewDept.dependents[0].startDate
+            };
+            if (limit > depIndex) {
+              this.depPrevChevronState = true;
+              this.depNextChevronState = true;
+            }
+            if (depIndex < limit && depIndex == 0) {
+              this.depPrevChevronState = false;
+              this.depNextChevronState = true;
+            }
+          }
+        } else if (data == 'next') {
+          console.log('next click');
+          let limit = viewDept.dependents[0].length -1;
+          if (depIndex == limit) {
+            this.depPrevChevronState = true;
+            this.depNextChevronState = false;
+            console.log("next is disabled");
+            console.log("limit", limit);
+            console.log("index dependent", depIndex);
+          } else {
+            depIndex = ++this.depIndexData;
+            console.log("next dependent", depIndex);
+            console.log("limit dependent", limit);
+            if (viewDept.dependents[0][depIndex] === undefined) {
+              this.dependentDetails = {};
+              // this.depNextChevronState = false;
+              // this.depPrevChevronState = true;
+            } else {
+              this.depPrevChevronState = true;
+              this.dependentDetails = {
+                fname: viewDept.dependents[0][depIndex].fname,
+                lname: viewDept.dependents[0][depIndex].lname,
+                relation: viewDept.dependents[0][depIndex].relation,
+                nricFinNo: viewDept.dependents[0][depIndex].nricFinNo,
+                dob: viewDept.dependents[0][depIndex].dob,
+                startDate: viewDept.dependents[0][depIndex].startDate
+              };
+              if (limit == depIndex) {
+                this.depPrevChevronState = true;
+                this.depNextChevronState = false;
+              }
+              if (limit < depIndex) {
+                this.depPrevChevronState = true;
+                this.depNextChevronState = true;
+              }
+            }
+          }
+        }
       }
-      // console.log("index", index, "length", index);
-      // this.employeeDetails = {
-      //   fname: arrStorage[index].fname,
-      //   lname: arrStorage[index].lname,
-      //   nricFinNo: arrStorage[index].nricFinNo,
-      //   dob: arrStorage[index].dob,
-      //   email: arrStorage[index].email,
-      //   mNumber: arrStorage[index].mNumber,
-      //   mAreaCode: arrStorage[index].mAreaCode,
-      //   mCredits: arrStorage[index].mCredits,
-      //   wCredits: arrStorage[index].wCredits,
-      //   startDate: arrStorage[index].startDate
-      // };
     },
     addToStorage(source, index) {
       // store to temp storage when adding employees
@@ -268,7 +329,7 @@ let enrollment = {
           dependents: [this.dependentStorage]
         };
         // this.indexData = 0;
-      } else if (!this.isEmpty(this.employeeDetails)) {
+      } else if (this.employeeStorage.length === 0 && !this.isEmpty(this.employeeDetails)) { //this.dependentStorage.length != 0 && !this.isEmpty(this.dependentDetails)
         this.employeeStorage.push({
           fname: this.employeeDetails.fname,
           lname: this.employeeDetails.lname,
@@ -326,15 +387,8 @@ let enrollment = {
 
           if (this.isEmpty(this.dependentDetails)) {
             if (this.indexData != limit || limit != 0) {
-              console.log("save to existing employee");
-              arrStorage[this.indexData].dependents[0].push({
-                fname: this.dependentStorage[0].fname,
-                lname: this.dependentStorage[0].lname,
-                relation: this.dependentStorage[0].relation,
-                nricFinNo: this.dependentStorage[0].nricFinNo,
-                dob: this.dependentStorage[0].dob,
-                startDate: this.dependentStorage[0].startDate
-              });
+              console.log("save to existing employee", 'kani mo run dapat', this.dependentStorage);
+              arrStorage[this.indexData].dependents =  [this.dependentStorage];
               console.log("save to existing employee", arrStorage[this.indexData]);
               this.dependentStorage = [];
               this.dependentDetails = {};
@@ -345,6 +399,7 @@ let enrollment = {
           } else {
             console.log("add");
             if (this.indexData == limit || limit == 0) {
+              console.log('run 1st if');
               this.dependentStorage.push({
                 fname: this.dependentDetails.fname,
                 lname: this.dependentDetails.lname,
@@ -354,22 +409,42 @@ let enrollment = {
                 startDate: this.dependentDetails.startDate
               });
               this.dependentDetails = {};
-            } else {
-              console.log("save to existing employee");
-              arrStorage[this.indexData].dependents[0].push({
-                fname: this.dependentStorage.fname,
-                lname: this.dependentStorage.lname,
-                relation: this.dependentStorage.relation,
-                nricFinNo: this.dependentStorage.nricFinNo,
-                dob: this.dependentStorage.dob,
-                startDate: this.dependentStorage.startDate
-              });
-              console.log(
-                "save to existing employee",
-                arrStorage[this.indexData]
-              );
+            } else if (this.dependentStorage.length != 0 && !this.isEmpty(this.dependentDetails)) {
+              console.log("run 1st else if");
+              arrStorage[this.indexData].dependents =  [this.dependentStorage];
+
+                console.log("save both to existing employee");
+                arrStorage[this.indexData].dependents[0].push({
+                  fname: this.dependentDetails.fname,
+                  lname: this.dependentDetails.lname,
+                  relation: this.dependentDetails.relation,
+                  nricFinNo: this.dependentDetails.nricFinNo,
+                  dob: this.dependentDetails.dob,
+                  startDate: this.dependentDetails.startDate
+                });
+                console.log(
+                  "save both to existing employee",
+                  arrStorage[this.indexData]
+                );
+              this.dependentStorage = []; 
               this.dependentDetails = {};
-            }
+            } else {
+                console.log("run 2nd else");
+                console.log("save details to existing employee");
+                  arrStorage[this.indexData].dependents[0].push({
+                  fname: this.dependentDetails.fname,
+                  lname: this.dependentDetails.lname,
+                  relation: this.dependentDetails.relation,
+                  nricFinNo: this.dependentDetails.nricFinNo,
+                  dob: this.dependentDetails.dob,
+                  startDate: this.dependentDetails.startDate
+                });
+                console.log(
+                  "save details to existing employee",
+                  arrStorage[this.indexData]
+                );
+                this.dependentDetails = {};
+              }
             // store to temp storage when adding employees
           }
         }
@@ -377,6 +452,26 @@ let enrollment = {
     },
     selectEmpDepTab(opt) {
       this.selected_emp_dep_tab = opt;
+      
+      if(this.selected_emp_dep_tab == 2) {
+        let viewDept = this.employeeStorage[this.indexData];
+        this.depIndexData = viewDept.dependents[0].length -1;
+        console.log("depIndexData",this.depIndexData);
+          this.dependentDetails = {
+          fname: viewDept.dependents[0][this.depIndexData].fname,
+          lname: viewDept.dependents[0][this.depIndexData].lname,
+          relation: viewDept.dependents[0][this.depIndexData].relation,
+          nricFinNo: viewDept.dependents[0][this.depIndexData].nricFinNo,
+          // dob: viewDept.dependents[0].dob,
+          // startDate: viewDept.dependents[0].startDate
+        };
+        if ( this.depIndexData >= 1) {
+          this.depPrevChevronState = true;
+          this.depNextChevronState = false;
+        }
+        console.log("data ni",viewDept.dependents[0][this.depIndexData], "index", this.indexData);
+        console.log("dapat mo display ni",this.dependentDetails, "index", this.indexData);
+      }
     },
     cancelDep() {
       this.$swal({
@@ -399,6 +494,9 @@ let enrollment = {
         isState: "enrollsum"
       });
       this.addToStorage();
+      this.indexData = this.employeeStorage.length;
+      this.prevDisabled = false;
+      console.log(this.indexData);
     },
     next() {
       if (this.isType === "web") {
