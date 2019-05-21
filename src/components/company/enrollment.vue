@@ -413,14 +413,6 @@ let enrollment = {
         this.$emit("enrollmentData", {
           isState: "excel"
         });
-      } else if ( this.isRequiredTiering === 0 ) {
-        this.isState = 'enrollment';
-        this.temp = false;
-        this.isRequiredTiering = null;
-      } else if (this.isRequiredTiering === 1) {
-        this.isState = 'enrollTier';
-        this.temp = false;
-        this.isRequiredTiering = null;
       } else {
         console.log("select 1 item");
       }
