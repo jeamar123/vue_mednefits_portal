@@ -289,32 +289,32 @@
                   <div class="employee-input-wrapper nric">
                     <label>NRIC</label>
                     <label>FIN</label>
-                    <input type="text" name="nric-fin">
+                    <input type="text" name="nric-fin" v-model="dependentDetails.nricFinNo">
                   </div>
                   <div class="employee-input-wrapper dob">
                     <label for="">Date of Birth</label>
-                    <input type="text" name="lname" placeholder="DD/MM/YYYY">
+                    <input type="text" name="lname" placeholder="DD/MM/YYYY" v-model="dependentDetails.dob">
                   </div>
                 </div>
                 <div class="employee-input-container">
                   <div class="employee-input-wrapper">
                     <label for="fname">Relationship</label>
-                    <select>
-                      <option>Spouse</option>
-                      <option>Child</option>
-                      <option>Family</option>
+                    <select v-model="dependentDetails.relation">
+                      <option value="Spouse">Spouse</option>
+                      <option value="Child">Child</option>
+                      <option value="Family">Family</option>
                     </select>
                     <img :src="'../assets/img/icons/down-arrow.svg'">
                   </div>
                   <div class="employee-input-wrapper">
                     <label for="fname">Start Date</label>
-                    <input type="text" name="stard-date">
+                    <input type="text" name="stard-date" v-model="dependentDetails.startDate">
                   </div>
                 </div>
               </form>
               <div class="summary-left-right-btn" v-if="true">
-                <img class="summary-left-btn" :src="'../assets/img/icons/left.png'">
-                <img class="summary-right-btn" :src="'../assets/img/icons/right.png'">
+                <img v-show="depPrevChevronState" class="summary-left-btn" @click="prevNextEmp('prev', 2)" :src="'../assets/img/icons/left.png'">
+                <img v-show="depNextChevronState" class="summary-right-btn" @click="prevNextEmp('next', 2)" :src="'../assets/img/icons/right.png'">
               </div>
             </div>
           </FadeTransition>
