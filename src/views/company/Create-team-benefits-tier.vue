@@ -71,7 +71,7 @@
 							</div>
 						</div>
 						<div class="tier-item-button">
-							<button v-if="false" class="btn-delete-tier">Remove</button>
+							<button v-if="isEditActive" class="btn-delete-tier">Remove</button>
 							<button @click="saveTierData( )">Save &amp; Continue</button>
 						</div>
 					</div>
@@ -88,7 +88,7 @@
 								Tier <span>1 </span> 
 								<span>0</span>/<span>2</span>
 							</button>
-							<span>Edit</span>
+							<span @click="editTierData()">Edit</span>
 						</div>
 						<div class="clinic-type-wrapper">
 							<div class="clinic-type-container">
