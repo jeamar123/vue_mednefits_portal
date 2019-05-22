@@ -64,10 +64,10 @@
             <h4 v-if="$route.name === 'CompanyEnrollmentOptions' || $route.name === 'CompanyCreateTeamBenefitsTier' || $route.name === 'CompanyEnrollment' && isState === 'enrollment' || isState == 'enrollsum'">Enrollment</h4>
 
             <h4
-              v-if="isState === 'web' && $route.name != 'CompanyHome'"
+              v-if="isState === 'web' && $route.name != 'CompanyHome' && $route.name != 'CompanyEnrollmentOptions'"
               class="web-input-title"
             >WEB INPUT</h4>
-            <h4 class="excel-import-title" v-if="isState === 'excel' && $route.name != 'CompanyHome'">
+            <h4 class="excel-import-title" v-if="isState === 'excel' && $route.name != 'CompanyHome' && $route.name != 'CompanyEnrollmentOptions'">
               EXCEL IMPORT
             </h4>
           </div>
@@ -131,7 +131,7 @@
             </div>
           </div>
 
-          <div class="template-menu-accordion" v-if="isState === 'excel'">
+          <div class="template-menu-accordion" v-if="isState === 'excel' && $route.name != 'CompanyEnrollmentOptions'">
             <div class="menu-accordion-list">
               <span class="number step done-step">1</span>
               <span class="menu-accordion-label step">Download</span>

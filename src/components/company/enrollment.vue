@@ -19,7 +19,8 @@ let enrollment = {
   data() {
     return {
       isType: "", //excel or web input
-      isState: 'enrollment', //navigation title
+      isState: "enrollment", //navigation title
+      stepperState: "",
       empType: "empOnly",
       summaryBtn: false, // summary state
       dependentState: false,
@@ -62,7 +63,10 @@ let enrollment = {
         //       lname: "zayas"
         //     }
       ],
-      date: new Date() // Jan 25th, 2018
+      date: new Date(), // Jan 25th, 2018
+      //for Excel
+      checkedlistEmpOnly: [],
+      checkedlistEmpDependents: [],
     };
   },
   methods: {
@@ -124,16 +128,18 @@ let enrollment = {
             if (index == 0) {
               this.prevDisabled = true;
             }
-            if (arrStorage[index].dependents[0].length != 0){
+            if (arrStorage[index].dependents[0].length != 0) {
               this.empDepNavState = true;
             }
           }
         } else if (data == "next") {
           this.prevDisabled = false;
           let limit = arrStorage.length;
+          console.log("add", index);
+          console.log("limit", limit);
           if (limit == index && !this.isEmpty(this.employeeDetails)) {
             // !this.isEmpty(this.employeeDetails)
-            this.addToStorage();
+            this.addToStorage("next");
             limit = arrStorage.length;
             index = ++this.indexData;
             this.employeeDetails = {};
@@ -168,6 +174,7 @@ let enrollment = {
               };
             }
           }
+          this.selected_emp_dep_tab = 1;
         }
       } else if (type == 1) {
         // let limit = depArrStorage.length;
@@ -245,9 +252,9 @@ let enrollment = {
           }
         }
       } else if (type == 2) {
-        if (data == 'prev') {
-          console.log('prev click');
-         if (depIndex == 0) {
+        if (data == "prev") {
+          console.log("prev click");
+          if (depIndex == 0) {
             console.log("prev is disabled");
           } else {
             let limit = viewDept.dependents[0].length;
@@ -257,7 +264,7 @@ let enrollment = {
               fname: viewDept.dependents[0][depIndex].fname,
               lname: viewDept.dependents[0][depIndex].lname,
               relation: viewDept.dependents[0][depIndex].relation,
-              nricFinNo: viewDept.dependents[0][depIndex].nricFinNo,
+              nricFinNo: viewDept.dependents[0][depIndex].nricFinNo
               // dob: viewDept.dependents[0].dob,
               // startDate: viewDept.dependents[0].startDate
             };
@@ -270,9 +277,9 @@ let enrollment = {
               this.depNextChevronState = true;
             }
           }
-        } else if (data == 'next') {
-          console.log('next click');
-          let limit = viewDept.dependents[0].length -1;
+        } else if (data == "next") {
+          console.log("next click");
+          let limit = viewDept.dependents[0].length - 1;
           if (depIndex == limit) {
             this.depPrevChevronState = true;
             this.depNextChevronState = false;
@@ -331,7 +338,50 @@ let enrollment = {
           dependents: [this.dependentStorage]
         };
         // this.indexData = 0;
-      } else if (this.employeeStorage.length === 0 && !this.isEmpty(this.employeeDetails)) { //this.dependentStorage.length != 0 && !this.isEmpty(this.dependentDetails)
+      } else if (source == "next") {
+        //this.dependentStorage.length != 0 && !this.isEmpty(this.dependentDetails)
+        this.employeeStorage.push({
+          fname: this.employeeDetails.fname,
+          lname: this.employeeDetails.lname,
+          idType: this.employeeDetails.idType,
+          nricFinNo: this.employeeDetails.nricFinNo,
+          dob: this.employeeDetails.dob,
+          email: this.employeeDetails.email,
+          mNumber: this.employeeDetails.mNumber,
+          mAreaCode: this.employeeDetails.mAreaCode,
+          postal: this.employeeDetails.postal,
+          startDate: this.employeeDetails.startDate,
+          mCredits: this.employeeDetails.mCredits,
+          wCredits: this.employeeDetails.wCredits,
+          dependents: [this.dependentStorage]
+        });
+      } else if (
+        source == "enroll" &&
+        this.employeeStorage.length === 0 &&
+        !this.isEmpty(this.employeeDetails)
+      ) {
+        //this.dependentStorage.length != 0 && !this.isEmpty(this.dependentDetails)
+        this.employeeStorage.push({
+          fname: this.employeeDetails.fname,
+          lname: this.employeeDetails.lname,
+          idType: this.employeeDetails.idType,
+          nricFinNo: this.employeeDetails.nricFinNo,
+          dob: this.employeeDetails.dob,
+          email: this.employeeDetails.email,
+          mNumber: this.employeeDetails.mNumber,
+          mAreaCode: this.employeeDetails.mAreaCode,
+          postal: this.employeeDetails.postal,
+          startDate: this.employeeDetails.startDate,
+          mCredits: this.employeeDetails.mCredits,
+          wCredits: this.employeeDetails.wCredits,
+          dependents: [this.dependentStorage]
+        });
+      } else if (
+        source == "enroll" &&
+        this.employeeStorage.length == this.indexData &&
+        !this.isEmpty(this.employeeDetails)
+      ) {
+        //this.dependentStorage.length != 0 && !this.isEmpty(this.dependentDetails)
         this.employeeStorage.push({
           fname: this.employeeDetails.fname,
           lname: this.employeeDetails.lname,
@@ -389,19 +439,25 @@ let enrollment = {
 
           if (this.isEmpty(this.dependentDetails)) {
             if (this.indexData != limit || limit != 0) {
-              console.log("save to existing employee", 'kani mo run dapat', this.dependentStorage);
-              arrStorage[this.indexData].dependents =  [this.dependentStorage];
-              console.log("save to existing employee", arrStorage[this.indexData]);
+              console.log(
+                "save to existing employee",
+                "kani mo run dapat",
+                this.dependentStorage
+              );
+              arrStorage[this.indexData].dependents = [this.dependentStorage];
+              console.log(
+                "save to existing employee",
+                arrStorage[this.indexData]
+              );
               this.dependentStorage = [];
               this.dependentDetails = {};
             } else {
               console.log("save");
             }
-
           } else {
             console.log("add");
             if (this.indexData == limit || limit == 0) {
-              console.log('run 1st if');
+              console.log("run 1st if");
               this.dependentStorage.push({
                 fname: this.dependentDetails.fname,
                 lname: this.dependentDetails.lname,
@@ -411,42 +467,45 @@ let enrollment = {
                 startDate: this.dependentDetails.startDate
               });
               this.dependentDetails = {};
-            } else if (this.dependentStorage.length != 0 && !this.isEmpty(this.dependentDetails)) {
+            } else if (
+              this.dependentStorage.length != 0 &&
+              !this.isEmpty(this.dependentDetails)
+            ) {
               console.log("run 1st else if");
-              arrStorage[this.indexData].dependents =  [this.dependentStorage];
+              arrStorage[this.indexData].dependents = [this.dependentStorage];
 
-                console.log("save both to existing employee");
-                arrStorage[this.indexData].dependents[0].push({
-                  fname: this.dependentDetails.fname,
-                  lname: this.dependentDetails.lname,
-                  relation: this.dependentDetails.relation,
-                  nricFinNo: this.dependentDetails.nricFinNo,
-                  dob: this.dependentDetails.dob,
-                  startDate: this.dependentDetails.startDate
-                });
-                console.log(
-                  "save both to existing employee",
-                  arrStorage[this.indexData]
-                );
-              this.dependentStorage = []; 
+              console.log("save both to existing employee");
+              arrStorage[this.indexData].dependents[0].push({
+                fname: this.dependentDetails.fname,
+                lname: this.dependentDetails.lname,
+                relation: this.dependentDetails.relation,
+                nricFinNo: this.dependentDetails.nricFinNo,
+                dob: this.dependentDetails.dob,
+                startDate: this.dependentDetails.startDate
+              });
+              console.log(
+                "save both to existing employee",
+                arrStorage[this.indexData]
+              );
+              this.dependentStorage = [];
               this.dependentDetails = {};
             } else {
-                console.log("run 2nd else");
-                console.log("save details to existing employee");
-                  arrStorage[this.indexData].dependents[0].push({
-                  fname: this.dependentDetails.fname,
-                  lname: this.dependentDetails.lname,
-                  relation: this.dependentDetails.relation,
-                  nricFinNo: this.dependentDetails.nricFinNo,
-                  dob: this.dependentDetails.dob,
-                  startDate: this.dependentDetails.startDate
-                });
-                console.log(
-                  "save details to existing employee",
-                  arrStorage[this.indexData]
-                );
-                this.dependentDetails = {};
-              }
+              console.log("run 2nd else");
+              console.log("save details to existing employee");
+              arrStorage[this.indexData].dependents[0].push({
+                fname: this.dependentDetails.fname,
+                lname: this.dependentDetails.lname,
+                relation: this.dependentDetails.relation,
+                nricFinNo: this.dependentDetails.nricFinNo,
+                dob: this.dependentDetails.dob,
+                startDate: this.dependentDetails.startDate
+              });
+              console.log(
+                "save details to existing employee",
+                arrStorage[this.indexData]
+              );
+              this.dependentDetails = {};
+            }
             // store to temp storage when adding employees
           }
         }
@@ -454,25 +513,66 @@ let enrollment = {
     },
     selectEmpDepTab(opt) {
       this.selected_emp_dep_tab = opt;
-      
-      if(this.selected_emp_dep_tab == 2) {
-        let viewDept = this.employeeStorage[this.indexData];
-        this.depIndexData = viewDept.dependents[0].length -1;
-        console.log("depIndexData",this.depIndexData);
+
+      if (this.selected_emp_dep_tab == 2) {
+        if (this.dependentStorage.length != 0) {
+          this.depIndexData = this.dependentStorage.length - 1;
+          console.log("depIndexData", this.depIndexData);
           this.dependentDetails = {
-          fname: viewDept.dependents[0][this.depIndexData].fname,
-          lname: viewDept.dependents[0][this.depIndexData].lname,
-          relation: viewDept.dependents[0][this.depIndexData].relation,
-          nricFinNo: viewDept.dependents[0][this.depIndexData].nricFinNo,
-          // dob: viewDept.dependents[0].dob,
-          // startDate: viewDept.dependents[0].startDate
-        };
-        if ( this.depIndexData >= 1) {
-          this.depPrevChevronState = true;
-          this.depNextChevronState = false;
+            fname: this.dependentStorage[this.depIndexData].fname,
+            lname: this.dependentStorage[this.depIndexData].lname,
+            relation: this.dependentStorage[this.depIndexData].relation,
+            nricFinNo: this.dependentStorage[this.depIndexData].nricFinNo
+            // dob: viewDept.dependents[0].dob,
+            // startDate: viewDept.dependents[0].startDate
+          };
+          if (this.depIndexData >= 1) {
+            this.depPrevChevronState = true;
+            this.depNextChevronState = false;
+          }
+          console.log(
+            "data ni",
+            this.dependentStorage[this.depIndexData],
+            "index",
+            this.depIndexData
+          );
+          console.log(
+            "dapat mo display ni",
+            this.dependentDetails,
+            "index",
+            this.depIndexData
+          );
+        } else if (this.employeeStorage.length != 0) {
+          let viewDept = this.employeeStorage[this.indexData];
+          this.depIndexData = viewDept.dependents[0].length - 1;
+          console.log("depIndexData", this.depIndexData);
+          this.dependentDetails = {
+            fname: viewDept.dependents[0][this.depIndexData].fname,
+            lname: viewDept.dependents[0][this.depIndexData].lname,
+            relation: viewDept.dependents[0][this.depIndexData].relation,
+            nricFinNo: viewDept.dependents[0][this.depIndexData].nricFinNo
+            // dob: viewDept.dependents[0].dob,
+            // startDate: viewDept.dependents[0].startDate
+          };
+          if (this.depIndexData >= 1) {
+            this.depPrevChevronState = true;
+            this.depNextChevronState = false;
+          }
+          console.log(
+            "data ni",
+            viewDept.dependents[0][this.depIndexData],
+            "index",
+            this.indexData
+          );
+          console.log(
+            "dapat mo display ni",
+            this.dependentDetails,
+            "index",
+            this.indexData
+          );
+        } else {
+          console.log("no error");
         }
-        console.log("data ni",viewDept.dependents[0][this.depIndexData], "index", this.indexData);
-        console.log("dapat mo display ni",this.dependentDetails, "index", this.indexData);
       }
     },
     cancelDep() {
@@ -490,17 +590,24 @@ let enrollment = {
         }
       });
     },
-    enroll() {
-      this.isState = "enrollsum";
-      this.$emit("enrollmentData", {
-        isState: "enrollsum"
-      });
-      this.addToStorage();
-      this.indexData = this.employeeStorage.length;
-      this.prevDisabled = false;
-      console.log(this.indexData);
+    enroll(data) {
+      if (data == "enrollsum") {
+        this.isState = "enrollsum";
+        this.$emit("enrollmentData", {
+          isState: "enrollsum"
+        });
+        this.addToStorage("enroll");
+        this.indexData = this.employeeStorage.length;
+        this.prevDisabled = false;
+        console.log(this.indexData);
+      } else if (data === "successEnroll") {
+        this.isState = "successEnroll";
+        // this.$emit("enrollmentData", {
+        //   isState: "enrollment"
+        // });
+      }
     },
-    next( data ) {
+    next(data) {
       if (this.isType === "web") {
         this.isState = "web";
         this.$emit("enrollmentData", {
@@ -508,6 +615,7 @@ let enrollment = {
         });
       } else if (this.isType === "excel") {
         this.isState = "excel";
+        this.stepperState = "download";
         this.$emit("enrollmentData", {
           isState: "excel"
         });
@@ -516,17 +624,24 @@ let enrollment = {
       }
     },
     back(data) {
-      this.isState = data;
-      if (this.isState === "enrollment") {
-        this.dependentState = false;
-        this.$emit("enrollmentData", {
-          isState: "enrollment"
-        });
-      } else if (this.isState === "web") {
-        this.isState = "web";
-        this.$emit("enrollmentData", {
-          isState: "web"
-        });
+      if (data == "enrollment" || data == "web") {
+        this.isState = data;
+        if (this.isState === "enrollment") {
+          this.dependentState = false;
+          this.$emit("enrollmentData", {
+            isState: "enrollment"
+          });
+        } else if (this.isState === "web") {
+          this.isState = "web";
+          this.$emit("enrollmentData", {
+            isState: "web"
+          });
+        }
+      } else {
+        if (data == "download") {
+          this.stepperState = "download";
+          console.log(this.stepperState);
+        }
       }
     },
     editEmployee(data, index) {
@@ -598,8 +713,39 @@ let enrollment = {
         }
       });
     },
-    excel() {
+    excel(data) {
       console.log("excel details");
+      if(data == 'empOnly' || data == 'empDependents') {
+        this.checkedlistEmpOnly = [];
+        this.checkedlistEmpDependents = [];
+          if (this.empType === "empOnly") {
+          this.stepperState = "empOnly";
+          
+          // this.$emit("enrollmentData", {
+          //   isState: "excel"
+          // });
+        } else if (this.empType === "empDependents") {
+          this.stepperState = "empDependents";
+          // this.$emit("enrollmentData", {
+          //   isState: "excel"
+          // });
+        } 
+      } else if ( data == 'upload') {
+        console.log('na click ni');
+        if (this.checkedlistEmpOnly.length == 5) {
+          console.log('empOnly ang dawaton na excel template',  this.stepperState);
+          this.stepperState = "upload";
+        } else if (this.checkedlistEmpDependents.length == 6) {
+          console.log('empOnly ang dawaton na excel template', this.stepperState);
+          this.stepperState = "upload";
+        } else{
+          console.log('Checked', this.checkedlist);
+        }
+      } else if (data == 'enrollsum') {
+        this.isState = 'enrollsum';
+        console.log('na click ni', this.isState);
+      }
+        
     },
     //to check is object empty
     isEmpty(obj) {
@@ -617,6 +763,9 @@ let enrollment = {
     }
   },
   created() {
+    this.$emit("enrollmentData", {
+      isState: "enrollment"
+    });
     console.log("enrolment page");
   }
 };

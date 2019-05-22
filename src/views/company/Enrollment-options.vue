@@ -16,7 +16,7 @@
 
 	  <div class="prev-next-button-container">
 	  	<div class="button-container">
-	  		<button class="back-btn" @click="$router.go(-1)">Back</button>
+	  		<button class="back-btn" @click="$router.push('dashboard')">Back</button>
 	  		<button class="next-btn" @click="next()">Next</button>
 	  	</div>
 	  </div>
