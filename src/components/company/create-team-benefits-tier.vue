@@ -3,14 +3,33 @@
 let createTeamBenefitsTier = {
   data() {
     return {
-      isRequiredTiering: null,
+      
+        gp_cap_status : false,
+     
+      isTierBtn: true,
+      isTierInput: false,
+      isTierSummary: false,
     };
   },
-  // methods: {
-  //    toggleEnrollmentOptions( opt ) {
-  //     this.isRequiredTiering = opt;
-  //   },
-  // }
+  methods: {
+    toggleGPcapStatus( opt ) {
+      this.gp_cap_status = opt;
+    },
+    addTierBtn() {
+      this.isTierInput = true;
+      this.isTierBtn = false;
+      this.isTierSummary = false;
+    },
+    backBtn() {
+      this.isTierInput = false;
+      this.isTierBtn = true;
+    },
+    saveTierData ( data ) {
+      this.isTierInput = false;
+      this.isTierSummary = true;
+      
+    }
+  }
 };
 
 export default createTeamBenefitsTier 

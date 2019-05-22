@@ -830,14 +830,11 @@
 
 .benefits-tier-wrapper {
 	background-color: #fff;
-	padding: 150px 0 70px;
+	padding: 150px 0 100px;
 	height: 100vh;
 	overflow-y: auto;
-}
-
-.benefits-tier-content-wrapper {
 	color: #2c3e50;
-
+	
 	h1 {
 		text-align: center;
 		font-weight: 700;
@@ -846,14 +843,17 @@
 		margin: 17px 0 47px;
 	}
 
-	.add-tier-container {
+	h4 {
+		line-height: 1.1;
+		font-size: 18px;
+		font-weight: 700;
+	}
+
+	.add-tier-wrapper {
 		text-align: center;
 
 		h4 {
-			font-weight: 700;
 			margin: 0px 0 20px;
-			line-height: 1.1;
-			font-size: 18px;
 		}
 
 		button {
@@ -873,11 +873,10 @@
 		}
 	}
 
-	.tier-item-container {
+	.tier-item-wrapper {
 		width: 350px;
     margin: 0 auto;
     box-shadow: -1px 2px 9px 0px rgba(185,185,185,.5);
-    color: #2c3e50;
 	}
 
 	.tier-item-header {
@@ -889,8 +888,7 @@
     align-items: center;
 
     h4 {
-    	font-size: 18px;
-    	line-height: 1.1;
+    	font-weight: 400;
     	margin: 10px 0;
     }
 
@@ -928,10 +926,6 @@
 	    color: #3C91CA;
 	    font-weight: 700;
 		}
-		i {
-			margin-left: 0px;
-    	font-size: 14px;
-		}
 		input {
 			font-size: 16px;
 			width: 100%;
@@ -940,40 +934,37 @@
 	    padding: 5px 50px 5px 10px;
 	    color: #9c9c9c;
 		}
-	}
-
-	.gp-toggle {
+		.gp-toggle {
 		  display: flex;
 	    width: 100%;
-	    margin: 20px 0px 0px;
-	    
-		label {
-			display: inline-block;
-   	 	width: 130px;
-		}
-		.btn-wrapper {
-			flex: 1;
-    	text-align: right;
-		}
-		button {
-			width: 50px;
-	    color: #333;
-	    background: #FFF;
-	    border: 1px solid #ddd;
-	    font-size: 12px;
-	    padding: 6px 12px;
-	    letter-spacing: .5px;
-	    /*margin: 0 0 0 -6px;*/
-	    box-shadow: none;
-	    border-radius: 0;
-	    /*line-height: 24px;*/
-		}
-		button.active {
-			background: #0392cf;
-			border-color: #0392cf;
-    	color: #FFF;
+	    margin: 20px 0 5px;
+		    
+			label {
+				display: inline-block;
+	   	 	width: 130px;
+			}
+			.btn-wrapper {
+				flex: 1;
+	    	text-align: right;
+			}
+			button {
+				width: 50px;
+		    color: #333;
+		    background: #FFF;
+		    border: 1px solid #ddd;
+		    font-size: 12px;
+		    padding: 6px 12px;
+		    letter-spacing: .5px;
+			}
+			button.active {
+				background: #0392cf;
+				border-color: #0392cf;
+	    	color: #FFF;
+			}
 		}
 	}
+
+
 
 	.tier-item-button {
 		text-align: right;
@@ -990,9 +981,81 @@
 	    font-weight: 700;
 	    line-height: 24px;
     }
+
+    .btn-delete-tier {
+    	background: #a75858;
+    	margin-right: 5px;
+    }
 	}
 }
 
+.tier-summary-wrapper {
+	position: relative;
+	padding-bottom: 150px;
+
+	h4 {
+		text-align: center;
+	}
+	h4:nth-child(2) {
+		margin: 10px 0;
+	}
+	.summary-details-wrapper {
+		text-align: center;
+		width: 60%;
+    margin: 0 auto;
+	}
+	.summary-details {
+		display: inline-block;
+		margin: 0 30px;
+	}
+	
+	.tier-summary-btn {
+		position: relative;
+    text-align: center;
+    margin: 40px 0 20px;
+
+		button {
+			background: transparent;
+		  border: 2px solid #d6d6d6;
+		  border-radius: 50%;
+		  color: #9c9c9c;
+		  height: 70px;
+		  width: 70px;
+		  font-weight: 700;
+		  line-height: 24px;
+		}
+
+		button:hover {
+			border: 2px solid #0392cf;
+		}
+
+		>span {
+			cursor: pointer;
+			color: #0392cf;
+			font-weight: 700;
+			font-size: 16px;
+			position: absolute;
+	    right: 0px;
+	    top: 20px
+		}
+	}
+	.clinic-type-container {
+		display: grid;
+		grid-template-columns: 3fr 1fr;
+		font-size: 12px;
+    font-weight: 700;
+    line-height: 24px;
+
+    .label {
+    	text-align: left;
+    }
+	}
+	.add-tier-wrapper {
+		position: fixed ;
+    right: 35px;
+    bottom: 105px;
+	}
+}
 
 .prev-next-button-container {	
 	position: fixed;
