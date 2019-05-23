@@ -121,7 +121,7 @@
         				<span>5</span> per page
         			</span>
         			<img :src="'../assets/img/icons/right-arrow-angle-blue.svg'">
-              <div v-if="false" class="per_page">
+              <div v-if="false" class="per-page">
                 <ul class="nav">
                   <li><a href="">5</a></li>
                   <li><a href="">10</a></li>

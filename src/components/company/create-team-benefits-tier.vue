@@ -24,6 +24,7 @@ let createTeamBenefitsTier = {
     backBtn() {
       this.isTierInput = false;
       this.isTierBtn = true;
+      this.isEditActive = false;
     },
     saveTierData ( data ) {
       this.isTierInput = false;
