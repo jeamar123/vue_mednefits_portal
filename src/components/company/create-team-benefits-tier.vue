@@ -9,6 +9,7 @@ let createTeamBenefitsTier = {
       isTierBtn: true,
       isTierInput: false,
       isTierSummary: false,
+      isEditActive: false,
     };
   },
   methods: {
@@ -23,11 +24,16 @@ let createTeamBenefitsTier = {
     backBtn() {
       this.isTierInput = false;
       this.isTierBtn = true;
+      this.isEditActive = false;
     },
     saveTierData ( data ) {
       this.isTierInput = false;
       this.isTierSummary = true;
-      
+    },
+    editTierData() {
+      this.isTierInput = true;
+      this.isEditActive = true;
+      this.isTierSummary = false;
     }
   }
 };

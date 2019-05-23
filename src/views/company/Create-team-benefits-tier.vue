@@ -71,7 +71,7 @@
 							</div>
 						</div>
 						<div class="tier-item-button">
-							<button v-if="false" class="btn-delete-tier">Remove</button>
+							<button v-if="isEditActive" class="btn-delete-tier">Remove</button>
 							<button @click="saveTierData( )">Save &amp; Continue</button>
 						</div>
 					</div>
@@ -84,11 +84,40 @@
 		  	<div class="summary-details-wrapper">
 		  		<div class="summary-details">
 		  			<div class="tier-summary-btn">
-							<button>
-								Tier <span>1 </span> 
-								<span>0</span>/<span>2</span>
-							</button>
-							<span>Edit</span>
+		  				<input type="radio" id="radio_1" name="radio">
+							<label for="radio_1">
+								<div>
+									Tier <span>1 </span> 
+									<span>0</span>/<span>2</span>
+								</div>
+							</label>
+							<span @click="editTierData()">Edit</span>
+						</div>
+						<div class="clinic-type-wrapper">
+							<div class="clinic-type-container">
+								<span class="label">Medical annual cap: </span>
+								<span class="text">S$ <span>1</span></span>
+							</div>
+							<div class="clinic-type-container">
+								<span class="label">Wellness annual cap: </span>
+								<span class="text">S$ <span>1</span></span>
+							</div>
+							<div class="clinic-type-container">
+								<span class="label">GP cap per visit: </span>
+								<span class="text">S$ <span>0</span></span>
+							</div>	
+						</div>
+		  		</div>
+		  		<div class="summary-details">
+		  			<div class="tier-summary-btn">
+		  				<input type="radio" id="radio_2" name="radio">
+							<label for="radio_2">
+								<div>
+									Tier <span>1 </span> 
+									<span>0</span>/<span>2</span>
+								</div>
+							</label>
+							<span @click="editTierData()">Edit</span>
 						</div>
 						<div class="clinic-type-wrapper">
 							<div class="clinic-type-container">

@@ -2,6 +2,7 @@
 	padding: 110px 80px 49px 80px;
 	background-color: #fff;
 	height: 100vh;
+	color: #283e52;
 
 	.employee-overview-header {
     margin: 30px 0 0;
@@ -10,13 +11,11 @@
 
     .overview-title {
     	line-height: 1.1;
-    	color: #283e52;
     	font-weight: 700;
     	h1 {
     		font-size: 25px;
     	}
     	h4 {
-    		font-size: 14px;
     		margin: 16px 0;
     	}
     }
@@ -62,7 +61,6 @@
    	.btn-export-members {
    		background-color: transparent;
 	    border: 2px solid #d8d8d8;
-	    color: #283e52;
 	    padding: 6px 18px;
    	}
    	.btn-enroll-employees {
@@ -78,7 +76,6 @@
 	}
 	table {
 		width: 100%;
-		color: #283e52;
 		thead tr th,
 		tbody tr td {
 			&:last-child {
@@ -214,76 +211,103 @@
     	font-family: 'Helvetica Medium';
 		}
 	}
-	.employee-pagination-wrapper {
-    text-align: center;
-    border-top: 1px solid #cbcbcb;
-    border-bottom: 1px solid #cbcbcb;
-    padding: 18px 0;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #FFF;
-    font-weight: 700;
-    line-height: 24px;
+}	
 
-    .employee-pagination {
-    	display: inline-flex;
-    	align-items: center;
-    	font-size: 12px;
-    	span {
-	    	display: inline-block;
-	    	vertical-align: middle;
-	    }
-	    img {
-	    	vertical-align: middle;
-	    	height: 16px;
-	    }
-	    .numeric-pagination {
-	    	padding: 5px 10px;
-    		margin: 0 5px;
-	    }
-	    .numeric-pagination.active {
-	    	background-color: #cce9f5;
-	    	border-radius: 4px;
-	    	border: 1px solid #d6dade;
-	    }
-	    .numeric-pagination,
-	    .next-pagination,
-	    .prev-pagination,
-	    .per-page-pagination {
-	    	color: #0392cf;
-    		cursor: pointer;
-	    }
-    }
-    .prev-pagination span {
-	    margin-right: 10px;
-    } 
-    .prev-pagination img {
-    	margin-right: 10px;
-    	transform: rotate(180deg);
-    }
-    .next-pagination span {
-    	margin-left: 10px;
-    }
-    .next-pagination img {
-    	margin-left: 10px;
-    }
-    .per-page-pagination span {
-    	margin-left: 30px;
-    }
-    .per-page-pagination img {
-    	height: 12px;
-    	margin-top: 2px;
-    	margin-left: 8px;
-    	transform: rotate(90deg);
-    }
+.employee-pagination-wrapper {
+  text-align: center;
+  border-top: 1px solid #cbcbcb;
+  border-bottom: 1px solid #cbcbcb;
+  padding: 18px 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #FFF;
+  font-weight: 700;
+  line-height: 24px;
+}
+.employee-pagination {
+	display: inline-flex;
+	align-items: center;
+	font-size: 12px;
+	span {
+  	display: inline-block;
+  	vertical-align: middle;
+  }
+  img {
+  	vertical-align: middle;
+  	height: 16px;
+  }
+  .numeric-pagination {
+  	padding: 5px 10px;
+		margin: 0 5px;
+  }
+  .numeric-pagination.active {
+  	background-color: #cce9f5;
+  	border-radius: 4px;
+  	border: 1px solid #d6dade;
+  }
+  .numeric-pagination,
+  .next-pagination,
+  .prev-pagination,
+  .per-page-pagination {
+  	color: #0392cf;
+		cursor: pointer;
+  }
+}
+.prev-pagination {
+	span,img {
+		margin-right: 10px;
 	}
+	img {
+		transform: rotate(180deg);
+	}
+}
+.next-pagination {
+	span,img {
+		margin-left: 10px;
+	}
+}
+.per-page-pagination {
+	position: relative;
+	span {
+		margin-left: 30px;
+	}
+	img {
+		height: 12px;
+		margin: 2px 0px 0px 8px;
+	transform: rotate(90deg);
+	}
+	.per-page {
+		position: absolute;
+  width: 95px;
+  right: 0;
+  border: 1px solid #ddd;
+  height: 200px;
+  overflow: hidden;
+  overflow-y: auto;
+  bottom: 0;
+  background: #fff;
+  text-align: left;
+	}
+	.nav>li>a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  color: #0392cf;
+
+  &:hover,
+  &.active {
+  	color: #23527c;
+    background-color: #eee;
+  }
+}
 }
 
 .overview-info-wrapper {
 	background-color: #fff;	
 	padding-top: 99px;
+	color: #283e52;
 
 	.employee-information-container {
     display: grid;
@@ -291,7 +315,6 @@
 	}		
   .person-information {
   	background-color: #f9f9f9;
-    color: #283e52;
     border-right: 1px solid #cbcbcb;
     font-weight: 700;
     padding-bottom: 150px;
@@ -327,7 +350,6 @@
     grid-template-columns: 1fr 1fr;
     align-items: center;
     margin-bottom: 5px;
-    font-size: 14px;
 
     .status-label {
 	    font-weight: 700;
@@ -449,7 +471,6 @@
 			background-color: #fff;
 	    border-radius: 4px;
 	    border: 2px solid #d8d8d8;
-	    font-size: 14px;
 	    padding: 5px 10px;
 		}
 	}
@@ -478,11 +499,9 @@
 	.employee-information,
 	.dependent-information {
 		padding: 40px 40px 100px 40px;
-    color: #283e52;
     max-height: 1200px;
     overflow-x: auto;
     line-height: 24px;
-    font-size: 14px;
 	}
 	.employee-details-wrapper {
 		position: relative;
@@ -541,7 +560,6 @@
 			border-radius: 4px;
 			width: 160px;
 			font-weight: 700;
-			font-size: 14px;
 			padding: 12px 0;
 			color: #fff;
 			box-shadow: none;
@@ -609,9 +627,7 @@
 			background-color: transparent;
 	    border: 2px solid #d8d8d8;
 	    border-radius: 4px;
-	    color: #283e52;
 	    padding: 6px 14px;
-	    font-size: 14px;
 	    margin-left: 20px;
 	    font-weight: 700;
 	    line-height: 24px;
@@ -674,7 +690,6 @@
 		width: 100%;
 		padding: 45px 0px;
 		background-color: #fff;
-    color: #9c9c9c;
     position: fixed;
     z-index: 1;
 
@@ -688,7 +703,6 @@
 			clear: both;
 			display: inline-block;
 			width: 100%;
-			color: #283e52;
 	    margin: 30px 0 50px;
 	    font-size: 32px;
 	    font-weight: 700;
@@ -708,7 +722,6 @@
 	}
 	.employee-prev-next-button {
 		background-color: #f9f9f9;
-    color: #283e52;
     border: 1px solid #cbcbcb;
     padding: 10px 40px;
     position: fixed;
