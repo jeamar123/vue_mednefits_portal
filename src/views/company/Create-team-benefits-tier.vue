@@ -3,11 +3,13 @@
 		<div class="benefits-tier-wrapper">
 		  <h1>Create team benefits tiers.</h1>
 
+			<!-- button add tier -->
 		  <div v-if="isTierBtn" class="add-tier-wrapper">
 		  	<h4>Add a tier</h4>
 		  	<button @click="addTierBtn()"><img :src="'../assets/img/plus-gray.png'"></button>
 		  </div>
 
+			<!-- forms for add tier -->
 		  <div v-if="isTierInput" class="tier-item-wrapper">
 		  	<div class="tier-item-form">
 					<div class="tier-item-header">

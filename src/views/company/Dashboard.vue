@@ -131,7 +131,7 @@
             </div>
           </div>
 
-          <div class="template-menu-accordion" v-if="isState === 'excel' && $route.name != 'CompanyEnrollmentOptions'">
+          <div class="template-menu-accordion" v-if="isState === 'excel' && $route.name != 'CompanyEnrollmentOptions' && $route.name != 'CompanyHome'">
             <div class="menu-accordion-list">
               <span class="number step done-step">1</span>
               <span class="menu-accordion-label step">Download</span>

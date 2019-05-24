@@ -743,6 +743,7 @@ let enrollment = {
         }
       } else if (data == 'enrollsum') {
         this.isState = 'enrollsum';
+        this.stepperState = null;
         console.log('na click ni', this.isState);
       }
         
