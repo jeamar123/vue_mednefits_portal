@@ -136,7 +136,7 @@
       </div>
 
       <!-- Employee Overview Information -->
-      <div class="overview-info-wrapper" v-if="overviewInfoShow">
+      <div class="overview-info-wrapper" id="info-wrapper" v-if="overviewInfoShow">
 
         <!-- Employee Details-->
         <FadeTransition>
@@ -241,7 +241,7 @@
                     </div>
                     <div class="usage-details">
                       <span>Pending claim:</span>
-                      <span>S$ <span>0.00</span></span>
+                      <span>S$ <span>0.00</span></span> 
                     </div>
                   </div>
                 </div>
@@ -251,8 +251,8 @@
                 </div>
               </div>
               <div class="btn-person-info-container">
-                <button @click="removeEmployee( 'showRemove' )" class="btn-remove-employee">Remove Employee</button>
-                <button v-if="false" class="btn-health-spending">Health Spending Account Summary</button>
+                <button @click="removeEmployee( 'showRemove' )" v-if="false" class="btn-remove-employee">Remove Employee</button>
+                <button @click="viewEmployeeSpendingSummary( )" class="btn-health-spending">Health Spending Account Summary</button>
               </div>
             </div>
             <div class="employee-information-wrapper">
@@ -522,6 +522,22 @@
                 <div class="settings-information" v-if="toggle_overiew_type == 3">
                   <div class="employee-settings-wrapper">
                     <button @click="reset()"><img :src="'../assets/img/open-wrench-tool.png'">Resend/Reset Account</button>
+                  </div>
+                </div>
+              </FadeTransition>
+              <FadeTransition>
+                <div v-if="healthSpendingAccountTabIsShow" class="account-summary-wrapper">
+                  <span class="account-summary-name">Serene Song</span>
+                  <h1>Health Spending Account Summary</h1>
+                  <div class="credits-summary-container">
+                    <div class="account-summary-pro-rated">Pro-rated allocation from 
+                      <span><strong>Start</strong> - <span class="account-summary-date">01/01/2019</span></span> to 
+                      <span><strong>End</strong> - <span class="account-summary-date">08/04/2019</span></span>
+                    </div>
+                    <div class="account-summary-usage">Usage from
+                      <span><strong> Start</strong> - <span class="account-summary-date">01/01/2019</span></span> to 
+                      <span> <strong>Current</strong> - <span class="account-summary-date">19/03/2019</span></span>
+                    </div>
                   </div>
                 </div>
               </FadeTransition>
