@@ -18,12 +18,14 @@ let employee = {
       isWellnessUsageShow: false,
       showAddDependents: false,
       showRemoveEmployee: false,
+      healthSpendingAccountTabIsShow: false,
       toggle_overiew_type: 1
     };
   },
   methods: {
 		toggleTabOverview( opt ) {
 			this.toggle_overiew_type = opt;
+			this.healthSpendingAccountTabIsShow = false;
 		},
 		toggleMedicalUsage() {
 			if(this.isMedicalUsageShow == false ) {
@@ -94,6 +96,16 @@ let employee = {
           this.isState = "web";
         }
       });
+		},
+		viewEmployeeSpendingSummary() {
+
+			if (this.healthSpendingAccountTabIsShow == false ) {
+				this.toggle_overiew_type = 4;
+				this.healthSpendingAccountTabIsShow = true;
+			}else {
+				this.toggle_overiew_type = 1;
+				this.healthSpendingAccountTabIsShow = false;
+			}
 		}
 	}
 };
