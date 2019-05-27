@@ -744,6 +744,100 @@
 		.credits-summary-container {
 			text-align: center;
 			font-weight: 700;
+			line-height: 24px;
+
+			strong {
+				font-family: 'Helvetica Medium';
+			}
+			.account-summary-date {
+				text-decoration: underline;
+			}
+		}
+		.medical-wellness-wrapper {
+			width: 750px;
+			display: flex;
+			border: 1px solid #cbcbcb;
+    	background-color: #f9f9f9;
+    	margin: 40px auto 110px;
+    	padding: 20px 40px;
+    	font-weight: 700;
+
+    	>div:nth-child(1),
+    	>div:nth-child(3) {
+    		width: 100%;
+    	}
+
+    	h4 {
+    		font-family: 'Helvetica Medium';
+    		font-size: 16px;
+    		margin: 10px 0;
+    	}
+		}
+
+		.spending-account-details {
+
+			>div {
+				line-height: 24px;
+				margin-bottom: 10px;
+			}
+			>div.current-usage,
+			>div.current-usage-details {
+				line-height: 1.1;
+				margin-bottom: 0;
+			}
+			>div.balance {
+				margin-top: 10px;
+			}
+		}
+		.bills-spending-container {
+			display: grid;
+			grid-template-columns: 1.5fr 1fr;
+
+			strong,
+			&.pro-rated div,
+			&.balance div {
+				font-family: 'Helvetica Medium';
+			}
+			&.current-usage div {
+				color: #33cccb;
+			}
+			div {
+				text-align: right;
+			}
+		}
+
+		.spending-account-status {
+			&:before {
+				display: inline-block;
+				content: "";
+				border-radius: 50%;
+				height: 12px;
+				width: 12px;
+				margin-right: 10px;
+			}
+
+			&.on-track {
+				color: #33cccb;
+			}
+			&.on-track:before {
+				background-color: #33cccb;
+			}
+
+			&.exceed {
+				color: #FF5757;
+			}
+			&.exceed:before {
+				background-color: #FF5757;
+			}
+		}
+
+		.separator {
+			content: "";
+			display: block;
+			border: .5px solid #cbcbcb;
+			text-align: center;
+			height: 175px;
+    	margin: 40px 60px 0;
 		}
 	}
 	.employee-prev-next-button {
