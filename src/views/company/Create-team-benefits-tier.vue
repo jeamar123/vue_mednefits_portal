@@ -74,7 +74,7 @@
 							</div>
 						</div>
 						<div class="tier-item-button">
-							<button v-if="isEditActive" class="btn-delete-tier">Remove</button>
+							<button v-if="isEditActive" class="btn-delete-tier" @click="remove">Remove</button>
 							<button v-if="!isEditActive" @click="saveTierData('save')">Save &amp; Continue</button>
 							<button v-if="isEditActive" @click="saveTierData('edit')">Save &amp; Continue</button>
 						</div>

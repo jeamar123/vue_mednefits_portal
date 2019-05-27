@@ -673,8 +673,9 @@ let enrollment = {
         type: "warning",
         showCancelButton: true,
         confirmButtonText: "Yes",
+        confirmButtonColor: '#0392CF',
         cancelButtonText: "No",
-        customClass: "warning-global-container"
+        customClass: "warning-global-container primary"
       }).then(result => {
         if (result.value) {
           this.modalEdit = false;
@@ -695,8 +696,9 @@ let enrollment = {
         type: "warning",
         showCancelButton: true,
         confirmButtonText: "Yes",
+        confirmButtonColor: '#ff6864',
         cancelButtonText: "No",
-        customClass: "warning-global-container"
+        customClass: "warning-global-container danger"
       }).then(result => {
         if (result.value) {
           this.modalEdit = false;
