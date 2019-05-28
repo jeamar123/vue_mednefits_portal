@@ -661,9 +661,29 @@
 		label {
 			font-size: 12px;
 		}
-		.dob {
+		.remove-dob {
 			margin-right: 0;
 			width: 47%;
+		}
+	}
+
+	.employee-outcome-container {
+		width: 530px;
+		margin: 0 460px;
+		font-weight: 700;
+
+		.outcome-title {
+			margin-bottom: 20px;
+		}
+		label {
+			font-size: 14px;
+		}
+		.review-prepare-template-text {
+			line-height: 24px;
+		}
+		.review-prepare-template-subtext {
+			font-size: 10px;
+			line-height: 1.1;
 		}
 	}
 	.account-summary-wrapper {
