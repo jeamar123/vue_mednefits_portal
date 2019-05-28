@@ -85,13 +85,16 @@ let enrollment = {
     },
     prevNextEmp(data) {
       let arrStorage = this.employeeStorage;
-      
+      console.log( arrStorage );
       if (data == 'prev') {
         let total = arrStorage.length -1;
+        console.log( total );
         this.indexData = total--;
         let index = parseInt(this.indexData);
-        console.log("length", index, total);
-        console.log(arrStorage ,arrStorage[index]);
+        console.log( this.indexData );
+        console.log( arrStorage );
+        // console.log("length", index, total);
+        // console.log(arrStorage ,arrStorage[index]);
       }
       // console.log("index", index, "length", index);
       // this.employeeDetails = {
