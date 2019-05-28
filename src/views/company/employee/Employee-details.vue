@@ -159,65 +159,63 @@
 
         <transition name="fade">
           <div class="employee-information" v-if="toggle_overiew_type == 1">
-            <div class="employee-details-wrapper">
-              <h3 class="employee-details-title">Employee Information</h3>
-              <div class="dependent-btn-container">
-                <button @click="modalEdit.employee = true">
-                  <img :src="'../assets/img/icons/edit.png'">Edit
-                </button>
-              </div>
-              <div class="employee-info-details">
-                <div class="col-1-employee-information-details">
-                  <div>
-                    <strong>First Name</strong>
-                    <span>unique</span>
-                  </div>
-                  <div>
-                    <strong>Last Name</strong>
-                    <span>nina</span>
-                  </div>
-                  <div>
-                    <strong>NRIC/FIN</strong>
-                    <span>S7506591D</span>
-                  </div>
-                  <div>
-                    <strong>Member ID</strong>
-                    <span>000003</span>
-                  </div>
-                  <div>
-                    <strong>Date of Birth</strong>
-                    <span>08/08/1993</span>
-                  </div>
+            <h3 class="employee-details-title">Employee Information</h3>
+            <div class="dependent-btn-container">
+              <button @click="modalEdit.employee = true">
+                <img :src="'../assets/img/icons/edit.png'">Edit
+              </button>
+            </div>
+            <div class="employee-info-details">
+              <div class="col-1-employee-information-details">
+                <div>
+                  <strong>First Name</strong>
+                  <span>unique</span>
                 </div>
-                <div class="col-2-employee-information-details">
-                  <div>
-                    <strong>Work Email</strong>
-                    <span>allan.alzula@gmail.com</span>
-                  </div>
-                  <div>
-                    <strong>Mobile Number</strong>
-                    <span>63906431792</span>
-                  </div>
-                  <div>
-                    <strong>Postal Code</strong>
-                    <span>9000</span>
-                  </div>
-                  <div>
-                    <strong>Job Title</strong>
-                    <span>Building and Estate Management</span>
-                  </div>
-                  <div>
-                    <strong>Bank Account Number</strong>
-                    <span>Building and Estate Management</span>
-                  </div>
+                <div>
+                  <strong>Last Name</strong>
+                  <span>nina</span>
+                </div>
+                <div>
+                  <strong>NRIC/FIN</strong>
+                  <span>S7506591D</span>
+                </div>
+                <div>
+                  <strong>Member ID</strong>
+                  <span>000003</span>
+                </div>
+                <div>
+                  <strong>Date of Birth</strong>
+                  <span>08/08/1993</span>
                 </div>
               </div>
-              <div class="employee-btn-add-seat-wrapper">
-                <h3>Add a Dependent?</h3>
-                <button @click="toggleAddDependents( 'add' )" class="btn-add-seat">
-                  <img :src="'../assets/img/icons/add-employee.svg'">Add
-                </button>
+              <div class="col-2-employee-information-details">
+                <div>
+                  <strong>Work Email</strong>
+                  <span>allan.alzula@gmail.com</span>
+                </div>
+                <div>
+                  <strong>Mobile Number</strong>
+                  <span>63906431792</span>
+                </div>
+                <div>
+                  <strong>Postal Code</strong>
+                  <span>9000</span>
+                </div>
+                <div>
+                  <strong>Job Title</strong>
+                  <span>Building and Estate Management</span>
+                </div>
+                <div>
+                  <strong>Bank Account Number</strong>
+                  <span>Building and Estate Management</span>
+                </div>
               </div>
+            </div>
+            <div class="employee-btn-add-seat-wrapper">
+              <h3>Add a Dependent?</h3>
+              <button @click="toggleAddDependents( 'add' )" class="btn-add-seat">
+                <img :src="'../assets/img/icons/add-employee.svg'">Add
+              </button>
             </div>
           </div>
         </transition>
@@ -225,7 +223,6 @@
         <transition name="fade">
           <div class="dependent-information" v-if="toggle_overiew_type == 2">
             <h3 class="employee-details-title">Dependent Information</h3>
-            <div class="employee-details-wrapper">
               <div class="dependent-btn-container">
                 <button>
                   <img :src="'../assets/img/icons/dustbin.png'">Remove
@@ -264,18 +261,14 @@
                   </div>
                 </div>
               </div>
-
-            </div>
           </div>
         </transition>
 
         <transition name="fade">
           <div class="settings-information" v-if="toggle_overiew_type == 3">
-            <div class="employee-settings-wrapper">
-              <button @click="reset()">
-                <img :src="'../assets/img/open-wrench-tool.png'">Resend/Reset Account
-              </button>
-            </div>
+            <button @click="reset()">
+              <img :src="'../assets/img/open-wrench-tool.png'">Resend/Reset Account
+            </button>
           </div>
         </transition>
 
@@ -492,17 +485,17 @@
         <form class="form-input-container">
           <div class="employee-input-container">
             <div class="employee-input-wrapper">
-              <label for="fname">First / Given Name</label>
+              <label class="remove-label" for="fname">First / Given Name</label>
               <input type="text" name="fname">
             </div>
             <div class="employee-input-wrapper">
-              <label for="fname">Last / Family Name</label>
+              <label class="remove-label" for="fname">Last / Family Name</label>
               <input type="text" name="lname">
             </div>
           </div>
           <div class="employee-input-container">
             <div class="employee-input-wrapper remove-dob">
-              <label for="">Date of Birth</label>
+              <label class="remove-label" for="">Date of Birth</label>
               <v-date-picker
                   :max-date='new Date()'
                   :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
@@ -538,81 +531,79 @@
 
       <!-- Replacement Employee Details-->
       <div v-if="true" class="replacement-employee-wrapper">
-        <div class="employee-details-wrapper">
-          <div class="employee-tier-title">Replacement</div>
-          <div class="employee-details-header">
-            <h1>Employee Details</h1>
+        <div class="employee-tier-title">Replacement</div>
+        <div class="employee-details-header">
+          <h1>Employee Details</h1>
+        </div>
+        <form>
+          <div class="employee-input-container">
+            <div class="employee-input-wrapper">
+              <label for="fname">First / Given Name</label>
+              <input type="text" name="fname"></div>
+            <div class="employee-input-wrapper">
+              <label for="fname">Last / Family Name</label>
+              <input type="text" name="lname"></div>
           </div>
-          <form>
-            <div class="employee-input-container">
-              <div class="employee-input-wrapper">
-                <label for="fname">First / Given Name</label>
-                <input type="text" name="fname"></div>
-              <div class="employee-input-wrapper">
-                <label for="fname">Last / Family Name</label>
-                <input type="text" name="lname"></div>
+          <div class="employee-input-container">
+            <div class="employee-input-wrapper nric">
+              <label>
+                <input type="radio" name="id_status" value="nric">
+              NRIC
+              </label>
+              <label>
+                <input type="radio" name="id_status" value="fin">
+              FIN
+              </label>
+              <input type="text" name="nric-fin">
             </div>
-            <div class="employee-input-container">
-              <div class="employee-input-wrapper nric">
-                <label>
-                  <input type="radio" name="id_status" value="nric">
-                NRIC
-                </label>
-                <label>
-                  <input type="radio" name="id_status" value="fin">
-                FIN
-                </label>
-                <input type="text" name="nric-fin">
-              </div>
-              <div class="employee-input-wrapper dob">
-                <label>Date of Birth</label>
-                <v-date-picker
-                    popoverDirection="top"
-                    :max-date='new Date()'
-                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
-                >
-                </v-date-picker>
-              </div>
+            <div class="employee-input-wrapper dob">
+              <label>Date of Birth</label>
+              <v-date-picker
+                  popoverDirection="top"
+                  :max-date='new Date()'
+                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+              >
+              </v-date-picker>
             </div>
-            <div class="employee-input-container">
-              <div class="employee-input-wrapper">
-                <label for="fname">Work Email</label>
-                <input type="email" name="work-email">
-              </div>
-              <div class="employee-input-wrapper">
-                <label for="fname">Mobile</label>
-                <input type="number" name="mobile">
-              </div>
-            </div>
-            <div class="employee-input-container">
-              <div class="employee-input-wrapper">
-                <label for="fname">Postal Code</label>
-                <input type="text" name="postal-code">
-              </div>
-              <div class="employee-input-wrapper">
-                <label>Start Date</label>
-                <v-date-picker
-                    popoverDirection="top"
-                    :date='new Date()'
-                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
-                >
-                </v-date-picker>
-              </div>
-            </div>
-            <div class="employee-input-container">
-              <div class="employee-input-wrapper">
-                <label for="fname" class="medical-text">Medical Credits</label>
-                <label class="subtext">*If there are no credits to allocate, please key in 0</label>
-                <input type="number" min="0" value="0" name="medical-credits">
-              </div>
-              <div class="employee-input-wrapper">
-                <label for="fname" class="wellness-text">Wellness Credits</label>
-                <label class="subtext">*If there are no credits to allocate, please key in 0</label>
-                <input type="number" min="0" value="0" name="wellness-credits">
-              </div>
-            </div>
-          </form>
           </div>
+          <div class="employee-input-container">
+            <div class="employee-input-wrapper">
+              <label for="fname">Work Email</label>
+              <input type="email" name="work-email">
+            </div>
+            <div class="employee-input-wrapper">
+              <label for="fname">Mobile</label>
+              <input type="number" name="mobile">
+            </div>
+          </div>
+          <div class="employee-input-container">
+            <div class="employee-input-wrapper">
+              <label for="fname">Postal Code</label>
+              <input type="text" name="postal-code">
+            </div>
+            <div class="employee-input-wrapper">
+              <label>Start Date</label>
+              <v-date-picker
+                  popoverDirection="top"
+                  :date='new Date()'
+                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+              >
+              </v-date-picker>
+            </div>
+          </div>
+          <div class="employee-input-container">
+            <div class="employee-input-wrapper">
+              <label for="fname" class="medical-text">Medical Credits</label>
+              <label class="subtext">*If there are no credits to allocate, please key in 0</label>
+              <input type="number" min="0" value="0" name="medical-credits">
+            </div>
+            <div class="employee-input-wrapper">
+              <label for="fname" class="wellness-text">Wellness Credits</label>
+              <label class="subtext">*If there are no credits to allocate, please key in 0</label>
+              <input type="number" min="0" value="0" name="wellness-credits">
+            </div>
+          </div>
+        </form>
       </div>
 
       <!-- Health Spending Account Summary -->
