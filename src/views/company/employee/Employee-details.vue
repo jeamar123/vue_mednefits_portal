@@ -486,6 +486,7 @@
     <!-- remove employee-->
     <div class="remove-employee-wrapper" v-if="showRemoveEmployee">
       <img @click="removeEmployee( 'cancel' )" :src="'../assets/img/icons/cancel.png'">
+
       <div v-if="false" class="remove-container">
         <h1>Remove employee</h1>
         <form class="form-input-container">
@@ -500,33 +501,123 @@
             </div>
           </div>
           <div class="employee-input-container">
-            <div class="employee-input-wrapper dob">
-              <label for>Date of Birth</label>
-              <v-date-picker :max-date="new Date()"
-                :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'></v-date-picker>
+            <div class="employee-input-wrapper remove-dob">
+              <label for="">Date of Birth</label>
+              <v-date-picker
+                  :max-date='new Date()'
+                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+              >
+              </v-date-picker>
             </div>
           </div>
         </form>
       </div>
-      <div v-if="true" class>
+
+      <div v-if="false" class="employee-outcome-wrapper">
         <h1>How would you like to proceed?</h1>
         <div class="employee-outcome-container">
-          <span class="outcome-title">Please select one of the outcome:</span>
+          <div class="outcome-title">Please select one of the outcome:</div>
           <label class="review-container">
-            <input type="checkbox" value="1">
-            <span class="review-prepare-template-text">To replace the leaving employee, I would like to pre-enroll the
-              new joiner.</span>
+            <input type="checkbox">
+            <span class="review-prepare-template-text">To replace the leaving employee, I would like to pre-enroll the new joiner. </span>
             <span class="review-checkmark"></span>
           </label>
           <label class="review-container">
-            <input type="checkbox" value="1">
-            <span class="review-prepare-template-text">I'm not ready to pre-enroll the new joiner, please hold the seat
-              for future hire.</span>
-            <span class="review-prepare-template-text">*Note: Once this employee is removed, the occupied seat will move
-              to a vacant seat.</span>
+            <input type="checkbox">
+            <span class="review-prepare-template-text">I'm not ready to pre-enroll the new joiner, please hold the seat for future hire. </span>
+            <span class="review-prepare-template-subtext">*Note: Once this employee is removed, the occupied seat will move to a vacant seat.</span>
+            <span class="review-checkmark"></span>
+          </label>
+          <label class="review-container">
+            <input type="checkbox">
+            <span class="review-prepare-template-text">Please remove the seat completely, and proceed for refund.</span>
             <span class="review-checkmark"></span>
           </label>
         </div>
+      </div>
+
+      <!-- Replacement Employee Details-->
+      <div v-if="true" class="replacement-employee-wrapper">
+        <div class="employee-details-wrapper">
+          <div class="employee-tier-title">Replacement</div>
+          <div class="employee-details-header">
+            <h1>Employee Details</h1>
+          </div>
+          <form>
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label for="fname">First / Given Name</label>
+                <input type="text" name="fname"></div>
+              <div class="employee-input-wrapper">
+                <label for="fname">Last / Family Name</label>
+                <input type="text" name="lname"></div>
+            </div>
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper nric">
+                <label>
+                  <input type="radio" name="id_status" value="nric">
+                NRIC
+                </label>
+                <label>
+                  <input type="radio" name="id_status" value="fin">
+                FIN
+                </label>
+                <input type="text" name="nric-fin">
+              </div>
+              <div class="employee-input-wrapper dob">
+                <label>Date of Birth</label>
+                <v-date-picker
+                    popoverDirection="top"
+                    :max-date='new Date()'
+                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                >
+                </v-date-picker>
+              </div>
+            </div>
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label for="fname">Work Email</label>
+                <input type="email" name="work-email">
+              </div>
+              <div class="employee-input-wrapper">
+                <label for="fname">Mobile</label>
+                <input type="number" name="mobile">
+              </div>
+            </div>
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label for="fname">Postal Code</label>
+                <input type="text" name="postal-code">
+              </div>
+              <div class="employee-input-wrapper">
+                <label>Start Date</label>
+                <v-date-picker
+                    popoverDirection="top"
+                    :date='new Date()'
+                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                >
+                </v-date-picker>
+              </div>
+            </div>
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label for="fname" class="medical-text">Medical Credits</label>
+                <label class="subtext">*If there are no credits to allocate, please key in 0</label>
+                <input type="number" min="0" value="0" name="medical-credits">
+              </div>
+              <div class="employee-input-wrapper">
+                <label for="fname" class="wellness-text">Wellness Credits</label>
+                <label class="subtext">*If there are no credits to allocate, please key in 0</label>
+                <input type="number" min="0" value="0" name="wellness-credits">
+              </div>
+            </div>
+          </form>
+          </div>
+      </div>
+
+      <!-- Health Spending Account Summary -->
+      <div v-if="false" class="">
+        
       </div>
 
       <div class="prev-next-button-container">
@@ -537,133 +628,135 @@
       </div>
     </div>
 
-    <!-- modal edit for employee -->
-    <Modal v-if="modalEdit.employee">
-      <div slot="header">
-        <span>allan cheam alzula</span>
-        <img @click="modalEdit.employee = false" :src="'../assets/img/icons/close-blue.svg'">
-        <h1>Edit employee details</h1>
-      </div>
-      <div slot="body">
-        <form>
-          <div class="employee-input-container">
-            <div class="employee-input-wrapper">
-              <label for="fname">First Name</label>
-              <input type="text" name="fname">
+    <div class="global-modal-wrapper">
+      <!-- modal edit for employee -->
+      <Modal v-if="modalEdit.employee">
+        <div slot="header">
+          <span>allan cheam alzula</span>
+          <img @click="modalEdit.employee = false" :src="'../assets/img/icons/close-blue.svg'">
+          <h1>Edit employee details</h1>
+        </div>
+        <div slot="body">
+          <form>
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label for="fname">First Name</label>
+                <input type="text" name="fname">
+              </div>
+              <div class="employee-input-wrapper">
+                <label for="work-email">Work Email</label>
+                <input type="text" name="work-email">
+              </div>
             </div>
-            <div class="employee-input-wrapper">
-              <label for="work-email">Work Email</label>
-              <input type="text" name="work-email">
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label for="lname">Last Name</label>
+                <input type="text" name="lname">
+              </div>
+              <div class="employee-input-wrapper">
+                <label for="number">Mobile Number</label>
+                <input type="number" name="number">
+              </div>
             </div>
-          </div>
-          <div class="employee-input-container">
-            <div class="employee-input-wrapper">
-              <label for="lname">Last Name</label>
-              <input type="text" name="lname">
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label>NRIC</label>
+                <input type="text" name="nric-fin">
+              </div>
+              <div class="employee-input-wrapper">
+                <label for="postal-code">Postal Code</label>
+                <input type="number" name="postal-code">
+              </div>
             </div>
-            <div class="employee-input-wrapper">
-              <label for="number">Mobile Number</label>
-              <input type="number" name="number">
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label>Member ID</label>
+                <input type="number" name="member-id">
+              </div>
+              <div class="employee-input-wrapper">
+                <label for="postal-code">Postal Code</label>
+                <select>
+                  <option>Building and Estate Management</option>
+                  <option>Education</option>
+                  <option>Engineering</option>
+                </select>
+                <img :src="'../assets/img/icons/down-arrow.svg'">
+              </div>
             </div>
-          </div>
-          <div class="employee-input-container">
-            <div class="employee-input-wrapper">
-              <label>NRIC</label>
-              <input type="text" name="nric-fin">
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper dob">
+                <label for="fname">Date of Birth</label>
+                <v-date-picker :max-date="new Date()"
+                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'></v-date-picker>
+              </div>
+              <div class="employee-input-wrapper">
+                <label>Bank Account Number</label>
+                <input type="number" name="bank-account-number">
+              </div>
             </div>
-            <div class="employee-input-wrapper">
-              <label for="postal-code">Postal Code</label>
-              <input type="number" name="postal-code">
-            </div>
-          </div>
-          <div class="employee-input-container">
-            <div class="employee-input-wrapper">
-              <label>Member ID</label>
-              <input type="number" name="member-id">
-            </div>
-            <div class="employee-input-wrapper">
-              <label for="postal-code">Postal Code</label>
-              <select>
-                <option>Building and Estate Management</option>
-                <option>Education</option>
-                <option>Engineering</option>
-              </select>
-              <img :src="'../assets/img/icons/down-arrow.svg'">
-            </div>
-          </div>
-          <div class="employee-input-container">
-            <div class="employee-input-wrapper dob">
-              <label for="fname">Date of Birth</label>
-              <v-date-picker :max-date="new Date()"
-                :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'></v-date-picker>
-            </div>
-            <div class="employee-input-wrapper">
-              <label>Bank Account Number</label>
-              <input type="number" name="bank-account-number">
-            </div>
-          </div>
-        </form>
-      </div>
-      <div slot="footer">
-        <button>CANCEL</button>
-        <button>SAVE & CONTINUE</button>
-      </div>
-    </Modal>
+          </form>
+        </div>
+        <div slot="footer">
+          <button>CANCEL</button>
+          <button>SAVE & CONTINUE</button>
+        </div>
+      </Modal>
 
-    <!-- modal edit  for dependent-->
-    <Modal v-if="modalEdit.dependent">
-      <div slot="header">
-        <img @click="modalEdit.dependent = false" :src="'../assets/img/icons/close-blue.svg'">
-        <h1>Edit dependent details</h1>
-      </div>
-      <div slot="body">
-        <form>
-          <div class="employee-input-container">
-            <div class="employee-input-wrapper">
-              <label for="fname">First Name</label>
-              <input type="text" name="fname">
+      <!-- modal edit  for dependent-->
+      <Modal v-if="modalEdit.dependent">
+        <div slot="header">
+          <img @click="modalEdit.dependent = false" :src="'../assets/img/icons/close-blue.svg'">
+          <h1>Edit dependent details</h1>
+        </div>
+        <div slot="body">
+          <form>
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label for="fname">First Name</label>
+                <input type="text" name="fname">
+              </div>
+              <div class="employee-input-wrapper dob">
+                <label for="fname">Date of Birth</label>
+                <v-date-picker :max-date="new Date()"
+                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
+                </v-date-picker>
+              </div>
             </div>
-            <div class="employee-input-wrapper dob">
-              <label for="fname">Date of Birth</label>
-              <v-date-picker :max-date="new Date()"
-                :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
-              </v-date-picker>
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label for="lname">Last Name</label>
+                <input type="text" name="lname">
+              </div>
+              <div class="employee-input-wrapper">
+                <label for="postal-code">Relationship</label>
+                <select>
+                  <option>Spouse</option>
+                  <option>Child</option>
+                  <option>Family</option>
+                  <option>Parent</option>
+                </select>
+                <img :src="'../assets/img/icons/down-arrow.svg'">
+              </div>
             </div>
-          </div>
-          <div class="employee-input-container">
-            <div class="employee-input-wrapper">
-              <label for="lname">Last Name</label>
-              <input type="text" name="lname">
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label>Member ID</label>
+                <input type="number" name="member-id">
+              </div>
+              <div class="employee-input-wrapper">
+                <label>NRIC/FIN</label>
+                <input type="number" name="member-id">
+              </div>
             </div>
-            <div class="employee-input-wrapper">
-              <label for="postal-code">Relationship</label>
-              <select>
-                <option>Spouse</option>
-                <option>Child</option>
-                <option>Family</option>
-                <option>Parent</option>
-              </select>
-              <img :src="'../assets/img/icons/down-arrow.svg'">
-            </div>
-          </div>
-          <div class="employee-input-container">
-            <div class="employee-input-wrapper">
-              <label>Member ID</label>
-              <input type="number" name="member-id">
-            </div>
-            <div class="employee-input-wrapper">
-              <label>NRIC/FIN</label>
-              <input type="number" name="member-id">
-            </div>
-          </div>
-        </form>
-      </div>
-      <div slot="footer">
-        <button>CANCEL</button>
-        <button>SAVE & CONTINUE</button>
-      </div>
-    </Modal>
-    
+          </form>
+        </div>
+        <div slot="footer">
+          <button>CANCEL</button>
+          <button>SAVE & CONTINUE</button>
+        </div>
+      </Modal>
+    </div>
+
   </div>
 </template>
 

@@ -3,82 +3,28 @@
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
-          <div class="modal-body">
+          
+          <div class="modal-header">
             <div class="employee-name-container">
               <slot name="header">
               <!-- Header Content Here -->
               </slot>
             </div>
+          </div>
+
+          <div class="modal-body">
             <slot name="body">
-              <!-- <form>
-                <div class="employee-input-container">
-                  <div class="employee-input-wrapper">
-                    <label for="fname">First Name</label>
-                    <input type="text" name="fname">
-                  </div>
-                  <div class="employee-input-wrapper">
-                    <label for="work-email">Work Email</label>
-                    <input type="text" name="work-email">
-                  </div>
-                </div>
-                <div class="employee-input-container">
-                  <div class="employee-input-wrapper">
-                    <label for="lname">Last Name</label>
-                    <input type="text" name="lname">
-                  </div>
-                  <div class="employee-input-wrapper">
-                    <label for="number">Mobile Number</label>
-                    <input type="number" name="number">
-                  </div>
-                </div>
-                <div class="employee-input-container">
-                  <div class="employee-input-wrapper">
-                    <label>NRIC</label>
-                    <input type="text" name="nric-fin">
-                  </div>
-                  <div class="employee-input-wrapper">
-                    <label for="postal-code">Postal Code</label>
-                    <input type="number" name="postal-code">
-                  </div>
-                </div>
-                <div class="employee-input-container">
-                  <div class="employee-input-wrapper">
-                    <label>Member ID</label>
-                    <input type="number" name="member-id">
-                  </div>
-                  <div class="employee-input-wrapper">
-                    <label for="postal-code">Postal Code</label>
-                    <select>
-                      <option>Building and Estate Management</option>
-                      <option>Education</option>
-                      <option>Engineering</option>
-                    </select>
-                    <img :src="'../assets/img/icons/down-arrow.svg'">
-                  </div>
-                </div>
-                <div class="employee-input-container">
-                  <div class="employee-input-wrapper dob">
-                    <label for="fname">Date of Birth</label>
-                    <v-date-picker
-                      :max-date="new Date()"
-                      :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
-                    ></v-date-picker>
-                  </div>
-                  <div class="employee-input-wrapper">
-                    <label>Bank Account Number</label>
-                    <input type="number" name="bank-account-number">
-                  </div>
-                </div>
-              </form> -->
-            </slot>
-           
+            </slot>        
+          </div>
+
+          <div class="modal-footer">
             <div class="modal-btn-container">
               <slot name="footer">
                 <!-- Footer Content here -->
               </slot>
             </div>
-          
           </div>
+
         </div>
       </div>
     </div>
