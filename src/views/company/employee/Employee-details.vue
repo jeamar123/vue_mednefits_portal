@@ -1,4 +1,4 @@
-Modal<template>
+<template>
   <div>
     <div v-if="!showAddDependents && !showRemoveEmployee" class="employee-information-container">
       <div class="person-information">
@@ -157,121 +157,127 @@ Modal<template>
             class="employee-selection">Settings</div>
         </div>
 
-        <div class="employee-information" v-if="toggle_overiew_type == 1">
-          <div class="employee-details-wrapper">
-            <h3 class="employee-details-title">Employee Information</h3>
-            <div class="dependent-btn-container">
-              <button @click="modalEdit.employee = true">
-                <img :src="'../assets/img/icons/edit.png'">Edit
-              </button>
-            </div>
-            <div class="employee-info-details">
-              <div class="col-1-employee-information-details">
-                <div>
-                  <strong>First Name</strong>
-                  <span>unique</span>
+        <transition name="fade">
+          <div class="employee-information" v-if="toggle_overiew_type == 1">
+            <div class="employee-details-wrapper">
+              <h3 class="employee-details-title">Employee Information</h3>
+              <div class="dependent-btn-container">
+                <button @click="modalEdit.employee = true">
+                  <img :src="'../assets/img/icons/edit.png'">Edit
+                </button>
+              </div>
+              <div class="employee-info-details">
+                <div class="col-1-employee-information-details">
+                  <div>
+                    <strong>First Name</strong>
+                    <span>unique</span>
+                  </div>
+                  <div>
+                    <strong>Last Name</strong>
+                    <span>nina</span>
+                  </div>
+                  <div>
+                    <strong>NRIC/FIN</strong>
+                    <span>S7506591D</span>
+                  </div>
+                  <div>
+                    <strong>Member ID</strong>
+                    <span>000003</span>
+                  </div>
+                  <div>
+                    <strong>Date of Birth</strong>
+                    <span>08/08/1993</span>
+                  </div>
                 </div>
-                <div>
-                  <strong>Last Name</strong>
-                  <span>nina</span>
-                </div>
-                <div>
-                  <strong>NRIC/FIN</strong>
-                  <span>S7506591D</span>
-                </div>
-                <div>
-                  <strong>Member ID</strong>
-                  <span>000003</span>
-                </div>
-                <div>
-                  <strong>Date of Birth</strong>
-                  <span>08/08/1993</span>
+                <div class="col-2-employee-information-details">
+                  <div>
+                    <strong>Work Email</strong>
+                    <span>allan.alzula@gmail.com</span>
+                  </div>
+                  <div>
+                    <strong>Mobile Number</strong>
+                    <span>63906431792</span>
+                  </div>
+                  <div>
+                    <strong>Postal Code</strong>
+                    <span>9000</span>
+                  </div>
+                  <div>
+                    <strong>Job Title</strong>
+                    <span>Building and Estate Management</span>
+                  </div>
+                  <div>
+                    <strong>Bank Account Number</strong>
+                    <span>Building and Estate Management</span>
+                  </div>
                 </div>
               </div>
-              <div class="col-2-employee-information-details">
-                <div>
-                  <strong>Work Email</strong>
-                  <span>allan.alzula@gmail.com</span>
-                </div>
-                <div>
-                  <strong>Mobile Number</strong>
-                  <span>63906431792</span>
-                </div>
-                <div>
-                  <strong>Postal Code</strong>
-                  <span>9000</span>
-                </div>
-                <div>
-                  <strong>Job Title</strong>
-                  <span>Building and Estate Management</span>
-                </div>
-                <div>
-                  <strong>Bank Account Number</strong>
-                  <span>Building and Estate Management</span>
-                </div>
+              <div class="employee-btn-add-seat-wrapper">
+                <h3>Add a Dependent?</h3>
+                <button @click="toggleAddDependents( 'add' )" class="btn-add-seat">
+                  <img :src="'../assets/img/icons/add-employee.svg'">Add
+                </button>
               </div>
             </div>
-            <div class="employee-btn-add-seat-wrapper">
-              <h3>Add a Dependent?</h3>
-              <button @click="toggleAddDependents( 'add' )" class="btn-add-seat">
-                <img :src="'../assets/img/icons/add-employee.svg'">Add
+          </div>
+        </transition>
+
+        <transition name="fade">
+          <div class="dependent-information" v-if="toggle_overiew_type == 2">
+            <h3 class="employee-details-title">Dependent Information</h3>
+            <div class="employee-details-wrapper">
+              <div class="dependent-btn-container">
+                <button>
+                  <img :src="'../assets/img/icons/dustbin.png'">Remove
+                </button>
+                <button @click="modalEdit.dependent = true">
+                  <img :src="'../assets/img/icons/edit.png'">Edit
+                </button>
+              </div>
+              <div class="employee-info-details">
+                <div class="col-1-employee-information-details">
+                  <div>
+                    <strong>First Name</strong>
+                    <span>unique</span>
+                  </div>
+                  <div>
+                    <strong>Last Name</strong>
+                    <span>nina</span>
+                  </div>
+                  <div>
+                    <strong>NRIC/FIN</strong>
+                    <span>S7506591D</span>
+                  </div>
+                </div>
+                <div class="col-2-employee-information-details">
+                  <div>
+                    <strong>Date of Birth</strong>
+                    <span>06/03/1996</span>
+                  </div>
+                  <div>
+                    <strong>Relationship</strong>
+                    <span>family</span>
+                  </div>
+                  <div>
+                    <strong>Member ID</strong>
+                    <span>000308</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </transition>
+
+        <transition name="fade">
+          <div class="settings-information" v-if="toggle_overiew_type == 3">
+            <div class="employee-settings-wrapper">
+              <button @click="reset()">
+                <img :src="'../assets/img/open-wrench-tool.png'">Resend/Reset Account
               </button>
             </div>
           </div>
-        </div>
-
-        <div class="dependent-information" v-if="toggle_overiew_type == 2">
-          <h3 class="employee-details-title">Dependent Information</h3>
-          <div class="employee-details-wrapper">
-            <div class="dependent-btn-container">
-              <button>
-                <img :src="'../assets/img/icons/dustbin.png'">Remove
-              </button>
-              <button @click="modalEdit.dependent = true">
-                <img :src="'../assets/img/icons/edit.png'">Edit
-              </button>
-            </div>
-            <div class="employee-info-details">
-              <div class="col-1-employee-information-details">
-                <div>
-                  <strong>First Name</strong>
-                  <span>unique</span>
-                </div>
-                <div>
-                  <strong>Last Name</strong>
-                  <span>nina</span>
-                </div>
-                <div>
-                  <strong>NRIC/FIN</strong>
-                  <span>S7506591D</span>
-                </div>
-              </div>
-              <div class="col-2-employee-information-details">
-                <div>
-                  <strong>Date of Birth</strong>
-                  <span>06/03/1996</span>
-                </div>
-                <div>
-                  <strong>Relationship</strong>
-                  <span>family</span>
-                </div>
-                <div>
-                  <strong>Member ID</strong>
-                  <span>000308</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="settings-information" v-if="toggle_overiew_type == 3">
-          <div class="employee-settings-wrapper">
-            <button @click="reset()">
-              <img :src="'../assets/img/open-wrench-tool.png'">Resend/Reset Account
-            </button>
-          </div>
-        </div>
+        </transition>
 
         <div v-if="healthSpendingAccountTabIsShow" class="account-summary-wrapper">
           <span class="account-summary-name">Serene Song</span>
@@ -657,65 +663,7 @@ Modal<template>
         <button>SAVE & CONTINUE</button>
       </div>
     </Modal>
-    <!-- <div class="modal-mask" v-if="modalEdit.dependent">
-      <div class="modal-wrapper">
-        <div class="modal-container">
-          <div class="modal-body">
-            <slot name="body">
-              <div class="employee-name-container">
-                <img @click="modalEdit.dependent = false" :src="'../assets/img/icons/close-blue.svg'">
-              </div>
-              <h1>Edit dependent details</h1>
-              <form>
-                <div class="employee-input-container">
-                  <div class="employee-input-wrapper">
-                    <label for="fname">First Name</label>
-                    <input type="text" name="fname">
-                  </div>
-                  <div class="employee-input-wrapper dob">
-                    <label for="fname">Date of Birth</label>
-                    <v-date-picker :max-date="new Date()"
-                      :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
-                    </v-date-picker>
-                  </div>
-                </div>
-                <div class="employee-input-container">
-                  <div class="employee-input-wrapper">
-                    <label for="lname">Last Name</label>
-                    <input type="text" name="lname">
-                  </div>
-                  <div class="employee-input-wrapper">
-                    <label for="postal-code">Relationship</label>
-                    <select>
-                      <option>Spouse</option>
-                      <option>Child</option>
-                      <option>Family</option>
-                      <option>Parent</option>
-                    </select>
-                    <img :src="'../assets/img/icons/down-arrow.svg'">
-                  </div>
-                </div>
-                <div class="employee-input-container">
-                  <div class="employee-input-wrapper">
-                    <label>Member ID</label>
-                    <input type="number" name="member-id">
-                  </div>
-                  <div class="employee-input-wrapper">
-                    <label>NRIC/FIN</label>
-                    <input type="number" name="member-id">
-                  </div>
-                </div>
-                <div class="modal-btn-container">
-                  <button>CANCEL</button>
-                  <button>SAVE & CONTINUE</button>
-                </div>
-              </form>
-            </slot>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
+    
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <transition name="modal">
+  <transition name="modal" appear>
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
@@ -100,20 +100,21 @@ export default {
 
 .modal-enter-active,
 .modal-leave-active {
-  opacity: 0 !important;
- 
+    /* transition: opacity; */
+  -webkit-transition: all 200ms cubic-bezier(0.785, 0.135, 0.150, 0.860); 
+   -moz-transition: all 200ms cubic-bezier(0.785, 0.135, 0.150, 0.860); 
+     -o-transition: all 200ms cubic-bezier(0.785, 0.135, 0.150, 0.860); 
+        transition: all 200ms cubic-bezier(0.785, 0.135, 0.150, 0.860); /* easeInOutCirc */
+
+-webkit-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860); 
+   -moz-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860); 
+     -o-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860); 
+        transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860); /* easeInOutCirc */
 }
 .modal-enter,
 .modal-leave-to {
-   /* transition: opacity; */
-  -webkit-transition: all 300ms cubic-bezier(0.25, 0.25, 0.75, 0.75);
-  -moz-transition: all 300ms cubic-bezier(0.25, 0.25, 0.75, 0.75);
-  -o-transition: all 300ms cubic-bezier(0.25, 0.25, 0.75, 0.75);
-  transition: all 300ms cubic-bezier(0.25, 0.25, 0.75, 0.75); /* linear */
-
-  -webkit-transition-timing-function: cubic-bezier(0.25, 0.25, 0.75, 0.75);
-  -moz-transition-timing-function: cubic-bezier(0.25, 0.25, 0.75, 0.75);
-  -o-transition-timing-function: cubic-bezier(0.25, 0.25, 0.75, 0.75);
-  transition-timing-function: cubic-bezier(0.25, 0.25, 0.75, 0.75); /* linear */
+  opacity: 0;
+ 
+ 
 }
 </style>

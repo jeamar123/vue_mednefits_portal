@@ -15,15 +15,15 @@ export default {
 .fade-enter-active,
 .fade-leave-active {
   /* transition: opacity; */
--webkit-transition: all .3s cubic-bezier(0.780, 0.000, 0.305, 1.000); 
-   -moz-transition: all .3s cubic-bezier(0.780, 0.000, 0.305, 1.000); 
-     -o-transition: all .3s cubic-bezier(0.780, 0.000, 0.305, 1.000); 
-        transition: all .3s cubic-bezier(0.780, 0.000, 0.305, 1.000); /* custom */
+-webkit-transition: all 200ms cubic-bezier(0.785, 0.135, 0.150, 0.860); 
+   -moz-transition: all 200ms cubic-bezier(0.785, 0.135, 0.150, 0.860); 
+     -o-transition: all 200ms cubic-bezier(0.785, 0.135, 0.150, 0.860); 
+        transition: all 200ms cubic-bezier(0.785, 0.135, 0.150, 0.860); /* easeInOutCirc */
 
--webkit-transition-timing-function: cubic-bezier(0.780, 0.000, 0.305, 1.000); 
-   -moz-transition-timing-function: cubic-bezier(0.780, 0.000, 0.305, 1.000); 
-     -o-transition-timing-function: cubic-bezier(0.780, 0.000, 0.305, 1.000); 
-        transition-timing-function: cubic-bezier(0.780, 0.000, 0.305, 1.000); /* custom */
+-webkit-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860); 
+   -moz-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860); 
+     -o-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860); 
+        transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860); /* easeInOutCirc */
 }
 .fade-enter,
 .fade-leave-to {
