@@ -110,7 +110,6 @@ let employeeDetails = {
 		}
   },
   created () {
-  	console.log('data',this.modalEditEmployee);
   }
 };
 

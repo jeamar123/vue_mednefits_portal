@@ -12,7 +12,6 @@ let employee = {
   data() {
     return {
       overviewInfoShow: false,
-      modalEditEmployee: false
     };
   },
   methods: {
