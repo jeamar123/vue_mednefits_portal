@@ -1,13 +1,13 @@
 <script>
 
-import ModalEdit from "../../../views/company/employee/modal/Edit-details.vue";
+import Modal from "../../../views/company/modal/Modal.vue";
 import FadeTransition from "../../../assets/transitions/FadeTransition";
 import ModalTransition from "../../../assets/transitions/ModalTransition";
 
 // Methods here
 let employeeDetails = {
 	components: {
-		ModalEdit,
+		Modal,
     FadeTransition,
     ModalTransition
   },
@@ -16,9 +16,12 @@ let employeeDetails = {
     	toggle_overiew_type: 1,
       isMedicalUsageShow: false,
       isWellnessUsageShow: false,
-      healthSpendingAccountTabIsShow: false,
-      modalEditEmployee: false,
-      modalEditDependent: false,
+			healthSpendingAccountTabIsShow: false,
+			modalEditEmployee: false,
+      modalEdit: {
+				employee: false,
+				dependent: false,
+			},
       showAddDependents: false,
       showRemoveEmployee: false,
     };
@@ -63,22 +66,22 @@ let employeeDetails = {
 				this.showRemoveEmployee = false;
 			}
 		},
-		openUpdateEmployeeModal( data ) {
-			let x = data;
-			if( x === 'edit' ) {
-				this.modalEditEmployee = !this.modalEditEmployee;
-			} else if( x === 'close' ) {
-				this.modalEditEmployee = !this.modalEditEmployee;
-			}
-		},
-		openUpdateDependentModal( data ) {
-			let x = data;
-			if( x === 'edit' ) {
-				this.modalEditDependent = !this.modalEditDependent;
-			} else if( x === 'close' ) {
-				this.modalEditDependent = !this.modalEditDependent;
-			}
-		},
+		// openUpdateEmployeeModal( data ) {
+		// 	let x = data;
+		// 	if( x === 'edit' ) {
+		// 		this.modalEdit.employee = !this.modalEdit.employee;
+		// 	} else if( x === 'close' ) {
+		// 		this.modalEdit.employee = !this.modalEdit.employee;
+		// 	}
+		// },
+		// openUpdateDependentModal( data ) {
+		// 	let x = data;
+		// 	if( x === 'edit' ) {
+		// 		this.modalEdit.dependent = !this.modalEdit.dependent;
+		// 	} else if( x === 'close' ) {
+		// 		this.modalEdit.dependent = !this.modalEdit.dependent;
+		// 	}
+		// },
 		reset() {
 			this.$swal({
         title: "Confirm",

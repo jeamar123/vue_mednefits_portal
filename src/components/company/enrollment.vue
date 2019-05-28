@@ -776,6 +776,6 @@ let enrollment = {
 export default enrollment;
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 @import "./src/assets/css/company/enrollment.scss";
 </style>

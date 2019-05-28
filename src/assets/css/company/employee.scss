@@ -510,6 +510,7 @@
 	}
 	.employee-details-wrapper {
 		position: relative;
+		clear: both;
 	}
 	.employee-details-title {
 		line-height: 1.1;
@@ -636,17 +637,18 @@
 		width: 100%;
 		padding: 45px 0px;
 		background-color: #fff;
-    position: fixed;
+    position: relative;
     z-index: 1;
 
 		img {
 			height: 23px;
-			float: right;
+			position: fixed;
+			z-index: 1;
+			right: 0;
 			margin-right: 80px;
 			cursor: pointer;
 		}
 		h1 {
-			clear: both;
 			display: inline-block;
 			width: 100%;
 	    margin: 30px 0 50px;
@@ -806,6 +808,7 @@
     border: 1px solid #cbcbcb;
     padding: 10px 40px;
     position: fixed;
+    z-index: 0;
     bottom: 0;
     width: 100%;
     font-size: 16px;
@@ -839,64 +842,79 @@
 }
 
 
-/* modal edit*/
-.modal-container {
-	width: 800px;
+.global-modal-wrapper {
+	/* modal edit*/
+	.modal-container {
+		width: 800px;
+		padding: 15px;
+	}
+
+	.modal-header {
+		h1 {
+			clear: both;
+			line-height: 1.1;
+			text-align: center;
+			color: #444;
+	    font-weight: 500;
+	    font-size: 35px;
+	    margin: 35px 0 40px 0;
+	    font-family: 'Helvetica Medium';
+		}
+	}
+	.employee-name-container {
+		text-align: center;
+
+		span {
+			color: #888;
+	    font-size: 20px;
+	    font-weight: 700;
+		}
+		img {
+			width: 20px;
+			cursor: pointer;
+			float: right;
+		}
+	}
 
 	.modal-body {
 		padding: 15px;
-	}
-	h1 {
-		text-align: center;
-		color: #444;
-    font-weight: 500;
-    font-size: 35px;
-    margin: 35px 0 40px 0;
-    font-family: 'Helvetica Medium';
-	}
-	form {
-		width: 70%;
-		margin: 0 auto;
-	}
-	.dob label {
-		margin-bottom: 5px;
-	}
-}
-.employee-name-container {
-	position: relative;
-	text-align: center;
 
-	span {
-		color: #888;
-    font-size: 20px;
-    font-weight: 700;
+		form {
+			width: 70%;
+			margin: 0 auto;
+		}
+
+		.dob label {
+			margin-bottom: 5px;
+		}
+
 	}
-	img {
-		width: 20px;
-		cursor: pointer;
-		position: absolute;
-		right: 0;
+	.moda-footer {
+		padding: 0 15px;
 	}
-}
-.modal-btn-container {
-	margin-top: 30px;
-	button {
-		border-radius: 4px;
-		width: 160px;
-		font-weight: 700;
-		padding: 12px 0;
-		color: #fff;
-		box-shadow: none;
-		line-height: 24px;
-	}
-	button:nth-child(1) {
-		border: 2px solid #ccc;
-		background-color: #fff;
-		color: #5d5d5d;
-	}
-	button:nth-child(2) {
-		float: right;
-		border: 2px solid #0392cf;
-		background-color: #0392cf;
+	
+	.modal-btn-container {
+		width: 70%;
+		margin: 20px auto 30px;
+
+		button {
+			border-radius: 4px;
+			width: 160px;
+			font-weight: 700;
+			padding: 12px 0;
+			color: #fff;
+			box-shadow: none;
+			line-height: 24px;
+		}
+		button:nth-child(1) {
+			border: 2px solid #ccc;
+			background-color: #fff;
+			color: #5d5d5d;
+		}
+		button:nth-child(2) {
+			float: right;
+			border: 2px solid #0392cf;
+			background-color: #0392cf;
+		}
 	}
 }

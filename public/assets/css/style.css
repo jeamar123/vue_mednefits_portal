@@ -542,7 +542,7 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
     transition: all .3s ease;
   }
 
-  .modal-header{
+/*  .modal-header{
     background: #0392CF;
     padding: 16px 20px;
   }
@@ -593,7 +593,7 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
     text-align: center;
     font-weight: 700;
     margin: 0 5px;
-  }
+  }*/
 
   .modal-button.cancel-button{
     opacity: .7;

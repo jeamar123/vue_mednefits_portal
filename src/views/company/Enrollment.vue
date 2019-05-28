@@ -485,7 +485,6 @@
                         <img @click="editEmployee('close')" :src="'../assets/img/icons/close.svg'">
                       </slot>
                     </div>
-
                     <div class="modal-body">
                       <slot name="body">
                         <form>
