@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <transition name="modal">
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
@@ -80,9 +80,7 @@
         </div>
       </div>
     </div>
-   
-  
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -112,5 +110,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import './src/assets/css/company/employee.scss'
+  @import './src/assets/css/company/employee.scss';
+
+  .modal-enter-active,
+  .modal-leave-active {
+  /* transition: opacity; */
+  -webkit-transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+   -moz-transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+     -o-transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+        transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750); /* linear */
+
+  -webkit-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+     -moz-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+       -o-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+          transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); /* linear */
+  }
+  .modal-enter,
+  .modal-leave-to {
+    opacity: 0;
+  }
+
 </style>

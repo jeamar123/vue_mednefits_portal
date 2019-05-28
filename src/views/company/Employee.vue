@@ -1,8 +1,7 @@
 <template>
   <div>
-    <!-- <FadeTransition> -->
-      <!-- Employee Overview Table -->
-      <div class="overview-wrapper" v-if="!overviewInfoShow">
+    <!-- Employee Overview Table -->
+    <div class="overview-wrapper" v-if="!overviewInfoShow">
         <div class="employee-overview-header">
         	<div class="overview-title">
         		<h1>Employee Overview</h1>
@@ -133,15 +132,14 @@
         		</div>
         	</div>
         </div>
-      </div>
+    </div>
 
       <!-- Employee Overview Information -->
-      <div class="overview-info-wrapper" id="info-wrapper" v-if="overviewInfoShow">
+    <div class="overview-info-wrapper" id="info-wrapper" v-if="overviewInfoShow">
 
         <!-- Employee Details-->
-        <!-- <FadeTransition> -->
-        <EmployeeDetails v-on:editDetailsData = "editDetailsData"></EmployeeDetails>
-        <!-- </FadeTransition> -->
+        <EmployeeDetails></EmployeeDetails>
+        
 
         <div class="employee-prev-next-button">
           <button class="employee-btn-back">Back to employee overview</button>
@@ -150,8 +148,7 @@
             <button class="employee-btn-next">Next employee</button>
           </div>
         </div>
-      </div>
-    <!-- </FadeTransition> -->
+    </div>
   </div>
 </template>
 

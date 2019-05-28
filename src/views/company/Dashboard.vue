@@ -221,9 +221,8 @@
     </div>
 
     <!-- v-on:emitName="methodName" holds data from imported component -->
-    <FadeTransition>
-      <router-view v-on:enrollmentData="enrollmentData" v-on:overviewData="overviewData"></router-view>
-    </FadeTransition>
+    <router-view v-on:enrollmentData="enrollmentData" v-on:overviewData="overviewData"></router-view>
+    
   </div>
 </template>
 
