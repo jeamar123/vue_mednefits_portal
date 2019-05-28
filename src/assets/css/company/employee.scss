@@ -634,13 +634,13 @@
 		}
 	}
 	.remove-employee-wrapper {
-		height: 100%;
+		height: 100vh;
 		width: 100%;
-		padding: 45px 0px 90px;
+		padding: 45px 0px 190px;
 		background-color: #fff;
-    position: relative;
+    position: inherit;
     z-index: 1;
-    overflow-y: auto;
+   
 
 		img {
 			height: 23px;
