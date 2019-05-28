@@ -23,13 +23,13 @@ import Portal from './views/Portal.vue'
   import CompanyEmployee from './views/company/Employee.vue'
   import CompanyActivity from './views/company/Activity.vue'
   import CompanyClaim from './views/company/Claim.vue'
-  import CompanyCreateTeamBenefitsTier from './views/company/Create-team-benefits-tier.vue'
+  import CompanyCreateTeamBenefitsTier from './views/company/enrollment/Create-team-benefits-tier.vue'
   import CompanyStatement from './views/company/Statement.vue'
   import CompanyAccount from './views/company/Account.vue'
   import CompanyOverview from './views/company/Overview.vue'
   import CompanyCreditAllocation from './views/company/CreditAllocation.vue'
   import CompanyEnrollment from './views/company/Enrollment.vue'
-  import CompanyEnrollmentOptions from './views/company/Enrollment-options.vue'
+  import CompanyEnrollmentOptions from './views/company/enrollment/Enrollment-options.vue'
 // CLINIC views
 
 

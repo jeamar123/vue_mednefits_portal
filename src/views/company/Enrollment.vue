@@ -354,8 +354,12 @@
                 </div>
                 <div class="employee-input-container">
                   <div class="employee-input-wrapper nric">
-                    <label>NRIC</label>
-                    <label>FIN</label>
+                    <label>
+                      <input type="radio" name="id_status" value="nric"> NRIC
+                    </label>
+                    <label>
+                      <input type="radio" name="id_status" value="fin"> FIN
+                    </label>
                     <input type="text" name="nric-fin" v-model="dependentDetails.nricFinNo">
                   </div>
                   <div class="employee-input-wrapper dob">
