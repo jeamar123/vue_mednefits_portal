@@ -145,9 +145,12 @@
             <div class="upload-file-wrapper" v-if="stepperState === 'upload'">
               <h1>Upload your file</h1>
               <div class="upload-box">
-                <label class="fileupload-text ng-scope">
+                <input type="file" id="upload">
+                <label class="fileupload-text ng-scope" for="upload">
                   <img :src="'../assets/img/Upload-Receipt.png'" class="upload-icon center-block">
-                  <div v-if="false">
+
+                  <!-- upload file-->
+                  <div v-if="true">
                     <span>
                       Drag and drop an Excel file here to upload
                       <br>
@@ -156,13 +159,21 @@
                     </span>
                     <span>Select file</span>
                   </div>
-                  <div>
+
+                  <!-- successfully upload -->
+                  <div v-if="false">
                     <span>
                       Successfully Uploaded.
                       <br>
                     </span>
                     <span>Change file</span>
                   </div>
+
+                  <!-- change the file -->
+                  <div v-if="false">
+                    <span>Change file</span>
+                  </div>
+
                 </label>
               </div>
             </div>
@@ -425,7 +436,10 @@
               </ul>
             </div>
           </div>
+        
+        </div>
 
+        <!-- for shared components -->
           <!-- details enroll summary -->
           <div class="details-enroll-wrapper" v-if="isState === 'enrollsum'">
             <h1>Please check the details below before we enroll them.</h1>
@@ -474,88 +488,6 @@
                 </tr>
               </tbody>
             </table>
-            <!-- modal edit -->
-            <ModalTransition>
-              <div class="modal-mask" v-if="modalEdit">
-                <div class="modal-wrapper">
-                  <div class="modal-container">
-                    <div class="modal-header">
-                      <slot name="header">
-                        <h4>Edit Employee Details</h4>
-                        <img @click="editEmployee('close')" :src="'../assets/img/icons/close.svg'">
-                      </slot>
-                    </div>
-                    <div class="modal-body">
-                      <slot name="body">
-                        <form>
-                          <div class="modal-input-wrapper">
-                            <label>First Name</label>
-                            <input type="text" v-model="employeeDetails.fname">
-                          </div>
-                          <div class="modal-input-wrapper">
-                            <label>Last Name</label>
-                            <input type="text" v-model="employeeDetails.lname">  
-                          </div>
-                          <div class="modal-input-wrapper">
-                            <label>NRIC/FIN</label>
-                            <input type="text" v-model="employeeDetails.nricFinNo">
-                          </div>
-                          <div class="modal-input-wrapper">
-                            <label>Date of Birth</label>
-                            <v-date-picker
-                                popoverDirection="top"
-                                :max-date='new Date()'
-                                v-model="employeeDetails.dob"
-                                :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
-                            >
-                            </v-date-picker>
-                            <!-- <input type="text"  v-model="employeeDetails.dob"> -->
-                          </div>
-                          <div class="modal-input-wrapper">
-                            <label>Work Email</label>
-                            <input type="text"  v-model="employeeDetails.email">
-                          </div>
-                          <div class="modal-input-wrapper">
-                            <label>Mobile</label>
-                            <input type="text"  v-model="employeeDetails.mNumber">
-                          </div>
-                          <div class="modal-input-wrapper">
-                            <label>Mobile Area Code</label>
-                            <input type="text" v-model="employeeDetails.mAreaCode">
-                          </div>
-                          <div class="modal-input-wrapper">
-                            <label>Medical Credits</label>
-                            <input type="number" v-model="employeeDetails.mCredits">
-                          </div>
-                          <div class="modal-input-wrapper">
-                            <label>Wellness Credits</label>
-                            <input type="number" v-model="employeeDetails.wCredits">
-                          </div>
-                          <div class="modal-input-wrapper">
-                            <label>Start Date</label>
-                            <v-date-picker
-                                popoverDirection="top"
-                                :date='new Date()'
-                                v-model="employeeDetails.startDate"
-                                :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
-                            >
-                            </v-date-picker>
-                            <!-- <input type="text" v-model="employeeDetails.startDate"> -->
-                          </div>
-                        </form>
-                      </slot>
-                    </div>
-
-                    <div class="modal-footer">
-                      <slot name="footer">
-                        <button @click="remove">REMOVE</button>
-                        <button @click="update">UPDATE</button>
-                      </slot>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ModalTransition>
           </div>
 
           <!-- succesfully enroll -->
@@ -568,8 +500,91 @@
               <img :src="'../assets/img/successful.png'">
             </div>
           </div>
-          
-        </div>
+
+          <!-- modal edit -->
+          <div class="modal-mask" v-if="modalEdit">
+            <div class="modal-wrapper">
+              <div class="modal-container">
+                <div class="modal-header">
+                  <slot name="header">
+                    <h4>Edit Employee Details</h4>
+                    <img @click="editEmployee('close')" :src="'../assets/img/icons/close.svg'">
+                  </slot>
+                </div>
+                <div class="modal-body">
+                  <slot name="body">
+                    <form>
+                      <div class="modal-input-wrapper">
+                        <label>First Name</label>
+                        <input type="text" v-model="employeeDetails.fname">
+                      </div>
+                      <div class="modal-input-wrapper">
+                        <label>Last Name</label>
+                        <input type="text" v-model="employeeDetails.lname">  
+                      </div>
+                      <div class="modal-input-wrapper">
+                        <label>NRIC/FIN</label>
+                        <input type="text" v-model="employeeDetails.nricFinNo">
+                      </div>
+                      <div class="modal-input-wrapper">
+                        <label>Date of Birth</label>
+                        <v-date-picker
+                            popoverDirection="top"
+                            :max-date='new Date()'
+                            v-model="employeeDetails.dob"
+                            :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                        >
+                        </v-date-picker>
+                        <!-- <input type="text"  v-model="employeeDetails.dob"> -->
+                      </div>
+                      <div class="modal-input-wrapper">
+                        <label>Work Email</label>
+                        <input type="text"  v-model="employeeDetails.email">
+                      </div>
+                      <div class="modal-input-wrapper">
+                        <label>Mobile</label>
+                        <input type="text"  v-model="employeeDetails.mNumber">
+                      </div>
+                      <div class="modal-input-wrapper">
+                        <label>Mobile Area Code</label>
+                        <input type="text" v-model="employeeDetails.mAreaCode">
+                      </div>
+                      <div class="modal-input-wrapper">
+                        <label>Medical Credits</label>
+                        <input type="number" v-model="employeeDetails.mCredits">
+                      </div>
+                      <div class="modal-input-wrapper">
+                        <label>Wellness Credits</label>
+                        <input type="number" v-model="employeeDetails.wCredits">
+                      </div>
+                      <div class="modal-input-wrapper">
+                        <label>Start Date</label>
+                        <v-date-picker
+                            popoverDirection="top"
+                            :date='new Date()'
+                            v-model="employeeDetails.startDate"
+                            :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                        >
+                        </v-date-picker>
+                        <!-- <input type="text" v-model="employeeDetails.startDate"> -->
+                      </div>
+                    </form>
+                  </slot>
+                </div>
+
+                <div class="modal-footer">
+                  <slot name="footer">
+                    <button @click="remove">REMOVE</button>
+                    <button @click="update">UPDATE</button>
+                  </slot>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- -->
+
+      
+
       </div>
 
       <div class="prev-next-button-container">
