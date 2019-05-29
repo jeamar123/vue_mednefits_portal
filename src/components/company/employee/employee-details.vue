@@ -59,6 +59,7 @@ let employeeDetails = {
 			}
 		},
 		removeEmployee( data ) {
+			window.scrollTo(0,0);
 			let x = data;
 			if( x === 'showRemove' ) {
 				this.showRemoveEmployee = true;
@@ -66,22 +67,6 @@ let employeeDetails = {
 				this.showRemoveEmployee = false;
 			}
 		},
-		// openUpdateEmployeeModal( data ) {
-		// 	let x = data;
-		// 	if( x === 'edit' ) {
-		// 		this.modalEdit.employee = !this.modalEdit.employee;
-		// 	} else if( x === 'close' ) {
-		// 		this.modalEdit.employee = !this.modalEdit.employee;
-		// 	}
-		// },
-		// openUpdateDependentModal( data ) {
-		// 	let x = data;
-		// 	if( x === 'edit' ) {
-		// 		this.modalEdit.dependent = !this.modalEdit.dependent;
-		// 	} else if( x === 'close' ) {
-		// 		this.modalEdit.dependent = !this.modalEdit.dependent;
-		// 	}
-		// },
 		reset() {
 			this.$swal({
         title: "Confirm",

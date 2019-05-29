@@ -1070,6 +1070,7 @@
 
 .prev-next-button-container {	
 	position: fixed;
+	z-index: 2;
 	bottom: 0;
 	width: 100%;
 	height: auto;
@@ -1127,6 +1128,12 @@
 		background-color: #0392cf;
 		border: 2px solid #0392cf;
 		float: right;
+	}
+
+	.confirm-btn {
+		background-color: #33cccb;
+		border-color: #33cccb;
+		padding: 11px 25px;
 	}
 
 	.btn-enroll-container {
