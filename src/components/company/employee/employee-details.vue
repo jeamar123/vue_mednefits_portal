@@ -26,61 +26,46 @@ let employeeDetails = {
     };
   },
   methods: {
-    editDetailsData(data) {
+    editDetailsData(data) { //for modal edit in employee information
       this.modalEditEmployee = data.modalEditEmployee;
     },
-    toggleTabOverview(opt) {
-      this.toggle_overiew_type = opt;
-      this.healthSpendingAccountTabIsShow = false;
-    },
-    toggleMedicalUsage() {
-      if (this.isMedicalUsageShow == false) {
-        this.isMedicalUsageShow = true;
-      } else {
-        this.isMedicalUsageShow = false;
-      }
-    },
-    toggleWellnessUsage() {
-      if (this.isWellnessUsageShow == false) {
-        this.isWellnessUsageShow = true;
-      } else {
-        this.isWellnessUsageShow = false;
-      }
-    },
-    toggleAddDependents(data) {
-      let x = data;
-      if (x === "add") {
-        this.showAddDependents = true;
-      } else if (x === "cancel") {
-        this.showAddDependents = false;
-      }
-    },
-    removeEmployee(data) {
-      let x = data;
-      if (x === "showRemove") {
-        this.showRemoveEmployee = true;
-      } else if (x === "cancel") {
-        this.showRemoveEmployee = false;
-      }
-    },
-    // openUpdateEmployeeModal( data ) {
-    // 	let x = data;
-    // 	if( x === 'edit' ) {
-    // 		this.modalEdit.employee = !this.modalEdit.employee;
-    // 	} else if( x === 'close' ) {
-    // 		this.modalEdit.employee = !this.modalEdit.employee;
-    // 	}
-    // },
-    // openUpdateDependentModal( data ) {
-    // 	let x = data;
-    // 	if( x === 'edit' ) {
-    // 		this.modalEdit.dependent = !this.modalEdit.dependent;
-    // 	} else if( x === 'close' ) {
-    // 		this.modalEdit.dependent = !this.modalEdit.dependent;
-    // 	}
-    // },
-    reset() {
-      this.$swal({
+  	toggleTabOverview( opt ) { //tab employee,dependent,settings in employee information
+			this.toggle_overiew_type = opt;
+			this.healthSpendingAccountTabIsShow = false;
+		},
+  	toggleMedicalUsage() { //chevron image for medical spending account
+			if(this.isMedicalUsageShow == false ) {
+				this.isMedicalUsageShow = true;
+			}else {
+				this.isMedicalUsageShow = false;
+			}
+		},
+		toggleWellnessUsage() { //chevron image for wellness spending account
+			if(this.isWellnessUsageShow == false ) {
+				this.isWellnessUsageShow = true;
+			}else {
+				this.isWellnessUsageShow = false;
+			}
+		},
+		toggleAddDependents( data ) { //add button for dependent under employee information
+			let x = data;
+			if( x === 'add' ) {
+				console.log('ni gana');
+				this.showAddDependents = true;
+			} else if( x === 'cancel' ) {
+				this.showAddDependents = false;
+			}
+		},
+		removeEmployee( data ) { //remove employee button under person information
+			let x = data;
+			if( x === 'showRemove' ) {
+				this.showRemoveEmployee = true;
+			} else if( x === 'cancel' ) {
+				this.showRemoveEmployee = false;
+			}
+		},
+		reset() { //resend/reset account button in settings tab
+			this.$swal({
         title: "Confirm",
         text:
           "Are you sure you want to resend and reset the password for this account?",
@@ -96,7 +81,7 @@ let employeeDetails = {
         }
       });
     },
-    viewEmployeeSpendingSummary() {
+    viewEmployeeSpendingSummary() {//health spending account summary button under person information
       if (this.healthSpendingAccountTabIsShow == false) {
         this.toggle_overiew_type = 4;
         this.healthSpendingAccountTabIsShow = true;

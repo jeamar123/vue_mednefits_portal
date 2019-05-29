@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="employee-wrapper">
     <!-- Employee Overview Table -->
     <div class="overview-wrapper" v-if="!overviewInfoShow">
         <div class="employee-overview-header">
