@@ -1,36 +1,35 @@
 <script>
-
 import Modal from "../../../views/company/modal/Modal.vue";
 import FadeTransition from "../../../assets/transitions/FadeTransition";
 import ModalTransition from "../../../assets/transitions/ModalTransition";
 
 // Methods here
 let employeeDetails = {
-	components: {
-		Modal,
+  components: {
+    Modal,
     FadeTransition,
     ModalTransition
   },
   data() {
     return {
-    	toggle_overiew_type: 1,
+      toggle_overiew_type: 1,
       isMedicalUsageShow: false,
       isWellnessUsageShow: false,
-			healthSpendingAccountTabIsShow: false,
-			modalEditEmployee: false,
+      healthSpendingAccountTabIsShow: false,
+      modalEditEmployee: false,
       modalEdit: {
-				employee: false,
-				dependent: false,
-			},
+        employee: false,
+        dependent: false
+      },
       showAddDependents: false,
-      showRemoveEmployee: false,
+      showRemoveEmployee: false
     };
   },
   methods: {
-  	editDetailsData( data ) {
+    editDetailsData(data) {
       this.modalEditEmployee = data.modalEditEmployee;
-      console.log(data.modalEditEmployee);
     },
+<<<<<<< HEAD
   	toggleTabOverview( opt ) {
 			this.toggle_overiew_type = opt;
 			this.healthSpendingAccountTabIsShow = false;
@@ -70,7 +69,8 @@ let employeeDetails = {
 		reset() {
 			this.$swal({
         title: "Confirm",
-        text: "Are you sure you want to resend and reset the password for this account?",
+        text:
+          "Are you sure you want to resend and reset the password for this account?",
         type: "warning",
         showCancelButton: true,
         confirmButtonText: "Yes",
@@ -82,26 +82,24 @@ let employeeDetails = {
           this.isState = "web";
         }
       });
-		},
-		viewEmployeeSpendingSummary() {
-
-			if (this.healthSpendingAccountTabIsShow == false ) {
-				this.toggle_overiew_type = 4;
-				this.healthSpendingAccountTabIsShow = true;
-			}else {
-				this.toggle_overiew_type = 1;
-				this.healthSpendingAccountTabIsShow = false;
-			}
-		}
+    },
+    viewEmployeeSpendingSummary() {
+      if (this.healthSpendingAccountTabIsShow == false) {
+        this.toggle_overiew_type = 4;
+        this.healthSpendingAccountTabIsShow = true;
+      } else {
+        this.toggle_overiew_type = 1;
+        this.healthSpendingAccountTabIsShow = false;
+      }
+    }
   },
-  created () {
-  }
+  created() {}
 };
 
-export default employeeDetails
+export default employeeDetails;
 </script>
 
 
 <style lang="scss" scoped>
-	@import './src/assets/css/company/employee.scss'
+@import "./src/assets/css/company/employee.scss";
 </style>

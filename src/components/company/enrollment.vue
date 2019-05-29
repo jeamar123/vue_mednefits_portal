@@ -1,8 +1,7 @@
 <script>
 /* eslint-disable */
 // imports here
-import FadeTransition from "../../assets/transitions/FadeTransition";
-import ModalTransition from "../../assets/transitions/ModalTransition";
+import Modal from "../../views/company/modal/Modal.vue";
 import moment from "moment";
 import jQuery from "jquery";
 import { isNull } from "util";
@@ -13,8 +12,9 @@ window.$ = $;
 // Methods here
 let enrollment = {
   components: {
-    FadeTransition,
-    ModalTransition
+    Modal,
+
+
   },
   data() {
     return {
@@ -23,6 +23,7 @@ let enrollment = {
       stepperState: "",
       empType: "empOnly",
       summaryBtn: false, // summary state
+      isChecked: [],
       dependentState: false,
       isRequiredTiering: null,
       temp: true,
@@ -689,7 +690,8 @@ let enrollment = {
         }
       });
     },
-    remove() {
+    remove(data) {
+      
       this.$swal({
         title: "Confirm",
         text: "Are you sure you want to remove this employee?",
@@ -701,17 +703,33 @@ let enrollment = {
         customClass: "warning-global-container danger"
       }).then(result => {
         if (result.value) {
-          this.modalEdit = false;
-          //delete employee
-          let index = this.indexData;
-          const data = this.employeeStorage.indexOf(index);
-          this.employeeStorage.splice(data, 1);
-          //succes SWAL
-          this.$swal(
-            "Deleted!",
-            "Employee details has been deleted.",
-            "success"
-          );
+          if(data == 'fromEdit'){
+            this.modalEdit = false;
+            //delete employee
+            let index = this.indexData;
+            const data = this.employeeStorage.indexOf(index);
+            this.employeeStorage.splice(data, 1);
+            //succes SWAL
+            this.$swal(
+              "Deleted!",
+              "Employee details has been deleted.",
+              "success"
+            );
+          } else if (data == 'fromCheck'){
+            let index = this.isChecked.sort();
+            // const data = this.employeeStorage.indexOf(index);
+            console.log('index ni', index);
+            for (let i = index.length -1; i >=0; i--){
+              this.employeeStorage.splice(index[i], 1);
+            }
+            this.isChecked = [];
+            //succes SWAL
+            this.$swal(
+              "Deleted!",
+              "Employee details has been deleted.",
+              "success"
+            );
+          }
         }
       });
     },

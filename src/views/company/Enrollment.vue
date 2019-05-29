@@ -463,7 +463,7 @@
             <tbody>
               <tr class="dependent-hover-container" v-for="(enroll, index) in employeeStorage" v-bind:key="enroll.id">
                 <td>
-                  <input type="checkbox">
+                  <input type="checkbox" v-model="isChecked" :value="index">
                 </td>
                 <td>
                   <div class="fname-container">
@@ -500,83 +500,72 @@
           </div>
         </div>
 
-        <!-- modal edit -->
-        <div class="modal-mask" v-if="modalEdit">
-          <div class="modal-wrapper">
-            <div class="modal-container">
-              <div class="modal-header">
-                <slot name="header">
-                  <h4>Edit Employee Details</h4>
-                  <img @click="editEmployee('close')" :src="'../assets/img/icons/close.svg'">
-                </slot>
-              </div>
-              <div class="modal-body">
-                <slot name="body">
-                  <form>
-                    <div class="modal-input-wrapper">
-                      <label>First Name</label>
-                      <input type="text" v-model="employeeDetails.fname">
-                    </div>
-                    <div class="modal-input-wrapper">
-                      <label>Last Name</label>
-                      <input type="text" v-model="employeeDetails.lname">
-                    </div>
-                    <div class="modal-input-wrapper">
-                      <label>NRIC/FIN</label>
-                      <input type="text" v-model="employeeDetails.nricFinNo">
-                    </div>
-                    <div class="modal-input-wrapper">
-                      <label>Date of Birth</label>
-                      <v-date-picker popoverDirection="top" :max-date='new Date()' v-model="employeeDetails.dob"
-                        :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
-                      </v-date-picker>
-                      <!-- <input type="text"  v-model="employeeDetails.dob"> -->
-                    </div>
-                    <div class="modal-input-wrapper">
-                      <label>Work Email</label>
-                      <input type="text" v-model="employeeDetails.email">
-                    </div>
-                    <div class="modal-input-wrapper">
-                      <label>Mobile</label>
-                      <input type="text" v-model="employeeDetails.mNumber">
-                    </div>
-                    <div class="modal-input-wrapper">
-                      <label>Mobile Area Code</label>
-                      <input type="text" v-model="employeeDetails.mAreaCode">
-                    </div>
-                    <div class="modal-input-wrapper">
-                      <label>Medical Credits</label>
-                      <input type="number" v-model="employeeDetails.mCredits">
-                    </div>
-                    <div class="modal-input-wrapper">
-                      <label>Wellness Credits</label>
-                      <input type="number" v-model="employeeDetails.wCredits">
-                    </div>
-                    <div class="modal-input-wrapper">
-                      <label>Start Date</label>
-                      <v-date-picker popoverDirection="top" :date='new Date()' v-model="employeeDetails.startDate"
-                        :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
-                      </v-date-picker>
-                      <!-- <input type="text" v-model="employeeDetails.startDate"> -->
-                    </div>
-                  </form>
-                </slot>
-              </div>
-
-              <div class="modal-footer">
-                <slot name="footer">
-                  <button @click="remove">REMOVE</button>
-                  <button @click="update">UPDATE</button>
-                </slot>
-              </div>
-            </div>
+         <!-- modal edit -->
+        <Modal v-if="modalEdit">
+          <div slot="header">
+            <h4>Edit Employee Details</h4>
+            <img @click="editEmployee('close')" :src="'../assets/img/icons/close.svg'">
           </div>
-        </div>
+
+          <div slot="body">
+            <form>
+              <div class="modal-input-wrapper">
+                <label>First Name</label>
+                <input type="text" v-model="employeeDetails.fname">
+              </div>
+              <div class="modal-input-wrapper">
+                <label>Last Name</label>
+                <input type="text" v-model="employeeDetails.lname">
+              </div>
+              <div class="modal-input-wrapper">
+                <label>NRIC/FIN</label>
+                <input type="text" v-model="employeeDetails.nricFinNo">
+              </div>
+              <div class="modal-input-wrapper">
+                <label>Date of Birth</label>
+                <v-date-picker popoverDirection="top" :max-date='new Date()' v-model="employeeDetails.dob"
+                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
+                </v-date-picker>
+                <!-- <input type="text"  v-model="employeeDetails.dob"> -->
+              </div>
+              <div class="modal-input-wrapper">
+                <label>Work Email</label>
+                <input type="text" v-model="employeeDetails.email">
+              </div>
+              <div class="modal-input-wrapper">
+                <label>Mobile</label>
+                <input type="text" v-model="employeeDetails.mNumber">
+              </div>
+              <div class="modal-input-wrapper">
+                <label>Mobile Area Code</label>
+                <input type="text" v-model="employeeDetails.mAreaCode">
+              </div>
+              <div class="modal-input-wrapper">
+                <label>Medical Credits</label>
+                <input type="number" v-model="employeeDetails.mCredits">
+              </div>
+              <div class="modal-input-wrapper">
+                <label>Wellness Credits</label>
+                <input type="number" v-model="employeeDetails.wCredits">
+              </div>
+              <div class="modal-input-wrapper">
+                <label>Start Date</label>
+                <v-date-picker popoverDirection="top" :date='new Date()' v-model="employeeDetails.startDate"
+                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
+                </v-date-picker>
+                <!-- <input type="text" v-model="employeeDetails.startDate"> -->
+              </div>
+            </form>
+          </div>
+          <div slot="footer">
+            <button @click="remove('fromEdit')">REMOVE</button>
+            <button @click="update">UPDATE</button>
+          </div>
+        </Modal>
         <!-- for shared components  -->
 
-
-
-      </div>
+      </div> 
+      <!-- end container div -->
 
       <div class="prev-next-button-container">
         <div class="button-container">
@@ -589,10 +578,10 @@
           <button v-if="isState === 'enrollsum'" @click="$router.go(-1)" class="back-btn">Back</button>
           <button v-if="isState == 'successEnroll'" class="back-btn" @click="$router.push('dashboard')">BACK TO
             HOME</button>
-          <button v-if="false" class="delete-btn">Delete</button>
+          <button v-if="isChecked.length !=0" class="delete-btn" @click="remove('fromCheck')">Delete</button>
 
           <div class="btn-enroll-container">
-            <button v-if="isState === 'false'" class="btn-employee">DELETE</button>
+            <button v-if="false" class="btn-employee" >DELETE</button>
             <button v-if="employeeStorage.length != 0 && isState === 'web'" :disabled="prevDisabled"
               class="btn-employee" @click="prevNextEmp('prev', 0)">PREVIOUS EMPLOYEE</button>
             <button v-if="isState === 'web'" class="btn-employee" @click="prevNextEmp('next', 0)">NEXT EMPLOYEE</button>
