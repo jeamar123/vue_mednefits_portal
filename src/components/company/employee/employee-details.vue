@@ -29,7 +29,6 @@ let employeeDetails = {
     editDetailsData(data) {
       this.modalEditEmployee = data.modalEditEmployee;
     },
-<<<<<<< HEAD
   	toggleTabOverview( opt ) {
 			this.toggle_overiew_type = opt;
 			this.healthSpendingAccountTabIsShow = false;
