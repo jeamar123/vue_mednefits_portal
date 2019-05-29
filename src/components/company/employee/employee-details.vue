@@ -26,28 +26,28 @@ let employeeDetails = {
     };
   },
   methods: {
-    editDetailsData(data) {
+    editDetailsData(data) { //for modal edit in employee information
       this.modalEditEmployee = data.modalEditEmployee;
     },
-  	toggleTabOverview( opt ) {
+  	toggleTabOverview( opt ) { //tab employee,dependent,settings in employee information
 			this.toggle_overiew_type = opt;
 			this.healthSpendingAccountTabIsShow = false;
 		},
-  	toggleMedicalUsage() {
+  	toggleMedicalUsage() { //chevron image for medical spending account
 			if(this.isMedicalUsageShow == false ) {
 				this.isMedicalUsageShow = true;
 			}else {
 				this.isMedicalUsageShow = false;
 			}
 		},
-		toggleWellnessUsage() {
+		toggleWellnessUsage() { //chevron image for wellness spending account
 			if(this.isWellnessUsageShow == false ) {
 				this.isWellnessUsageShow = true;
 			}else {
 				this.isWellnessUsageShow = false;
 			}
 		},
-		toggleAddDependents( data ) {
+		toggleAddDependents( data ) { //add button for dependent under employee information
 			let x = data;
 			if( x === 'add' ) {
 				console.log('ni gana');
@@ -56,8 +56,7 @@ let employeeDetails = {
 				this.showAddDependents = false;
 			}
 		},
-		removeEmployee( data ) {
-			window.scrollTo(0,0);
+		removeEmployee( data ) { //remove employee button under person information
 			let x = data;
 			if( x === 'showRemove' ) {
 				this.showRemoveEmployee = true;
@@ -65,7 +64,7 @@ let employeeDetails = {
 				this.showRemoveEmployee = false;
 			}
 		},
-		reset() {
+		reset() { //resend/reset account button in settings tab
 			this.$swal({
         title: "Confirm",
         text:
@@ -82,7 +81,7 @@ let employeeDetails = {
         }
       });
     },
-    viewEmployeeSpendingSummary() {
+    viewEmployeeSpendingSummary() {//health spending account summary button under person information
       if (this.healthSpendingAccountTabIsShow == false) {
         this.toggle_overiew_type = 4;
         this.healthSpendingAccountTabIsShow = true;

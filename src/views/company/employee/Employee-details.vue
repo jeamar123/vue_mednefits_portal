@@ -157,7 +157,7 @@
             class="employee-selection">Settings</div>
         </div>
 
-        <transition name="fade">
+        <!-- <transition name="fade"> -->
           <div class="employee-information" v-if="toggle_overiew_type == 1">
             <h3 class="employee-details-title">Employee Information</h3>
             <div class="dependent-btn-container">
@@ -218,9 +218,9 @@
               </button>
             </div>
           </div>
-        </transition>
+        <!-- </transition> -->
 
-        <transition name="fade">
+        <!-- <transition name="fade"> -->
           <div class="dependent-information" v-if="toggle_overiew_type == 2">
             <h3 class="employee-details-title">Dependent Information</h3>
               <div class="dependent-btn-container">
@@ -262,15 +262,15 @@
                 </div>
               </div>
           </div>
-        </transition>
+        <!-- </transition> -->
 
-        <transition name="fade">
+        <!-- <transition name="fade"> -->
           <div class="settings-information" v-if="toggle_overiew_type == 3">
             <button @click="reset()">
               <img :src="'../assets/img/open-wrench-tool.png'">Resend/Reset Account
             </button>
           </div>
-        </transition>
+        <!-- </transition> -->
 
         <div v-if="healthSpendingAccountTabIsShow" class="account-summary-wrapper">
           <span class="account-summary-name">Serene Song</span>
@@ -875,7 +875,7 @@
           </div>
         </div>
 
-        <div class="health-spending-account-container">
+        <div v-if="false" class="health-spending-account-container">
           <span class="account-summary-name">Serene Song</span>
           <h1>Health Spending Account</h1>
           <p class="members-wallet-text">Do you want us to update the member’s wallet by reflecting the
