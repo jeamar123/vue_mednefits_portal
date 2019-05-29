@@ -480,7 +480,7 @@
     <div class="remove-employee-wrapper" v-if="showRemoveEmployee">
       <img @click="removeEmployee( 'cancel' )" :src="'../assets/img/icons/cancel.png'">
 
-      <div v-if="false" class="remove-container">
+      <div v-if="true" class="remove-container">
         <h1>Remove employee</h1>
         <form class="form-input-container">
           <div class="employee-input-container">
@@ -530,7 +530,7 @@
       </div>
 
       <!-- Replacement Employee Details-->
-      <div v-if="true" class="replacement-employee-wrapper">
+      <div v-if="false" class="replacement-employee-wrapper">
         <div class="employee-tier-title">Replacement</div>
         <div class="employee-details-header">
           <h1>Employee Details</h1>
