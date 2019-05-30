@@ -189,8 +189,10 @@
         </div>
 
         <!-------- WEB INPUT -------->
-        <div class="web-input-wrapper">
+        <!-- <WebInput v-if="isState === 'web'"></WebInput> -->
 
+        <div class="web-input-wrapper">
+          
           <div v-if="isState === 'web' && selected_emp_dep_tab  == 1" class="employee-details-wrapper">
             <div class="employee-tier-title">
               EMPLOYEE
@@ -234,7 +236,6 @@
                   <v-date-picker :max-date='new Date()' v-model="employeeDetails.dob"
                     :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
                   </v-date-picker>
-                  <!-- <input type="text" name="lname" placeholder="DD/MM/YYYY"> -->
                 </div>
               </div>
               <div class="employee-input-container">
@@ -257,7 +258,6 @@
                   <v-date-picker :date='new Date()' v-model="employeeDetails.startDate"
                     :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
                   </v-date-picker>
-                  <!-- <input type="text" name="start-date"> -->
                 </div>
               </div>
               <div class="employee-input-container">

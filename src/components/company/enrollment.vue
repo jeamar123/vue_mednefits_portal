@@ -2,6 +2,7 @@
 /* eslint-disable */
 // imports here
 import Modal from "../../views/company/modal/Modal.vue";
+import WebInput from "../../views/company/enrollment/Web-input.vue";
 import moment from "moment";
 import jQuery from "jquery";
 import { isNull } from "util";
@@ -13,22 +14,17 @@ window.$ = $;
 let enrollment = {
   components: {
     Modal,
-
-
+    WebInput
   },
   data() {
     return {
       isType: "", //excel or web input
       isState: "enrollment", //navigation title
-      stepperState: "",
-      empType: "empOnly",
       summaryBtn: false, // summary state
-      isChecked: [],
-      dependentState: false,
-      isRequiredTiering: null,
-      temp: true,
-      empDepNavState: false,
-      selected_emp_dep_tab: 1,
+      isChecked: [], // used in enrollment summary
+      dependentState: false, //used in web input
+      empDepNavState: false, //used in web input
+      selected_emp_dep_tab: 1, //used in web input
       modalEdit: false, //edit modal
       // data binding store data from WEB INPUT forms
       indexData: 0, // counter for employee
@@ -36,9 +32,9 @@ let enrollment = {
       prevDisabled: false,
       depPrevChevronState: false, //show hide chevron button
       depNextChevronState: false, //show hide chevron button
-      employeeDetails: {},
-      dependentDetails: {},
-      employeeStorage: [
+      employeeDetails: {}, //used in web input
+      dependentDetails: {}, //used in web input
+      employeeStorage: [ //used in web input
         // {
         // //   fname: "jazer",
         // //   lname: "zayas",
@@ -54,7 +50,7 @@ let enrollment = {
         // //   ]
         // }
       ],
-      dependentStorage: [
+      dependentStorage: [ //used in web input
         //     {
         //       fname: "jazer",
         //       lname: "zayas"
@@ -66,19 +62,21 @@ let enrollment = {
       ],
       date: new Date(), // Jan 25th, 2018
       //for Excel
+      empType: "empOnly",
+      stepperState: "",
       checkedlistEmpOnly: [],
       checkedlistEmpDependents: [],
     };
   },
   methods: {
-    type(data) {
+    type(data) { //used in enrollment
       this.isType = data;
       console.log(this.isType);
     },
-    empBtnType(data) {
+    empBtnType(data) { //used in excell
       this.empType = data;
     },
-    toggleSummary() {
+    toggleSummary() { //used in web input side nav summary
       console.log(this.summaryBtn);
       this.summaryBtn = !this.summaryBtn;
       if (this.summaryBtn === true) {
@@ -89,7 +87,7 @@ let enrollment = {
         $("#summary-content").css({ width: "0" });
       }
     },
-    addDependent() {
+    addDependent() { //used in web input toggle dependent
       this.dependentState = !this.dependentState;
       if (this.dependentState === true) {
         this.isState = "dependent";
@@ -99,7 +97,7 @@ let enrollment = {
         this.depIndexData = 0;
       }
     },
-    prevNextEmp(data, type) {
+    prevNextEmp(data, type) { //used in web input
       let arrStorage = this.employeeStorage;
       let depArrStorage = this.dependentStorage;
       let viewDept = this.employeeStorage[this.indexData];
@@ -318,7 +316,7 @@ let enrollment = {
         }
       }
     },
-    addToStorage(source, index) {
+    addToStorage(source, index) { //used in web input
       // store to temp storage when adding employees
       console.log(this.employeeDetails);
       console.log(this.indexData);
@@ -406,7 +404,7 @@ let enrollment = {
       this.employeeDetails = {};
       this.employeeDetails.dob = undefined;
     },
-    addDependentStorage(data) {
+    addDependentStorage(data) {  //used in web input
       let arrStorage = this.employeeStorage;
       let limit = arrStorage.length;
 
@@ -512,7 +510,7 @@ let enrollment = {
         }
       }
     },
-    selectEmpDepTab(opt) {
+    selectEmpDepTab(opt) { //used in web input
       this.selected_emp_dep_tab = opt;
 
       if (this.selected_emp_dep_tab == 2) {
@@ -576,7 +574,7 @@ let enrollment = {
         }
       }
     },
-    cancelDep() {
+    cancelDep() { // use in add dependent
       this.$swal({
         title: "Confirm",
         text: "Unsaved data will be deleted, Proceed?",
@@ -645,7 +643,7 @@ let enrollment = {
         }
       }
     },
-    editEmployee(data, index) {
+    editEmployee(data, index) { // used in enrollment summary
       let x = data;
       this.indexData = index;
       if (x === "edit") {
@@ -667,7 +665,7 @@ let enrollment = {
         this.modalEdit = !this.modalEdit;
       }
     },
-    update() {
+    update() { // used in enrollment summary
       this.$swal({
         title: "Confirm",
         text: "Are you sure you want to update this employee?",
@@ -690,8 +688,8 @@ let enrollment = {
         }
       });
     },
-    remove(data) {
-      
+    remove(data) { //remove used in enrollment summary
+
       this.$swal({
         title: "Confirm",
         text: "Are you sure you want to remove this employee?",
@@ -733,7 +731,7 @@ let enrollment = {
         }
       });
     },
-    excel(data) {
+    excel(data) { //used in excel
       console.log("excel details");
       if(data == 'empOnly' || data == 'empDependents') {
         this.checkedlistEmpOnly = [];
@@ -768,7 +766,7 @@ let enrollment = {
       }
         
     },
-    //to check is object empty
+    //to check is object empty globall
     isEmpty(obj) {
       for (var key in obj) {
         if (obj.hasOwnProperty(key)) return false;
