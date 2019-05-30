@@ -5,6 +5,7 @@
       return {
         isState: 'excel',
         stepperState: 'download',
+        stepStatus : 1,
         empType: "empOnly",
         checkedlistEmpOnly: [],
         checkedlistEmpDependents: [],
@@ -20,26 +21,49 @@
           this.checkedlistEmpDependents = [];
           if (this.empType === "empOnly") {
             this.stepperState = "empOnly";
-
-            // this.$emit("enrollmentData", {
-            //   isState: "excel"
-            // });
+            ++this.stepStatus;
+            this.$emit('excelData', {
+              stepStatus: this.stepStatus
+            });
           } else if (this.empType === "empDependents") {
             this.stepperState = "empDependents";
-            // this.$emit("enrollmentData", {
-            //   isState: "excel"
-            // });
+            ++this.stepStatus;
+            this.$emit('excelData', {
+              stepStatus: this.stepStatus
+            });
           }
         } else if (data == 'upload') {
           if (this.checkedlistEmpOnly.length == 5) {
             this.stepperState = "upload";
+            ++this.stepStatus;
+            this.$emit('excelData', {
+              stepStatus: this.stepStatus
+            });
           } else if (this.checkedlistEmpDependents.length == 6) {
             this.stepperState = "upload";
+            ++this.stepStatus;
+            this.$emit('excelData', {
+              stepStatus: this.stepStatus
+            });
           }
         } else if (data == 'enrollsum') {
-          this.isState = 'enrollsum';
           this.stepperState = null;
+          this.$router.push('summary');
+          ++this.stepStatus;
+          this.$emit('excelData', {
+            stepStatus: this.stepStatus
+          });
         }
+      },
+      back(data) {
+        if (data == "download") {
+          this.stepperState = "download";
+          this.stepStatus = 1;
+          this.$emit('excelData', {
+              stepStatus: this.stepStatus
+            });
+        }
+      
       },
     },
     created() {
@@ -203,7 +227,7 @@
 
       <div class="prev-next-button-container">
         <div class="button-container">
-          <button v-if="isState === 'excel' && stepperState == 'download'" @click="back('enrollment')"
+          <button v-if="isState === 'excel' && stepperState == 'download'" @click="$router.go(-1)"
             class="back-btn">Back</button>
           <button v-if="stepperState == 'empOnly' || stepperState == 'empDependents' || stepperState == 'upload'"
             @click="back('download')" class="back-btn">Back</button>

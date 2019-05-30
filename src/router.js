@@ -34,6 +34,7 @@ import Portal from './views/Portal.vue'
   import CompanyEnrollmentOptions from './views/company/enrollment/Enrollment-options.vue'
   import CompanyWebInput from './views/company/enrollment/Web-input.vue'
   import CompanyExcel from './views/company/enrollment/Excel.vue'
+  import CompanyEnroll from './views/company/enrollment/Enroll-summary.vue'
 
 // CLINIC views
 
@@ -86,7 +87,8 @@ export default new Router({
         { name: 'CompanyEnrollment', path: '/company/enrollment', component: CompanyEnrollment },
         { name: 'CompanyEnrollmentOptions', path: '/company/enrollment-options', component: CompanyEnrollmentOptions },
         { name: 'CompanyWebInput', path: '/company/enrollment/web-input', component: CompanyWebInput },
-        { name: 'CompanyExcel', path: '/company/enrollment/Excel', component: CompanyExcel },
+        { name: 'CompanyExcel', path: '/company/enrollment/excel', component: CompanyExcel },
+        { name: 'CompanyEnroll', path: '/company/enrollment/summary', component: CompanyEnroll },
       ]
     },
     
