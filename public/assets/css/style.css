@@ -3,7 +3,7 @@
 }
 
 body,html{
-  /*height: 100%;*/
+  height: 100%;
   width: 100%;
   background: #f1f1f1;
   font-family: 'Helvetica Light';
@@ -504,12 +504,23 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
 
 
 /*--------- Transition ----------*/
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity .5s;
-  }
-  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    opacity: 0;
-  }
+.fade-enter-active,
+.fade-leave-active {
+  /* transition: opacity; */
+-webkit-transition: all 200ms cubic-bezier(0.785, 0.135, 0.150, 0.860); 
+   -moz-transition: all 200ms cubic-bezier(0.785, 0.135, 0.150, 0.860); 
+     -o-transition: all 200ms cubic-bezier(0.785, 0.135, 0.150, 0.860); 
+        transition: all 200ms cubic-bezier(0.785, 0.135, 0.150, 0.860); /* easeInOutCirc */
+
+-webkit-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860); 
+   -moz-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860); 
+     -o-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860); 
+        transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860); /* easeInOutCirc */
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 /*-------------------------------*/
 
 
@@ -542,7 +553,7 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
     transition: all .3s ease;
   }
 
-  .modal-header{
+/*  .modal-header{
     background: #0392CF;
     padding: 16px 20px;
   }
@@ -593,7 +604,7 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
     text-align: center;
     font-weight: 700;
     margin: 0 5px;
-  }
+  }*/
 
   .modal-button.cancel-button{
     opacity: .7;

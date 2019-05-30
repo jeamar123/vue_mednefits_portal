@@ -157,7 +157,7 @@
 </template>
 
 <script>
-import createTeamBenefitsTier from "@/components/company/create-team-benefits-tier"
+import createTeamBenefitsTier from "@/components/company/enrollment/create-team-benefits-tier"
 
 export default createTeamBenefitsTier;
 </script>

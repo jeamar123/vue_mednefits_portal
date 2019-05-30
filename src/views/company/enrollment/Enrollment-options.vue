@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import enrollmentOptions from "@/components/company/enrollment-options";
+import enrollmentOptions from "@/components/company/enrollment/enrollment-options";
 
 export default enrollmentOptions;
 </script>

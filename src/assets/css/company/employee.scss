@@ -1,7 +1,11 @@
+.employee-wrapper {
+	height: 100%;
+}
+
 .overview-wrapper {
 	padding: 110px 80px 49px 80px;
 	background-color: #fff;
-	height: 100vh;
+	height: 100%;
 	color: #283e52;
 
 	.employee-overview-header {
@@ -305,6 +309,7 @@
 }
 
 .overview-info-wrapper {
+	height: 100%;
 	background-color: #fff;	
 	padding-top: 99px;
 	color: #283e52;
@@ -507,9 +512,11 @@
     max-height: 1200px;
     overflow-x: auto;
     line-height: 24px;
+    position: relative;
 	}
 	.employee-details-wrapper {
 		position: relative;
+		clear: both;
 	}
 	.employee-details-title {
 		line-height: 1.1;
@@ -519,70 +526,9 @@
 	}
 	.dependent-information h3 {
 		transform: translateY(36px);
-		padding-left: 15px;
+		top: 0;
 	}
-	/* modal edit*/
-	.modal-container {
-		width: 800px;
-
-		.modal-body {
-			padding: 15px;
-		}
-		h1 {
-			text-align: center;
-			color: #444;
-	    font-weight: 500;
-	    font-size: 35px;
-	    margin: 35px 0 40px 0;
-	    font-family: 'Helvetica Medium';
-		}
-		form {
-			width: 70%;
-		}
-		.dob label {
-			margin-bottom: 5px;
-		}
-	}
-	.employee-name-container {
-		position: relative;
-		text-align: center;
-
-		span {
-			color: #888;
-	    font-size: 20px;
-	    font-weight: 700;
-		}
-		img {
-			width: 20px;
-			cursor: pointer;
-			position: absolute;
-			right: 0;
-		}
-	}
-	.modal-btn-container {
-		margin-top: 30px;
-		button {
-			border-radius: 4px;
-			width: 160px;
-			font-weight: 700;
-			padding: 12px 0;
-			color: #fff;
-			box-shadow: none;
-			line-height: 24px;
-		}
-		button:nth-child(1) {
-			border: 2px solid #ccc;
-			background-color: #fff;
-			color: #5d5d5d;
-		}
-		button:nth-child(2) {
-			float: right;
-			border: 2px solid #0392cf;
-			background-color: #0392cf;
-		}
-	}
-
-	/*----------*/
+	
 	.dependent-btn-container {
 		float: right;
 		margin-bottom: 50px;
@@ -692,40 +638,97 @@
 	}
 	.remove-employee-wrapper {
 		height: 100%;
-		width: 100%;
-		padding: 45px 0px;
+		padding: 45px 0px 0px;
 		background-color: #fff;
-    position: fixed;
-    z-index: 1;
+    position: inherit;
+   	font-weight: 700;
 
 		img {
 			height: 23px;
-			float: right;
+			position: fixed;
+			z-index: 1;
+			right: 0;
 			margin-right: 80px;
 			cursor: pointer;
 		}
 		h1 {
-			clear: both;
 			display: inline-block;
 			width: 100%;
 	    margin: 30px 0 50px;
 	    font-size: 32px;
-	    font-weight: 700;
 	    text-align: center;
 		}
 		form {
 			width: 550px;
 			margin: 0 auto;	
 		}
-		label {
+		.remove-label {
 			font-size: 12px;
 		}
-		.dob {
+		.remove-dob {
 			margin-right: 0;
 			width: 47%;
 		}
 	}
-	.account-summary-wrapper {
+
+	.employee-outcome-container {
+		width: 530px;
+		margin: 0 460px;
+
+		.outcome-title {
+			margin-bottom: 20px;
+		}
+		label {
+			font-size: 14px;
+		}
+		.review-prepare-template-text {
+			line-height: 24px;
+		}
+		.review-prepare-template-subtext {
+			font-size: 10px;
+			line-height: 1.1;
+		}
+	}
+
+	.replacement-employee-wrapper {
+    overflow-y: auto;
+    height: 100vh;
+		.employee-tier-title {
+	    font-size: 16px;
+	  }
+
+	  h1 {
+	  	font-family: 'Helvetica Medium';
+	  	margin-top: 20px;
+	  }
+	}
+	.health-spending-wrapper {
+		text-align: center;
+		.members-wallet-text {
+			width: 450px;
+			margin: 45px auto 5px;
+			font-size: 16px;
+		}
+		.members-wallet-note {
+			color: #9c9c9c;
+		}
+		button {
+			background-color: transparent;
+			border: 2px solid #cbcbcb;
+			border-radius: 4px;
+			width: 100px;
+			padding: 8px 0;
+			margin: 30px 5px 0;
+			font-weight: 700;
+			line-height: 24px;
+		}
+		button.active {
+			border-color: #0392cf;
+		}
+	}
+	.account-summary-wrapper,
+	.health-spending-wrapper {
+
 		padding: 20px 0px 0px;
 		.account-summary-name {
 			display: block;
@@ -845,6 +848,7 @@
     border: 1px solid #cbcbcb;
     padding: 10px 40px;
     position: fixed;
+    z-index: 0;
     bottom: 0;
     width: 100%;
     font-size: 16px;
@@ -874,5 +878,86 @@
     .pull-right {
     	float: right;
     }
+	}
+}
+
+.person-info-wrapper {
+	background-color: #fff;
+}
+
+.global-modal-wrapper {
+	/* modal edit*/
+	.modal-container {
+		width: 800px;
+		padding: 15px;
+	}
+
+	.modal-header {
+		h1 {
+			clear: both;
+			line-height: 1.1;
+			text-align: center;
+			color: #444;
+	    font-weight: 500;
+	    font-size: 35px;
+	    margin: 35px 0 40px 0;
+	    font-family: 'Helvetica Medium';
+		}
+	}
+	.employee-name-container {
+		text-align: center;
+
+		span {
+			color: #888;
+	    font-size: 20px;
+	    font-weight: 700;
+		}
+		img {
+			width: 20px;
+			cursor: pointer;
+			float: right;
+		}
+	}
+
+	.modal-body {
+		padding: 15px;
+
+		form {
+			width: 70%;
+			margin: 0 auto;
+		}
+
+		.dob label {
+			margin-bottom: 5px;
+		}
+
+	}
+	.moda-footer {
+		padding: 0 15px;
+	}
+	
+	.modal-btn-container {
+		width: 70%;
+		margin: 20px auto 30px;
+
+		button {
+			border-radius: 4px;
+			width: 160px;
+			font-weight: 700;
+			padding: 12px 0;
+			color: #fff;
+			box-shadow: none;
+			line-height: 24px;
+		}
+		button:nth-child(1) {
+			border: 2px solid #ccc;
+			background-color: #fff;
+			color: #5d5d5d;
+		}
+		button:nth-child(2) {
+			float: right;
+			border: 2px solid #0392cf;
+			background-color: #0392cf;
+		}
 	}
 }
