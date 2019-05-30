@@ -58,21 +58,16 @@
       <div class="navbar-blue-bg">
         <div class="container">
           <div
-            v-if="$route.name === 'CompanyEnrollmentOptions' || $route.name === 'CompanyCreateTeamBenefitsTier' || $route.name === 'CompanyEnrollment'"
-            class="enrollment-navbar-container welcome-container"
-          >
+            v-if=" $route.name === 'CompanyEnrollmentOptions' || $route.name === 'CompanyCreateTeamBenefitsTier' || $route.name === 'CompanyEnrollment' || $route.name === 'CompanyWebInput' || $route.name === 'CompanyExcel' || $route.name === 'CompanyEnroll'" class="enrollment-navbar-container welcome-container">
             <h4 v-if="$route.name === 'CompanyEnrollmentOptions' || $route.name === 'CompanyCreateTeamBenefitsTier' || $route.name === 'CompanyEnrollment' && isState === 'enrollment' || isState == 'enrollsum'">Enrollment</h4>
 
-            <h4
-              v-if="isState === 'web' && $route.name != 'CompanyHome' && $route.name != 'CompanyEnrollmentOptions'"
-              class="web-input-title"
-            >WEB INPUT</h4>
-            <h4 class="excel-import-title" v-if="isState === 'excel' && $route.name != 'CompanyHome' && $route.name != 'CompanyEnrollmentOptions'">
+            <h4 v-if=" $route.name === 'CompanyWebInput'" class="web-input-title">WEB INPUT</h4>
+            <h4 class="excel-import-title" v-if=" $route.name === 'CompanyExcel' || $route.name === 'CompanyEnroll'">
               EXCEL IMPORT
             </h4>
           </div>
 
-          <div v-if="$route.name != 'CompanyEnrollmentOptions' && $route.name != 'CompanyCreateTeamBenefitsTier' && $route.name != 'CompanyEnrollment'" class="dashboard-navbar-container">
+          <div v-if="$route.name != 'CompanyEnrollmentOptions' && $route.name != 'CompanyCreateTeamBenefitsTier' && $route.name != 'CompanyEnrollment' && $route.name != 'CompanyWebInput' && $route.name != 'CompanyExcel' && $route.name != 'CompanyEnroll'" class="dashboard-navbar-container">
             <div class="welcome-container">
               <router-link to="/company/dashboard">
                 <h4>Overview</h4>
@@ -131,22 +126,22 @@
             </div>
           </div>
 
-          <div class="template-menu-accordion" v-if="isState === 'excel' && $route.name != 'CompanyEnrollmentOptions' && $route.name != 'CompanyHome'">
+          <div class="template-menu-accordion" v-if="$route.name === 'CompanyExcel' || $route.name === 'CompanyEnroll' && stepStatus === 4">
             <div class="menu-accordion-list">
-              <span class="number step done-step">1</span>
-              <span class="menu-accordion-label step">Download</span>
+              <span class="number" :class="{'step' : stepStatus >= 1, 'done-step': stepStatus > 1}">1</span>
+              <span class="menu-accordion-label" :class="{'step' : stepStatus >= 1}">Download</span>
             </div>
             <div class="menu-accordion-list">
-              <span class="number step">2</span>
-              <span class="menu-accordion-label step">Prepare</span>
+              <span class="number" :class="{'step' : stepStatus >= 2, 'done-step': stepStatus > 2}">2</span>
+              <span class="menu-accordion-label" :class="{'step' : stepStatus >= 2}">Prepare</span>
             </div>
             <div class="menu-accordion-list">
-              <span class="number">3</span>
-              <span class="menu-accordion-label">Upload</span>
+              <span class="number" :class="{'step' : stepStatus >= 3, 'done-step': stepStatus > 3}">3</span>
+              <span class="menu-accordion-label" :class="{'step' : stepStatus >= 3}">Upload</span>
             </div>
             <div class="menu-accordion-list">
-              <span class="number">4</span>
-              <span class="menu-accordion-label">Preview</span>
+              <span class="number" :class="{'step' : stepStatus >= 4, 'done-step': stepStatus > 4}">4</span>
+              <span class="menu-accordion-label" :class="{'step' : stepStatus >= 4}">Preview</span>
             </div>
           </div>
 
@@ -221,7 +216,7 @@
     </div>
 
     <!-- v-on:emitName="methodName" holds data from imported component -->
-    <router-view v-on:enrollmentData="enrollmentData" v-on:overviewData="overviewData"></router-view>
+    <router-view v-on:overviewData="overviewData" @excelData="excelData" @enrollData="enrollData"></router-view>
     
   </div>
 </template>
