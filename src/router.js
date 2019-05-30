@@ -23,11 +23,13 @@ import Portal from './views/Portal.vue'
   import CompanyEmployee from './views/company/Employee.vue'
   import CompanyActivity from './views/company/Activity.vue'
   import CompanyClaim from './views/company/Claim.vue'
+  import CompanyCreateTeamBenefitsTier from './views/company/Create-team-benefits-tier.vue'
   import CompanyStatement from './views/company/Statement.vue'
   import CompanyAccount from './views/company/Account.vue'
   import CompanyOverview from './views/company/Overview.vue'
   import CompanyCreditAllocation from './views/company/CreditAllocation.vue'
   import CompanyEnrollment from './views/company/Enrollment.vue'
+  import CompanyEnrollmentOptions from './views/company/Enrollment-options.vue'
 // CLINIC views
 
 
@@ -69,11 +71,13 @@ export default new Router({
         { name: 'CompanyEmployee', path: '/company/employee-overview', component: CompanyEmployee },
         { name: 'CompanyActivity', path: '/company/activity', component: CompanyActivity },
         { name: 'CompanyClaim', path: '/company/claim', component: CompanyClaim },
+        { name: 'CompanyCreateTeamBenefitsTier', path: '/company/create-team-benefits-tier', component: CompanyCreateTeamBenefitsTier },
         { name: 'CompanyStatement', path: '/company/statement', component: CompanyStatement },
         { name: 'CompanyAccount', path: '/company/account', component: CompanyAccount },
         // { name: 'CompanyOverview', path: '/company/overview', component: CompanyOverview },
         { name: 'CompanyCreditAllocation', path: '/company/credit-allocation', component: CompanyCreditAllocation },
         { name: 'CompanyEnrollment', path: '/company/enrollment', component: CompanyEnrollment },
+        { name: 'CompanyEnrollmentOptions', path: '/company/enrollment-options', component: CompanyEnrollmentOptions },
       ]
     },
     

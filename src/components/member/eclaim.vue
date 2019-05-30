@@ -68,6 +68,7 @@
 							this.uploading_files[this.uploading_files_ctr].error = true;
 							this.uploading_files[this.uploading_files_ctr].error_text = res.data.message;
 							$('.uploads-box .upload-wrapper:nth-child(' + (this.uploading_files_ctr + 1) + ') .progress-bar').css('width', '60%');
+
 						}
 						this.isNextBtnDisabled = false;
 						this.uploading_files_ctr+=1;

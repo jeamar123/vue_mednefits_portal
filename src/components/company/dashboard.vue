@@ -1,11 +1,15 @@
 <script>
 /* eslint-disable */
 // methods here
+import FadeTransition from "../../assets/transitions/FadeTransition";
+import ModalTransition from "../../assets/transitions/ModalTransition";
 import Enrollment from "./enrollment";
 import Overview from "./overview";
 
 let dashboard = {
   components: {
+    FadeTransition,
+    ModalTransition,
     Enrollment,
     Overview
   },

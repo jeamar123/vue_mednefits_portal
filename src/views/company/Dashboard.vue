@@ -58,21 +58,21 @@
       <div class="navbar-blue-bg">
         <div class="container">
           <div
-            v-if="$route.name === 'CompanyEnrollment'"
+            v-if="$route.name === 'CompanyEnrollmentOptions' || $route.name === 'CompanyCreateTeamBenefitsTier' || $route.name === 'CompanyEnrollment'"
             class="enrollment-navbar-container welcome-container"
           >
-            <h4 v-if="$route.name === 'CompanyEnrollment' && isState === 'enrollment' || isState == 'enrollsum'">Enrollment</h4>
+            <h4 v-if="$route.name === 'CompanyEnrollmentOptions' || $route.name === 'CompanyCreateTeamBenefitsTier' || $route.name === 'CompanyEnrollment' && isState === 'enrollment' || isState == 'enrollsum'">Enrollment</h4>
 
             <h4
-              v-if="isState === 'web' && $route.name != 'CompanyHome'"
+              v-if="isState === 'web' && $route.name != 'CompanyHome' && $route.name != 'CompanyEnrollmentOptions'"
               class="web-input-title"
             >WEB INPUT</h4>
-            <h4 class="excel-import-title" v-if="isState === 'excel' && $route.name != 'CompanyHome'">
+            <h4 class="excel-import-title" v-if="isState === 'excel' && $route.name != 'CompanyHome' && $route.name != 'CompanyEnrollmentOptions'">
               EXCEL IMPORT
             </h4>
           </div>
 
-          <div v-if="$route.name != 'CompanyEnrollment'" class="dashboard-navbar-container">
+          <div v-if="$route.name != 'CompanyEnrollmentOptions' && $route.name != 'CompanyCreateTeamBenefitsTier' && $route.name != 'CompanyEnrollment'" class="dashboard-navbar-container">
             <div class="welcome-container">
               <router-link to="/company/dashboard">
                 <h4>Overview</h4>
@@ -131,7 +131,7 @@
             </div>
           </div>
 
-          <div class="template-menu-accordion" v-if="isState === 'excel'">
+          <div class="template-menu-accordion" v-if="isState === 'excel' && $route.name != 'CompanyEnrollmentOptions' && $route.name != 'CompanyHome'">
             <div class="menu-accordion-list">
               <span class="number step done-step">1</span>
               <span class="menu-accordion-label step">Download</span>
@@ -221,8 +221,9 @@
     </div>
 
     <!-- v-on:emitName="methodName" holds data from imported component -->
-
-    <router-view v-on:enrollmentData="enrollmentData" v-on:overviewData="overviewData"></router-view>
+    <FadeTransition>
+      <router-view v-on:enrollmentData="enrollmentData" v-on:overviewData="overviewData"></router-view>
+    </FadeTransition>
   </div>
 </template>
 

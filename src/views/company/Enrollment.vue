@@ -1,11 +1,12 @@
 <template>
   <div>
     <div class="enrollment-wrapper">
-      <div class="employee-dependent-header" v-if="isState === 'web' && false">
-        <span v-bind:class="{'active' : selected_emp_dep_tab  == 1}" v-on:click="selectEmpDepTab(1)">Employee</span>
-        <span v-bind:class="{'active' : selected_emp_dep_tab  == 2}" v-on:click="selectEmpDepTab(2)">Dependent</span>
+      <div class="employee-dependent-header" v-if="isState === 'web' && empDepNavState">
+        <span v-bind:class="{'active' : selected_emp_dep_tab  == 1}" @click="selectEmpDepTab(1)">Employee</span>
+        <span v-bind:class="{'active' : selected_emp_dep_tab  == 2}" @click="selectEmpDepTab(2)">Dependent</span>
       </div>
       <div class="container">
+    
         <!-- Enrollment -->
         <FadeTransition>
           <div v-if="isState === 'enrollment'" class="enrollment-method-wrapper">
@@ -50,7 +51,7 @@
         
         <div class="excel-import-wrapper" v-if="isState === 'excel'">
           <FadeTransition>
-            <div class="download-template-wrapper" v-if="true">
+            <div class="download-template-wrapper" v-if="stepperState == 'download'">
               <h1>Download template.</h1>
               <p>We've put together the fields that are needed for enrollements in the excel template file, first row (aka header). Please download, complete and submit the excel file on the step 3 (Upload).</p>
               <div class="download-template-btn">
@@ -58,122 +59,131 @@
                 <button @click=" empBtnType('empDependents')" v-bind:class="{'active': empType === 'empDependents'}" lass=""><img :src="'../assets/img/download-gray.png'">Employees + Dependents</button>
               </div>
             </div>
+          </FadeTransition>
+
             <!-- Employees only-->
-             <div class="review-with-dependents" v-if="false">
-              <h1>Let us help you with the review before upload.</h1>
-              <div class="review-tick-container">
-                <p class="review-tick-title">Review your file type:</p>
-                <label class="review-container">
-                  <input type="checkbox">
-                  <span class="review-prepare-template-text">Save the file .xlsx or .xls format. </span>
-                  <span class="review-checkmark"></span>
-                </label>
-                <p class="review-tick-title">Review the data in your file:</p>
-                <label class="review-container">
-                  <input type="checkbox">
-                  <span class="review-prepare-template-text">Employee's first name and last name are separated.</span>
-                  <span class="review-prepare-template-subtext">Separate the full name to first name as given name; last name as family name.</span>
-                  <span class="review-checkmark"></span>
-                </label>
-                <label class="review-container">
-                  <input type="checkbox">
-                  <span class="review-prepare-template-text">Input employee's date of birth according to the format (dd/mm/yyyy).</span>
-                  <span class="review-prepare-template-subtext">Our system will only pick and capture date in the stated format.</span>
-                  <span class="review-checkmark"></span>
-                </label>
-                <label class="review-container">
-                  <input type="checkbox">
-                  <span class="review-prepare-template-text">A valid employee's email address.</span>
-                  <span class="review-prepare-template-subtext">Login credential will be sent to this email address once account is set up.</span>
-                  <span class="review-checkmark"></span>
-                </label>
-                <label class="review-container">
-                  <input type="checkbox">
-                  <span class="review-prepare-template-text">Input employee's 6 digit postal code</span>
-                  <span class="review-prepare-template-subtext">It should be the local residential postal code where the employee reside.</span>
-                  <span class="review-checkmark"></span>
-                </label>
+            <FadeTransition>
+              <div class="review-with-dependents" v-if="stepperState === 'empOnly'">
+                <h1>Let us help you with the review before upload.</h1>
+                <div class="review-tick-container">
+                  <p class="review-tick-title">Review your file type:</p>
+                  <label class="review-container">
+                    <input type="checkbox" value="1" v-model="checkedlistEmpOnly">
+                    <span class="review-prepare-template-text">Save the file .xlsx or .xls format. </span>
+                    <span class="review-checkmark"></span>
+                  </label>
+                  <p class="review-tick-title">Review the data in your file:</p>
+                  <label class="review-container">
+                    <input type="checkbox" value="2" v-model="checkedlistEmpOnly">
+                    <span class="review-prepare-template-text">Employee's first name and last name are separated.</span>
+                    <span class="review-prepare-template-subtext">Separate the full name to first name as given name; last name as family name.</span>
+                    <span class="review-checkmark"></span>
+                  </label>
+                  <label class="review-container">
+                    <input type="checkbox" value="3" v-model="checkedlistEmpOnly"> 
+                    <span class="review-prepare-template-text">Input employee's date of birth according to the format (dd/mm/yyyy).</span>
+                    <span class="review-prepare-template-subtext">Our system will only pick and capture date in the stated format.</span>
+                    <span class="review-checkmark"></span>
+                  </label>
+                  <label class="review-container">
+                    <input type="checkbox" value="4" v-model="checkedlistEmpOnly">
+                    <span class="review-prepare-template-text">A valid employee's email address.</span>
+                    <span class="review-prepare-template-subtext">Login credential will be sent to this email address once account is set up.</span>
+                    <span class="review-checkmark"></span>
+                  </label>
+                  <label class="review-container">
+                    <input type="checkbox" value="5" v-model="checkedlistEmpOnly">
+                    <span class="review-prepare-template-text">Input employee's 6 digit postal code</span>
+                    <span class="review-prepare-template-subtext">It should be the local residential postal code where the employee reside.</span>
+                    <span class="review-checkmark"></span>
+                  </label>
+                </div>
               </div>
-            </div>
+            </FadeTransition>
 
             <!-- Employee + Dependents-->
-            <div class="review-with-dependents" v-if="false">
-              <h1>Let us help you with the review before upload.</h1>
-              <div class="review-tick-container">
-                <p class="review-tick-title">Review your file type:</p>
-                <label class="review-container">
-                  <input type="checkbox">
-                  <span class="review-prepare-template-text">Save the file .xlsx or .xls format. </span>
-                  <span class="review-checkmark"></span>
-                </label>
-                <p class="review-tick-title">Review the data in your file:</p>
-                <label class="review-container">
-                  <input type="checkbox">
-                  <span class="review-prepare-template-text">Employee, dependent/s first name and last name are separated.</span>
-                  <span class="review-prepare-template-subtext">Separate the full name to first name as given name; last name as family name.</span>
-                  <span class="review-checkmark"></span>
-                </label>
-                <label class="review-container">
-                  <input type="checkbox">
-                  <span class="review-prepare-template-text">Input employee, dependent/s date of birth according to the format (dd/mm/yyyy).</span>
-                  <span class="review-prepare-template-subtext">Our system will only pick and capture date in the stated format.</span>
-                  <span class="review-checkmark"></span>
-                </label>
-                <label class="review-container">
-                  <input type="checkbox">
-                  <span class="review-prepare-template-text">A valid employee's email address.</span>
-                  <span class="review-prepare-template-subtext">Login credential will be sent to this email address once account is set up.</span>
-                  <span class="review-checkmark"></span>
-                </label>
-                <label class="review-container">
-                  <input type="checkbox">
-                  <span class="review-prepare-template-text">Input employee's 6 digit postal code</span>
-                  <span class="review-prepare-template-subtext">It should be the local residential postal code where the employee reside.</span>
-                  <span class="review-checkmark"></span>
-                </label>
-                <label class="review-container">
-                  <input type="checkbox">
-                  <span class="review-prepare-template-text">Under dependent/s relationship column only select from drop down list.</span>
-                  <span class="review-checkmark"></span>
-                </label>
+            <FadeTransition>
+              <div class="review-with-dependents" v-if="stepperState === 'empDependents'">
+                <h1>Let us help you with the review before upload.</h1>
+                <div class="review-tick-container">
+                  <p class="review-tick-title">Review your file type:</p>
+                  <label class="review-container">
+                    <input type="checkbox" value="1" v-model="checkedlistEmpDependents">
+                    <span class="review-prepare-template-text">Save the file .xlsx or .xls format. </span>
+                    <span class="review-checkmark"></span>
+                  </label>
+                  <p class="review-tick-title">Review the data in your file:</p>
+                  <label class="review-container">
+                    <input type="checkbox" value="2" v-model="checkedlistEmpDependents">
+                    <span class="review-prepare-template-text">Employee, dependent/s first name and last name are separated.</span>
+                    <span class="review-prepare-template-subtext">Separate the full name to first name as given name; last name as family name.</span>
+                    <span class="review-checkmark"></span>
+                  </label>
+                  <label class="review-container">
+                    <input type="checkbox" value="3" v-model="checkedlistEmpDependents">
+                    <span class="review-prepare-template-text">Input employee, dependent/s date of birth according to the format (dd/mm/yyyy).</span>
+                    <span class="review-prepare-template-subtext">Our system will only pick and capture date in the stated format.</span>
+                    <span class="review-checkmark"></span>
+                  </label>
+                  <label class="review-container">
+                    <input type="checkbox" value="4" v-model="checkedlistEmpDependents">
+                    <span class="review-prepare-template-text">A valid employee's email address.</span>
+                    <span class="review-prepare-template-subtext">Login credential will be sent to this email address once account is set up.</span>
+                    <span class="review-checkmark"></span>
+                  </label>
+                  <label class="review-container">
+                    <input type="checkbox" value="5" v-model="checkedlistEmpDependents">
+                    <span class="review-prepare-template-text">Input employee's 6 digit postal code</span>
+                    <span class="review-prepare-template-subtext">It should be the local residential postal code where the employee reside.</span>
+                    <span class="review-checkmark"></span>
+                  </label>
+                  <label class="review-container">
+                    <input type="checkbox" value="6" v-model="checkedlistEmpDependents">
+                    <span class="review-prepare-template-text">Under dependent/s relationship column only select from drop down list.</span>
+                    <span class="review-checkmark"></span>
+                  </label>
+                </div>
               </div>
-            </div>
-            <div class="upload-file-wrapper" v-if="false">
-              <h1>Upload your file</h1>
-              <div class="upload-box">
-                <label class="fileupload-text ng-scope">
-                  <img :src="'../assets/img/Upload-Receipt.png'" class="upload-icon center-block">
-                  <div v-if="false">
-                    <span>
-                      Drag and drop an Excel file here to upload
-                      <br>
-                      or
-                      <br>
-                    </span>
-                    <span>Select file</span>
-                  </div>
-                  <div>
-                    <span>
-                      Successfully Uploaded.
-                      <br>
-                    </span>
-                    <span>Change file</span>
-                  </div>
-                </label>
+            </FadeTransition>
+
+            <FadeTransition>
+              <div class="upload-file-wrapper" v-if="stepperState === 'upload'">
+                <h1>Upload your file</h1>
+                <div class="upload-box">
+                  <label class="fileupload-text ng-scope">
+                    <img :src="'../assets/img/Upload-Receipt.png'" class="upload-icon center-block">
+                    <div v-if="false">
+                      <span>
+                        Drag and drop an Excel file here to upload
+                        <br>
+                        or
+                        <br>
+                      </span>
+                      <span>Select file</span>
+                    </div>
+                    <div>
+                      <span>
+                        Successfully Uploaded.
+                        <br>
+                      </span>
+                      <span>Change file</span>
+                    </div>
+                  </label>
+                </div>
               </div>
-            </div>
-          </FadeTransition>
+            </FadeTransition>
+          
         </div>
 
         <!-------- WEB INPUT -------->
         <div class="web-input-wrapper">
           <FadeTransition>
             <div v-if="isState === 'web' && selected_emp_dep_tab  == 1" class="employee-details-wrapper">
-              <span class="employee-tier-title">
+              <div class="employee-tier-title">
                 EMPLOYEE
                 <span>17</span> OF
                 <span>27</span>
-              </span>
+              </div>
               <div class="employee-details-header">
                 <h1>Employee Details</h1>
                 <div class="add-dependent-btn">
@@ -262,11 +272,11 @@
           <!-- View dependent sercion-->
           <FadeTransition>
             <div class="dependent-details-wrapper" v-if="selected_emp_dep_tab  == 2">
-              <span class="employee-tier-title">
+              <div class="employee-tier-title">
                 DEPENDENT
                 <span>4</span> OF
                 <span>4</span>
-              </span>
+              </div>
               <div class="employee-details-header">
                 <h1>Dependent details</h1>
                 <button class="btn-remove">
@@ -288,32 +298,34 @@
                   <div class="employee-input-wrapper nric">
                     <label>NRIC</label>
                     <label>FIN</label>
-                    <input type="text" name="nric-fin">
+                    <input type="text" name="nric-fin" v-model="dependentDetails.nricFinNo">
                   </div>
                   <div class="employee-input-wrapper dob">
                     <label for="">Date of Birth</label>
-                    <input type="text" name="lname" placeholder="DD/MM/YYYY">
+                    <input type="text" name="lname" placeholder="DD/MM/YYYY" v-model="dependentDetails.dob">
                   </div>
                 </div>
                 <div class="employee-input-container">
                   <div class="employee-input-wrapper">
                     <label for="fname">Relationship</label>
-                    <select>
-                      <option>Spouse</option>
-                      <option>Child</option>
-                      <option>Family</option>
+                    <select v-model="dependentDetails.relation">
+                      <option value="Spouse">Spouse</option>
+                      <option value="Child">Child</option>
+                      <option value="Family">Family</option>
                     </select>
                     <img :src="'../assets/img/icons/down-arrow.svg'">
                   </div>
                   <div class="employee-input-wrapper">
                     <label for="fname">Start Date</label>
-                    <input type="text" name="stard-date">
+                    <input type="text" name="stard-date" v-model="dependentDetails.startDate">
                   </div>
                 </div>
               </form>
-              <div class="summary-left-right-btn" v-if="false">
-                <img :src="'../assets/img/icons/left.png'">
-                <img :src="'../assets/img/icons/right.png'">
+              <div class="summary-left-right-btn" v-if="true">
+                <img v-show="depPrevChevronState && dependentStorage.length === 0" class="summary-left-btn" @click="prevNextEmp('prev', 2)" :src="'../assets/img/icons/left.png'">
+                <img v-show="depPrevChevronState && dependentStorage.length != 0" class="summary-left-btn" @click="prevNextEmp('prev', 1)" :src="'../assets/img/icons/left.png'">
+                <img v-show="depNextChevronState && dependentStorage.length === 0" class="summary-right-btn" @click="prevNextEmp('next', 2)" :src="'../assets/img/icons/right.png'">
+                <img v-show="depNextChevronState && dependentStorage.length != 0" class="summary-right-btn" @click="prevNextEmp('next', 1)" :src="'../assets/img/icons/right.png'">
               </div>
             </div>
           </FadeTransition>
@@ -321,11 +333,11 @@
           <!-- Add dependent section -->
           <FadeTransition>
             <div class="dependent-details-wrapper" v-if="dependentState ">
-              <span class="employee-tier-title">
+              <div class="employee-tier-title">
                 DEPENDENT
                 <span>4</span> OF
                 <span>4</span>
-              </span>
+              </div>
               <div class="employee-details-header">
                 <h1>Dependent details</h1>
               </div>
@@ -344,38 +356,50 @@
                   <div class="employee-input-wrapper nric">
                     <label>NRIC</label>
                     <label>FIN</label>
-                    <input type="text" name="nric-fin">
+                    <input type="text" name="nric-fin" v-model="dependentDetails.nricFinNo">
                   </div>
                   <div class="employee-input-wrapper dob">
                     <label for="">Date of Birth</label>
-                    <input type="text" name="lname" placeholder="DD/MM/YYYY">
+                    <v-date-picker
+                        :max-date='new Date()'
+                        v-model="dependentDetails.dob"
+                        :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                    >
+                    </v-date-picker>
+                    <!-- <input type="text" name="lname" placeholder="DD/MM/YYYY"> -->
                   </div>
                 </div>
                 <div class="employee-input-container">
                   <div class="employee-input-wrapper">
                     <label for="fname">Relationship</label>
-                    <select>
-                      <option>Spouse</option>
-                      <option>Child</option>
-                      <option>Family</option>
+                    <select v-model="dependentDetails.relation">
+                      <option value="Spouse">Spouse</option>
+                      <option value="Child">Child</option>
+                      <option value="Family">Family</option>
                     </select>
                     <img :src="'../assets/img/icons/down-arrow.svg'">
                   </div>
                   <div class="employee-input-wrapper">
                     <label for="fname">Start Date</label>
-                    <input type="text" name="stard-date">
+                    <v-date-picker
+                        :max-date='new Date()'
+                        v-model="dependentDetails.startDate"
+                        :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                    >
+                    </v-date-picker>
+                    <!-- <input type="text" name="stard-date"> -->
                   </div>
                 </div>
               </form>
-              <div class="summary-left-right-btn" v-if="false">
-                <img :src="'../assets/img/icons/left.png'">
-                <img :src="'../assets/img/icons/right.png'">
+              <div class="summary-left-right-btn" v-if="dependentStorage.length !=0">
+                <img v-show="depPrevChevronState" class="summary-left-btn" @click="prevNextEmp('prev', 1)" :src="'../assets/img/icons/left.png'">
+                <img v-show="depNextChevronState" class="summary-right-btn" @click="prevNextEmp('next', 1)" :src="'../assets/img/icons/right.png'">
               </div>
               <div class="dependent-details-btn">
                 <button @click="cancelDep" class="btn-cancel">CANCEL</button>
                 <div class="btn-right-container">
-                  <button class="btn-add" @click="addDependentDetails()">ADD</button>
-                  <button class="btn-save-continue">SAVE & CONTINUE</button>
+                  <button class="btn-add" @click="prevNextEmp('add', 1)">ADD</button>
+                  <button class="btn-save-continue" @click="addDependentStorage('save')">SAVE & CONTINUE</button>
                 </div>
               </div>
             </div>
@@ -411,7 +435,6 @@
 
           <!-- details enroll summary -->
           <FadeTransition>
-            
             <div class="details-enroll-wrapper" v-if="isState === 'enrollsum'">
               <h1>Please check the details below before we enroll them.</h1>
               <!-- table summary -->
@@ -445,7 +468,7 @@
                             <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
                         </span>-->
                         <span class="fname">{{enroll.fname}}</span>
-                        <button @click="modalTrigger('edit', index)" class="dependent-hover-btn">Edit</button>
+                        <button @click="editEmployee('edit', index)" class="dependent-hover-btn">Edit</button>
                       </div>
                     </td>
                     <td>{{enroll.lname}}</td>
@@ -547,7 +570,7 @@
 
           <!-- succesfully enroll -->
           <FadeTransition>
-            <div class="successfully-enrolled-wrapper" v-if="false">
+            <div class="successfully-enrolled-wrapper" v-if="isState == 'successEnroll'">
               <h1>We've succesfully enrolled 
                 <span>1</span> employees and 
                 <span>0</span> dependents to the selected tier plan
@@ -563,31 +586,35 @@
       <div class="prev-next-button-container">
         <div class="button-container">
           <button v-if="isState === 'enrollment'" @click="$router.go(-1)" class="back-btn">Back</button>
-          <button v-if="isState === 'web' || isState === 'excel'"  @click="back('enrollment')" class="back-btn">Back</button>
+          <button v-if="isState === 'web' || isState === 'excel' && stepperState == 'download'"  @click="back('enrollment')" class="back-btn">Back</button>
+          <button v-if="stepperState == 'empOnly' || stepperState == 'empDependents' || stepperState == 'upload'"  @click="back('download')" class="back-btn">Back</button>
           <button v-if="isState === 'dependent'" :disabled="true" class="back-btn btn-disabled">Back</button>
-          <button v-if="isState === 'enrollsum'" @click="back('web')" class="back-btn">Back</button>
-          <button v-if="false" class="back-btn">BACK TO HOME</button>
+          <button v-if="isState === 'enrollsum'" @click="$router.go(-1)" class="back-btn">Back</button>
+          <button v-if="isState == 'successEnroll'" class="back-btn" @click="$router.push('dashboard')">BACK TO HOME</button>
           <button v-if="false" class="delete-btn">Delete</button>
 
           <div class="btn-enroll-container">
             <button v-if="isState === 'false'" class="btn-employee">DELETE</button>
-            <button v-if="employeeStorage.length != 0" class="btn-employee" @click="prevNextEmp('prev')">PREVIOUS EMPLOYEE</button>
-            <button v-if="isState === 'web'" class="btn-employee" @click="addToStorage">NEXT EMPLOYEE</button>
+            <button v-if="employeeStorage.length != 0 && isState === 'web'" :disabled="prevDisabled" class="btn-employee" @click="prevNextEmp('prev', 0)">PREVIOUS EMPLOYEE</button>
+            <button v-if="isState === 'web'" class="btn-employee" @click="prevNextEmp('next', 0)">NEXT EMPLOYEE</button>
+            <button class="next-btn" v-if="isState === 'enrollment' && isState === 'web'" v-on:click="next">Next</button>
             <button class="next-btn" v-if="isState === 'enrollment'" v-on:click="next">Next</button>
-            <button class="next-btn" v-if="isState === 'web'" @click="enroll">Enroll</button>
-            <button class="btn-download-template" v-if="isState === 'excel'">DOWNLOAD TEMPLATE</button>
-            <button class="next-btn" v-if="isState === 'excel'" v-on:click="excel">Next</button>
+            <button class="next-btn" v-if="isState === 'web'" @click="enroll('enrollsum')">Enroll</button>
+            <button class="btn-download-template" v-if="isState === 'excel' && stepperState == 'download'">DOWNLOAD TEMPLATE</button>
+            <button class="next-btn" v-if="isState === 'excel' && stepperState == 'download' " @click="excel(empType)">Next</button>
+            <button class="next-btn" v-if="stepperState == 'empOnly' || stepperState == 'empDependents'" @click="excel('upload')">Next</button>
+            <button class="next-btn" v-if="stepperState == 'upload'" @click="excel('enrollsum')">Next</button>
             <div v-if="isState === 'enrollsum'" class="btn-summary-enroll-container">
               <span class="pending-enroll-text">
                 <span>7</span> PENDING TO ENROLL
               </span>
-              <button class="btn-enroll">
+              <button class="btn-enroll" @click="enroll('successEnroll')">
                 ENROLL
                 <span class="enroll-badge">4</span>
               </button>
             </div>
-            <div class="btn-successfully-enrolled-container" v-if="false">
-              <button>CONTINUE WITH ENROLLMENT</button>
+            <div class="btn-successfully-enrolled-container" v-if="isState == 'successEnroll'">
+              <button @click="$router.push('enrollment-options')">CONTINUE WITH ENROLLMENT</button>
             </div>
           </div>
         </div>

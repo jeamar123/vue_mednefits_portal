@@ -1051,7 +1051,7 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
   .warning-global-container.primary {
     background-color: #0392CF;
   }
-  .warning-global-container.danger {
+  .warning-global-container.danger{
     background-color: #ff6864;
   }
   .warning-global-container .swal2-icon {
@@ -1086,9 +1086,9 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
     font-size: 17px !important;
     transition: all .2s ease-in-out;
   }
-  .warning-global-container.swal2-popup .swal2-styled.swal2-confirm:hover {
-    background-color: #2b77c0 !important;
-  }
+  /* .warning-global-container.swal2-popup .swal2-styled.swal2-confirm:hover {
+    /* background-color: #2b77c0 !important; */
+  /* } */
   .warning-global-container.swal2-popup .swal2-styled.swal2-cancel {
     background-color: #C1C1C1 !important;
   }

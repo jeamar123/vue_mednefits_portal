@@ -18,7 +18,7 @@
                 <strong>02 January 2019</strong> and ends on
                 <strong>01 January 2020</strong>
               </h5>
-              <router-link to="/company/enrollment">
+              <router-link to="/company/enrollment-options">
                 <button class="btn-info" @click="toEnrollment('enrollment')">Employee Enrollment</button>
               </router-link>
             </div>
