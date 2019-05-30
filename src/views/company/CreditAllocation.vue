@@ -1,6 +1,11 @@
 <template>
-  <div>
-    <h1>Credit Allocation</h1>
+  <div class="credit-allocation-wrapper">
+    <div class="container">
+    	<div class="benefits-cred-header">
+    		<h3>Benefits Credit Allocation</h3>
+    		<h5>Allocate your team's Benefits Credit</h5>
+    	</div>
+    </div>
   </div>
 </template>
 

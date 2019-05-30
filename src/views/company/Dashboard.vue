@@ -84,7 +84,7 @@
                 <li>
                   <router-link
                     v-bind:class="{ 'remove-active': ($route.name == 'CompanyEmployee') }"
-                    to="/company/employee-overview"
+                    to="/company/employee/overview"
                   >
                     <a>Overview</a>
                   </router-link>
@@ -93,7 +93,7 @@
                 <li>
                   <router-link
                     v-bind:class="{ 'remove-active': ($route.name == 'CompanyCreditAllocation') }"
-                    to="/company/credit-allocation"
+                    to="/company/employee/credit-allocation"
                   >
                     <a>Credit Allocation</a>
                   </router-link>
