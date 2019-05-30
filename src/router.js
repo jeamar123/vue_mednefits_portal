@@ -21,6 +21,8 @@ import Portal from './views/Portal.vue'
   import CompanyIntro from './views/company/Intro.vue'
   import CompanyDashboard from './views/company/Dashboard.vue'
   import CompanyEmployee from './views/company/Employee.vue'
+  import CompanyEmployeeDetails from './views/company/employee/Employee-details.vue'
+  import CompanyRemoveEmployee from './views/company/employee/Remove-employee.vue'
   import CompanyActivity from './views/company/Activity.vue'
   import CompanyClaim from './views/company/Claim.vue'
   import CompanyCreateTeamBenefitsTier from './views/company/enrollment/Create-team-benefits-tier.vue'
@@ -68,14 +70,16 @@ export default new Router({
       children: [
         { name: 'CompanyIntro', path: '/company/intro', component: CompanyIntro },
         { name: 'CompanyHome', path: '/company/dashboard', component: CompanyOverview },
-        { name: 'CompanyEmployee', path: '/company/employee-overview', component: CompanyEmployee },
+        { name: 'CompanyEmployee', path: '/company/employee/overview', component: CompanyEmployee },
+        { name: 'CompanyEmployeeDetails', path: '/company/employee/employee-details', component: CompanyEmployeeDetails },
+        { name: 'CompanyRemoveEmployee', path: '/company/employee-details/remove-employee', component: CompanyRemoveEmployee },
         { name: 'CompanyActivity', path: '/company/activity', component: CompanyActivity },
         { name: 'CompanyClaim', path: '/company/claim', component: CompanyClaim },
         { name: 'CompanyCreateTeamBenefitsTier', path: '/company/create-team-benefits-tier', component: CompanyCreateTeamBenefitsTier },
         { name: 'CompanyStatement', path: '/company/statement', component: CompanyStatement },
         { name: 'CompanyAccount', path: '/company/account', component: CompanyAccount },
         // { name: 'CompanyOverview', path: '/company/overview', component: CompanyOverview },
-        { name: 'CompanyCreditAllocation', path: '/company/credit-allocation', component: CompanyCreditAllocation },
+        { name: 'CompanyCreditAllocation', path: '/company/employee/credit-allocation', component: CompanyCreditAllocation },
         { name: 'CompanyEnrollment', path: '/company/enrollment', component: CompanyEnrollment },
         { name: 'CompanyEnrollmentOptions', path: '/company/enrollment-options', component: CompanyEnrollmentOptions },
       ]

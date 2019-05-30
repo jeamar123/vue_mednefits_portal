@@ -77,6 +77,10 @@
 	}
 	.employee-overview-table {
 		margin: 0 0 0 -40px;
+
+		a {
+			color: #283e52;
+		}
 	}
 	table {
 		width: 100%;
@@ -479,6 +483,7 @@
 	    padding: 5px 10px;
 	    font-weight: 700;
 	    line-height: 24px;
+	    transition: ease-in-out;
 		}
 	}
 	.employee-info-selection {

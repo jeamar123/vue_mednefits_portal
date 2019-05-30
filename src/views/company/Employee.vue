@@ -1,7 +1,7 @@
 <template>
   <div class="employee-wrapper">
     <!-- Employee Overview Table -->
-    <div class="overview-wrapper" v-if="!overviewInfoShow">
+    <div class="overview-wrapper">
         <div class="employee-overview-header">
         	<div class="overview-title">
         		<h1>Employee Overview</h1>
@@ -46,58 +46,60 @@
         			</tr>
         		</thead>
         		<tbody>
-        			<tr v-on:click="overviewInfo()">
-        				<td class="emp-name-container">
-        					<strong>allan cheam alzula</strong>
-        				</td>
-        				<td class="status-details-container">
-        					<div class="status-details">
-        						<span class="status-color active"></span>
-        						<span>Active</span>
-        					</div>
-        					<div class="status-expired-details">
-        						<span>Removed on 14/03/2019</span>
-        					</div>
-        				</td>
-        				<td class="nric-fin-container">S1349508D</td>
-        				<td class="plan-start-container">
-        					<span>Tier 1</span>
-        					<div class="plan-details">
-        						<strong>Plan type:</strong>
-        						<span>Pro Plan</span>
-        					</div>
-        					<div class="plan-details">
-        						<strong>Start date:</strong>
-        						<span>01/01/2018</span>
-        					</div>
-        				</td>
-        				<td class="family-coverage-container">
-        					<div class="family-dependent-details">
-        						<strong>Dependent:</strong>
-        						<span>0</span>
-        					</div>
-        				</td>
-        				<td class="medical-details-container">
-        					<div class="medical-details">
-        						<strong>Allocation:</strong>
-        						<span>S$ <span>100.00</span></span>
-        					</div>
-        					<div class="plan-details">
-        						<strong>Balance:</strong>
-        						<span>S$ <span>100.00</span></span>
-        					</div>
-        				</td>
-        				<td class="wellness-details-container">
-        					<div class="wellness-details">
-        						<strong>Allocation:</strong>
-        						<span>S$ <span>100.00</span></span>
-        					</div>
-        					<div class="wellness-details">
-        						<strong>Balance:</strong>
-        						<span>S$ <span>100.00</span></span>
-        					</div>
-        				</td>
-        			</tr>
+              <router-link to="/company/employee/employee-details">      
+        			 <tr>
+          				<td class="emp-name-container">
+          					<strong>allan cheam alzula</strong>
+          				</td>
+          				<td class="status-details-container">
+          					<div class="status-details">
+          						<span class="status-color active"></span>
+          						<span>Active</span>
+          					</div>
+          					<div class="status-expired-details">
+          						<span>Removed on 14/03/2019</span>
+          					</div>
+          				</td>
+          				<td class="nric-fin-container">S1349508D</td>
+          				<td class="plan-start-container">
+          					<span>Tier 1</span>
+          					<div class="plan-details">
+          						<strong>Plan type:</strong>
+          						<span>Pro Plan</span>
+          					</div>
+          					<div class="plan-details">
+          						<strong>Start date:</strong>
+          						<span>01/01/2018</span>
+          					</div>
+          				</td>
+          				<td class="family-coverage-container">
+          					<div class="family-dependent-details">
+          						<strong>Dependent:</strong>
+          						<span>0</span>
+          					</div>
+          				</td>
+          				<td class="medical-details-container">
+          					<div class="medical-details">
+          						<strong>Allocation:</strong>
+          						<span>S$ <span>100.00</span></span>
+          					</div>
+          					<div class="plan-details">
+          						<strong>Balance:</strong>
+          						<span>S$ <span>100.00</span></span>
+          					</div>
+          				</td>
+          				<td class="wellness-details-container">
+          					<div class="wellness-details">
+          						<strong>Allocation:</strong>
+          						<span>S$ <span>100.00</span></span>
+          					</div>
+          					<div class="wellness-details">
+          						<strong>Balance:</strong>
+          						<span>S$ <span>100.00</span></span>
+          					</div>
+          				</td>
+        			  </tr>
+              </router-link>
         		</tbody>
         	</table>
         </div>
@@ -131,22 +133,6 @@
               </div>
         		</div>
         	</div>
-        </div>
-    </div>
-
-      <!-- Employee Overview Information -->
-    <div class="overview-info-wrapper" id="info-wrapper" v-if="overviewInfoShow">
-
-        <!-- Employee Details-->
-        <EmployeeDetails></EmployeeDetails>
-        
-
-        <div class="employee-prev-next-button">
-          <button class="employee-btn-back">Back to employee overview</button>
-          <div class="pull-right">
-            <button class="employee-btn-prev disabled">Previous</button>
-            <button class="employee-btn-next">Next employee</button>
-          </div>
         </div>
     </div>
   </div>
