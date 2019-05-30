@@ -1,10 +1,6 @@
 <template>
   <div>
     <div class="enrollment-wrapper">
-      <div class="employee-dependent-header" v-if="isState === 'web' && empDepNavState">
-        <span v-bind:class="{'active' : selected_emp_dep_tab  == 1}" @click="selectEmpDepTab(1)">Employee</span>
-        <span v-bind:class="{'active' : selected_emp_dep_tab  == 2}" @click="selectEmpDepTab(2)">Dependent</span>
-      </div>
       <div class="container">
 
         <!-- Enrollment -->
@@ -40,8 +36,8 @@
 
 
         <!-------- EXCEL IMPORT -------->
-
-        <div class="excel-import-wrapper" v-if="isState === 'excel'">
+        <!-- isState === 'excel' -->
+        <div class="excel-import-wrapper" v-if="false">
 
           <div class="download-template-wrapper" v-if="stepperState == 'download'">
             <h1>Download template.</h1>
@@ -191,7 +187,7 @@
         <!-------- WEB INPUT -------->
         <!-- <WebInput v-if="isState === 'web'"></WebInput> -->
 
-        <div class="web-input-wrapper">
+        <div v-if="false" class="web-input-wrapper">
           
           <div v-if="isState === 'web' && selected_emp_dep_tab  == 1" class="employee-details-wrapper">
             <div class="employee-tier-title">
@@ -570,33 +566,34 @@
       <div class="prev-next-button-container">
         <div class="button-container">
           <button v-if="isState === 'enrollment'" @click="$router.go(-1)" class="back-btn">Back</button>
-          <button v-if="isState === 'web' || isState === 'excel' && stepperState == 'download'"
-            @click="back('enrollment')" class="back-btn">Back</button>
-          <button v-if="stepperState == 'empOnly' || stepperState == 'empDependents' || stepperState == 'upload'"
-            @click="back('download')" class="back-btn">Back</button>
-          <button v-if="isState === 'dependent'" :disabled="true" class="back-btn btn-disabled">Back</button>
-          <button v-if="isState === 'enrollsum'" @click="$router.go(-1)" class="back-btn">Back</button>
-          <button v-if="isState == 'successEnroll'" class="back-btn" @click="$router.push('dashboard')">BACK TO
-            HOME</button>
-          <button v-if="isChecked.length !=0" class="delete-btn" @click="remove('fromCheck')">Delete</button>
+          <!-- <button v-if="isState === 'web' || isState === 'excel' && stepperState == 'download'"
+            @click="back('enrollment')" class="back-btn">Back</button> -->
+          <!-- <button v-if="stepperState == 'empOnly' || stepperState == 'empDependents' || stepperState == 'upload'"
+            @click="back('download')" class="back-btn">Back</button> -->
+          <!-- <button v-if="isState === 'dependent'" :disabled="true" class="back-btn btn-disabled">Back</button> -->
+          <!-- <button v-if="isState === 'enrollsum'" @click="$router.go(-1)" class="back-btn">Back</button> -->
+          <!-- <button v-if="isState == 'successEnroll'" class="back-btn" @click="$router.push('dashboard')">BACK TO
+            HOME</button> -->
+          <!-- <button v-if="isChecked.length !=0" class="delete-btn" @click="remove('fromCheck')">Delete</button> -->
 
           <div class="btn-enroll-container">
-            <button v-if="false" class="btn-employee" >DELETE</button>
+            <!-- <button v-if="false" class="btn-employee" >DELETE</button>
             <button v-if="employeeStorage.length != 0 && isState === 'web'" :disabled="prevDisabled"
-              class="btn-employee" @click="prevNextEmp('prev', 0)">PREVIOUS EMPLOYEE</button>
-            <button v-if="isState === 'web'" class="btn-employee" @click="prevNextEmp('next', 0)">NEXT EMPLOYEE</button>
-            <button class="next-btn" v-if="isState === 'enrollment' && isState === 'web'"
-              v-on:click="next">Next</button>
-            <button class="next-btn" v-if="isState === 'enrollment'" v-on:click="next">Next</button>
-            <button class="next-btn" v-if="isState === 'web'" @click="enroll('enrollsum')">Enroll</button>
-            <button class="btn-download-template" v-if="isState === 'excel' && stepperState == 'download'">DOWNLOAD
-              TEMPLATE</button>
-            <button class="next-btn" v-if="isState === 'excel' && stepperState == 'download' "
-              @click="excel(empType)">Next</button>
-            <button class="next-btn" v-if="stepperState == 'empOnly' || stepperState == 'empDependents'"
-              @click="excel('upload')">Next</button>
-            <button class="next-btn" v-if="stepperState == 'upload'" @click="excel('enrollsum')">Next</button>
-            <div v-if="isState === 'enrollsum'" class="btn-summary-enroll-container">
+              class="btn-employee" @click="prevNextEmp('prev', 0)">PREVIOUS EMPLOYEE</button> -->
+            <!-- <button v-if="isState === 'web'" class="btn-employee" @click="prevNextEmp('next', 0)">NEXT EMPLOYEE</button> -->
+            <!-- <button class="next-btn" v-if="isState === 'enrollment' && isState === 'web'"
+              v-on:click="next">Next</button> -->
+            <button class="next-btn" v-if="isState === 'enrollment'" @click="next">Next</button>
+            <!-- <button class="next-btn" v-if="isState === 'web'" @click="enroll('enrollsum')">Enroll</button> -->
+            <!-- <button class="btn-download-template" v-if="isState === 'excel' && stepperState == 'download'">DOWNLOAD
+              TEMPLATE</button> -->
+            <!-- <button class="next-btn" v-if="isState === 'excel' && stepperState == 'download' "
+              @click="excel(empType)">Next</button> -->
+            <!-- <button class="next-btn" v-if="stepperState == 'empOnly' || stepperState == 'empDependents'"
+              @click="excel('upload')">Next</button> -->
+            <!-- <button class="next-btn" v-if="stepperState == 'upload'" @click="excel('enrollsum')">Next</button> -->
+           
+            <!-- <div v-if="isState === 'enrollsum'" class="btn-summary-enroll-container">
               <span class="pending-enroll-text">
                 <span>7</span> PENDING TO ENROLL
               </span>
@@ -604,10 +601,10 @@
                 ENROLL
                 <span class="enroll-badge">4</span>
               </button>
-            </div>
-            <div class="btn-successfully-enrolled-container" v-if="isState == 'successEnroll'">
+            </div> -->
+            <!-- <div class="btn-successfully-enrolled-container" v-if="isState == 'successEnroll'">
               <button @click="$router.push('enrollment-options')">CONTINUE WITH ENROLLMENT</button>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

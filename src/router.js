@@ -30,6 +30,9 @@ import Portal from './views/Portal.vue'
   import CompanyCreditAllocation from './views/company/CreditAllocation.vue'
   import CompanyEnrollment from './views/company/Enrollment.vue'
   import CompanyEnrollmentOptions from './views/company/enrollment/Enrollment-options.vue'
+  import CompanyWebInput from './views/company/enrollment/Web-input.vue'
+  import CompanyExcel from './views/company/enrollment/Excel.vue'
+
 // CLINIC views
 
 
@@ -76,8 +79,10 @@ export default new Router({
         { name: 'CompanyAccount', path: '/company/account', component: CompanyAccount },
         // { name: 'CompanyOverview', path: '/company/overview', component: CompanyOverview },
         { name: 'CompanyCreditAllocation', path: '/company/credit-allocation', component: CompanyCreditAllocation },
-        { name: 'CompanyEnrollment', path: '/company/enrollment', component: CompanyEnrollment },
         { name: 'CompanyEnrollmentOptions', path: '/company/enrollment-options', component: CompanyEnrollmentOptions },
+        { name: 'CompanyEnrollment', path: '/company/enrollment', component: CompanyEnrollment },
+        { name: 'CompanyWebInput', path: '/company/enrollment/web-input', component: CompanyWebInput },
+        { name: 'CompanyExcel', path: '/company/enrollment/Excel', component: CompanyExcel },
       ]
     },
     

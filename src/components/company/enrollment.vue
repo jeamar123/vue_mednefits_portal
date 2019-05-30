@@ -606,18 +606,13 @@ let enrollment = {
         // });
       }
     },
-    next(data) {
+    next(data) { // use in enrollment
       if (this.isType === "web") {
         this.isState = "web";
-        this.$emit("enrollmentData", {
-          isState: "web"
-        });
+        this.$router.push('enrollment/web-input');
       } else if (this.isType === "excel") {
         this.isState = "excel";
-        this.stepperState = "download";
-        this.$emit("enrollmentData", {
-          isState: "excel"
-        });
+        this.$router.push('enrollment/excel');
       } else {
         console.log("select 1 item");
       }
