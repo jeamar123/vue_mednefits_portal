@@ -5,6 +5,86 @@
     		<h3>Benefits Credit Allocation</h3>
     		<h5>Allocate your team's Benefits Credit</h5>
     	</div>
+    	<div class="employee-details-search-wrapper">
+    		<div class="spending-account-wrapper">
+    			<div class="spending-account-container">
+    				<span>Medical Spending Account</span>
+    				<div>
+    					<div class="total-container">
+    						<div>Total: <span>S$ 80,000.00</span></div>
+    					</div>
+    					<div class="alocated-container">
+    						<div>Allocated: <span>S$ 5,880.86</span></div>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="spending-account-container">
+    				<span>Wellness Spending Account</span>
+    				<div>
+    					<div class="total-container">
+    						<div>Total: <span>S$ 0.00</span></div>
+    					</div>
+    					<div class="alocated-container">
+    						<div>Allocated: <span>S$ 3,200.00</span></div>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="employee-search-container">
+    			<span>1 Employee</span>
+    			<div>
+    				<input type="text" placeholder="Enter Employee and press enter..">
+    				<i class="fa fa-search"></i>
+    			</div>	
+    		</div>
+    	</div>
+    	<div class="cred-details-wrapper">
+    		<div class="cred-emp-wrapper">
+    			<div class="cred-header-container">
+    				<span>Filbert Tan</span>	
+    			</div>
+    			<div class="cred-body-container">
+    				<div class="email-address-container">
+    					<label>Email Address:</label>
+    					<span>filbert@mednefits.com</span>
+    				</div>
+    				<div class="job-title-container">
+    					<label>Job Title:</label>
+    					<span>Marketing</span>
+    				</div>
+    				<div class="credit-allocation-container">
+    					<label>Credit Allocation:</label>
+    					<div class="credit-allocation-btn-container">
+    						<button class="active">Medical</button>
+    						<button>Wellness</button>
+    					</div>
+    					<div class="allocated-spent-wrapper">
+    						<div class="allocated-spent-container">
+    							<div>
+    								<span>S$116.48</span>
+    								<span>Allocated</span>
+    							</div>
+    							<div>
+    								<span>S$81.21</span>
+    								<span>Spent</span>
+    							</div>
+    						</div>
+    						<div class="trans-btn-container">
+    							<button class="active btn-add">Add</button>
+    							<button class="btn-deduct">Deduct</button>
+    						</div>
+    					</div>
+    					<div class="credits-add-input-wrapper">
+    						<label>Credits to Add*</label>
+    						<input tpye="number" placeholder="0"> 
+    					</div>
+    					<div calss="update-btn-container">
+    						<button class="btn-update">Update</button>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
     </div>
   </div>
 </template>

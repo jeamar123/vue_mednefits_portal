@@ -895,6 +895,7 @@
 	padding-top: 150px;
 	height: 100%;
 	background-color: #fff;
+	overflow-y: auto;
 
 	.benefits-cred-header {
 		text-align: center;
@@ -904,8 +905,198 @@
 			font-size: 24px;
 		}
 		h5 {
-			margin: 0 0 100px;
+			margin: 0 0 50px;
 			font-size: 14px;
+		}
+	}
+
+	.employee-details-search-wrapper {
+		display: flex;
+		margin: 0 95px 50px;
+		font-weight: 700;
+		>div {
+			width: 100%;
+		}
+		>div:nth-child(2) {
+			text-align: right;
+		}
+	}
+
+	.spending-account-container {
+		margin-bottom: 10px;
+
+		>span {
+			font-size: 16px;
+		}
+		>div {
+			display: flex;
+
+		}
+		.total-container {
+			flex: .51;
+		}
+	}
+	.employee-search-container {
+		>span {
+			font-size: 12px;
+			color: #777;
+		}
+		input {
+			width: 300px;
+			height: 34px;
+			padding: 6px 12px;
+			background-color: #f7f7f7;
+			color: #555;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+			transition: border-color ease-in-out .15s,
+									box-shadow ease-in-out .15s;
+		}
+
+		input:focus {
+			border-color: #66afe9;
+			box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+		}
+
+		i {
+			position: absolute;
+			right: 10px;
+    	top: 10px;
+			color: #0c95d0;
+		}
+		>div {
+			position: relative;
+		}
+	}
+
+	.cred-details-wrapper {
+		padding: 0 40px;
+	}
+
+	.cred-emp-wrapper {
+		width: 33.3%;
+		border-radius: 2px;
+    box-shadow: 1px 1px 10px #777;
+    float: left;
+    margin: 0 10px 20px;
+	}
+
+	.cred-header-container {
+		padding: 12px 20px;
+		color: #fff;
+		background-color: #29abe2;
+		font-size: 20px;
+		font-weight: 700;
+	}
+
+	.cred-body-container {
+		background-color: #fff;
+		padding: 10px 20px 50px;
+		font-weight: 700;
+	}
+
+	.email-address-container,
+	.job-title-container {
+		line-height: 24px;
+		margin: 0 0 10px;
+		label {
+			display: block;
+			color: #333;
+		}
+		span {
+			font-weight: 400;
+		}
+	}
+	.job-title-container {
+		min-height: 73px;
+	}
+
+	.credit-allocation-container {
+		label {
+			font-size: 18px;
+			display: block;
+			margin: 0 0 10px;
+			line-height: 24px;
+		}
+		.credit-allocation-btn-container,
+		.trans-btn-container {
+			button {
+			font-weight: 700;
+			font-size: 12px;
+			padding: 8px 12px;
+			background-color: #fff;
+			letter-spacing: .5px;
+			border: 1px solid #ccc;
+			}
+			.btn-add,
+			.btn-deduct {
+				line-height: 1.42857143;
+				width: 55px;
+				font-size: 10px;
+				padding: 5px;
+			}
+			button:nth-child(1) {
+				border-radius: 4px 0 0 4px;
+	    	border-width: 2px 1px 2px 2px;
+			}
+			button:nth-child(2) {
+				border-radius: 0 4px 4px 0;
+	    	border-width: 2px 2px 2px 1px;
+			}
+			button.active {
+				border-color: #009EC8;
+			}
+		}
+	}
+
+	.allocated-spent-wrapper {
+		display: flex;
+		margin-top: 10px;
+	}
+	.allocated-spent-container {
+		color: #9c9c9c;
+		font-size: 12px;
+		flex: .8;
+
+		div {
+			line-height: 24px;
+
+			span:first-child {
+				display: inline-block;
+				width: 85px;
+			}
+		}
+	}
+
+	.credits-add-input-wrapper {
+		margin-top: 10px;
+		color: #9c9c9c;
+		label {
+			font-size: 13px;
+			font-weight: 400;
+			margin: 0;
+		}
+		input {
+			border: none;
+    	width: 63%;
+    	border-bottom: 1px solid #aaa;
+		}
+	}
+
+	.btn-update {
+		margin: 20px 0 0;
+		background-color: #0392cf;
+		color: #fff;
+		width: 150px;
+		padding: 6px 20px;
+		font-size: 16px;
+		letter-spacing: .5px;
+		line-height: 1.42857143;
+		border: 1px solid transparent;
+
+		&:hover {
+			box-shadow: 0 3px 3px 0 rgba(0,0,0,.14), 0 1px 7px 0 rgba(0,0,0,.12), 0 3px 1px -1px rgba(0,0,0,.2);
 		}
 	}
 }
