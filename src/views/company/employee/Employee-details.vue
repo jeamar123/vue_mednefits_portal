@@ -354,7 +354,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="spending-account-status on-track">On Track</div>
+                <div class="spending-account-status on-track"> On Track</div>
               </div>
               <div class="separator"></div>
               <div class="wellness-container">

@@ -135,6 +135,7 @@
     <div class="enrollment-wrapper">
 
       <div class="container">
+        {{data}}
         <div class="details-enroll-wrapper" v-if="isState == 'enrollsum'">
           <h1>Please check the details below before we enroll them.</h1>
           <!-- table summary -->
