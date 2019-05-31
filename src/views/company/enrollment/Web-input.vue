@@ -490,12 +490,14 @@ window.$ = $;
       enroll(data) {
         if (data == "enrollsum") {
           this.isState = "enrollsum";
-          this.$emit("enrollmentData", {
-            isState: "enrollsum"
+          this.$emit("webInputData", {
+            isState: "enrollsum",
           });
           this.addToStorage("enroll");
           this.indexData = this.employeeStorage.length;
           this.prevDisabled = false;
+
+
         } else if (data === "successEnroll") {
           this.isState = "successEnroll";
           // this.$emit("enrollmentData", {
