@@ -1,12 +1,17 @@
 <script>
+  import Modal from "../../../views/company/modal/Modal.vue";
+
   export default {
-    components: {},
+    components: {
+      Modal
+    },
     data() {
       return {
         isState: 'enrollsum',
         modalEdit: false, //edit modal
         employeeStorage: [],//used in web input
         isChecked: [], // used in enrollment summary
+        employeeDetails: {}
       };
     },
     methods: {
@@ -195,7 +200,7 @@
           </div>
         </div>
 
-         <!-- modal edit -->
+        <!-- modal edit -->
         <Modal v-if="modalEdit">
           <div slot="header">
             <h4>Edit Employee Details</h4>

@@ -485,8 +485,8 @@
 
       <div class="global-modal-wrapper">
         <!-- modal edit for employee -->
-        <Modal v-if="modalEdit.employee">
-          <div slot="header">
+        <Modal class="employee-edit-modal" v-if="modalEdit.employee">
+          <div slot="header" class="employee-name-container">
             <span>allan cheam alzula</span>
             <img @click="modalEdit.employee = false" :src="'../assets/img/icons/close-blue.svg'">
             <h1>Edit employee details</h1>
@@ -551,15 +551,15 @@
               </div>
             </form>
           </div>
-          <div slot="footer">
+          <div slot="footer" class="modal-btn-container">
             <button>CANCEL</button>
             <button>SAVE & CONTINUE</button>
           </div>
         </Modal>
 
         <!-- modal edit  for dependent-->
-        <Modal v-if="modalEdit.dependent">
-          <div slot="header">
+        <Modal class="depedent-edit-modal" v-if="modalEdit.dependent">
+          <div slot="header" class="employee-name-container">
             <img @click="modalEdit.dependent = false" :src="'../assets/img/icons/close-blue.svg'">
             <h1>Edit dependent details</h1>
           </div>
@@ -605,7 +605,7 @@
               </div>
             </form>
           </div>
-          <div slot="footer">
+          <div slot="footer" class="modal-btn-container">
             <button>CANCEL</button>
             <button>SAVE & CONTINUE</button>
           </div>

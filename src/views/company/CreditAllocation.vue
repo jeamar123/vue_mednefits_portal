@@ -55,8 +55,8 @@
     				<div class="credit-allocation-container">
     					<label>Credit Allocation:</label>
     					<div class="credit-allocation-btn-container">
-    						<button class="active">Medical</button>
-    						<button>Wellness</button>
+    						<button v-bind:class="{'active' : emp.creditAllocSpendingType == 0}" @click="setSpendType(0)">Medical</button>
+    						<button v-bind:class="{'active' : emp.creditAllocSpendingType == 1}" @click="setSpendType(1)">Wellness</button>
     					</div>
     					<div class="allocated-spent-wrapper">
     						<div class="allocated-spent-container">
@@ -70,12 +70,12 @@
     							</div>
     						</div>
     						<div class="trans-btn-container">
-    							<button class="active btn-add">Add</button>
-    							<button class="btn-deduct">Deduct</button>
+    							<button v-bind:class="{'active' : emp.creditAllocTransactionType == 0}" @click="setTransType(0)" class="btn-add">Add</button>
+    							<button v-bind:class="{'active' : emp.creditAllocTransactionType == 1}" @click="setTransType(1)" class="btn-deduct">Deduct</button>
     						</div>
     					</div>
     					<div class="credits-add-input-wrapper">
-    						<label>Credits to Add*</label>
+    						<label>Credits to <span>{{ emp.creditAllocTransactionTypeText }}*</span> </label>
     						<input tpye="number" placeholder="0"> 
     					</div>
     					<div calss="update-btn-container">
@@ -86,6 +86,12 @@
     		</div>
     	</div>
     </div>
+
+    <Modal class="credit-allocation-modal" v-if="false">
+    	<div slot="header">
+    		<h1>Sample Header</h1>
+    	</div>
+    </Modal>
   </div>
 </template>
 

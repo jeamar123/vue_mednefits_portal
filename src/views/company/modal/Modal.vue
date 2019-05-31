@@ -5,11 +5,9 @@
         <div class="modal-container">
           
           <div class="modal-header">
-            <div class="employee-name-container">
-              <slot name="header">
-              <!-- Header Content Here -->
-              </slot>
-            </div>
+            <slot name="header">
+            <!-- Header Content Here -->
+            </slot>
           </div>
 
           <div class="modal-body">
@@ -18,11 +16,9 @@
           </div>
 
           <div class="modal-footer">
-            <div class="modal-btn-container">
-              <slot name="footer">
-                <!-- Footer Content here -->
-              </slot>
-            </div>
+            <slot name="footer">
+              <!-- Footer Content here -->
+            </slot>
           </div>
 
         </div>
