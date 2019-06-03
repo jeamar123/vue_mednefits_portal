@@ -39,9 +39,9 @@
     		</div>
     	</div>
     	<div class="cred-details-wrapper">
-    		<div class="cred-emp-wrapper">
+    		<div v-for="n in 10" :key="n.id" class="cred-emp-wrapper">
     			<div class="cred-header-container">
-    				<span>Filbert Tan</span>	
+    				<span>Filbert Tan {{n}}</span>	
     			</div>
     			<div class="cred-body-container">
     				<div class="email-address-container">

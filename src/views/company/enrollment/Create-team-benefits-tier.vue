@@ -92,7 +92,7 @@
 							<label :for="'tier' + (index+1)">
 								<div>
 									Tier <span>{{index +1}} </span> 
-									<span>0</span>/<span>{{parseInt(tier.empCount) + parseInt(tier.empCount)}}</span>
+									<span>0</span>/<span>{{parseInt(tier.empCount) + parseInt(tier.empCount) || 0}}</span>
 								</div>
 							</label>
 							<span @click="editTierData(index)">Edit</span>
