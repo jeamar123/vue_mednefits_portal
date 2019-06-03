@@ -80,6 +80,17 @@
     					</div>
     					<div calss="update-btn-container">
     						<button class="btn-update">Update</button>
+    						<div class="update-verification">
+	    						<div v-if="true" class="text-success">
+				          	Success <i class="fa fa-check-circle"></i>
+				          </div>
+				          <div v-if="false" class="text-error">
+				          	Failed <i class="fa fa-times-circle"></i>
+				          </div>
+	    						 <div v-if="false" class="text-error">
+				          	Please input credits. <i class="fa fa-times-circle"></i>
+				          </div>
+			        	</div>
     					</div>
     				</div>
     			</div>
@@ -123,7 +134,20 @@
 
     <Modal class="credit-allocation-modal" v-if="false">
     	<div slot="header">
-    		<h1>Sample Header</h1>
+    		<h5>Input Password</h5>
+    	</div>
+    	<div slot="body">
+    		<input type="text">
+    		<div v-if="false" class="update-verification">
+	    		<div class="text-error">Invalid Password.</div>
+	    	</div>
+    	</div>
+    	<div slot="footer">
+    		<button>Cancel</button>
+    		<button> 
+    			<span>Submit</span> 
+    			<span v-if="false">Checking...</span>
+    		</button>
     	</div>
     </Modal>
   </div>
