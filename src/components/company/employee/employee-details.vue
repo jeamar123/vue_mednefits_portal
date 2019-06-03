@@ -70,7 +70,8 @@ let employeeDetails = {
     },
     viewEmployeeSpendingSummary() { //health spending account summary button under person information
       
-      $("body").scrollTop(0); 
+      // $("body").scrollTop(0);
+      $("html, body").animate({scrollTop: $("body").offset().top}, 400);
       if (this.healthSpendingAccountTabIsShow == false) {
         this.toggle_overiew_type = 4;
         this.healthSpendingAccountTabIsShow = true;

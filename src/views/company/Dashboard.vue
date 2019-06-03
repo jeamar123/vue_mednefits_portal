@@ -2,8 +2,9 @@
   <div class="main-ui-container">
     <div v-if="$route.name != 'CompanyIntro'" class="top-navbar-wrapper">
       <div class="top-navbar">
-        <img class="top-logo" :src="'../assets/img/mednefits_logo_v3_(white).png'">
-
+        <router-link to="/company/dashboard" exact-active-class="router-active-disable">
+          <img class="top-logo" :src="'../assets/img/mednefits_logo_v3_(white).png'">
+        </router-link>
         <div class="need-help-wrapper">
           <a href="#" class="need-help-text-container">
             <h3 class="need-help-text">Need help?</h3>
