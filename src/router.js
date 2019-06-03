@@ -72,23 +72,30 @@ export default new Router({
       component: CompanyDashboard,
       meta: { auth: true },
       children: [
+        //dashboard
         { name: 'CompanyIntro', path: '/company/intro', component: CompanyIntro },
         { name: 'CompanyHome', path: '/company/dashboard', component: CompanyOverview },
+        //employee
         { name: 'CompanyEmployee', path: '/company/employee/overview', component: CompanyEmployee },
+        { name: 'CompanyCreditAllocation', path: '/company/employee/credit-allocation', component: CompanyCreditAllocation },
         { name: 'CompanyEmployeeDetails', path: '/company/employee/employee-details', component: CompanyEmployeeDetails },
         { name: 'CompanyRemoveEmployee', path: '/company/employee-details/remove-employee', component: CompanyRemoveEmployee },
+        //acitivity
         { name: 'CompanyActivity', path: '/company/activity', component: CompanyActivity },
+        //company claim
         { name: 'CompanyClaim', path: '/company/claim', component: CompanyClaim },
+        //enrollment
         { name: 'CompanyCreateTeamBenefitsTier', path: '/company/create-team-benefits-tier', component: CompanyCreateTeamBenefitsTier },
-        { name: 'CompanyStatement', path: '/company/statement', component: CompanyStatement },
-        { name: 'CompanyAccount', path: '/company/account', component: CompanyAccount },
-        // { name: 'CompanyOverview', path: '/company/overview', component: CompanyOverview },
-        { name: 'CompanyCreditAllocation', path: '/company/employee/credit-allocation', component: CompanyCreditAllocation },
         { name: 'CompanyEnrollment', path: '/company/enrollment', component: CompanyEnrollment },
         { name: 'CompanyEnrollmentOptions', path: '/company/enrollment-options', component: CompanyEnrollmentOptions },
         { name: 'CompanyWebInput', path: '/company/enrollment/web-input', component: CompanyWebInput },
         { name: 'CompanyExcel', path: '/company/enrollment/excel', component: CompanyExcel },
         { name: 'CompanyEnroll', path: '/company/enrollment/summary', component: CompanyEnroll },
+        //company statement
+        { name: 'CompanyStatement', path: '/company/statement', component: CompanyStatement },
+        { name: 'CompanyAccount', path: '/company/account', component: CompanyAccount },
+        // { name: 'CompanyOverview', path: '/company/overview', component: CompanyOverview },
+        
       ]
     },
     

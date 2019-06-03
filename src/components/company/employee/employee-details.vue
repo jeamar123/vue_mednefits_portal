@@ -1,11 +1,13 @@
 <script>
 /* eslint-disable */
 import Modal from "../../../views/company/modal/Modal.vue";
+import HealthSpending from "../../../views/company/employee/Health-spending.vue";
 
 // Methods here
 let employeeDetails = {
   components: {
-    Modal
+    Modal,
+    HealthSpending
   },
   data() {
     return {
