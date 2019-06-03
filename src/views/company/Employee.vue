@@ -104,9 +104,10 @@
         	</table>
         </div>
         <div class="employee-pagination-wrapper">
-        	<div class="employee-pagination">
+        	<div class="global-pagination">
         		<div class="prev-pagination">
-        			<img :src="'../assets/img/icons/right-arrow-angle-blue.svg'">
+              <i class="fa fa-angle-left"></i>
+        			<!-- <img :src="'../assets/img/icons/right-arrow-angle-blue.svg'"> -->
         			<span>Prev</span>
         		</div>
         		<span class="numeric-pagination active">1</span>
@@ -114,14 +115,16 @@
         		<span class="numeric-pagination">3</span>
         		<span class="numeric-pagination">4</span>
         		<div class="next-pagination">
-        			<img :src="'../assets/img/icons/right-arrow-angle-blue.svg'">
+              <i class="fa fa-angle-right"></i>
+        			<!-- <img :src="'../assets/img/icons/right-arrow-angle-blue.svg'"> -->
         			<span>Next</span>
         		</div>
         		<div class="per-page-pagination">
         			<span>
         				<span>5</span> per page
         			</span>
-        			<img :src="'../assets/img/icons/right-arrow-angle-blue.svg'">
+              <i class="fa fa-angle-down"></i>
+        			<!-- <img :src="'../assets/img/icons/right-arrow-angle-blue.svg'"> -->
               <div v-if="false" class="per-page">
                 <ul class="nav">
                   <li><a href="">5</a></li>

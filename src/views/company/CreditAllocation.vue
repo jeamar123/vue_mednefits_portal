@@ -85,6 +85,40 @@
     			</div>
     		</div>
     	</div>
+    	<div class="cred-allocation-pagination-wrapper">
+    		<div class="global-pagination">
+      		<div class="prev-pagination">
+      			<i class="fa fa-angle-left"></i>
+      			<!-- <img :src="'../assets/img/icons/right-arrow-angle-blue.svg'"> -->
+      			<span>Prev</span>
+      		</div>
+      		<span class="numeric-pagination active">1</span>
+      		<span class="numeric-pagination">2</span>
+      		<span class="numeric-pagination">3</span>
+      		<span class="numeric-pagination">4</span>
+      		<div class="next-pagination">
+      			<i class="fa fa-angle-right"></i>
+      			<!-- <img :src="'../assets/img/icons/right-arrow-angle-blue.svg'"> -->
+      			<span>Next</span>
+      		</div>
+      		<div class="per-page-pagination">
+      			<span>
+      				<span>5</span> per page
+      			</span>
+      			<i class="fa fa-angle-down"></i>
+      			<!-- <img :src="'../assets/img/icons/right-arrow-angle-blue.svg'"> -->
+            <div v-if="false" class="per-page">
+              <ul class="nav">
+                <li><a href="">5</a></li>
+                <li><a href="">10</a></li>
+                <li><a href="">20</a></li>
+                <li><a href="">50</a></li>
+                <li><a href="">100</a></li>
+              </ul>
+            </div>
+      		</div>
+        </div>
+    	</div>
     </div>
 
     <Modal class="credit-allocation-modal" v-if="false">
