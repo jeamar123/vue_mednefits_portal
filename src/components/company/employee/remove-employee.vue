@@ -21,5 +21,5 @@ export default removeEmployee;
 </script>
 
 <style lang="scss" scoped>
-@import "./src/assets/css/company/employee.scss";
+  @import './src/assets/css/company/employee.scss'
 </style>
