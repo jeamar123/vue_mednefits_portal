@@ -23,6 +23,6 @@ let overview = {
 export default overview
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	@import './src/assets/css/company/overview.scss'
 </style>
