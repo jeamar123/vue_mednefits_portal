@@ -278,7 +278,7 @@
             </div>
           <!-- </transition> -->
 
-          <div v-if="healthSpendingAccountTabIsShow" class="account-summary-wrapper">
+          <!-- <div v-if="healthSpendingAccountTabIsShow" class="account-summary-wrapper">
             <span class="account-summary-name">Serene Song</span>
             <h1>Health Spending Account Summary</h1>
             <div class="credits-summary-container">
@@ -408,7 +408,9 @@
                 <div class="spending-account-status exceed">Exceed</div>
               </div>
             </div>
-          </div>
+          </div> -->
+          <HealthSpending v-if="healthSpendingAccountTabIsShow"></HealthSpending>
+
         </div>
       </div>
 
