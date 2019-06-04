@@ -48,7 +48,8 @@
                 <div class="employee-input-wrapper dob">
                   <label for="fname">Date of Birth</label>
                   <v-date-picker :max-date='new Date()' v-model="employeeDetails.dob"
-                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
+                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true}'
+                    popover-visibility='focus'>
                   </v-date-picker>
                 </div>
               </div>
@@ -70,7 +71,8 @@
                 <div class="employee-input-wrapper">
                   <label for="fname">Start Date</label>
                   <v-date-picker :date='new Date()' v-model="employeeDetails.startDate"
-                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
+                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                    popover-visibility='focus'>
                   </v-date-picker>
                 </div>
               </div>
@@ -186,7 +188,8 @@
                 <div class="employee-input-wrapper dob">
                   <label for="">Date of Birth</label>
                   <v-date-picker :max-date='new Date()' v-model="dependentDetails.dob"
-                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
+                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                    popover-visibility='focus'>
                   </v-date-picker>
                   <!-- <input type="text" name="lname" placeholder="DD/MM/YYYY"> -->
                 </div>
@@ -204,7 +207,8 @@
                 <div class="employee-input-wrapper">
                   <label for="fname">Start Date</label>
                   <v-date-picker :max-date='new Date()' v-model="dependentDetails.startDate"
-                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
+                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                    popover-visibility='focus'>
                   </v-date-picker>
                   <!-- <input type="text" name="stard-date"> -->
                 </div>
@@ -272,7 +276,7 @@
 </template>
 
 <script>
-import webInput from "@/components/company/enrollment/web-input";
+  import webInput from "@/components/company/enrollment/web-input";
 
-export default webInput;
+  export default webInput;
 </script>
