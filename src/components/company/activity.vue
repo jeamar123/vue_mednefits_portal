@@ -3,7 +3,7 @@
 let activity = {
   data() {
     return {
-      sampleData: true
+      timeFrame: {},
     };
   },
 };
@@ -12,6 +12,6 @@ export default activity
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
   @import './src/assets/css/company/activity.scss'
 </style>

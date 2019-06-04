@@ -11,7 +11,10 @@
 
 						<div class="custom-date-selector">
 							<i class="fa fa-calendar"></i>
-							<input type="text" value="01/06/2019" readonly>
+							<v-date-picker :max-date='new Date()' v-model="timeFrame.start"
+                :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
+                popover-visibility='focus'>
+              </v-date-picker>
 							<i class="fa fa-caret-down"></i>
 						</div> 
 
@@ -19,7 +22,10 @@
 						
 						<div class="custom-date-selector">	
 							<i class="fa fa-calendar"></i>
-							<input type="text" value="04/06/2019" readonly>
+							<v-date-picker :max-date='new Date()' v-model="timeFrame.end"
+                :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
+                popover-visibility='focus'>
+              </v-date-picker>
 							<i class="fa fa-caret-down"></i>	
 						</div>		
 
