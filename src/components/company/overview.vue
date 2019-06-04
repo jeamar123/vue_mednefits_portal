@@ -1,33 +1,33 @@
 <script>
+/* eslint-disable */
 // Methods here
 let overview = {
   data() {
     return {
-      spendingType:{
+      spendingType: {
         value: 0,
-        text: ''
+        text: ""
       } //default is medical
     };
   },
   methods: {
-    spendType(value, text){
+    spendType(value, text) {
       //spending either medical or wellness
       this.spendingType.value = value;
       this.spendingType.text = text;
-      console.log(this.spendingType);
     },
     //emit/transfer data data to another component
     toEnrollment(data) {
-      this.$emit('overviewData',{
+      this.$emit("overviewData", {
         isState: data
       });
     }
   }
 };
 
-export default overview
+export default overview;
 </script>
 
 <style lang="scss" scoped>
-	@import './src/assets/css/company/overview.scss'
+@import "./src/assets/css/company/overview.scss";
 </style>

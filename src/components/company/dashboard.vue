@@ -3,11 +3,13 @@
 // script here
 import Enrollment from "./enrollment";
 import Excel from "../../views/company/enrollment/Excel.vue";
+import WebInput from "../../views/company/enrollment/Web-input.vue";
 import Overview from "./overview";
 
 let dashboard = {
   components: {
     Enrollment,
+    WebInput,
     Overview
   },
   data() {
@@ -24,6 +26,9 @@ let dashboard = {
     // functions from $emit data from another component
     excelData(state) {
       this.stepStatus = state.stepStatus;
+    },
+    webInputData(state) {
+       this.isState = state.isState;
     },
     enrollData(state) {
        this.stepStatus = state.stepStatus;

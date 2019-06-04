@@ -1,11 +1,9 @@
 <template>
   <div class="activity-wrapper">
-  	<div class="container">
-
-  		<div class="">
-    		<span class="timeframe-title">Select a timeframe</span>
-    	</div>
-
+    <div class="container">
+      <div class>
+        <span class="timeframe-title">Select a timeframe</span>
+      </div>
     </div>
   </div>
 </template>
