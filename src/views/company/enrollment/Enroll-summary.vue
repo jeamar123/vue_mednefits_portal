@@ -1,4 +1,5 @@
 <script>
+/* eslint-disable */
   import Modal from "../../../views/company/modal/Modal.vue";
 
   export default {
