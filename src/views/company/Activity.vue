@@ -1,5 +1,6 @@
 <template>
   <div class="activity-wrapper">
+
   	<div class="container">
 
   		<div class="activity-container">

@@ -1,143 +1,135 @@
 <script>
 /* eslint-disable */
-  import Modal from "../../../views/company/modal/Modal.vue";
+import Modal from "../../../views/company/modal/Modal.vue";
 
-  let enrollSumamary = {
-    components: {
-      Modal
+let enrollSumamary = {
+  components: {
+    Modal
+  },
+  data() {
+    return {
+      isState: "enrollsum",
+      modalEdit: false, //edit modal
+      employeeStorage: [], //used in web input
+      isChecked: [], // used in enrollment summary
+      employeeDetails: {}
+    };
+  },
+  methods: {
+    back() {
+      this.$router.go(-1);
+      this.$emit("enrollData", {
+        stepStatus: 1
+      });
     },
-    data() {
-      return {
-        isState: 'enrollsum',
-        modalEdit: false, //edit modal
-        employeeStorage: [],//used in web input
-        isChecked: [], // used in enrollment summary
-        employeeDetails: {}
-      };
+
+    enroll(data) {
+      if (data === "successEnroll") {
+        this.isState = "successEnroll";
+        // this.$emit("enrollmentData", {
+        //   isState: "enrollment"
+        // });
+      }
     },
-    methods: {
-      back() {
-        this.$router.go(-1);
-        this.$emit('enrollData', {
-          stepStatus: 1,
-        })
-      },
-      
-      enroll(data) {
-        if (data == "enrollsum") {
-          this.isState = "enrollsum";
-          this.$emit("enrollmentData", {
-            isState: "enrollsum"
-          });
-          this.addToStorage("enroll");
-          this.indexData = this.employeeStorage.length;
-          this.prevDisabled = false;
-          console.log(this.indexData);
-        } else if (data === "successEnroll") {
-          this.isState = "successEnroll";
-          // this.$emit("enrollmentData", {
-          //   isState: "enrollment"
-          // });
+
+    editEmployee(data, index) {
+      // used in enrollment summary
+      let x = data;
+      this.indexData = index;
+      if (x === "edit") {
+        this.modalEdit = !this.modalEdit;
+        console.log(this.employeeStorage[index]);
+        this.employeeDetails = {
+          fname: this.employeeStorage[index].fname,
+          lname: this.employeeStorage[index].lname,
+          nricFinNo: this.employeeStorage[index].nricFinNo,
+          dob: this.employeeStorage[index].dob,
+          email: this.employeeStorage[index].email,
+          mNumber: this.employeeStorage[index].mNumber,
+          mAreaCode: this.employeeStorage[index].mAreaCode,
+          mCredits: this.employeeStorage[index].mCredits,
+          wCredits: this.employeeStorage[index].wCredits,
+          startDate: this.employeeStorage[index].startDate
+        };
+      } else if (x === "close") {
+        this.modalEdit = !this.modalEdit;
+      }
+    },
+    update() {
+      // used in enrollment summary
+      this.$swal({
+        title: "Confirm",
+        text: "Are you sure you want to update this employee?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        confirmButtonColor: "#0392CF",
+        cancelButtonText: "No",
+        customClass: "warning-global-container primary"
+      }).then(result => {
+        if (result.value) {
+          this.modalEdit = false;
+          let index = this.indexData;
+          this.addToStorage("edit", index);
+          this.$swal(
+            "Updated!",
+            "Employee details has been updated.",
+            "success"
+          );
         }
-      },
-      
-      editEmployee(data, index) { // used in enrollment summary
-        let x = data;
-        this.indexData = index;
-        if (x === "edit") {
-          this.modalEdit = !this.modalEdit;
-          console.log(this.employeeStorage[index]);
-          this.employeeDetails = {
-            fname: this.employeeStorage[index].fname,
-            lname: this.employeeStorage[index].lname,
-            nricFinNo: this.employeeStorage[index].nricFinNo,
-            dob: this.employeeStorage[index].dob,
-            email: this.employeeStorage[index].email,
-            mNumber: this.employeeStorage[index].mNumber,
-            mAreaCode: this.employeeStorage[index].mAreaCode,
-            mCredits: this.employeeStorage[index].mCredits,
-            wCredits: this.employeeStorage[index].wCredits,
-            startDate: this.employeeStorage[index].startDate
-          };
-        } else if (x === "close") {
-          this.modalEdit = !this.modalEdit;
-        }
-      },
-      update() { // used in enrollment summary
-        this.$swal({
-          title: "Confirm",
-          text: "Are you sure you want to update this employee?",
-          type: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Yes",
-          confirmButtonColor: '#0392CF',
-          cancelButtonText: "No",
-          customClass: "warning-global-container primary"
-        }).then(result => {
-          if (result.value) {
+      });
+    },
+    remove(data) {
+      //remove used in enrollment summary
+
+      this.$swal({
+        title: "Confirm",
+        text: "Are you sure you want to remove this employee?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        confirmButtonColor: "#ff6864",
+        cancelButtonText: "No",
+        customClass: "warning-global-container danger"
+      }).then(result => {
+        if (result.value) {
+          if (data == "fromEdit") {
             this.modalEdit = false;
+            //delete employee
             let index = this.indexData;
-            this.addToStorage("edit", index);
+            const data = this.employeeStorage.indexOf(index);
+            this.employeeStorage.splice(data, 1);
+            //succes SWAL
             this.$swal(
-              "Updated!",
-              "Employee details has been updated.",
+              "Deleted!",
+              "Employee details has been deleted.",
+              "success"
+            );
+          } else if (data == "fromCheck") {
+            let index = this.isChecked.sort();
+            // const data = this.employeeStorage.indexOf(index);
+            console.log("index ni", index);
+            for (let i = index.length - 1; i >= 0; i--) {
+              this.employeeStorage.splice(index[i], 1);
+            }
+            this.isChecked = [];
+            //succes SWAL
+            this.$swal(
+              "Deleted!",
+              "Employee details has been deleted.",
               "success"
             );
           }
-        });
-      },
-      remove(data) { //remove used in enrollment summary
-
-        this.$swal({
-          title: "Confirm",
-          text: "Are you sure you want to remove this employee?",
-          type: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Yes",
-          confirmButtonColor: '#ff6864',
-          cancelButtonText: "No",
-          customClass: "warning-global-container danger"
-        }).then(result => {
-          if (result.value) {
-            if(data == 'fromEdit'){
-              this.modalEdit = false;
-              //delete employee
-              let index = this.indexData;
-              const data = this.employeeStorage.indexOf(index);
-              this.employeeStorage.splice(data, 1);
-              //succes SWAL
-              this.$swal(
-                "Deleted!",
-                "Employee details has been deleted.",
-                "success"
-              );
-            } else if (data == 'fromCheck'){
-              let index = this.isChecked.sort();
-              // const data = this.employeeStorage.indexOf(index);
-              console.log('index ni', index);
-              for (let i = index.length -1; i >=0; i--){
-                this.employeeStorage.splice(index[i], 1);
-              }
-              this.isChecked = [];
-              //succes SWAL
-              this.$swal(
-                "Deleted!",
-                "Employee details has been deleted.",
-                "success"
-              );
-            }
-          }
-        });
-      },
-    },
-    created() {
+        }
+      });
     }
+  },
+  created() {}
+};
 
-  }
-
-  export default enrollSumamary
+export default enrollSumamary;
 </script>
 
 <style lang="scss">
-  @import "./src/assets/css/company/enrollment.scss";
+@import "./src/assets/css/company/enrollment.scss";
 </style>
