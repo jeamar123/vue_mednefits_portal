@@ -3,7 +3,6 @@
     <div class="enrollment-wrapper">
 
       <div class="container">
-        {{data}}
         <div class="details-enroll-wrapper" v-if="isState == 'enrollsum'">
           <h1>Please check the details below before we enroll them.</h1>
           <!-- table summary -->
@@ -88,7 +87,8 @@
               <div class="modal-input-wrapper">
                 <label>Date of Birth</label>
                 <v-date-picker popoverDirection="top" :max-date='new Date()' v-model="employeeDetails.dob"
-                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
+                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                  popover-visibility='focus'>
                 </v-date-picker>
                 <!-- <input type="text"  v-model="employeeDetails.dob"> -->
               </div>
@@ -115,7 +115,8 @@
               <div class="modal-input-wrapper">
                 <label>Start Date</label>
                 <v-date-picker popoverDirection="top" :date='new Date()' v-model="employeeDetails.startDate"
-                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
+                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                  popover-visibility='focus'>
                 </v-date-picker>
                 <!-- <input type="text" v-model="employeeDetails.startDate"> -->
               </div>

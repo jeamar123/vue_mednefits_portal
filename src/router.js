@@ -90,7 +90,7 @@ export default new Router({
         { name: 'CompanyEnrollmentOptions', path: '/company/enrollment-options', component: CompanyEnrollmentOptions },
         { name: 'CompanyWebInput', path: '/company/enrollment/web-input', component: CompanyWebInput },
         { name: 'CompanyExcel', path: '/company/enrollment/excel', component: CompanyExcel },
-        { name: 'CompanyEnroll', path: '/company/enrollment/summary', component: CompanyEnroll },
+        { name: 'CompanyEnroll', path: '/company/enrollment/summary', component: CompanyEnroll, props: true },
         //company statement
         { name: 'CompanyStatement', path: '/company/statement', component: CompanyStatement },
         { name: 'CompanyAccount', path: '/company/account', component: CompanyAccount },
