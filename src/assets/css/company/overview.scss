@@ -137,30 +137,6 @@
     	p {
     		color: #333;
     		margin-bottom: 10px;
-    	}
-    	button {
-    		display: inline-block;
-		    padding: 10px 20px;
-		    color: #333;
-		    background-color: #fff;
-		    border: 1px solid #adadad;
-		    letter-spacing: .5px;
-		    line-height: 1.4;
-		    font-weight: 700;
-    	}
-    	.btn-medical {
-    		border-radius: 4px 0 0 4px;
-    		border-width: 2px 1px 2px 2px;
-    	}
-    	.btn-wellness {
-		    border-radius: 0 4px 4px 0;
-    		border-width: 2px 2px 2px 1px;
-    	}
-    	.btn.active,
-    	.btn:hover,
-    	.btn:focus {
-    		border-color: #009EC8;
-    		background: #FFF;
     	} 
     }
     .credit-box {
@@ -206,4 +182,31 @@
     text-transform: uppercase;
     margin-bottom: 10px
 	}	 
+}
+
+/* Medical Wellness Button */
+.btn-spending-type {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #adadad;
+  letter-spacing: .5px;
+  line-height: 1.4;
+  font-weight: 700;
+
+  &.btn-medical {
+    border-radius: 4px 0 0 4px;
+    border-width: 2px 1px 2px 2px;
+  }
+  &.btn-wellness {
+    border-radius: 0 4px 4px 0;
+    border-width: 2px 2px 2px 1px;
+  }
+  &.active,
+  &:hover,
+  &:focus {
+    border-color: #009EC8;
+    background: #FFF;
+  }
 }
