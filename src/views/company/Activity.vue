@@ -127,23 +127,54 @@
 							<img :src="'../assets/img/GP.png'">
 						</div>
 						<div class="transaction-details">
-							<p>Allan Cheam Alzula</p>
-							<p>General Practitioner - Medicine &amp; Treatment</p>
-							<p>Malaysia Ringgit</p>
-							<p class="spouse-dependent-container">
-							</p>
+							<div>Allan Cheam Alzula</div>
+							<div>General Practitioner - Medicine &amp; Treatment</div>
+							<div>Malaysia Ringgit</div>
+							<div class="spouse-dependent-container">
+							</div>
 							<div class="credits-spouse-wrap">
-								<p>
-									Credits
-								</p>
+								<span>Credits</span>
 							</div>
 						</div>
 						<div class="transaction-price">
-							<p>S$ <span>6.67</span></p>
+							S$ <span>6.67</span>
 						</div>
 					</div>
 				</div>
 			</div>
+
+			<div class="activity-pagination-wrapper">
+				<div class="trans-pagination-shadow"></div>
+				<div class="global-pagination">
+	    		<div class="prev-pagination">
+	          <i class="fa fa-angle-left"></i>
+	    			<span>Prev</span>
+	    		</div>
+	    		<span class="numeric-pagination active">1</span>
+	    		<span class="numeric-pagination">2</span>
+	    		<span class="numeric-pagination">3</span>
+	    		<span class="numeric-pagination">4</span>
+	    		<div class="next-pagination">
+	          <i class="fa fa-angle-right"></i>
+	    			<span>Next</span>
+	    		</div>
+	    		<div class="per-page-pagination">
+	    			<span>
+	    				<span>5</span> per page
+	    			</span>
+	          <i class="fa fa-angle-down"></i>
+	          <div v-if="false" class="per-page">
+	            <ul class="nav">
+	              <li><a href="">5</a></li>
+	              <li><a href="">10</a></li>
+	              <li><a href="">20</a></li>
+	              <li><a href="">50</a></li>
+	              <li><a href="">100</a></li>
+	            </ul>
+	          </div>
+	    		</div>
+	    	</div>
+    	</div>
     </div>
   </div>
 </template>

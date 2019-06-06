@@ -234,7 +234,7 @@
 }
 .global-pagination {
 	font-weight: 700;
-	line-height: 24px;
+	/*line-height: 24px;*/
 	display: inline-flex;
 	align-items: center;
 	font-size: 12px;
@@ -242,10 +242,9 @@
   	display: inline-block;
   	vertical-align: middle;
   }
-  /*img {
-  	vertical-align: middle;
-  	height: 16px;
-  }*/
+  .prev-pagination span {
+  	margin-right: 10px;
+  }
   i {
   	vertical-align: middle;
   	font-size: 30px;
@@ -278,18 +277,10 @@
     cursor: not-allowed;
   }
 }
-.prev-pagination {
-	span,img {
-		margin-right: 10px;
-	}
-	img {
-		transform: rotate(180deg);
-	}
-}
-.next-pagination {
-	span,img {
-		margin-left: 10px;
-	}
+.next-pagination span,
+.next-pagination i {
+	margin-right: 0px;
+	margin-left: 10px;
 }
 .per-page-pagination {
 	position: relative;
