@@ -1,7 +1,6 @@
 <template>
   <transition name="fade">
     <div class="enrollment-wrapper">
-
       <div class="container">
         <div class="details-enroll-wrapper" v-if="isState == 'enrollsum'">
           <h1>Please check the details below before we enroll them.</h1>
@@ -20,11 +19,26 @@
                 <th>Mobile</th>
                 <th>Medical Credits</th>
                 <th>Wellness Credits</th>
+                  <span v-for="(employee) in employeeStorage" :key="employee.index">
+                    <span v-for="(dependent,index) in employee.dependents[0]" :key="dependent.id">
+                      <span :v-if="dependent.length !=0">
+                        <th>Dependent {{index+1}} <br>  First Name</th>
+                        <th>Dependent {{index+1}} <br>  Last Name</th>
+                        <th>Dependent {{index+1}} <br>  NRIC/FIN</th>
+                        <th>Dependent {{index+1}} <br>  Date of Birth</th>
+                        <th>Dependent {{index+1}} <br>  Relationship</th>
+                      </span>
+                    </span>
+                  </span>
                 <th>Start Date</th>
               </tr>
             </thead>
             <tbody>
-              <tr class="dependent-hover-container" v-for="(enroll, index) in employeeStorage" v-bind:key="enroll.id">
+              <tr
+                class="dependent-hover-container"
+                v-for="(enroll, index) in employeeStorage"
+                v-bind:key="enroll.id"
+              >
                 <td>
                   <input type="checkbox" v-model="isChecked" :value="index">
                 </td>
@@ -34,7 +48,7 @@
                           <i class="fa fa-check" style="display: none;"></i>
                           <i class="fa fa-times" style="display: none;"></i>
                           <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
-                      </span>-->
+                    </span>-->
                     <span class="fname">{{enroll.fname}}</span>
                     <button @click="editEmployee('edit', index)" class="dependent-hover-btn">Edit</button>
                   </div>
@@ -46,6 +60,15 @@
                 <td>{{enroll.mNumber}}</td>
                 <td>{{enroll.mCredits}}</td>
                 <td>{{enroll.wCredits}}</td>
+                  <span v-for="dependent in enroll.dependents[0]" :key="dependent.id">
+                    <span>
+                      <td>{{dependent.fname}}</td>
+                      <td>{{dependent.lname}}</td>
+                      <td>{{dependent.nricFinNo}}</td>
+                      <td>{{dependent.dob}}</td>
+                      <td>{{dependent.relation}}</td>
+                    </span>
+                  </span>
                 <td>{{enroll.startDate | formatDate}}</td>
               </tr>
             </tbody>
@@ -54,7 +77,8 @@
 
         <!-- succesfully enroll -->
         <div class="successfully-enrolled-wrapper" v-if="isState == 'successEnroll'">
-          <h1>We've succesfully enrolled
+          <h1>
+            We've succesfully enrolled
             <span>1</span> employees and
             <span>0</span> dependents to the selected tier plan
           </h1>
@@ -86,10 +110,13 @@
               </div>
               <div class="modal-input-wrapper">
                 <label>Date of Birth</label>
-                <v-date-picker popoverDirection="top" :max-date='new Date()' v-model="employeeDetails.dob"
+                <v-date-picker
+                  popoverDirection="top"
+                  :max-date="new Date()"
+                  v-model="employeeDetails.dob"
                   :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
-                  popover-visibility='focus'>
-                </v-date-picker>
+                  popover-visibility="focus"
+                ></v-date-picker>
                 <!-- <input type="text"  v-model="employeeDetails.dob"> -->
               </div>
               <div class="modal-input-wrapper">
@@ -114,10 +141,13 @@
               </div>
               <div class="modal-input-wrapper">
                 <label>Start Date</label>
-                <v-date-picker popoverDirection="top" :date='new Date()' v-model="employeeDetails.startDate"
+                <v-date-picker
+                  popoverDirection="top"
+                  :date="new Date()"
+                  v-model="employeeDetails.startDate"
                   :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
-                  popover-visibility='focus'>
-                </v-date-picker>
+                  popover-visibility="focus"
+                ></v-date-picker>
                 <!-- <input type="text" v-model="employeeDetails.startDate"> -->
               </div>
             </form>
@@ -132,10 +162,8 @@
       <div class="prev-next-button-container">
         <div class="button-container">
           <button v-if="isState === 'enrollsum'" @click="back" class="back-btn">Back</button>
-          <router-link  to="/company/dashboard" >
-            <button v-if="isState == 'successEnroll'" class="back-btn">
-              BACK TO HOME
-            </button>
+          <router-link to="/company/dashboard">
+            <button v-if="isState == 'successEnroll'" class="back-btn">BACK TO HOME</button>
           </router-link>
           <button v-if="isChecked.length !=0" class="delete-btn" @click="remove('fromCheck')">Delete</button>
 
@@ -156,7 +184,6 @@
         </div>
       </div>
     </div>
-
   </transition>
 </template>
 

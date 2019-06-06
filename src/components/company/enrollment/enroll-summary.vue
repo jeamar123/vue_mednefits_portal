@@ -20,7 +20,8 @@ let enrollSumamary = {
       isState: "enrollsum",
       modalEdit: false, //edit modal
       isChecked: [], // used in enrollment summary
-      employeeDetails: {}
+      employeeDetails: {},
+      // dependents: false,
     };
   },
   methods: {
@@ -168,6 +169,10 @@ let enrollSumamary = {
   },
   created() {
     console.log(this.employeeStorage);
+    //check if dependents is not empty
+    // if (this.employeeStorage.dependents.length != 0 ) {
+    //   this.dependents = true;
+    // }
   }
 };
 
