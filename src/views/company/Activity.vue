@@ -2,7 +2,6 @@
   <div class="activity-wrapper">
 
   	<div class="container">
-
   		<div class="activity-container">
     		<span class="timeframe-title">Select a timeframe</span>
 
@@ -90,7 +89,7 @@
 					</div>
 				</div>
 
-				<div class="transaction-container">
+				<div class="transaction-header">
 					<div class="btn-transaction-container">
 						<button @click="netType(0, 'In-network')" v-bind:class="{'active': networkType.value === 0}">
 							IN - NETWORK <br> TRANSACTIONS
@@ -99,10 +98,52 @@
 							E- CLAIM TRANSACTIONS <br> (OUT-OF-NETWORK)
 						</button>
 					</div>
+					<div class="download-container">DOWNLOAD <img :src="'../assets/img/coverage/Download.png'"></div>
 				</div>
 
     	</div>
+    </div>
+    <div class="transaction-container">
+  		<div class="total-transac-header">
+				<div>
+					<span>297</span> Total Transactions 
+					<div>Total Spent 
+						<span>S$<span>51,938.73</span></span>
+					</div>
+				</div>
+			</div>
 
+			<div class="transaction-rows">
+				<div class="timeline">
+					<div class="date-box">MAY</div>
+					<div class="transaction-tr">
+						<div class="dot-box">
+							<div class="dot-circle"></div>
+						</div>
+						<div class="month-box">
+							<span>21</span>
+						</div>
+						<div class="img-wrapper">
+							<img :src="'../assets/img/GP.png'">
+						</div>
+						<div class="transaction-details">
+							<p>Allan Cheam Alzula</p>
+							<p>General Practitioner - Medicine &amp; Treatment</p>
+							<p>Malaysia Ringgit</p>
+							<p class="spouse-dependent-container">
+							</p>
+							<div class="credits-spouse-wrap">
+								<p>
+									Credits
+								</p>
+							</div>
+						</div>
+						<div class="transaction-price">
+							<p>S$ <span>6.67</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
     </div>
   </div>
 </template>
