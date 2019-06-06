@@ -49,8 +49,8 @@
 					<div class="team-benefits-header">
 						<h4>Benefits Cost</h4>
 						<div class="spending-type-container">
-							<button class="btn-spending-type btn-medical">Medical</button>
-							<button class="btn-spending-type btn-wellness">Wellness</button>
+							<button @click="spendType(0, 'medical')" v-bind:class="{'active': spendingType.value === 0}" class="btn-spending-type btn-medical">Medical</button>
+							<button @click="spendType(1, 'wellness')" v-bind:class="{'active': spendingType.value === 1}" class="btn-spending-type btn-wellness">Wellness</button>
 						</div>
 					</div>
 					<div class="cost-wrapper">
@@ -91,10 +91,10 @@
 
 				<div class="transaction-header">
 					<div class="btn-transaction-container">
-						<button class="active">
+						<button @click="netType(0, 'In-network')" v-bind:class="{'active': networkType.value === 0}">
 							IN - NETWORK <br> TRANSACTIONS
 						</button>
-						<button>
+						<button @click="netType(1, 'Out-of-network')" v-bind:class="{'active': networkType.value === 1}">
 							E- CLAIM TRANSACTIONS <br> (OUT-OF-NETWORK)
 						</button>
 					</div>
