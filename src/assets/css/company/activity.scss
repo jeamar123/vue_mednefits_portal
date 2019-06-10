@@ -268,12 +268,19 @@
 	}
 }
 
-.transaction-container {
+.transaction-wrapper {
+	position: relative;
 	background-color: #fff;
 	color: #555;
 	border-top: 2px solid #777;
 	min-height: 500px;
 	padding: 30px 100px 25px 100px;
+
+	.transaction-container {
+		position: relative;
+		left: -13%; /* after clicking the transaction details*/
+		/*left: 0; before clicking the trnsaction details*/
+	}
 
 	.total-transac-header {
 		padding: 0 155px;
@@ -285,7 +292,8 @@
 	.transaction-rows {
 		margin: 30px 90px 0 90px;
 		font-size: 16px;
-		height: 500px;
+		max-height: 500px;
+    height: 100%;
     overflow-y: auto;
 
     &::-webkit-scrollbar {
@@ -299,11 +307,20 @@
 	}
 
 	.timeline {
-		margin: 20px 65px 65px 80px;
+		margin: 0px 65px 0px 80px;
+    padding-bottom: 65px;
 		position: relative;
-		height: 100vh;
+		height: 100%;
 
-		::after {
+		&:last-child {
+			/*margin: 0px 65px 65px 80px;*/
+		}
+
+		&:first-child {
+			/*margin: 20px 65px 0px 80px;*/
+		}
+
+		&::after {
 			content: '';
 			border-left: 2px dotted #d4d1d1;
 			position: absolute;
@@ -312,7 +329,13 @@
 			left: 24px;
 			margin-top: 25px;
 		}
+
+		&:last-child::after {
+			bottom: 150px;
+		}
+
 	}
+	
 
 	.date-box {
 		color: #9c9c9c;
@@ -323,6 +346,79 @@
     display: inline-block;
     line-height: 24px;
 	}
+
+	.hidden-details-container {
+		position: absolute;
+		top: 70px;
+		right: 1%;
+		background: #eee;
+		width: 335px;
+		color: #777;
+    padding: 38px 5px;
+
+    img {
+    	height: 50px;
+	    width: 50px;
+	    border: 1px solid #d9d9d9;
+	    margin: 0 auto;
+	    display: block;
+	    border-radius: 50%;
+    }
+
+	  h5 {
+	  	text-align: center;
+	  	margin: 10px 0 30px;
+	  }
+
+	  .details-container {
+	  	margin-bottom: 20px;
+	  }
+
+	  .details-row {
+	  	display: flex;
+	  }
+
+	  .details-left {
+	  	flex: 1;
+	  	text-align: right;
+	  }
+
+	  .details-left div {
+	  	font-family: 'Helvetica Neu Bold';
+	  	margin: 0 20px 5px 0;
+	    font-size: 11px;
+	    color: #444;
+	    line-height: 24px;
+	  }
+
+	  .details-right {
+	  	flex: 1;
+	  	text-align: left;
+	  }
+
+	  .details-right div {
+	  	font-size: 12px;
+	  	line-height: 24px;
+	  }
+
+	  .btn-download {
+	  	display: block;
+	  	background: #0086D3;
+	  	border-radius: 4px;
+	  	border: none;
+	  	box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+    	color: #fff;
+    	padding: 6px;
+    	width: 80%;
+    	margin: 20px auto 20px auto;
+	  }
+
+	  a {
+	  	background: #51BEF2;
+	  	text-align: center;
+	  	font-weight: 300;
+	  }
+	}
 }
 
 .transaction-tr {
@@ -331,6 +427,7 @@
 	margin: 45px 0 0 0;
 	padding: 10px 0;
 	cursor: pointer;
+	height: 180px;
 
 	.dot-box {
 		text-align: center;
@@ -348,9 +445,14 @@
 		}
 	}
 
+	&.active {
+		background: #5891b326;
+	}	
+
 	.month-box {
 		flex: 1;
 		color: #9c9c9c;
+		text-align: center;
 	}
 
 	.img-wrapper {
@@ -370,13 +472,37 @@
 			color: #9c9c9c;
 		}
 
-		.credits-spouse-wrap > span {
-			background-color: #219AD7;
+		.spouse-dependent-container {
+			height: 13px;
+			font-size: 11px;
+			color: #009EC8;
+			margin: 10px 0;
+		}
+
+		.status-text {
+			display: inline-block;
+			color: #fff;
+			background: rgb(79, 151, 98);
+			padding: 5px;
+    	border-radius: 4px;
+    	font-size: 12px;
+		}
+
+		.credit-cash-wrap > span {
+			display: inline-block;
 			color: #fff;
 			padding: 5px;
 			border-radius: 4px;
 			font-size: 12px;
-			
+			margin-top: 4px;
+		}
+
+		.credits-spouse-wrap > span {
+			background-color: #219AD7;	
+		}
+
+		.cash-spouse-wrap > span {
+			background-color: #1DB100;
 		}
 	}
 	
@@ -384,6 +510,12 @@
 		flex: 3;
 		text-align: right;
     padding-right: 15px;
+	}
+}
+
+.e-claim-transactions {
+	.transaction-tr img {
+		width: 40px;
 	}
 }
 

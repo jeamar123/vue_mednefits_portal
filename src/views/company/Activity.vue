@@ -103,78 +103,543 @@
 
     	</div>
     </div>
-    <div class="transaction-container">
-  		<div class="total-transac-header">
-				<div>
-					<span>297</span> Total Transactions 
-					<div>Total Spent 
-						<span>S$<span>51,938.73</span></span>
-					</div>
-				</div>
-			</div>
 
-			<div class="transaction-rows">
-				<div class="timeline">
-					<div class="date-box">MAY</div>
-					<div class="transaction-tr">
-						<div class="dot-box">
-							<div class="dot-circle"></div>
-						</div>
-						<div class="month-box">
-							<span>21</span>
-						</div>
-						<div class="img-wrapper">
-							<img :src="'../assets/img/GP.png'">
-						</div>
-						<div class="transaction-details">
-							<div>Allan Cheam Alzula</div>
-							<div>General Practitioner - Medicine &amp; Treatment</div>
-							<div>Malaysia Ringgit</div>
-							<div class="spouse-dependent-container">
-							</div>
-							<div class="credits-spouse-wrap">
-								<span>Credits</span>
-							</div>
-						</div>
-						<div class="transaction-price">
-							S$ <span>6.67</span>
+    <div class="transaction-wrapper" v-if="networkType.value === 0">
+	    <div class="transaction-container">
+	  		<div class="total-transac-header">
+					<div>
+						<span>297</span> Total Transactions 
+						<div>Total Spent 
+							<span>S$<span>51,938.73</span></span>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class="activity-pagination-wrapper">
-				<div class="trans-pagination-shadow"></div>
-				<div class="global-pagination">
-	    		<div class="prev-pagination">
-	          <i class="fa fa-angle-left"></i>
-	    			<span>Prev</span>
+				<div class="transaction-rows">
+					<div class="timeline">
+						<div class="date-box">MAY</div>
+						<div class="transaction-tr active">
+							<div class="dot-box">
+								<div class="dot-circle"></div>
+							</div>
+							<div class="month-box">
+								<span>21</span>
+							</div>
+							<div class="img-wrapper">
+								<img :src="'../assets/img/GP.png'">
+							</div>
+							<div class="transaction-details">
+								<div>Allan Cheam Alzula</div>
+								<div>General Practitioner - Medicine &amp; Treatment</div>
+								<div>Malaysia Ringgit</div>
+								<div class="spouse-dependent-container">
+								</div>
+								<div class="credit-cash-wrap credits-spouse-wrap">
+									<span>Credits</span>
+								</div>
+							</div>
+							<div class="transaction-price">
+								S$ <span>6.67</span>
+							</div>
+						</div>
+						<div class="transaction-tr">
+							<div class="dot-box">
+								<div class="dot-circle"></div>
+							</div>
+							<div class="month-box">
+								<span>21</span>
+							</div>
+							<div class="img-wrapper">
+								<img :src="'../assets/img/GP.png'">
+							</div>
+							<div class="transaction-details">
+								<div>Allan Cheam Alzula</div>
+								<div>General Practitioner - Medicine &amp; Treatment</div>
+								<div>Malaysia Ringgit</div>
+								<div class="spouse-dependent-container">
+								</div>
+								<div class="credit-cash-wrap credits-spouse-wrap">
+									<span>Credits</span>
+								</div>
+							</div>
+							<div class="transaction-price">
+								S$ <span>6.67</span>
+							</div>
+						</div>
+						<div class="transaction-tr">
+							<div class="dot-box">
+								<div class="dot-circle"></div>
+							</div>
+							<div class="month-box">
+								<span>21</span>
+							</div>
+							<div class="img-wrapper">
+								<img :src="'../assets/img/GP.png'">
+							</div>
+							<div class="transaction-details">
+								<div>Allan Cheam Alzula</div>
+								<div>General Practitioner - Medicine &amp; Treatment</div>
+								<div>Malaysia Ringgit</div>
+								<div class="spouse-dependent-container">
+								</div>
+								<div class="credit-cash-wrap credits-spouse-wrap">
+									<span>Credits</span>
+								</div>
+							</div>
+							<div class="transaction-price">
+								S$ <span>6.67</span>
+							</div>
+						</div>
+						<div class="transaction-tr">
+							<div class="dot-box">
+								<div class="dot-circle"></div>
+							</div>
+							<div class="month-box">
+								<span>21</span>
+							</div>
+							<div class="img-wrapper">
+								<img :src="'../assets/img/GP.png'">
+							</div>
+							<div class="transaction-details">
+								<div>Allan Cheam Alzula</div>
+								<div>General Practitioner - Medicine &amp; Treatment</div>
+								<div>Malaysia Ringgit</div>
+								<div class="spouse-dependent-container">
+								</div>
+								<div class="credit-cash-wrap credits-spouse-wrap">
+									<span>Credits</span>
+								</div>
+							</div>
+							<div class="transaction-price">
+								S$ <span>6.67</span>
+							</div>
+						</div>
+						<div class="transaction-tr">
+							<div class="dot-box">
+								<div class="dot-circle"></div>
+							</div>
+							<div class="month-box">
+								<span>21</span>
+							</div>
+							<div class="img-wrapper">
+								<img :src="'../assets/img/GP.png'">
+							</div>
+							<div class="transaction-details">
+								<div>Allan Cheam Alzula</div>
+								<div>General Practitioner - Medicine &amp; Treatment</div>
+								<div>Malaysia Ringgit</div>
+								<div class="spouse-dependent-container">
+								</div>
+								<div class="credit-cash-wrap credits-spouse-wrap">
+									<span>Credits</span>
+								</div>
+							</div>
+							<div class="transaction-price">
+								S$ <span>6.67</span>
+							</div>
+						</div>
+					</div>
+					<div class="timeline">
+						<div class="date-box">JUN</div>
+						<div class="transaction-tr">
+							<div class="dot-box">
+								<div class="dot-circle"></div>
+							</div>
+							<div class="month-box">
+								<span>21</span>
+							</div>
+							<div class="img-wrapper">
+								<img :src="'../assets/img/GP.png'">
+							</div>
+							<div class="transaction-details">
+								<div>Allan Cheam Alzula</div>
+								<div>General Practitioner - Medicine &amp; Treatment</div>
+								<div>Malaysia Ringgit</div>
+								<div class="spouse-dependent-container">
+								</div>
+								<div class="credit-cash-wrap cash-spouse-wrap">
+									<span>Cash</span>
+								</div>
+							</div>
+							<div class="transaction-price">
+								S$ <span>6.67</span>
+							</div>
+						</div>
+						<div class="transaction-tr">
+							<div class="dot-box">
+								<div class="dot-circle"></div>
+							</div>
+							<div class="month-box">
+								<span>21</span>
+							</div>
+							<div class="img-wrapper">
+								<img :src="'../assets/img/GP.png'">
+							</div>
+							<div class="transaction-details">
+								<div>Allan Cheam Alzula</div>
+								<div>General Practitioner - Medicine &amp; Treatment</div>
+								<div>Malaysia Ringgit</div>
+								<div class="spouse-dependent-container">
+								</div>
+								<div class="credit-cash-wrap cash-spouse-wrap">
+									<span>Cash</span>
+								</div>
+							</div>
+							<div class="transaction-price">
+								S$ <span>6.67</span>
+							</div>
+						</div>
+					</div>
+					<div class="timeline">
+						<div class="date-box">JUL</div>
+						<div class="transaction-tr">
+							<div class="dot-box">
+								<div class="dot-circle"></div>
+							</div>
+							<div class="month-box">
+								<span>21</span>
+							</div>
+							<div class="img-wrapper">
+								<img :src="'../assets/img/GP.png'">
+							</div>
+							<div class="transaction-details">
+								<div>Allan Cheam Alzula</div>
+								<div>General Practitioner - Medicine &amp; Treatment</div>
+								<div>Malaysia Ringgit</div>
+								<div class="spouse-dependent-container">
+								</div>
+								<div class="credit-cash-wrap credits-spouse-wrap">
+									<span>Credits</span>
+								</div>
+							</div>
+							<div class="transaction-price">
+								S$ <span>6.67</span>
+							</div>
+						</div>
+
+						<div class="transaction-tr">
+							<div class="dot-box">
+								<div class="dot-circle"></div>
+							</div>
+							<div class="month-box">
+								<span>21</span>
+							</div>
+							<div class="img-wrapper">
+								<img :src="'../assets/img/GP.png'">
+							</div>
+							<div class="transaction-details">
+								<div>Allan Cheam Alzula</div>
+								<div>General Practitioner - Medicine &amp; Treatment</div>
+								<div>Malaysia Ringgit</div>
+								<div class="spouse-dependent-container">
+								</div>
+								<div class="credit-cash-wrap credits-spouse-wrap">
+									<span>Credits</span>
+								</div>
+							</div>
+							<div class="transaction-price">
+								S$ <span>6.67</span>
+							</div>
+						</div>
+
+						<div class="transaction-tr">
+							<div class="dot-box">
+								<div class="dot-circle"></div>
+							</div>
+							<div class="month-box">
+								<span>21</span>
+							</div>
+							<div class="img-wrapper">
+								<img :src="'../assets/img/GP.png'">
+							</div>
+							<div class="transaction-details">
+								<div>Allan Cheam Alzula</div>
+								<div>General Practitioner - Medicine &amp; Treatment</div>
+								<div>Malaysia Ringgit</div>
+								<div class="spouse-dependent-container">
+									Dependent of Unique Nina Faye
+								</div>
+								<div class="status-text">
+									<span>REMOVED</span>
+								</div>
+								<div class="credit-cash-wrap credits-spouse-wrap">
+									<span>Credits</span>
+								</div>
+							</div>
+							<div class="transaction-price">
+								S$ <span>6.67</span>
+							</div>
+						</div>
+
+						<div class="transaction-tr">
+							<div class="dot-box">
+								<div class="dot-circle"></div>
+							</div>
+							<div class="month-box">
+								<span>21</span>
+							</div>
+							<div class="img-wrapper">
+								<img :src="'../assets/img/GP.png'">
+							</div>
+							<div class="transaction-details">
+								<div>Allan Cheam Alzula</div>
+								<div>General Practitioner - Medicine &amp; Treatment</div>
+								<div>Malaysia Ringgit</div>
+								<div class="spouse-dependent-container">
+								</div>
+								<div class="status-text">
+									<span>REMOVED</span>
+								</div>
+								<div class="credit-cash-wrap credits-spouse-wrap">
+									<span>Credits</span>
+								</div>
+							</div>
+							<div class="transaction-price">
+								S$ <span>6.67</span>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+				<div class="activity-pagination-wrapper">
+					<div class="trans-pagination-shadow"></div>
+					<div class="global-pagination">
+		    		<div class="prev-pagination">
+		          <i class="fa fa-angle-left"></i>
+		    			<span>Prev</span>
+		    		</div>
+		    		<span class="numeric-pagination active">1</span>
+		    		<span class="numeric-pagination">2</span>
+		    		<span class="numeric-pagination">3</span>
+		    		<span class="numeric-pagination">4</span>
+		    		<div class="next-pagination">
+		          <i class="fa fa-angle-right"></i>
+		    			<span>Next</span>
+		    		</div>
+		    		<div class="per-page-pagination">
+		    			<span>
+		    				<span>5</span> per page
+		    			</span>
+		          <i class="fa fa-angle-down"></i>
+		          <div v-if="false" class="per-page">
+		            <ul class="nav">
+		              <li><a href="">5</a></li>
+		              <li><a href="">10</a></li>
+		              <li><a href="">20</a></li>
+		              <li><a href="">50</a></li>
+		              <li><a href="">100</a></li>
+		            </ul>
+		          </div>
+		    		</div>
+		    	</div>
+	    	</div>
+	    </div>
+	    <div class="hidden-details-container">
+	    	<img :src="'https://res.cloudinary.com/www-medicloud-sg/image/upload/v1439208475/medilogo_cn6d0x.png'">
+	    	<h5>Malaysia Ringgit</h5>
+	    	<div class="details-container">
+	    		<div class="details-row">
+	    			<div class="details-left">
+	    				<div>MEMBER</div>
+	    			</div>
+	    			<div class="details-right">
+	    				<div>Allan Cheam Alzula</div>
+	    			</div>
 	    		</div>
-	    		<span class="numeric-pagination active">1</span>
-	    		<span class="numeric-pagination">2</span>
-	    		<span class="numeric-pagination">3</span>
-	    		<span class="numeric-pagination">4</span>
-	    		<div class="next-pagination">
-	          <i class="fa fa-angle-right"></i>
-	    			<span>Next</span>
+	    		<div class="details-row">
+	    			<div class="details-left">
+	    				<div>DATE</div>
+	    			</div>
+	    			<div class="details-right">
+	    				<div>08 May 2018, 01:48pm</div>
+	    			</div>
 	    		</div>
-	    		<div class="per-page-pagination">
-	    			<span>
-	    				<span>5</span> per page
-	    			</span>
-	          <i class="fa fa-angle-down"></i>
-	          <div v-if="false" class="per-page">
-	            <ul class="nav">
-	              <li><a href="">5</a></li>
-	              <li><a href="">10</a></li>
-	              <li><a href="">20</a></li>
-	              <li><a href="">50</a></li>
-	              <li><a href="">100</a></li>
-	            </ul>
-	          </div>
+	    		<div class="details-row">
+	    			<div class="details-left">
+	    				<div>TRANSACTION #</div>
+	    			</div>
+	    			<div class="details-right">
+	    				<div>STA000414</div>
+	    			</div>
+	    		</div>
+	    		<div class="details-row">
+	    			<div class="details-left">
+	    				<div>ITEM/SERVICE</div>
+	    			</div>
+	    			<div class="details-right">
+	    				<div>Dental Care - Teeth Cleaning</div>
+	    			</div>
+	    		</div>
+	    		<div class="details-row">
+	    			<div class="details-left">
+	    				<div>TOTAL AMOUNT</div>
+	    			</div>
+	    			<div class="details-right">
+	    				<div>S$ <span>1,200.00</span></div>
+	    			</div>
+	    		</div>
+	    		<div class="details-row">
+	    			<div class="details-left">
+	    				<div>PAYMENT TYPE</div>
+	    			</div>
+	    			<div class="details-right">
+	    				<div>Mednefits Credits</div>
+	    			</div>
 	    		</div>
 	    	</div>
-    	</div>
+	    	<button class="btn-download">Download Receipt</button>
+	    	<a href="/download/transaction_receipt/413" target="_blank" class="btn-download">Mednefits E-Receipt</a>
+	    </div>
+	  </div>
+
+	  <div class="transaction-wrapper" v-if="networkType.value === 1">
+	    <div class="transaction-container e-claim-transactions">
+	    	<div class="total-transac-header">
+					<div>
+						<span>3</span> Total Transactions 
+						<div>Total Spent 
+							<span>S$<span>130.00</span></span>
+						</div>
+					</div>
+				</div>
+
+				<div class="transaction-rows">
+					<div class="timeline">
+						<div class="date-box">MAY</div>
+						<div class="transaction-tr">
+							<div class="dot-box">
+								<div class="dot-circle"></div>
+							</div>
+							<div class="month-box">
+								<span>11</span>
+							</div>
+							<div class="img-wrapper">
+								<img :src="'../assets/img/receipt.png'">
+							</div>
+							<div class="transaction-details">
+								<div>Allan Cheam Alzula</div>
+								<div>fare</div>
+								<div>taxi</div>
+								<div class="spouse-dependent-container">
+								</div>
+								<!-- <div class="credit-cash-wrap credits-spouse-wrap">
+									<span>Credits</span>
+								</div> -->
+							</div>
+							<div class="transaction-price">
+								S$ <span>50.00</span>
+							</div>
+						</div>
+						<div class="transaction-tr">
+							<div class="dot-box">
+								<div class="dot-circle"></div>
+							</div>
+							<div class="month-box">
+								<span>11</span>
+							</div>
+							<div class="img-wrapper">
+								<img :src="'../assets/img/receipt.png'">
+							</div>
+							<div class="transaction-details">
+								<div>Allan Cheam Alzula</div>
+								<div>fare</div>
+								<div>taxi</div>
+								<div class="spouse-dependent-container">
+								</div>
+								<!-- <div class="credit-cash-wrap credits-spouse-wrap">
+									<span>Credits</span>
+								</div> -->
+							</div>
+							<div class="transaction-price">
+								S$ <span>50.00</span>
+							</div>
+						</div>
+						<div class="transaction-tr">
+							<div class="dot-box">
+								<div class="dot-circle"></div>
+							</div>
+							<div class="month-box">
+								<span>05</span>
+							</div>
+							<div class="img-wrapper">
+								<img :src="'../assets/img/receipt.png'">
+							</div>
+							<div class="transaction-details">
+								<div>Allan Cheam Alzula</div>
+								<div>fare</div>
+								<div>taxi</div>
+								<div class="spouse-dependent-container">
+								</div>
+								<!-- <div class="credit-cash-wrap credits-spouse-wrap">
+									<span>Credits</span>
+								</div> -->
+							</div>
+							<div class="transaction-price">
+								S$ <span>50.00</span>
+							</div>
+						</div>
+						<div class="transaction-tr">
+							<div class="dot-box">
+								<div class="dot-circle"></div>
+							</div>
+							<div class="month-box">
+								<span>04</span>
+							</div>
+							<div class="img-wrapper">
+								<img :src="'../assets/img/receipt.png'">
+							</div>
+							<div class="transaction-details">
+								<div>Allan Cheam Alzula</div>
+								<div>fare</div>
+								<div>taxi</div>
+								<div class="spouse-dependent-container">
+								</div>
+								<!-- <div class="credit-cash-wrap credits-spouse-wrap">
+									<span>Credits</span>
+								</div> -->
+							</div>
+							<div class="transaction-price">
+								S$ <span>30.00</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="activity-pagination-wrapper">
+					<div class="trans-pagination-shadow"></div>
+					<div class="global-pagination">
+		    		<div class="prev-pagination">
+		          <i class="fa fa-angle-left"></i>
+		    			<span>Prev</span>
+		    		</div>
+		    		<span class="numeric-pagination active">1</span>
+		    		<span class="numeric-pagination">2</span>
+		    		<span class="numeric-pagination">3</span>
+		    		<span class="numeric-pagination">4</span>
+		    		<div class="next-pagination">
+		          <i class="fa fa-angle-right"></i>
+		    			<span>Next</span>
+		    		</div>
+		    		<div class="per-page-pagination">
+		    			<span>
+		    				<span>5</span> per page
+		    			</span>
+		          <i class="fa fa-angle-down"></i>
+		          <div v-if="false" class="per-page">
+		            <ul class="nav">
+		              <li><a href="">5</a></li>
+		              <li><a href="">10</a></li>
+		              <li><a href="">20</a></li>
+		              <li><a href="">50</a></li>
+		              <li><a href="">100</a></li>
+		            </ul>
+		          </div>
+		    		</div>
+		    	</div>
+	    	</div>
+	    </div>
     </div>
   </div>
 </template>
