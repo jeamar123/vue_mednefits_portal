@@ -2,6 +2,7 @@
 /* eslint-disable */
 import moment from "moment";
 import Modal from "../../../views/company/modal/Modal.vue";
+import { deprecate } from "util";
 
 let enrollSumamary = {
   props: {
@@ -21,9 +22,38 @@ let enrollSumamary = {
       modalEdit: false, //edit modal
       isChecked: [], // used in enrollment summary
       employeeDetails: {},
+      dependentHeading: [
+        {label: 'First Name'},
+        {label: 'Last Name',},
+        {label: 'NRIC/FIN'},
+        {label: 'Date of Birth'},
+        {label: 'Relationship'}
+      ],
+      maxDep: 0,
     };
   },
   methods: {
+    filterDep() {
+      let depLength = [];
+      let employee;
+      let dependents;
+      let value;
+
+      for (let i=0; i<=this.employeeStorage.length-1; i++){ //TO SELECT 1 EMPLOYEE
+        employee = this.employeeStorage[i].dependents[0];
+        value = employee.length;
+        depLength.push(value);
+        // for(let j=0; j<= employee.length-1; j++){ //TO SELECT DEPENDENTS OF EACH EMPLOYEE
+        //   dependents = employee[j];
+        //   console.log('dependents',dependents);
+          
+        // };
+      };
+      let max = Math.max.apply(Math, depLength);
+      this.maxDep = max;
+      console.log('max', depLength, this.maxDep);
+      
+    },
     back() {
       this.$router.go(-1);
       this.$emit("enrollData", {
@@ -168,6 +198,7 @@ let enrollSumamary = {
   },
   created() {
     console.log(this.employeeStorage);
+    this.filterDep();
   },
   mounted() {
    

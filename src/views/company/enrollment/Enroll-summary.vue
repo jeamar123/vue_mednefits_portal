@@ -19,6 +19,14 @@
                 <th>Mobile</th>
                 <th>Medical Credits</th>
                 <th>Wellness Credits</th>
+                <span v-show="maxDep !=0"  v-for="th in maxDep" :key="th.id">
+                  <th>Dependent {{th}} First Name</th>
+                  <th>Dependent {{th}} Last Name</th>
+                  <th>Dependent {{th}} NRIC/FIN</th>
+                  <th>Dependent {{th}} Date of Birth</th>
+                  <th>Dependent {{th}} Relationship</th>
+                </span>
+                
                 <th>Start Date</th>
               </tr>
             </thead>
@@ -45,6 +53,13 @@
                 <td>{{enroll.mNumber}}</td>
                 <td>{{enroll.mCredits}}</td>
                 <td>{{enroll.wCredits}}</td>
+                <span v-for="(dep) in enroll.dependents[0]" :key="dep.id">
+                  <td>{{dep.fname}}</td>
+                  <td>{{dep.lname}}</td>
+                  <td>{{dep.nricFinNo}}</td>
+                  <td>{{dep.dob | formatDate}}</td>
+                  <td>{{dep.relation}}</td>
+                </span>
                 <td>{{enroll.startDate | formatDate}}</td>
               </tr>
             </tbody>
