@@ -9,7 +9,7 @@
 	.employee-dependent-header {
 		background-color: #F4F4F4;
     padding: 0 50px;
-    z-index: 1;
+    z-index: 3;
     position: fixed;
     width: 100%;
     transform: translateY(-40px);
@@ -710,9 +710,17 @@
 			}
 			thead tr {
 				background-color: #f5f8fa;	
-			}
 
-			thead th,tbody td {
+		/*		.dependent-info-wrapper {
+					padding: 0;
+					>span>span>span th {
+						border-bottom: 0;
+					}
+				}*/
+			}
+			
+			thead th,
+			tbody td {
 		    padding: 7px 20px;
 		    min-width: 130px;
 		    border-bottom: 1px solid #ccd3d6;

@@ -19,17 +19,26 @@
                 <th>Mobile</th>
                 <th>Medical Credits</th>
                 <th>Wellness Credits</th>
-                  <span v-for="(employee) in employeeStorage" :key="employee.index">
-                    <span v-for="(dependent,index) in employee.dependents[0]" :key="dependent.id">
-                      <span :v-if="dependent.length !=0">
-                        <th>Dependent {{index+1}} <br>  First Name</th>
-                        <th>Dependent {{index+1}} <br>  Last Name</th>
-                        <th>Dependent {{index+1}} <br>  NRIC/FIN</th>
-                        <th>Dependent {{index+1}} <br>  Date of Birth</th>
-                        <th>Dependent {{index+1}} <br>  Relationship</th>
-                      </span>
+                <!-- <th>
+                  <div style="display: flex">
+                    <div style="padding: 7px 20px; width: auto">Dependent  <br>  First Name</div>
+                    <div style="padding: 7px 20px; width: auto">Dependent  <br>  Last Name</div>
+                    <div style="padding: 7px 20px; width: auto">Dependent  <br>  NRIC/FIN</div>
+                    <div style="padding: 7px 20px; width: auto">Dependent  <br>  Date of Birth</div>
+                    <div style="padding: 7px 20px; width: auto">Dependent  <br>  Relationship</div>
+                  </div>
+                </th>   -->           
+                <th v-for="(employee) in employeeStorage" :key="employee.index">
+                  <span v-for="(dependent,index) in employee.dependents[0]" :key="dependent.id">
+                    <span :v-if="dependent.length !=0">
+                      <th>Dependent {{index+1}} <br>  First Name</th>
+                      <th>Dependent {{index+1}} <br>  Last Name</th>
+                      <th>Dependent {{index+1}} <br>  NRIC/FIN</th>
+                      <th>Dependent {{index+1}} <br>  Date of Birth</th>
+                      <th>Dependent {{index+1}} <br>  Relationship</th>
                     </span>
                   </span>
+                </th>
                 <th>Start Date</th>
               </tr>
             </thead>
@@ -60,15 +69,24 @@
                 <td>{{enroll.mNumber}}</td>
                 <td>{{enroll.mCredits}}</td>
                 <td>{{enroll.wCredits}}</td>
-                  <span v-for="dependent in enroll.dependents[0]" :key="dependent.id">
-                    <span>
-                      <td>{{dependent.fname}}</td>
-                      <td>{{dependent.lname}}</td>
-                      <td>{{dependent.nricFinNo}}</td>
-                      <td>{{dependent.dob}}</td>
-                      <td>{{dependent.relation}}</td>
-                    </span>
+                <td>
+                  <div style="display: flex">
+                    <div style="padding: 7px 20px; width: auto">Noelou</div>
+                    <div style="padding: 7px 20px; width: auto">Noelou</div>
+                    <div style="padding: 7px 20px; width: auto">Noelou</div>
+                    <div style="padding: 7px 20px; width: auto">Noelou</div>
+                    <div style="padding: 7px 20px; width: auto">Noelou</div>
+                  </div>
+                </td>
+                <td v-for="dependent in enroll.dependents[0]" :key="dependent.id">
+                  <span>
+                    <td>{{dependent.fname}}</td>
+                    <td>{{dependent.lname}}</td>
+                    <td>{{dependent.nricFinNo}}</td>
+                    <td>{{dependent.dob}}</td>
+                    <td>{{dependent.relation}}</td>
                   </span>
+                </td>  
                 <td>{{enroll.startDate | formatDate}}</td>
               </tr>
             </tbody>
