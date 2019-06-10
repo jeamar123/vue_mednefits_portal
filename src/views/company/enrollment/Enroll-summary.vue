@@ -19,26 +19,11 @@
                 <th>Mobile</th>
                 <th>Medical Credits</th>
                 <th>Wellness Credits</th>
-                  <span v-for="(employee) in employeeStorage" :key="employee.index">
-                    <span v-for="(dependent,index) in employee.dependents[0]" :key="dependent.id">
-                      <span :v-if="dependent.length !=0">
-                        <th>Dependent {{index+1}} <br>  First Name</th>
-                        <th>Dependent {{index+1}} <br>  Last Name</th>
-                        <th>Dependent {{index+1}} <br>  NRIC/FIN</th>
-                        <th>Dependent {{index+1}} <br>  Date of Birth</th>
-                        <th>Dependent {{index+1}} <br>  Relationship</th>
-                      </span>
-                    </span>
-                  </span>
                 <th>Start Date</th>
               </tr>
             </thead>
             <tbody>
-              <tr
-                class="dependent-hover-container"
-                v-for="(enroll, index) in employeeStorage"
-                v-bind:key="enroll.id"
-              >
+              <tr class="dependent-hover-container" v-for="(enroll, index) in employeeStorage" v-bind:key="enroll.id">
                 <td>
                   <input type="checkbox" v-model="isChecked" :value="index">
                 </td>
@@ -60,15 +45,6 @@
                 <td>{{enroll.mNumber}}</td>
                 <td>{{enroll.mCredits}}</td>
                 <td>{{enroll.wCredits}}</td>
-                  <span v-for="dependent in enroll.dependents[0]" :key="dependent.id">
-                    <span>
-                      <td>{{dependent.fname}}</td>
-                      <td>{{dependent.lname}}</td>
-                      <td>{{dependent.nricFinNo}}</td>
-                      <td>{{dependent.dob}}</td>
-                      <td>{{dependent.relation}}</td>
-                    </span>
-                  </span>
                 <td>{{enroll.startDate | formatDate}}</td>
               </tr>
             </tbody>
