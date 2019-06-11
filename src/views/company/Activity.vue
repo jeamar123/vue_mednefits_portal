@@ -137,6 +137,12 @@
 								<div>General Practitioner - Medicine &amp; Treatment</div>
 								<div>Malaysia Ringgit</div>
 								<div class="spouse-dependent-container">
+									<div v-if="false">
+										Spouse of <span>Unique Nina Faye</span>
+									</div>
+									<div>
+										Dependent of <span>Unique Nina Faye</span>
+									</div>
 								</div>
 								<div class="credit-cash-wrap credits-spouse-wrap">
 									<span>Credits</span>
@@ -185,6 +191,12 @@
 								<div>General Practitioner - Medicine &amp; Treatment</div>
 								<div>Malaysia Ringgit</div>
 								<div class="spouse-dependent-container">
+									<div v-if="false">
+										Spouse of <span>Unique Nina Faye</span>
+									</div>
+									<div>
+										Dependent of <span>Unique Nina Faye</span>
+									</div>
 								</div>
 								<div class="credit-cash-wrap credits-spouse-wrap">
 									<span>Credits</span>
@@ -209,6 +221,12 @@
 								<div>General Practitioner - Medicine &amp; Treatment</div>
 								<div>Malaysia Ringgit</div>
 								<div class="spouse-dependent-container">
+									<div v-if="false">
+										Spouse of <span>Unique Nina Faye</span>
+									</div>
+									<div>
+										Dependent of <span>Unique Nina Faye</span>
+									</div>
 								</div>
 								<div class="credit-cash-wrap credits-spouse-wrap">
 									<span>Credits</span>
@@ -233,6 +251,12 @@
 								<div>General Practitioner - Medicine &amp; Treatment</div>
 								<div>Malaysia Ringgit</div>
 								<div class="spouse-dependent-container">
+									<div v-if="false">
+										Spouse of <span>Unique Nina Faye</span>
+									</div>
+									<div>
+										Dependent of <span>Unique Nina Faye</span>
+									</div>
 								</div>
 								<div class="credit-cash-wrap credits-spouse-wrap">
 									<span>Credits</span>
@@ -260,6 +284,12 @@
 								<div>General Practitioner - Medicine &amp; Treatment</div>
 								<div>Malaysia Ringgit</div>
 								<div class="spouse-dependent-container">
+									<div v-if="false">
+										Spouse of <span>Unique Nina Faye</span>
+									</div>
+									<div>
+										Dependent of <span>Unique Nina Faye</span>
+									</div>
 								</div>
 								<div class="credit-cash-wrap cash-spouse-wrap">
 									<span>Cash</span>
@@ -284,6 +314,12 @@
 								<div>General Practitioner - Medicine &amp; Treatment</div>
 								<div>Malaysia Ringgit</div>
 								<div class="spouse-dependent-container">
+									<div v-if="false">
+										Spouse of <span>Unique Nina Faye</span>
+									</div>
+									<div>
+										Dependent of <span>Unique Nina Faye</span>
+									</div>
 								</div>
 								<div class="credit-cash-wrap cash-spouse-wrap">
 									<span>Cash</span>
@@ -311,6 +347,12 @@
 								<div>General Practitioner - Medicine &amp; Treatment</div>
 								<div>Malaysia Ringgit</div>
 								<div class="spouse-dependent-container">
+									<div v-if="false">
+										Spouse of <span>Unique Nina Faye</span>
+									</div>
+									<div>
+										Dependent of <span>Unique Nina Faye</span>
+									</div>
 								</div>
 								<div class="credit-cash-wrap credits-spouse-wrap">
 									<span>Credits</span>
@@ -336,6 +378,12 @@
 								<div>General Practitioner - Medicine &amp; Treatment</div>
 								<div>Malaysia Ringgit</div>
 								<div class="spouse-dependent-container">
+									<div v-if="false">
+										Spouse of <span>Unique Nina Faye</span>
+									</div>
+									<div>
+										Dependent of <span>Unique Nina Faye</span>
+									</div>
 								</div>
 								<div class="credit-cash-wrap credits-spouse-wrap">
 									<span>Credits</span>
@@ -361,7 +409,12 @@
 								<div>General Practitioner - Medicine &amp; Treatment</div>
 								<div>Malaysia Ringgit</div>
 								<div class="spouse-dependent-container">
-									Dependent of Unique Nina Faye
+									<div v-if="false">
+										Spouse of <span>Unique Nina Faye</span>
+									</div>
+									<div>
+										Dependent of <span>Unique Nina Faye</span>
+									</div>
 								</div>
 								<div class="status-text">
 									<span>REMOVED</span>
@@ -390,6 +443,12 @@
 								<div>General Practitioner - Medicine &amp; Treatment</div>
 								<div>Malaysia Ringgit</div>
 								<div class="spouse-dependent-container">
+									<div v-if="false">
+										Spouse of <span>Unique Nina Faye</span>
+									</div>
+									<div>
+										Dependent of <span>Unique Nina Faye</span>
+									</div>
 								</div>
 								<div class="status-text">
 									<span>REMOVED</span>
@@ -501,7 +560,7 @@
 	    </div>
 	  </div>
 
-	  <div class="transaction-wrapper" v-if="networkType.value === 1">
+	  <div class="transaction-wrapper e-claim-transaction-wrapper" v-if="networkType.value === 1">
 	    <div class="transaction-container e-claim-transactions">
 	    	<div class="total-transac-header">
 					<div>
@@ -645,6 +704,86 @@
 		          </div>
 		    		</div>
 		    	</div>
+	    	</div>
+	    </div>
+    	<div class="hidden-details-container">
+	    	<img :src="'../assets/img//GP.png'">
+	    	<div class="details-container">
+	    		<div class="details-row">
+	    			<div class="details-left">
+	    				<div>MEMBER</div>
+	    			</div>
+	    			<div class="details-right">
+	    				<div>Allan Cheam Alzula</div>
+	    			</div>
+	    		</div>
+	    		<div class="details-row">
+	    			<div class="details-left">
+	    				<div>APPROVED DATE</div>
+	    			</div>
+	    			<div class="details-right">
+	    				<div>11 January 2018</div>
+	    			</div>
+	    		</div>
+	    		<div class="details-row">
+	    			<div class="details-left">
+	    				<div>CLAIM DATE</div>
+	    			</div>
+	    			<div class="details-right">
+	    				<div>11 January 2018, 11:12 AM</div>
+	    			</div>
+	    		</div>
+	    		<div class="details-row">
+	    			<div class="details-left">
+	    				<div>VISIT DATE</div>
+	    			</div>
+	    			<div class="details-right">
+	    				<div>01 January 2018, 01:00 PM</div>
+	    			</div>
+	    		</div>
+	    		<div class="details-row">
+	    			<div class="details-left">
+	    				<div>TRANSACTION #</div>
+	    			</div>
+	    			<div class="details-right">
+	    				<div>MNF000023</div>
+	    			</div>
+	    		</div>
+	    		<div class="details-row">
+	    			<div class="details-left">
+	    				<div>CLAIM TYPE</div>
+	    			</div>
+	    			<div class="details-right">
+	    				<div>Vision</div>
+	    			</div>
+	    		</div>
+	    		<div class="details-row">
+	    			<div class="details-left">
+	    				<div>PROVIDER</div>
+	    			</div>
+	    			<div class="details-right">
+	    				<div>Vision Hut</div>
+	    			</div>
+	    		</div>
+	    		<div class="details-row">
+	    			<div class="details-left">
+	    				<div>CLAIM AMOUNT</div>
+	    			</div>
+	    			<div class="details-right">
+	    				<div>S$ <span>50.00</span></div>
+	    			</div>
+	    		</div>
+	    		<div class="details-row">
+	    			<div class="details-left">
+	    				<div>PAYMENT TYPE</div>
+	    			</div>
+	    			<div class="details-right">
+	    				<div>E-Claim</div>
+	    			</div>
+	    		</div>
+	    	</div>
+	    	<div class="download-receipt-container">
+		    	<button class="btn-download">Download Receipt</button>
 	    	</div>
 	    </div>
     </div>
