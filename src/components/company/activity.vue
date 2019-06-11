@@ -39,7 +39,7 @@ let activity = {
           right: "1%"
         });
         $(".trans-pagination-shadow").css({
-          marginRigth: "75px"
+          "margin-right": "75px"
         });
       } else {
         $("#transaction-container").css({
@@ -49,7 +49,7 @@ let activity = {
           right: "-50%"
         });
         $(".trans-pagination-shadow").css({
-          marginRigth: "0"
+          "margin-right": "0"
         });
       }
     },
