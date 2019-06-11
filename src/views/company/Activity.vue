@@ -117,7 +117,7 @@
 
     <div class="transaction-wrapper" v-if="networkType.value === 0">
 			<!-- transactions -->
-	    <div class="transaction-container" id="transaction-container">
+	    <div class="transaction-container" id="transaction-container-inNetwork">
 	  		<div class="total-transac-header">
 					<div>
 						<span>297</span> Total Transactions 
@@ -133,7 +133,7 @@
 					<div class="timeline">
 						<div class="date-box">MAY</div>
 						<!-- para sa each transaction -->
-						<div class="transaction-tr active" @click="toggleShowSidebar">
+						<div class="transaction-tr active" @click="toggleShowSidebar('in')">
 							<div class="dot-box">
 								<div class="dot-circle"></div>
 							</div>
@@ -511,7 +511,7 @@
 	    	</div>
 	    </div>
 			<!-- side bar show/hide -->
-	    <div id="hidden-details-container" class="hidden-details-container">
+	    <div class="hidden-details-container" id="hidden-inNetwork">
 	    	<img :src="'https://res.cloudinary.com/www-medicloud-sg/image/upload/v1439208475/medilogo_cn6d0x.png'">
 	    	<h5>Malaysia Ringgit</h5>
 	    	<div class="details-container">
@@ -572,7 +572,7 @@
 	  </div>
 
 	  <div class="transaction-wrapper e-claim-transaction-wrapper" v-if="networkType.value === 1">
-	    <div class="transaction-container e-claim-transactions">
+	    <div class="transaction-container e-claim-transactions" id="transaction-container-outNetwork">
 	    	<div class="total-transac-header">
 					<div>
 						<span>3</span> Total Transactions 
@@ -585,7 +585,7 @@
 				<div class="transaction-rows">
 					<div class="timeline">
 						<div class="date-box">MAY</div>
-						<div class="transaction-tr">
+						<div class="transaction-tr" @click.prevent="toggleShowSidebar('out')">
 							<div class="dot-box">
 								<div class="dot-circle"></div>
 							</div>
@@ -717,7 +717,7 @@
 		    	</div>
 	    	</div>
 	    </div>
-    	<div class="hidden-details-container">
+    	<div class="hidden-details-container" id="hidden-outNetwork">
 	    	<img :src="'../assets/img//GP.png'">
 	    	<div class="details-container">
 	    		<div class="details-row">
