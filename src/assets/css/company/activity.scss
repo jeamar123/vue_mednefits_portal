@@ -312,14 +312,6 @@
 		position: relative;
 		height: 100%;
 
-		&:last-child {
-			/*margin: 0px 65px 65px 80px;*/
-		}
-
-		&:first-child {
-			/*margin: 20px 65px 0px 80px;*/
-		}
-
 		&::after {
 			content: '';
 			border-left: 2px dotted #d4d1d1;
@@ -351,6 +343,7 @@
 		position: absolute;
 		top: 70px;
 		right: 1%;
+		/*right: -50%; hide the hidden details container */
 		background: #eee;
 		width: 335px;
 		color: #777;
@@ -368,10 +361,6 @@
 	  h5 {
 	  	text-align: center;
 	  	margin: 10px 0 30px;
-	  }
-
-	  .details-container {
-	  	margin-bottom: 20px;
 	  }
 
 	  .details-row {
@@ -410,10 +399,18 @@
     	color: #fff;
     	padding: 6px;
     	width: 80%;
-    	margin: 20px auto 20px auto;
+    	margin: 40px auto auto auto;
+    	line-height: 1.42857143;
 	  }
 
-	  a {
+	  .btn-download.disabled {
+	  	background-color: #DFDFDF;
+	    box-shadow: none;
+	    color: #9F9F9F;
+	    cursor: default;
+	  }
+
+	  .btn-receipt {
 	  	background: #51BEF2;
 	  	text-align: center;
 	  	font-weight: 300;
@@ -520,12 +517,14 @@
 }
 
 .activity-pagination-wrapper {
-	border-top: 2px solid #ddd;
   text-align: center; 
 
   .trans-pagination-shadow {
+  	border-top: 2px solid #ddd;
   	box-shadow: 0px -15px 30px #ddd;
   	height: 15px;
+  	margin-right: 75px;
+  	/*margin-right: 0; hide the hidden details container*/
   }
 
   .global-pagination {
