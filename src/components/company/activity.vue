@@ -24,7 +24,7 @@ let activity = {
       //spending either medical or wellness
       this.networkType.value = value;
       this.networkType.text = text;
-    }
+    },
   }
 };
 

@@ -489,8 +489,10 @@
 	    			</div>
 	    		</div>
 	    	</div>
-	    	<button class="btn-download">Download Receipt</button>
-	    	<a href="/download/transaction_receipt/413" target="_blank" class="btn-download">Mednefits E-Receipt</a>
+	    	<div class="download-receipt-container">
+		    	<button class="btn-download disabled">Download Receipt</button>
+		    	<a href="/download/transaction_receipt/413" target="_blank" class="btn-download btn-receipt">Mednefits E-Receipt</a>
+	    	</div>
 	    </div>
 	  </div>
 
