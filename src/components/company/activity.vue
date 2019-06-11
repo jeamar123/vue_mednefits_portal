@@ -1,4 +1,6 @@
 <script>
+import $ from 'jquery'; 
+window.$ = $; 
 // methods here
 let activity = {
   data() {
@@ -11,7 +13,8 @@ let activity = {
         value: 0,
         text: ""
       },
-      timeFrame: {}
+      timeFrame: {},
+      toggleSidebar: false,
     };
   },
   methods: {
@@ -24,6 +27,31 @@ let activity = {
       //spending either medical or wellness
       this.networkType.value = value;
       this.networkType.text = text;
+    },
+    toggleShowSidebar() {
+      // toggle show sidebar content
+      this.toggleSidebar = !this.toggleSidebar;
+      if (this.toggleSidebar === true) {
+        $("#transaction-container").css({
+          left: "-13%"
+        });
+        $("#hidden-details-container").css({
+          right: "1%"
+        });
+        $(".trans-pagination-shadow").css({
+          marginRigth: "75px"
+        });
+      } else {
+        $("#transaction-container").css({
+          left: "0"
+        });
+        $("#hidden-details-container").css({
+          right: "-50%"
+        });
+        $(".trans-pagination-shadow").css({
+          marginRigth: "0"
+        });
+      }
     },
   }
 };
