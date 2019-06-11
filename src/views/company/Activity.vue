@@ -105,6 +105,7 @@
     </div>
 
     <div class="transaction-wrapper" v-if="networkType.value === 0">
+			<!-- transactions -->
 	    <div class="transaction-container">
 	  		<div class="total-transac-header">
 					<div>
@@ -115,9 +116,12 @@
 					</div>
 				</div>
 
+				<!-- to repeat -->
 				<div class="transaction-rows">
+					<!-- pra sa date na g filter ang timeline -->
 					<div class="timeline">
 						<div class="date-box">MAY</div>
+						<!-- para sa each transaction -->
 						<div class="transaction-tr active">
 							<div class="dot-box">
 								<div class="dot-circle"></div>
