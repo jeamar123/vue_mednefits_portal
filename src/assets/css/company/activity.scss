@@ -85,6 +85,7 @@
 	}
 
 	.input-group {
+		position: relative;
 		width: 270px;
 		display: flex;
 
@@ -102,6 +103,31 @@
 			&::placeholder {
 				color: #9c9c9c;
 			}
+		}
+
+		.dropdown-menu {
+			position: absolute;
+			top: 34px;
+			left: 0px;
+			min-width: 215px;
+			text-align: left;
+			background-color: #fff;
+			border: 1px solid rgba(0,0,0,.15);
+			box-shadow: 0 6px 12px rgba(0,0,0,.175);
+		}
+
+		.dropdown-item {
+			text-transform: capitalize;
+			padding: 15px;
+			display: block;
+			font-weight: 300;
+			color: #333;
+		}
+
+		.dropdown-menu > .active,
+		.dropdown-menu li:hover {
+			background-color: #efeff4;
+			
 		}
 
 		button {

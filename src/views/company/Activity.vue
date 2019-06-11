@@ -15,7 +15,7 @@
                 popover-visibility='focus'>
               </v-date-picker>
 							<i class="fa fa-caret-down"></i>
-						</div> 
+						</div>
 
 						<span><i class="fa fa-arrow-right"></i></span>
 						
@@ -37,9 +37,20 @@
 					<div class="search-wrapper">
 						<div class="input-group">
 							<input class="search-input" placeholder="Search Employee Name">
+							<ul v-if="false" class="dropdown-menu">
+								<li class="active">
+									<a class="dropdown-item" href="#" role="option">allan cheam alzula</a>
+								</li>
+								<li class="">
+									<a class="dropdown-item" href="#" role="option">allan cheam alzula</a>
+								</li>
+								<li class="">
+									<a class="dropdown-item" href="#" role="option">allan cheam alzula</a>
+								</li>
+							</ul>
 				      <span class="input-group-btn">
-				        <button>
-				        	<i class="fa fa-search"></i></button>
+				        <button><i class="fa fa-search"></i></button>
+				        <button v-if="false"><i class="fa fa-close"></i></button>
 				      </span>
 						</div>
 					</div>
