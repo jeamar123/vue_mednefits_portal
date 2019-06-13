@@ -16,7 +16,10 @@ let activity = {
         text: ""
       },
       timeFrame: {},
-      toggleSidebar: false
+      toggleSidebar: {
+        in : false,
+        out : false
+      }
     };
   },
   methods: {
@@ -29,15 +32,16 @@ let activity = {
       //spending either medical or wellness
       this.networkType.value = value;
       this.networkType.text = text;
-      this.toggleSidebar = false;
+      this.toggleSidebar.in = false;
+      this.toggleSidebar.out = false;
     },
     toggleShowSidebar(data) {
       // toggle show sidebar content
       if (this.networkType.value === 0) {
-        this.toggleSidebar = !this.toggleSidebar;
+        this.toggleSidebar.in = !this.toggleSidebar.in;
         
       } else if (this.networkType.value === 1){
-        this.toggleSidebar = !this.toggleSidebar;
+        this.toggleSidebar.out = !this.toggleSidebar.out;
       }
     }
   }
