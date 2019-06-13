@@ -3,11 +3,12 @@
 let claim = {
   data() {
     return {
-      sampleData: true
+      timeFrame: {},
     };
   }
 };
 
 export default claim;
 </script>
+
 
