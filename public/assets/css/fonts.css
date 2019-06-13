@@ -29,7 +29,10 @@
         src: url('../fonts/helveticaneue/HelveticaNeue Medium.ttf')  format('truetype');
     }
 
-
+     @font-face {
+        font-family: 'Helvetica Neu Bold'; /* Global font */
+        src: url('../fonts/helveticaneue/Helvetica Neu Bold.ttf')  format('truetype');
+    }
 
 
 
