@@ -30,69 +30,15 @@ let activity = {
       this.networkType.value = value;
       this.networkType.text = text;
       this.toggleSidebar = false;
-      $(".transaction-container").css({
-        left: "0"
-      });
-      $(".hidden-details-container").css({
-        right: "-50%"
-      });
-      $(".trans-pagination-shadow").css({
-        marginRigth: "0"
-      });
     },
     toggleShowSidebar(data) {
       // toggle show sidebar content
-      if (data === "in") {
-        console.log("kani kai in");
+      if (this.networkType.value === 0) {
         this.toggleSidebar = !this.toggleSidebar;
-        if (this.toggleSidebar === true) {
-          $("#transaction-container-inNetwork").css({
-            left: "-13%"
-          });
-          $("#hidden-inNetwork").css({
-            right: "1%"
-          });
-          $(".trans-pagination-shadow").css({
-            marginRigth: "75px"
-          });
-        } else {
-          console.log("kani kai else");
-          $("#transaction-container-inNetwork").css({
-            left: "0"
-          });
-          $("#hidden-inNetwork").css({
-            right: "-50%"
-          });
-          $(".trans-pagination-shadow").css({
-            marginRigth: "0"
-          });
-        }
+        
+      } else if (this.networkType.value === 1){
+        this.toggleSidebar = !this.toggleSidebar;
       }
-      // else if (data === 'out'){
-      //   console.log('kani kai out');
-      //   this.toggleSidebar = !this.toggleSidebar;
-      //   if (this.toggleSidebar === true) {
-      //     $("#transaction-container-outNetwork").css({
-      //       left: "-13%"
-      //     });
-      //     $("#hidden-details-container-outNetwork").css({
-      //       right: "1%"
-      //     });
-      //     $(".trans-pagination-shadow").css({
-      //       marginRigth: "75px"
-      //     });
-      //   } else {
-      //     $("#transaction-container-outNetwork").css({
-      //       left: "0"
-      //     });
-      //     $("#hidden-details-container-outNetwork").css({
-      //       right: "-50%"
-      //     });
-      //     $(".trans-pagination-shadow").css({
-      //       marginRigth: "0"
-      //     });
-      //   }
-      // }
     }
   }
 };
