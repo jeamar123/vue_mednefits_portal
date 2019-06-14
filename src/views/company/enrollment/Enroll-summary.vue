@@ -5,65 +5,91 @@
         <div class="details-enroll-wrapper" v-if="isState == 'enrollsum'">
           <h1>Please check the details below before we enroll them.</h1>
           <!-- table summary -->
-          <table>
-            <thead>
-              <tr>
-                <th>
-                  <input type="checkbox">
-                </th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>NRIC/FIN</th>
-                <th>Date of Birth</th>
-                <th>Work Email</th>
-                <th>Mobile</th>
-                <th>Medical Credits</th>
-                <th>Wellness Credits</th>
-                <span v-show="maxDep !=0"  v-for="th in maxDep" :key="th.id">
-                  <th>Dependent {{th}} First Name</th>
-                  <th>Dependent {{th}} Last Name</th>
-                  <th>Dependent {{th}} NRIC/FIN</th>
-                  <th>Dependent {{th}} Date of Birth</th>
-                  <th>Dependent {{th}} Relationship</th>
-                </span>
-                
-                <th>Start Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="dependent-hover-container" v-for="(enroll, index) in employeeStorage" v-bind:key="enroll.id">
-                <td>
-                  <input type="checkbox" v-model="isChecked" :value="index">
-                </td>
-                <td>
-                  <div class="fname-container">
-                    <!-- <span class="icon">
-                          <i class="fa fa-check" style="display: none;"></i>
-                          <i class="fa fa-times" style="display: none;"></i>
-                          <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
-                    </span>-->
-                    <span class="fname">{{enroll.fname}}</span>
-                    <button @click="editEmployee('edit', index)" class="dependent-hover-btn">Edit</button>
-                  </div>
-                </td>
-                <td>{{enroll.lname}}</td>
-                <td>{{enroll.nricFinNo}}</td>
-                <td>{{enroll.dob | formatDate}}</td>
-                <td>{{enroll.email}}</td>
-                <td>{{enroll.mNumber}}</td>
-                <td>{{enroll.mCredits}}</td>
-                <td>{{enroll.wCredits}}</td>
-                <span v-for="(dep) in enroll.dependents[0]" :key="dep.id">
-                  <td>{{dep.fname}}</td>
-                  <td>{{dep.lname}}</td>
-                  <td>{{dep.nricFinNo}}</td>
-                  <td>{{dep.dob | formatDate}}</td>
-                  <td>{{dep.relation}}</td>
-                </span>
-                <td>{{enroll.startDate | formatDate}}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div>
+            <table class="">
+              <thead>
+                <tr>
+                  <th>
+                    <input type="checkbox">
+                  </th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>NRIC/FIN</th>
+                  <th>Date of Birth</th>
+                  <th>Work Email</th>
+                  <th>Mobile</th>
+                  <th>Medical Credits</th>
+                  <th>Wellness Credits</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr class="dependent-hover-container" v-for="(enroll, index) in employeeStorage" v-bind:key="enroll.id"> -->
+                <tr class="dependent-hover-container">
+                  <td>
+                    <input type="checkbox" v-model="isChecked" :value="index">
+                  </td>
+                  <td>
+                    <div class="fname-container">
+                      <!-- <span class="icon">
+                            <i class="fa fa-check" style="display: none;"></i>
+                            <i class="fa fa-times" style="display: none;"></i>
+                            <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
+                      </span>-->
+                      <!-- <span class="fname">{{enroll.fname}}</span> -->
+                      <span class="fname">Noelou Jan</span>
+                      <button @click="editEmployee('edit', index)" class="dependent-hover-btn">Edit</button>
+                    </div>
+                  </td>
+                  <!-- <td>{{enroll.lname}}</td> -->
+                  <td>Nagac</td>
+                  <td>{{enroll.nricFinNo}}</td>
+                  <td>{{enroll.dob | formatDate}}</td>
+                  <td>{{enroll.email}}</td>
+                  <td>{{enroll.mNumber}}</td>
+                  <td>{{enroll.mCredits}}</td>
+                  <td>{{enroll.wCredits}}</td>
+                 
+                  
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="">
+              <thead>
+                <tr>
+                  <!-- <span v-show="maxDep !=0"  v-for="th in maxDep" :key="th.id"> -->
+                  <th>Dependent <span>1</span> First Name</th>
+                  <th>Dependent Last Name</th>
+                  <th>Dependent NRIC/FIN</th>
+                  <th>Dependent Date of Birth</th>
+                  <th>Dependent Relationship</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <!-- <span v-for="(dep) in enroll.dependents[0]" :key="dep.id"> -->
+                  <td>Noelou</td>
+                  <td>Nagac</td>
+                  <td>123948SAS</td>
+                  <td>01/12/1995</td>
+                  <td>Brother</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="start-date-container">
+              <thead>
+                <tr>
+                  <th class="start-date-header">Start Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>01/02/2019</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <!-- succesfully enroll -->
