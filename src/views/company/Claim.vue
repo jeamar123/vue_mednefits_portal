@@ -269,7 +269,7 @@ export default claim;
 	}
 	.slide-enter, 
 	.slide-leave-to { /* .fade-leave-active below version 2.1.8 */ 
-		transform: scale(100%, 0);
+		transform: translate(0%, 100);
 	}
 </style>
 
