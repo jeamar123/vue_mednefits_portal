@@ -184,8 +184,9 @@
   .transac-details {
   	text-align: left;
   	display: inline-block;
-  	>div {
 
+  	>div {
+  		margin: 0 0 10px;
   	}
 
   	>div label{
@@ -196,5 +197,81 @@
 	    font-size: 13px;
 	    color: #444;
   	}
+  }
+
+  .transac-details-btn {
+  	margin: 20px 0 0;
+  	button {
+  		width: 30%;
+  		font-size: 12px;
+  		font-weight: 700;
+  		padding: 8px 0;
+  		color: #fff;
+  		border: 1px solid transparent;
+  		border-radius: 4px;
+  		letter-spacing: .5px;
+  		margin: 0 4px;
+  	}
+  	.btn-approved {
+  		background: #008000e6;
+  	}
+  	.btn-rejected {
+  		background: #ff0000bf; 
+  	}
+  }
+
+  .receipt-container {
+    width: 33.33333333%;
+    float: left;
+
+    .btn-download-receipt {
+    	background: #0086D3;
+	    color: #fff;
+	    padding: 10px;
+	    width: 88%;
+	    border: none;
+	    border-radius: 5px;
+	    display: block;
+	    margin-bottom: 20px;
+	    font-weight: 300;
+    }
+  }
+
+  .trans-receipts-wrapper {
+  	text-align: left;
+    width: 100%;
+    display: inline-block;
+  }
+  
+  .trans-receipts-wrapper:hover .click-box {
+  	display: inline-block;
+  }
+
+  .click-box-wrapper  {
+  	position: relative;
+  	display: inline-block;
+
+  	.click-box {
+  		display: none;
+  		position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 80px;
+	    height: 80px;
+	    text-align: center;
+	    line-height: 83px;
+	    background: rgba(0,0,0,.3);
+  	}
+
+  	i {
+  		color: #fff;
+  	}
+
+  	img {
+	  	height: 80px;
+	    width: 80px;
+	    border: 1px solid #d9d9d9;
+	    margin: 0 5px 5px 0;
+    }
   }
 }

@@ -149,10 +149,12 @@
 	    			</tr>
 	    			<tr class="in-network-subtr">
 	    				<td colspan="8">
+
 	    					<div class="status-box-left">
 	    						<div class="status_text">Pending</div>
 	    						<div class="claim-date-text">Claim Date: <span>15 May 2019 05:09 PM</span></div>
 	    					</div>
+
 	    					<div class="transac-details-wrapper">
 		    					<div class="transac-details">
 		    						<div>
@@ -196,8 +198,26 @@
 		    							<span></span>
 		    						</div>
 		    					</div>
+
+		    					<div class="transac-details-btn">
+		    						<button class="btn-approved">Approve Claim</button>
+		    						<button class="btn-rejected">Reject Claim</button>
+		    					</div>
 	    					</div>
-	    					<div></div>
+
+	    					<div class="receipt-container">
+	    						<button class="btn-download-receipt">Download Receipt</button>
+
+	    						<div class="trans-receipts-wrapper">
+	    							<div class="click-box-wrapper">
+	    								<div class="click-box">
+	    									<i class="fa fa-plus"></i>
+	    								</div>
+	    								<img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1557387401/nhulevaerr46wlfy07d7.png'">
+	    							</div>
+	    						</div>
+	    					</div>
+
 	    				</td>
 	    			</tr>
 	    		</tbody>
