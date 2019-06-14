@@ -3,10 +3,12 @@
 let claim = {
   data() {
     return {
+      chevronState: false,
     	eclaimSpendingType: {
     		value: 0,
         text: ""
-    	},
+      },
+      showSubtr: false,
       timeFrame: {},
     };
   },
@@ -16,6 +18,10 @@ let claim = {
       this.eclaimSpendingType.value = value;
       this.eclaimSpendingType.text = text;
     },
+    toggleSubtr() {
+      this.chevronState = !this.chevronState;
+      this.showSubtr = !this.showSubtr;
+    }
   }
 };
 

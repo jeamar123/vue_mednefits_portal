@@ -109,117 +109,119 @@
     	<div class="transaction-table-container">
 	    	<table>
 	    		<thead>
-	    			<tr>
-	    				<th></th>
-	    				<th>CLAIM DATE</th>
-	    				<th>APPROVED/ REJECTED DATE</th>
-	    				<th>CLAIM TYPE</th>
-	    				<th>PROVIDER</th>
-	    				<th>CLAIM AMOUNT</th>
-	    				<th>MEMBER</th>
-	    				<th></th>
-	    			</tr>
+						<tr>
+							<th></th>
+							<th>CLAIM DATE</th>
+							<th>APPROVED/ REJECTED DATE</th>
+							<th>CLAIM TYPE</th>
+							<th>PROVIDER</th>
+							<th>CLAIM AMOUNT</th>
+							<th>MEMBER</th>
+							<th></th>
+						</tr>
 	    		</thead>
 	    		<tbody>
-	    			<tr>
-	    				<td>
-	    					<label class="status-text pending">Pending</label>
-	    				</td>
-	    				<td>
-	    					<span>15 May 2019 05:09 PM</span>
-	    				</td>
-	    				<td>
-	    					<span>09 May 2019 04:21 PM</span>
-	    				</td>
-	    				<td class="claim-type-details">
-	    					<span>General Practice</span>
-	    				</td>
-	    				<td>
-	    					<span>qwer</span>
-	    				</td>
-	    				<td> S$
-	    					<span>12.00</span>
-	    				</td>
-	    				<td>
-	    					<span>Chryst Gundran</span>
-	    				</td>
-	    				<td>
-	    					<i class="fa fa-angle-down"></i>
-	    				</td>
-	    			</tr>
-	    			<tr class="in-network-subtr">
-	    				<td colspan="8">
+						<tr>
+							<td>
+								<label class="status-text pending">Pending</label>
+							</td>
+							<td>
+								<span>15 May 2019 05:09 PM</span>
+							</td>
+							<td>
+								<span>09 May 2019 04:21 PM</span>
+							</td>
+							<td class="claim-type-details">
+								<span>General Practice</span>
+							</td>
+							<td>
+								<span>qwer</span>
+							</td>
+							<td> S$
+								<span>12.00</span>
+							</td>
+							<td>
+								<span>Chryst Gundran</span>
+							</td>
+							<td>
+								<i class="fa fa-angle-right" :class="{'fa-angle-down-active': chevronState === true}" @click="toggleSubtr"></i>
+							</td>
+						</tr>
+						<transition name="slide">
+							<tr class="in-network-subtr" v-if="showSubtr">
+								<td colspan="8">
 
-	    					<div class="status-box-left">
-	    						<div class="status_text">Pending</div>
-	    						<div class="claim-date-text">Claim Date: <span>15 May 2019 05:09 PM</span></div>
-	    					</div>
+									<div class="status-box-left">
+										<div class="status_text">Pending</div>
+										<div class="claim-date-text">Claim Date: <span>15 May 2019 05:09 PM</span></div>
+									</div>
 
-	    					<div class="transac-details-wrapper">
-		    					<div class="transac-details">
-		    						<div>
-		    							<label>MEMBER</label>
-		    							<span>Chryst Gundran</span>
-		    						</div>
-		    						<div>
-		    							<label>APPROVED DATE</label>
-		    							<span></span>
-		    						</div>
-		    						<div>
-		    							<label>CLAIM DATE</label>
-		    							<span>15 May 2019 05:09 PM</span>
-		    						</div>
-		    						<div>
-		    							<label>VISIT DATE</label>
-		    							<span>15 May 2019 08:00 AM</span>
-		    						</div>
-		    						<div>
-		    							<label>TRANSACTION #</label>
-		    							<span>MNF000340</span>
-		    						</div>
-		    						<div>
-		    							<label>CLAIM TYPE</label>
-		    							<span>General Practice</span>
-		    						</div>
-		    						<div>
-		    							<label>PROVIDER</label>
-		    							<span>qwer</span>
-		    						</div>
-		    						<div>
-		    							<label>CLAIM AMOUNT</label>
-		    							<span>S$ 12.00</span>
-		    						</div>
-		    						<div>
-		    							<label>PAYMENT TYPE</label>
-		    							<span>E-Claim</span>
-		    						</div>
-		    						<div>
-		    							<label>REMARKS</label>
-		    							<span></span>
-		    						</div>
-		    					</div>
+									<div class="transac-details-wrapper">
+										<div class="transac-details">
+											<div>
+												<label>MEMBER</label>
+												<span>Chryst Gundran</span>
+											</div>
+											<div>
+												<label>APPROVED DATE</label>
+												<span></span>
+											</div>
+											<div>
+												<label>CLAIM DATE</label>
+												<span>15 May 2019 05:09 PM</span>
+											</div>
+											<div>
+												<label>VISIT DATE</label>
+												<span>15 May 2019 08:00 AM</span>
+											</div>
+											<div>
+												<label>TRANSACTION #</label>
+												<span>MNF000340</span>
+											</div>
+											<div>
+												<label>CLAIM TYPE</label>
+												<span>General Practice</span>
+											</div>
+											<div>
+												<label>PROVIDER</label>
+												<span>qwer</span>
+											</div>
+											<div>
+												<label>CLAIM AMOUNT</label>
+												<span>S$ 12.00</span>
+											</div>
+											<div>
+												<label>PAYMENT TYPE</label>
+												<span>E-Claim</span>
+											</div>
+											<div>
+												<label>REMARKS</label>
+												<span></span>
+											</div>
+										</div>
 
-		    					<div class="transac-details-btn">
-		    						<button class="btn-approved">Approve Claim</button>
-		    						<button class="btn-rejected">Reject Claim</button>
-		    					</div>
-	    					</div>
+										<div class="transac-details-btn">
+											<button class="btn-approved">Approve Claim</button>
+											<button class="btn-rejected">Reject Claim</button>
+										</div>
+									</div>
 
-	    					<div class="receipt-container">
-	    						<button class="btn-download-receipt">Download Receipt</button>
+									<div class="receipt-container">
+										<button class="btn-download-receipt">Download Receipt</button>
 
-	    						<div class="trans-receipts-wrapper">
-	    							<div class="click-box-wrapper">
-	    								<div class="click-box">
-	    									<i class="fa fa-plus"></i>
-	    								</div>
-	    								<img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1557387401/nhulevaerr46wlfy07d7.png'">
-	    							</div>
-	    						</div>
-	    					</div>
+										<div class="trans-receipts-wrapper">
+											<div class="click-box-wrapper">
+												<div class="click-box">
+													<i class="fa fa-plus"></i>
+												</div>
+												<img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1557387401/nhulevaerr46wlfy07d7.png'">
+											</div>
+										</div>
+									</div>
 
-	    				</td>
-	    			</tr>
+								</td>
+							</tr>
+						</transition>
 	    		</tbody>
 	    	</table>
     	</div>
@@ -232,4 +234,43 @@ import claim from "@/components/company/claim";
 
 export default claim;
 </script>
+
+<style>
+
+/* for chevron animation */
+	.fa-angle-right {
+		-webkit-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+			-moz-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+				-o-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+        	transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+
+		-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+			-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+				-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+						transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+	}
+	.fa-angle-down-active {
+		transform: rotate(90deg);
+	}
+
+/* for subtr transition */
+
+	.slide-enter-active, 
+	.slide-leave-active {
+		-webkit-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+			-moz-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+				-o-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+        	transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+
+		-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+			-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+				-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+						transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+	}
+	.slide-enter, 
+	.slide-leave-to { /* .fade-leave-active below version 2.1.8 */ 
+		transform: scale(100%, 0);
+	}
+</style>
+
 
