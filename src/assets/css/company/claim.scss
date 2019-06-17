@@ -1,9 +1,4 @@
 .claim-wrapper {
-
-  .view-search-transaction-eclaim-container {
-    padding: 0 15px;
-  }
-
 	.transaction-wrapper {
 		border-top: 0;
 	}
@@ -36,42 +31,12 @@
 		text-align: left;
 	}
 
-  .btn-view-eclaim {
-    position: relative;
-
-    .dropdown-menu {
-      width: 200px;
-      background: #e6e3e3;
-      border: none;
-      border-radius: 0px;
-      box-shadow: 0px 1px 8px #777;
-      margin: 4px 0 0;
-      padding: 5px 0;
-      position: absolute;
-    }
-
-    .dropdown-menu>li>a {
-      display: block;
-      padding: 3px 20px;
-      clear: both;
-      font-weight: 400;
-      line-height: 1.42857143;
-      color: #333;
-      white-space: nowrap;
-    }
-
-    li>a:hover {
-      background: #529ed4;
-      color: #fff;
-    }
-  }
-
 	.search-wrapper .input-group {
 		margin: 20px 0 auto auto;
 	}
 }
 
-.total-claim-transaction {
+.total-claim-trasaction {
   display: inline-block;
   width: 100%;
 	margin: 0 0 10px;
@@ -168,11 +133,6 @@
     	color: #555;
     	cursor: pointer;
     }
-
-    .spouse-member {
-      color: #33CCCD;
-      font-size: 12px;
-    }
 	}
 	.status-text {
     padding: 6px;
@@ -197,17 +157,14 @@
   	padding-left: 0;
   }
 
-  .status-left-wrapper {
-    width: 25%;
-    float: left;
-  }
-
   .status-box-left {
   	background: #ccc;
     padding: 20px 15px 8px 15px;
     border-radius: 0 8px 8px 0;
     color: #555;
-   
+    width: 25%;
+    float: left;
+
     .status_text {
     	font-size: 20px;
     	margin: 0 0 10px;
@@ -215,19 +172,6 @@
     .claim-date-text {
     	font-size: 12px;
     	margin: 0 0 10px;
-    }
-  }
-
-  .reason-container {
-    margin: 40px 0 0;
-    text-align: left;
-    width: 185px;
-    padding: 0 0 0 30px;
-
-    .label {
-      color: #333;
-      font-size: 13px;
-      margin: 0 0 15px 0;
     }
   }
 
@@ -265,7 +209,6 @@
   		color: #fff;
   		border: 1px solid transparent;
   		border-radius: 4px;
-      box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
   		letter-spacing: .5px;
   		margin: 0 4px;
   	}
@@ -275,10 +218,6 @@
   	.btn-rejected {
   		background: #ff0000bf; 
   	}
-    .btn-check-pending {
-      background: #0086D3;
-      font-size: 11px;
-    }
   }
 
   .receipt-container {
