@@ -157,13 +157,17 @@
   	padding-left: 0;
   }
 
+  .status-left-wrapper {
+    width: 25%;
+    float: left;
+  }
+
   .status-box-left {
   	background: #ccc;
     padding: 20px 15px 8px 15px;
     border-radius: 0 8px 8px 0;
     color: #555;
-    width: 25%;
-    float: left;
+    
 
     .status_text {
     	font-size: 20px;
@@ -174,7 +178,7 @@
     	margin: 0 0 10px;
     }
   }
-  
+
   .reason-container {
     margin: 40px 0 0;
     text-align: left;
