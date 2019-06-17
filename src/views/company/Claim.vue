@@ -120,10 +120,10 @@
 							<th></th>
 						</tr>
 	    		</thead>
-	    		<tbody>
-						<tr>
+	    		<tbody v-for="n in test" :key="n.id">
+						<tr @click="toggleDetails(n)">
 							<td>
-								<label class="status-text pending">Pending</label>
+								<label class="status-text pending">Pending {{n.id}}</label>
 							</td>
 							<td>
 								<span>15 May 2019 05:09 PM</span>
@@ -144,15 +144,15 @@
 								<span>Chryst Gundran</span>
 							</td>
 							<td>
-								<i class="fa fa-angle-right" :class="{'fa-angle-down-active': chevronState === true}" @click="toggleSubtr"></i>
+								<i class="fa fa-angle-right" :class="{'fa-angle-down-active': n.showTransDetails === true}" ></i>
 							</td>
 						</tr>
 						<transition name="slide">
-							<tr class="in-network-subtr" v-if="showSubtr">
+							<tr class="in-network-subtr" v-if="n.showTransDetails">
 								<td colspan="8">
 
 									<div class="status-box-left">
-										<div class="status_text">Pending</div>
+										<div class="status_text">Pending {{n.id}}</div>
 										<div class="claim-date-text">Claim Date: <span>15 May 2019 05:09 PM</span></div>
 									</div>
 
@@ -217,6 +217,14 @@
 												<img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1557387401/nhulevaerr46wlfy07d7.png'">
 											</div>
 										</div>
+										<div class="trans-receipts-wrapper">
+											<div class="click-box-wrapper">
+												<div class="click-box">
+													<i class="fa fa-plus"></i>
+												</div>
+												<img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1557387401/nhulevaerr46wlfy07d7.png'">
+											</div>
+										</div>
 									</div>
 
 								</td>
@@ -234,43 +242,5 @@ import claim from "@/components/company/claim";
 
 export default claim;
 </script>
-
-<style>
-
-/* for chevron animation */
-	.fa-angle-right {
-		-webkit-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-			-moz-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-				-o-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-        	transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
-
-		-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-			-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-				-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-						transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
-	}
-	.fa-angle-down-active {
-		transform: rotate(90deg);
-	}
-
-/* for subtr transition */
-
-	.slide-enter-active, 
-	.slide-leave-active {
-		-webkit-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-			-moz-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-				-o-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-        	transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
-
-		-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-			-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-				-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-						transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
-	}
-	.slide-enter, 
-	.slide-leave-to { /* .fade-leave-active below version 2.1.8 */ 
-		transform: translate(0%, 100);
-	}
-</style>
 
 
