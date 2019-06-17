@@ -134,10 +134,10 @@
 					<!-- to repeat -->
 					<div class="transaction-rows">
 						<!-- pra sa date na g filter ang timeline -->
-						<div class="timeline" v-for="n in 2" :key="n.id">
+						<div class="timeline" v-for="n in 1" :key="n.id">
 							<div class="date-box">MAY {{n}}</div>
 							<!-- para sa each transaction -->
-							<div class="transaction-tr" @click="toggleShowSidebar" v-for="y in 3" :key="y.id">
+							<div class="transaction-tr" @click="toggleShowSidebar" v-for="y in 1" :key="y.id">
 								<div class="dot-box">
 									<div class="dot-circle"></div>
 								</div>
