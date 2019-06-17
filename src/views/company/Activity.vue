@@ -262,23 +262,25 @@
 					<div class="download-receipt-container">
 						<button class="btn-download disabled">Download Receipt</button>
 						<div class="trans-receipts-wrapper">
-							<div class="click-box-wrapper">
+							<div class="click-box-wrapper"> <!-- To Repeat -->
 								<a>
 									<div @click="showPreview = true" class="click-box">
 										<i class="fa fa-plus"></i>
 									</div>
 									<img :src="'../assets/img/home-bg.jpg'">
 								</a>
-								<div v-if="showPreview" class="preview-box">
-									<div class="img-container">
-										<a @click="showPreview = false" class="hidePreview">
+
+								<ImgPreview v-if="showPreview">
+									<div slot="content">
+										<a @click="showPreview = false">
 											<i class="fa fa-times"></i>
 										</a>
 
 										<img :src="'../assets/img/home-bg.jpg'">
 									</div>
-								</div>
-							</div>
+								</ImgPreview>
+
+							</div> <!--End sa To Repeat -->
 						</div>
 						<a href="/download/transaction_receipt/413" target="_blank" class="btn-download btn-receipt">Mednefits E-Receipt</a>
 					</div>

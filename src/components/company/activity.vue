@@ -1,10 +1,14 @@
 <script>
 /* eslint-disable */
+import ImgPreview from "../../views/company/modal/ImagePreview";
 
 import $ from "jquery";
 window.$ = $;
 // methods here
 let activity = {
+  components: {
+    ImgPreview
+  },
   data() {
     return {
       spendingType: {
