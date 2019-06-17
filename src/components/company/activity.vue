@@ -19,7 +19,8 @@ let activity = {
       toggleSidebar: {
         in : false,
         out : false
-      }
+      },
+      showPreview: false,
     };
   },
   methods: {

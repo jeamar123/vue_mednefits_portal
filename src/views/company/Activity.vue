@@ -134,10 +134,10 @@
 					<!-- to repeat -->
 					<div class="transaction-rows">
 						<!-- pra sa date na g filter ang timeline -->
-						<div class="timeline" v-for="n in 1" :key="n.id">
+						<div class="timeline" v-for="n in 2" :key="n.id">
 							<div class="date-box">MAY {{n}}</div>
 							<!-- para sa each transaction -->
-							<div class="transaction-tr" @click="toggleShowSidebar" v-for="y in 1" :key="y.id">
+							<div class="transaction-tr" @click="toggleShowSidebar" v-for="y in 3" :key="y.id">
 								<div class="dot-box">
 									<div class="dot-circle"></div>
 								</div>
@@ -207,7 +207,7 @@
 			<!-- side bar show/hide -->
 			<transition name="slide">
 				<div class="hidden-details-container" id="hidden-inNetwork" v-if="toggleSidebar.in">
-					<img :src="'https://res.cloudinary.com/www-medicloud-sg/image/upload/v1439208475/medilogo_cn6d0x.png'">
+					<img class="details-img" :src="'https://res.cloudinary.com/www-medicloud-sg/image/upload/v1439208475/medilogo_cn6d0x.png'">
 					<h5>Malaysia Ringgit</h5>
 					<div class="details-container">
 						<div class="details-row">
@@ -261,6 +261,25 @@
 					</div>
 					<div class="download-receipt-container">
 						<button class="btn-download disabled">Download Receipt</button>
+						<div class="trans-receipts-wrapper">
+							<div class="click-box-wrapper">
+								<a>
+									<div @click="showPreview = true" class="click-box">
+										<i class="fa fa-plus"></i>
+									</div>
+									<img :src="'../assets/img/home-bg.jpg'">
+								</a>
+								<div v-if="showPreview" class="preview-box">
+									<div class="img-container">
+										<a @click="showPreview = false" class="hidePreview">
+											<i class="fa fa-times"></i>
+										</a>
+
+										<img :src="'../assets/img/home-bg.jpg'">
+									</div>
+								</div>
+							</div>
+						</div>
 						<a href="/download/transaction_receipt/413" target="_blank" class="btn-download btn-receipt">Mednefits E-Receipt</a>
 					</div>
 				</div>
