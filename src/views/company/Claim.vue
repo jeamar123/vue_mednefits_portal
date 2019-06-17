@@ -64,43 +64,54 @@
 
     	</div>
 
-    	<div class="view-search-container">
-    		<div>
-    			<div class="view-toggle-btn">
-    				<h4>View</h4>
-    				<button>All <i class="fa fa-caret-down"></i></button>
-    			</div>
-    			<div class="search-wrapper">
-						<div class="input-group">
-							<input class="search-input" placeholder="Search Employee Name">
-							<ul v-if="false" class="dropdown-menu">
-								<li class="active">
-									<a class="dropdown-item" href="#" role="option">allan cheam alzula</a>
-								</li>
-								<li class="">
-									<a class="dropdown-item" href="#" role="option">allan cheam alzula</a>
-								</li>
-								<li class="">
-									<a class="dropdown-item" href="#" role="option">allan cheam alzula</a>
-								</li>
-							</ul>
-				      <span class="input-group-btn">
-				        <button><i class="fa fa-search"></i></button>
-				        <button v-if="false"><i class="fa fa-close"></i></button>
-				      </span>
+    	<div class="view-search-transaction-eclaim-container">
+	    	<div class="view-search-container">
+	    		<div>
+	    			<div class="view-toggle-btn">
+	    				<h4>View</h4>
+
+	    				<div class="btn-view-eclaim">
+		    				<button>All <i class="fa fa-caret-down"></i></button>
+		    				<ul v-if="false" class="dropdown-menu">
+							    <li><a>All</a></li>
+							    <li><a>Pending</a></li>
+							    <li><a>Approved</a></li>
+							    <li><a>Rejected</a></li>
+							  </ul>
+						  </div>
+	    			</div>
+	    			<div class="search-wrapper">
+							<div class="input-group">
+								<input class="search-input" placeholder="Search Employee Name">
+								<ul v-if="false" class="dropdown-menu">
+									<li class="active">
+										<a class="dropdown-item" href="#" role="option">allan cheam alzula</a>
+									</li>
+									<li class="">
+										<a class="dropdown-item" href="#" role="option">allan cheam alzula</a>
+									</li>
+									<li class="">
+										<a class="dropdown-item" href="#" role="option">allan cheam alzula</a>
+									</li>
+								</ul>
+					      <span class="input-group-btn">
+					        <button><i class="fa fa-search"></i></button>
+					        <button v-if="false"><i class="fa fa-close"></i></button>
+					      </span>
+							</div>
 						</div>
-					</div>
-    		</div>
-    	</div>
+	    		</div>
+	    	</div>
 
-    	<div class="total-claim-trasaction">
-    		<div class="total-transaction-container"><span>124</span> Total Transactions</div>
-    		<div class="total-claim-container">Total Claim <span>S$ <span>811.05</span></span></div>
-    	</div>
+	    	<div class="total-claim-transaction">
+	    		<div class="total-transaction-container"><span>124</span> Total Transactions</div>
+	    		<div class="total-claim-container">Total Claim <span>S$ <span>811.05</span></span></div>
+	    	</div>
 
-    	<div class="download-btn-container">
-    		<button>Download CSV <i class="fa fa-download"></i></button>
-    		<button>Download receipts <i class="fa fa-download"></i></button>
+	    	<div class="download-btn-container">
+	    		<button>Download CSV <i class="fa fa-download"></i></button>
+	    		<button>Download receipts <i class="fa fa-download"></i></button>
+	    	</div>
     	</div>
 
     </div>
@@ -142,6 +153,9 @@
 							</td>
 							<td>
 								<span>Chryst Gundran</span>
+								<div class="spouse-member">
+									<span>Family </span> of <span>Jaz Zayas</span>
+								</div>
 							</td>
 							<td>
 								<i class="fa fa-angle-right" :class="{'fa-angle-down-active': n.showTransDetails === true}" ></i>
@@ -151,9 +165,18 @@
 							<tr class="in-network-subtr" v-if="n.showTransDetails">
 								<td colspan="8">
 
-									<div class="status-box-left">
-										<div class="status_text">Pending {{n.id}}</div>
-										<div class="claim-date-text">Claim Date: <span>15 May 2019 05:09 PM</span></div>
+
+									<div class="status-left-wrapper">
+										<div class="status-box-left">
+											<div class="status_text">Pending {{n.id}}</div>
+											<div class="claim-date-text">Claim Date: <span>15 May 2019 05:09 PM</span></div>
+										</div>
+
+										<!-- this will appear when the status is rejected -->
+										<div class="reason-container">
+											<div class="label">REASON:</div>
+											<div>qwe</div>
+										</div>
 									</div>
 
 									<div class="transac-details-wrapper">
@@ -161,6 +184,14 @@
 											<div>
 												<label>MEMBER</label>
 												<span>Chryst Gundran</span>
+											</div>
+											<div>
+												<label>EMPLOYEE</label>
+												<span>Jaz Zayas</span>
+											</div>
+											<div>
+												<label>DEPENDENT RELATIONSHIP</label>
+												<span>Family</span>
 											</div>
 											<div>
 												<label>APPROVED DATE</label>
@@ -201,8 +232,9 @@
 										</div>
 
 										<div class="transac-details-btn">
-											<button class="btn-approved">Approve Claim</button>
-											<button class="btn-rejected">Reject Claim</button>
+											<button v-if="false" class="btn-approved">Approve Claim</button>
+											<button v-if="false" class="btn-rejected">Reject Claim</button>
+											<button class="btn-check-pending">Change to Pending</button>
 										</div>
 									</div>
 
