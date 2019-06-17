@@ -308,7 +308,7 @@
 									<span>{{y}}</span>
 								</div>
 								<div class="img-wrapper">
-									<img :src="'../assets/img/receipt.png'">
+									<img class="receipt-img" :src="'../assets/img/receipt.png'">
 								</div>
 								<div class="transaction-details">
 									<div>Allan Cheam Alzula</div>
@@ -362,8 +362,8 @@
 				</div>
 			</transition>
 			<transition name="slide">
-				<div class="hidden-details-container" id="hidden-outNetwork" v-if="toggleSidebar.out">
-					<img :src="'../assets/img//GP.png'">
+				<div class="hidden-details-container e-claim-hidden-container" id="hidden-outNetwork" v-if="toggleSidebar.out">
+					<img class="details-img" :src="'../assets/img//GP.png'">
 					<div class="details-container">
 						<div class="details-row">
 							<div class="details-left">
@@ -440,13 +440,32 @@
 					</div>
 					<div class="download-receipt-container">
 						<button class="btn-download">Download Receipt</button>
+						<div class="trans-receipts-wrapper">
+							<div class="click-box-wrapper">
+								<a>
+									<div @click="showPreview = true" class="click-box">
+										<i class="fa fa-plus"></i>
+									</div>
+									<img :src="'../assets/img/home-bg.jpg'">
+								</a>
+								<div v-if="showPreview" class="preview-box">
+									<div class="img-container">
+										<a @click="showPreview = false" class="hidePreview">
+											<i class="fa fa-times"></i>
+										</a>
+
+										<img :src="'../assets/img/home-bg.jpg'">
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</transition>
 		</div>
 
-
-	  <!-- <div class="transaction-wrapper e-claim-transaction-wrapper">
+<!-- 
+	  <div class="transaction-wrapper e-claim-transaction-wrapper">
 	    
     </div> -->
   </div>

@@ -328,6 +328,7 @@
 	.transaction-rows {
 		margin: 30px 90px 0 90px;
 		font-size: 16px;
+		max-height: 500px;
 		min-height: 600px;
     height: 100%;
     overflow-y: auto;
@@ -382,9 +383,20 @@
 		// right: -50%; //hide the hidden details container
 		background: #eee;
 		width: 335px;
+		height: 500px;
+    overflow-y: auto;
 		color: #777;
 		padding: 38px 5px;
 
+		 &::-webkit-scrollbar {
+    	width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+    	background-color: #ababab;
+    	border-radius: 8px;
+    }
+    
     .details-img {
     	height: 50px;
 	    width: 50px;
@@ -392,6 +404,12 @@
 	    margin: 0 auto;
 	    display: block;
 	    border-radius: 50%;
+    }
+
+    &.e-claim-hidden-container img {
+    	border: 0;
+    	border-radius: 0;
+    	margin: 0 auto 30px auto;
     }
 
 	  h5 {
@@ -572,6 +590,10 @@
 		img {
 			width: 24px;
 		}
+
+		.receipt-img {
+			width: 40px;
+		}
 	}
 
 	.transaction-details {
@@ -620,20 +642,6 @@
 		flex: 3;
 		text-align: right;
     padding-right: 15px;
-	}
-}
-
-.e-claim-transaction-wrapper {
-	.transaction-tr img {
-		width: 40px;
-	}
-
-	.hidden-details-container img{
-		height: 50px;
-    width: 50px;
-    border-radius: 0;
-    border: none;
-    margin: 0 auto 30px;
 	}
 }
 
