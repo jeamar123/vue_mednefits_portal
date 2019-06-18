@@ -54,7 +54,7 @@
               </tbody>
             </table>
 
-            <table class="" v-show="maxDep !=0">
+            <table class="dependent-table-container" v-show="maxDep !=0">
               <thead>
                 <tr>
                   <div v-for="depTh in maxDep" :key="depTh.id">
@@ -63,12 +63,19 @@
                     <th>Dependent <span>{{depTh}}</span> NRIC/FIN</th>
                     <th>Dependent <span>{{depTh}}</span> Date of Birth</th>
                     <th>Dependent <span>{{depTh}}</span> Relationship</th>
+                    <th>Dependent {{depTh}} Start Date</th>
                   </div>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="dep in dependents[0]">
-                  <td v-for="value in dep">value</td>
+                <tr v-for="emp in employeeStorage" :key="emp.id">
+                  <template v-for="list in emp.dependents[0]">
+                    <td> {{list.fname}} </td>
+                    <td> {{list.lname}} </td>
+                    <td> {{list.nricFinNo}} </td>
+                    <td> {{list.dob | formatDate}} </td>
+                    <td> {{list.relation}}</td>
+                  </template>
                 </tr>
               </tbody>
             </table>

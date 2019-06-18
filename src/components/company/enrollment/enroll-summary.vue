@@ -191,7 +191,7 @@ let enrollSumamary = {
       if (value) {
         return moment(String(value)).format("MM/DD//YYYY");
       }
-    }
+    },
   },
   created() {
     console.log(this.employeeStorage);
