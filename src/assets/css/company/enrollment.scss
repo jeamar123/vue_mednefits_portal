@@ -711,6 +711,15 @@
 			line-height: 1.1;
 		}
 
+		.dependent-table-container thead tr div {
+			display: contents;
+		}
+
+		.dependent-table-container thead tr th:last-child,
+		.dependent-table-container tbody tr td:last-child {
+			display: none;
+		}
+
 		.start-date-container thead tr th:first-child {
 			padding: 10px;
 		}

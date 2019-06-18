@@ -54,15 +54,18 @@
               </tbody>
             </table>
 
-            <table class="">
+            <table class="dependent-table-container">
               <thead>
                 <tr>
+                  <div>
                   <!-- <span v-show="maxDep !=0"  v-for="th in maxDep" :key="th.id"> -->
                   <th>Dependent <span>1</span> First Name</th>
                   <th>Dependent Last Name</th>
                   <th>Dependent NRIC/FIN</th>
                   <th>Dependent Date of Birth</th>
                   <th>Dependent Relationship</th>
+                  <th>Dependent Start Date</th>
+                  </div>
                 </tr>
               </thead>
               <tbody>
@@ -73,6 +76,7 @@
                   <td>123948SAS</td>
                   <td>01/12/1995</td>
                   <td>Brother</td>
+                  <td>01/12/2019</td>
                 </tr>
               </tbody>
             </table>
