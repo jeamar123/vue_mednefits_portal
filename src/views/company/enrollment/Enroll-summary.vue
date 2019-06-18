@@ -24,7 +24,7 @@
               </thead>
               <tbody>
                 <!-- <tr class="dependent-hover-container" v-for="(enroll, index) in employeeStorage" v-bind:key="enroll.id"> -->
-                <tr class="dependent-hover-container">
+                <tr class="dependent-hover-container" v-for="(enroll, index) in employeeStorage" v-bind:key="enroll.id">
                   <td>
                     <input type="checkbox" v-model="isChecked" :value="index">
                   </td>
@@ -36,12 +36,12 @@
                             <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
                       </span>-->
                       <!-- <span class="fname">{{enroll.fname}}</span> -->
-                      <span class="fname">Noelou Jan</span>
+                      <span class="fname">{{enroll.fname}}</span>
                       <button @click="editEmployee('edit', index)" class="dependent-hover-btn">Edit</button>
                     </div>
                   </td>
                   <!-- <td>{{enroll.lname}}</td> -->
-                  <td>Nagac</td>
+                  <td>{{enroll.lname}}</td>
                   <td>{{enroll.nricFinNo}}</td>
                   <td>{{enroll.dob | formatDate}}</td>
                   <td>{{enroll.email}}</td>
@@ -54,25 +54,21 @@
               </tbody>
             </table>
 
-            <table class="">
+            <table class="" v-show="maxDep !=0">
               <thead>
                 <tr>
-                  <!-- <span v-show="maxDep !=0"  v-for="th in maxDep" :key="th.id"> -->
-                  <th>Dependent <span>1</span> First Name</th>
-                  <th>Dependent Last Name</th>
-                  <th>Dependent NRIC/FIN</th>
-                  <th>Dependent Date of Birth</th>
-                  <th>Dependent Relationship</th>
+                  <div v-for="depTh in maxDep" :key="depTh.id">
+                    <th>Dependent <span>{{depTh}}</span> First Name</th>
+                    <th>Dependent <span>{{depTh}}</span> Last Name</th>
+                    <th>Dependent <span>{{depTh}}</span> NRIC/FIN</th>
+                    <th>Dependent <span>{{depTh}}</span> Date of Birth</th>
+                    <th>Dependent <span>{{depTh}}</span> Relationship</th>
+                  </div>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <!-- <span v-for="(dep) in enroll.dependents[0]" :key="dep.id"> -->
-                  <td>Noelou</td>
-                  <td>Nagac</td>
-                  <td>123948SAS</td>
-                  <td>01/12/1995</td>
-                  <td>Brother</td>
+                <tr v-for="dep in dependents[0]">
+                  <td v-for="value in dep">value</td>
                 </tr>
               </tbody>
             </table>

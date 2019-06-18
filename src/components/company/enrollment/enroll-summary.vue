@@ -22,27 +22,24 @@ let enrollSumamary = {
       modalEdit: false, //edit modal
       isChecked: [], // used in enrollment summary
       employeeDetails: {},
-      dependentHeading: [
-        {label: 'First Name'},
-        {label: 'Last Name',},
-        {label: 'NRIC/FIN'},
-        {label: 'Date of Birth'},
-        {label: 'Relationship'}
-      ],
+      dependents: [],
       maxDep: 0,
     };
   },
   methods: {
     filterDep() {
-      let depLength = [];
-      let employee;
-      let dependents;
+      let depLength = []; //holds array of all dependent array length to find na fax depdendent on each employee
+      let dep;
+      let dependents; 
       let value;
 
       for (let i=0; i<=this.employeeStorage.length-1; i++){ //TO SELECT 1 EMPLOYEE
-        employee = this.employeeStorage[i].dependents[0];
-        value = employee.length;
+        dep = this.employeeStorage[i].dependents[0];
+        value = dep.length;
         depLength.push(value);
+        this.dependents.push(
+            dep
+        );
         // for(let j=0; j<= employee.length-1; j++){ //TO SELECT DEPENDENTS OF EACH EMPLOYEE
         //   dependents = employee[j];
         //   console.log('dependents',dependents);
@@ -51,7 +48,7 @@ let enrollSumamary = {
       };
       let max = Math.max.apply(Math, depLength);
       this.maxDep = max;
-      console.log('max', depLength, this.maxDep);
+      console.log('max', depLength, this.maxDep, 'dependents', this.dependents);
       
     },
     back() {
