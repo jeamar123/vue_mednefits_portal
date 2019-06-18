@@ -262,7 +262,7 @@
 					<div class="download-receipt-container">
 						<button class="btn-download disabled">Download Receipt</button>
 						<div class="trans-receipts-wrapper">
-							<div class="click-box-wrapper"> <!-- To Repeat -->
+							<div class="click-box-wrapper" v-for="n in 3" :key="n.id"> <!-- To Repeat -->
 								<a>
 									<div @click="showPreview = true" class="click-box">
 										<i class="fa fa-plus"></i>
@@ -443,22 +443,22 @@
 					<div class="download-receipt-container">
 						<button class="btn-download">Download Receipt</button>
 						<div class="trans-receipts-wrapper">
-							<div class="click-box-wrapper">
+							<div class="click-box-wrapper" v-for="n in 2" :key="n.id">
 								<a>
 									<div @click="showPreview = true" class="click-box">
 										<i class="fa fa-plus"></i>
 									</div>
 									<img :src="'../assets/img/home-bg.jpg'">
 								</a>
-								<div v-if="showPreview" class="preview-box">
-									<div class="img-container">
-										<a @click="showPreview = false" class="hidePreview">
+								<ImgPreview v-if="showPreview">
+									<div slot="content">
+										<a @click="showPreview = false">
 											<i class="fa fa-times"></i>
 										</a>
 
 										<img :src="'../assets/img/home-bg.jpg'">
 									</div>
-								</div>
+								</ImgPreview>
 							</div>
 						</div>
 					</div>
