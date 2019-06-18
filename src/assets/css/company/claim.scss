@@ -31,6 +31,30 @@
 		text-align: left;
 	}
 
+	.btn-view-eclaim .dropdown-menu {
+		width: 200px;
+		position: absolute;
+    background: #e6e3e3;
+    border: none;
+    border-radius: 0px;
+    box-shadow: 0px 1px 8px #777;
+    margin: 2px 0 0;
+    padding: 5px 0;
+
+
+    >li>a {
+    	display: block;
+	    padding: 3px 20px;
+	    font-weight: 400;
+	    color: #333;
+    }
+
+    >li>a:hover {
+    	background: #529ed4;
+    	color: #fff;
+    }
+	}
+
 	.search-wrapper .input-group {
 		margin: 20px 0 auto auto;
 	}
@@ -132,6 +156,11 @@
     	font-size: 30px;
     	color: #555;
     	cursor: pointer;
+    }
+
+    .spouse-member {
+    	font-size: 12px;
+    	color: #33CCCD;
     }
 	}
 	.status-text {

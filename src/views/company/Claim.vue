@@ -71,8 +71,8 @@
 	    				<h4>View</h4>
 
 	    				<div class="btn-view-eclaim">
-		    				<button>All <i class="fa fa-caret-down"></i></button>
-		    				<ul v-if="false" class="dropdown-menu">
+		    				<button @click="viewEclaimToggle">All <i class="fa fa-caret-down"></i></button>
+		    				<ul v-if="viewEclaim" class="dropdown-menu">
 							    <li><a>All</a></li>
 							    <li><a>Pending</a></li>
 							    <li><a>Approved</a></li>
