@@ -8,6 +8,7 @@ let claim = {
     		value: 0,
         text: ""
       },
+      viewEclaim: false,
       timeFrame: {},
       test : [
         {
@@ -31,6 +32,17 @@ let claim = {
     },
     toggleDetails(data) {
         data.showTransDetails = !data.showTransDetails;
+    },
+    viewEclaimToggle() {
+      console.log('Toggle');
+
+    
+      if ( this.viewEclaim == false ) {
+        this.viewEclaim = true;
+      } else {
+        this.viewEclaim = false;
+      }
+      
     }
   }
 };
