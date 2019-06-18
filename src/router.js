@@ -21,6 +21,8 @@ import Portal from './views/Portal.vue'
   import CompanyIntro from './views/company/Intro.vue'
   import CompanyDashboard from './views/company/Dashboard.vue'
   import CompanyEmployee from './views/company/Employee.vue'
+  import CompanyEmployeeDetails from './views/company/employee/Employee-details.vue'
+  import CompanyRemoveEmployee from './views/company/employee/Remove-employee.vue'
   import CompanyActivity from './views/company/Activity.vue'
   import CompanyClaim from './views/company/Claim.vue'
   import CompanyCreateTeamBenefitsTier from './views/company/enrollment/Create-team-benefits-tier.vue'
@@ -30,6 +32,10 @@ import Portal from './views/Portal.vue'
   import CompanyCreditAllocation from './views/company/CreditAllocation.vue'
   import CompanyEnrollment from './views/company/Enrollment.vue'
   import CompanyEnrollmentOptions from './views/company/enrollment/Enrollment-options.vue'
+  import CompanyWebInput from './views/company/enrollment/Web-input.vue'
+  import CompanyExcel from './views/company/enrollment/Excel.vue'
+  import CompanyEnroll from './views/company/enrollment/Enroll-summary.vue'
+
 // CLINIC views
 
 
@@ -66,18 +72,30 @@ export default new Router({
       component: CompanyDashboard,
       meta: { auth: true },
       children: [
+        //dashboard
         { name: 'CompanyIntro', path: '/company/intro', component: CompanyIntro },
         { name: 'CompanyHome', path: '/company/dashboard', component: CompanyOverview },
-        { name: 'CompanyEmployee', path: '/company/employee-overview', component: CompanyEmployee },
+        //employee
+        { name: 'CompanyEmployee', path: '/company/employee/overview', component: CompanyEmployee },
+        { name: 'CompanyCreditAllocation', path: '/company/employee/credit-allocation', component: CompanyCreditAllocation },
+        { name: 'CompanyEmployeeDetails', path: '/company/employee/employee-details', component: CompanyEmployeeDetails },
+        { name: 'CompanyRemoveEmployee', path: '/company/employee-details/remove-employee', component: CompanyRemoveEmployee },
+        //acitivity
         { name: 'CompanyActivity', path: '/company/activity', component: CompanyActivity },
+        //company claim
         { name: 'CompanyClaim', path: '/company/claim', component: CompanyClaim },
+        //enrollment
         { name: 'CompanyCreateTeamBenefitsTier', path: '/company/create-team-benefits-tier', component: CompanyCreateTeamBenefitsTier },
+        { name: 'CompanyEnrollment', path: '/company/enrollment', component: CompanyEnrollment },
+        { name: 'CompanyEnrollmentOptions', path: '/company/enrollment-options', component: CompanyEnrollmentOptions },
+        { name: 'CompanyWebInput', path: '/company/enrollment/web-input', component: CompanyWebInput },
+        { name: 'CompanyExcel', path: '/company/enrollment/excel', component: CompanyExcel },
+        { name: 'CompanyEnroll', path: '/company/enrollment/summary', component: CompanyEnroll },
+        //company statement
         { name: 'CompanyStatement', path: '/company/statement', component: CompanyStatement },
         { name: 'CompanyAccount', path: '/company/account', component: CompanyAccount },
         // { name: 'CompanyOverview', path: '/company/overview', component: CompanyOverview },
-        { name: 'CompanyCreditAllocation', path: '/company/credit-allocation', component: CompanyCreditAllocation },
-        { name: 'CompanyEnrollment', path: '/company/enrollment', component: CompanyEnrollment },
-        { name: 'CompanyEnrollmentOptions', path: '/company/enrollment-options', component: CompanyEnrollmentOptions },
+        
       ]
     },
     

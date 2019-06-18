@@ -1,14 +1,13 @@
 <script>
+/* eslint-disable */
 import Modal from "../../../views/company/modal/Modal.vue";
-import FadeTransition from "../../../assets/transitions/FadeTransition";
-import ModalTransition from "../../../assets/transitions/ModalTransition";
+import HealthSpending from "../../../views/company/employee/Health-spending.vue";
 
 // Methods here
 let employeeDetails = {
   components: {
     Modal,
-    FadeTransition,
-    ModalTransition
+    HealthSpending
   },
   data() {
     return {
@@ -21,8 +20,7 @@ let employeeDetails = {
         employee: false,
         dependent: false
       },
-      showAddDependents: false,
-      showRemoveEmployee: false
+      showAddDependents: false
     };
   },
   methods: {
@@ -50,18 +48,9 @@ let employeeDetails = {
 		toggleAddDependents( data ) { //add button for dependent under employee information
 			let x = data;
 			if( x === 'add' ) {
-				console.log('ni gana');
 				this.showAddDependents = true;
 			} else if( x === 'cancel' ) {
 				this.showAddDependents = false;
-			}
-		},
-		removeEmployee( data ) { //remove employee button under person information
-			let x = data;
-			if( x === 'showRemove' ) {
-				this.showRemoveEmployee = true;
-			} else if( x === 'cancel' ) {
-				this.showRemoveEmployee = false;
 			}
 		},
 		reset() { //resend/reset account button in settings tab
@@ -81,7 +70,10 @@ let employeeDetails = {
         }
       });
     },
-    viewEmployeeSpendingSummary() {//health spending account summary button under person information
+    viewEmployeeSpendingSummary() { //health spending account summary button under person information
+      
+      // $("body").scrollTop(0);
+      $("html, body").animate({scrollTop: $("body").offset().top}, 400);
       if (this.healthSpendingAccountTabIsShow == false) {
         this.toggle_overiew_type = 4;
         this.healthSpendingAccountTabIsShow = true;
@@ -97,7 +89,8 @@ let employeeDetails = {
 export default employeeDetails;
 </script>
 
-
 <style lang="scss" scoped>
-@import "./src/assets/css/company/employee.scss";
+  @import './src/assets/css/company/employee.scss'
 </style>
+
+

@@ -1,21 +1,21 @@
 <script>
 /* eslint-disable */
-// methods here
-import FadeTransition from "../../assets/transitions/FadeTransition";
-import ModalTransition from "../../assets/transitions/ModalTransition";
+// script here
 import Enrollment from "./enrollment";
+import Excel from "../../views/company/enrollment/Excel.vue";
+import WebInput from "../../views/company/enrollment/Web-input.vue";
 import Overview from "./overview";
 
 let dashboard = {
   components: {
-    FadeTransition,
-    ModalTransition,
     Enrollment,
+    WebInput,
     Overview
   },
   data() {
     return {
       isState: "enrollment",
+      stepStatus : 1,
       isActive: false,
       isDropdown: false, //hide show Dropdown,
       accountDropdown: false
@@ -24,9 +24,14 @@ let dashboard = {
   methods: {
     // change the title on navigation to Web Input and Enrollment and excel
     // functions from $emit data from another component
-    enrollmentData(state) {
-      this.isState = state.isState;
-      console.log(this.isState);
+    excelData(state) {
+      this.stepStatus = state.stepStatus;
+    },
+    webInputData(state) {
+       this.isState = state.isState;
+    },
+    enrollData(state) {
+       this.stepStatus = state.stepStatus;
     },
     overviewData(state) {
       this.isState = state.isState;
