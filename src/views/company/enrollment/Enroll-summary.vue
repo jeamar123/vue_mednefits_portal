@@ -20,6 +20,15 @@
                   <th>Mobile</th>
                   <th>Medical Credits</th>
                   <th>Wellness Credits</th>
+                  <template v-show="maxDep != 0">
+                    <template v-for="depHead in maxDep">
+                      <th :key="depHead.id">Dependent {{depHead}} First Name</th>
+                      <th :key="depHead.id">Dependent {{depHead}} Last Name</th>
+                      <th :key="depHead.id"> Dependent {{depHead}} NRIC/FIN Name</th>
+                      <th :key="depHead.id">Dependent {{depHead}} Date of Birth</th>
+                      <th :key="depHead.id">Dependent {{depHead}} Relationship</th>
+                    </template>
+                  </template>
                   <th class="start-date-header">Start Date</th>
                 </tr>
               </thead>
@@ -49,8 +58,14 @@
                   <td>{{enroll.mNumber}}</td>
                   <td>{{enroll.mCredits}}</td>
                   <td>{{enroll.wCredits}}</td>
-                  <td>01/12/2019</td>
-                  
+                  <template v-for="depDetails in enroll.dependents[0]">
+                    <td :key="depDetails.id">{{depDetails.fname}}</td>
+                    <td :key="depDetails.id">{{depDetails.lname}}</td>
+                    <td :key="depDetails.id">{{depDetails.nricFinNo}}</td>
+                    <td :key="depDetails.id">{{depDetails.dob | formatDate}}</td>
+                    <td :key="depDetails.id">{{depDetails.relation}}</td>
+                  </template>
+                  <td>{{enroll.startDate | formatDate}}</td>
                 </tr>
               </tbody>
             </table>

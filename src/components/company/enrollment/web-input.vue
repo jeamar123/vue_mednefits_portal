@@ -22,7 +22,10 @@ let webInput = {
       depPrevChevronState: false, //show hide chevron button
       depNextChevronState: false, //show hide chevron button
       employeeDetails: {}, //used in web input
-      dependentDetails: {}, //used in web input
+      dependentDetails: {
+        dob: '',
+        startDate : ''
+      }, //used in web input
       employeeStorage: [
         //used in web input
         // {
@@ -51,7 +54,6 @@ let webInput = {
         //       lname: "zayas"
         //     }
       ],
-      date: new Date() // Jan 25th, 2018
     };
   },
   methods: {
@@ -138,6 +140,9 @@ let webInput = {
           startDate: this.dependentDetails.startDate
         });
         this.dependentDetails = {};
+        // this.dependentDetails.dob = undefined;
+        // this.dependentDetails.startDate = undefined;
+        this.$refs.formDep.reset();
       } else if (data == "save") {
         //else Save and Continue click
         this.dependentState = false;
@@ -497,7 +502,9 @@ let webInput = {
       return true;
     }
   },
-  created() {}
+  created() {
+
+  },
 };
 export default webInput;
 </script>
