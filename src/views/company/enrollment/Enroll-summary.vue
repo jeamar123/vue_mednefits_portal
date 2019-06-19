@@ -6,7 +6,7 @@
           <h1>Please check the details below before we enroll them.</h1>
           <!-- table summary -->
           <div>
-            <table class="">
+           <table>
               <thead>
                 <tr>
                   <th>
@@ -20,6 +20,7 @@
                   <th>Mobile</th>
                   <th>Medical Credits</th>
                   <th>Wellness Credits</th>
+                  <th class="start-date-header">Start Date</th>
                 </tr>
               </thead>
               <tbody>
@@ -48,47 +49,8 @@
                   <td>{{enroll.mNumber}}</td>
                   <td>{{enroll.mCredits}}</td>
                   <td>{{enroll.wCredits}}</td>
-                 
+                  <td>01/12/2019</td>
                   
-                </tr>
-              </tbody>
-            </table>
-
-            <table class="dependent-table-container" v-show="maxDep !=0">
-              <thead>
-                <tr>
-                  <div v-for="depTh in maxDep" :key="depTh.id">
-                    <th>Dependent <span>{{depTh}}</span> First Name</th>
-                    <th>Dependent <span>{{depTh}}</span> Last Name</th>
-                    <th>Dependent <span>{{depTh}}</span> NRIC/FIN</th>
-                    <th>Dependent <span>{{depTh}}</span> Date of Birth</th>
-                    <th>Dependent <span>{{depTh}}</span> Relationship</th>
-                    <th>Dependent {{depTh}} Start Date</th>
-                  </div>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="emp in employeeStorage" :key="emp.id">
-                  <template v-for="list in emp.dependents[0]">
-                    <td> {{list.fname}} </td>
-                    <td> {{list.lname}} </td>
-                    <td> {{list.nricFinNo}} </td>
-                    <td> {{list.dob | formatDate}} </td>
-                    <td> {{list.relation}}</td>
-                  </template>
-                </tr>
-              </tbody>
-            </table>
-
-            <table class="start-date-container">
-              <thead>
-                <tr>
-                  <th class="start-date-header">Start Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>01/02/2019</td>
                 </tr>
               </tbody>
             </table>
