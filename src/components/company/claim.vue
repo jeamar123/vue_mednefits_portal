@@ -1,4 +1,5 @@
 <script>
+/* eslint-disable */
 import ImgPreview from "../../views/company/modal/ImagePreview";
 
 // Methods here
@@ -14,7 +15,6 @@ let claim = {
         text: ""
       },
       viewEclaim: false,
-      timeFrame: {},
       test : [
         {
           id: 1,
