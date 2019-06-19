@@ -1,7 +1,57 @@
 .statement-container {
+	color: #777;
 	h4 {
 		font-size: 16px;
 		margin: 10px 0;
+	}
+
+	button {
+		color: #777;
+	}
+
+	.btn-spending-type {
+		width: 170px;
+		font-size: 16px;
+		border: 2px solid #ddd;
+
+		&.btn-overview {
+			border-radius: 6px 0 0 6px;
+		}
+
+		&.btn-full {
+			border-radius: 0 6px 6px 0;
+		}
+
+		&.btn-medical {
+			border-radius: 6px 0 0 6px;
+		}
+
+		&.btn-wellness {
+			border-radius: 0;
+		}
+
+		&.btn-both {
+			border-radius: 0 6px 6px 0;
+		}
+
+		&.active {
+			border: 2px solid #009EC8;
+		}
+	}
+}
+;
+
+.download-container {
+	font-size: 15px;
+	float: right;
+	color: #0392CF;
+	cursor: pointer;
+	line-height: 24px;
+	margin: 50px 0 60px;
+	padding: 0 15px;
+
+	img {
+		width: 20px;
 	}
 }
 
@@ -28,37 +78,129 @@
 .view-statement-container {
 	margin: 20px 0 0 0;
 	text-align: center;
-	color: #777;
-
-	span {
-		font-size: 16px;
-		margin: 0 0 10px;
-		display: block;
-	}
 
 	.btn-statement-wrapper {
-		margin: 20px 0 0;
+		display: inline-block;
+		width: 100%;
+		margin: 20px 0 50px;
+	}
+}
+
+.header-content {
+	font-size: 16px;
+	margin: 0 0 10px;
+	display: block;
+}
+
+.health-spending-container {
+	text-align: center;
+
+	.btn-health-spending-wrapper {
+		display: inline-block;
+		width: 100%;
+		margin: 20px 0 50px;
+	}
+
+
+}
+
+.search-wrapper {
+	margin: 70px 0 0;
+	padding: 0 15px;
+
+	.input-group {
+		margin: 0 0 auto auto
 	}
 
 	button {
-		color: #777;
+		border-radius: 4px;
+		border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+	}
+}
+
+.statement-transaction-header {
+	clear: both;
+	display: flex;
+	margin: 50px 0;
+	padding: 0 15px;
+
+	>div:nth-child(1) {
+		width: 25%;
+	}
+	>div:nth-child(2) {
+		width: 50%;
+	}
+	>div:nth-child(3) {
+		width: 25%;
+	}	
+	
+
+	.total-transactions-container,
+	.total-spent-container {
+		line-height: 24px;
+		margin: 0 0 10px;
 	}
 
-	.btn-spending-type {
-		width: 170px;
-		font-size: 16px;
-		border: 2px solid #ddd;
+	.total-transactions-container {
+		margin: 0 0 20px;
+	}
 
-		&.btn-overview {
-			border-radius: 6px 0 0 6px;
-		}
+	.btn-transaction-container {
+		width: 100%;
 
-		&.btn-full {
-			border-radius: 0 6px 6px 0;
-		}
-
-		&.active {
-			border: 2px solid #009EC8;
+		button {
+			padding: 15px;
+			width: 43%;
 		}
 	}
+
+	.download-statement-container {
+		text-align: right;
+
+		span {
+			display: block;
+			line-height: 24px;
+			font-weight: 400;
+			margin: 0 0 10px;
+		}
+
+		button {
+			width: 70px;
+	    margin: 0 -2px;
+	    color: #555;
+	    font-size: 12px;
+	    font-weight: 700;
+	    border: 1px solid #aaa;
+	    background: #FFF;
+	    padding: 5px;
+		}
+
+		.btn-pdf {
+			border-radius: 4px 0 0 4px;
+		}
+
+		.btn-csv {
+			border-radius: 0 4px 4px 0;
+		}
+	}
+}
+
+.statement-title-col {
+	clear: both;
+	background: #0086D3;
+  padding: 5px 175px;
+
+  h4 {
+  	color: #fff;
+  	font-size: 18px;
+  	line-height: 1.1;
+  	margin: 10px 0;
+  }
+}
+
+.statement-overview-container {
+	background: #fff;
+  min-height: 500px;
+  padding: 30px 100px 25px 100px;
 }
