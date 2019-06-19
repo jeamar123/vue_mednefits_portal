@@ -1,0 +1,64 @@
+.statement-container {
+	h4 {
+		font-size: 16px;
+		margin: 10px 0;
+	}
+}
+
+.year-selector {
+	font-size: 15px;
+  padding: 0 15px;
+  border-right: 1px solid #bbb;
+
+  a {
+  	color: #bbb;
+  }
+
+  a:hover,
+  a.active {
+  	color: #039be5;
+  }
+
+
+  &:last-child {
+  	border-right: 0;
+  }
+}
+
+.view-statement-container {
+	margin: 20px 0 0 0;
+	text-align: center;
+	color: #777;
+
+	span {
+		font-size: 16px;
+		margin: 0 0 10px;
+		display: block;
+	}
+
+	.btn-statement-wrapper {
+		margin: 20px 0 0;
+	}
+
+	button {
+		color: #777;
+	}
+
+	.btn-spending-type {
+		width: 170px;
+		font-size: 16px;
+		border: 2px solid #ddd;
+
+		&.btn-overview {
+			border-radius: 6px 0 0 6px;
+		}
+
+		&.btn-full {
+			border-radius: 0 6px 6px 0;
+		}
+
+		&.active {
+			border: 2px solid #009EC8;
+		}
+	}
+}
