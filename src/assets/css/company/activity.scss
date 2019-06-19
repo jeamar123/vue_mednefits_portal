@@ -1,16 +1,19 @@
 .activity-wrapper,
-.claim-wrapper {
+.claim-wrapper,
+.statement-wrapper {
 	padding-top: 180px;
 	font-weight: 700;
 
 	.activity-container,
-	.claim-container {
+	.claim-container,
+	.statement-container {
 		padding: 0 85px;
 	}
 
 	.timeframe-title {
 		font-size: 16px;
 		color: #777;
+		margin: 0 10px 0 0;
 	}
 
 }
