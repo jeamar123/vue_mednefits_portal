@@ -203,4 +203,191 @@
 	background: #fff;
   min-height: 500px;
   padding: 30px 100px 25px 100px;
+
+  .statement-wrapper {
+  	width: 80%;
+    margin: 50px auto;
+    overflow: hidden;
+    box-shadow: 1px 1px 10px #888888;
+    padding: 30px 40px;
+
+    img {
+    	width: 250px;
+    	margin: 60px 0 0;
+    }
+  }
+}
+
+.statement-header {
+	display: flex;
+	padding: 0 15px 30px 15px;
+	margin: 0 0 30px;
+	border-bottom: 2px solid #e8e8e8;
+
+	>div {
+		line-height: 1.3;
+		width: 50%;
+	}
+
+	>div:nth-child(2) {
+		color: #777;
+		text-align: right;
+
+		.medicloud-pte-text {
+			font-size: 16px;
+			color: #333;
+		}
+		.country-text {
+			margin: 0 0 20px;
+		}
+	}
+
+	h2 {
+		color: #555;
+		font-size: 30px;
+		font-weight: 400;
+		margin: 0 0 20px; 
+	}
+}
+
+.no-transaction-month-container {
+	display: inline-block;
+	width: 100%;
+	text-align: center; 
+
+	>div:nth-child(1) {
+		line-height: 24px;
+		font-size: 30px;
+    font-weight: 700;
+    margin: 30px 0 5px 0;
+    color: #333;
+	}
+
+	>div:nth-child(2) {
+		font-size: 18px;
+		font-weight: 400;
+    color: #555;
+    margin: 0 0 10px;
+	}
+}
+
+.transaction-month-container {
+	padding: 0 15px;
+}
+
+.benefits-statement-container {
+	display: flex;
+
+	>div {
+		width: 50%;
+	}
+
+	.company-address {
+		width: 30%;
+		margin: 0 0 10px;
+	}
+
+
+	.benefits-statement-col-2 >div {
+		line-height: 24px;
+		text-align: right;
+		margin: 0 0 5px;
+
+		label {
+			display: inline-block;
+			line-height: 1.3;
+		}
+
+		span {
+			display: inline-block;
+			line-height: 1.3;
+			text-align: left;
+			width: 140px;
+	    margin-left: 20px;
+	    color: #555;
+		}
+	}
+}
+
+.summary-charges-container {
+	margin: 80px 0 0;
+	font-size: 16px;
+
+	h4 {
+		font-size: 20px;
+		color: #009EC8;
+		margin: 10px 0;
+		border-bottom: 2px solid #009EC8;
+    padding-bottom: 15px;
+	}
+
+	.charges-row {
+		color: #555;
+    padding: 20px 30px;
+	}
+
+	.charges-row:nth-child(even) {
+		background: #f1f1f1;
+	}
+
+	.pull-right-amount {
+		float: right;
+	}
+
+	.statement-month-container {
+		font-size: 12px;
+		line-height: 24px;
+		margin: 0 0 10px;
+	}
+
+	.charges-lite-plan {
+		padding: 0 0 0 40px;
+		margin: 0 0 10px;
+	}
+
+	.sub-total-container {
+		color: #009EC8;
+	}
+
+	.total-due-container {
+		width: 350px;
+    background: #0086D3;
+    margin: 50px 0 120px;
+    padding: 15px 30px;
+    color: #eee;
+    display: inline-block;
+    text-align: left;
+    float: right;
+	}
+}
+
+.payment-information-container {
+	clear: both;
+	color: #777;
+
+	.payment-info-title {
+		color: #009EC8;
+		font-size: 20px;
+		font-weight: 400;
+		margin: 0 0 10px;
+	}
+
+	.cheque-payment-container {
+		margin: 0 0 10px;
+	}
+	.bank-transfer-container {
+		margin: 0 0 50px;
+	}
+
+	.cheque-detail,
+	.bank-detail {
+		line-height: 1.3;
+	}
+
+	.cheque-bank-title {
+		font-size: 16px;
+		font-weight: 400;
+		color: #333;
+		line-height: 24px;
+	}
 }
