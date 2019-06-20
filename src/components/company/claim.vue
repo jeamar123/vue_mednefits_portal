@@ -1,4 +1,5 @@
 <script>
+/* eslint-disable */
 // Methods here
 let claim = {
   data() {
