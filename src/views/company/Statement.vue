@@ -76,7 +76,7 @@
               <button @click="netType(0, 'In-network')" v-bind:class="{'active': networkType.value === 0}">
                 IN-NETWORK <br> TRANSACTIONS
               </button>
-              <button @click="netType(1, 'In-network')" v-bind:class="{'active': networkType.value === 1}"v>
+              <button @click="netType(1, 'In-network')" v-bind:class="{'active': networkType.value === 1}">
                 E- CLAIM TRANSACTIONS <br> (OUT-OF-NETWORK)
               </button>
             </div>
