@@ -164,7 +164,7 @@
             <div class="employee-details-header">
               <h1>Dependent details</h1>
             </div>
-            <form class="form-input-container">
+            <form ref="formDep" class="form-input-container">
               <div class="employee-input-container">
                 <div class="employee-input-wrapper">
                   <label for="fname">First / Given Name</label>
@@ -207,7 +207,7 @@
                 <div class="employee-input-wrapper">
                   <label for="fname">Start Date</label>
                   <v-date-picker :max-date='new Date()' v-model="dependentDetails.startDate"
-                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: false}'
                     popover-visibility='focus'>
                   </v-date-picker>
                   <!-- <input type="text" name="stard-date"> -->

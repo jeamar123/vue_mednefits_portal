@@ -92,13 +92,6 @@ let enrollment = {
       return true;
     }
   },
-  filters: {
-    formatDate: function(value) {
-      if (value) {
-        return moment(String(value)).format("MM/DD//YYYY");
-      }
-    }
-  },
   created() {
     this.$emit("enrollmentData", {
       isState: "enrollment"
