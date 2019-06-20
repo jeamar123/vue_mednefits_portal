@@ -121,7 +121,7 @@
 
 			<!-- In network -->
 			<transition name="fade">
-				<div class="transaction-container" id="transaction-container-inNetwork" :class="{'transaction-container-active': toggleSidebar.in === true}" v-if="networkType.value === 0">
+				<div class="transaction-container transition-easeInOutCubic-600ms" id="transaction-container-inNetwork" :class="{'transaction-container-active': toggleSidebar.in === true}" v-if="networkType.value === 0">
 					<div class="total-transac-header">
 						<div>
 							<span>297</span> Total Transactions 
@@ -171,7 +171,7 @@
 					</div>
 
 					<div class="activity-pagination-wrapper">
-						<div class="trans-pagination-shadow" :class="{'trans-pagination-shadow-active': toggleSidebar.in === true}"></div>
+						<div class="trans-pagination-shadow transition-easeInOutCubic-600ms" :class="{'trans-pagination-shadow-active': toggleSidebar.in === true}"></div>
 						<div class="global-pagination">
 							<div class="prev-pagination">
 								<i class="fa fa-angle-left"></i>
@@ -264,7 +264,7 @@
 						<div class="trans-receipts-wrapper">
 							<div class="click-box-wrapper" v-for="n in 3" :key="n.id"> <!-- To Repeat -->
 								<a>
-									<div @click="showPreview = true" class="click-box">
+									<div @click="showPreview = true" class="click-box transition-easeInOutCubic-200ms">
 										<i class="fa fa-plus"></i>
 									</div>
 									<img :src="'../assets/img/home-bg.jpg'">
@@ -276,6 +276,7 @@
 											<i class="fa fa-times"></i>
 										</a>
 
+										<!-- <img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1557387401/nhulevaerr46wlfy07d7.png'"> -->
 										<img :src="'../assets/img/home-bg.jpg'">
 									</div>
 								</ImgPreview>
@@ -289,7 +290,7 @@
 
 			<!-- Out network -->
 			<transition name="fade">
-				<div class="transaction-container e-claim-transactions" :class="{'transaction-container-active': toggleSidebar.out === true}" v-if="networkType.value === 1">
+				<div class="transaction-container e-claim-transactions transition-easeInOutCubic-600ms" :class="{'transaction-container-active': toggleSidebar.out === true}" v-if="networkType.value === 1">
 					<div class="total-transac-header">
 						<div>
 							<span>3</span> Total Transactions 
@@ -330,7 +331,7 @@
 					</div>
 
 					<div class="activity-pagination-wrapper">
-						<div class="trans-pagination-shadow" :class="{'trans-pagination-shadow-active': toggleSidebar.out === true}"></div>
+						<div class="trans-pagination-shadow transition-easeInOutCubic-600ms" :class="{'trans-pagination-shadow-active': toggleSidebar.out === true}"></div>
 						<div class="global-pagination">
 							<div class="prev-pagination">
 								<i class="fa fa-angle-left"></i>
@@ -445,7 +446,7 @@
 						<div class="trans-receipts-wrapper">
 							<div class="click-box-wrapper" v-for="n in 2" :key="n.id">
 								<a>
-									<div @click="showPreview = true" class="click-box">
+									<div @click="showPreview = true" class="click-box transition-easeInOutCubic-200ms">
 										<i class="fa fa-plus"></i>
 									</div>
 									<img :src="'../assets/img/home-bg.jpg'">

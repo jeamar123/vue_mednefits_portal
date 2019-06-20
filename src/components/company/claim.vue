@@ -1,6 +1,11 @@
 <script>
+import ImgPreview from "../../views/company/modal/ImagePreview";
+
 // Methods here
 let claim = {
+   components: {
+    ImgPreview
+  },
   data() {
     return {
       timeFrame: {},
@@ -21,7 +26,8 @@ let claim = {
           name: 'test',
           showTransDetails: false,
         }
-      ]
+      ],
+      showPreview: false,
     };
   },
   methods: {
