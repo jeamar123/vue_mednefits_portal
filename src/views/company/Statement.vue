@@ -37,6 +37,7 @@
           </div>	
 				</div>
   		</div>
+
       <!-- overview -->
       <div v-if="overview_active" class="download-container">DOWNLOAD <img :src="'../assets/img/coverage/Download.png'"></div>
 
