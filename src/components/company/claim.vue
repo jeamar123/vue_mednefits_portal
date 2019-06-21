@@ -56,7 +56,7 @@ let claim = {
 export default claim;
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "./src/assets/css/company/claim.scss";
 </style>
 

@@ -238,7 +238,7 @@
 										</div>
 									</div>
 
-									<div class="receipt-container">
+									<div class="download-receipt-container">
 										<button class="btn-download-receipt">Download Receipt</button>
 
 										<div class="trans-receipts-wrapper">
