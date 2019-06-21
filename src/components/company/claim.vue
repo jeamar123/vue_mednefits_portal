@@ -1,5 +1,5 @@
 <script>
-import ImgPreview from "../../views/company/modal/ImagePreview";
+import ImgPreview from "../../views/company/modal/ImagePreview"; //image popup
 
 // Methods here
 let claim = {
