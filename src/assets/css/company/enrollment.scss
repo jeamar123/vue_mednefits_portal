@@ -9,7 +9,7 @@
 	.employee-dependent-header {
 		background-color: #F4F4F4;
     padding: 0 50px;
-    z-index: 1;
+    z-index: 3;
     position: fixed;
     width: 100%;
     transform: translateY(-40px);
@@ -685,20 +685,13 @@
 	.details-enroll-wrapper {
 		padding: 30px 15px 50px 15px;
 
-		h1 {
-			text-align: center;
-			font-weight: 700;
-			font-size: 25px;
-			margin-top: 25px;
-			line-height: 1.1;
-		}
-		table {
-			display: block;
+		>div {
+			display: flex;
 			border: 1px solid #ccd3d6;
-			overflow-x: auto;
-			white-space: nowrap;
-			font-size: 14px; 
 			margin-top: 60px;
+			overflow-x: auto;
+			overflow-y: hidden;
+
 
 			&::-webkit-scrollbar {
 				height: 6px;
@@ -708,16 +701,50 @@
 				border-radius: 2px;
     		background-color: #cecece;
 			}
+		}
+
+		h1 {
+			text-align: center;
+			font-weight: 700;
+			font-size: 25px;
+			margin-top: 25px;
+			line-height: 1.1;
+		}
+
+		table:nth-child(1) {
+			border-right: 0;
+		}
+
+		table:nth-child(2) {
+			border-left: 0;
+			border-right: 0;
+
+			th:first-child,
+			td:first-child {
+				padding: 10px 20px;
+			}
+		}
+
+		table:nth-child(3) {
+			border-left: 0;
+		}
+
+		table {
+			display: table;
+			font-size: 14px;
+			white-space: nowrap;
+			border-bottom: 1px solid #ccd3d6;
+			
 			thead tr {
 				background-color: #f5f8fa;	
 			}
 
-			thead th,tbody td {
-		    padding: 7px 20px;
+			thead th,
+			tbody td {
+		    padding: 10px 20px;
 		    min-width: 130px;
-		    border-bottom: 1px solid #ccd3d6;
 			}
-
+			
 			.fname-container {
 				display: flex;
 				span {
@@ -730,7 +757,7 @@
 			td input {
 				position: relative;
 				top: 3px;
-				height: 16px;
+				height: 15px;
 				width: 16px;
 			}
 
@@ -739,19 +766,35 @@
 				min-width: unset;
 				padding: 10px;
 			}
+
+			th:last-child,
+			td:last-child {
+				padding: 10px 20px;
+			}
+
 			th:nth-child(2) {
 				min-width: 160px;
 			}
 			th:nth-child(6) {
 				min-width: 170px;
 			}
-			th:last-child {
+			.start-date-header {
 				background-color: #e2e7e8;
 		    text-align: center;
-		    padding: 0 15px;
+		    padding: 10px;
 			}
 			td:last-child {
 				text-align: left;
+			}
+
+			&.dependent-table-container {
+				thead tr div{
+					display: contents;
+				}
+				tr th:last-child,
+				tr td:last-child {
+					display: none;
+				}
 			}
 		}
 		.dependent-hover-btn {
@@ -759,10 +802,12 @@
 	    border: 1px solid #d6d6d6;
 	    border-radius: 2px;
 	    width: 55px;
-	    height: 20px;
+	    height: 18px;
 	    font-size: 12px;
 	    float: right;
 	    display: none;
+
+	    &:hover {}
 		}
 		tbody tr {
 			color: #888;
@@ -770,11 +815,12 @@
 			.has-error {
 				background-color: #fee2e2;
 			}
-		}
-		tbody tr:hover {
-			background-color: #f5f8fa;
 
-			.dependent-hover-btn {
+			&:hover {
+				background-color: #f5f8fa;
+			}
+
+			&:hover .dependent-hover-btn {
 				display: inline-block;
 			}
 		}

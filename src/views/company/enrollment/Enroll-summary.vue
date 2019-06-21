@@ -1,61 +1,81 @@
 <template>
   <transition name="fade">
     <div class="enrollment-wrapper">
-
       <div class="container">
-        {{data}}
         <div class="details-enroll-wrapper" v-if="isState == 'enrollsum'">
           <h1>Please check the details below before we enroll them.</h1>
           <!-- table summary -->
-          <table>
-            <thead>
-              <tr>
-                <th>
-                  <input type="checkbox">
-                </th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>NRIC/FIN</th>
-                <th>Date of Birth</th>
-                <th>Work Email</th>
-                <th>Mobile</th>
-                <th>Medical Credits</th>
-                <th>Wellness Credits</th>
-                <th>Start Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="dependent-hover-container" v-for="(enroll, index) in employeeStorage" v-bind:key="enroll.id">
-                <td>
-                  <input type="checkbox" v-model="isChecked" :value="index">
-                </td>
-                <td>
-                  <div class="fname-container">
-                    <!-- <span class="icon">
-                          <i class="fa fa-check" style="display: none;"></i>
-                          <i class="fa fa-times" style="display: none;"></i>
-                          <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
+          <div>
+           <table>
+              <thead>
+                <tr>
+                  <th>
+                    <input type="checkbox">
+                  </th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>NRIC/FIN</th>
+                  <th>Date of Birth</th>
+                  <th>Work Email</th>
+                  <th>Mobile</th>
+                  <th>Medical Credits</th>
+                  <th>Wellness Credits</th>
+                  <template v-show="maxDep != 0">
+                    <template v-for="depHead in maxDep">
+                      <th :key="depHead.id">Dependent {{depHead}} First Name</th>
+                      <th :key="depHead.id">Dependent {{depHead}} Last Name</th>
+                      <th :key="depHead.id"> Dependent {{depHead}} NRIC/FIN Name</th>
+                      <th :key="depHead.id">Dependent {{depHead}} Date of Birth</th>
+                      <th :key="depHead.id">Dependent {{depHead}} Relationship</th>
+                    </template>
+                  </template>
+                  <th class="start-date-header">Start Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr class="dependent-hover-container" v-for="(enroll, index) in employeeStorage" v-bind:key="enroll.id"> -->
+                <tr class="dependent-hover-container" v-for="(enroll, index) in employeeStorage" v-bind:key="enroll.id">
+                  <td>
+                    <input type="checkbox" v-model="isChecked" :value="index">
+                  </td>
+                  <td>
+                    <div class="fname-container">
+                      <!-- <span class="icon">
+                            <i class="fa fa-check" style="display: none;"></i>
+                            <i class="fa fa-times" style="display: none;"></i>
+                            <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
                       </span>-->
-                    <span class="fname">{{enroll.fname}}</span>
-                    <button @click="editEmployee('edit', index)" class="dependent-hover-btn">Edit</button>
-                  </div>
-                </td>
-                <td>{{enroll.lname}}</td>
-                <td>{{enroll.nricFinNo}}</td>
-                <td>{{enroll.dob | formatDate}}</td>
-                <td>{{enroll.email}}</td>
-                <td>{{enroll.mNumber}}</td>
-                <td>{{enroll.mCredits}}</td>
-                <td>{{enroll.wCredits}}</td>
-                <td>{{enroll.startDate | formatDate}}</td>
-              </tr>
-            </tbody>
-          </table>
+                      <!-- <span class="fname">{{enroll.fname}}</span> -->
+                      <span class="fname">{{enroll.fname}}</span>
+                      <button @click="editEmployee('edit', index)" class="dependent-hover-btn">Edit</button>
+                    </div>
+                  </td>
+                  <!-- <td>{{enroll.lname}}</td> -->
+                  <td>{{enroll.lname}}</td>
+                  <td>{{enroll.nricFinNo}}</td>
+                  <td>{{enroll.dob | formatDate}}</td>
+                  <td>{{enroll.email}}</td>
+                  <td>{{enroll.mNumber}}</td>
+                  <td>{{enroll.mCredits}}</td>
+                  <td>{{enroll.wCredits}}</td>
+                  <template v-for="depDetails in enroll.dependents[0]">
+                    <td :key="depDetails.id">{{depDetails.fname}}</td>
+                    <td :key="depDetails.id">{{depDetails.lname}}</td>
+                    <td :key="depDetails.id">{{depDetails.nricFinNo}}</td>
+                    <td :key="depDetails.id">{{depDetails.dob | formatDate}}</td>
+                    <td :key="depDetails.id">{{depDetails.relation}}</td>
+                  </template>
+                  <td>{{enroll.startDate | formatDate}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <!-- succesfully enroll -->
         <div class="successfully-enrolled-wrapper" v-if="isState == 'successEnroll'">
-          <h1>We've succesfully enrolled
+          <h1>
+            We've succesfully enrolled
             <span>1</span> employees and
             <span>0</span> dependents to the selected tier plan
           </h1>
@@ -87,9 +107,13 @@
               </div>
               <div class="modal-input-wrapper">
                 <label>Date of Birth</label>
-                <v-date-picker popoverDirection="top" :max-date='new Date()' v-model="employeeDetails.dob"
-                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
-                </v-date-picker>
+                <v-date-picker
+                  popoverDirection="top"
+                  :max-date="new Date()"
+                  v-model="employeeDetails.dob"
+                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                  popover-visibility="focus"
+                ></v-date-picker>
                 <!-- <input type="text"  v-model="employeeDetails.dob"> -->
               </div>
               <div class="modal-input-wrapper">
@@ -114,9 +138,13 @@
               </div>
               <div class="modal-input-wrapper">
                 <label>Start Date</label>
-                <v-date-picker popoverDirection="top" :date='new Date()' v-model="employeeDetails.startDate"
-                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
-                </v-date-picker>
+                <v-date-picker
+                  popoverDirection="top"
+                  :date="new Date()"
+                  v-model="employeeDetails.startDate"
+                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                  popover-visibility="focus"
+                ></v-date-picker>
                 <!-- <input type="text" v-model="employeeDetails.startDate"> -->
               </div>
             </form>
@@ -131,10 +159,8 @@
       <div class="prev-next-button-container">
         <div class="button-container">
           <button v-if="isState === 'enrollsum'" @click="back" class="back-btn">Back</button>
-          <router-link  to="/company/dashboard" >
-            <button v-if="isState == 'successEnroll'" class="back-btn">
-              BACK TO HOME
-            </button>
+          <router-link to="/company/dashboard">
+            <button v-if="isState == 'successEnroll'" class="back-btn">BACK TO HOME</button>
           </router-link>
           <button v-if="isChecked.length !=0" class="delete-btn" @click="remove('fromCheck')">Delete</button>
 
@@ -155,7 +181,6 @@
         </div>
       </div>
     </div>
-
   </transition>
 </template>
 

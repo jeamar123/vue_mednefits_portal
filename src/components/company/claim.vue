@@ -1,7 +1,11 @@
 <script>
-/* eslint-disable */
+import ImgPreview from "../../views/company/modal/ImagePreview"; //image popup
+
 // Methods here
 let claim = {
+   components: {
+    ImgPreview
+  },
   data() {
     return {
       timeFrame: {},
@@ -22,7 +26,8 @@ let claim = {
           name: 'test',
           showTransDetails: false,
         }
-      ]
+      ],
+      showPreview: false,
     };
   },
   methods: {

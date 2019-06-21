@@ -158,10 +158,10 @@
 								</div>
 							</td>
 							<td>
-								<i class="fa fa-angle-right" :class="{'fa-angle-down-active': n.showTransDetails === true}" ></i>
+								<i class="fa fa-angle-right transition-easeInOutCubic-300ms" :class="{'fa-angle-down-active': n.showTransDetails === true}" ></i>
 							</td>
 						</tr>
-						<transition name="slide">
+						<transition name="fade">
 							<tr class="in-network-subtr" v-if="n.showTransDetails">
 								<td colspan="8">
 
@@ -243,20 +243,25 @@
 
 										<div class="trans-receipts-wrapper">
 											<div class="click-box-wrapper">
-												<div class="click-box">
-													<i class="fa fa-plus"></i>
-												</div>
-												<img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1557387401/nhulevaerr46wlfy07d7.png'">
-											</div>
-											<div class="click-box-wrapper">
-												<div class="click-box">
-													<i class="fa fa-plus"></i>
-												</div>
-												<img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1557387401/nhulevaerr46wlfy07d7.png'">
+												<a>
+													<div @click="showPreview = true" class="click-box transition-easeInOutCubic-200ms">
+														<i class="fa fa-plus"></i>
+													</div>
+													<img class="thumbnail" :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1557387401/nhulevaerr46wlfy07d7.png'">
+												</a>
+												
+												<ImgPreview v-if="showPreview">
+													<div slot="content">
+														<a @click="showPreview = false">
+															<i class="fa fa-times"></i>
+														</a>
+														<img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1557387401/nhulevaerr46wlfy07d7.png'">
+													</div>
+												</ImgPreview>
+
 											</div>
 										</div>
 									</div>
-
 								</td>
 							</tr>
 						</transition>

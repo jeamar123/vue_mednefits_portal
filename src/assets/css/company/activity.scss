@@ -312,16 +312,6 @@
 		position: relative;
 		// left: -13%; // after clicking the transaction details
 		left: 0; //before clicking the trnsaction details*/
-
-		-webkit-transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-		-moz-transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-			-o-transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-				 transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
- 
-	  -webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-		-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-			-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-				 transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
 	}
 
 	.total-transac-header {
@@ -509,16 +499,6 @@
     line-height: 58px;
     background: rgba(0,0,0,.3);
 		text-align: center;
-		
-		-webkit-transition: all .2s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-   	-moz-transition: all .2s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-     -o-transition: all .2s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-        transition: all .2s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
-
-		-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-			-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-				-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-						transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
 	}
 
 	.fa-plus {
@@ -646,17 +626,6 @@
   	height: 15px;
   	// margin-right: 75px;
 		/*margin-right: 0; hide the hidden details container*/
-
-		//transition
-		-webkit-transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-		-moz-transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-			-o-transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-				 transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
- 
-	 -webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-		-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-			-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-				 transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
   }
 
   .global-pagination {
@@ -668,26 +637,36 @@
 
 .fade-leave-active,
 .fade-enter-active {
-	-webkit-transition: all .2s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-   -moz-transition: all .2s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-     -o-transition: all .2s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-        transition: all .2s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+	-webkit-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+   -moz-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+     -o-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+        transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
 
 -webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
    -moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
      -o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
         transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
 }
-.slide-leave-active,
-.slide-enter-active {
-  -webkit-transition: all .7s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-   -moz-transition: all .7s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-     -o-transition: all .7s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-        transition: all .7s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+.slide-leave-active {
+	-webkit-transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+   -moz-transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+     -o-transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+        transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
 
--webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-   -moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-     -o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+	-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+   	-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+     	-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+        transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+}
+.slide-enter-active {
+  -webkit-transition: all .9s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+   -moz-transition: all .9s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+     -o-transition: all .9s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+        transition: all .9s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+
+	-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+   	-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+     	-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
         transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
 }
 .slide-enter {

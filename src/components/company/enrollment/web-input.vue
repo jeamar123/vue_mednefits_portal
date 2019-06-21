@@ -1,6 +1,7 @@
 <script>
 /* eslint-disable */
 // import Enrollment from "../Enrollment.vue";
+import moment from "moment";
 import jQuery from "jquery";
 const $ = jQuery;
 window.$ = $;
@@ -21,7 +22,10 @@ let webInput = {
       depPrevChevronState: false, //show hide chevron button
       depNextChevronState: false, //show hide chevron button
       employeeDetails: {}, //used in web input
-      dependentDetails: {}, //used in web input
+      dependentDetails: {
+        dob: '',
+        startDate : ''
+      }, //used in web input
       employeeStorage: [
         //used in web input
         // {
@@ -50,31 +54,13 @@ let webInput = {
         //       lname: "zayas"
         //     }
       ],
-      date: new Date() // Jan 25th, 2018
     };
   },
   methods: {
     addToStorage(source, index) {
       //used in web input
       // store to temp storage when adding employees
-      if (source == "edit") {
-        this.employeeStorage[index] = {
-          fname: this.employeeDetails.fname,
-          lname: this.employeeDetails.lname,
-          idType: this.employeeDetails.idType,
-          nricFinNo: this.employeeDetails.nricFinNo,
-          dob: this.employeeDetails.dob,
-          email: this.employeeDetails.email,
-          mNumber: this.employeeDetails.mNumber,
-          mAreaCode: this.employeeDetails.mAreaCode,
-          postal: this.employeeDetails.postal,
-          startDate: this.employeeDetails.startDate,
-          mCredits: this.employeeDetails.mCredits,
-          wCredits: this.employeeDetails.wCredits,
-          dependents: [this.dependentStorage]
-        };
-        // this.indexData = 0;
-      } else if (source == "next") {
+      if (source == "next") {
         //this.dependentStorage.length != 0 && !this.isEmpty(this.dependentDetails)
         this.employeeStorage.push({
           fname: this.employeeDetails.fname,
@@ -91,11 +77,7 @@ let webInput = {
           wCredits: this.employeeDetails.wCredits,
           dependents: [this.dependentStorage]
         });
-      } else if (
-        source == "enroll" &&
-        this.employeeStorage.length === 0 &&
-        !this.isEmpty(this.employeeDetails)
-      ) {
+      } else if (source == "enroll" && this.employeeStorage.length === 0 && !this.isEmpty(this.employeeDetails) ) {
         //this.dependentStorage.length != 0 && !this.isEmpty(this.dependentDetails)
         this.employeeStorage.push({
           fname: this.employeeDetails.fname,
@@ -112,11 +94,7 @@ let webInput = {
           wCredits: this.employeeDetails.wCredits,
           dependents: [this.dependentStorage]
         });
-      } else if (
-        source == "enroll" &&
-        this.employeeStorage.length == this.indexData &&
-        !this.isEmpty(this.employeeDetails)
-      ) {
+      } else if (source == "enroll" && this.employeeStorage.length == this.indexData && !this.isEmpty(this.employeeDetails)) {
         //this.dependentStorage.length != 0 && !this.isEmpty(this.dependentDetails)
         this.employeeStorage.push({
           fname: this.employeeDetails.fname,
@@ -162,6 +140,9 @@ let webInput = {
           startDate: this.dependentDetails.startDate
         });
         this.dependentDetails = {};
+        // this.dependentDetails.dob = undefined;
+        // this.dependentDetails.startDate = undefined;
+        this.$refs.formDep.reset();
       } else if (data == "save") {
         //else Save and Continue click
         this.dependentState = false;
@@ -501,7 +482,13 @@ let webInput = {
         this.$emit("webInputData", {
           isState: "enrollsum"
         });
-        this.$router.push("summary");
+        this.addToStorage('enroll');
+        this.$router.push({
+          name: 'CompanyEnroll',
+          params: {
+            employeeStorage : this.employeeStorage
+          }
+        });
         // this.addToStorage("enroll");
         // this.indexData = this.employeeStorage.length;
         this.prevDisabled = false;
@@ -515,7 +502,9 @@ let webInput = {
       return true;
     }
   },
-  created() {}
+  created() {
+
+  },
 };
 export default webInput;
 </script>
