@@ -36,6 +36,7 @@
           </div>	
 				</div>
   		</div>
+
       <!-- overview -->
       <div v-if="overview_active" class="download-container">DOWNLOAD <img :src="'../assets/img/coverage/Download.png'"></div>
 
@@ -96,10 +97,14 @@
     <div class="statement-title-col">
       <h4>Statement for 
         <span>1 June</span> - <span>30 June</span> 
-        <span>2019</span>
+        <span> 2019</span>
       </h4>
     </div>
+
+    
     <div class="statement-overview-container">
+
+      <!-- overview transaction -->
       <div v-if="overview_active" class="statement-wrapper">
         <div class="statement-header">
           <div class="mednefits-img-container">
@@ -206,8 +211,267 @@
         </div>
 
       </div>
+
+      <!-- full transaction -->
+      <div v-if="full_active" class="transaction-table-container">
+
+        <div v-if="networkType.value === 0" class="in-network-table">
+          <table>
+            <thead>
+              <tr>
+                <th>DATE</th>
+                <th>ITEM/SERVICE</th>
+                <th>PROVIDER</th>
+                <th>TOTAL AMOUNT</th>
+                <th>MEDICINE & TREATMENT</th>
+                <th>CONSULTATION</th>
+                <th>EMPLOYEE</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span>29 April 2019, 10:52am</span>
+                </td>
+                <td>
+                  <span>General Practitioner - Medicine & Treatment</span>
+                </td>
+                <td>
+                  <span>Dover Medical Centre</span>
+                </td>
+                <td>
+                  S$ <span>24.41</span>
+                </td>
+                <td>10.50</td>
+                <td>13.91</td>
+                <td>
+                  <span>Dith Tan</span>
+                  <div class="spouse-member">
+                    <span>Child </span> of <span>Filbert Tan</span>
+                  </div>
+                </td>
+                <td>
+                  <a>
+                    <i class="fa fa-angle-right"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr class="in-network-subtr">
+                <td colspan="8">
+                  <div class="provider-item-wrapper">
+                    <img :src="'https://res.cloudinary.com/www-medicloud-sg/image/upload/v1439208475/medilogo_cn6d0x.png'">
+                    <div>Dover Medical Centre</div>
+                    <div class="service-box">
+                      <img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1514515238/tidzdguqbafiq4pavekj.png'">
+                      <label>
+                        <span>General Practitioner</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="transac-details-wrapper">
+                    <div class="transac-details">
+                      <div>
+                        <label>MEMBER</label>
+                        <span>Dith Tan</span>
+                      </div>
+                      <div>
+                        <label>EMPLOYEE</label>
+                        <span>Filbert Tan</span>
+                      </div>
+                      <div class="dependent-relationship-container">
+                        <label>DEPENDENT RELATIONSHIP</label>
+                        <span>Child</span>
+                      </div>
+                      <div>
+                        <label>DATE</label>
+                        <span>29 April 2019, 10:52am</span>
+                      </div>
+                      <div>
+                        <label>TRANSACTION #</label>
+                        <span>DOV000940</span>
+                      </div>
+                      <div>
+                        <label>ITEM/SERVICE</label>
+                        <div class="desc-wrapper">
+                          <span>General Practitioner - Medicine & Treatment</span>
+                        </div>  
+                      </div>
+                      <div>
+                        <label>TOTAL AMOUNT</label>
+                        <span>S$ 24.41</span>
+                      </div>
+                      <div>
+                        <div class="service-container">
+                          <label>
+                            <div class="credit-container">
+                              <span>Credit</span>
+                            </div>  
+                          </label>
+                          <div class="desc-wrapper">
+                            <span>Medicine & Treatment</span>
+                            <div>S$ <span>10.50</span></div>
+                          </div>
+                        </div>
+                        <div class="service-container">
+                          <label>
+                            <div class="credit-container">
+                              <span>Credit</span>
+                            </div>  
+                          </label>
+                          <div class="desc-wrapper">
+                            <span>Consultation</span>
+                            <div>S$ <span>13.91</span></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <label>PAYMENT TYPE</label>
+                        <span>In-Network</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="download-receipt-container">
+                    <button class="btn-download-receipt disabled">Download Receipt</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div v-if="networkType.value === 1" class="out-network-table">
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>APPROVED DATE</th>
+                <th>CLAIM DATE</th>
+                <th>CLAIM TYPE</th>
+                <th>PROVIDER</th>
+                <th>TOTAL AMOUNT</th>
+                <th>EMPLOYEE</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <label class="status-text approved">Approved</label>
+                </td>
+                <td>
+                  <span>16 April 2019</span>
+                </td>
+                <td>
+                  <span>16 April 2019</span>
+                </td>
+                <td>
+                  <span>Traditional Chinese Medicine</span>
+                </td>
+                <td>
+                  <span>Test TCM</span>
+                </td>
+                <td>S$ <span>58.00</span></td>
+                <td>
+                  <span>Calvin Lee</span>
+                  <div class="spouse-member">
+                    <span>Child </span> of <span>Filbert Tan</span>
+                  </div>
+                </td>
+                <td>
+                   <a>
+                    <i class="fa fa-angle-right"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr class="in-network-subtr">
+                <td colspan="8">
+                  <div class="status-left-wrapper">
+                    <div class="status-box-left">
+                      <div class="status_text">Approved</div>
+                      <div class="claim-date-text">Claim Date: <span>16 April 2019 05:09 PM</span></div>
+                    </div>
+
+                    <!-- this will appear when the status is rejected -->
+                    <!-- <div class="reason-container">
+                      <div class="label">REASON:</div>
+                      <div>qwe</div>
+                    </div> -->
+                  </div>
+                  <div class="transac-details-wrapper">
+                    <div class="transac-details">
+                      <div>
+                        <label>MEMBER</label>
+                        <span>Dith Tan</span>
+                      </div>
+                      <div>
+                        <label>EMPLOYEE</label>
+                        <span>Filbert Tan</span>
+                      </div>
+                      <div class="dependent-relationship-container">
+                        <label>DEPENDENT RELATIONSHIP</label>
+                        <span>Child</span>
+                      </div>
+                      <div>
+                        <label>APPROVED DATE</label>
+                        <span>09 April 2019</span>
+                      </div>
+                      <div>
+                        <label>CLAIM DATE</label>
+                        <span>09 April 2019</span>
+                      </div>
+                      <div>
+                        <label>VISIT DATE</label>
+                        <span>01 April 2019, 09:59 AM</span>
+                      </div>
+                      <div>
+                        <label>TRANSACTION #</label>
+                        <span>MNF000309</span>
+                      </div>
+                      <div>
+                        <label>CLAIM TYPE</label>
+                        <span>Health Screening</span>
+                      </div>
+                      <div>
+                        <label>PROVIDER</label>
+                        <span>TEST</span>
+                      </div>
+                      <div>
+                        <label>CLAIM AMOUNT</label>
+                        <span>S$ 50.00</span>
+                      </div>
+                      <div>
+                        <label>PAYMENT TYPE</label>
+                        <span>E-Claim</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="download-receipt-container">
+                    <button class="btn-download-receipt">Upload Receipt</button>
+                    <button class="btn-download-receipt">Download Receipt</button>
+                    <div class="trans-receipts-wrapper">
+                      <div class="click-box-wrapper">
+                        <div class="click-box">
+                          <i class="fa fa-plus"></i>
+                        </div>
+                        <img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1557387401/nhulevaerr46wlfy07d7.png'">
+                      </div>
+                      <div class="click-box-wrapper">
+                        <div class="click-box">
+                          <i class="fa fa-plus"></i>
+                        </div>
+                        <img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1557387401/nhulevaerr46wlfy07d7.png'">
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-    
+
   </div>
 </template>
 

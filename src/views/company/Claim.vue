@@ -238,7 +238,7 @@
 										</div>
 									</div>
 
-									<div class="receipt-container">
+									<div class="download-receipt-container">
 										<button class="btn-download-receipt">Download Receipt</button>
 
 										<div class="trans-receipts-wrapper">
@@ -248,8 +248,6 @@
 												</div>
 												<img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1557387401/nhulevaerr46wlfy07d7.png'">
 											</div>
-										</div>
-										<div class="trans-receipts-wrapper">
 											<div class="click-box-wrapper">
 												<div class="click-box">
 													<i class="fa fa-plus"></i>
