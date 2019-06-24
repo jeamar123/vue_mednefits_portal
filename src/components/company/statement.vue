@@ -18,6 +18,7 @@ let statement = {
       },
       overview_active: true,
       full_active: false,
+      showTransDetails: false,
     };
   },
   methods: {
@@ -42,6 +43,9 @@ let statement = {
     netType(value, text) {
       this.networkType.value = value;
       this.networkType.text = text;
+    },
+    toggleDetails() {
+      this.showTransDetails = !this.showTransDetails;
     }
   }
 };
