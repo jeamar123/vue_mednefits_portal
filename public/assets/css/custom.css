@@ -235,3 +235,107 @@
 	.w-20p{ width: 20px; }
 	.w-10p{ width: 10px; }
 /*-----------*/
+
+
+/*----- TRANSITIONS ------*/
+.transition-easeInOutCubic-100ms{
+	-webkit-transition: all .1s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+   	-moz-transition: all .1s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+     -o-transition: all .1s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+        transition: all .1s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+
+		-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+			-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+				-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+						transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+}
+.transition-easeInOutCubic-200ms{
+	-webkit-transition: all .2s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+   	-moz-transition: all .2s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+     -o-transition: all .2s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+        transition: all .2s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+
+		-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+			-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+				-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+						transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+}
+.transition-easeInOutCubic-300ms{
+	-webkit-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+   	-moz-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+     -o-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+        transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+
+		-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+			-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+				-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+						transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+}
+.transition-easeInOutCubic-400ms{
+	-webkit-transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+   	-moz-transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+     -o-transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+        transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+
+		-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+			-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+				-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+						transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+}
+.transition-easeInOutCubic-500ms{
+	-webkit-transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+   	-moz-transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+     -o-transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+        transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+
+		-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+			-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+				-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+						transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+}
+.transition-easeInOutCubic-600ms{
+	-webkit-transition: all .6s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+   	-moz-transition: all .6s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+     -o-transition: all .6s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+        transition: all .6s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+
+		-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+			-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+				-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+						transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+}
+.transition-easeInOutCubic-700ms{
+	-webkit-transition: all .7s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+   	-moz-transition: all .7s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+     -o-transition: all .7s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+        transition: all .7s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+
+		-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+			-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+				-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+						transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+}
+.transition-easeInOutCubic-800ms{
+	-webkit-transition: all .8s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+   	-moz-transition: all .8s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+     -o-transition: all .8s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+        transition: all .8s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+
+		-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+			-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+				-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+						transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+}
+.transition-easeInOutCubic-900ms{
+	-webkit-transition: all .9s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+   	-moz-transition: all .9s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+     -o-transition: all .9s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+        transition: all .9s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+
+		-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+			-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+				-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+						transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+}
+
+/*-----------*/
