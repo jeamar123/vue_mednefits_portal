@@ -1,6 +1,6 @@
 <script>
-/* eslint-disable */ 
-import ImgPreview from "../../views/company/modal/ImagePreview";
+/* eslint-disable */
+import ImgPreview from "../../views/company/modal/ImagePreview"; //image popup
 
 // Methods here
 let claim = {

@@ -1,5 +1,4 @@
 <template>
-<!-- test git add -->
   <div class="statement-wrapper">
 
   	<div class="container">
@@ -231,7 +230,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr @click="toggleDetails()">
                 <td>
                   <span>29 April 2019, 10:52am</span>
                 </td>
@@ -254,11 +253,11 @@
                 </td>
                 <td>
                   <a>
-                    <i class="fa fa-angle-right"></i>
+                    <i class="fa fa-angle-right transition-easeInOutCubic-300ms" :class="{'fa-angle-down-active': showTransDetails === true}"></i>
                   </a>
                 </td>
               </tr>
-              <tr class="in-network-subtr">
+              <tr v-if="showTransDetails" class="in-network-subtr">
                 <td colspan="8">
                   <div class="provider-item-wrapper">
                     <img :src="'https://res.cloudinary.com/www-medicloud-sg/image/upload/v1439208475/medilogo_cn6d0x.png'">
@@ -356,7 +355,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr @click="toggleDetails()">
                 <td>
                   <label class="status-text approved">Approved</label>
                 </td>
@@ -381,11 +380,11 @@
                 </td>
                 <td>
                    <a>
-                    <i class="fa fa-angle-right"></i>
+                    <i class="fa fa-angle-right transition-easeInOutCubic-300ms" :class="{'fa-angle-down-active': showTransDetails === true}"></i>
                   </a>
                 </td>
               </tr>
-              <tr class="in-network-subtr">
+              <tr v-if="showTransDetails" class="in-network-subtr">
                 <td colspan="8">
                   <div class="status-left-wrapper">
                     <div class="status-box-left">
