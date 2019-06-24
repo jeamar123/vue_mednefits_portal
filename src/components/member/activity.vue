@@ -28,8 +28,8 @@
 			}
 		},
 		created() {
-			this.getDetails();
-			this.getActivityData( );
+			// this.getDetails();
+			// this.getActivityData( );
 		},
 		methods: {
 			getDetails( ){
