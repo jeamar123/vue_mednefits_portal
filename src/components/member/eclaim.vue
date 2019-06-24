@@ -32,8 +32,8 @@
 			}
 		},
 		created() {
-			this.getClaimTypes();
-			this.getClaimMembers();
+			// this.getClaimTypes();
+			// this.getClaimMembers();
 		},
 		methods: {
 			isNumber: function(evt) {

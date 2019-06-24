@@ -15,11 +15,11 @@
 			}
 		},
 		created() {
-			if( localStorage.getItem('vue_session') == null ){
-				location.href = '/auth';
-			}else{
-				this.user_id = localStorage.getItem('vue_session');
-			}
+			// if( localStorage.getItem('vue_session') == null ){
+			// 	location.href = '/auth';
+			// }else{
+			// 	this.user_id = localStorage.getItem('vue_session');
+			// }
 
 			setTimeout(()=>{
 			  this.showIconLoader = false;

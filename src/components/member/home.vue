@@ -30,8 +30,8 @@
 			}
 		},
 		created() {
-			this.getPackages();
-			this.getCurrentActivityMedical();
+			// this.getPackages();
+			// this.getCurrentActivityMedical();
 		},
 		components: {
 	    VuePlotly
