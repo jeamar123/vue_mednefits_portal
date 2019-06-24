@@ -258,6 +258,7 @@
 														<img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1557387401/nhulevaerr46wlfy07d7.png'">
 													</div>
 												</ImgPreview>
+
 											</div>
 										</div>
 									</div>
