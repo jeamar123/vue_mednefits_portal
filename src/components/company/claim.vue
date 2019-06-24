@@ -1,5 +1,5 @@
 <script>
-/* eslint-disable */
+/* eslint-disable */ 
 import ImgPreview from "../../views/company/modal/ImagePreview";
 
 // Methods here
