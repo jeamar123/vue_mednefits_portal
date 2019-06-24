@@ -3,7 +3,6 @@
   	<div class="container">
   		<div class="claim-container">
     		<span class="timeframe-title">Select a timeframe (Claim Date)</span>
-
     		<div class="activity-header-calendar">
 					<div class="date-selection-container">
 

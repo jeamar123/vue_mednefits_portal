@@ -1,6 +1,7 @@
 <script>
 /* eslint-disable */
 import ImgPreview from "../../views/company/modal/ImagePreview"; //image popup
+import moment from 'moment'
 
 // Methods here
 let claim = {

@@ -10,6 +10,10 @@
   				<span class="year-selector"><a>Custom</a></span>
   			</div>
 
+        <div class="claim-slider-container">
+					<vue-slider class="range-slider" v-model="range_values" :marks="range_marks" :enableCross="true" :min="0" :max="12"></vue-slider>
+				</div>
+
   			<div class="team-benefits-wrapper">
 					
 					<h4>View Statement</h4>
