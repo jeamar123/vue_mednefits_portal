@@ -1,6 +1,10 @@
 <template>
-  <div>
-    <h1>Account</h1>
+  <div class="account-wrapper">
+  	<div class="container">
+  		<div class="account-billing-header">
+  			<h3>Account & Billing</h3>
+  		</div>		
+  	</div>
   </div>
 </template>
 

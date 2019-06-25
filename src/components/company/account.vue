@@ -11,3 +11,6 @@ let account = {
 export default account
 </script>
 
+<style lang="scss">
+@import "./src/assets/css/company/account.scss";
+</style>
