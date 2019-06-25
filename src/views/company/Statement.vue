@@ -5,14 +5,38 @@
   		<div class="statement-container">
   			<div>
   				<span class="timeframe-title">Select a timeframe</span>
-  				<span class="year-selector"><a class="active">This year</a></span>
-  				<span class="year-selector"><a>Last year</a></span>
-  				<span class="year-selector"><a>Custom</a></span>
+  				<span class="year-selector"><a @click="showCustomDate(0, 'this-year')" v-bind:class="{'active': year_active.value === 0}">This year</a></span>
+  				<span class="year-selector"><a @click="showCustomDate(1, 'last-year')" v-bind:class="{'active': year_active.value === 1}">Last year</a></span>
+  				<span class="year-selector"><a @click="showCustomDate(2, 'custom')" v-bind:class="{'active': year_active.value === 2}">Custom</a></span>
   			</div>
 
-        <div class="claim-slider-container">
+        <div v-if="showRangeMonthSlider" class="claim-slider-container">
 					<vue-slider class="range-slider" v-model="range_values" :marks="range_marks" :enableCross="true" :min="1" :max="12" :process="false"></vue-slider>
 				</div>
+
+        <div v-if="showInputDate" class="date-selection-container">
+
+          <div class="custom-date-selector">
+            <i class="fa fa-calendar"></i>
+            <v-date-picker :max-date='new Date()' v-model="timeFrame.start"
+              :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
+              popover-visibility='focus'>
+            </v-date-picker>
+            <i class="fa fa-caret-down"></i>
+          </div>
+
+          <span><i class="fa fa-arrow-right"></i></span>
+          
+          <div class="custom-date-selector">  
+            <i class="fa fa-calendar"></i>
+            <v-date-picker :max-date='new Date()' v-model="timeFrame.end"
+              :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
+              popover-visibility='focus'>
+            </v-date-picker>
+            <i class="fa fa-caret-down"></i>  
+          </div>    
+
+        </div>
 
   			<div class="team-benefits-wrapper">
 					

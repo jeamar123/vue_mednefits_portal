@@ -1,12 +1,24 @@
 .statement-wrapper {
 	display: inline-block;
 	width: 100%;
+
+	.date-selection-container {
+		justify-content: center;
+		margin: 43px 0 0;	
+	}
+
+	.team-benefits-wrapper {
+		margin: 75px 0 0;
+		padding: 20px 30px;
+		box-shadow: 1px 1px 4px #d4c7c7;
+	}
 }
 
 .statement-container {
-	
+	color: #777;
 	h4 {
 		font-size: 16px;
+		line-height: 1.1;
 		margin: 10px 0;
 		color: #555;
 	}
@@ -80,13 +92,11 @@
   }
 }
 
-.team-benefits-wrapper {
-	margin: 77px 0 0;
-}
-
 .view-statement-container {
 	margin: 20px 0 0 0;
 	text-align: center;
+  display: inline-block;
+  width: 100%;
 
 	.btn-statement-wrapper {
 		display: inline-block;

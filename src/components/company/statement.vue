@@ -4,6 +4,13 @@ import moment from 'moment'
 let statement = {
   data() {
     return {
+      year_active: {
+        value: 0,
+        text: ""
+      },
+      timeFrame: {},
+      showRangeMonthSlider: true,
+      showInputDate: false,
       viewStatementType: {
     		value: 0,
         text: ""
@@ -33,6 +40,22 @@ let statement = {
     };
   },
   methods: {
+    showCustomDate(value, text) {
+      this.year_active.value = value;
+      this.year_active.text = text;
+      if (this.year_active.text == 'this-year') {
+        this.showRangeMonthSlider = true;
+        this.showInputDate = false;
+      }
+      else if (this.year_active.text == 'last-year') {
+        this.showRangeMonthSlider = true;
+        this.showInputDate = false;
+      }
+      else if (this.year_active.text == 'custom') {
+        this.showRangeMonthSlider = false;
+        this.showInputDate =true;
+      }
+    },
   	statementType(value, text) {
       //spending either medical or wellness
       this.viewStatementType.value = value;
