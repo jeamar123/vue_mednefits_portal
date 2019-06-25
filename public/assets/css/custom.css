@@ -339,3 +339,25 @@
 }
 
 /*-----------*/
+
+
+/*---- FADE ----*/
+.fade-enter-active, 
+.fade-leave-active {
+	-webkit-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+		-moz-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+			-o-transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+				transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+
+	-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+		-moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+			-o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+					transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); /* easeInOutCubic */
+}
+.fade-enter, 
+.fade-leave-to { /* .fade-leave-active below version 2.1.8 */ 
+	/* transform: translate(0, -100%); */
+	opacity: 0;
+}
+
+/*-----------*/
