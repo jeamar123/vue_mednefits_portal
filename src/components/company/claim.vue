@@ -1,5 +1,7 @@
 <script>
-import ImgPreview from "../../views/company/modal/ImagePreview";
+/* eslint-disable */
+import ImgPreview from "../../views/company/modal/ImagePreview"; //image popup
+import moment from 'moment'
 
 // Methods here
 let claim = {
@@ -14,7 +16,6 @@ let claim = {
         text: ""
       },
       viewEclaim: false,
-      timeFrame: {},
       test : [
         {
           id: 1,
@@ -56,7 +57,7 @@ let claim = {
 export default claim;
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "./src/assets/css/company/claim.scss";
 </style>
 

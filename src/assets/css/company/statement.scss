@@ -1,0 +1,570 @@
+.statement-wrapper {
+	display: inline-block;
+	width: 100%;
+
+	.date-selection-container {
+		justify-content: center;
+		margin: 43px 0 0;	
+	}
+
+	.team-benefits-wrapper {
+		margin: 75px 0 0;
+		padding: 20px 30px;
+		box-shadow: 1px 1px 4px #d4c7c7;
+	}
+}
+
+.statement-container {
+	color: #777;
+	h4 {
+		font-size: 16px;
+		line-height: 1.1;
+		margin: 10px 0;
+		color: #555;
+	}
+
+	button {
+		color: #777;
+	}
+
+	.btn-spending-type {
+		width: 170px;
+		font-size: 16px;
+		border: 2px solid #ddd;
+
+		&.btn-overview {
+			border-radius: 6px 0 0 6px;
+		}
+
+		&.btn-full {
+			border-radius: 0 6px 6px 0;
+		}
+
+		&.btn-medical {
+			border-radius: 6px 0 0 6px;
+		}
+
+		&.btn-wellness {
+			border-radius: 0;
+		}
+
+		&.btn-both {
+			border-radius: 0 6px 6px 0;
+		}
+
+		&.active {
+			border: 2px solid #009EC8;
+		}
+	}
+}
+
+.download-container {
+	font-size: 15px;
+	float: right;
+	color: #0392CF;
+	cursor: pointer;
+	line-height: 24px;
+	margin: 50px 0 60px;
+	padding: 0 15px;
+
+	img {
+		width: 20px;
+	}
+}
+
+.year-selector {
+	font-size: 15px;
+  padding: 0 15px;
+  border-right: 1px solid #bbb;
+
+  a {
+  	color: #bbb;
+  }
+
+  a:hover,
+  a.active {
+  	color: #039be5;
+  }
+
+
+  &:last-child {
+  	border-right: 0;
+  }
+}
+
+
+
+.view-statement-container {
+	margin: 20px 0 0 0;
+	text-align: center;
+  display: inline-block;
+  width: 100%;
+
+	.btn-statement-wrapper {
+		display: inline-block;
+		width: 100%;
+		margin: 20px 0 50px;
+	}
+}
+
+.statement-header-wrapper {
+	padding: 0 30px;
+
+	.search-wrapper {
+		margin: 70px 0 0 auto;
+		width: 270px;
+
+		button {
+			border-radius: 4px;
+			border-top-left-radius: 0;
+	    border-bottom-left-radius: 0;
+		}
+	}
+}
+
+.header-content {
+	font-size: 16px;
+	margin: 0 0 10px;
+	display: block;
+}
+
+.health-spending-container {
+	text-align: center;
+
+	.btn-health-spending-wrapper {
+		display: inline-block;
+		width: 100%;
+		margin: 20px 0 50px;
+	}
+}
+
+.statement-transaction-header {
+	clear: both;
+	display: flex;
+	margin: 50px 0;
+
+	>div:nth-child(1) {
+		width: 25%;
+	}
+	>div:nth-child(2) {
+		width: 50%;
+	}
+	>div:nth-child(3) {
+		width: 25%;
+	}	
+	
+
+	.total-transactions-container,
+	.total-spent-container {
+		line-height: 24px;
+		margin: 0 0 10px;
+	}
+
+	.total-transactions-container {
+		margin: 0 0 20px;
+	}
+
+	.btn-transaction-container {
+		width: 100%;
+
+		button {
+			padding: 15px;
+			width: 43%;
+			color: #555;
+		}
+	}
+
+	.download-statement-container {
+		text-align: right;
+
+		span {
+			display: block;
+			line-height: 24px;
+			font-weight: 400;
+			margin: 0 0 10px;
+		}
+
+		button {
+			width: 70px;
+	    line-height: 1.42857143;
+	    color: #555;
+	    font-size: 12px;
+	    font-weight: 700;
+	    border: 1px solid #aaa;
+	    background: #FFF;
+	    padding: 5px;
+		}
+
+		.btn-pdf {
+			border-radius: 4px 0 0 4px;
+		}
+
+		.btn-csv {
+			border-radius: 0 4px 4px 0;
+		}
+	}
+}
+
+.statement-title-col {
+	clear: both;
+	background: #0086D3;
+  padding: 5px 175px;
+
+  h4 {
+  	color: #fff;
+  	font-size: 18px;
+  	line-height: 1.1;
+  	margin: 10px 0;
+  }
+}
+
+.statement-overview-container {
+	background: #fff;
+  min-height: 500px;
+  padding: 30px 100px 25px 100px;
+  text-align: center;
+
+  .statement-wrapper {
+  	width: 80%;
+    margin: 50px auto;
+    overflow: hidden;
+    box-shadow: 1px 1px 10px #888888;
+    padding: 30px 40px;
+    text-align: left;
+
+    img {
+    	width: 250px;
+    	margin: 60px 0 0;
+    }
+  }
+
+  .in-network-table {
+  	th:nth-child(1) {
+  		width: 15%;
+  	}
+  	th:nth-child(2) {
+  		width: 18%;
+  	}
+  	th:nth-child(3) {
+  		width: 24%;
+  	}
+  	th:nth-child(4) {
+  		width: 16%;
+  		padding-left: 10px;
+  	}
+  	th:nth-child(5) {
+			width: auto;
+		}
+		th:nth-child(6) {
+			width: auto;
+		}
+		th:nth-child(7) {
+			min-width: 97px;
+		}
+  	th:last-child {
+  		padding: 10px 10px 5px 10px;
+  	}
+
+  	.spouse-member {
+  		color: #009EC8;
+  	}
+  }
+
+  .dependent-relationship-container span {
+  	vertical-align: top;
+  }
+
+  .service-container .desc-wrapper {
+  	line-height: 1;
+
+  	>div {
+  		line-height: 1.42857143;
+  	}
+  }
+
+  .service-container {
+  	label .credit-container {
+  		
+  		background-color: #2196F3;
+	    margin: 0 0 8px auto;
+	    width: 50px;
+	    font-size: 12px;
+	    text-align: center;
+	    border-radius: 6px;
+	    padding: 4px 6px;
+  	}
+
+  	.credit-container span {
+  		color: #fff;
+  	}
+
+  	&:first-child label:after{
+  		display: block;
+  		content: "";
+  		width: 50px;
+  		border-bottom: 1px solid #999;
+  		margin: 0 0 8px auto;
+  	}
+  }
+
+  .out-network-table {
+  	th:nth-child(2) {
+  		width: 14%;
+  	}
+  	th:nth-child(4) {
+  		width: 18%;
+  		padding-left: 10px
+  	}
+  	th:nth-child(5) {
+  		width: 25%;
+  	}
+  }
+}
+
+.statement-header {
+	display: flex;
+	padding: 0 15px 30px 15px;
+	margin: 0 0 30px;
+	border-bottom: 2px solid #e8e8e8;
+
+	>div {
+		line-height: 1.3;
+		width: 50%;
+	}
+
+	>div:nth-child(2) {
+		color: #777;
+		text-align: right;
+
+		.medicloud-pte-text {
+			font-size: 16px;
+			color: #333;
+		}
+		.country-text {
+			margin: 0 0 20px;
+		}
+	}
+
+	h2 {
+		color: #555;
+		font-size: 30px;
+		font-weight: 400;
+		margin: 0 0 20px; 
+	}
+}
+
+.no-transaction-month-container {
+	display: inline-block;
+	width: 100%;
+	text-align: center; 
+
+	>div:nth-child(1) {
+		line-height: 24px;
+		font-size: 30px;
+    font-weight: 700;
+    margin: 30px 0 5px 0;
+    color: #333;
+	}
+
+	>div:nth-child(2) {
+		font-size: 18px;
+		font-weight: 400;
+    color: #555;
+    margin: 0 0 10px;
+	}
+}
+
+.transaction-month-container {
+	padding: 0 15px;
+}
+
+.benefits-statement-container {
+	display: flex;
+	color: #555;
+
+	>div {
+		width: 50%;
+	}
+
+	.company-address {
+		width: 30%;
+		margin: 0 0 10px;
+	}
+
+	.benefits-statement-col-1 {
+
+		>div {
+			line-height: 1.3;
+		}
+		>div:nth-child(1),
+		>div:nth-child(2) {
+			font-size: 15px;
+		}
+	}
+
+
+	.benefits-statement-col-2 >div {
+		line-height: 24px;
+		text-align: right;
+		margin: 0 0 5px;
+
+		label {
+			font-size: 15px;
+			display: inline-block;
+			line-height: 1.3;
+		}
+
+		span {
+			display: inline-block;
+			line-height: 1.3;
+			text-align: left;
+			width: 140px;
+	    margin-left: 20px;
+		}
+	}
+}
+
+.summary-charges-container {
+	margin: 80px 0 0;
+	font-size: 16px;
+
+	h4 {
+		font-size: 20px;
+		color: #009EC8;
+		margin: 10px 0 30px;
+		border-bottom: 2px solid #009EC8;
+    padding-bottom: 15px;
+	}
+
+	.charges-row {
+		color: #555;
+    padding: 20px 30px;
+	}
+
+	.charges-row:nth-child(even) {
+		background: #f1f1f1;
+	}
+
+	.pull-right-amount {
+		float: right;
+	}
+
+	.statement-month-container {
+		font-size: 12px;
+		line-height: 24px;
+		margin: 0 0 10px;
+	}
+
+	.charges-lite-plan {
+		padding: 0 0 0 40px;
+		margin: 0 0 10px;
+	}
+
+	.sub-total-container {
+		color: #009EC8;
+	}
+
+	.total-due-container {
+		width: 350px;
+    background: #0086D3;
+    margin: 50px 0 120px;
+    padding: 15px 30px;
+    color: #eee;
+    display: inline-block;
+    text-align: left;
+    float: right;
+	}
+}
+
+.payment-information-container {
+	clear: both;
+	color: #777;
+
+	.payment-info-title {
+		color: #009EC8;
+		font-size: 20px;
+		font-weight: 400;
+		margin: 0 0 10px;
+	}
+
+	.cheque-payment-container {
+		margin: 0 0 10px;
+	}
+	.bank-transfer-container {
+		margin: 0 0 50px;
+	}
+
+	.cheque-detail,
+	.bank-detail {
+		line-height: 1.3;
+	}
+
+	.cheque-bank-title {
+		font-size: 16px;
+		font-weight: 400;
+		color: #333;
+		line-height: 24px;
+	}
+}
+
+.transaction-table-container {
+	.in-network-subtr >td {
+		padding-left: 50px;
+	}
+	.out-network-table .in-network-subtr >td {
+		padding-left: 0;
+	}
+	.click-box-wrapper img {
+		width: 80px;
+		height: 80px;
+	}
+}
+
+.provider-item-wrapper {
+	width: 25%;
+	float: left;
+
+	>img {
+		width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #999;
+    margin: 0 0 10px;
+	}
+
+	.service-box {
+		margin: 30px 0 0;
+
+		img {
+			width: 35px;
+		}
+
+		label {
+			color: #9e9e9e;
+			display: inline-block;
+			font-size: 18px;
+			margin: 8px 0 0px 10px;
+		}
+	}
+}
+
+.transac-details-wrapper .desc-wrapper {
+	display: inline-block;
+  width: 49%;
+  vertical-align: top;
+  font-size: 13px;
+}
+
+.claim-slider-container {
+  display: inline-block;
+  width: 100%;
+  margin: 55px 0 0 0;
+  padding: 0 50px;
+  position: relative;
+  z-index: 0;
+  
+}
+
+
+
+
