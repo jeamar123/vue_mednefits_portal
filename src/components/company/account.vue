@@ -3,9 +3,18 @@
 let account = {
   data() {
     return {
-      sampleData: false
+      showBillingListInfo: {
+      	value: 0,
+        text: ""
+      }
     };
   },
+  methods: {
+  	accountBillingList(value, text) {
+  		this.showBillingListInfo.value = value;
+  		this.showBillingListInfo.text = text;
+  	}
+  }
 };
 
 export default account
