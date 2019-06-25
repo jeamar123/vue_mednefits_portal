@@ -1,8 +1,14 @@
+.statement-wrapper {
+	display: inline-block;
+	width: 100%;
+}
+
 .statement-container {
-	color: #777;
+	
 	h4 {
 		font-size: 16px;
 		margin: 10px 0;
+		color: #555;
 	}
 
 	button {
@@ -74,6 +80,10 @@
   }
 }
 
+.team-benefits-wrapper {
+	margin: 77px 0 0;
+}
+
 .view-statement-container {
 	margin: 20px 0 0 0;
 	text-align: center;
@@ -99,8 +109,6 @@
 		width: 100%;
 		margin: 20px 0 50px;
 	}
-
-
 }
 
 .search-wrapper {
@@ -202,6 +210,7 @@
 	background: #fff;
   min-height: 500px;
   padding: 30px 100px 25px 100px;
+  text-align: center;
 
   .statement-wrapper {
   	width: 80%;
@@ -209,6 +218,7 @@
     overflow: hidden;
     box-shadow: 1px 1px 10px #888888;
     padding: 30px 40px;
+    text-align: left;
 
     img {
     	width: 250px;
@@ -329,6 +339,7 @@
 		font-weight: 400;
 		margin: 0 0 20px; 
 	}
+}
 
 .no-transaction-month-container {
 	display: inline-block;
@@ -397,7 +408,6 @@
 			text-align: left;
 			width: 140px;
 	    margin-left: 20px;
-	    color: #555;
 		}
 	}
 }
@@ -532,4 +542,17 @@
   vertical-align: top;
   font-size: 13px;
 }
+
+.claim-slider-container {
+  display: inline-block;
+  width: 100%;
+  margin: 55px 0 0 0;
+  padding: 0 50px;
+  position: relative;
+  z-index: 0;
+  
 }
+
+
+
+
