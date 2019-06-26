@@ -286,9 +286,28 @@
 
 .benefits-tier-container {
 	h1 {
+		margin: 17px 0 37px;
 		color: #2c3e50;
 		font-size: 25px;
 		font-weight: 700;
 		line-height: 1.1;
+		text-align: center;
+	}
+
+	.tier-summary-wrapper {
+
+		h4 {
+			font-weight: 700;
+			font-size: 18px;
+			line-height: 1.1;
+		}
+
+		.add-tier-wrapper {
+			margin: 90px 0 0;
+			position: relative;
+			right: 0;
+			bottom: 0;
+			float: right;
+		}
 	}
 }
