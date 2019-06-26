@@ -1003,6 +1003,9 @@
 
   	</div>
   </div>
+
+	<!-- modals here -->
+	
 </template>
 
 <script>
