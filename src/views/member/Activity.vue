@@ -7,10 +7,10 @@
 			<a class="year-selector" v-bind:class="{'active' : date_selector_type == 3}" v-on:click="setDateSelector(3)">Custom</a> -->
 		</div>
 
-		<div class="activity-slider-container">
+		<!-- <div class="activity-slider-container">
 			<vue-slider class="range-slider" v-model="range_values" :marks="range_marks" :enableCross="true" :min="1" :max="12" :tooltip="'none'" @drag-start="() => inDragging = true" @drag-end="() => inDragging = false" :dragEnd="sliderDragged( range_values )"></vue-slider>
-		</div>
-		<!-- <div class="date-picker-container">
+		</div> -->
+		<div class="date-picker-container">
 			<div class="btn-picker">
 				<v-date-picker 
     			mode='single' 
@@ -43,7 +43,7 @@
 			<div class="date-apply-btn">
 				<button class="btn btn-apply" v-on:click="getActivityData()">Apply</button>
 			</div>
-		</div> -->
+		</div>
 
 		<div class="benefit-dollars-container">
 			<div class="spending-account-wrapper">

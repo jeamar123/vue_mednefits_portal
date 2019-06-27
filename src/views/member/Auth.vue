@@ -17,7 +17,7 @@
 	  </div>
 
   	<div class="medne-icon-wrapper">
-	  	<img :src="'../assets/img/mednefits_logo_blue.png'">
+	  	<img :src="'../assets/img/mednefits_logo_v3_(white).png'">
 	  	<p>for member</p>
 	  </div>
 
