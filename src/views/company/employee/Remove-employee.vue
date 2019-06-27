@@ -5,7 +5,7 @@
     <div class="remove-employee-wrapper">
       <img @click="$router.go(-1)" :src="'../assets/img/icons/cancel.png'">
 
-      <div v-if="true" class="remove-details-wrapper">
+      <div v-if="removeState === 'default'" class="remove-details-wrapper">
         <h1>Remove employee</h1>
         <form class="form-input-container">
           <div class="employee-input-container">
@@ -31,30 +31,30 @@
         </form>
       </div>
 
-      <div v-if="false" class="employee-outcome-wrapper">
+      <div v-if="removeState === 'todo'" class="employee-outcome-wrapper">
         <h1>How would you like to proceed?</h1>
         <div class="employee-outcome-container">
           <div class="outcome-title">Please select one of the outcome:</div>
           <label class="review-container">
-            <input type="checkbox">
+            <input type="radio" name="outcome" value="1" v-model="outcome_checked">
             <span class="review-prepare-template-text">To replace the leaving employee, I would like to pre-enroll the new joiner. </span>
             <span class="review-checkmark"></span>
           </label>
           <label class="review-container">
-            <input type="checkbox">
+            <input type="radio" name="outcome" value="2" v-model="outcome_checked">
             <span class="review-prepare-template-text">I'm not ready to pre-enroll the new joiner, please hold the seat for future hire. </span>
             <span class="review-prepare-template-subtext">*Note: Once this employee is removed, the occupied seat will move to a vacant seat.</span>
             <span class="review-checkmark"></span>
           </label>
           <label class="review-container">
-            <input type="checkbox">
+            <input type="radio" name="outcome" value="3" v-model="outcome_checked">
             <span class="review-prepare-template-text">Please remove the seat completely, and proceed for refund.</span>
             <span class="review-checkmark"></span>
           </label>
         </div>
       </div>
       <!-- Replacement Employee Details-->
-      <div v-if="false" class="replacement-employee-wrapper">
+      <div v-if="removeState === 'replacement'" class="replacement-employee-wrapper">
         <div class="employee-tier-title">Replacement</div>
         <div class="employee-details-header">
           <h1>Employee Details</h1>
@@ -130,8 +130,8 @@
         </form>
       </div>
 
-      <!-- Health Spending Account Summary -->
-      <div v-if="false" class="account-summary-wrapper">
+       <!-- Health Spending Account Summary -->
+      <!-- <div v-if="removeState === 'account_summary'" class="account-summary-wrapper">
         <span class="account-summary-name">Serene Song</span>
         <h1>Health Spending Account Summary</h1>
         <div class="credits-summary-container">
@@ -261,13 +261,13 @@
             <div class="spending-account-status exceed">Exceed</div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- Health Spending Account -->
-      <div v-if="false" class="health-spending-wrapper">
+      <div v-if="removeState === 'health_spending_wrapper'" class="health-spending-wrapper">
 
         <!-- Health Spending Account -->
-        <div v-if="false" class="account-summary-wrapper">
+        <div v-if="removeState === 'health_spending_wrapper' && spendingState === 'account_summary'" class="account-summary-wrapper">
           <span class="account-summary-name">Serene Song</span>
           <h1>Health Spending Account Summary</h1>
           <div class="credits-summary-container">
@@ -399,7 +399,7 @@
           </div>
         </div>
 
-        <div v-if="false" class="health-spending-account-container">
+        <div v-if="removeState === 'health_spending_wrapper' && spendingState === 'update_member'" class="health-spending-account-container">
           <span class="account-summary-name">Serene Song</span>
           <h1>Health Spending Account</h1>
           <p class="members-wallet-text">Do you want us to update the member’s wallet by reflecting the
@@ -415,9 +415,22 @@
 
       <div class="prev-next-button-container">
         <div class="button-container">
-          <button class="back-btn">Back</button>
-          <button v-if="true" class="next-btn">Next</button>
-          <button v-if="false" class="next-btn confirm-btn">Confirm</button>
+          <!-- back buttons -->
+          <button v-if="removeState === 'default'" class="back-btn" @click="$router.go(-1)">Back</button>
+          <button v-if="removeState === 'replacement'" class="back-btn" @click="removeState = 'todo'">Back</button>
+          <button v-if="removeState === 'todo'" class="back-btn" @click="removeState = 'default'">Back</button>
+          <button v-if="removeState === 'health_spending_wrapper' && spendingState === 'account_summary'" class="back-btn" @click="removeState = 'default'">Back</button>
+          <button v-if="removeState === 'health_spending_wrapper' && spendingState === 'update_member'" class="back-btn" @click="removeState = 'default'">Back</button>
+
+          <!-- next Buttons -->
+          <button v-if="removeState === 'default'" class="next-btn" @click="removeState = 'todo'">Next</button>
+          <button v-if="removeState === 'replacement'" class="next-btn" @click="next('replacement')">Next</button>
+          <button v-if="removeState === 'todo'" class="next-btn" @click="next('outcome')">Next</button>
+
+          <!-- health spending -->
+          <button v-if="removeState === 'health_spending_wrapper' && spendingState === 'account_summary'" class="next-btn" @click="spendingState = 'update_member'">Next</button>
+
+          <button v-if="removeState === 'health_spending_wrapper' && spendingState === 'update_member'" class="next-btn confirm-btn" @click="next('confirm')">Confirm</button>
         </div>
       </div>
     </div>
