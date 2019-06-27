@@ -70,9 +70,9 @@
                 </div>
                 <div class="employee-input-wrapper">
                   <label for="fname">Start Date</label>
-                  <v-date-picker :date='new Date()' v-model="employeeDetails.startDate"
+                  <v-date-picker :max-date='new Date()' v-model="employeeDetails.startDate"
                     :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
-                    popover-visibility='focus'>
+                    popover-visibility='focus' popover-direction='top'>
                   </v-date-picker>
                 </div>
               </div>
