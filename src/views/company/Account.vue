@@ -47,7 +47,7 @@
   									</td>
 
   									<td class="edit-container">
-  										<button class="edit-button-in-table">Edit</button>
+  										<button class="edit-button-in-table" @click="companyContactsModal('business_info')">Edit</button>
   									</td>
   								</tr>
   							</tbody>
@@ -72,7 +72,7 @@
 										<td>filbert@mednefits.com</td>
 										<td>62547889</td>
 										<td>
-											<button class="edit-button-in-table">Edit</button>
+											<button class="edit-button-in-table" @click="companyContactsModal('business_contact')">Edit</button>
 										</td>
 									</tr>
 								</tbody>
@@ -95,7 +95,7 @@
 										<td>Singapore</td>
 										<td>filbert@mednefits.com</td>
 										<td>
-											<button class="edit-button-in-table">Edit</button>
+											<button class="edit-button-in-table" @click="companyContactsModal('Billing_contacts')">Edit</button>
 										</td>
 									</tr>
 								</tbody>
@@ -112,7 +112,7 @@
 										<td class="biliing-address-text"><span>7 Temasek Boulevard #18-02 Suntec T</span></td>
 										<td>Cheque</td>
 										<td>
-											<button class="edit-button-in-table">Edit</button>
+											<button class="edit-button-in-table" @click="companyContactsModal('Billing_address')">Edit</button>
 										</td>
 									</tr>
 								</tbody>
@@ -281,7 +281,7 @@
   										<a class="edit-button-in-table anchor-btn">Download</a>
   									</td>
   									<td>
-  										<button class="edit-button-in-table">View</button>
+  										<button class="edit-button-in-table" @click="companyContactsModal('refund')">View</button>
   									</td>
   								</tr>
   								<tr>
@@ -1002,10 +1002,43 @@
   		</div>
 
   	</div>
+
+		<!-- modals here -->
+			<!-- Company -->
+		<Modal v-if="modals.company.business_info">
+			 	<div slot="header">
+					<h4>Edit Business Information</h4>
+					<img @click="companyContactsModal('business_info')" :src="'../assets/img/icons/close.svg'">
+				</div>
+		</Modal>
+		<Modal v-if="modals.company.business_contact">
+			 	<div slot="header">
+					<h4>Edit Business Information</h4>
+					<img @click="companyContactsModal('business_contact')" :src="'../assets/img/icons/close.svg'">
+				</div>
+		</Modal>
+		<Modal v-if="modals.company.Billing_contacts">
+			 	<div slot="header">
+					<h4>Edit Business Information</h4>
+					<img @click="companyContactsModal('Billing_contacts')" :src="'../assets/img/icons/close.svg'">
+				</div>
+		</Modal>
+		<Modal v-if="modals.company.Billing_address">
+			 	<div slot="header">
+					<h4>Edit Business Information</h4>
+					<img @click="companyContactsModal('Billing_address')" :src="'../assets/img/icons/close.svg'">
+				</div>
+		</Modal>
+			<!-- end Company -->
+			<!-- Transactions -->
+		<Modal v-if="modals.transactions.refund">
+			 	<div slot="header">
+					<h4>Edit Business Information</h4>
+					<img @click="companyContactsModal('refund')" :src="'../assets/img/icons/close.svg'">
+				</div>
+		</Modal>
   </div>
 
-	<!-- modals here -->
-	
 </template>
 
 <script>
