@@ -1204,79 +1204,83 @@
 
 .employee-edit-modal,
 .depedent-edit-modal {
-	/* modal edit*/
-	.modal-container {
-		width: 800px;
-		padding: 15px;
-	}
-
-	.modal-header {
-		h1 {
-			clear: both;
-			line-height: 1.1;
-			text-align: center;
-			color: #444;
-	    font-weight: 500;
-	    font-size: 35px;
-	    margin: 35px 0 40px 0;
-	    font-family: 'Helvetica Medium';
-		}
-	}
-	.employee-name-container {
-		text-align: center;
-
-		span {
-			color: #888;
-	    font-size: 20px;
-	    font-weight: 700;
-		}
-		img {
-			width: 20px;
-			cursor: pointer;
-			float: right;
-		}
-	}
-
-	.modal-body {
-		padding: 15px;
-
-		form {
-			width: 70%;
-			margin: 0 auto;
-		}
-
-		.dob label {
-			margin-bottom: 5px;
-		}
-
-	}
-	.moda-footer {
-		padding: 0 15px;
-	}
 	
-	.modal-btn-container {
-		width: 70%;
-		margin: 20px auto 30px;
+}
 
-		button {
-			border-radius: 4px;
-			width: 160px;
-			font-weight: 700;
-			padding: 12px 0;
-			color: #fff;
-			box-shadow: none;
-			line-height: 24px;
-		}
-		button:nth-child(1) {
-			border: 2px solid #ccc;
-			background-color: #fff;
-			color: #5d5d5d;
-		}
-		button:nth-child(2) {
-			float: right;
-			border: 2px solid #0392cf;
-			background-color: #0392cf;
-		}
+/* modal edit*/
+.modal-container {
+	width: 800px;
+	padding: 15px;
+}
+
+.modal-header {
+	h1 {
+		clear: both;
+		line-height: 1.1;
+		text-align: center;
+		color: #444;
+    font-weight: 500;
+    font-size: 35px;
+    margin: 35px 0 40px 0;
+    font-family: 'Helvetica Medium';
 	}
 }
+.employee-name-container {
+	text-align: center;
+
+	span {
+		color: #888;
+    font-size: 20px;
+    font-weight: 700;
+	}
+	img {
+		width: 20px;
+		cursor: pointer;
+		float: right;
+	}
+}
+
+.modal-body {
+	padding: 15px;
+
+	form {
+		width: 70%;
+		margin: 0 auto;
+	}
+
+	.dob label {
+		margin-bottom: 5px;
+	}
+
+}
+.moda-footer {
+	padding: 0 15px;
+}
+
+.modal-btn-container {
+	width: 70%;
+	margin: 20px auto 30px;
+
+	button {
+		border-radius: 4px;
+		width: 160px;
+		font-weight: 700;
+		padding: 12px 0;
+		color: #fff;
+		box-shadow: none;
+		line-height: 24px;
+	}
+	button:nth-child(1) {
+		border: 2px solid #ccc;
+		background-color: #fff;
+		color: #5d5d5d;
+	}
+	button:nth-child(2) {
+		float: right;
+		border: 2px solid #0392cf;
+		background-color: #0392cf;
+	}
+}
+
+
 

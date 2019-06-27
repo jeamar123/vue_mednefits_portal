@@ -78,6 +78,6 @@ let account = {
 export default account
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "./src/assets/css/company/account.scss";
 </style>

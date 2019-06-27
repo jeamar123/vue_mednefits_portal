@@ -23,7 +23,7 @@ export default employee
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   @import './src/assets/css/company/employee.scss'
 </style>
 

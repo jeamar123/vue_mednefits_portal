@@ -136,7 +136,12 @@
 		}
 	}
 
-		.modal-header {
+	.modal-container {
+		width: 400px;
+		padding: 0;
+	}
+
+	.modal-header {
 			color: #fff;
 			background-color: #33a2d4;
 			padding: 20px;
@@ -158,6 +163,7 @@
 		form {
 			height: 230px;
 			overflow: auto;
+			width: 100%;
 		}
 	}
 	.modal-input-wrapper {
