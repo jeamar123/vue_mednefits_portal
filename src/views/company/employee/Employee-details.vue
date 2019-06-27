@@ -145,11 +145,11 @@
           </div>
           <div class="btn-person-info-container">
             <router-link to="/company/employee-details/remove-employee">
-              <button v-if="false" class="btn-remove-employee">Remove
+              <button v-if="true" class="btn-remove-employee">Remove
                 Employee
               </button>
             </router-link>
-            <button @click="viewEmployeeSpendingSummary( )" v-if="true" class="btn-health-spending">Health Spending
+            <button @click="viewEmployeeSpendingSummary( )" v-if="false" class="btn-health-spending">Health Spending
               Account Summary</button>
           </div>
         </div>
@@ -557,6 +557,8 @@
               <div class="employee-input-wrapper dob">
                 <label for="fname">Date of Birth</label>
                 <v-date-picker :max-date="new Date()"
+                  popoverDirection="top" 
+                  popoverVisibility="focus"
                   :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'></v-date-picker>
               </div>
               <div class="employee-input-wrapper">
@@ -588,6 +590,7 @@
               <div class="employee-input-wrapper dob">
                 <label for="fname">Date of Birth</label>
                 <v-date-picker :max-date="new Date()"
+                  popoverVisibility="focus"
                   :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
                 </v-date-picker>
               </div>

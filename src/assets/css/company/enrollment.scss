@@ -135,77 +135,6 @@
     	padding: 11px 0;
 		}
 	}
-
-	.modal-container {
-		width: 400px;
-		padding: 0;
-	}
-
-	.modal-header {
-			color: #fff;
-			background-color: #33a2d4;
-			padding: 20px;
-			overflow: hidden;
-		h4 {
-			font-size: 18px;
-			font-weight: 700;
-			float: left;
-		}
-		img {
-			height: 20px;
-			cursor: pointer;
-			float: right;
-		}
-	}
-	.modal-body {
-		padding: 15px 15px 50px 15px;
-		line-height: 24px;
-		form {
-			height: 230px;
-			overflow: auto;
-			width: 100%;
-		}
-	}
-	.modal-input-wrapper {
-		label {
-			color: #616161;
-			display: block;
-			margin-bottom: 5px;
-			font-weight: 700;
-		}
-		input {
-			padding: 5px 15px;
-			border: 1px solid #ccc;
-			background-color: #f5f8fa;
-			font-weight: 700;
-			color: #555;
-			width: 95%;
-			height: 40px;
-			margin-bottom: 15px;
-		}
-	}
-	.modal-footer {
-		padding: 5px 39px 20px;
-		button {
-			display: inline-block;
-			float: inherit;
-			background-color: transparent;
-			line-height: 24px;
-			border-radius: 4px;
-			padding: 7px 17px;
-			font-weight: 700;
-		}
-		button:nth-child(1) {
-			border: solid 1px #ff7373;
-			color: #ff7373;
-			margin-right: 20px;
-		}
-		button:nth-child(2) {
-			border: solid 1px #0392cf;
-			background-color: #0392cf;
-			color: #fff;
-		}
-	}
 }
 
 /*----- (EXCEL IMPORT) -----*/
@@ -1222,5 +1151,78 @@
 		color: #fff;
 		text-decoration: underline;
 		margin-right: 20px;
+	}
+}
+
+.modal-container {
+	width: 400px;
+	padding: 0;
+}
+
+.modal-header {
+		color: #fff;
+		background-color: #33a2d4;
+		padding: 20px;
+		overflow: hidden;
+	h4 {
+		font-size: 18px;
+		font-weight: 700;
+		float: left;
+	}
+	img {
+		height: 20px;
+		cursor: pointer;
+		float: right;
+	}
+}
+.modal-body {
+	padding: 15px 15px 50px 15px;
+	line-height: 24px;
+	form {
+		height: 230px;
+		overflow: auto;
+		width: 100%;
+	}
+}
+.modal-input-wrapper {
+	label {
+		color: #616161;
+		display: block;
+		margin-bottom: 5px;
+		font-weight: 700;
+	}
+	input {
+		padding: 5px 15px;
+		border: 1px solid #ccc;
+		background-color: #f5f8fa;
+		font-weight: 700;
+		color: #555;
+		width: 95%;
+		height: 40px;
+		margin-bottom: 15px;
+	}
+}
+.modal-footer {
+	padding: 5px 39px 20px;
+	text-align: right;
+	
+	button {
+		display: inline-block;
+		float: inherit;
+		background-color: transparent;
+		line-height: 24px;
+		border-radius: 4px;
+		padding: 7px 17px;
+		font-weight: 700;
+	}
+	button:nth-child(1) {
+		border: solid 1px #ff7373;
+		color: #ff7373;
+		margin-right: 20px;
+	}
+	button:nth-child(2) {
+		border: solid 1px #0392cf;
+		background-color: #0392cf;
+		color: #fff;
 	}
 }

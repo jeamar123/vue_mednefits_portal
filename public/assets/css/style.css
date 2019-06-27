@@ -9,7 +9,8 @@ body,html{
   font-family: 'Helvetica Light';
   color: #444340;
   font-size: 14px;
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
+  overflow: hidden;
   margin: 0;
   padding: 0;
   letter-spacing: .14px;
@@ -526,7 +527,8 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
 
 
 /*----------- MODAL -------------*/
-  .modal-mask {
+
+ .modal-mask {
     position: fixed;
     z-index: 50;
     top: 0;
@@ -536,17 +538,17 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
     background-color: rgba(0, 0, 0, .5);
     display: table;
     transition: opacity .3s ease;
-    z-index: 999;
+    z-index: 99999;
   }
 
   .modal-wrapper {
-    display: table-cell;
-    vertical-align: middle;
+    height: 100%;
+    overflow-y: auto;
   }
 
   .modal-container {
     width: 400px;
-    margin: 0px auto;
+    margin: 50px auto;
     background-color: #fff;
     border-radius: 2px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .33);

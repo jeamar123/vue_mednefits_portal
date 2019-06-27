@@ -1,5 +1,6 @@
 .main-ui-container {
-	min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
 }
 .top-navbar-wrapper {
 	width: 100%;

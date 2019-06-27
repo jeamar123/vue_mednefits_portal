@@ -65,8 +65,9 @@ let employeeDetails = {
         customClass: "warning-global-container primary"
       }).then(result => {
         if (result.value) {
-          this.dependentState = !this.dependentState;
-          this.isState = "web";
+          // this.dependentState = !this.dependentState;
+          // this.isState = "web";
+          // show input password modal
         }
       });
     },
