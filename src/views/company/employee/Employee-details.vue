@@ -628,6 +628,22 @@
           <button>SAVE & CONTINUE</button>
         </div>
       </Modal>
+
+      <!-- modal for settings-->
+      <Modal v-if="false" class="input-password-modal">
+        <div slot="header">
+          <span>Input Password</span>
+        </div>
+        <div slot="body">
+          <div class="form-group">
+            <input type="password">
+          </div>
+        </div>
+        <div slot="footer">
+          <button>Cancel</button>
+          <button>Submit</button>
+        </div>
+      </Modal>
     </div>
 
   </div>

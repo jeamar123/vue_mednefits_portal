@@ -162,6 +162,10 @@
 
 	.total-transactions-container {
 		margin: 0 0 20px;
+		width: auto;
+	}
+	.total-spent-container span {
+		display: initial;
 	}
 
 	.btn-transaction-container {
