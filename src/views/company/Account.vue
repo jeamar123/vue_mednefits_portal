@@ -1005,51 +1005,201 @@
 
 		<!-- modals here -->
 			<!-- Company -->
-		<Modal v-if="modals.company.business_info">
+		<Modal v-if="modals.company.business_info" class="edit-business-info-modal">
 			<div slot="header">
 				<h4>Edit Business Information</h4>
 				<img @click="companyContactsModal('business_info')" :src="'../assets/img/icons/close.svg'">
 			</div>
+      <div slot="body">
+        <form>
+          <div class="form-group">
+            <label>Company Address</label>
+            <textarea></textarea>
+          </div>
+          <div class="form-group">
+            <label>Postal Code</label>
+            <textarea></textarea>
+          </div>
+        </form>
+      </div>
+      <div slot="footer">
+        <button>CANCEL</button>
+        <button>UPDATE</button>
+      </div>
 		</Modal>
 		<Modal v-if="modals.company.business_contact">
 			<div slot="header">
-				<h4>Edit Business Information</h4>
+				<h4>Edit Business Contact</h4>
 				<img @click="companyContactsModal('business_contact')" :src="'../assets/img/icons/close.svg'">
 			</div>
+      <div slot="body">
+        <form>
+          <div class="modal-input-wrapper">
+            <label>First Name</label>
+            <input type="text">
+          </div>
+          <div class="modal-input-wrapper">
+            <label>Last Name</label>
+            <input type="text">
+          </div>
+          <div class="modal-input-wrapper">
+            <label>Email Address</label>
+            <input type="text">
+          </div>
+          <div class="modal-input-wrapper">
+            <label>Phone</label>
+            <input type="number">
+          </div>
+          <div class="modal-input-wrapper">
+            <label>Mobile</label>
+            <input type="number">
+          </div>
+          <div class="modal-input-wrapper">
+            <label>Job Title</label>
+            <select>
+              <option>Marketing</option>
+              <option>Accounting, Audit, Finance</option>
+              <option>Administration Support</option>
+              <option>Arts/Culture/Heritage</option>
+              <option>Building and Estate Management</option>
+              <option>Corporate Strategy/Top Management</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div slot="footer">
+        <button>CANCEL</button>
+        <button>UPDATE</button>
+      </div>
 		</Modal>
 		<Modal v-if="modals.company.Billing_contacts">
 			<div slot="header">
-				<h4>Edit Business Information</h4>
+				<h4>Edit Billing Contact & Address</h4>
 				<img @click="companyContactsModal('Billing_contacts')" :src="'../assets/img/icons/close.svg'">
 			</div>
+      <div slot="body">
+        <form>
+          <div class="modal-input-wrapper">
+            <label>First Name</label>
+            <input type="text">
+          </div>
+          <div class="modal-input-wrapper">
+            <label>Last Name</label>
+            <input type="text">
+          </div>
+          <div class="modal-input-wrapper">
+            <label>Email Address</label>
+            <input type="text">
+          </div>
+        </form>
+      </div>
+      <div slot="footer">
+        <button>CANCEL</button>
+        <button>UPDATE</button>
+      </div>
 		</Modal>
 		<Modal v-if="modals.company.Billing_address">
 			<div slot="header">
-				<h4>Edit Business Information</h4>
+				<h4>Edit Billing Contact & Address</h4>
 				<img @click="companyContactsModal('Billing_address')" :src="'../assets/img/icons/close.svg'">
 			</div>
+      <div slot="body">
+        <form>
+          <div class="modal-input-wrapper">
+            <label>Company Name</label>
+            <input type="text">
+          </div>
+          <div class="modal-input-wrapper">
+            <label>Billing Address</label>
+            <input type="text">
+          </div>
+          <div class="modal-input-wrapper">
+            <label>Postal Code</label>
+            <input type="number">
+          </div>
+        </form>
+      </div>
+      <div slot="footer">
+        <button>CANCEL</button>
+        <button>UPDATE</button>
+      </div>
 		</Modal>
 			<!-- end Company -->
 			<!-- Transactions -->
-		<Modal v-if="modals.transactions.refund">
+		<Modal v-if="modals.transactions.refund" class="edit-refund-modal">
 			<div slot="header">
-				<h4>Edit Business Information</h4>
+        <div class="refund-info-header">
+  				<h4>Olivia Koh</h4>
+          <br>
+          <h6>Mednefits</h6>
+        </div>
 				<img @click="companyContactsModal('refund')" :src="'../assets/img/icons/close.svg'">
 			</div>
+       <div slot="body">
+        <div class="employee-active-text">EMPLOYEE <span>1</span> OF <span>1</span></div>
+        <form>
+          <div class="modal-input-wrapper">
+            <label>First Name</label>
+            <input type="text">
+          </div>
+          <div class="modal-input-wrapper">
+            <label>Last Name</label>
+            <input type="text">
+          </div>
+          <div class="modal-input-wrapper">
+            <label>NRIC/FIN</label>
+            <input type="number">
+          </div>
+          <div class="modal-input-wrapper">
+            <label>Work Email</label>
+            <input type="number">
+          </div>
+          <div class="modal-input-wrapper">
+            <label>Mobile</label>
+            <input type="number">
+          </div>
+          <div class="modal-input-wrapper">
+            <label>Job Title</label>
+            <select>
+              <option>Marketing</option>
+            </select>
+          </div>
+        </form>
+      </div>
 		</Modal>
 			<!-- End Transactions -->
 			<!-- Account & Payment -->
-		<Modal v-if="modals.account.password">
+		<Modal v-if="modals.account.password" class="update-password-modal">
 			<div slot="header">
-				<h4>Edit Business Information</h4>
+				<h4>Update Account</h4>
 				<img @click="companyContactsModal('password')" :src="'../assets/img/icons/close.svg'">
 			</div>
+      <div slot="body">
+        <form>
+          <div class="form-group">
+            <label>Current Password</label>
+            <input type="password">
+          </div>
+          <div class="form-group">
+            <label>New Password</label>
+            <input type="password">
+          </div>
+          <div class="form-group">
+            <label>Re-type Password</label>
+            <input type="password">
+          </div>
+        </form>
+      </div>
+      <div slot="footer">
+        <button>CANCEL</button>
+        <button>UPDATE</button>
+      </div>
 		</Modal>
 		<Modal v-if="modals.account.active_plans">
-			<div slot="header">
+			<!-- <div slot="header">
 				<h4>Edit Business Information</h4>
 				<img @click="companyContactsModal('active_plans')" :src="'../assets/img/icons/close.svg'">
-			</div>
+			</div> -->
 		</Modal>
 			<!-- End Account & Payment -->
   </div>
