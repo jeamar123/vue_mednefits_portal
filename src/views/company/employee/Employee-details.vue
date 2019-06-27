@@ -485,142 +485,146 @@
       </div>
 
 
-      <div class="global-modal-wrapper">
-        <!-- modal edit for employee -->
-        <Modal class="employee-edit-modal" v-if="modalEdit.employee">
-          <div slot="header" class="employee-name-container">
-            <span>allan cheam alzula</span>
-            <img @click="modalEdit.employee = false" :src="'../assets/img/icons/close-blue.svg'">
-            <h1>Edit employee details</h1>
-          </div>
-          <div slot="body">
-            <form>
-              <div class="employee-input-container">
-                <div class="employee-input-wrapper">
-                  <label for="fname">First Name</label>
-                  <input type="text" name="fname">
-                </div>
-                <div class="employee-input-wrapper">
-                  <label for="work-email">Work Email</label>
-                  <input type="text" name="work-email">
-                </div>
-              </div>
-              <div class="employee-input-container">
-                <div class="employee-input-wrapper">
-                  <label for="lname">Last Name</label>
-                  <input type="text" name="lname">
-                </div>
-                <div class="employee-input-wrapper">
-                  <label for="number">Mobile Number</label>
-                  <input type="number" name="number">
-                </div>
-              </div>
-              <div class="employee-input-container">
-                <div class="employee-input-wrapper">
-                  <label>NRIC</label>
-                  <input type="text" name="nric-fin">
-                </div>
-                <div class="employee-input-wrapper">
-                  <label for="postal-code">Postal Code</label>
-                  <input type="number" name="postal-code">
-                </div>
-              </div>
-              <div class="employee-input-container">
-                <div class="employee-input-wrapper">
-                  <label>Member ID</label>
-                  <input type="number" name="member-id">
-                </div>
-                <div class="employee-input-wrapper">
-                  <label for="postal-code">Postal Code</label>
-                  <select>
-                    <option>Building and Estate Management</option>
-                    <option>Education</option>
-                    <option>Engineering</option>
-                  </select>
-                  <img :src="'../assets/img/icons/down-arrow.svg'">
-                </div>
-              </div>
-              <div class="employee-input-container">
-                <div class="employee-input-wrapper dob">
-                  <label for="fname">Date of Birth</label>
-                  <v-date-picker :max-date="new Date()"
-                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'></v-date-picker>
-                </div>
-                <div class="employee-input-wrapper">
-                  <label>Bank Account Number</label>
-                  <input type="number" name="bank-account-number">
-                </div>
-              </div>
-            </form>
-          </div>
-          <div slot="footer" class="modal-btn-container">
-            <button>CANCEL</button>
-            <button>SAVE & CONTINUE</button>
-          </div>
-        </Modal>
-
-        <!-- modal edit  for dependent-->
-        <Modal class="depedent-edit-modal" v-if="modalEdit.dependent">
-          <div slot="header" class="employee-name-container">
-            <img @click="modalEdit.dependent = false" :src="'../assets/img/icons/close-blue.svg'">
-            <h1>Edit dependent details</h1>
-          </div>
-          <div slot="body">
-            <form>
-              <div class="employee-input-container">
-                <div class="employee-input-wrapper">
-                  <label for="fname">First Name</label>
-                  <input type="text" name="fname">
-                </div>
-                <div class="employee-input-wrapper dob">
-                  <label for="fname">Date of Birth</label>
-                  <v-date-picker :max-date="new Date()"
-                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
-                  </v-date-picker>
-                </div>
-              </div>
-              <div class="employee-input-container">
-                <div class="employee-input-wrapper">
-                  <label for="lname">Last Name</label>
-                  <input type="text" name="lname">
-                </div>
-                <div class="employee-input-wrapper">
-                  <label for="postal-code">Relationship</label>
-                  <select>
-                    <option>Spouse</option>
-                    <option>Child</option>
-                    <option>Family</option>
-                    <option>Parent</option>
-                  </select>
-                  <img :src="'../assets/img/icons/down-arrow.svg'">
-                </div>
-              </div>
-              <div class="employee-input-container">
-                <div class="employee-input-wrapper">
-                  <label>Member ID</label>
-                  <input type="number" name="member-id">
-                </div>
-                <div class="employee-input-wrapper">
-                  <label>NRIC/FIN</label>
-                  <input type="number" name="member-id">
-                </div>
-              </div>
-            </form>
-          </div>
-          <div slot="footer" class="modal-btn-container">
-            <button>CANCEL</button>
-            <button>SAVE & CONTINUE</button>
-          </div>
-        </Modal>
-      </div>
+      
 
     </div>
+
+
     <div class="employee-prev-next-button">
       <button class="employee-btn-back" @click="$router.go(-1)">Back to employee overview</button>
       <div class="pull-right">
         <button class="employee-btn-prev disabled">Previous</button>
         <button class="employee-btn-next">Next employee</button>
       </div>
+    </div>
+
+    <div class="global-modal-wrapper">
+      <!-- modal edit for employee -->
+      <Modal class="employee-edit-modal" v-if="modalEdit.employee">
+        <div slot="header" class="employee-name-container">
+          <span>allan cheam alzula</span>
+          <img @click="modalEdit.employee = false" :src="'../assets/img/icons/close-blue.svg'">
+          <h1>Edit employee details</h1>
+        </div>
+        <div slot="body">
+          <form>
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label for="fname">First Name</label>
+                <input type="text" name="fname">
+              </div>
+              <div class="employee-input-wrapper">
+                <label for="work-email">Work Email</label>
+                <input type="text" name="work-email">
+              </div>
+            </div>
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label for="lname">Last Name</label>
+                <input type="text" name="lname">
+              </div>
+              <div class="employee-input-wrapper">
+                <label for="number">Mobile Number</label>
+                <input type="number" name="number">
+              </div>
+            </div>
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label>NRIC</label>
+                <input type="text" name="nric-fin">
+              </div>
+              <div class="employee-input-wrapper">
+                <label for="postal-code">Postal Code</label>
+                <input type="number" name="postal-code">
+              </div>
+            </div>
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label>Member ID</label>
+                <input type="number" name="member-id">
+              </div>
+              <div class="employee-input-wrapper">
+                <label for="postal-code">Postal Code</label>
+                <select>
+                  <option>Building and Estate Management</option>
+                  <option>Education</option>
+                  <option>Engineering</option>
+                </select>
+                <img :src="'../assets/img/icons/down-arrow.svg'">
+              </div>
+            </div>
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper dob">
+                <label for="fname">Date of Birth</label>
+                <v-date-picker :max-date="new Date()"
+                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'></v-date-picker>
+              </div>
+              <div class="employee-input-wrapper">
+                <label>Bank Account Number</label>
+                <input type="number" name="bank-account-number">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div slot="footer" class="modal-btn-container">
+          <button>CANCEL</button>
+          <button>SAVE & CONTINUE</button>
+        </div>
+      </Modal>
+
+      <!-- modal edit  for dependent-->
+      <Modal class="depedent-edit-modal" v-if="modalEdit.dependent">
+        <div slot="header" class="employee-name-container">
+          <img @click="modalEdit.dependent = false" :src="'../assets/img/icons/close-blue.svg'">
+          <h1>Edit dependent details</h1>
+        </div>
+        <div slot="body">
+          <form>
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label for="fname">First Name</label>
+                <input type="text" name="fname">
+              </div>
+              <div class="employee-input-wrapper dob">
+                <label for="fname">Date of Birth</label>
+                <v-date-picker :max-date="new Date()"
+                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
+                </v-date-picker>
+              </div>
+            </div>
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label for="lname">Last Name</label>
+                <input type="text" name="lname">
+              </div>
+              <div class="employee-input-wrapper">
+                <label for="postal-code">Relationship</label>
+                <select>
+                  <option>Spouse</option>
+                  <option>Child</option>
+                  <option>Family</option>
+                  <option>Parent</option>
+                </select>
+                <img :src="'../assets/img/icons/down-arrow.svg'">
+              </div>
+            </div>
+            <div class="employee-input-container">
+              <div class="employee-input-wrapper">
+                <label>Member ID</label>
+                <input type="number" name="member-id">
+              </div>
+              <div class="employee-input-wrapper">
+                <label>NRIC/FIN</label>
+                <input type="number" name="member-id">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div slot="footer" class="modal-btn-container">
+          <button>CANCEL</button>
+          <button>SAVE & CONTINUE</button>
+        </div>
+      </Modal>
     </div>
 
   </div>

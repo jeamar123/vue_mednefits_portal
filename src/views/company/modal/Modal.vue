@@ -38,7 +38,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./src/assets/css/company/employee.scss";
 
 .modal-enter-active,
 .modal-leave-active {
