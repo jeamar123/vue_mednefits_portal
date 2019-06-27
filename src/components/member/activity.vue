@@ -211,6 +211,6 @@
 	export default activity
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	@import './src/assets/css/member/activity.scss'
 </style>
