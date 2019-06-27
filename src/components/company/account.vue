@@ -23,6 +23,10 @@ let account = {
         },
         transactions : {
           refund: false
+        },
+        account : {
+          password: false,
+          active_plans: false,
         }
       }
     };
@@ -71,6 +75,19 @@ let account = {
         this.modals.transactions.refund = !refund;
         console.log("ni gana", this.modals.transactions.refund);
       }
+      // end Transactions
+      // Accounts & payment
+      let password = this.modals.account.password;
+      let active_plans = this.modals.account.active_plans;
+      if (data = 'password') {
+        this.modals.account.password = !password;
+        console.log("ni gana", this.modals.account.password);
+      } 
+      else if (data = 'active_plans') {
+        this.modals.account.active_plans = !active_plans;
+        console.log("ni gana", this.modals.account.active_plans);
+      }
+      // end Accounts & payment
     }
   }
 };

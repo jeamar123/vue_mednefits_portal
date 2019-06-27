@@ -404,7 +404,7 @@
   							<tr>
   								<td>Update Password</td>
   								<td class="account-payment-btn-container">
-  									<button class="edit-button-in-table">Edit</button>
+  									<button class="edit-button-in-table" @click="companyContactsModal('password')">Edit</button>
   								</td>
   							</tr>
   						</tbody>
@@ -526,7 +526,7 @@
   						</div>
 
   						<div class="btn-view-plan-container">
-  							<button class="btn-view-plan">View Plan</button>
+  							<button class="btn-view-plan" @click="companyContactsModal('active_plans')">View Plan</button>
   						</div>
   					</div>
 
@@ -1006,37 +1006,52 @@
 		<!-- modals here -->
 			<!-- Company -->
 		<Modal v-if="modals.company.business_info">
-			 	<div slot="header">
-					<h4>Edit Business Information</h4>
-					<img @click="companyContactsModal('business_info')" :src="'../assets/img/icons/close.svg'">
-				</div>
+			<div slot="header">
+				<h4>Edit Business Information</h4>
+				<img @click="companyContactsModal('business_info')" :src="'../assets/img/icons/close.svg'">
+			</div>
 		</Modal>
 		<Modal v-if="modals.company.business_contact">
-			 	<div slot="header">
-					<h4>Edit Business Information</h4>
-					<img @click="companyContactsModal('business_contact')" :src="'../assets/img/icons/close.svg'">
-				</div>
+			<div slot="header">
+				<h4>Edit Business Information</h4>
+				<img @click="companyContactsModal('business_contact')" :src="'../assets/img/icons/close.svg'">
+			</div>
 		</Modal>
 		<Modal v-if="modals.company.Billing_contacts">
-			 	<div slot="header">
-					<h4>Edit Business Information</h4>
-					<img @click="companyContactsModal('Billing_contacts')" :src="'../assets/img/icons/close.svg'">
-				</div>
+			<div slot="header">
+				<h4>Edit Business Information</h4>
+				<img @click="companyContactsModal('Billing_contacts')" :src="'../assets/img/icons/close.svg'">
+			</div>
 		</Modal>
 		<Modal v-if="modals.company.Billing_address">
-			 	<div slot="header">
-					<h4>Edit Business Information</h4>
-					<img @click="companyContactsModal('Billing_address')" :src="'../assets/img/icons/close.svg'">
-				</div>
+			<div slot="header">
+				<h4>Edit Business Information</h4>
+				<img @click="companyContactsModal('Billing_address')" :src="'../assets/img/icons/close.svg'">
+			</div>
 		</Modal>
 			<!-- end Company -->
 			<!-- Transactions -->
 		<Modal v-if="modals.transactions.refund">
-			 	<div slot="header">
-					<h4>Edit Business Information</h4>
-					<img @click="companyContactsModal('refund')" :src="'../assets/img/icons/close.svg'">
-				</div>
+			<div slot="header">
+				<h4>Edit Business Information</h4>
+				<img @click="companyContactsModal('refund')" :src="'../assets/img/icons/close.svg'">
+			</div>
 		</Modal>
+			<!-- End Transactions -->
+			<!-- Account & Payment -->
+		<Modal v-if="modals.account.password">
+			<div slot="header">
+				<h4>Edit Business Information</h4>
+				<img @click="companyContactsModal('password')" :src="'../assets/img/icons/close.svg'">
+			</div>
+		</Modal>
+		<Modal v-if="modals.account.active_plans">
+			<div slot="header">
+				<h4>Edit Business Information</h4>
+				<img @click="companyContactsModal('active_plans')" :src="'../assets/img/icons/close.svg'">
+			</div>
+		</Modal>
+			<!-- End Account & Payment -->
   </div>
 
 </template>
