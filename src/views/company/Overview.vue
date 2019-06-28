@@ -134,7 +134,9 @@
                 </h6>
               </div>
               <div class="view-invoice-button">
-                <button>VIEW INVOICE</button>
+                <router-link to="/company/account">
+                  <button>VIEW INVOICE</button>
+                </router-link>
               </div>
             </div>
           </div>

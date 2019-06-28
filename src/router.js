@@ -93,7 +93,11 @@ export default new Router({
         { name: 'CompanyEnroll', path: '/company/enrollment/summary', component: CompanyEnroll, props: true },
         //company statement
         { name: 'CompanyStatement', path: '/company/statement', component: CompanyStatement },
-        { name: 'CompanyAccount', path: '/company/account', component: CompanyAccount },
+        { name: 'CompanyAccount', path: '/company/account', component: CompanyAccount,
+          children: [
+            
+          ]
+        },
         // { name: 'CompanyOverview', path: '/company/overview', component: CompanyOverview },
         
       ]
