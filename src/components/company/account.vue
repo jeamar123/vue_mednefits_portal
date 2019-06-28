@@ -51,39 +51,39 @@ let account = {
       let business_contact = this.modals.company.business_contact;
       let Billing_contacts = this.modals.company.Billing_contacts;
       let Billing_address = this.modals.company.Billing_address;
+      let refund = this.modals.transactions.refund;
+      let password = this.modals.account.password;
+      let active_plans = this.modals.account.active_plans;
 
-      if( data = 'business_info'){
+      if( data == 'business_info'){
         this.modals.company.business_info = !business_info;
         console.log("ni gana", this.modals.company.business_info);
       }
-      else if( data = 'business_contact'){
+      else if( data == 'business_contact'){
         this.modals.company.business_contact = !business_contact;
         console.log("ni gana", this.modals.company.business_contact);
       }
-      else if( data = 'Billing_contacts'){
+      else if( data == 'Billing_contacts'){
         this.modals.company.Billing_contacts = !Billing_contacts;
         console.log("ni gana", this.modals.company.Billing_contacts);
       }
-      else if( data = 'Billing_address'){
+      else if( data == 'Billing_address'){
         this.modals.company.Billing_address = !Billing_address;
         console.log("ni gana", this.modals.company.Billing_address);
       }
       // end company & contacts
       // Transactions
-      let refund = this.modals.transactions.refund;
-      if (data = 'refund') {
+      else if (data == 'refund') {
         this.modals.transactions.refund = !refund;
         console.log("ni gana", this.modals.transactions.refund);
       }
       // end Transactions
       // Accounts & payment
-      let password = this.modals.account.password;
-      let active_plans = this.modals.account.active_plans;
-      if (data = 'password') {
+      else if (data == 'password') {
         this.modals.account.password = !password;
         console.log("ni gana", this.modals.account.password);
       } 
-      else if (data = 'active_plans') {
+      else if (data == 'active_plans') {
         this.modals.account.active_plans = !active_plans;
         console.log("ni gana", this.modals.account.active_plans);
       }
