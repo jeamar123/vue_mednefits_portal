@@ -35,6 +35,12 @@ import Portal from './views/Portal.vue'
   import CompanyWebInput from './views/company/enrollment/Web-input.vue'
   import CompanyExcel from './views/company/enrollment/Excel.vue'
   import CompanyEnroll from './views/company/enrollment/Enroll-summary.vue'
+  // accounts
+  import AccountCompany from './views/company/account/Company-contacts.vue'
+  import AccountTransaction from './views/company/account/Transaction.vue'
+  import AccountDocument from './views/company/account/Document-center.vue'
+  import AccountPayments from './views/company/account/Account-payments.vue'
+  import AccountBenefits from './views/company/account/Benefits-tier.vue'
 
 // CLINIC views
 
@@ -73,7 +79,7 @@ export default new Router({
       meta: { auth: true },
       children: [
         //dashboard
-        { name: 'CompanyIntro', path: '/company/intro', component: CompanyIntro },
+        { name: 'CompanyIntro', path: '/company/intro', component: CompanyIntro},
         { name: 'CompanyHome', path: '/company/dashboard', component: CompanyOverview },
         //employee
         { name: 'CompanyEmployee', path: '/company/employee/overview', component: CompanyEmployee },
@@ -93,7 +99,27 @@ export default new Router({
         { name: 'CompanyEnroll', path: '/company/enrollment/summary', component: CompanyEnroll, props: true },
         //company statement
         { name: 'CompanyStatement', path: '/company/statement', component: CompanyStatement },
-        { name: 'CompanyAccount', path: '/company/account', component: CompanyAccount },
+        { name: 'CompanyAccount', 
+          path: '/company/account',
+          component: CompanyAccount,
+          children: [
+            { 
+              name: 'AccountCompany', path: '/company/account/company-contacts', components: {account: AccountCompany}
+            },
+            { 
+              name: 'AccountTransaction', path: '/company/account/transactions', components: {account: AccountTransaction}
+            },
+            { 
+              name: 'AccountDocument', path: '/company/account/document-center', components: {account: AccountDocument} 
+            },
+            { 
+              name: 'AccountPayments', path: '/company/account/account-payments', components: {account: AccountPayments} 
+            },
+            { 
+              name: 'AccountBenefits', path: '/company/account/team-benefits-tier', components: {account: AccountBenefits}
+            },
+          ]
+        },
         // { name: 'CompanyOverview', path: '/company/overview', component: CompanyOverview },
         
       ]
