@@ -243,6 +243,10 @@
   	&.dependent-account-list-container {
   		height: 175px;
     	overflow-y: auto;
+
+    	.dependent-account-info {
+    		margin: 0 0 20px;
+    	}
   	}
   }
 

@@ -465,7 +465,7 @@
   							<div class="account-title">
   								<span>Dependent Account</span>
   							</div>
-                <div>
+                <div class="dependent-account-info">
     							<div class="account-container">
     								<label>Plan Account Type: </label>
     								<span>Lite Plan</span>
@@ -495,7 +495,7 @@
     								<span>PENDING</span>
     							</div>
                 </div>
-                <div>
+                <div class="dependent-account-info">
                   <div class="account-container">
                     <label>Plan Account Type: </label>
                     <span>Lite Plan</span>
@@ -525,7 +525,7 @@
                     <span>PAID</span>
                   </div>
                 </div>
-                <div>
+                <div class="dependent-account-info">
                   <div class="account-container">
                     <label>Plan Account Type: </label>
                     <span>Lite Plan</span>
