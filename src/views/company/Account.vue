@@ -461,38 +461,100 @@
   							</div>
   						</div>
 
-  						<div class="active-plan-wrapper">
+  						<div class="active-plan-wrapper dependent-account-list-container">
   							<div class="account-title">
   								<span>Dependent Account</span>
   							</div>
-  							<div class="account-container">
-  								<label>Plan Account Type: </label>
-  								<span>Lite Plan</span>
-  							</div>
-  							<div class="account-container">
-  								<label>Start Date: </label>
-  								<span>2019-02-28</span>
-  							</div>
-  							<div class="account-container">
-  								<label>Total Seats: </label>
-  								<span>8</span>
-  							</div>
-  							<div class="account-container">
-  								<label>Occupied Seats: </label>
-  								<span>7</span>
-  							</div>
-  							<div class="account-container">
-  								<label>Vacant Seats: </label>
-  								<span>1</span>
-  							</div>
-  							<div class="account-container">
-  								<label>Plan Amount: </label>
-  								<span>S$<span>40.00</span></span>
-  							</div>
-  							<div class="account-container">
-  								<label>Payment Status: </label>
-  								<span>PENDING</span>
-  							</div>
+                <div>
+    							<div class="account-container">
+    								<label>Plan Account Type: </label>
+    								<span>Lite Plan</span>
+    							</div>
+    							<div class="account-container">
+    								<label>Start Date: </label>
+    								<span>2019-02-28</span>
+    							</div>
+    							<div class="account-container">
+    								<label>Total Seats: </label>
+    								<span>8</span>
+    							</div>
+    							<div class="account-container">
+    								<label>Occupied Seats: </label>
+    								<span>7</span>
+    							</div>
+    							<div class="account-container">
+    								<label>Vacant Seats: </label>
+    								<span>1</span>
+    							</div>
+    							<div class="account-container">
+    								<label>Plan Amount: </label>
+    								<span>S$<span>40.00</span></span>
+    							</div>
+    							<div class="account-container">
+    								<label>Payment Status: </label>
+    								<span>PENDING</span>
+    							</div>
+                </div>
+                <div>
+                  <div class="account-container">
+                    <label>Plan Account Type: </label>
+                    <span>Lite Plan</span>
+                  </div>
+                  <div class="account-container">
+                    <label>Start Date: </label>
+                    <span>2019-03-05</span>
+                  </div>
+                  <div class="account-container">
+                    <label>Total Seats: </label>
+                    <span>10</span>
+                  </div>
+                  <div class="account-container">
+                    <label>Occupied Seats: </label>
+                    <span>0</span>
+                  </div>
+                  <div class="account-container">
+                    <label>Vacant Seats: </label>
+                    <span>10</span>
+                  </div>
+                  <div class="account-container">
+                    <label>Plan Amount: </label>
+                    <span>S$<span>0.00</span></span>
+                  </div>
+                  <div class="account-container">
+                    <label>Payment Status: </label>
+                    <span>PAID</span>
+                  </div>
+                </div>
+                <div>
+                  <div class="account-container">
+                    <label>Plan Account Type: </label>
+                    <span>Lite Plan</span>
+                  </div>
+                  <div class="account-container">
+                    <label>Start Date: </label>
+                    <span>2019-03-05</span>
+                  </div>
+                  <div class="account-container">
+                    <label>Total Seats: </label>
+                    <span>10</span>
+                  </div>
+                  <div class="account-container">
+                    <label>Occupied Seats: </label>
+                    <span>0</span>
+                  </div>
+                  <div class="account-container">
+                    <label>Vacant Seats: </label>
+                    <span>10</span>
+                  </div>
+                  <div class="account-container">
+                    <label>Plan Amount: </label>
+                    <span>S$<span>0.00</span></span>
+                  </div>
+                  <div class="account-container">
+                    <label>Payment Status: </label>
+                    <span>PAID</span>
+                  </div>
+                </div>
   						</div>
 
   						<div class="medical-wellness-account-container">
@@ -1195,11 +1257,160 @@
         <button>UPDATE</button>
       </div>
 		</Modal>
-		<Modal v-if="modals.account.active_plans">
-			<!-- <div slot="header">
-				<h4>Edit Business Information</h4>
+		<Modal v-if="modals.account.active_plans" class="active-plan-modal">
+			<div slot="header">
+				<h4>Active Plan Details</h4>
 				<img @click="companyContactsModal('active_plans')" :src="'../assets/img/icons/close.svg'">
-			</div> -->
+			</div>
+      <div slot="body">
+        <div class="transactions-container">
+          <div class="modal-title-header transactions-title-header">
+            <span>Transactions</span>
+          </div>
+          <div class="modal-body-info transactions-body-info">
+            <div class="col-1-body-info">
+              <div>
+                Plan Account: <span>Insurance Bundle</span>
+              </div>
+              <div>
+                Invoice: <span>OMC000152</span>
+              </div>
+              <div>
+                Plan Duration: <span>12 months</span>
+              </div>
+              <div>
+                Employees: <span>51</span>
+              </div>
+              <div>
+                Plan Amount: S$ <span>5,049.00</span>
+              </div>
+              <div>
+                Payment Status: <span>PAID</span>
+              </div>
+              <div>
+                Plan Duration: <span>12 months</span>
+              </div>
+            </div>
+            <div class="col-2-body-info">
+              <button class="btn-trans-dl-incove">DOWNLOAD INVOICE</button>
+              <button class="btn-trans-pending-enrollment"><span>0 </span>PENDING ENROLLMENT</button>
+              <button class="btn-trans-download-receipt">DOWNLOAD RECEIPT</button>
+            </div>
+          </div>
+        </div>
+        <div class="dependent-plans-container">
+          <div class="modal-title-header dependent-title-header">
+            <span>Dependent Plans</span>
+          </div>
+          <div class="modal-body-info dependent-body-info">
+            <div class="col-1-body-info">
+              <div>
+                Dependent Plan Account Type: <span>Lite Plan</span>
+              </div>
+              <div>
+                Active Plan Type: <span>Active Plan</span>
+              </div>
+              <div>
+                Plan Duration: <span>5 months</span>
+              </div>
+              <div>
+                Total Seats: <span>11</span>
+              </div>
+              <div>
+                Occupied Seats: <span>7</span>
+              </div>
+              <div>
+                Vacant Seats: <span>4</span>
+              </div>
+              <div>
+                Plan Amount: S$ <span>0.00</span>
+              </div>
+              <div>
+                Payment Status: <span>PENDING</span>
+              </div>
+            </div>
+            <div class="col-2-body-info">
+              <button class="btn-trans-dl-incove">DOWNLOAD INVOICE</button>
+              <button class="btn-trans-pending-enrollment"><span>4 </span>PENDING ENROLLMENT</button>
+              <!-- <button class="btn-trans-download-receipt">DOWNLOAD RECEIPT</button> -->
+            </div>
+          </div>
+        </div>
+        <div class="spending-account-container">
+          <div class="modal-title-header spending-account-title-header">
+            <span>Spending Account</span>
+          </div>
+          <div class="modal-body-info spending-account-body-info">
+            <div class="col-1-body-info">
+              <div>
+                Invoce: <span>DEP000002</span>
+              </div>
+              <div>
+                Total Credits: S$ <span>1,000.00</span>
+              </div>
+              <div>
+                (Wellness)
+              </div>
+              <div>
+                Deposit: S$ <span>50.00</span>
+              </div>
+              <div>
+                Payment Status: <span>PENDING</span>
+              </div>
+            </div>
+            <div class="col-2-body-info">
+              <button class="btn-trans-dl-incove">DOWNLOAD INVOICE</button>
+            </div>
+          </div>
+           <div class="modal-body-info spending-account-body-info">
+            <div class="col-1-body-info">
+              <div>
+                Invoce: <span>DEP000013</span>
+              </div>
+              <div>
+                Total Credits: S$ <span>1,000.00</span>
+              </div>
+              <div>
+                (Medical)
+              </div>
+              <div>
+                Deposit: S$ <span>5.00</span>
+              </div>
+              <div>
+                Payment Status: <span>PENDING</span>
+              </div>
+            </div>
+            <div class="col-2-body-info">
+              <button class="btn-trans-dl-incove">DOWNLOAD INVOICE</button>
+            </div>
+          </div>
+           <div class="modal-body-info spending-account-body-info">
+            <div class="col-1-body-info">
+              <div>
+                Invoce: <span>DEP000091</span>
+              </div>
+              <div>
+                Total Credits: S$ <span>2,808.00</span>
+              </div>
+              <div>
+                (Medical)
+              </div>
+              <div>
+                Deposit: S$ <span>70.20</span>
+              </div>
+              <div>
+                Payment Status: <span>PENDING</span>
+              </div>
+            </div>
+            <div class="col-2-body-info">
+              <button class="btn-trans-dl-incove">DOWNLOAD INVOICE</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div slot="footer">
+        <button>CLOSE</button>
+      </div>
 		</Modal>
 			<!-- End Account & Payment -->
   </div>
