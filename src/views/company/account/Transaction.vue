@@ -1,5 +1,5 @@
 <template>
-  <div class="list-info-container company-contacts-container">
+  <div class="list-info-container">
     <div class="plan-transactions">
       <h3>Plan Transactions</h3>
       <table>

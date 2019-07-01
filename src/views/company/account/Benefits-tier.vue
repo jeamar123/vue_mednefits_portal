@@ -1,5 +1,5 @@
 <template>
-  <div class="list-info-container company-contacts-container">
+  <div class="list-info-container benefits-tier-container">
     <h1>Team benefits tiers.</h1>
 
     <div v-if="true" class="tier-item-wrapper">
@@ -91,8 +91,8 @@
               <div>
                 Tier
                 <span>1</span>
-                <span>0</span>/
-                <span>2</span>
+                <br>
+                <span>0</span>/<span>2</span>
               </div>
             </label>
             <span>Edit</span>
