@@ -32,36 +32,3 @@ import planCoverage from "@/components/company/plan-coverage.vue";
 
 export default planCoverage;
 </script>
-
-	<style type="text/css">
-		.st0{fill:#FFFFFF;}
-		.st1{fill:#CDCDCC;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
-		.st2{fill:#CDCDCC;}
-		.st3{fill:#CDCDCC;stroke:#FFFFFF;stroke-miterlimit:10;}
-
-		
-
-		.center {
-			fill: #cececd;
-		}
-
-		.north {
-			fill: #33a2d4;
-		}
-
-		.south {
-			fill: #33a2d4;
-		}
-
-		.left {
-			fill: #33a2d4;
-		}
-
-		.right {
-			fill: #33a2d4;
-		}
-
-		.sg-map-container {
-			height: 340px;
-		}
-	</style>

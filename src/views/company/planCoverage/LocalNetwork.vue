@@ -264,7 +264,46 @@
           ></path>
         </svg>
       </div>
-      <div class></div>
+      <div class="clinic-details-container">
+        <div class="clinic-header-title">
+          <h5 class="clinic-details-title">
+            <span>CENTRAL</span>
+            <span class="number-with-circle">53</span>
+          </h5>
+          <select>
+            <option>All</option>
+            <option>General Practitioner</option>
+            <option>Health Screening</option>
+            <option>Dental Care</option>
+            <option>Traditional Chinese Medicine</option>
+            <option>Wellness</option>
+            <option>Health Specialist</option>
+          </select>
+        </div>
+
+        <div class="clinic-details-content">
+          <div class="clinic-partners-container">
+            <h6 class="clinic-town">Orchard</h6>
+            <h6 class="clinic-name">Lifescan Medical Centre</h6>
+            <h6 class="clinic-address">290 Orchard Road Paragon Medical #07-18 to 20 S238859</h6>
+          </div>
+          <div class="clinic-partners-container">
+            <h6 class="clinic-town">Ang Mo Kio</h6>
+            <h6 class="clinic-name">Northeast Medical Group</h6>
+            <h6 class="clinic-address">2450 AMK Ave 8, #01-02 S569811</h6>
+          </div>
+          <div class="clinic-partners-container">
+            <h6 class="clinic-town">Ang Mo Kio</h6>
+            <h6 class="clinic-name">Tan Teoh Clinic & Surgery</h6>
+            <h6 class="clinic-address">Blk 302 Ang Mo Kio Ave 3 #1-1846, S560302</h6>
+          </div>
+          <div class="clinic-partners-container">
+            <h6 class="clinic-town">Ang Mo Kio</h6>
+            <h6 class="clinic-name">Life Family Clinic</h6>
+            <h6 class="clinic-address">Blk 713 #01-4052, AMK Ave 6 S560713</h6>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -276,34 +315,45 @@ export default localNetwork;
 </script>
 
 <style type="text/css">
-		.st0{fill:#FFFFFF;}
-		.st1{fill:#CDCDCC;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
-		.st2{fill:#CDCDCC;}
-		.st3{fill:#CDCDCC;stroke:#FFFFFF;stroke-miterlimit:10;}
+.st0 {
+  fill: #ffffff;
+}
+.st1 {
+  fill: #cdcdcc;
+  stroke: #ffffff;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+}
+.st2 {
+  fill: #cdcdcc;
+}
+.st3 {
+  fill: #cdcdcc;
+  stroke: #ffffff;
+  stroke-miterlimit: 10;
+}
 
-		
+.center {
+  fill: #cececd;
+}
 
-		.center {
-			fill: #cececd;
-		}
+.north {
+  fill: #33a2d4;
+}
 
-		.north {
-			fill: #33a2d4;
-		}
+.south {
+  fill: #33a2d4;
+}
 
-		.south {
-			fill: #33a2d4;
-		}
+.left {
+  fill: #33a2d4;
+}
 
-		.left {
-			fill: #33a2d4;
-		}
+.right {
+  fill: #33a2d4;
+}
 
-		.right {
-			fill: #33a2d4;
-		}
-
-		.sg-map-container {
-			height: 340px;
-		}
-	</style>
+.sg-map-container {
+  height: 340px;
+}
+</style>
