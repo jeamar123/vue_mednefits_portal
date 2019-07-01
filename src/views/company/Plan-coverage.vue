@@ -309,7 +309,45 @@
 								</svg>
 	  					</div>
 	  					<div class="clinic-details-container">
-  						
+
+	  						<div class="clinic-header-title">
+	  							<h5 class="clinic-details-title">
+	  								<span>CENTRAL</span> <span class="number-with-circle">53</span>
+	  							</h5>
+  								<select>
+  									<option>All</option>
+  									<option>General Practitioner</option>
+  									<option>Health Screening</option>
+  									<option>Dental Care</option>
+  									<option>Traditional Chinese Medicine</option>
+  									<option>Wellness</option>
+  									<option>Health Specialist</option>
+  								</select>
+  							</div>
+
+  							<div class="clinic-details-content">
+  								<div class="clinic-partners-container">
+  									<h6 class="clinic-town">Orchard</h6>
+  									<h6 class="clinic-name">Lifescan Medical Centre</h6>
+  									<h6 class="clinic-address">290 Orchard Road Paragon Medical #07-18 to 20 S238859</h6>
+  								</div>
+  								<div class="clinic-partners-container">
+  									<h6 class="clinic-town">Ang Mo Kio</h6>
+  									<h6 class="clinic-name">Northeast Medical Group</h6>
+  									<h6 class="clinic-address">2450 AMK Ave 8, #01-02 S569811</h6>
+  								</div>
+  								<div class="clinic-partners-container">
+  									<h6 class="clinic-town">Ang Mo Kio</h6>
+  									<h6 class="clinic-name">Tan Teoh Clinic & Surgery</h6>
+  									<h6 class="clinic-address">Blk 302 Ang Mo Kio Ave 3 #1-1846, S560302</h6>
+  								</div>
+  								<div class="clinic-partners-container">
+  									<h6 class="clinic-town">Ang Mo Kio</h6>
+  									<h6 class="clinic-name">Life Family Clinic</h6>
+  									<h6 class="clinic-address">Blk 713 #01-4052, AMK Ave 6 S560713</h6>
+  								</div>
+  							</div>
+
   						</div>
   					</div>
 
