@@ -36,6 +36,8 @@ import Portal from './views/Portal.vue'
   import CompanyExcel from './views/company/enrollment/Excel.vue'
   import CompanyEnroll from './views/company/enrollment/Enroll-summary.vue'
   import CompanyPlanCoverage from './views/company/Plan-coverage.vue'
+  import PlanBenefits from './views/company/planCoverage/Benefits.vue'
+  import PlanLocalNetwork from './views/company/planCoverage/LocalNetwork.vue'
 
 // CLINIC views
 
@@ -99,7 +101,15 @@ export default new Router({
             
           ]
         },
-        { name: 'CompanyPlanCoverage', path: '/company/plan-coverage', component: CompanyPlanCoverage },
+        { name: 'CompanyPlanCoverage', 
+          path: '/company/plan', 
+          redirect: '/company/plan-coverage',
+          component: CompanyPlanCoverage,
+            children: [
+              { name: 'PlanBenefits', path: '/company/plan-coverage', components: {plan:PlanBenefits} },
+              { name: 'PlanLocalNetwork', path: '/company/local-network-partners', components: {plan:PlanLocalNetwork} },
+            ]
+        },
         // { name: 'CompanyOverview', path: '/company/overview', component: CompanyOverview },
         
       ]
