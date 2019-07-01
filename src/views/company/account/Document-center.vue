@@ -1,5 +1,5 @@
 <template>
-  <div class="list-info-container company-contacts-container">
+  <div class="list-info-container">
     <h3>Document Center</h3>
     <table>
       <thead>
