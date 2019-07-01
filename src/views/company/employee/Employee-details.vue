@@ -630,7 +630,7 @@
       </Modal>
 
       <!-- modal for settings-->
-      <Modal v-if="false" class="input-password-modal">
+      <Modal v-if="modalEdit.reset" class="input-password-modal">
         <div slot="header">
           <span>Input Password</span>
         </div>
@@ -640,8 +640,8 @@
           </div>
         </div>
         <div slot="footer">
-          <button>Cancel</button>
-          <button>Submit</button>
+          <button @click="modalEdit.reset = false">Cancel</button>
+          <button >Submit</button>
         </div>
       </Modal>
     </div>
