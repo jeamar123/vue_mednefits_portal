@@ -72,6 +72,7 @@
   				</div>
   				<div v-if="showPlanCoverageInfo.value === 1" class="list-info-container local-network-info-container">
   					<h3>Local Network Partners</h3>
+
   					<div class="local-network-container">
 	  					<div class="sg-map-wrapper">
 								<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
@@ -307,10 +308,11 @@
 										c-1,0-0.7,1.2-0.7,1.9c-0.1,1.3-0.2,2.4,1.3,3.2c3.7,1.9,7.3,4,10.9,6C1280.4,473.5,1280.3,473.7,1279.7,473.5z"/>
 								</svg>
 	  					</div>
-	  					<div class="">
-	  						
-	  					</div>
+	  					<div class="clinic-details-container">
+  						
+  						</div>
   					</div>
+
   				</div>
   			</div>
 			</div>	
@@ -323,36 +325,3 @@ import planCoverage from "@/components/company/plan-coverage.vue";
 
 export default planCoverage;
 </script>
-
-	<style type="text/css">
-		.st0{fill:#FFFFFF;}
-		.st1{fill:#CDCDCC;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
-		.st2{fill:#CDCDCC;}
-		.st3{fill:#CDCDCC;stroke:#FFFFFF;stroke-miterlimit:10;}
-
-		
-
-		.center {
-			fill: #cececd;
-		}
-
-		.north {
-			fill: #33a2d4;
-		}
-
-		.south {
-			fill: #33a2d4;
-		}
-
-		.left {
-			fill: #33a2d4;
-		}
-
-		.right {
-			fill: #33a2d4;
-		}
-
-		.sg-map-container {
-			height: 340px;
-		}
-	</style>

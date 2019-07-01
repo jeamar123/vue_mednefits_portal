@@ -72,4 +72,53 @@
 			margin: 0 auto 50px;
 		}
 	}
+
+	.local-network-container {
+		display: flex;
+
+		.sg-map-wrapper {
+			width: 66.66666667%;
+		}
+
+		.clinic-details-container {
+			width: 33.33333333%;
+		}
+	}
+
+	.sg-map-container {
+		height: 309px;
+
+		.st0{fill:#FFFFFF;}
+		.st1{fill:#CDCDCC;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
+		.st2{fill:#CDCDCC;}
+		.st3{fill:#CDCDCC;stroke:#FFFFFF;stroke-miterlimit:10;}
+
+		
+
+		.center {
+			fill: #cececd;
+		}
+
+		.north {
+			fill: #33a2d4;
+		}
+
+		.south {
+			fill: #33a2d4;
+		}
+
+		.left {
+			fill: #33a2d4;
+		}
+
+		.right {
+			fill: #33a2d4;
+		}
+	}
+
+	.clinic-details-container {
+		height: 350px;
+    border: solid 1px #ccc;
+    padding: 15px 30px;
+	}
 }
