@@ -35,6 +35,7 @@ import Portal from './views/Portal.vue'
   import CompanyWebInput from './views/company/enrollment/Web-input.vue'
   import CompanyExcel from './views/company/enrollment/Excel.vue'
   import CompanyEnroll from './views/company/enrollment/Enroll-summary.vue'
+  import CompanyPlanCoverage from './views/company/Plan-coverage.vue'
 
 // CLINIC views
 
@@ -98,6 +99,7 @@ export default new Router({
             
           ]
         },
+        { name: 'CompanyPlanCoverage', path: '/company/plan-coverage', component: CompanyPlanCoverage },
         // { name: 'CompanyOverview', path: '/company/overview', component: CompanyOverview },
         
       ]

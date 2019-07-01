@@ -43,7 +43,9 @@
               </li>
 
               <li>
-                <a>Plan Coverage</a>
+                <router-link to="/company/plan-coverage">
+                  <h4>Plan Coverage</h4>
+                </router-link>
               </li>
 
               <li>
