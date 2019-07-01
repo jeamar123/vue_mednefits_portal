@@ -10,6 +10,7 @@ let creditAllocation = {
   },
   data() {
     return {
+			showModalPassword: false,
     	emp: {
     		creditAllocSpendingType: 0,
 	    	creditAllocTransactionType: 0,

@@ -18,7 +18,8 @@ let employeeDetails = {
       modalEditEmployee: false,
       modalEdit: {
         employee: false,
-        dependent: false
+        dependent: false,
+        reset: false,
       },
       showAddDependents: false
     };
@@ -65,9 +66,13 @@ let employeeDetails = {
         customClass: "warning-global-container primary"
       }).then(result => {
         if (result.value) {
+          this.modalEdit.reset = true;
           // this.dependentState = !this.dependentState;
           // this.isState = "web";
           // show input password modal
+        }
+        else {
+          this.modalEdit.reset = false;
         }
       });
     },
