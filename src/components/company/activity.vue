@@ -28,6 +28,9 @@ let activity = {
     };
   },
   methods: {
+    showPreviewTesting () {
+      console.log(this.showPreview);
+    },
     spendType(value, text) {
       //spending either medical or wellness
       this.spendingType.value = value;
