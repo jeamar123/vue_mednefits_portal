@@ -101,24 +101,20 @@
 
 		
 
-		.center {
+		.center, .south,
+		.left, .right,
+		.north {
 			fill: #cececd;
 		}
 
-		.north {
+		.center:hover, .north:hover,
+		.south:hover, .left:hover,
+		.right:hover {
 			fill: #33a2d4;
 		}
 
-		.south {
-			fill: #33a2d4;
-		}
-
-		.left {
-			fill: #33a2d4;
-		}
-
-		.right {
-			fill: #33a2d4;
+		.active {
+			fill: #33a2d4 !important;
 		}
 	}
 

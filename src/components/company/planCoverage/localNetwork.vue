@@ -5,10 +5,15 @@ let localNetwork = {
   data() {
     return {
       sampleData: false,
+      test: false,
+      map: ''
     };
   },
   methods: {
-
+    testClicked() {
+      this.test = true;
+      console.log(this.test);
+    }
   }
 };
 
