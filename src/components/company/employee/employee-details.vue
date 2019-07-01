@@ -71,9 +71,6 @@ let employeeDetails = {
           // this.isState = "web";
           // show input password modal
         }
-        else {
-          this.modalEdit.reset = false;
-        }
       });
     },
     viewEmployeeSpendingSummary() { //health spending account summary button under person information
