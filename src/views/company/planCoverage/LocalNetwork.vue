@@ -19,7 +19,7 @@
           <g>
             <rect class="st0" width="530" height="300"></rect>
           </g>
-          <path @click="map = 'north'" :class="{'active': map === 'north'}" class="st1 north transition-easeInOutCubic-300ms" d="M478.4,182.3c0-2.1,0.2-3.9,0-5.8c-0.3-2.7,1.3-3.4,3.4-3.6c1.7-0.1,3.4,0 5.1-0.1c3.9-0.1,7.8-0.3,11.6-0.4
+          <path @click="map = 'north'" :class="{'active': map === 'north' || hoverState == 'north'}" class="st1 north transition-easeInOutCubic-300ms" d="M478.4,182.3c0-2.1,0.2-3.9,0-5.8c-0.3-2.7,1.3-3.4,3.4-3.6c1.7-0.1,3.4,0 5.1-0.1c3.9-0.1,7.8-0.3,11.6-0.4
 										c0.8,0,1.7-0.3,2.3,0.6c1.4,1.9,3.2,2.4,5.3,1.5c2.6-1.1,4.4-3,4.2-5.8c-0.3-4.7,2.1-7.6,5.2-10.4c1.4-1.3,2.8-1.5,4.2-0.1
 										c1.1,1.1,2.3,1.9,3.8,0.7c1.4-1.1,2-2.5,1.1-4.2c-0.6-1-0.4-1.8,0.6-2.3c6.4-3.8,11.2-9.4,16.5-14.5c2.8-2.7,6.4-4.1,9.5-6.3
 										c14.4-9.7,29-19.2,43.4-29c4.8-3.3,10.2-5.9,14-10.3c1.7-2,3.3-3.8,6.3-2.9c0.9,0.3,1.3-0.6,1.8-1.1c4.2-4.3,9.8-5.7,15.3-6.5
@@ -51,13 +51,13 @@
           ></path>
           <g>
             <path
-              @click="map = 'west'" :class="{'active': map === 'west'}"
+              @click="map = 'west'" :class="{'active': map === 'west'|| hoverState == 'west'}"
               class="st2 left transition-easeInOutCubic-300ms"
               d="M335.3,579.2c1.9,1.1,3.6,1.3,5.4,1.4c4,0.4,6.8,3.2,9.8,5.5c3.4,2.6,6.4,5.5,9.6,8.3c1.6,1.4,1.4,2.5-0.4,3.4
 											c-1.1,0.5-2.3,0.9-3.6,0.8c-6.4,0-12.7,0.2-19-0.5c-1.2-0.1-1.8-0.4-1.8-1.7C335.3,590.8,335.3,585.2,335.3,579.2z"
             ></path>
             <path
-              @click="map = 'west'" :class="{'active': map === 'west'}"
+              @click="map = 'west'" :class="{'active': map === 'west' || hoverState == 'west'}"
               class="st1 left transition-easeInOutCubic-300ms"
               d="M405.6,480.1c2.3,2.4,4.8,4,7.9,4.8c4.2,1.1,6.7-1.3,5.9-5.6c-0.6-2.9-1.2-5.7-2.1-8.5
 											c-0.6-1.8-1.5-3.3-2.8-4.6c-1.7-1.7-3.4-3.4-3.1-6.2c0.1-0.8-0.3-1.7-1-2c-2.4-0.7-2.8-2.9-3.5-4.7c-2.3-5.8-4.6-6.7-10.5-4.2
@@ -146,7 +146,7 @@
           </g>
           <g>
             <path
-              @click="map = 'central'" :class="{'active': map === 'central'}"
+              @click="map = 'central'" :class="{'active': map === 'central' || hoverState == 'central'}"
               class="st3 center transition-easeInOutCubic-300ms"
               d="M500.9,426.8c5.5,1.4,11.1,2.8,16.9,2.6c6.7-0.2,13.5-3.6,15.4-12.1c2.8-12.3,11.6-18.9,24.3-20.1
 											c8.2-0.7,16,0.7,23.7,3.1c5.9,1.9,8.9-0.4,8.8-6.6c0-1.5-0.3-3.1-0.6-4.6c-0.2-1.2-1-1.8-2.2-2.3c-7.3-3-14.5-6.2-21.5-9.9
@@ -186,7 +186,7 @@
             ></path>
           </g>
           <path
-            @click="map = 'south'" :class="{'active': map === 'south'}"
+            @click="map = 'south'" :class="{'active': map === 'south' || hoverState == 'south'}"
             class="st1 south transition-easeInOutCubic-300ms"
             d="M723.7,602.2c-4.2,5.4-8.3,10.6-11.9,16.2c-4,6.4-7.9,12.9-9.2,20.5c-1.7,9.1,0.3,14.7,10.1,18.6
 										c3.8,1.5,7.9,2,12,2.6c4.2,0.6,8.4,0.5,12.5,0.6c8,0.1,15.5-2,22.8-5.2c2.3-1,4.9,0.3,5,2.9c0.1,8.1,0.1,16.3,0.1,24.4
@@ -204,7 +204,7 @@
 										c13-2.6,25.8-2.1,38.6,0.9C722.4,601.6,723,601.9,723.7,602.2z"
           ></path>
           <path
-            @click="map = 'east'" :class="{'active': map === 'east'}"
+            @click="map = 'east'" :class="{'active': map === 'east' || hoverState == 'east'}"
             class="st1 right transition-easeInOutCubic-300ms"
             d="M1279.7,473.5c-3.3-1.3-6.6-2.6-9.9-4.1c-1.5-0.7-2.3-0.5-2.9,1c-4.4,10.8-8.8,21.5-13.3,32.2
 										c-0.6,1.3-0.3,2,1.2,1.9c8.7-0.7,17.4-0.2,26.2-0.9c5.1-0.4,10.2-0.1,15.3-0.2c1.7,0,1.8,1.3,1.8,2.5c0.2,5.3,0.4,10.7,0.6,16
@@ -267,25 +267,25 @@
           ></path>          
         </svg>
 
-        <div class="sg-map-text north-text">
+        <div @click="map = 'north'" @mouseover="hover('north')" @mouseleave="hover('')" class="sg-map-text north-text">
         	<span>NORTH</span>
         	<span class="circle-number">1</span>
         </div>
-        <div class="sg-map-text central-text">
+        <div @click="map = 'central'" @mouseover="hover('central')" @mouseleave="hover('')" class="sg-map-text central-text">
         	<span>CENTRAL</span>
         	<br>
         	<span class="circle-number">1</span>
         </div>
-        <div class="sg-map-text south-text">
+        <div @click="map = 'south'" @mouseover="hover('south')" @mouseleave="hover('')" class="sg-map-text south-text">
         	<span>SOUTH</span>
         	<br>
         	<span class="circle-number">1</span>
         </div>
-        <div class="sg-map-text west-text">
+        <div @click="map = 'west'" @mouseover="hover('west')" @mouseleave="hover('')" class="sg-map-text west-text">
         	<span>WEST</span>
         	<span class="circle-number">1</span>
         </div>
-        <div class="sg-map-text east-text">
+        <div @click="map = 'east'" @mouseover="hover('east')" @mouseleave="hover('')" class="sg-map-text east-text">
         	<span>EAST</span>
         	<span class="circle-number">1</span>
         </div>

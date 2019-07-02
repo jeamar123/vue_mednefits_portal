@@ -6,14 +6,21 @@ let localNetwork = {
     return {
       sampleData: false,
       test: false,
-      map: ''
+      map: '',
+      hoverState: ''
     };
   },
   methods: {
     testClicked() {
       this.test = true;
       console.log(this.test);
+    },
+    hover(data) {
+      this.hoverState = data;
     }
+  },
+  mounted() {
+    
   }
 };
 
