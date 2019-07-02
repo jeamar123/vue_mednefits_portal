@@ -264,8 +264,32 @@
 										c0.9,0.4,2.7,0.7,1.4,2.2c-1,1.3-0.9,4.4-3.9,3.1c-4-1.8-8.1-3.6-12-5.5c-1.4-0.7-2.3-0.6-3.2,0.6c-1.3,1.6-2.8,3.2-4.2,4.8
 										c-0.6,0.7-0.7,1.2,0.4,1.4c0.1,0.5,0.1,0.7-0.5,0.5c-1.1-0.2-1.5,0.5-1.7,1.4c-1.6,7.8-6,14.3-9.6,21.1c-0.8,1.5-1.3,3.5-3.8,3.6
 										c-1,0-0.7,1.2-0.7,1.9c-0.1,1.3-0.2,2.4,1.3,3.2c3.7,1.9,7.3,4,10.9,6C1280.4,473.5,1280.3,473.7,1279.7,473.5z"
-          ></path>
+          ></path>          
         </svg>
+
+        <div class="sg-map-text north-text">
+        	<span>NORTH</span>
+        	<span class="circle-number">1</span>
+        </div>
+        <div class="sg-map-text central-text">
+        	<span>CENTRAL</span>
+        	<br>
+        	<span class="circle-number">1</span>
+        </div>
+        <div class="sg-map-text south-text">
+        	<span>SOUTH</span>
+        	<br>
+        	<span class="circle-number">1</span>
+        </div>
+        <div class="sg-map-text west-text">
+        	<span>WEST</span>
+        	<span class="circle-number">1</span>
+        </div>
+        <div class="sg-map-text east-text">
+        	<span>EAST</span>
+        	<span class="circle-number">1</span>
+        </div>
+
       </div>
       <div class="clinic-details-container">
         <div class="clinic-header-title">
