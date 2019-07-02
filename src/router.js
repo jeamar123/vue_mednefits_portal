@@ -35,12 +35,16 @@ import Portal from './views/Portal.vue'
   import CompanyWebInput from './views/company/enrollment/Web-input.vue'
   import CompanyExcel from './views/company/enrollment/Excel.vue'
   import CompanyEnroll from './views/company/enrollment/Enroll-summary.vue'
-  // accounts
+// accounts
   import AccountCompany from './views/company/account/Company-contacts.vue'
   import AccountTransaction from './views/company/account/Transaction.vue'
   import AccountDocument from './views/company/account/Document-center.vue'
   import AccountPayments from './views/company/account/Account-payments.vue'
   import AccountBenefits from './views/company/account/Benefits-tier.vue'
+
+  import CompanyPlanCoverage from './views/company/Plan-coverage.vue'
+  import PlanBenefits from './views/company/planCoverage/Benefits.vue'
+  import PlanLocalNetwork from './views/company/planCoverage/LocalNetwork.vue'
 
 // CLINIC views
 
@@ -120,6 +124,15 @@ export default new Router({
               name: 'AccountBenefits', path: '/company/account/team-benefits-tier', components: {account: AccountBenefits}
             },
           ]
+        },
+        { name: 'CompanyPlanCoverage', 
+          path: '/company/plan', 
+          redirect: '/company/plan-coverage',
+          component: CompanyPlanCoverage,
+            children: [
+              { name: 'PlanBenefits', path: '/company/plan-coverage', components: {plan:PlanBenefits} },
+              { name: 'PlanLocalNetwork', path: '/company/local-network-partners', components: {plan:PlanLocalNetwork} },
+            ]
         },
         // { name: 'CompanyOverview', path: '/company/overview', component: CompanyOverview },
         
