@@ -18,7 +18,8 @@ let dashboard = {
       stepStatus : 1,
       isActive: false,
       isDropdown: false, //hide show Dropdown,
-      accountDropdown: false
+      accountDropdown: false,
+      navbarCollapse: false
     };
   },
   methods: {
@@ -62,6 +63,13 @@ let dashboard = {
         if (el !== target && !el.contains(target)) {
           this.accountDropdown = false;
         }
+      }
+    },
+    btnNavbarCollapse() {
+      if(this.navbarCollapse == false ) {
+        this.navbarCollapse = true;
+      }else {
+        this.navbarCollapse = false;
       }
     }
     // Your Methods here

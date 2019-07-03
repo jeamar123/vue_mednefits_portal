@@ -5,6 +5,7 @@
         <router-link to="/company/dashboard" exact-active-class="router-active-disable">
           <img class="top-logo" :src="'../assets/img/mednefits_logo_v3_(white).png'">
         </router-link>
+
         <div class="need-help-wrapper">
           <a href="#" class="need-help-text-container">
             <h3 class="need-help-text">Need help?</h3>
@@ -56,6 +57,48 @@
             </ul>
           </div>
         </div>
+
+        <div class="menu-bar-right">
+          <button @click="btnNavbarCollapse()" class="menu-bar-wrapper">
+            <div class="icon-bar"></div>
+            <div class="icon-bar"></div>
+            <div class="icon-bar"></div>
+          </button>
+
+          <div v-if="navbarCollapse" class="navbar-collapse">
+            <ul>
+              <li>
+                <router-link to="/company/dashboard">OVERVIEW</router-link>
+              </li>
+              <li>
+                <router-link to="/company/employee/overview">EMPLOYEE OVERVIEW</router-link>
+              </li>
+              <li>
+                <router-link to="/company/employee/credit-allocation">CREDIT ALLOCATION</router-link>
+              </li>
+              <li>
+                <router-link to="/company/activity">ACTIVITY</router-link>
+              </li>
+              <li>
+                <router-link to="/company/claim">CLAIM</router-link>
+              </li>
+              <li>
+                
+                <router-link to="/company/statement">STATEMENT</router-link>
+              </li>
+              <li>
+                <router-link to="/company/account">ACCOUNT</router-link>
+              </li>
+              <li>
+                <router-link to="/company/plan-coverage">PLAN COVERAGE</router-link>
+              </li>
+              <li>
+                <router-link to="">LOG OUT</router-link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
       </div>
 
       <div class="navbar-blue-bg">
@@ -179,7 +222,7 @@
     <div v-if="$route.name === 'CompanyIntro'" class="welcome-top-navbar-wrapper">
       <div class="top-navbar">
         <img class="top-logo" :src="'../assets/img/mednefits_logo_v3_(white).png'">
-
+        
         <div class="need-help-wrapper">
           <a href="#" class="need-help-text-container">
             <h3 class="need-help-text">Need help?</h3>
@@ -230,6 +273,7 @@
             </ul>
           </div>
         </div>
+
       </div>
 
       <div class="navbar-blue-bg">

@@ -273,3 +273,85 @@
 	}
 }
 
+@media (max-width: 1128px ) {
+	.top-navbar {
+		grid-template-columns: 11fr 1fr 1fr;
+	}
+}
+
+@media (max-width: 1050px ) {
+	.top-navbar {
+		grid-template-columns: 10fr 1fr 1fr;
+	}
+
+	.welcome-top-navbar-wrapper .top-navbar {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media (max-width: 972px ) {
+	.top-navbar {
+		grid-template-columns: 9fr 1fr 1fr;
+	}
+}
+
+@media (max-width: 893px ) {
+	.top-navbar {
+		grid-template-columns: 8fr 1fr 1fr;
+	}
+}
+
+@media (max-width: 875px ) {
+	.dashboard-navbar-container {
+		display: flex;
+	}
+
+	.welcome-container {
+		margin: 0 0 0 70px;
+	}
+}
+
+@media (max-width: 815px ) {
+	.top-navbar {
+		grid-template-columns: 6fr 1fr 1fr;
+	}
+}
+
+@media (max-width: 767px ) {
+	.top-navbar-wrapper,
+	.welcome-top-navbar-wrapper{
+		border-bottom: 1px solid #eae7e7;
+	}
+
+	.top-navbar-wrapper .need-help-wrapper,
+	.account-dropdown,
+	.navbar-blue-bg {
+		display: none;
+	}
+
+	.top-navbar {
+		grid-template-columns: 8fr 1fr;
+	}
+
+
+	.menu-bar-wrapper {
+	  display: block;
+    float: right;
+    cursor: pointer;
+  }
+
+  .top-navbar-wrapper .navbar-collapse {
+  	top: 61px;
+  }
+}
+
+@media (min-width: 768px) {
+	.navbar-collapse {
+		display: none;
+	}
+}
+
+
+
+
+
