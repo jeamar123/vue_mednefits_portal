@@ -19,7 +19,8 @@ let dashboard = {
       isActive: false,
       isDropdown: false, //hide show Dropdown,
       accountDropdown: false,
-      navbarCollapse: false
+      navbarCollapse: false,
+      hideNavbarCollapse: true
     };
   },
   methods: {
@@ -71,6 +72,9 @@ let dashboard = {
       }else {
         this.navbarCollapse = false;
       }
+    },
+    btnHideNavbarCollapse() {
+      this.navbarCollapse = false;
     }
     // Your Methods here
   },

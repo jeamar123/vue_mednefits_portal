@@ -67,32 +67,31 @@
 
           <div v-if="navbarCollapse" class="navbar-collapse">
             <ul>
-              <li>
-                <router-link to="/company/dashboard">OVERVIEW</router-link>
+              <li @click="btnHideNavbarCollapse()">
+                <router-link to="/company/dashboard" >OVERVIEW</router-link>
               </li>
-              <li>
+              <li  @click="btnHideNavbarCollapse()">
                 <router-link to="/company/employee/overview">EMPLOYEE OVERVIEW</router-link>
               </li>
-              <li>
+              <li  @click="btnHideNavbarCollapse()">
                 <router-link to="/company/employee/credit-allocation">CREDIT ALLOCATION</router-link>
               </li>
-              <li>
+              <li  @click="btnHideNavbarCollapse()">
                 <router-link to="/company/activity">ACTIVITY</router-link>
               </li>
-              <li>
+              <li  @click="btnHideNavbarCollapse()">
                 <router-link to="/company/claim">CLAIM</router-link>
               </li>
-              <li>
-                
+              <li  @click="btnHideNavbarCollapse()">
                 <router-link to="/company/statement">STATEMENT</router-link>
               </li>
-              <li>
+              <li  @click="btnHideNavbarCollapse()">
                 <router-link to="/company/account">ACCOUNT</router-link>
               </li>
-              <li>
+              <li  @click="btnHideNavbarCollapse()">
                 <router-link to="/company/plan-coverage">PLAN COVERAGE</router-link>
               </li>
-              <li>
+              <li  @click="btnHideNavbarCollapse()">
                 <router-link to="">LOG OUT</router-link>
               </li>
             </ul>
