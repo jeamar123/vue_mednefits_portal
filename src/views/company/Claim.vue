@@ -70,12 +70,12 @@
 	    				<h4>View</h4>
 
 	    				<div class="btn-view-eclaim">
-		    				<button @click="viewEclaimToggle">All <i class="fa fa-caret-down"></i></button>
+		    				<button @click="viewEclaimToggle(0,'open')">{{viewData}} <i class="fa fa-caret-down"></i></button>
 		    				<ul v-if="viewEclaim" class="dropdown-menu">
-							    <li><a>All</a></li>
-							    <li><a>Pending</a></li>
-							    <li><a>Approved</a></li>
-							    <li><a>Rejected</a></li>
+							    <li><a @click="viewEclaimToggle(1,'All')">All</a></li>
+							    <li><a @click="viewEclaimToggle(1,'Pending')">Pending</a></li>
+							    <li><a @click="viewEclaimToggle(1,'Approved')">Approved</a></li>
+							    <li><a @click="viewEclaimToggle(1,'Rejected')">Rejected</a></li>
 							  </ul>
 						  </div>
 	    			</div>

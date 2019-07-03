@@ -15,6 +15,7 @@ let claim = {
     		value: 0,
         text: ""
       },
+      viewData : 'All',
       viewEclaim: false,
       test : [
         {
@@ -40,14 +41,31 @@ let claim = {
     toggleDetails(data) {
         data.showTransDetails = !data.showTransDetails;
     },
-    viewEclaimToggle() {
+    viewEclaimToggle(opt, data) {
       console.log('Toggle');
 
     
-      if ( this.viewEclaim == false ) {
-        this.viewEclaim = true;
-      } else {
-        this.viewEclaim = false;
+      if ( opt == 0 ) { //open dropdown
+        if( data == 'open')
+          this.viewEclaim = !this.viewEclaim;
+      }
+      else if( opt == 1) { // select item from dropdown
+        if(data == 'All'){
+          this.viewData = data;
+          this.viewEclaim = false;
+        } 
+        else if (data == 'Pending') {
+          this.viewData = data;
+          this.viewEclaim = false;
+        }
+        else if (data == 'Approved') {
+          this.viewData = data;
+          this.viewEclaim = false;
+        }
+        else if (data == 'Rejected') {
+          this.viewData = data;
+          this.viewEclaim = false;
+        }
       }
       
     }
