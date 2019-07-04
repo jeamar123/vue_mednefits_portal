@@ -57,7 +57,7 @@
 											c-1.1,0.5-2.3,0.9-3.6,0.8c-6.4,0-12.7,0.2-19-0.5c-1.2-0.1-1.8-0.4-1.8-1.7C335.3,590.8,335.3,585.2,335.3,579.2z"
             ></path>
             <path
-              @click="map = 'west'" :class="{'active': map === 'west' || hoverState == 'west'}"
+              @click="map = 'west'" @mouseover="hover('west')" @mouseleave="hover('')" :class="{'active': map === 'west' || hoverState == 'west'}"
               class="st1 left transition-easeInOutCubic-300ms"
               d="M405.6,480.1c2.3,2.4,4.8,4,7.9,4.8c4.2,1.1,6.7-1.3,5.9-5.6c-0.6-2.9-1.2-5.7-2.1-8.5
 											c-0.6-1.8-1.5-3.3-2.8-4.6c-1.7-1.7-3.4-3.4-3.1-6.2c0.1-0.8-0.3-1.7-1-2c-2.4-0.7-2.8-2.9-3.5-4.7c-2.3-5.8-4.6-6.7-10.5-4.2
