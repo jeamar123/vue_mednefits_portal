@@ -43,6 +43,8 @@
 		width: 700px;
 		text-align: center;
 		padding: 10px 10px 0 10px;
+		display: flex;
+		justify-content: center;
 
 		button {
 			background-color: transparent;
@@ -52,11 +54,11 @@
 			border: solid 2px #ccc;
 			border-radius: 8px;
 
-			&:nth-child(1) {
+			&.btn-excel-import {
 				margin-right: 12px;
 			}
 
-			&:nth-child(2) {
+			&.btn-web-input {
 				margin-left: 12px;
 			}
 		}
@@ -80,21 +82,20 @@
 		}
 	}
 
-	.pick-enrollment-text {
-		width: 460px;
-		display: flex;
-		margin: 0 auto;
+	.below-text {
+		font-weight: 700;
+		line-height: 1.4;
+	  text-align: left;
 
-		.enrollment-method-box-text {
-			padding: 20px 0px;
-			flex: 1;
+		&.excel-below-text {
+	    width: 92%;
+	    padding: 20px 0px 20px 7px;
 		}
 
-		.download-below-text {
-			font-weight: 700;
-			width: 78%;
-			margin: 0 auto;
-			line-height: 1.4
+		&.web-below-text {
+	    width: 98%;
+	    padding: 20px 0px 20px 20px;
+	    transform: translateX(5px);
 		}
 	}
 
@@ -1060,7 +1061,8 @@
 
 .prev-next-button-container {	
 	position: fixed;
-	z-index: 2;
+	/*z-index: 2;*/
+	z-index: 1;
 	bottom: 0;
 	width: 100%;
 	height: auto;
@@ -1224,5 +1226,197 @@
 		border: solid 1px #0392cf;
 		background-color: #0392cf;
 		color: #fff;
+	}
+}
+
+@media (max-width: 1200px) {
+	.employee-details-header {
+		.add-dependent-btn {
+			right: 50px;
+		}
+	}
+}
+
+@media (max-width: 992px) {
+	.employee-details-header {
+		h4 {
+			display: none;
+		}
+	}
+}
+
+@media (min-width: 851px) {
+	.tier-summary-wrapper {
+		.add-tier-wrapper {
+			display: block;
+		}
+
+		.add-tier-btn-container {
+			display: none;
+		}
+	}
+}
+
+@media (max-width: 850px) {
+	.tier-summary-wrapper .add-tier-wrapper {
+		display: none;
+	}
+
+	.tier-summary-wrapper .add-tier-btn-container {
+		display: block;
+		text-align: center;
+		margin: 50px 0 0;
+
+		button {
+			background-color: #0392cf;
+	    color: #fff;
+	    font-weight: 700;
+	    border: 0;
+	    border-radius: 4px;
+	    padding: 8px 15px;
+		}
+	}
+}
+
+@media (min-width: 782px) {
+	.prev-next-button-container {
+
+
+		.back-btn .icon {
+			display: none;
+		}
+	}
+}
+
+@media (max-width: 782px) {
+	.prev-next-button-container {
+		.button-container {
+			width: 100%;
+		}
+
+		.back-btn .icon {
+			display: block;
+		}
+
+		.back-btn .text {
+			display: none;
+		}
+	}
+}
+
+
+@media (max-width: 767px) {
+	.benefits-tier-wrapper {
+		padding: 100px 0 100px;
+	}
+
+	.enrollment-wrapper {
+		padding-top: 100px;
+
+		.pick-enrollment-method {
+			width: 100%;
+		}
+	}
+
+	.summary-right-container {
+		top: 28%;
+	}
+
+	.employee-details-wrapper form, 
+	.dependent-details-wrapper form,
+	.dependent-details-btn {
+		width: 100%;
+	}
+}
+
+
+@media (max-width: 600px) {
+	.enroll-option-wrapper {
+		padding: 120px 40px 0 40px;
+
+		>h1 {
+			font-size: 22px;
+		}
+	}
+
+	.employee-details-header{
+		h1 {
+			margin: 20px 0 20px;
+		}
+		.add-dependent-btn {
+			position: relative;
+			right: 0;
+			text-align: center;
+			margin: 0 0 20px;
+		}
+	}
+}
+
+@media (max-width: 490px) {
+
+	.enrollment-wrapper {
+		.below-text.excel-below-text,
+		.below-text.web-below-text {
+			transform: translateX(0px);
+			width: 100%;
+    	padding: 20px 0px 20px 7px;
+		}
+	}
+	 
+	.enrollment-wrapper .pick-enrollment-method {
+		display: grid;
+
+		button {
+			width: 200px;
+    	padding: 45px 20px 40px;
+		}
+
+		button.btn-web-input,
+		button.btn-excel-import {
+			margin-right: 0;
+			margin-left: 0;
+		}
+
+		img {
+			height: 80px;
+		}
+
+		h4 {
+			font-size: 16px;
+		}
+	}
+}
+
+
+@media (max-width: 400px) {
+	.benefits-tier-wrapper {
+		padding: 100px 30px 100px;
+
+		>h1 {
+			margin: 17px 0 30px;
+		}
+
+		h4 {
+			font-size: 16px;
+		}
+	}
+
+	.tier-item-wrapper {
+		width: 100%;
+	}
+
+	.tier-summary-wrapper {
+		.summary-details-wrapper {
+			width: 100%;
+		}
+	}
+}
+
+@media (max-width: 380px) {
+	.tier-item-body {
+		.gp-toggle label {
+			width: 95px;
+			line-height: 1.4;
+		}
 	}
 }

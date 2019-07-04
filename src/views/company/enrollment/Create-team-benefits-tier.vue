@@ -140,6 +140,10 @@
 		  		</div> -->
 		  	</div>
 
+		  	<div class="add-tier-btn-container">
+		  		<button @click="addTierBtn()">Add a tier</button>
+		  	</div>
+
 		  	<div class="add-tier-wrapper">
 			  	<h4>Add a tier</h4>
 			  	<button @click="addTierBtn()"><img :src="'../assets/img/plus-gray.png'"></button>
