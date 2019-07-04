@@ -157,6 +157,16 @@
 
 }
 
+@media (max-width: 767px) {
+  .welcome-body-container {
+    padding-top: 120px;
+
+    .welcome-img-container img {
+      height: 180px;
+    }
+  }
+}
+
 
 @media (max-width: 768px) {
   .welcome-body-container {

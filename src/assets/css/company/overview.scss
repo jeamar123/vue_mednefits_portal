@@ -7,15 +7,29 @@
   	margin: 0 70px;
   	display: grid;
   	grid-template-columns: 66.5% 33%;
+
+
+    .column-2 {
+      grid-row: span 2;
+      grid-column: 2;
+      padding: 0 15px;
+    }
+
+    .row-3 {
+      grid-row: 2;
+      grid-column: 1;
+    }
   }
-  .column-1, 
-  .column-2 {
-  	padding: 0 15px;
+  .mednefits-blue-box, 
+  .row-3 {
+  	margin: 0 15px;
   }
   .mednefits-blue-box {
   	background-color: #15628d;
   	text-align: center;
   	color: #fff;
+    grid-row: 1;
+    grid-column: 1;
   }
   .mednefits-body-box {
   	padding: 15px;
