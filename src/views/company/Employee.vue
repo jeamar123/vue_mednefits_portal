@@ -11,15 +11,15 @@
         	</div>
         	<div class="overview-menu">
         		<div class="overview-input-wrapper">
-        			<input type="text" placeholder="Search for a member">
+        			<input type="text" placeholder="Search member">
         			<img class="magnifying-img" :src="'../assets/img/icons/magnifying-glass.png'">
         		</div>
         		<button class="btn-export-members">
         			<img class="download-img" :src="'../assets/img/coverage/Download.png'">
-        			Export members details
+        			<span class="export-text">Export </span> <span class="members-text">members details</span> 
         		</button>
         		<button class="btn-enroll-employees">
-        			Enroll employees
+        			Enroll <span>employees</span> 
         		</button>
         	</div>
         </div>

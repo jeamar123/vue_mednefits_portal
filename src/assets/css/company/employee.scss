@@ -1354,10 +1354,244 @@
 			margin-right: 10px;
 			border-color: #ccc;
 		}
-		button:nth-child(2) {
-			
-		}
 	}
 }
 
 
+/*----------- START RESPONSIVE -----------*/
+@media (max-height: 1080px) {
+	.overview-wrapper {
+		table {
+			tbody {
+				height: 455px;
+			}
+		}
+	}
+}
+
+@media (max-width: 1268px) {
+	.overview-wrapper {
+		width: 100%;
+		.employee-overview-table{
+			overflow: scroll;
+
+			table {
+				width: 1268px;
+			}
+		}
+	}
+
+	.employee-overview-table{
+
+		&::-webkit-scrollbar {
+			height: 2px;
+		}
+		&::-webkit-scrollbar-thumb {
+			background-color: #0ae;
+		}
+	}
+
+	.overview-wrapper {
+		table {
+			tbody {
+				height: 430px;
+			}
+		}
+	}
+}
+
+@media (max-width: 1016px) {
+	.overview-wrapper {
+		table {
+			tbody {
+				height: 403px;
+			}
+		}
+	}
+}
+
+@media (max-width: 931px) {
+	.overview-wrapper {
+		.employee-overview-header {
+			button {
+			margin-bottom: 10px;
+			}	
+		}
+	}
+}
+
+@media (max-width: 715px) {
+	.btn-export-members {
+		span:last-child{
+			display: none;
+		}
+	}
+}
+
+@media (max-width: 610px) {
+	.overview-wrapper {
+		.employee-overview-header{
+			.overview-input-wrapper {
+				input {
+					width: 175px;
+					margin-left: 15px;
+				}	
+			}
+		}
+	}
+}
+
+@media (max-width: 594px) {
+	.overview-title {
+		width: 108.75px;
+	}
+}
+
+@media (max-width: 568px) {
+	.overview-wrapper {
+		padding: 70px 50px 49px 50px;
+		
+		.employee-overview-header{
+			.overview-input-wrapper {
+				input {
+					width: 257px;
+					margin-bottom: 10px;
+				}	
+			}
+		}
+	}
+
+	.overview-wrapper {
+		.employee-overview-table {
+			margin-left: 0;
+		}
+	}
+}
+
+@media (max-width: 534px) {
+	.overview-wrapper {
+		padding: 70px 30px 49px 30px;
+	}
+}
+
+@media (max-width: 455px) {
+	.overview-wrapper {
+		padding: 70px 30px 49px 30px;
+
+		.employee-overview-header{
+			.overview-input-wrapper {
+				input {
+					width: 198px;
+					margin-bottom: 10px;
+				}	
+			}
+		}
+	}
+
+	button.btn-enroll-employees {
+		span{
+			display: none;
+		}
+	}
+}
+
+@media (max-width: 404px){
+	.overview-wrapper {
+		table {
+			tbody {
+				height: 384px;
+			}
+		}
+	}
+}
+
+@media (max-width: 390px){
+	.overview-wrapper {
+		padding: 70px 15px 49px 15px;
+
+		.employee-overview-header{
+			.overview-input-wrapper {
+				input {
+					width: 187px;
+					margin-bottom: 10px;
+				}	
+			}
+		}
+	}
+	
+	.overview-wrapper .employee-overview-header .btn-enroll-employees {
+		padding: 6px 25px;
+	}
+}
+
+@media (max-width: 355px) {
+	.overview-wrapper {
+		table {
+			tbody {
+				height: 378px;
+			}
+		}
+	}
+}
+
+@media (max-width: 350px) {
+	.overview-wrapper {
+		.employee-overview-header{
+			.overview-input-wrapper {
+				input {
+					width: 167px;
+					margin-bottom: 10px;
+				}	
+			}
+		}
+	}
+
+	.overview-wrapper .employee-overview-header .btn-export-members {
+			background-color: transparent;
+			border: 2px solid #d8d8d8;
+			padding: 6px 15px;
+	}
+
+	.overview-wrapper .employee-overview-header .btn-enroll-employees {
+		padding: 6px 18px;
+	}
+
+	// .overview-wrapper {
+	// 	.employee-overview-header{
+	// 		.download-img {
+	// 			margin-right: 0;
+	// 		}
+	// 	}
+	// }
+
+	// .btn-export-members {
+	// 	span{
+	// 		display: none;
+	// 	}
+	// }
+}
+
+@media (min-width: 320px){
+
+
+	.overview-wrapper .employee-overview-header .overview-input-wrapper input {
+		width: 167px;
+    margin-left: 0px;
+	}
+	.overview-wrapper .employee-overview-header .btn-enroll-employees {
+		padding: 6px 18px;
+	}
+
+	.overview-wrapper .employee-overview-header .btn-export-members {
+			background-color: transparent;
+			border: 2px solid #d8d8d8;
+			padding: 6px 15px;
+	}
+}
+
+// for table body height
+@media (max-width: 1024px) and (max-height: 1366px) {
+	.overview-wrapper table tbody {
+    height: 480px;
+	}
+}
