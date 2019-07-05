@@ -742,8 +742,6 @@
 	    font-size: 12px;
 	    float: right;
 	    display: none;
-
-	    &:hover {}
 		}
 		tbody tr {
 			color: #888;
@@ -1211,7 +1209,7 @@
 	
 	button {
 		display: inline-block;
-		float: inherit;
+		// float: inherit;
 		background-color: transparent;
 		line-height: 24px;
 		border-radius: 4px;
