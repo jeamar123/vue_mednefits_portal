@@ -1105,6 +1105,7 @@
 
 	.back-btn {
 		border: 2px solid #d6d6d6;
+		margin: 0 20px 0 0;
 	}
 	
 	.delete-btn {
@@ -1278,28 +1279,10 @@
 	}
 }
 
-@media (min-width: 782px) {
-	.prev-next-button-container {
-
-
-		.back-btn .icon {
-			display: none;
-		}
-	}
-}
-
 @media (max-width: 782px) {
 	.prev-next-button-container {
 		.button-container {
 			width: 100%;
-		}
-
-		.back-btn .icon {
-			display: block;
-		}
-
-		.back-btn .text {
-			display: none;
 		}
 	}
 }
@@ -1329,6 +1312,42 @@
 	}
 }
 
+/*----------- MOBILE DEVICE -----------*/
+
+@media (min-width: 750px) {
+	.btn-employee .text-employee {
+		display: inline-block;
+	}
+}
+
+@media (max-width: 750px) {
+	.prev-next-button-container {
+		.back-btn {
+			font-size: 10px;
+		}
+
+		.next-btn {
+			font-size: 10px;
+		}
+
+		.btn-employee {
+			font-size: 10px;
+			width: 155px;
+		}
+
+		.btn-employee .text-employee {
+			display: none;
+		}
+	}
+}
+
+@media (max-width: 633px) {
+	.prev-next-button-container {
+		.btn-employee {
+			width: 120px;
+		}
+	}
+}
 
 @media (max-width: 600px) {
 	.enroll-option-wrapper {
@@ -1348,6 +1367,15 @@
 			right: 0;
 			text-align: center;
 			margin: 0 0 20px;
+		}
+	}
+}
+
+@media (max-width: 564px) {
+	.prev-next-button-container {
+		.back-btn,
+		.next-btn {
+			padding: 11px 20px;
 		}
 	}
 }
@@ -1383,6 +1411,36 @@
 
 		h4 {
 			font-size: 16px;
+		}
+	}
+}
+
+@media (max-width: 487px) {
+	.prev-next-button-container {
+		.btn-employee {
+			width: 100px;
+		}
+	}
+}
+
+@media (max-width: 447px) {
+	.prev-next-button-container {
+		.back-btn {
+			margin-right: 5px;
+			padding: 11px 17px;
+		}
+
+		.btn-employee:nth-child(2) {
+			width: 58px;
+		}
+
+		.next-btn {
+			padding: 11px 12px;
+		}
+
+		.btn-employee {
+			width: 80px;
+			margin-right: 5px;
 		}
 	}
 }
