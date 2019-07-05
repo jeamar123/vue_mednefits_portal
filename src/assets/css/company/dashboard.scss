@@ -318,6 +318,13 @@
 }
 
 @media (max-width: 767px ) {
+	.welcome-container {
+		.web-input-title {
+			font-size: 15px;
+			margin: 12px 0;
+		}
+	}
+
 	.top-navbar-wrapper,
 	.welcome-top-navbar-wrapper{
 		border-bottom: 1px solid #eae7e7;
@@ -325,7 +332,7 @@
 
 	.top-navbar-wrapper .need-help-wrapper,
 	.account-dropdown,
-	.navbar-blue-bg {
+	.main-navigation {
 		display: none;
 	}
 
@@ -348,6 +355,39 @@
 @media (min-width: 768px) {
 	.navbar-collapse {
 		display: none;
+	}
+}
+
+@media (max-width: 400px) {
+	.enrollment-navbar-container {
+		width: 100%;
+
+		.excel-import-title {
+			position: relative;
+	    text-align: center;
+	    margin: 10px auto 0;
+	    font-size: 18px;
+	    width: 100%;
+		}
+	}
+
+	.template-menu-accordion {
+		padding: 10px 0 5px;
+
+		.menu-accordion-list {
+			margin: 0 12px auto;
+		}
+
+		.number {
+			height: 20px;
+			width: 20px;
+			font-size: 9px;
+		}
+
+		.menu-accordion-label {
+			font-size: 14px;
+			margin-top: 0px;
+		}
 	}
 }
 

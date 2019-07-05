@@ -500,6 +500,7 @@
 
 		.btn-cancel {
 			width: 110px;
+			margin-right: 10px;
 		}
 
 		.btn-add {
@@ -1110,7 +1111,6 @@
 	
 	.delete-btn {
 		text-transform: inherit;
-		margin-left: 20px;
 		color: #fff;
 		background-color: #ff6262;
 		padding: 11px 39px;
@@ -1305,10 +1305,18 @@
 		top: 28%;
 	}
 
-	.employee-details-wrapper form, 
+	.employee-details-wrapper form,
 	.dependent-details-wrapper form,
 	.dependent-details-btn {
 		width: 100%;
+	}
+
+	.dependent-details-btn {
+		.btn-cancel,
+		.btn-add,
+		.btn-save-continue {
+			font-size: 14px;
+		}
 	}
 }
 
@@ -1322,11 +1330,16 @@
 
 @media (max-width: 750px) {
 	.prev-next-button-container {
-		.back-btn {
+		.back-btn,
+		.next-btn {
+			font-size: 12px;
+		}
+
+		.btn-back-web {
 			font-size: 10px;
 		}
 
-		.next-btn {
+		.btn-enroll-web {
 			font-size: 10px;
 		}
 
@@ -1373,8 +1386,8 @@
 
 @media (max-width: 564px) {
 	.prev-next-button-container {
-		.back-btn,
-		.next-btn {
+		.btn-back-web,
+		.btn-enroll-web {
 			padding: 11px 20px;
 		}
 	}
@@ -1421,11 +1434,27 @@
 			width: 100px;
 		}
 	}
+
+	.dependent-details-btn {
+		.btn-cancel,
+		.btn-add,
+		.btn-save-continue {
+			font-size: 12px;
+		}
+
+		.btn-cancel {
+			width: 90px;
+		}
+
+		.btn-save-continue {
+			width: 130px;
+		}
+	}
 }
 
 @media (max-width: 447px) {
 	.prev-next-button-container {
-		.back-btn {
+		.btn-back-web {
 			margin-right: 5px;
 			padding: 11px 17px;
 		}
@@ -1434,7 +1463,7 @@
 			width: 58px;
 		}
 
-		.next-btn {
+		.btn-enroll-web {
 			padding: 11px 12px;
 		}
 
@@ -1468,6 +1497,34 @@
 			width: 100%;
 		}
 	}
+
+	.employee-input-container {
+		display: block;
+
+		.employee-input-wrapper:nth-child(2) {
+			margin-left: 0;
+		}
+	}
+
+	.dependent-details-btn {
+		.btn-cancel,
+		.btn-add,
+		.btn-save-continue {
+			font-size: 10px;
+		}
+
+		.btn-cancel,
+		.btn-add {
+			width: 70px;
+			margin-right: 5px;
+		}
+
+		.btn-save-continue {
+			width: 107px;
+		}
+	}
+
+
 }
 
 @media (max-width: 380px) {
@@ -1475,6 +1532,14 @@
 		.gp-toggle label {
 			width: 95px;
 			line-height: 1.4;
+		}
+	}
+}
+
+@media (max-width: 320px) {
+	.prev-next-button-container {
+		.btn-next-emp {
+			transition: none;
 		}
 	}
 }
