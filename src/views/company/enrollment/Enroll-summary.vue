@@ -169,7 +169,7 @@
               <span class="pending-enroll-text">
                 <span>7</span> PENDING TO ENROLL
               </span>
-              <button class="btn-enroll" @click="enroll('successEnroll')">
+              <button class="next-btn btn-enroll" @click="enroll('successEnroll')">
                 ENROLL
                 <span class="enroll-badge">4</span>
               </button>
