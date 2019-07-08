@@ -1314,6 +1314,11 @@
 		.pick-enrollment-method {
 			width: 100%;
 		}
+
+		.enrollment-method-title {
+			font-size: 20px;
+    	margin: 20px 0 10px;
+		}
 	}
 
 	.summary-right-container {
@@ -1334,6 +1339,11 @@
 		}
 	}
 
+	.download-template-wrapper h1 {
+		margin: 10px 0 0;
+		font-size: 23px;
+	}
+
 	.review-with-dependents h1 {
 		margin: 40px 0 25px;
 		font-size: 20px;
@@ -1343,11 +1353,9 @@
 		font-size: 14px;
 	}
 
-	.excel-import-wrapper {
-		padding-top: 70px;
-	}
 
 	.upload-file-wrapper {
+		padding: 70px 15px 0;
 		h1 {
 			font-size: 20px;
 		}
@@ -1564,7 +1572,7 @@
 		display: grid;
 
 		button {
-			width: 200px;
+			width: 180px;
     	padding: 45px 20px 40px;
 		}
 
@@ -1575,10 +1583,11 @@
 		}
 
 		img {
-			height: 80px;
+			height: 65px;
 		}
 
 		h4 {
+			margin: 20px 0 0 0;
 			font-size: 16px;
 		}
 	}
@@ -1704,7 +1713,7 @@
 	}
 }
 
-@media (max-width: 385px) {
+@media (max-width: 388px) {
 	.download-template-btn {
 		button:nth-child(1),
 		button:nth-child(2) {
