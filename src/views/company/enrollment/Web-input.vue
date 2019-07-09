@@ -16,7 +16,7 @@
             <div class="employee-details-header">
               <h1>Employee Details</h1>
               <div class="add-dependent-btn">
-                <h4>Add a Dependent?</h4>
+                <h4 class="add-dependent-title-header">Add a Dependent?</h4>
                 <button @click="addDependent">
                   <img :src="'../assets/img/icons/add-employee.svg'"> Add
                 </button>

@@ -289,6 +289,28 @@
 	}
 }
 
+@media (max-width: 992px) {
+	.welcome-container .excel-import-title {
+		font-size: 18px;
+	}
+
+	.template-menu-accordion {
+		.menu-accordion-list {
+			margin: 0px 30px auto;
+		}
+
+		.number {
+			font-size: 10px;
+	    height: 24px;
+	    width: 24px;
+		}
+
+		.menu-accordion-label {
+			font-size: 14px;
+		}
+	}
+}
+
 @media (max-width: 972px ) {
 	.top-navbar {
 		grid-template-columns: 9fr 1fr 1fr;
@@ -348,7 +370,8 @@
   }
 
   .top-navbar-wrapper .navbar-collapse {
-  	top: 61px;
+  	top: 60px;
+  	z-index: 2;
   }
 }
 
@@ -358,7 +381,7 @@
 	}
 }
 
-@media (max-width: 400px) {
+@media (max-width: 767px) {
 	.enrollment-navbar-container {
 		width: 100%;
 
@@ -374,6 +397,20 @@
 	.template-menu-accordion {
 		padding: 10px 0 5px;
 
+		.menu-accordion-list {
+			margin: 0 25px auto;
+		}
+
+		.menu-accordion-label {
+			margin-top: 0;
+		}
+	}
+}
+
+@media (max-width: 400px) {
+	
+	.template-menu-accordion {
+		
 		.menu-accordion-list {
 			margin: 0 12px auto;
 		}

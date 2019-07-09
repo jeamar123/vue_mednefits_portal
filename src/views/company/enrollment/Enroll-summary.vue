@@ -157,10 +157,13 @@
       </div>
 
       <div class="prev-next-button-container">
+        <span v-if="isState === 'enrollsum'" class="responsive-enroll-text pending-enroll-text">
+          <span>7</span> PENDING TO ENROLL
+        </span>
         <div class="button-container">
-          <button v-if="isState === 'enrollsum'" @click="back" class="back-btn">Back</button>
+          <button v-if="isState === 'enrollsum'" @click="back" class="summary-back-btn back-btn">Back</button>
           <router-link to="/company/dashboard">
-            <button v-if="isState == 'successEnroll'" class="back-btn">BACK TO HOME</button>
+            <button v-if="isState == 'successEnroll'" class="back-home-btn back-btn">BACK TO HOME</button>
           </router-link>
           <button v-if="isChecked.length !=0" class="delete-btn" @click="remove('fromCheck')">Delete</button>
 
@@ -169,7 +172,7 @@
               <span class="pending-enroll-text">
                 <span>7</span> PENDING TO ENROLL
               </span>
-              <button class="next-btn btn-enroll" @click="enroll('successEnroll')">
+              <button class="summary-enroll-btn next-btn btn-enroll" @click="enroll('successEnroll')">
                 ENROLL
                 <span class="enroll-badge">4</span>
               </button>
