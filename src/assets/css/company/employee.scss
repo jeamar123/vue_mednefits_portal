@@ -326,7 +326,7 @@
 
 	.employee-information-container {
     display: grid;
-    grid-template-columns: 1fr 3.5fr;
+		grid-template-columns: 1fr 3.5fr;
 	}		
   .person-information {
   	background-color: #f9f9f9;
@@ -337,12 +337,21 @@
 
     strong {
 	  	font-family: 'Helvetica Medium';
-	  }
+		}
   }
   .person-image-name-info {
+		position: relative;
   	text-align: center;
   	border-bottom: 1px solid #cbcbcb;
-  	padding-top: 40px;
+		padding-top: 40px;
+		
+		.close {
+			position: absolute;
+			top: 10px;
+			right: 18px;
+			font-size: 20px;
+			cursor: pointer;
+		}
 
   	img {
   		height: 85px;
@@ -497,7 +506,7 @@
     border-top: 1px solid #cbcbcb;
     border-bottom: 1px solid #cbcbcb;
     margin-top: 20px;
-    padding: 10px 0 0 40px;
+    padding: 10px 40px 0 40px;
     font-size: 16px;
     line-height: 24px;
 
@@ -514,7 +523,17 @@
     		border-bottom: 2px solid #283e52;
 		    padding-bottom: 10px;
 		    color: #283e52;
-    	}
+			}
+			
+			&.user-info {
+				display: none;
+				padding-bottom: 10px;
+				color: #283e52;
+				
+				.fa {
+					font-size: 15px;
+				}
+			}
     }
 	}
 	.employee-information,
@@ -1392,6 +1411,21 @@
 	}
 }
 
+@media (max-width: 1170px) {
+	.person-information {
+		min-width: 320px;
+		// display: none;
+	}
+}
+
+@media (max-width: 960px) {
+	.overview-info-wrapper {
+		.employee-info-details {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
 @media (max-width: 931px) {
 	.overview-wrapper {
 		.employee-overview-header {
@@ -1401,11 +1435,73 @@
 		}
 	}
 }
+@media (max-width: 767px){
+	.overview-info-wrapper {
+		padding-top: 61px;
+	}
+
+	.overview-info-wrapper {
+		.employee-prev-next-button{ 
+			.employee-btn-back{
+				margin-right: 5px;
+			}
+		}
+	}
+
+	.overview-info-wrapper{ 
+		.employee-info-selection {
+			.employee-selection {
+				&.user-info {
+					display: unset;
+				}
+			}
+		}
+	}
+
+	.overview-info-wrapper { 
+		.employee-information-container {
+			grid-template-columns: 1fr 100%;
+		}
+	}
+
+	.person-info-wrapper {
+		overflow: hidden;
+	}
+
+	.employee-information-wrapper {
+		position: relative;
+    left: -320px;
+	}
+
+	.person-information {
+		position: relative;
+    left: -320px;
+		min-width: 320px;
+		// display: none;
+	}
+}
+
+@media (max-width: 718px) {
+	.overview-info-wrapper {
+		.employee-prev-next-button{ 
+			padding: 10px 25px;
+			font-size: 10px;
+		}
+	}
+}
 
 @media (max-width: 715px) {
 	.btn-export-members {
 		span:last-child{
 			display: none;
+		}
+	}
+}
+
+@media (max-width: 629px){
+	.overview-info-wrapper .employee-prev-next-button {
+		.employee-btn-prev, .employee-btn-next {
+			width: 120px;
 		}
 	}
 }
@@ -1450,9 +1546,40 @@
 	}
 }
 
+@media (max-width: 555px) {
+	.overview-info-wrapper {
+		.dependent-btn-container {
+			position: relative;
+			float: unset;
+			top: 35px;
+			left: -10px;
+		}
+	}
+}
+
 @media (max-width: 534px) {
 	.overview-wrapper {
 		padding: 70px 30px 49px 30px;
+	}
+}
+
+@media (max-width: 529px){
+	.overview-info-wrapper .employee-prev-next-button {
+		.employee-btn-back {
+			span {
+				display: none;
+			}
+		}
+	}
+}
+
+@media (max-width: 490px) {
+	.overview-info-wrapper {
+		.employee-info-selection {
+			.employee-selection {
+				margin-right: 20px;
+			}
+		}
 	}
 }
 
@@ -1477,6 +1604,34 @@
 	}
 }
 
+@media (max-width: 414px) {
+	.overview-info-wrapper {
+		.employee-info-selection {
+			.employee-selection {
+				margin-right: 15px;
+			}
+		}
+	}
+
+	.overview-info-wrapper {
+		.dependent-btn-container {
+			margin-bottom: 70px;
+
+			button {
+				position: relative;
+			}
+		}
+	}
+}
+
+@media (max-width: 407px){
+	.overview-info-wrapper .employee-prev-next-button {
+		.employee-btn-prev, .employee-btn-next {
+			width: 100px;
+		}
+	}
+}
+
 @media (max-width: 390px){
 	.overview-wrapper {
 		padding: 70px 15px 49px 15px;
@@ -1493,6 +1648,32 @@
 	
 	.overview-wrapper .employee-overview-header .btn-enroll-employees {
 		padding: 6px 25px;
+	}
+}
+
+@media (max-width: 385px) {
+	.overview-info-wrapper {
+		.employee-btn-add-seat-wrapper {
+			h3{
+				width: 50%;
+				font-weight: 700;
+				font-size: 22px;
+			}
+		}
+	}
+}
+
+@media (max-width: 367px) {
+	.overview-info-wrapper .employee-prev-next-button {
+		.employee-btn-prev, .employee-btn-next {
+			width: 75px;
+		}
+
+		.employee-btn-next {
+			span {
+				display: none;
+			}
+		}
 	}
 }
 
@@ -1517,20 +1698,6 @@
 	.overview-wrapper .employee-overview-header .btn-enroll-employees {
 		padding: 6px 18px;
 	}
-
-	// .overview-wrapper {
-	// 	.employee-overview-header{
-	// 		.download-img {
-	// 			margin-right: 0;
-	// 		}
-	// 	}
-	// }
-
-	// .btn-export-members {
-	// 	span{
-	// 		display: none;
-	// 	}
-	// }
 }
 
 @media (min-width: 320px){

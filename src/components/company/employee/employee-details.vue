@@ -11,6 +11,7 @@ let employeeDetails = {
   },
   data() {
     return {
+      sideInfo: false,
       toggle_overiew_type: 1,
       isMedicalUsageShow: false,
       isWellnessUsageShow: false,
@@ -21,7 +22,13 @@ let employeeDetails = {
         dependent: false,
         reset: false,
       },
-      showAddDependents: false
+      showAddDependents: false,
+      sideInfo: {
+        trigger: false,
+        sideStyle: {},
+        sideContainer: {},
+        empInfoWrapper: {}
+      }
     };
   },
   methods: {
@@ -30,7 +37,29 @@ let employeeDetails = {
     },
   	toggleTabOverview( opt ) { //tab employee,dependent,settings in employee information
 			this.toggle_overiew_type = opt;
-			this.healthSpendingAccountTabIsShow = false;
+      this.healthSpendingAccountTabIsShow = false;
+      
+     
+		},
+  	toggleSideInfo( opt ) { //sidebar information in mobile view
+        this.sideInfo.trigger = !this.sideInfo.trigger;
+
+        if (this.sideInfo.trigger == true) {
+          this.sideInfo.sideStyle = {
+            left: '0',
+          }
+          // this.sideInfo.sideContainer = {
+          //   gridTemplateColumns: '1fr 100%',
+          // }
+        } else {
+          console.log('false ni');
+           this.sideInfo.sideStyle = {
+            left: '-320px',
+          }
+          // this.sideInfo.sideContainer = {
+          //   gridTemplateColumns: '1fr 100%',
+          // }
+        }
 		},
   	toggleMedicalUsage() { //chevron image for medical spending account
 			if(this.isMedicalUsageShow == false ) {
