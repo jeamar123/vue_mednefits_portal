@@ -261,7 +261,8 @@
   }
   .numeric-pagination,
   .next-pagination,
-  .prev-pagination,
+	.prev-pagination,
+	.total-item,
   .per-page-pagination {
   	color: #0392cf;
 		cursor: pointer;
@@ -282,10 +283,15 @@
 	margin-right: 0px;
 	margin-left: 10px;
 }
+.total-item {
+	span {
+		margin-left: 30px;
+	}
+}
 .per-page-pagination {
 	position: relative;
 	span {
-		margin-left: 30px;
+		margin-left: 15px;
 	}
 	img {
 		height: 12px;
@@ -1435,6 +1441,31 @@
 		}
 	}
 }
+
+@media (max-width: 880px) {
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 800px;
+		}
+	} 
+}
+
+@media (max-width: 830px) {
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 750px;
+		}
+	} 
+}
+
+@media (max-width: 780px) {
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 700px;
+		}
+	} 
+}
+
 @media (max-width: 767px){
 	.overview-info-wrapper {
 		padding-top: 61px;
@@ -1479,6 +1510,25 @@
 		min-width: 320px;
 		// display: none;
 	}
+
+	.overview-info-wrapper {	
+		.add-dependent-wrapper form {
+			width: 100%;
+		}
+	}
+
+	.dependent-details {
+		width: 90%;
+    margin: 0 auto;
+	}
+}
+
+@media (max-width: 730px) {
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 650px;
+		}
+	} 
 }
 
 @media (max-width: 718px) {
@@ -1498,7 +1548,26 @@
 	}
 }
 
+@media (max-width: 680px) {
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 600px;
+		}
+	}
+}
+
 @media (max-width: 629px){
+	.overview-info-wrapper {
+		.modal-body {
+			form {
+				width: 80%;
+			}
+		}
+		.modal-container {
+			max-width: 550px;
+		}
+	} 
+
 	.overview-info-wrapper .employee-prev-next-button {
 		.employee-btn-prev, .employee-btn-next {
 			width: 120px;
@@ -1523,6 +1592,18 @@
 	.overview-title {
 		width: 108.75px;
 	}
+}
+
+@media (max-width: 580px) {
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 500px;
+		}
+
+		.modal-btn-container {
+			width: 80%;
+		}
+	} 
 }
 
 @media (max-width: 568px) {
@@ -1564,6 +1645,17 @@
 }
 
 @media (max-width: 529px){
+
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 450px;
+		}
+
+		.modal-btn-container {
+			width: 90%;
+		}
+	} 
+
 	.overview-info-wrapper .employee-prev-next-button {
 		.employee-btn-back {
 			span {
@@ -1578,6 +1670,31 @@
 		.employee-info-selection {
 			.employee-selection {
 				margin-right: 20px;
+			}
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 400px;
+		}
+		.modal-body {
+			form{
+				width: 100%
+			}
+		}
+		.modal-btn-container {
+			width: 100%;
+		}
+	}
+
+	.overview-info-wrapper {
+		.modal-header {
+			h1{
+				font-size: 30px;
+				margin: 35px 0;
 			}
 		}
 	}
@@ -1604,7 +1721,28 @@
 	}
 }
 
+@media (max-width: 429px) {
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 388px;
+		}
+		.modal-btn-container {
+			button{
+				width: 140px;
+    		font-size: 10px;
+			}
+		}
+	}
+}
+
 @media (max-width: 414px) {
+
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 371px;
+		}
+	}
+
 	.overview-info-wrapper {
 		.employee-info-selection {
 			.employee-selection {
@@ -1649,6 +1787,21 @@
 	.overview-wrapper .employee-overview-header .btn-enroll-employees {
 		padding: 6px 25px;
 	}
+
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 347px;
+		}
+
+		.modal-header h1 {
+			font-size: 24px;
+			margin: 30px 0;
+		}
+
+		.modal-btn-container button {
+			width: 120px;
+		}
+	}
 }
 
 @media (max-width: 385px) {
@@ -1675,6 +1828,12 @@
 			}
 		}
 	}
+
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 324px;
+		}
+	}
 }
 
 @media (max-width: 350px) {
@@ -1697,6 +1856,32 @@
 
 	.overview-wrapper .employee-overview-header .btn-enroll-employees {
 		padding: 6px 18px;
+	}
+}
+
+@media (max-width: 355px) {
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 312px;
+		}
+		.modal-btn-container button {
+			width: 110px;
+		}
+	}
+}
+
+@media (max-width: 320px) {
+	.overview-info-wrapper {
+		.modal-header h1 {
+			font-size: 21px;
+			margin: 30px 0;
+		}
+		.modal-container {
+			max-width: 285px;
+		}
+		.modal-btn-container button {
+			width: 100px;
+		}
 	}
 }
 
