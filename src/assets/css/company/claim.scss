@@ -56,7 +56,7 @@
 	}
 
 	.search-wrapper .input-group {
-		margin: 20px 0 auto auto;
+		margin: 35px 0 auto auto;
 	}
 }
 
@@ -380,4 +380,216 @@
 .fade-leave-to { /* .fade-leave-active below version 2.1.8 */ 
 	/* transform: translate(0, -100%); */
 	opacity: 0;
+}
+
+// Responsive style
+
+@media (max-width: 1300px) {
+	.claim-wrapper {
+		.transaction-wrapper {
+			overflow: auto;
+			padding: 30px 0 25px;
+
+			&::-webkit-scrollbar {
+				height: 3px;
+			}
+		}
+
+		.transaction-table-container {
+			width: 1097px;
+			padding: 20px 15px;
+			margin: 0 auto;
+		}
+	}
+}
+
+@media (max-width: 941px) {
+
+	.claim-wrapper {
+		.btn-spending-type {
+			width: unset;
+
+			&.btn-medical {
+				border-radius: 4px 0 0 4px;
+				border-width: 2px 1px 2px 2px;
+			}
+
+			&.btn-wellness {
+				border-radius: 0 4px 4px 0;
+				border-width: 2px 2px 2px 1px;
+			}
+		}
+
+		.claim-container {
+			padding: 0 20px;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+
+	.claim-wrapper {
+		padding-top: 100px;
+
+		.cost-wrapper {
+			grid-template-columns: 1fr 1fr;
+
+			>div {
+				border-right: unset;
+			}
+		}
+
+		.activity-header-calendar {
+			margin: 30px 0 0;
+		}
+
+		.transaction-table-container {
+			padding: 20px 15px;
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.claim-wrapper {
+		.cost-wrapper  {
+			grid-template-columns: 1fr;
+			
+			>div {
+			text-align: center;
+			width: 90%;
+			margin: 15px auto;
+			}
+		}
+
+		.download-btn-container {
+			text-align: center;
+		}
+	}
+}
+
+@media (max-width: 575px) {
+	.claim-wrapper {
+		.search-wrapper .input-group {
+			position: unset;
+			width: unset;
+		}
+	}
+}
+
+@media (max-width: 530px){
+	.claim-wrapper {
+
+		.team-benefits-wrapper {
+			margin: 30px 0 0;
+		}
+
+		.activity-header-calendar {
+			display: block;
+		}
+		.date-selection-container {
+			display: block;
+			width: 60%;
+			margin: 15px auto;
+
+			.custom-date-selector {
+				width: 100%;
+				margin: 7.5px 0;
+			}
+
+			span {
+				display: block;
+				text-align: center;
+				width: 100%;
+
+				.fa-arrow-right {
+					-webkit-transform: rotate(90deg);
+					transform: rotate(90deg);
+				}
+			}
+
+			.btn-apply {
+				margin-left: unset;
+				width: 100%;
+			}
+
+			.popover-container {
+				width: 100%;
+			}
+		}
+	}
+}
+
+@media (max-width: 460px){
+	.claim-wrapper {
+		.view-search-container > div {
+			margin: 50px auto 20px;
+			display: block;
+			width: 60%;
+			text-align: center;
+			
+			>div {
+				width: 100%;
+				>div {
+					button {
+						width: 100%;
+					}
+				}
+			}
+		}
+
+		.download-btn-container {
+			text-align: center;
+		}
+	} 
+}
+
+@media (max-width: 414px){
+	.claim-wrapper {
+		.claim-container {
+			padding: 0 0;
+		}
+
+		.date-selection-container {
+			width: 100%;
+		}
+
+		.download-btn-container {
+			margin: 0 0 30px;
+
+			button {
+				margin: 5px auto;
+				display: block;
+				width: 100%;
+			}
+		} 
+	}
+
+	.claim-wrapper {
+		.view-search-container > div {
+			width: 100%;
+			text-align: left;
+		}
+	}
+}
+
+@media (max-width: 361px) {
+	.claim-wrapper {
+		.team-benefits-wrapper {
+			.team-benefits-header button {
+				font-size: 10px;
+			}
+		}
+	}  
+}
+
+
+@media (max-width: 350px) {
+	.claim-wrapper {
+		.total-claim-transaction {
+			> div {
+				float: unset;
+				margin: 5px auto;
+			}
+		} 
+	}
 }

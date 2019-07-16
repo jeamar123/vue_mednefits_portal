@@ -175,15 +175,18 @@
 						<div class="global-pagination">
 							<div class="prev-pagination">
 								<i class="fa fa-angle-left"></i>
-								<span>Prev</span>
+								<!-- <span>Prev</span> -->
 							</div>
-							<span class="numeric-pagination active">1</span>
+							<!-- <span class="numeric-pagination active">1</span>
 							<span class="numeric-pagination">2</span>
 							<span class="numeric-pagination">3</span>
-							<span class="numeric-pagination">4</span>
+							<span class="numeric-pagination">4</span> -->
 							<div class="next-pagination">
 								<i class="fa fa-angle-right"></i>
-								<span>Next</span>
+								<!-- <span>Next</span> -->
+							</div>
+							<div class ="total-item">
+								<span>1 - 10 of 100</span>
 							</div>
 							<div class="per-page-pagination">
 								<span>
@@ -207,6 +210,7 @@
 			<!-- side bar show/hide -->
 			<transition name="slide">
 				<div class="hidden-details-container" id="hidden-inNetwork" v-if="toggleSidebar.in">
+					<span class="side-close" @click="toggleShowSidebar"> <i class="fa fa-times" aria-hidden="true"></i> </span>
 					<img class="details-img" :src="'https://res.cloudinary.com/www-medicloud-sg/image/upload/v1439208475/medilogo_cn6d0x.png'">
 					<h5>Malaysia Ringgit</h5>
 					<div class="details-container">
@@ -366,6 +370,7 @@
 			</transition>
 			<transition name="slide">
 				<div class="hidden-details-container e-claim-hidden-container" id="hidden-outNetwork" v-if="toggleSidebar.out">
+					<span class="side-close" @click="toggleShowSidebar"> <i class="fa fa-times" aria-hidden="true"></i> </span>
 					<img class="details-img" :src="'../assets/img//GP.png'">
 					<div class="details-container">
 						<div class="details-row">
