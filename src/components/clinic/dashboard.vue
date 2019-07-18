@@ -4,7 +4,7 @@
 	var dashboard = {
 		data() {
 			return {
-				showIconLoader : true,
+				showIconLoader : false,
 				showLoader : false,
 				user_id : null,
 				isLogoutDropShow : false,
@@ -21,9 +21,9 @@
 			// 	this.user_id = localStorage.getItem('vue_session');
 			// }
 
-			setTimeout(()=>{
-			  this.showIconLoader = false;
-			},3000);
+			// setTimeout(()=>{
+			//   this.showIconLoader = false;
+			// },3000);
 		},
 		methods: {
 			swal( title, message, type ) {
@@ -51,40 +51,6 @@
       closeLogout() {
       	this.isLogoutDropShow = false;
       },
-      toggleUpdatePass() {
-      	this.closeLogout();
-      	this.showupdatePassModal = !this.showupdatePassModal ? true : false;
-      },
-      updatePassword( data ){
-      	if( !data.current_password || !data.new_password || !data.confirm_password){
-					this.swal("Error!", "Please input all fields.", "error");
-					return false;
-				}
-				if( data.new_password != data.confirm_password ){
-					this.swal("Error!", "Passwords did not match.", "error");
-					return false;
-				}
-      	this.showLoading();
-      	var pass = {
-					oldpassword: data.current_password ,
-					password: data.new_password
-				}
-				axios.post( axios.defaults.serverUrl + '/employee/change_password', pass)
-					.then(res => {
-						// console.log( res );
-						if( res.data.status ){
-							this.swal("Success!", res.data.message, "success");
-							this.toggleUpdatePass();
-						}else{
-							this.swal("Error!", res.data.message, "error");
-						}
-						this.hideLoading();
-					})
-					.catch(err => {
-						console.log( err );
-						this.hideLoading();
-					});
-      },
       logout( ){
       	this.showLoading();
 				axios.get( axios.defaults.serverUrl + '/app/e_claim/logout')
@@ -99,13 +65,6 @@
 						this.hideLoading();
 					});
       },
-      toggleMenuBtn() {
-				if(this.showMenuCollapse == false) {
-					this.showMenuCollapse = true;
-				} else {
-					this.showMenuCollapse = false;
-				}
-			},
     }
 	}
 
@@ -113,5 +72,11 @@
 </script>
 
 <style lang="scss" scoped>
-	@import './src/assets/css/member/dashboard.scss'
+@import "./src/assets/css/clinic/dashboard.scss";
 </style>
+
+
+
+
+
+

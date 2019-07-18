@@ -116,8 +116,8 @@
 						console.log(res);
 						if( res.data.status ){
 							// this.swal('Success!', res.data.message, 'success');
-							localStorage.setItem('vue_session', res.data.data.UserID);
-							location.href = "/app";
+							// localStorage.setItem('vue_session', res.data.data.UserID);
+							this.$router.push({ name: 'member-dashboard' });
 						}else{
 							this.swal('Error!', res.data.message, 'error');
 						}

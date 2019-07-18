@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import axios from 'axios'
 
 axios.defaults.baseURL = process.env.BASE_URL;
-axios.defaults.serverUrl = 'http://medicloud.local';
+axios.defaults.serverUrl = 'http://staging.medicloud.sg';
 axios.defaults.user_id = null;
 
 
@@ -47,7 +47,9 @@ import Portal from './views/Portal.vue'
   import PlanLocalNetwork from './views/company/planCoverage/LocalNetwork.vue'
 
 // CLINIC views
-
+  import ClinicAuth from './views/clinic/Auth.vue'
+  import ClinicDashboard from './views/clinic/Dashboard.vue'
+  import ClinicClaim from './views/clinic/Claim.vue'
 
 
 Vue.use(Router)
@@ -63,6 +65,7 @@ export default new Router({
     { path: '/portal', name: 'portal', component: Portal },
     { path: '/member/auth', name: 'MemberAuth', component: MemberAuth },
     { path: '/company/auth', name: 'CompanyAuth', component: CompanyAuth },
+    { path: '/clinic/auth', name: 'ClinicAuth', component: ClinicAuth },
     {
       path: '/member',
       name: 'member-dashboard',
@@ -138,6 +141,15 @@ export default new Router({
         
       ]
     },
-    
+    {
+      path: '/clinic',
+      name: 'clinic-dashboard',
+      redirect: '/clinic/claim',
+      component: ClinicDashboard,
+      meta: { auth: true },
+      children: [
+        { name: 'MemberHome', path: '/clinic/claim', component: ClinicClaim },
+      ]
+    },
   ]
 })

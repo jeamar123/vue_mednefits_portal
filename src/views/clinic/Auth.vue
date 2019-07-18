@@ -18,7 +18,7 @@
 
   	<div class="medne-icon-wrapper">
 	  	<img :src="'../assets/img/mednefits_logo_v3_(white).png'">
-	  	<p>for business</p>
+	  	<p>for health provider</p>
 	  </div>
 
 	  <div v-if="!isResetPasswordShow" class="login-container">
@@ -69,6 +69,8 @@
 </template>
 
 <script>
+	import axios from 'axios';
+
 	export default {
 		data() {
 			return {
@@ -93,15 +95,6 @@
       swal( title, message, type ) {
         this.$swal( title, message, type);
       },
-      toggleForgotPass() {
-      	this.showLoading();
-      	if( this.isResetPasswordShow == false ){
-      		this.isResetPasswordShow = true;
-      	}else{
-      		this.isResetPasswordShow = false;
-      	}
-      	this.hideLoading();
-      },
       submitLogin(){
       	if( !this.login_data.email ){
       		this.swal('Error!','Email Address is required','error');
@@ -112,28 +105,71 @@
       		return false;
       	}
       	this.showLoading();
-     //  	var data = {
-     //  		email: this.login_data.email,
-     //      password: this.login_data.password,
-     //      stay_signed_in: this.login_data.stay_signed_in == true ? true : false,
-     //  	}
-     //  	axios.post( axios.defaults.serverUrl + '/app/e_claim/login', data)
-					// .then(res => {
+      	var data = {
+      		email: this.login_data.email,
+          password: this.login_data.password,
+          stay_signed_in: this.login_data.stay_signed_in == true ? true : false,
+      	}
+      	axios.post( axios.defaults.serverUrl + '/app/e_claim/login', data)
+					.then(res => {
 						this.hideLoading();
-					// 	console.log(res);
-					// 	if( res.data.status ){
-					// 		localStorage.setItem('vue_session', res.data.data.UserID);
-							location.href = "#/company/intro";
-					// 	}else{
-					// 		this.swal('Error!', res.data.message, 'error');
-					// 	}
-					// })
-					// .catch(err => {
-					// 	console.log( err );
-					// 	this.hideLoading();
-					// 	this.swal('Error!', err,'error');
-					// });
+						console.log(res);
+						if( res.data.status ){
+							// this.swal('Success!', res.data.message, 'success');
+							// localStorage.setItem('vue_session', res.data.data.UserID);
+							this.$router.push({ name: 'member-dashboard' });
+						}else{
+							this.swal('Error!', res.data.message, 'error');
+						}
+					})
+					.catch(err => {
+						console.log( err );
+						this.hideLoading();
+						this.swal('Error!', err,'error');
+					});
       },
+      submitResetEmail(){
+      	if( !this.reset_data.email ){
+      		this.swal('Error!','Email Address is required','error');
+      		return false;
+      	}
+      	this.showLoading();
+      	var data = {
+      		email: this.reset_data.email
+      	}
+      	axios.post( axios.defaults.serverUrl + '/v1/auth/forgotpassword', data)
+					.then(res => {
+						// console.log( res );
+						this.hideLoading();
+						if( res.data.status ){
+							// this.swal('Success!', res.data.message, 'success');
+							this.$swal( 'Success!', res.data.message, 'success')
+								.then(res => {
+									// console.log(res);
+									if( res ){
+										this.toggleForgotPass();
+									}
+								});
+						}else{
+							this.swal('Error!', res.data.message, 'error');
+						}
+					})
+					.catch(err => {
+						// console.log( err );
+						this.hideLoading();
+						this.swal('Error!', err,'error');
+					});
+      },
+      toggleForgotPass() {
+      	this.showLoading();
+      	if( this.isResetPasswordShow == false ){
+      		this.isResetPasswordShow = true;
+      	}else{
+      		this.isResetPasswordShow = false;
+      	}
+      	this.hideLoading();
+      }
     }
 	}
+
 </script>

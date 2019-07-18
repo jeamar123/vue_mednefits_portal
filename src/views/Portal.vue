@@ -18,7 +18,7 @@
 					</div>
 				</div>
 			</router-link>
-			<router-link tag="a" to="/company/auth">
+			<router-link tag="a" to="/clinic/auth">
 				<div class="intro-login-content-box">
 					<div class="img-wrapper" style="padding-right: 18px;">
 						<img :src="'../assets/img/login icons/Health_Provider.png'" style="width: 45px;">
