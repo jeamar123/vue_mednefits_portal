@@ -159,7 +159,9 @@
 
     
     <div class="statement-overview-container">
-
+      <div v-if="overview_active" class="mobile-preview btn">
+        <button class="btn-info"><i class="fa fa-eye" aria-hidden="true"></i> Preview</button>
+      </div>
       <!-- overview transaction -->
       <transition name="fade">
         <div v-if="overview_active" class="statement-wrapper">
