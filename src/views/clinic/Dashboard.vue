@@ -29,7 +29,7 @@
 
 		  		<div v-if="isLogoutDropShow" class="logout-drop">
 		  			<ul>
-		  				<li><a @click.prevent="toggleUpdatePass()">SMS</a></li>
+		  				<li><a @click.prevent="toggleSMSModal()">SMS</a></li>
 		  				<li><a @click.prevent="toggleUpdatePass()">Settings</a></li>
 		  				<li><a @click.prevent="logout()">Logout</a></li>
 		  			</ul>
@@ -41,6 +41,38 @@
 		  	<router-view></router-view>
 		  </div>
 
+		  <transition name="modal">
+		    <div v-if="showSMSModal" class="modal-mask confirm-dialog sms-modal">
+		      <div class="modal-wrapper">
+		        <div class="modal-container">
+		        	<div class="modal-header">
+		        		<p>Send SMS via Mednefits</p>
+		        	</div>
+		          <div class="modal-body">
+	          		<div class="form-div">
+	          			<label>Name</label>
+	          			<input type="text" v-model="send_sms_data.name">
+	          		</div>
+	          		<div class="form-div phone-input">
+	          			<label>Phone</label>
+	          			<div class="phone-wrapper">
+		          			<input type="number" v-model="send_sms_data.phone_area_code">
+		          			<input type="number" v-model="send_sms_data.phone">
+	          			</div>
+	          		</div>
+	          		<div class="form-div">
+	          			<label>Message</label>
+	          			<textarea cols="5" rows="5" v-model="send_sms_data.message"></textarea>
+	          		</div>
+		          </div>
+		          <div class="modal-footer">
+	              <button class="modal-button cancel-button" v-on:click="showSMSModal = false">Cancel</button>
+	              <button class="modal-button" v-on:click="updatePassword( send_sms_data )">Send</button>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		  </transition>
 
 		  <transition name="fade">		
 			  <div v-if="showLoader" class="main-loader">

@@ -8,8 +8,8 @@
 				showLoader : false,
 				user_id : null,
 				isLogoutDropShow : false,
-				showupdatePassModal : false,
-				update_pass_data : {},
+				showSMSModal : false,
+				send_sms_data : {},
 				isWhiteHeader : false,
 				showMenuCollapse : false
 			}
@@ -50,6 +50,10 @@
       },
       closeLogout() {
       	this.isLogoutDropShow = false;
+      },
+      toggleSMSModal() {
+      	this.closeLogout();
+      	this.showSMSModal = !this.showSMSModal ? true : false;
       },
       logout( ){
       	this.showLoading();
