@@ -256,3 +256,92 @@
 		margin: 2px 0 0;
 	}
 }
+
+//responsive style
+
+@media (max-width: 940px) {
+	.plan-coverage-wrapper {
+		.plan-coverage-info-wrapper {
+			display: block;
+
+			.account-biling-link-list {
+				width: 100%;
+				margin-bottom: 20px;
+
+				ul {
+					display: flex;
+				}
+			}
+
+			.info-container {
+				width: 100%;
+			}
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.plan-coverage-wrapper {
+		padding: 100px 50px;
+
+		.benefits-wrapper {
+			display: grid;
+			margin: 0 auto 40px;
+			grid-template-columns: 1fr;
+			width: 60%;
+
+			>div.col-1-benefits-info, >div.col-2-benefits-info {
+				padding: 0;
+				margin: 10px auto;
+				width: 100%;
+			}
+		}
+	}
+}
+
+@media (max-width:722px) {
+	.plan-coverage-wrapper {
+		.benefits-wrapper {
+			display: grid;
+			margin: 0 auto 40px;
+			grid-template-columns: 1fr;
+			width: 100%;
+
+			>div.col-1-benefits-info, >div.col-2-benefits-info {
+				width: 305px;
+			}
+
+			.benefits-each-container {
+				padding: 30px 15px;
+			}
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	
+.plan-coverage-wrapper {
+	padding: 100px 5px;
+	}
+}
+
+@media (max-width:390px) {
+	.plan-coverage-wrapper {
+		.list-info-container {
+			padding: 0;
+		}
+		.benefits-wrapper {
+			>div.col-1-benefits-info, >div.col-2-benefits-info {
+				width: 280px;
+			}
+
+			.benefits-each-container {
+				padding: 30px 10px;
+
+				h4 {
+					text-align: left;
+				}
+			}
+		}
+	}
+}
