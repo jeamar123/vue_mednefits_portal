@@ -150,7 +150,7 @@
                 Employee
               </button>
             </router-link>
-            <button @click="viewEmployeeSpendingSummary( )" v-if="false" class="btn-health-spending">Health Spending
+            <button @click="viewEmployeeSpendingSummary()" v-if="false" class="btn-health-spending">Health Spending
               Account Summary</button>
           </div>
         </div>
