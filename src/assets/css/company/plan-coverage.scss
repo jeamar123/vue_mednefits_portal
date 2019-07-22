@@ -259,6 +259,73 @@
 
 //responsive style
 
+@media (max-width: 1170px) {
+	.plan-coverage-wrapper {
+		.plan-coverage-info-wrapper {
+			display: block;
+
+			.account-biling-link-list {
+				width: 100%;
+				margin-bottom: 20px;
+				ul {
+					display: flex;
+
+					li {
+						text-align: center;
+					};
+				}
+			}
+
+			.info-container {
+				width: 100%;
+			}
+		}
+
+		.local-network-container {
+			display: block;
+			width: 100%;
+
+			.sg-map-wrapper {
+				width: 602px;
+				position: relative;
+				margin: 0 auto;
+			}
+
+			.clinic-details-container {
+				min-width: 280px;
+				width: 60%;
+				margin: 0 auto;
+				padding: 15px 16px;
+			}
+		}
+
+		.north-text {
+			top: 112px;
+			left: 260px;
+		}
+
+		.central-text {
+			top: 207px;
+			left: 270px;
+		}
+
+		.south-text{
+			left: 275px;
+			bottom: 63px;
+		}
+
+		.west-text {
+			top: 190px;
+			left: 130px;
+		}
+
+		.east-text {
+			left: 410px;
+			bottom: 145px;
+		}
+	} 
+}
+
 @media (max-width: 940px) {
 	.plan-coverage-wrapper {
 		.plan-coverage-info-wrapper {
@@ -342,6 +409,32 @@
 					text-align: left;
 				}
 			}
+		}
+	}
+}
+
+@media (max-width: 659px) {
+	.plan-coverage-wrapper {
+		.local-network-container {
+			.sg-map-wrapper{
+				width: 100%;
+				position: relative;
+				margin: 0 auto;
+				overflow: auto;
+				margin-bottom: 30px;
+
+				&::-webkit-scrollbar {
+					height: 3px;
+			 }
+			}
+		}
+
+		.sg-map-container {
+			width: 602px;
+			height: auto;
+			position: relative;
+			margin: 30px 0 0;
+			cursor: pointer;
 		}
 	}
 }
