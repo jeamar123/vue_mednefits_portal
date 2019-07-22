@@ -7,15 +7,30 @@
   	margin: 0 70px;
   	display: grid;
   	grid-template-columns: 66.5% 33%;
+
+
+    .column-2 {
+      grid-row: span 2;
+      grid-column: 2;
+      padding: 0 15px;
+    }
+
+    .row-3 {
+      grid-row: 2;
+      grid-column: 1;
+    }
   }
-  .column-1, 
-  .column-2 {
-  	padding: 0 15px;
+  .mednefits-blue-box, 
+  .row-3 {
+  	width: 100%;
+    margin: 0 auto;
   }
   .mednefits-blue-box {
   	background-color: #15628d;
   	text-align: center;
   	color: #fff;
+    grid-row: 1;
+    grid-column: 1;
   }
   .mednefits-body-box {
   	padding: 15px;
@@ -124,14 +139,15 @@
   }
   .company-credits-container {
   	background-color: #fff;
-    height: 330px;
+    height: auto;
+    padding-bottom: 20px;
     margin-bottom: 20px;
     font-weight: 700;
 
     .home-spending-type-container {
     	display: inline-block;
     	width: 100%;
-    	padding: 20px 0 10px 30px;
+    	padding: 20px 30px 10px;
     	font-size: 16px;
 
     	p {
@@ -210,3 +226,129 @@
     background: #FFF;
   }
 }
+
+//  responsive styles
+
+@media (max-width: 1173px) {
+  .container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1081px){
+	.overview-body-container {
+		.hrdb-body-box {
+			margin: 0;
+		}
+	}
+}
+
+@media (max-width: 941px){
+	.btn-spending-type {
+		width: 100%;
+		margin-bottom: 10px;
+	}
+
+	.btn-spending-type.btn-wellness, .btn-spending-type.btn-medical {
+    border-radius: 4px;
+    border-width: 2px;
+	}
+
+}
+
+@media (max-width: 767px){
+	.overview-body-container {
+		padding-top: 100px;
+
+		.mednefits-body-box h5 {
+			width: 100%;
+		}
+
+		.mednefits-blue-box, .overview-body-container .row-3 {
+			width: 100%;
+			margin: 0 auto;
+		}
+
+		.hrdb-body-box {
+			grid-template-columns: 100%;
+
+			.column-2  {
+				padding: 15px 15px;
+				grid-row: 2;
+				grid-column: 1;
+
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				
+				.mednefits-box {
+					margin: 0 5px;
+				}
+			}
+
+			.row-3 {
+				grid-row: 3;
+				grid-column: 1;
+			}
+		}
+	}
+}
+
+@media ( max-width: 630px) {
+	.overview-body-container  {
+    .billing-status-box-container { 
+			.billing-status-box {
+				grid-template-columns: 1fr 1fr;
+			}
+			.view-invoice-button {
+				text-align: center;
+				grid-column: span 2;
+				margin: 20px auto 0;
+
+				button {
+					padding: 10px 60px;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 605px){
+	.overview-body-container {
+
+		.hrdb-body-box {
+			.column-2  {
+				padding: 0 15px;
+				display: unset;
+				.mednefits-box {
+					margin: 15px 0;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 371px){
+	.overview-body-container {
+
+		.billing-status-box-container {
+			.billing-status-box {
+    		grid-template-columns: 1fr;
+			}
+			.plan-subscription-container {
+				border-right: unset;
+				color: unset;
+			}
+			.health-spending-accounts-container {
+				padding: 15px 0;
+			}
+
+			.view-invoice-button {
+				grid-column: unset;
+				margin: 0 auto;
+			}
+		}
+	}
+}
+
+
+

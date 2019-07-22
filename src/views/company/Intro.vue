@@ -20,46 +20,48 @@
         </div>
         <div class="body-summary-content">
           <p class="what-to-expect-text">What to expect:</p>
-          <table class="table-bordered summary-table">
-            <thead>
-              <tr>
-                <th>
-                  <span class="num-circle">1</span>
-                  <h1>Select plan and
-                  <br> provide company information</h1>
-                </th>
-                <th>
-                  <span class="num-circle">2</span>
-                  <h1>Input payment details
-                  <br> and send payment</h1>
-                </th>
-                <th>
-                  <span class="num-circle">3</span>
-                  <h1>Enroll all full time
-                  <br> employess into this plan</h1>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="verified-img-container">
-                  <img :src="'../assets/img/icons/verified.png'">
-                </td>
-                <td class="required-info-wrapper">
-                  <p class="required-info-text">Required Information:</p>
-                  <div>
-                    <p>Payee cheque information (company name, address,ACRA number) can be found in invoice</p>
-                  </div>
-                  <div>
-                    <p>You may download the invoice from Welcome Email or the company portal under Account & Billing.</p>
-                  </div>
-                </td>
-                <td class="verified-img-container">
-                  <img :src="'../assets/img/icons/verified.png'">
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="summary-table-wrapper">
+            <table class="table-bordered summary-table">
+              <thead>
+                <tr>
+                  <th>
+                    <span class="num-circle">1</span>
+                    <h1>Select plan and
+                    <br> provide company information</h1>
+                  </th>
+                  <th>
+                    <span class="num-circle">2</span>
+                    <h1>Input payment details
+                    <br> and send payment</h1>
+                  </th>
+                  <th>
+                    <span class="num-circle">3</span>
+                    <h1>Enroll all full time
+                    <br> employess into this plan</h1>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="verified-img-container">
+                    <img :src="'../assets/img/icons/verified.png'">
+                  </td>
+                  <td class="required-info-wrapper">
+                    <p class="required-info-text">Required Information:</p>
+                    <div>
+                      <p>Payee cheque information (company name, address,ACRA number) can be found in invoice</p>
+                    </div>
+                    <div>
+                      <p>You may download the invoice from Welcome Email or the company portal under Account & Billing.</p>
+                    </div>
+                  </td>
+                  <td class="verified-img-container">
+                    <img :src="'../assets/img/icons/verified.png'">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

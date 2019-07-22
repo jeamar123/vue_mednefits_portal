@@ -976,3 +976,9 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
   font-size: 16px !important;
 }
 
+/* for statement responsive */
+@media (max-width: 767px) {
+  .vue-slider-mark-label {
+    font-size: 14px !important;
+  }
+}

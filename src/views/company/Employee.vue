@@ -11,15 +11,15 @@
         	</div>
         	<div class="overview-menu">
         		<div class="overview-input-wrapper">
-        			<input type="text" placeholder="Search for a member">
+        			<input type="text" placeholder="Search member">
         			<img class="magnifying-img" :src="'../assets/img/icons/magnifying-glass.png'">
         		</div>
         		<button class="btn-export-members">
         			<img class="download-img" :src="'../assets/img/coverage/Download.png'">
-        			Export members details
+        			<span class="export-text">Export </span> <span class="members-text">members details</span> 
         		</button>
         		<button class="btn-enroll-employees">
-        			Enroll employees
+        			Enroll <span>employees</span> 
         		</button>
         	</div>
         </div>
@@ -108,17 +108,20 @@
         		<div class="prev-pagination">
               <i class="fa fa-angle-left"></i>
         			<!-- <img :src="'../assets/img/icons/right-arrow-angle-blue.svg'"> -->
-        			<span>Prev</span>
+        			<!-- <span>Prev</span> -->
         		</div>
-        		<span class="numeric-pagination active">1</span>
+        		<!-- <span class="numeric-pagination active">1</span>
         		<span class="numeric-pagination">2</span>
         		<span class="numeric-pagination">3</span>
-        		<span class="numeric-pagination">4</span>
+        		<span class="numeric-pagination">4</span> -->
         		<div class="next-pagination">
               <i class="fa fa-angle-right"></i>
         			<!-- <img :src="'../assets/img/icons/right-arrow-angle-blue.svg'"> -->
-        			<span>Next</span>
+        			<!-- <span>Next</span> -->
         		</div>
+						<div class ="total-item">
+							<span>1 - 10 of 100</span>
+						</div>
         		<div class="per-page-pagination">
         			<span>
         				<span>5</span> per page

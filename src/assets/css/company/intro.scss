@@ -5,7 +5,6 @@
 
   .body-content {
     margin: 0 108px;
-    height: 100vh;
   }
 
   .body-summary-content {
@@ -134,6 +133,80 @@
       padding: 10px 50px;
       color: #fff;
       background-color: #0392cf;
+    }
+  }
+}
+
+@media (max-width: 1063px) {
+  .welcome-body-container .body-content {
+    margin: 0;
+  }
+}
+
+@media (max-width: 860px) {
+
+  .welcome-body-container {
+    .greet-container {
+      grid-template-columns: 4fr 1fr;
+    }
+
+    .greet-container .header-text-msg {
+      width: 100%;
+    }
+  }
+
+}
+
+@media (max-width: 767px) {
+  .welcome-body-container {
+    padding-top: 120px;
+
+    .welcome-img-container img {
+      height: 180px;
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+  .welcome-body-container {
+
+    .greet-container {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .welcome-img-container {
+      text-align: center;
+    }
+
+    .table-bordered {
+      width: 900px;
+    }
+
+    .lets-go-container  {
+      text-align: center;
+    }
+
+    .lets-go-container  button {
+      font-size: 14px;
+    }
+  }
+
+  .header-msg-container {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .summary-table-wrapper {
+    overflow-x: scroll;
+    
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #c1c1c1;
     }
   }
 }

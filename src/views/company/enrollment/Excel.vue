@@ -154,18 +154,18 @@
       <div class="prev-next-button-container">
         <div class="button-container">
           <button v-if="isState === 'excel' && stepperState == 'download'" @click="$router.go(-1)"
-            class="back-btn">Back</button>
+            class="excel-back-btn back-btn">Back</button>
           <button v-if="stepperState == 'empOnly' || stepperState == 'empDependents' || stepperState == 'upload'"
-            @click="back('download')" class="back-btn">Back</button>
+            @click="back('download')" class="excel-back-btn back-btn">Back</button>
 
           <div class="btn-enroll-container">
-            <button class="btn-download-template" v-if="isState === 'excel' && stepperState == 'download'">DOWNLOAD
+            <button class="excel-download-btn btn-download-template" v-if="isState === 'excel' && stepperState == 'download'">DOWNLOAD
               TEMPLATE</button>
-            <button class="next-btn" v-if="isState === 'excel' && stepperState == 'download'"
+            <button class="excel-next-btn next-btn" v-if="isState === 'excel' && stepperState == 'download'"
               @click="excel(empType)">Next</button>
-            <button class="next-btn" v-if="stepperState == 'empOnly' || stepperState == 'empDependents'"
+            <button class="excel-next-btn next-btn" v-if="stepperState == 'empOnly' || stepperState == 'empDependents'"
               @click="excel('upload')">Next</button>
-            <button class="next-btn" v-if="stepperState == 'upload'" @click="excel('enrollsum')">Next</button>  <!-- go to enroll summary -->
+            <button class="excel-next-btn next-btn" v-if="stepperState == 'upload'" @click="excel('enrollsum')">Next</button>  <!-- go to enroll summary -->
           </div>
         </div>
       </div>

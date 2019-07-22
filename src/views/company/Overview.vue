@@ -2,27 +2,97 @@
   <div class="overview-body-container">
     <div class="container">
       <div class="hrdb-body-box">
-        <div class="column-1">
-          <div class="mednefits-blue-box">
-            <div class="mednefits-body-box">
-              <img :src="'../assets/img/overview.png'">
-              <h2>
-                <span>Good afternoon, </span>
-                <span>Allan Alzula</span>
-              </h2>
-              <h5 class="text-center text-white body-subtext">
-                <strong>StackGecko</strong> is covering
-                <strong>
-                  <span>12</span> employees &amp; dependents
-                </strong> from
-                <strong>02 January 2019</strong> and ends on
-                <strong>01 January 2020</strong>
-              </h5>
-              <router-link to="/company/enrollment-options">
-                <button class="btn-info" @click="toEnrollment('enrollment')">Employee Enrollment</button>
-              </router-link>
+       
+
+        <div class="mednefits-blue-box">
+          <div class="mednefits-body-box">
+            <img :src="'../assets/img/overview.png'">
+            <h2>
+              <span>Good afternoon, </span>
+              <span>Allan Alzula</span>
+            </h2>
+            <h5 class="text-center text-white body-subtext">
+              <strong>StackGecko</strong> is covering
+              <strong>
+                <span>12</span> employees &amp; dependents
+              </strong> from
+              <strong>02 January 2019</strong> and ends on
+              <strong>01 January 2020</strong>
+            </h5>
+            <router-link to="/company/enrollment-options">
+              <button class="btn-info" @click="toEnrollment('enrollment')">Employee Enrollment</button>
+            </router-link>
+          </div>
+        </div>
+
+        <div class="column-2">
+          <div class="company-credits-container mednefits-box">
+            <div class="mednefits-header-box">
+              <h5>Total Company Credits</h5>
+            </div>
+            <div class="home-spending-type-container">
+              <p>Spending Account</p>
+              <button @click="spendType(0, 'medical')" v-bind:class="{'active': spendingType.value === 0}" class="btn-spending-type btn-medical">Medical</button>
+              <button @click="spendType(1, 'wellness')" v-bind:class="{'active': spendingType.value === 1}" class="btn-spending-type btn-wellness">Wellness</button>
+            </div>
+            <div class="credit-box">
+              <div class="credit-allocated-container">
+                <h1>
+                  S$
+                  <span>51,200.00</span>
+                </h1>
+                <span class="credit-text">ALLOCATED</span>
+              </div>
+              <div class="credit-spent-container">
+                <h1>
+                  S$
+                  <span>14,578.72</span>
+                </h1>
+                <span class="credit-text">SPENT</span>
+              </div>
             </div>
           </div>
+          <div class="employee-enrollment-box mednefits-box">
+            <div class="mednefits-header-box">
+              <h5>Employee Enrollment Status</h5>
+            </div>
+            <div class="mednefits-body-box">
+              <div>
+                <h3 class="enrollment-status-number">12</h3>
+                <h3 class="enrollment-status-text">Total number of seats</h3>
+              </div>
+              <div>
+                <h3 class="enrollment-status-number">8</h3>
+                <h3 class="enrollment-status-text">Occupied seats</h3>
+              </div>
+              <div>
+                <h3 class="enrollment-status-number">4</h3>
+                <h3 class="enrollment-status-text">Vacant seats</h3>
+              </div>
+            </div>
+          </div>
+          <div class="dependent-enrollment-box mednefits-box">
+            <div class="mednefits-header-box">
+              <h5>Dependent Enrollment Status</h5>
+            </div>
+            <div class="mednefits-body-box">
+              <div>
+                <h3 class="enrollment-status-number">29</h3>
+                <h3 class="enrollment-status-text">Total number of seats</h3>
+              </div>
+              <div>
+                <h3 class="enrollment-status-number">4</h3>
+                <h3 class="enrollment-status-text">Occupied seats</h3>
+              </div>
+              <div>
+                <h3 class="enrollment-status-number">25</h3>
+                <h3 class="enrollment-status-text">Vacant seats</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row-3">
           <div class="task-box">
             <div class="task-box-title">
               <h4>TASK</h4>
@@ -141,72 +211,7 @@
             </div>
           </div>
         </div>
-        <div class="column-2">
-          <div class="company-credits-container mednefits-box">
-            <div class="mednefits-header-box">
-              <h5>Total Company Credits</h5>
-            </div>
-            <div class="home-spending-type-container">
-              <p>Spending Account</p>
-              <button @click="spendType(0, 'medical')" v-bind:class="{'active': spendingType.value === 0}" class="btn-spending-type btn-medical">Medical</button>
-              <button @click="spendType(1, 'wellness')" v-bind:class="{'active': spendingType.value === 1}" class="btn-spending-type btn-wellness">Wellness</button>
-            </div>
-            <div class="credit-box">
-              <div class="credit-allocated-container">
-                <h1>
-                  S$
-                  <span>51,200.00</span>
-                </h1>
-                <span class="credit-text">ALLOCATED</span>
-              </div>
-              <div class="credit-spent-container">
-                <h1>
-                  S$
-                  <span>14,578.72</span>
-                </h1>
-                <span class="credit-text">SPENT</span>
-              </div>
-            </div>
-          </div>
-          <div class="employee-enrollment-box mednefits-box">
-            <div class="mednefits-header-box">
-              <h5>Employee Enrollment Status</h5>
-            </div>
-            <div class="mednefits-body-box">
-              <div>
-                <h3 class="enrollment-status-number">12</h3>
-                <h3 class="enrollment-status-text">Total number of seats</h3>
-              </div>
-              <div>
-                <h3 class="enrollment-status-number">8</h3>
-                <h3 class="enrollment-status-text">Occupied seats</h3>
-              </div>
-              <div>
-                <h3 class="enrollment-status-number">4</h3>
-                <h3 class="enrollment-status-text">Vacant seats</h3>
-              </div>
-            </div>
-          </div>
-          <div class="dependent-enrollment-box mednefits-box">
-            <div class="mednefits-header-box">
-              <h5>Dependent Enrollment Status</h5>
-            </div>
-            <div class="mednefits-body-box">
-              <div>
-                <h3 class="enrollment-status-number">29</h3>
-                <h3 class="enrollment-status-text">Total number of seats</h3>
-              </div>
-              <div>
-                <h3 class="enrollment-status-number">4</h3>
-                <h3 class="enrollment-status-text">Occupied seats</h3>
-              </div>
-              <div>
-                <h3 class="enrollment-status-number">25</h3>
-                <h3 class="enrollment-status-text">Vacant seats</h3>
-              </div>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
   </div>

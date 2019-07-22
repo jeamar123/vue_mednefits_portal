@@ -488,4 +488,84 @@
 	}
 }
 
+// responsive style
 
+@media (max-width: 940px) {
+	.account-wrapper {
+
+		.account-billing-info-wrapper {
+			display: block;
+
+			.info-container {
+				width: 100%;
+			}
+		}
+		.account-biling-link-list {
+			width: 100%;
+			overflow: auto;
+			margin-bottom: 20px;
+
+			&::-webkit-scrollbar {
+				height: 1px;
+			}
+
+			ul {
+				display: flex;
+				width: 907px;
+
+				li {
+					width: 100%;
+					text-align: center;
+					
+    			margin-bottom: 10px;
+				}
+			}
+		}
+	}
+	
+}
+
+@media (max-width: 795px) {
+	.account-wrapper {
+		.info-container{
+			.list-info-container {
+				.business-info, .business-contact, .billing-contact-address,
+				.plan-transactions, .benefits-spending-account-container, 
+				.spending-account-container, .refund-container {
+					overflow: auto;
+					margin-bottom: 20px;
+					&::-webkit-scrollbar {
+						height: 1px;
+					}
+					table {
+						width: 732px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.account-wrapper {
+		padding: 100px 0 50px;
+	}
+}
+
+@media (max-width: 800px) {
+	.account-wrapper {
+		
+		.info-container {
+
+			.list-info-container {
+				overflow: auto;
+				&::-webkit-scrollbar {
+					height: 1px;
+				}
+				table {
+					width: 737px;
+				}
+			}
+		}
+	}
+}

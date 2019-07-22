@@ -33,7 +33,7 @@
     		<div class="employee-search-container">
     			<span>1 Employee</span>
     			<div>
-    				<input type="text" placeholder="Enter Employee and press enter..">
+    				<input type="text" placeholder="Search Employee">
     				<i class="fa fa-search"></i>
     			</div>	
     		</div>
@@ -101,17 +101,20 @@
       		<div class="prev-pagination">
       			<i class="fa fa-angle-left"></i>
       			<!-- <img :src="'../assets/img/icons/right-arrow-angle-blue.svg'"> -->
-      			<span>Prev</span>
+      			<!-- <span>Prev</span> -->
       		</div>
-      		<span class="numeric-pagination active">1</span>
+      		<!-- <span class="numeric-pagination active">1</span>
       		<span class="numeric-pagination">2</span>
       		<span class="numeric-pagination">3</span>
-      		<span class="numeric-pagination">4</span>
+      		<span class="numeric-pagination">4</span> -->
       		<div class="next-pagination">
       			<i class="fa fa-angle-right"></i>
       			<!-- <img :src="'../assets/img/icons/right-arrow-angle-blue.svg'"> -->
-      			<span>Next</span>
+      			<!-- <span>Next</span> -->
       		</div>
+					<div class ="total-item">
+							<span>1 - 10 of 100</span>
+					</div>
       		<div class="per-page-pagination">
       			<span>
       				<span>5</span> per page

@@ -18,7 +18,9 @@ let dashboard = {
       stepStatus : 1,
       isActive: false,
       isDropdown: false, //hide show Dropdown,
-      accountDropdown: false
+      accountDropdown: false,
+      navbarCollapse: false,
+      hideNavbarCollapse: true
     };
   },
   methods: {
@@ -63,6 +65,16 @@ let dashboard = {
           this.accountDropdown = false;
         }
       }
+    },
+    btnNavbarCollapse() {
+      if(this.navbarCollapse == false ) {
+        this.navbarCollapse = true;
+      }else {
+        this.navbarCollapse = false;
+      }
+    },
+    btnHideNavbarCollapse() {
+      this.navbarCollapse = false;
     }
     // Your Methods here
   },
