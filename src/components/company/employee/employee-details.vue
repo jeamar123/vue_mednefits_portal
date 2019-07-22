@@ -103,9 +103,8 @@ let employeeDetails = {
       });
     },
     viewEmployeeSpendingSummary() { //health spending account summary button under person information
-      
-      // $("body").scrollTop(0);
-      $("html, body").animate({scrollTop: $("body").offset().top}, 400);
+
+      this.toggleSideInfo(0);
       if (this.healthSpendingAccountTabIsShow == false) {
         this.toggle_overiew_type = 4;
         this.healthSpendingAccountTabIsShow = true;
@@ -113,6 +112,12 @@ let employeeDetails = {
         this.toggle_overiew_type = 1;
         this.healthSpendingAccountTabIsShow = false;
       }
+      setTimeout(  function() {
+        // $("html, body").animate({scrollTop: $("body").offset().top}, 400);
+        console.log('gana ni');
+        $("body").scrollTop(0);
+      }, 2000);
+      
     }
   },
   created() {}

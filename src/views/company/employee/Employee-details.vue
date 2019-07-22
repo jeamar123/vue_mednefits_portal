@@ -146,11 +146,11 @@
           </div>
           <div class="btn-person-info-container">
             <router-link to="/company/employee-details/remove-employee">
-              <button v-if="false" class="btn-remove-employee">Remove
+              <button v-if="true" class="btn-remove-employee">Remove
                 Employee
               </button>
             </router-link>
-            <button @click="viewEmployeeSpendingSummary( )" v-if="true" class="btn-health-spending">Health Spending
+            <button @click="viewEmployeeSpendingSummary()" v-if="false" class="btn-health-spending">Health Spending
               Account Summary</button>
           </div>
         </div>

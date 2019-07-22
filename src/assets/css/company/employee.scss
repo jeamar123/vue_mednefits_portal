@@ -694,7 +694,7 @@
 			width: 100%;
 	    margin: 30px 0 50px;
 	    font-size: 32px;
-	    text-align: center;
+			text-align: center;
 		}
 		form {
 			width: 550px;
@@ -709,9 +709,20 @@
 		}
 	}
 
+	.employee-outcome-wrapper {
+		h1 {
+			width: 530px;
+			display: block;
+			margin: 30px auto 50px;
+			font-size: 32px;
+			text-align: left;
+		}
+	}
+	
+
 	.employee-outcome-container {
 		width: 530px;
-		margin: 0 460px;
+		margin: 0 auto;
 
 		.outcome-title {
 			margin-bottom: 20px;
@@ -741,14 +752,21 @@
 	  }
 	}
 	.health-spending-wrapper {
-		text-align: center;
+		// text-align: center;
 		.members-wallet-text {
 			width: 450px;
 			margin: 45px auto 5px;
 			font-size: 16px;
 		}
 		.members-wallet-note {
+			width: 450px;
+			margin: 0 auto 5px;
+			font-size: 16px;
 			color: #9c9c9c;
+		}
+
+		.spending-account-btn-container {
+			text-align: center;
 		}
 		button {
 			background-color: transparent;
@@ -1424,6 +1442,33 @@
 	}
 }
 
+@media (max-width: 1100px) {
+	.overview-info-wrapper {
+		.account-summary-wrapper {
+			padding: 20px 15px 0px;
+		}
+	}
+
+	.overview-info-wrapper {
+		.account-summary-wrapper {
+			.medical-wellness-wrapper {
+				width: 100%;
+				display: block;
+				
+				.medical-container {
+					border-bottom: .5px solid #cbcbcb;
+					padding-bottom: 20px;
+					margin-bottom: 20px;
+				}
+
+				.separator {
+					display: none;
+				}
+			}
+		} 
+	} 
+}
+
 @media (max-width: 1023px) {
 	.credit-allocation-wrapper {
 		.spending-account-container > div[data-v-4032faca] {
@@ -1487,6 +1532,33 @@
 @media (max-width: 767px){
 	.overview-info-wrapper {
 		padding-top: 61px;
+
+		.remove-employee-wrapper {
+			padding: 45px 0px 0px;
+			position: relative;
+
+			.remove-details-wrapper {
+				width: 80%;
+				margin: 0 auto;
+			}
+
+			img {
+				right: 20px;
+				top: 20px;
+				margin-right: unset;
+				position: absolute;
+			}
+			
+			h1 {
+				font-size: 24px;
+			}
+		}
+
+		.remove-employee-wrapper form {
+			width: 100%;
+			margin: 0 auto;
+			padding: 0 15px;
+		}
 	}
 
 	.overview-info-wrapper {
@@ -1630,6 +1702,18 @@
 			}
 		}
 	}
+
+	.overview-info-wrapper {
+		.remove-employee-wrapper {
+			h1 {
+				width: 90%;
+			}
+
+			.employee-outcome-container {
+				width: 90%;
+			}
+		} 
+	} 
 }
 
 @media (max-width: 594px) {
@@ -1648,6 +1732,14 @@
 			width: 80%;
 		}
 	} 
+
+	.overview-info-wrapper {
+		.account-summary-wrapper {
+			.medical-wellness-wrapper {
+				padding: 20px 15px;
+			}
+		}
+	}  
 }
 
 @media (max-width: 568px) {
@@ -1710,6 +1802,30 @@
 		.employee-btn-back {
 			span {
 				display: none;
+			}
+		}
+	}
+
+	
+
+	.overview-info-wrapper {
+		.health-spending-account-container {
+			padding: 15px;
+			h1{
+				width: 100%;
+			}
+
+			.members-wallet-text {
+				width: 100%;
+			}
+
+			.members-wallet-note{
+				width: 100%;
+				margin: 0 auto 5px;
+			}
+
+			.spending-account-btn-container {
+				text-align: center;
 			}
 		}
 	}
