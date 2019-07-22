@@ -185,13 +185,14 @@
   }
 
   .cost-wrapper {
-  	display: flex;
+  	display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   	font-weight: 700;
 
   	>div {
-  		flex: 1;
-  		width: 85%;
-  		margin: 30px 30px 30px 5px;
+			text-align: left;
+			width: 90%;
+			margin: 30px auto 30px 5px;
   		border-right: 1px solid #bbb;
   	}
 
@@ -203,7 +204,7 @@
   		font-size: 23px;
   		color: #009EC8;
   		line-height: 1.1;
-  		margin: 0 0 10px;
+  		margin: 0 10px 10px 0;
   	}
 
   	p {
@@ -469,7 +470,15 @@
 	  	background: #51BEF2;
 	  	text-align: center;
 	  	font-weight: 300;
-	  }
+		}
+		
+		.side-close {
+			position: absolute;
+			top: 5px;
+			right: 10px;
+			font-size: 15px;
+			cursor: pointer;
+		}
 	}
 }
 
@@ -684,4 +693,377 @@
 }
 .trans-pagination-shadow-active {
 	margin-right: 75px;
+}
+
+// Responsive styles
+
+@media (max-width: 1200px) {
+	.activity-wrapper {
+		.transaction-wrapper {
+			padding: 30px 30px 25px 30px;
+
+			.transaction-rows {
+				margin: 30px auto 0;
+				width: 85%;
+			}
+		}
+	}
+}
+
+@media (max-width: 1081px){
+	.activity-wrapper {
+		.btn-transaction-container {
+			width: 60%;
+		}
+
+		.preview-box .img-container {
+			width: 80%;
+			margin: 25% auto;
+			text-align: center;
+			position: relative;
+
+			img {
+				width: 100%;
+				height: auto;
+			}
+		}
+	}
+}
+
+@media (max-width: 1023px) {
+	.activity-wrapper {
+		.transaction-wrapper {
+			.total-transac-header {
+				padding: 0;
+				margin: 0 auto;
+				width: 80%;
+			}
+			.transaction-rows {
+				width: 95%;
+			}
+		}
+	}
+}
+
+@media (max-width: 941px) {
+	.activity-wrapper {
+
+		.activity-container {
+			padding: 0 20px;
+		}
+
+		.btn-spending-type {
+			width: unset;
+
+			&.btn-medical {
+				border-radius: 4px 0 0 4px;
+				border-width: 2px 1px 2px 2px;
+			}
+
+			&.btn-wellness {
+				border-radius: 0 4px 4px 0;
+				border-width: 2px 2px 2px 1px;
+			}
+		}
+	}
+
+	.activity-wrapper {
+		.transaction-wrapper {
+			.transaction-rows {
+				width: 100%;
+			}
+		}
+	}
+}
+
+@media (max-width: 901px) {
+	.activity-wrapper {
+		.btn-transaction-container {
+			width: 60%;
+		}
+	}
+}
+
+@media (max-width: 870px) {
+	.activity-wrapper {
+		.transaction-wrapper {
+			.timeline {
+				margin: 0px 15px 0px;
+			}
+		}
+	}
+}
+
+@media (max-width: 809px) {
+	.activity-wrapper {
+		padding-top: 100px;
+
+		.activity-header-calendar {
+			display: block;
+		}
+
+		.date-selection-container {
+			margin: 15px auto;
+		}
+
+		.team-benefits-wrapper {
+			margin: 15px 0 0;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.activity-wrapper {
+		.cost-wrapper {
+			grid-template-columns: 1fr 1fr;
+	
+			>div {
+				border-right: unset;
+			}
+		}
+		.btn-transaction-container {
+			width: 70%;
+		}
+	}
+
+	.activity-wrapper {
+		.transaction-wrapper {
+			
+			.timeline {
+				width: 668px;
+			}
+
+			.transaction-rows {
+				overflow: auto;
+
+				&::-webkit-scrollbar {
+					height: 4px;
+				}
+			}
+			.total-transac-header {
+				width: 95%;
+			}
+
+			.transaction-container-active {
+				left: 0 !important;
+				z-index: 0;
+			
+			}
+		}
+
+		.preview-box .img-container {
+			margin: 40% auto;
+		}
+	}
+
+	.team-benefits-wrapper {
+		.team-benefits-header button {
+			font-size: 16px;
+			margin: 45px 0 5px 0;
+		}
+	}
+}
+
+@media (max-width: 714px) {
+	.activity-wrapper {
+		.team-benefits-wrapper {
+			.spent-box {
+				width: 100%;
+
+				.in-out-network-container {
+					display: block;
+
+					.in-network-box {
+						float: unset;
+						border-right: unset;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 665px) {
+	.activity-wrapper {
+		.btn-transaction-container {
+			width: 70%;
+
+			button {
+				width: unset;
+			}
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.activity-wrapper {
+
+		.cost-wrapper {
+			grid-template-columns: 1fr;
+	
+			>div {
+				text-align: center;
+				width: 90%;
+				margin: 15px auto;
+			}
+		}
+
+		.transaction-header .download-container {
+				position: absolute;
+				top: 63px;
+		}
+	}
+}
+
+@media (max-width: 530px) {
+	.activity-wrapper {
+		.date-selection-container {
+			display: block;
+			width: 60%;
+
+			span {
+				display: block;
+				text-align: center;
+				width: 100%;
+
+				.fa-arrow-right {
+					transform: rotate(90deg);
+				}
+			}
+
+			.custom-date-selector {
+				width: 100%;
+				margin: 7.5px 0;
+			}
+
+			.btn-apply {
+				margin-left: unset;
+				width: 100%;
+			}
+
+			.popover-container {
+				width: 100%;
+			}
+		}
+
+		.input-group {
+			width: 60%;
+			margin: 0 auto;
+		}
+	}
+}
+
+@media (max-width: 509px) {
+	.activity-wrapper {
+		.btn-transaction-container {
+			width: 100%;
+
+			button {
+				width: 40%;
+				font-size: 10px;
+			}
+		}
+	}
+}
+
+@media (max-width: 428px) {
+	.activity-wrapper {
+
+		.transaction-header {
+			margin: 20px 0;
+
+			.download-container {
+				position: absolute;
+				top: 137px;
+				font-size: 10px;
+
+				img  {
+					width: 14px;
+				}
+			}
+		}
+
+		.btn-transaction-container {
+			button {
+				width: 70%;
+    		margin: 7.5px 5px;
+			}
+		}
+	}
+}
+
+
+@media (max-width: 414px) {
+	.activity-wrapper {
+		.activity-container {
+			padding: 0 0;
+		}
+
+		.date-selection-container {
+			display: block;
+			width: 100%;
+
+			.popover-container {
+				width: 100%;
+			}
+
+			span {
+				display: block;
+				text-align: center;
+				width: 100%;
+
+				.fa-arrow-right {
+					transform: rotate(90deg);
+				}
+			}
+
+			.custom-date-selector {
+				width: 100%;
+				margin: 7.5px 0;
+			}
+
+			.btn-apply {
+				margin-left: unset;
+				width: 100%;
+			}
+		}
+
+		.input-group {
+			width: 100%;
+			margin: 0 auto;
+		}
+	}
+
+	.activity-wrapper { 
+		.transaction-wrapper { 
+			padding: 30px 15px 25px;
+
+			.total-transac-header {
+				width: 100%;
+				font-size: 10px;
+			}
+
+			.hidden-details-container {
+				width: 320px;
+				padding: 38px 15px;
+			}
+		}
+	}
+}
+
+@media (max-width: 361px) {
+	.activity-wrapper {
+
+		.team-benefits-wrapper {
+			.cost-wrapper {
+				h5 {
+					font-size: 16px;
+				}
+			}
+
+			.team-benefits-header button {
+				font-size: 10px;
+			}
+		}
+	}
 }

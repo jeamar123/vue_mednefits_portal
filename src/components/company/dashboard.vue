@@ -23,6 +23,8 @@ let dashboard = {
       accountDropdown: false,
       showIconLoader: false,
       showLoader: false,
+      navbarCollapse: false,
+      hideNavbarCollapse: true
     };
   },
   methods: {
@@ -86,6 +88,16 @@ let dashboard = {
           this.accountDropdown = false;
         }
       }
+    },
+    btnNavbarCollapse() {
+      if(this.navbarCollapse == false ) {
+        this.navbarCollapse = true;
+      }else {
+        this.navbarCollapse = false;
+      }
+    },
+    btnHideNavbarCollapse() {
+      this.navbarCollapse = false;
     }
     // Your Methods here
   },

@@ -111,7 +111,7 @@
 			float: left;
 		}
 		tbody {
-			display: block;
+			display: grid;
 			height: 287px;
 			font-size: 12px;
 			overflow-y: auto;
@@ -124,7 +124,7 @@
 	    border-bottom: 1px solid #e5e5e5;
 	    cursor: pointer;
 	    transition: all .5s ease;
-	    min-height: 65px;
+	    // min-height: 65px;
 		}
 		tbody tr:hover {
 			box-shadow: 2px 2px 12px 5px rgba(185,185,185,.5);
@@ -261,7 +261,8 @@
   }
   .numeric-pagination,
   .next-pagination,
-  .prev-pagination,
+	.prev-pagination,
+	.total-item,
   .per-page-pagination {
   	color: #0392cf;
 		cursor: pointer;
@@ -282,10 +283,15 @@
 	margin-right: 0px;
 	margin-left: 10px;
 }
+.total-item {
+	span {
+		margin-left: 30px;
+	}
+}
 .per-page-pagination {
 	position: relative;
 	span {
-		margin-left: 30px;
+		margin-left: 15px;
 	}
 	img {
 		height: 12px;
@@ -326,7 +332,7 @@
 
 	.employee-information-container {
     display: grid;
-    grid-template-columns: 1fr 3.5fr;
+		grid-template-columns: 1fr 3.5fr;
 	}		
   .person-information {
   	background-color: #f9f9f9;
@@ -337,12 +343,21 @@
 
     strong {
 	  	font-family: 'Helvetica Medium';
-	  }
+		}
   }
   .person-image-name-info {
+		position: relative;
   	text-align: center;
   	border-bottom: 1px solid #cbcbcb;
-  	padding-top: 40px;
+		padding-top: 40px;
+		
+		.close {
+			position: absolute;
+			top: 10px;
+			right: 18px;
+			font-size: 20px;
+			cursor: pointer;
+		}
 
   	img {
   		height: 85px;
@@ -497,7 +512,7 @@
     border-top: 1px solid #cbcbcb;
     border-bottom: 1px solid #cbcbcb;
     margin-top: 20px;
-    padding: 10px 0 0 40px;
+    padding: 10px 40px 0 40px;
     font-size: 16px;
     line-height: 24px;
 
@@ -514,7 +529,17 @@
     		border-bottom: 2px solid #283e52;
 		    padding-bottom: 10px;
 		    color: #283e52;
-    	}
+			}
+			
+			&.user-info {
+				display: none;
+				padding-bottom: 10px;
+				color: #283e52;
+				
+				.fa {
+					font-size: 15px;
+				}
+			}
     }
 	}
 	.employee-information,
@@ -669,7 +694,7 @@
 			width: 100%;
 	    margin: 30px 0 50px;
 	    font-size: 32px;
-	    text-align: center;
+			text-align: center;
 		}
 		form {
 			width: 550px;
@@ -684,9 +709,20 @@
 		}
 	}
 
+	.employee-outcome-wrapper {
+		h1 {
+			width: 530px;
+			display: block;
+			margin: 30px auto 50px;
+			font-size: 32px;
+			text-align: left;
+		}
+	}
+	
+
 	.employee-outcome-container {
 		width: 530px;
-		margin: 0 460px;
+		margin: 0 auto;
 
 		.outcome-title {
 			margin-bottom: 20px;
@@ -716,14 +752,21 @@
 	  }
 	}
 	.health-spending-wrapper {
-		text-align: center;
+		// text-align: center;
 		.members-wallet-text {
 			width: 450px;
 			margin: 45px auto 5px;
 			font-size: 16px;
 		}
 		.members-wallet-note {
+			width: 450px;
+			margin: 0 auto 5px;
+			font-size: 16px;
 			color: #9c9c9c;
+		}
+
+		.spending-account-btn-container {
+			text-align: center;
 		}
 		button {
 			background-color: transparent;
@@ -1210,7 +1253,7 @@
 	}
 	.cred-allocation-pagination-wrapper {
 		text-align: center;
-		width: 450px;
+		width: 100%;
     margin: 0 auto;
 	}
 
@@ -1354,10 +1397,734 @@
 			margin-right: 10px;
 			border-color: #ccc;
 		}
-		button:nth-child(2) {
-			
-		}
 	}
 }
 
 
+/*----------- START RESPONSIVE -----------*/
+@media (max-height: 1080px) and (max-width:1920px) {
+	.overview-wrapper {
+		table {
+			tbody {
+				height: 340px;
+			}
+		}
+	}
+}
+
+@media (max-width: 1268px) {
+	.overview-wrapper {
+		width: 100%;
+		.employee-overview-table{
+			overflow: scroll;
+
+			table {
+				width: 1268px;
+			}
+		}
+	}
+
+	.employee-overview-table{
+
+		&::-webkit-scrollbar {
+			height: 2px;
+		}
+		&::-webkit-scrollbar-thumb {
+			background-color: #0ae;
+		}
+	}
+}
+
+@media (max-width: 1170px) {
+	.person-information {
+		min-width: 320px;
+		// display: none;
+	}
+}
+
+@media (max-width: 1100px) {
+	.overview-info-wrapper {
+		.account-summary-wrapper {
+			padding: 20px 15px 0px;
+		}
+	}
+
+	.overview-info-wrapper {
+		.account-summary-wrapper {
+			.medical-wellness-wrapper {
+				width: 100%;
+				display: block;
+				
+				.medical-container {
+					border-bottom: .5px solid #cbcbcb;
+					padding-bottom: 20px;
+					margin-bottom: 20px;
+				}
+
+				.separator {
+					display: none;
+				}
+			}
+		} 
+	} 
+}
+
+@media (max-width: 1023px) {
+	.credit-allocation-wrapper {
+		.spending-account-container > div[data-v-4032faca] {
+			display: block;
+		}
+
+		.cred-emp-wrapper {
+			margin: 0 auto 20px;
+		}
+
+		.cred-details-wrapper {
+			margin: 0 auto;
+			grid-template-columns: repeat(2, 1fr);
+			padding: unset;
+		}
+	}
+}
+
+@media (max-width: 960px) {
+	.overview-info-wrapper {
+		.employee-info-details {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+@media (max-width: 931px) {
+	.overview-wrapper {
+		.employee-overview-header {
+			button {
+			margin-bottom: 10px;
+			}	
+		}
+	}
+}
+
+@media (max-width: 880px) {
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 800px;
+		}
+	} 
+}
+
+@media (max-width: 830px) {
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 750px;
+		}
+	} 
+}
+
+@media (max-width: 780px) {
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 700px;
+		}
+	} 
+}
+
+@media (max-width: 767px){
+	.overview-info-wrapper {
+		padding-top: 61px;
+
+		.remove-employee-wrapper {
+			padding: 45px 0px 0px;
+			position: relative;
+
+			.remove-details-wrapper {
+				width: 80%;
+				margin: 0 auto;
+			}
+
+			img {
+				right: 20px;
+				top: 20px;
+				margin-right: unset;
+				position: absolute;
+			}
+			
+			h1 {
+				font-size: 24px;
+			}
+		}
+
+		.remove-employee-wrapper form {
+			width: 100%;
+			margin: 0 auto;
+			padding: 0 15px;
+		}
+	}
+
+	.overview-info-wrapper {
+		.employee-prev-next-button{ 
+			.employee-btn-back{
+				margin-right: 5px;
+			}
+		}
+	}
+
+	.overview-info-wrapper{ 
+		.employee-info-selection {
+			.employee-selection {
+				&.user-info {
+					display: unset;
+				}
+			}
+		}
+	}
+
+	.overview-info-wrapper { 
+		.employee-information-container {
+			grid-template-columns: 1fr 100%;
+		}
+	}
+
+	.person-info-wrapper {
+		overflow: hidden;
+	}
+
+	.employee-information-wrapper {
+		position: relative;
+    left: -320px;
+	}
+
+	.person-information {
+		position: relative;
+    left: -320px;
+		min-width: 320px;
+		// display: none;
+	}
+
+	.overview-info-wrapper {	
+		.add-dependent-wrapper form {
+			width: 100%;
+		}
+	}
+
+	.dependent-details {
+		width: 90%;
+    margin: 0 auto;
+	}
+
+	.credit-allocation-wrapper {
+		
+    padding: 100px 0 50px;
+		overflow-x: hidden;
+		
+		.employee-details-search-wrapper {
+			margin: 0 auto 50px;
+			width: 75%;
+		}
+
+		.employee-search-container input {
+			width: 80%;
+		}
+	}
+
+}
+
+@media (max-width: 730px) {
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 650px;
+		}
+	} 
+}
+
+@media (max-width: 718px) {
+	.overview-info-wrapper {
+		.employee-prev-next-button{ 
+			padding: 10px 25px;
+			font-size: 10px;
+		}
+	}
+}
+
+@media (max-width: 715px) {
+	.btn-export-members {
+		span:last-child{
+			display: none;
+		}
+	}
+}
+
+@media (max-width: 706px) {
+	.credit-allocation-wrapper .cred-details-wrapper {
+		grid-template-columns: repeat(1, 1fr);
+
+		.cred-emp-wrapper {
+			width: 70%;
+		}
+	} 
+}
+
+@media (max-width: 680px) {
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 600px;
+		}
+	}
+}
+
+@media (max-width: 629px){
+	.overview-info-wrapper {
+		.modal-body {
+			form {
+				width: 80%;
+			}
+		}
+		.modal-container {
+			max-width: 550px;
+		}
+	} 
+
+	.overview-info-wrapper .employee-prev-next-button {
+		.employee-btn-prev, .employee-btn-next {
+			width: 120px;
+		}
+	}
+}
+
+@media (max-width: 610px) {
+	.overview-wrapper {
+		.employee-overview-header{
+			.overview-input-wrapper {
+				input {
+					width: 175px;
+					margin-left: 15px;
+				}	
+			}
+		}
+	}
+
+	.overview-info-wrapper {
+		.remove-employee-wrapper {
+			h1 {
+				width: 90%;
+			}
+
+			.employee-outcome-container {
+				width: 90%;
+			}
+		} 
+	} 
+}
+
+@media (max-width: 594px) {
+	.overview-title {
+		width: 108.75px;
+	}
+}
+
+@media (max-width: 580px) {
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 500px;
+		}
+
+		.modal-btn-container {
+			width: 80%;
+		}
+	} 
+
+	.overview-info-wrapper {
+		.account-summary-wrapper {
+			.medical-wellness-wrapper {
+				padding: 20px 15px;
+			}
+		}
+	}  
+}
+
+@media (max-width: 568px) {
+	.overview-wrapper {
+		padding: 70px 50px 49px 50px;
+		
+		.employee-overview-header{
+			.overview-input-wrapper {
+				input {
+					width: 257px;
+					margin-bottom: 10px;
+				}	
+			}
+		}
+	}
+
+	.overview-wrapper {
+		.employee-overview-table {
+			margin-left: 0;
+		}
+	}
+
+	.credit-allocation-wrapper {
+		.employee-details-search-wrapper {
+			width: 90%;
+		}
+	}
+}
+
+@media (max-width: 555px) {
+	.overview-info-wrapper {
+		.dependent-btn-container {
+			position: relative;
+			float: unset;
+			top: 35px;
+			left: -10px;
+		}
+	}
+}
+
+@media (max-width: 534px) {
+	.overview-wrapper {
+		padding: 70px 30px 49px 30px;
+	}
+}
+
+@media (max-width: 529px){
+
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 450px;
+		}
+
+		.modal-btn-container {
+			width: 90%;
+		}
+	} 
+
+	.overview-info-wrapper .employee-prev-next-button {
+		.employee-btn-back {
+			span {
+				display: none;
+			}
+		}
+	}
+
+	
+
+	.overview-info-wrapper {
+		.health-spending-account-container {
+			padding: 15px;
+			h1{
+				width: 100%;
+			}
+
+			.members-wallet-text {
+				width: 100%;
+			}
+
+			.members-wallet-note{
+				width: 100%;
+				margin: 0 auto 5px;
+			}
+
+			.spending-account-btn-container {
+				text-align: center;
+			}
+		}
+	}
+}
+
+@media (max-width: 490px) {
+	.overview-info-wrapper {
+		.employee-info-selection {
+			.employee-selection {
+				margin-right: 20px;
+			}
+		}
+	}
+
+	.credit-allocation-wrapper {
+		.cred-details-wrapper .cred-emp-wrapper {
+			width: 90%;	
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 400px;
+		}
+		.modal-body {
+			form{
+				width: 100%
+			}
+		}
+		.modal-btn-container {
+			width: 100%;
+		}
+	}
+
+	.overview-info-wrapper {
+		.modal-header {
+			h1{
+				font-size: 30px;
+				margin: 35px 0;
+			}
+		}
+	}
+
+	.credit-allocation-wrapper { 
+		.employee-details-search-wrapper {
+			display: block;
+		}
+
+		.employee-search-container input {
+			width: 100%;
+		}
+	}
+}
+
+@media (max-width: 455px) {
+	.overview-wrapper {
+		padding: 70px 30px 49px 30px;
+
+		.employee-overview-header{
+			.overview-input-wrapper {
+				input {
+					width: 198px;
+					margin-bottom: 10px;
+				}	
+			}
+		}
+	}
+
+	button.btn-enroll-employees {
+		span{
+			display: none;
+		}
+	}
+}
+
+@media (max-width: 429px) {
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 388px;
+		}
+		.modal-btn-container {
+			button{
+				width: 140px;
+    		font-size: 10px;
+			}
+		}
+	}
+}
+
+@media (max-width: 414px) {
+
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 371px;
+		}
+	}
+
+	.overview-info-wrapper {
+		.employee-info-selection {
+			.employee-selection {
+				margin-right: 15px;
+			}
+		}
+	}
+
+	.overview-info-wrapper {
+		.dependent-btn-container {
+			margin-bottom: 70px;
+
+			button {
+				position: relative;
+			}
+		}
+	}
+}
+
+@media (max-width: 407px){
+	.overview-info-wrapper .employee-prev-next-button {
+		.employee-btn-prev, .employee-btn-next {
+			width: 100px;
+		}
+	}
+}
+
+@media (max-width: 390px){
+	.overview-wrapper {
+		padding: 70px 15px 49px 15px;
+
+		.employee-overview-header{
+			.overview-input-wrapper {
+				input {
+					width: 187px;
+					margin-bottom: 10px;
+				}	
+			}
+		}
+	}
+	
+	.overview-wrapper .employee-overview-header .btn-enroll-employees {
+		padding: 6px 25px;
+	}
+
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 347px;
+		}
+
+		.modal-header h1 {
+			font-size: 24px;
+			margin: 30px 0;
+		}
+
+		.modal-btn-container button {
+			width: 120px;
+		}
+	}
+
+	.credit-allocation-wrapper {
+		.cred-details-wrapper .cred-emp-wrapper {
+			width: 100%;	
+		}
+	}
+}
+
+@media (max-width: 385px) {
+	.overview-info-wrapper {
+		.employee-btn-add-seat-wrapper {
+			h3{
+				width: 50%;
+				font-weight: 700;
+				font-size: 22px;
+			}
+		}
+	}
+}
+
+@media (max-width: 367px) {
+	.overview-info-wrapper .employee-prev-next-button {
+		.employee-btn-prev, .employee-btn-next {
+			width: 75px;
+		}
+
+		.employee-btn-next {
+			span {
+				display: none;
+			}
+		}
+	}
+
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 324px;
+		}
+	}
+}
+
+@media (max-width: 350px) {
+	.overview-wrapper {
+		.employee-overview-header{
+			.overview-input-wrapper {
+				input {
+					width: 167px;
+					margin-bottom: 10px;
+				}	
+			}
+		}
+	}
+
+	.overview-wrapper .employee-overview-header .btn-export-members {
+			background-color: transparent;
+			border: 2px solid #d8d8d8;
+			padding: 6px 15px;
+	}
+
+	.overview-wrapper .employee-overview-header .btn-enroll-employees {
+		padding: 6px 18px;
+	}
+}
+
+@media (max-width: 355px) {
+	.overview-info-wrapper {
+		.modal-container {
+			max-width: 312px;
+		}
+		.modal-btn-container button {
+			width: 110px;
+		}
+	}
+}
+
+@media (max-width: 320px) {
+	.overview-info-wrapper {
+		.modal-header h1 {
+			font-size: 21px;
+			margin: 30px 0;
+		}
+		.modal-container {
+			max-width: 285px;
+		}
+		.modal-btn-container button {
+			width: 100px;
+		}
+	}
+}
+
+@media (min-width: 320px){
+
+
+	.overview-wrapper .employee-overview-header .overview-input-wrapper input {
+		width: 167px;
+    margin-left: 0px;
+	}
+	.overview-wrapper .employee-overview-header .btn-enroll-employees {
+		padding: 6px 18px;
+	}
+
+	.overview-wrapper .employee-overview-header .btn-export-members {
+			background-color: transparent;
+			border: 2px solid #d8d8d8;
+			padding: 6px 15px;
+	}
+}
+
+// for table body height
+@media (max-width: 1024px) and (max-height: 1366px) {
+	.overview-wrapper table tbody {
+    height: 480px;
+	}
+}
+@media (max-width: 375px) and (max-height: 812px) {
+	.overview-wrapper table tbody {
+    height: 467px;
+	}
+}
+@media (max-width: 414px) and (max-height: 736px) {
+	.overview-wrapper table tbody {
+    height: 410px;
+	}
+}
+@media (max-width: 375px) and (max-height: 667px) {
+	.overview-wrapper table tbody {
+    height: 323px;
+	}
+}
+@media (max-width: 320px) and (max-height: 568px) {
+	.overview-wrapper table tbody {
+    height: 218px;
+	}
+}
+// Pixel 2
+@media (width: 411px) and (height: 731px) {
+	.overview-wrapper table tbody {
+    height: 405px;
+	}
+}
+@media (width: 360px) and (height: 640px) {
+	.overview-wrapper table tbody {
+    height: 295px;
+	}
+}

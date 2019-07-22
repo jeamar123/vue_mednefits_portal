@@ -16,7 +16,7 @@
             <div class="employee-details-header">
               <h1>Employee Details</h1>
               <div class="add-dependent-btn">
-                <h4>Add a Dependent?</h4>
+                <h4 class="add-dependent-title-header">Add a Dependent?</h4>
                 <button @click="addDependent">
                   <img :src="'../assets/img/icons/add-employee.svg'"> Add
                 </button>
@@ -258,15 +258,21 @@
 
       <div class="prev-next-button-container">
         <div class="button-container">
-          <button v-if="isState === 'web'" @click="$router.go(-1)" class="back-btn">Back</button>
-          <button v-if="isState === 'dependent'" :disabled="true" class="back-btn btn-disabled">Back</button>
+          <button v-if="isState === 'web'" @click="$router.go(-1)" class="btn-back-web back-btn">
+            <span class="text">Back</span>
+          </button>
+          <button v-if="isState === 'dependent'" :disabled="true" class="back-btn btn-disabled"><span>Back</span></button>
 
           <div class="btn-enroll-container">
             <button v-if="false" class="btn-employee">DELETE</button>
             <button v-if="employeeStorage.length != 0 && isState === 'web'" :disabled="prevDisabled"
-              class="btn-employee" @click="prevNextEmp('prev', 0)">PREVIOUS EMPLOYEE</button>
-            <button v-if="isState === 'web'" class="btn-employee" @click="prevNextEmp('next', 0)">NEXT EMPLOYEE</button>
-            <button class="next-btn" v-if="isState === 'web'" @click="enroll('enrollsum')">Enroll</button>
+              class="btn-prev-emp btn-employee" @click="prevNextEmp('prev', 0)">
+              <span class="text">PREVIOUS <span class="text-employee">EMPLOYEE</span></span>
+            </button>
+            <button v-if="isState === 'web'" class="btn-next-emp btn-employee" @click="prevNextEmp('next', 0)">
+              <span class="text">NEXT <span class="text-employee">EMPLOYEE</span></span>
+            </button>
+            <button class="btn-enroll-web next-btn" v-if="isState === 'web'" @click="enroll('enrollsum')">Enroll</button>
           </div>
         </div>
       </div>

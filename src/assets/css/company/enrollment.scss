@@ -43,6 +43,8 @@
 		width: 700px;
 		text-align: center;
 		padding: 10px 10px 0 10px;
+		display: flex;
+		justify-content: center;
 
 		button {
 			background-color: transparent;
@@ -52,11 +54,11 @@
 			border: solid 2px #ccc;
 			border-radius: 8px;
 
-			&:nth-child(1) {
+			&.btn-excel-import {
 				margin-right: 12px;
 			}
 
-			&:nth-child(2) {
+			&.btn-web-input {
 				margin-left: 12px;
 			}
 		}
@@ -80,34 +82,29 @@
 		}
 	}
 
-	.pick-enrollment-text {
-		width: 460px;
-		display: flex;
-		margin: 0 auto;
+	.below-text {
+		font-weight: 700;
+		line-height: 1.4;
+	  text-align: left;
 
-		.enrollment-method-box-text {
-			padding: 20px 0px;
-			flex: 1;
+		&.excel-below-text {
+	    width: 92%;
+	    padding: 20px 0px 20px 7px;
 		}
 
-		.download-below-text {
-			font-weight: 700;
-			width: 78%;
-			margin: 0 auto;
-			line-height: 1.4
+		&.web-below-text {
+	    width: 98%;
+	    padding: 20px 0px 20px 20px;
+	    transform: translateX(5px);
 		}
 	}
 
 	.btn-summary-enroll-container {
-		.pending-enroll-text {
-			font-weight: 700;
-			font-size: 14px;
-			color: #0291CE;
-			margin-right: 20px;
-		}
+		display: flex;
+		align-items: center;
 
 		.btn-enroll {
-			padding: 11px 20px;
+			padding: 6px 20px;
 	    display: inline-flex;
 	    align-items: center;
 	    width: inherit;
@@ -117,16 +114,24 @@
 			background-color: #fff;
 	    color: #0291CE;
 	    border-radius: 50%;
-	    height: 30px;
-	    width: 30px;
+	    height: 28px;
+	    width: 28px;
 	    display: inline-block;
 	    font-weight: 600;
 	    font-size: 12px;
-	    line-height: 30px;
+	    line-height: 28px;
 	    margin-left: 10px;
 	    text-align: center;
 		}
 	}
+
+	.pending-enroll-text {
+		font-weight: 700;
+		font-size: 14px;
+		color: #0291CE;
+		margin-right: 20px;
+	}
+
 	.btn-successfully-enrolled-container {
 		button {
 			background-color: #0291CE;
@@ -499,6 +504,7 @@
 
 		.btn-cancel {
 			width: 110px;
+			margin-right: 10px;
 		}
 
 		.btn-add {
@@ -741,8 +747,6 @@
 	    font-size: 12px;
 	    float: right;
 	    display: none;
-
-	    &:hover {}
 		}
 		tbody tr {
 			color: #888;
@@ -1060,7 +1064,8 @@
 
 .prev-next-button-container {	
 	position: fixed;
-	z-index: 2;
+	/*z-index: 2;*/
+	z-index: 1;
 	bottom: 0;
 	width: 100%;
 	height: auto;
@@ -1103,11 +1108,11 @@
 
 	.back-btn {
 		border: 2px solid #d6d6d6;
+		margin: 0 20px 0 0;
 	}
 	
 	.delete-btn {
 		text-transform: inherit;
-		margin-left: 20px;
 		color: #fff;
 		background-color: #ff6262;
 		padding: 11px 39px;
@@ -1208,7 +1213,7 @@
 	
 	button {
 		display: inline-block;
-		float: inherit;
+		// float: inherit;
 		background-color: transparent;
 		line-height: 24px;
 		border-radius: 4px;
@@ -1224,5 +1229,517 @@
 		border: solid 1px #0392cf;
 		background-color: #0392cf;
 		color: #fff;
+	}
+}
+
+@media (max-width: 1200px) {
+	.employee-details-header {
+		.add-dependent-btn {
+			right: 50px;
+		}
+	}
+}
+
+@media (max-width: 992px) {
+	.employee-details-header {
+		.add-dependent-title-header {
+			display: none;
+		}
+	}
+
+	.review-with-dependents {
+		width: 100%;
+		padding: 50px 50px 50px;
+	}
+
+	.upload-file-wrapper {
+		padding: 10px 15px;
+
+		.upload-box {
+			width: 100%;
+		}
+	}
+}
+
+@media (min-width: 851px) {
+	.tier-summary-wrapper {
+		.add-tier-wrapper {
+			display: block;
+		}
+
+		.add-tier-btn-container {
+			display: none;
+		}
+	}
+}
+
+@media (max-width: 850px) {
+	.tier-summary-wrapper .add-tier-wrapper {
+		display: none;
+	}
+
+	.tier-summary-wrapper .add-tier-btn-container {
+		display: block;
+		text-align: center;
+		margin: 50px 0 0;
+
+		button {
+			background-color: #0392cf;
+	    color: #fff;
+	    font-weight: 700;
+	    border: 0;
+	    border-radius: 4px;
+	    padding: 8px 15px;
+		}
+	}
+}
+
+@media (max-width: 782px) {
+	.prev-next-button-container {
+		.button-container {
+			width: 100%;
+		}
+	}
+}
+
+
+@media (max-width: 767px) {
+	.benefits-tier-wrapper {
+		padding: 100px 0 100px;
+	}
+
+	.enrollment-wrapper {
+		padding-top: 100px;
+
+		.pick-enrollment-method {
+			width: 100%;
+		}
+
+		.enrollment-method-title {
+			font-size: 20px;
+    	margin: 20px 0 10px;
+		}
+	}
+
+	.summary-right-container {
+		top: 28%;
+	}
+
+	.employee-details-wrapper form,
+	.dependent-details-wrapper form,
+	.dependent-details-btn {
+		width: 100%;
+	}
+
+	.dependent-details-btn {
+		.btn-cancel,
+		.btn-add,
+		.btn-save-continue {
+			font-size: 14px;
+		}
+	}
+
+	.download-template-wrapper h1 {
+		margin: 10px 0 0;
+		font-size: 23px;
+	}
+
+	.review-with-dependents h1 {
+		margin: 40px 0 25px;
+		font-size: 20px;
+	}
+
+	.review-tick-container {
+		font-size: 14px;
+	}
+
+
+	.upload-file-wrapper {
+		padding: 70px 15px 0;
+		h1 {
+			font-size: 20px;
+		}
+
+		.upload-box {
+			margin: 30px auto;
+			padding: 50px 40px;
+		}
+
+		span {
+			font-size: 14px;
+		}	
+	}
+}
+
+/*----------- MOBILE DEVICE -----------*/
+
+@media (min-width: 750px) {
+	.btn-employee .text-employee {
+		display: inline-block;
+	}
+}
+
+@media (max-width: 750px) {
+	.enrollment-wrapper .btn-summary-enroll-container {
+		
+		.btn-enroll {
+			padding: 8px 20px;
+			font-size: 10px;
+		}
+
+		.enroll-badge {
+			height: 22px;
+			width: 22px;
+			font-size: 10px;
+			line-height: 22px;
+		}
+	}
+
+	.enrollment-wrapper .btn-successfully-enrolled-container {
+		button {
+			font-size: 12px;
+			width: 220px;
+		}
+	}
+
+	.prev-next-button-container {
+		.back-btn,
+		.next-btn {
+			font-size: 12px;
+		}
+
+		.btn-back-web {
+			font-size: 10px;
+		}
+
+		.btn-enroll-web {
+			font-size: 10px;
+		}
+
+		.btn-employee {
+			font-size: 10px;
+			width: 155px;
+		}
+
+		.btn-employee .text-employee {
+			display: none;
+		}
+
+		.summary-back-btn,
+		.delete-btn {
+			font-size: 10px;
+		}
+
+		.btn-download-template {
+			font-size: 12px;
+		}
+	}
+}
+
+@media (max-width: 633px) {
+	.prev-next-button-container {
+		.btn-employee {
+			width: 120px;
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.enroll-option-wrapper {
+		padding: 120px 40px 0 40px;
+
+		>h1 {
+			font-size: 22px;
+		}
+	}
+
+	.employee-details-header{
+		h1 {
+			margin: 20px 0 20px;
+		}
+		.add-dependent-btn {
+			position: relative;
+			right: 0;
+			text-align: center;
+			margin: 0 0 20px;
+		}
+	}
+
+	.review-with-dependents {
+		padding: 50px 10px 50px;
+	}
+}
+
+@media (min-width: 575px) {
+	.responsive-enroll-text {
+		display: none;
+	}
+}
+
+@media (max-width: 575px) {
+
+	.details-enroll-wrapper {
+		padding: 30px 0px 50px 0px;
+
+		h1 {
+			font-size: 20px;
+			margin-top: 0;
+		}
+	}
+
+	.enrollment-wrapper .responsive-enroll-text {
+		display: block;
+		text-align: center;
+		margin: 0 0 5px 0;
+		font-size: 12px;
+	}
+
+	.details-enroll-wrapper > div {
+		margin-top: 40px;
+	}
+
+	.successfully-enrolled-wrapper {
+		h1 {
+			font-size: 20px;
+    	width: 100%;
+		}
+
+		img {
+			margin-top: 40px;
+		}
+	}
+
+	.btn-summary-enroll-container .pending-enroll-text {
+		display: none;
+	}
+
+	.download-template-wrapper {
+
+		p {
+			width: 100%;
+		}
+
+		button {
+			font-size: 10px;
+			width: 170px;
+		}
+	}
+}
+
+@media (max-width: 564px) {
+	.prev-next-button-container {
+		.btn-back-web,
+		.btn-enroll-web {
+			padding: 11px 20px;
+		}
+
+		.excel-back-btn,
+		.excel-next-btn {
+			padding: 11px 18px;
+	    margin-right: 5px;
+	    font-size: 10px;
+		}
+
+		.excel-download-btn {
+			padding: 11px 12px;
+	    margin-right: 5px;
+	    font-size: 10px;
+		}
+
+		.excel-next-btn {
+			margin-right: 0px;
+		}
+	}
+}
+
+@media (max-width: 490px) {
+
+	.enrollment-wrapper {
+		.below-text.excel-below-text,
+		.below-text.web-below-text {
+			transform: translateX(0px);
+			width: 100%;
+    	padding: 20px 0px 20px 7px;
+		}
+
+		.btn-successfully-enrolled-container button {
+			font-size: 10px;
+			width: 175px;
+		}
+	}
+	 
+	.enrollment-wrapper .pick-enrollment-method {
+		display: grid;
+
+		button {
+			width: 180px;
+    	padding: 45px 20px 40px;
+		}
+
+		button.btn-web-input,
+		button.btn-excel-import {
+			margin-right: 0;
+			margin-left: 0;
+		}
+
+		img {
+			height: 65px;
+		}
+
+		h4 {
+			margin: 20px 0 0 0;
+			font-size: 16px;
+		}
+	}
+
+	.prev-next-button-container {
+		.back-home-btn {
+			font-size: 10px;
+			padding: 11px 12px;
+    	margin-right: 5px;
+		}
+	}
+}
+
+@media (max-width: 487px) {
+	.prev-next-button-container {
+		.btn-employee {
+			width: 100px;
+		}
+	}
+
+	.dependent-details-btn {
+		.btn-cancel,
+		.btn-add,
+		.btn-save-continue {
+			font-size: 12px;
+		}
+
+		.btn-cancel {
+			width: 90px;
+		}
+
+		.btn-save-continue {
+			width: 130px;
+		}
+	}
+}
+
+@media (max-width: 447px) {
+	.prev-next-button-container {
+		.btn-back-web {
+			margin-right: 5px;
+			padding: 11px 17px;
+		}
+
+		.btn-employee:nth-child(2) {
+			width: 58px;
+		}
+
+		.btn-enroll-web {
+			padding: 11px 12px;
+		}
+
+		.btn-employee {
+			width: 80px;
+			margin-right: 5px;
+		}
+	}
+}
+
+@media (max-width: 410px) {
+	.prev-next-button-container {
+		.summary-back-btn,
+		.delete-btn {
+			margin-right: 10px;
+			padding: 11px 26px;
+		}
+	}
+	.enrollment-wrapper .btn-summary-enroll-container {
+		.summary-enroll-btn {
+			padding: 8px 10px;
+		}
+	}
+}
+
+
+@media (max-width: 400px) {
+	.benefits-tier-wrapper {
+		padding: 100px 30px 100px;
+
+		>h1 {
+			margin: 17px 0 30px;
+		}
+
+		h4 {
+			font-size: 16px;
+		}
+	}
+
+	.tier-item-wrapper {
+		width: 100%;
+	}
+
+	.tier-summary-wrapper {
+		.summary-details-wrapper {
+			width: 100%;
+		}
+	}
+
+	.employee-input-container {
+		display: block;
+
+		.employee-input-wrapper:nth-child(2) {
+			margin-left: 0;
+		}
+	}
+
+	.dependent-details-btn {
+		.btn-cancel,
+		.btn-add,
+		.btn-save-continue {
+			font-size: 10px;
+		}
+
+		.btn-cancel,
+		.btn-add {
+			width: 70px;
+			margin-right: 5px;
+		}
+
+		.btn-save-continue {
+			width: 107px;
+		}
+	}
+}
+
+@media (max-width: 388px) {
+	.download-template-btn {
+		button:nth-child(1),
+		button:nth-child(2) {
+			margin: 0 auto;
+			display: block;
+		}
+
+		button:nth-child(1) {
+			margin-bottom: 5px;
+		}
+	}
+}
+
+@media (max-width: 380px) {
+	.tier-item-body {
+		.gp-toggle label {
+			width: 95px;
+			line-height: 1.4;
+		}
+	}
+}
+
+@media (max-width: 320px) {
+	.prev-next-button-container {
+		.btn-next-emp {
+			transition: none;
+		}
 	}
 }

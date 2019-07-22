@@ -273,3 +273,162 @@
 	}
 }
 
+@media (max-width: 1128px ) {
+	.top-navbar {
+		grid-template-columns: 11fr 1fr 1fr;
+	}
+}
+
+@media (max-width: 1050px ) {
+	.top-navbar {
+		grid-template-columns: 10fr 1fr 1fr;
+	}
+
+	.welcome-top-navbar-wrapper .top-navbar {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media (max-width: 992px) {
+	.welcome-container .excel-import-title {
+		font-size: 18px;
+	}
+
+	.template-menu-accordion {
+		.menu-accordion-list {
+			margin: 0px 30px auto;
+		}
+
+		.number {
+			font-size: 10px;
+	    height: 24px;
+	    width: 24px;
+		}
+
+		.menu-accordion-label {
+			font-size: 14px;
+		}
+	}
+}
+
+@media (max-width: 972px ) {
+	.top-navbar {
+		grid-template-columns: 9fr 1fr 1fr;
+	}
+}
+
+@media (max-width: 893px ) {
+	.top-navbar {
+		grid-template-columns: 8fr 1fr 1fr;
+	}
+}
+
+@media (max-width: 875px ) {
+	.dashboard-navbar-container {
+		display: flex;
+	}
+
+	.welcome-container {
+		margin: 0 0 0 70px;
+	}
+}
+
+@media (max-width: 815px ) {
+	.top-navbar {
+		grid-template-columns: 6fr 1fr 1fr;
+	}
+}
+
+@media (max-width: 767px ) {
+	.welcome-container {
+		.web-input-title {
+			font-size: 15px;
+			margin: 12px 0;
+		}
+	}
+
+	.top-navbar-wrapper,
+	.welcome-top-navbar-wrapper{
+		border-bottom: 1px solid #eae7e7;
+	}
+
+	.top-navbar-wrapper .need-help-wrapper,
+	.account-dropdown,
+	.main-navigation {
+		display: none;
+	}
+
+	.top-navbar {
+		grid-template-columns: 8fr 1fr;
+	}
+
+
+	.menu-bar-wrapper {
+	  display: block;
+    float: right;
+    cursor: pointer;
+  }
+
+  .top-navbar-wrapper .navbar-collapse {
+  	top: 60px;
+  	z-index: 2;
+  }
+}
+
+@media (min-width: 768px) {
+	.navbar-collapse {
+		display: none;
+	}
+}
+
+@media (max-width: 767px) {
+	.enrollment-navbar-container {
+		width: 100%;
+
+		.excel-import-title {
+			position: relative;
+	    text-align: center;
+	    margin: 10px auto 0;
+	    font-size: 18px;
+	    width: 100%;
+		}
+	}
+
+	.template-menu-accordion {
+		padding: 10px 0 5px;
+
+		.menu-accordion-list {
+			margin: 0 25px auto;
+		}
+
+		.menu-accordion-label {
+			margin-top: 0;
+		}
+	}
+}
+
+@media (max-width: 400px) {
+	
+	.template-menu-accordion {
+		
+		.menu-accordion-list {
+			margin: 0 12px auto;
+		}
+
+		.number {
+			height: 20px;
+			width: 20px;
+			font-size: 9px;
+		}
+
+		.menu-accordion-label {
+			font-size: 14px;
+			margin-top: 0px;
+		}
+	}
+}
+
+
+
+
+

@@ -2,7 +2,7 @@
   <div class="list-info-container benefits-tier-container">
     <h1>Team benefits tiers.</h1>
 
-    <div v-if="true" class="tier-item-wrapper">
+    <div v-if="false" class="tier-item-wrapper">
       <div class="tier-item-form">
         <div class="tier-item-header">
           <h4>
@@ -81,9 +81,46 @@
       </div>
     </div>
 
-    <div v-if="false" class="tier-summary-wrapper">
+    <div v-if="true" class="tier-summary-wrapper">
       <h4>Manage your team benefits tiers here.</h4>
       <div class="summary-details-wrapper">
+        <div class="summary-details">
+          <div class="tier-summary-btn">
+            <input type="radio" name="radio">
+            <label>
+              <div>
+                Tier
+                <span>1</span>
+                <br>
+                <span>0</span>/<span>2</span>
+              </div>
+            </label>
+            <span>Edit</span>
+          </div>
+          <div class="clinic-type-wrapper">
+            <div class="clinic-type-container">
+              <span class="label">Medical annual cap:</span>
+              <span class="text">
+                S$
+                <span>1</span>
+              </span>
+            </div>
+            <div class="clinic-type-container">
+              <span class="label">Wellness annual cap:</span>
+              <span class="text">
+                S$
+                <span>1</span>
+              </span>
+            </div>
+            <div class="clinic-type-container">
+              <span class="label">GP cap per visit:</span>
+              <span class="text">
+                S$
+                <span>0</span>
+              </span>
+            </div>
+          </div>
+        </div>
         <div class="summary-details">
           <div class="tier-summary-btn">
             <input type="radio" name="radio">

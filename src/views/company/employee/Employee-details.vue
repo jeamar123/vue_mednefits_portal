@@ -3,9 +3,10 @@
   <!-- Employee Overview Information -->
   <div class="overview-info-wrapper">
     <div class="person-info-wrapper">
-      <div v-if="!showAddDependents" class="employee-information-container">
-        <div class="person-information">
+      <div v-if="!showAddDependents" :style="[sideInfo.sideContainer]" class="employee-information-container">
+        <div :style="[sideInfo.sideStyle]" class="person-information transition-easeInOutCubic-400ms">
           <div class="person-image-name-info">
+            <span v-show="sideInfo.trigger" class="close" @click="toggleSideInfo(0)"><i class="fa fa-times" aria-hidden="true"></i></span>
             <img :src="'../assets/img/user-new.png'">
             <h1>Allan Cheam Alzula</h1>
             <div class="status-information">
@@ -149,12 +150,15 @@
                 Employee
               </button>
             </router-link>
-            <button @click="viewEmployeeSpendingSummary( )" v-if="false" class="btn-health-spending">Health Spending
+            <button @click="viewEmployeeSpendingSummary()" v-if="false" class="btn-health-spending">Health Spending
               Account Summary</button>
           </div>
         </div>
-        <div class="employee-information-wrapper">
+        <div :style="[sideInfo.sideStyle, sideInfo.empInfoWrapper]" class="employee-information-wrapper transition-easeInOutCubic-400ms">
           <div class="employee-info-selection">
+
+            <div  :style="[sideInfo.trigger ? {'display': 'none'} : false]" v-on:click="toggleSideInfo(1)"
+              class="employee-selection user-info">Allan <i class="fa fa-caret-right" aria-hidden="true"></i></div>
             <div v-bind:class="{'active' : toggle_overiew_type == 1}" v-on:click="toggleTabOverview(1)"
               class="employee-selection">Employee</div>
             <div v-bind:class="{'active' : toggle_overiew_type == 2}" v-on:click="toggleTabOverview(2)"
@@ -278,137 +282,6 @@
             </div>
           <!-- </transition> -->
 
-          <!-- <div v-if="healthSpendingAccountTabIsShow" class="account-summary-wrapper">
-            <span class="account-summary-name">Serene Song</span>
-            <h1>Health Spending Account Summary</h1>
-            <div class="credits-summary-container">
-              <div class="account-summary-pro-rated">
-                Pro-rated allocation from
-                <span>
-                  <strong>Start</strong> -
-                  <span class="account-summary-date">01/01/2019</span>
-                </span> to
-                <span>
-                  <strong>End</strong> -
-                  <span class="account-summary-date">08/04/2019</span>
-                </span>
-              </div>
-              <div class="account-summary-usage">
-                Usage from
-                <span>
-                  <strong>Start</strong> -
-                  <span class="account-summary-date">01/01/2019</span>
-                </span> to
-                <span>
-                  <strong>Current</strong> -
-                  <span class="account-summary-date">19/03/2019</span>
-                </span>
-              </div>
-            </div>
-            <div class="medical-wellness-wrapper">
-              <div class="medical-container">
-                <h4>Medical Spending Account</h4>
-                <div class="spending-account-details">
-                  <div class="bills-spending-container">
-                    <strong>Initial Allocation</strong>
-                    <div>
-                      S$
-                      <span>0.00</span>
-                    </div>
-                  </div>
-                  <div class="bills-spending-container pro-rated">
-                    <strong>Pro-rated Allocation</strong>
-                    <div>
-                      S$
-                      <span>0.00</span>
-                    </div>
-                  </div>
-                  <div class="bills-spending-container current-usage">
-                    <strong>Current Usage</strong>
-                    <div>
-                      S$
-                      <span>0.00</span>
-                    </div>
-                  </div>
-                  <div class="current-usage-details">
-                    <div class="bills-spending-container">
-                      <span>Spent</span>
-                      <div>
-                        S$
-                        <span>0.00</span>
-                      </div>
-                    </div>
-                    <div class="bills-spending-container">
-                      Pending claim
-                      <div>
-                        S$
-                        <span>0.00</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="bills-spending-container balance">
-                    <strong>Balance</strong>
-                    <div>
-                      S$
-                      <span>0.00</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="spending-account-status on-track"> On Track</div>
-              </div>
-              <div class="separator"></div>
-              <div class="wellness-container">
-                <h4 class="font-helvetica-medium">Wellness Spending Account</h4>
-                <div class="spending-account-details">
-                  <div class="bills-spending-container">
-                    <strong>Initial Allocation</strong>
-                    <div>
-                      S$
-                      <span>0.00</span>
-                    </div>
-                  </div>
-                  <div class="bills-spending-container pro-rated">
-                    <strong>Pro-rated Allocation</strong>
-                    <div>
-                      S$
-                      <span>0.00</span>
-                    </div>
-                  </div>
-                  <div class="bills-spending-container current-usage">
-                    <strong>Current Usage</strong>
-                    <div>
-                      S$
-                      <span>0.00</span>
-                    </div>
-                  </div>
-                  <div class="current-usage-details">
-                    <div class="bills-spending-container">
-                      <span>Spent</span>
-                      <div>
-                        S$
-                        <span>0.00</span>
-                      </div>
-                    </div>
-                    <div class="bills-spending-container">
-                      <span>Pending claim</span>
-                      <div>
-                        S$
-                        <span>0.00</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="bills-spending-container balance">
-                    <strong>Balance</strong>
-                    <div>
-                      S$
-                      <span>0.00</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="spending-account-status exceed">Exceed</div>
-              </div>
-            </div>
-          </div> -->
           <HealthSpending v-if="healthSpendingAccountTabIsShow"></HealthSpending>
 
         </div>
@@ -483,18 +356,14 @@
           </div>
         </div>
       </div>
-
-
-      
-
     </div>
 
 
     <div class="employee-prev-next-button">
-      <button class="employee-btn-back" @click="$router.go(-1)">Back to employee overview</button>
+      <button class="employee-btn-back" @click="$router.go(-1)">Back <span>to employee overview</span></button>
       <div class="pull-right">
         <button class="employee-btn-prev disabled">Previous</button>
-        <button class="employee-btn-next">Next employee</button>
+        <button class="employee-btn-next">Next <span>employee</span></button>
       </div>
     </div>
 

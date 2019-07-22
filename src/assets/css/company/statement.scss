@@ -569,6 +569,329 @@
   
 }
 
+#date-responsive {
+	display: none;
+}
+
+.statement-overview-container {
+	.mobile-preview {
+		display: none;
+		margin: 50px auto;
+
+		button {
+			color: #fff;
+			text-transform: none;
+			background-color: #0392cf;
+			border: 0;
+			padding: 10px 30px;
+			font-weight: 700;
+			line-height: 1.4;
+			letter-spacing: .5px;
+			font-size: 18px;
+			border-radius: 4px;
+			-webkit-box-shadow: 
+				0 2px 2px 0 rgba(0, 0, 0, 0.14), 
+				0 1px 5px 0 rgba(0, 0, 0, 0.12), 
+				0 3px 1px -2px rgba(0, 0, 0, 0.2);
+			box-shadow: 
+				0 2px 2px 0 rgba(0, 0, 0, 0.14), 
+				0 1px 5px 0 rgba(0, 0, 0, 0.12), 
+				0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+			i {
+				padding-right: 10px;
+			}
+		}
+	}
+}
+
+// responsive style
+
+@media (max-width: 1300px) {
+	.statement-wrapper {
+		.statement-overview-container {
+			padding: 30px 0 25px;
+			overflow: auto;
+
+			&::-webkit-scrollbar {
+				height: 3px;
+			}
+
+			.transaction-table-container {
+				width: 1097px;
+				padding: 20px 15px;
+				margin: 0 auto;
+			}
+		}
+
+		.statement-title-col {
+			padding: 5px;
+
+			h4 {
+				margin: 10px auto;
+				width: 85%;
+				text-align: left;
+			}
+		}
+	}
+}
+
+@media (max-width: 1170px) {
+	.statement-wrapper {
+		.statement-title-col {
+			h4 {
+				margin: 10px auto;
+				width: 90%;
+				text-align: center;
+			}
+		}
+	}
+}
+
+
+
+@media (max-width: 1023px) {
+	.statement-wrapper {
+		.statement-container {
+			padding: 0 30px;
+		}
+	}
+}
+
+@media (max-width: 895px ) {
+	.statement-wrapper {
+		.statement-transaction-header {
+			.btn-transaction-container button {
+				width: 100%;
+				margin: 5px;
+			}
+		}
+	}
+}
+
+@media (max-width: 865px) {
+	.statement-overview-container {
+		.statement-wrapper {
+			width: 95%;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.statement-wrapper {
+    padding-top: 100px;
+		font-weight: 700;
+		
+		.total-spent-container {
+		 position: unset;
+		}
+
+		.statement-transaction-header {
+			.btn-transaction-container button {
+				width: 70%;
+				font-size: 10px;
+			}
+		} 
+
+		.statement-overview-container {
+			min-height: 100px;
+
+			.mobile-preview {
+				display: unset;
+			}
+
+			.statement-wrapper {
+				display: none;
+			}
+		}
+	}
+}
+
+@media (max-width: 652px) {
+	.statement-wrapper {
+		.statement-header-wrapper {
+			.search-wrapper {
+				margin: 30px 0 0 auto;
+				width: 100%;
+
+				.input-group {
+					width: 60%;
+					margin: 0 auto;
+				}
+			}
+		}
+	}
+
+	.statement-wrapper {
+		.statement-transaction-header {
+			margin: 30px 0;
+			display: block;
+			> div {
+				width: 100%
+			}
+
+			> div:nth-child(1) {
+				text-align: center;
+
+				.total-transactions-container {
+					margin: 0 0 10px;
+				}
+			}
+
+			>div:nth-child(2) {
+				.btn-transaction-container {
+					width: 100%;
+
+					button {
+						width: 60%;
+						font-size: 10px;
+					}
+				}
+			}
+
+			>div:nth-child(3) {
+				.download-statement-container {
+					text-align: center
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 630px) {
+	.statement-wrapper{
+		.range-slider {
+			display: none;
+		}
+
+		#date-responsive {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0 0 0 0;
+		}
+
+		.claim-slider-container {
+			z-index: 1;
+		}
+
+		.statement-container {
+			padding: 0 15px;
+		}
+	}
+}
+
+@media (max-width: 662px) {
+	.statement-wrapper {
+		.btn-health-spending-wrapper {
+			.btn-spending-type[data-v-6e79bbfd] {
+				width: 80%;
+			}
+			.btn-medical, .btn-wellness, .btn-both {
+				border-radius: 6px;
+			}
+		}
+	}
+}
+
+@media (max-width: 520px) {
+	.statement-wrapper {
+
+		.claim-slider-container {
+			padding: 0
+		}
+
+		.popover-container {
+			width: 100%;
+		}
+
+		.date-selection-container, #date-responsive {
+			display: block;
+
+			.custom-date-selector {
+				width: 75%;
+				margin: 10px auto;
+			}
+			span {
+				display: block;
+				width: 75%;
+				margin: 0 auto;
+				text-align: center;
+
+				i {
+    			transform: rotate(90deg);
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 481px) {
+	.statement-wrapper{
+		.statement-container { 
+			padding: 0;
+			.header-content[data-v-6e79bbfd] {
+				font-size: 14px;
+			}
+			.btn-spending-type {
+				width: 40%;
+				font-size: 12px;
+			}
+		}
+
+		.team-benefits-wrapper {
+			padding: 20px 15px;
+		}
+	}
+}
+
+@media (max-width: 422px) {
+	.statement-container {
+		div:nth-child(1) {
+			span:nth-child(1) {
+				display: block;
+				margin: 0 0 10px;
+			}
+		}
+
+		.claim-slider-container {
+			margin: 40px 0 0 0;
+		}
+
+		.team-benefits-wrapper {
+			margin: 50px 0 0;
+		}
+	}
+}
+
+@media (max-width: 414px) {
+	.statement-wrapper {
+		.date-selection-container, #date-responsive {
+			.custom-date-selector {
+				width: 85%;
+			}
+		}
+
+		.statement-header-wrapper .search-wrapper .input-group {
+			width: 100%;
+			margin: 0 auto;
+		}
+
+		.statement-transaction-header {
+			>div:nth-child(2) {
+				.btn-transaction-container button {
+					width: 100%;
+				}
+			} 
+		}
+
+		.statement-title-col h4 {
+			font-size: 16px;
+		}
+	}
+}
+
 
 
 

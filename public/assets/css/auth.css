@@ -117,3 +117,37 @@
 	display: inline-block;
 	cursor: pointer;
 }
+
+@media (max-width: 992px) {
+  .auth-container .medne-icon-wrapper {
+    margin: 40px auto 20px auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .auth-container {
+    padding: 30px 40px;
+  }
+
+  .auth-container .login-container, 
+  .auth-container .forgot-password-container {
+    width: auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .auth-container .login-container input[type='text'],
+  .auth-container .login-container input[type='password'], 
+  .auth-container .forgot-password-container input[type='text'],
+  .auth-container .forgot-password-container input[type='password'] {
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .auth-container .login-container .login-button-wrapper .btn, 
+  .auth-container .forgot-password-container .login-button-wrapper .btn {
+    padding: 15px 0;
+    font-size: 16px;
+  }
+}
+
