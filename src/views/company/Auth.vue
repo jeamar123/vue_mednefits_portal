@@ -69,6 +69,8 @@
 </template>
 
 <script>
+	import axios from 'axios';
+
 	export default {
 		data() {
 			return {
@@ -112,27 +114,59 @@
       		return false;
       	}
       	this.showLoading();
-     //  	var data = {
-     //  		email: this.login_data.email,
-     //      password: this.login_data.password,
-     //      stay_signed_in: this.login_data.stay_signed_in == true ? true : false,
-     //  	}
-     //  	axios.post( axios.defaults.serverUrl + '/app/e_claim/login', data)
-					// .then(res => {
+      	var data = {
+      		email: this.login_data.email,
+          password: this.login_data.password,
+          stay_signed_in: this.login_data.stay_signed_in == true ? true : false,
+      	}
+      	axios.post( axios.defaults.serverUrl + '/company-benefits-dashboard-login', data)
+					.then(res => {
 						this.hideLoading();
-					// 	console.log(res);
-					// 	if( res.data.status ){
-					// 		localStorage.setItem('vue_session', res.data.data.UserID);
+						console.log(res);
+						if( res.data.status ){
+							localStorage.setItem('vue_hr_session', res.data.token);
 							location.href = "#/company/intro";
-					// 	}else{
-					// 		this.swal('Error!', res.data.message, 'error');
-					// 	}
-					// })
-					// .catch(err => {
-					// 	console.log( err );
-					// 	this.hideLoading();
-					// 	this.swal('Error!', err,'error');
-					// });
+						}else{
+							this.swal('Error!', res.data.message, 'error');
+						}
+					})
+					.catch(err => {
+						console.log( err );
+						this.hideLoading();
+						this.swal('Error!', err,'error');
+					});
+      },
+      submitResetEmail(){
+      	if( !this.reset_data.email ){
+      		this.swal('Error!','Email Address is required','error');
+      		return false;
+      	}
+      	this.showLoading();
+      	var data = {
+      		email: this.reset_data.email
+      	}
+      	axios.post( axios.defaults.serverUrl + '/hr/forgot/company-benefits-dashboard', data)
+					.then(res => {
+						// console.log( res );
+						this.hideLoading();
+						if( res.data.status ){
+							// this.swal('Success!', res.data.message, 'success');
+							this.$swal( 'Success!', res.data.message, 'success')
+								.then(res => {
+									// console.log(res);
+									if( res ){
+										this.toggleForgotPass();
+									}
+								});
+						}else{
+							this.swal('Error!', res.data.message, 'error');
+						}
+					})
+					.catch(err => {
+						// console.log( err );
+						this.hideLoading();
+						this.swal('Error!', err,'error');
+					});
       },
     }
 	}
