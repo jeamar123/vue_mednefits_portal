@@ -7,7 +7,7 @@
   	margin: 0 70px;
   	display: grid;
   	grid-template-columns: 66.5% 33%;
-
+		grid-template-rows: 250px;
 
     .column-2 {
       grid-row: span 2;
@@ -22,7 +22,7 @@
   }
   .mednefits-blue-box, 
   .row-3 {
-  	width: 100%;
+		width: 100%;
     margin: 0 auto;
   }
   .mednefits-blue-box {
