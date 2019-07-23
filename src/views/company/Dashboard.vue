@@ -290,7 +290,9 @@
     </div>
 
     <!-- v-on:emitName="methodName" holds data from imported component -->
-    <router-view v-on:overviewData="overviewData" @excelData="excelData" @enrollData="enrollData" @webInputData='webInputData'></router-view>
+    <div class="child-content">
+      <router-view v-on:overviewData="overviewData" @excelData="excelData" @enrollData="enrollData" @webInputData='webInputData'></router-view>
+    </div>
   </div>
 </template>
 
