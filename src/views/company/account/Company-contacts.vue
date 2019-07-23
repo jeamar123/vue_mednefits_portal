@@ -7,20 +7,20 @@
           <tr>
             <td colspan="2">
               <h4>Company Name</h4>
-              <span>Mednefits</span>
+              <span>{{ companyContactsData.business_information.company_name }}</span>
             </td>
           </tr>
 
           <tr>
             <td>
               <h4>Company Address</h4>
-              <h6>7 Temasek Boulevard #18-02 Suntec T</h6>
+              <h6>{{ companyContactsData.business_information.company_address }}</h6>
             </td>
 
             <td class="edit-container">
               <button
                 class="edit-button-in-table"
-                @click="companyContactsModal('business_info')"
+                @click="companyContactsModal('business_info', companyContactsData.business_information)"
               >Edit</button>
             </td>
           </tr>
@@ -41,14 +41,14 @@
         </thead>
         <tbody>
           <tr>
-            <td>Fillbert</td>
-            <td>Singapore</td>
-            <td>filbert@mednefits.com</td>
-            <td>62547889</td>
+            <td>{{ companyContactsData.business_contact.first_name }}</td>
+            <td>{{ companyContactsData.business_contact.last_name }}</td>
+            <td>{{ companyContactsData.business_contact.work_email }}</td>
+            <td>{{ companyContactsData.business_contact.phone }}</td>
             <td>
               <button
                 class="edit-button-in-table"
-                @click="companyContactsModal('business_contact')"
+                @click="companyContactsModal('business_contact', companyContactsData.business_contact)"
               >Edit</button>
             </td>
           </tr>
@@ -68,13 +68,13 @@
         </thead>
         <tbody>
           <tr>
-            <td>Fillbert</td>
-            <td>Singapore</td>
-            <td>filbert@mednefits.com</td>
+            <td>{{ companyContactsData.billing_contact.first_name }}</td>
+            <td>{{ companyContactsData.billing_contact.last_name }}</td>
+            <td>{{ companyContactsData.billing_contact.work_email }}</td>
             <td>
               <button
                 class="edit-button-in-table"
-                @click="companyContactsModal('Billing_contacts')"
+                @click="companyContactsModal('Billing_contacts', companyContactsData.billing_contact)"
               >Edit</button>
             </td>
           </tr>
@@ -88,15 +88,18 @@
         </thead>
         <tbody>
           <tr>
-            <td>Mednefits</td>
+            <td>{{ companyContactsData.business_information.company_name }}</td>
             <td class="biliing-address-text">
-              <span>7 Temasek Boulevard #18-02 Suntec T</span>
+              <span>{{ companyContactsData.billing_contact.billing_address }}</span>
             </td>
-            <td>Cheque</td>
+            <td>
+              <span v-if="companyContactsData.payment_method.cheque == 'true'">Cheque</span> 
+              <span v-if="companyContactsData.payment_method.credit_card == 'true'">Credit Card</span> 
+            </td>
             <td>
               <button
                 class="edit-button-in-table"
-                @click="companyContactsModal('Billing_address')"
+                @click="companyContactsModal('Billing_address', companyContactsData.payment_method)"
               >Edit</button>
             </td>
           </tr>
@@ -115,17 +118,17 @@
         <form>
           <div class="form-group">
             <label>Company Address</label>
-            <textarea></textarea>
+            <textarea v-model="selected_modal_data.company_address"></textarea>
           </div>
           <div class="form-group">
             <label>Postal Code</label>
-            <textarea></textarea>
+            <input type="text" v-model="selected_modal_data.postal_code">
           </div>
         </form>
       </div>
       <div slot="footer">
-        <button>CANCEL</button>
-        <button>UPDATE</button>
+        <button @click="companyContactsModal('business_info')">CANCEL</button>
+        <button v-on:click="updateBusinessInfo( selected_modal_data )">UPDATE</button>
       </div>
     </Modal>
     <Modal v-if="modals.company.business_contact">
@@ -140,27 +143,23 @@
         <form>
           <div class="modal-input-wrapper">
             <label>First Name</label>
-            <input type="text">
+            <input type="text" v-model="selected_modal_data.first_name">
           </div>
           <div class="modal-input-wrapper">
             <label>Last Name</label>
-            <input type="text">
+            <input type="text" v-model="selected_modal_data.last_name">
           </div>
           <div class="modal-input-wrapper">
             <label>Email Address</label>
-            <input type="text">
-          </div>
-          <div class="modal-input-wrapper">
-            <label>Phone</label>
-            <input type="number">
+            <input type="text" v-model="selected_modal_data.work_email">
           </div>
           <div class="modal-input-wrapper">
             <label>Mobile</label>
-            <input type="number">
+            <input type="text" v-model="selected_modal_data.phone">
           </div>
           <div class="modal-input-wrapper">
             <label>Job Title</label>
-            <select>
+            <select v-model="selected_modal_data.job_title">
               <option>Marketing</option>
               <option>Accounting, Audit, Finance</option>
               <option>Administration Support</option>
@@ -172,8 +171,8 @@
         </form>
       </div>
       <div slot="footer">
-        <button>CANCEL</button>
-        <button>UPDATE</button>
+        <button @click="companyContactsModal('business_contact')">CANCEL</button>
+        <button v-on:click="updateBusinessContact( selected_modal_data )">UPDATE</button>
       </div>
     </Modal>
     <Modal v-if="modals.company.Billing_contacts">
@@ -188,21 +187,21 @@
         <form>
           <div class="modal-input-wrapper">
             <label>First Name</label>
-            <input type="text">
+            <input type="text" v-model="selected_modal_data.first_name">
           </div>
           <div class="modal-input-wrapper">
             <label>Last Name</label>
-            <input type="text">
+            <input type="text" v-model="selected_modal_data.last_name">
           </div>
           <div class="modal-input-wrapper">
             <label>Email Address</label>
-            <input type="text">
+            <input type="text" v-model="selected_modal_data.work_email">
           </div>
         </form>
       </div>
       <div slot="footer">
-        <button>CANCEL</button>
-        <button>UPDATE</button>
+        <button @click="companyContactsModal('Billing_contacts')">CANCEL</button>
+        <button v-on:click="updateBillingContact( selected_modal_data )">UPDATE</button>
       </div>
     </Modal>
     <Modal v-if="modals.company.Billing_address">
@@ -217,21 +216,21 @@
         <form>
           <div class="modal-input-wrapper">
             <label>Company Name</label>
-            <input type="text">
+            <input type="text" v-model="selected_modal_data.business_information.company_name">
           </div>
           <div class="modal-input-wrapper">
             <label>Billing Address</label>
-            <input type="text">
+            <input type="text" v-model="selected_modal_data.billing_contact.billing_address">
           </div>
           <div class="modal-input-wrapper">
             <label>Postal Code</label>
-            <input type="number">
+            <input type="number" v-model="selected_modal_data.billing_contact.postal">
           </div>
         </form>
       </div>
       <div slot="footer">
-        <button>CANCEL</button>
-        <button>UPDATE</button>
+        <button @click="companyContactsModal('Billing_address')">CANCEL</button>
+        <button v-on:click="updateBillingAddress( selected_modal_data )">UPDATE</button>
       </div>
     </Modal>
     <!-- end Company -->

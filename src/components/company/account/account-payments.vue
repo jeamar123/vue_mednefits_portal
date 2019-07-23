@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 /* eslint-disable */
 
 import Modal from "../../../views/company/modal/Modal";
