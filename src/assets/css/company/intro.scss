@@ -77,14 +77,26 @@
     tr>td {
       padding: 20px;
       border: 1px solid #ddd;
+      min-height: 300px;
     }
 
     tr>td>img {
       height: 65px;
     }
+
+    tr>td> .check-wrapper {
+      min-height: 300px;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+
+      img {
+        height: 65px;
+      }
+    }
   }
 
-  .table-bordered tbody td:nth-child(2) {
+  .table-bordered tbody td {
     font-weight: 400;
     padding: 20px 20px 105px;
 
