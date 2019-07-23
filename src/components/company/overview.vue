@@ -30,7 +30,6 @@ let overview = {
   created() {
     this.getDay();
     this.dashboardApi();
-		console.log( axios.defaults.headers );
 	},
   methods: {
     spendType(value, text) {
@@ -60,6 +59,7 @@ let overview = {
       this.getBillingStatus();
     },
     getCompanyIntroMessage() { //company intro api
+      this.$parent.showLoading();
       axios.get( `${axios.defaults.serverUrl}/hr/get_intro_overview `)
       .then(res => {
         // console.log(res);
@@ -68,6 +68,7 @@ let overview = {
 			 	} else{
 					this.$parent.swal('Error!', res.data.message, 'error');
 				}
+        this.$parent.hideLoading();
       })
       .catch(err => {
         console.log( err );
@@ -76,10 +77,12 @@ let overview = {
 			});
     },
     getTaskList() { // task list api
+      this.$parent.showLoading();
       axios.get( `${axios.defaults.serverUrl}/hr/task_list`)
       .then(res => {
         // console.log(res);
 			 	this.task_lists = res.data;
+        this.$parent.hideLoading();
       })
       .catch(err => {
         console.log( err );
@@ -88,9 +91,11 @@ let overview = {
 			});
     },
     getDashCredits () { //// credits api 
+      this.$parent.showLoading();
       axios.get( `${axios.defaults.serverUrl}/hr/check_balance`)
       .then(res => {
 			 	this.credits = res.data;
+        this.$parent.hideLoading();
       })
       .catch(err => {
         console.log( err );
@@ -99,10 +104,12 @@ let overview = {
 			});
     },
     getProgress() { //progress api
+      this.$parent.showLoading();
       axios.get( `${axios.defaults.serverUrl}/hr/enrollment_progress`)
       .then(res => {
         // console.log(res);
 			 	this.progress.employees = res.data.data;
+        this.$parent.hideLoading();
       })
       .catch(err => {
         console.log( err );
@@ -114,6 +121,7 @@ let overview = {
       .then(res => {
         // console.log(res);
 			 	this.progress.dependents = res.data;
+        this.$parent.hideLoading();
       })
       .catch(err => {
         console.log( err );
@@ -123,11 +131,13 @@ let overview = {
     },
     getBillingStatus() { //billing status api
       //for total_plan_due
+      this.$parent.showLoading();
       axios.get( `${axios.defaults.serverUrl}/hr/get_current_plan_total_due`)
       .then(res => {
          if ( res.data.status) {
            this.billing_status.total_plan_due = res.data.total_due;
          }
+         this.$parent.hideLoading();
       })
       .catch(err => {
         console.log( err );
@@ -136,11 +146,12 @@ let overview = {
       });
 
       //for total_spending
-       axios.get( `${axios.defaults.serverUrl}/hr/get_current_spending_total_due`)
+      axios.get( `${axios.defaults.serverUrl}/hr/get_current_spending_total_due`)
       .then(res => {
          if ( res.data.status) {
            this.billing_status.total_spending = res.data;
          }
+         this.$parent.hideLoading();
       })
       .catch(err => {
         console.log( err );

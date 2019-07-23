@@ -109,7 +109,7 @@ export default new Router({
         { name: 'CompanyAccount', 
           path: '/company/account',
           component: CompanyAccount,
-          redirect: '/company/account/company-contacts',
+          redirect: '/company/account/account-payments',
           children: [
             { 
               name: 'AccountCompany', path: '/company/account/company-contacts', components: {account: AccountCompany}
