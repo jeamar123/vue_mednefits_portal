@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 /* eslint-disable */
 
 import Modal from "../../views/company/modal/Modal.vue";
@@ -13,6 +14,15 @@ let account = {
     };
   },
   methods: {
+    swal( title, message, type ) {
+      this.$parent.swal( title, message, type )
+    },
+    showLoading() {
+      this.$parent.showLoading();
+    },
+    hideLoading() {
+      this.$parent.hideLoading();
+    },
     toggleGPcapStatus(opt) {
       this.gp_cap_status = opt;
     },

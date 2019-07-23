@@ -179,7 +179,7 @@
 	}
 
 	.page-status {
-		width: 80px;
+		/*width: 80px;*/
 	}
 
 	.arrows {
@@ -393,10 +393,24 @@
 
 	.modal-body {
 		.employee-active-text {
+			display: flex;
 			text-align: center;
 			font-weight: 700;
 			font-size: 16px;
 			color: #33a2d4;
+			align-items: center;
+			justify-content: center;
+		}
+		.arrow-modal{
+			width: 80px;
+			color: #444;
+			font-size: 22px;
+		}
+		/*.prev-next-arrows-modal{
+			width: 100px;
+		}*/
+		.emp-count{
+			flex: 1;
 		}
 		form {
 			margin: 15px 0 0;

@@ -1,5 +1,5 @@
 <script>
-
+import axios from 'axios';
 import Modal from "../../../views/company/modal/Modal";
 // Methods here
 let documentCenter = {

@@ -115,7 +115,12 @@
 
               <div class="welcome-container">
                 <a
-                  v-bind:class="{ 'router-active': ($route.name == 'CompanyEmployee') }"
+                  v-bind:class="{ 'router-active': (
+                    $route.name == 'CompanyEmployee' || 
+                    $route.name == 'CompanyEmployeeDetails' || 
+                    $route.name == 'CompanyRemoveEmployee' || 
+                    $route.name == 'CompanyCreditAllocation'
+                  ) }"
                   ref="employeeDropdownMenu"
                 >
                   <h4 @click="dropdownClicked('employee')">Employee</h4>
@@ -292,6 +297,12 @@
     <!-- v-on:emitName="methodName" holds data from imported component -->
     <div class="child-content">
       <router-view v-on:overviewData="overviewData" @excelData="excelData" @enrollData="enrollData" @webInputData='webInputData'></router-view>
+    </div>
+
+    <div v-if="showLoader" class="main-body-loader">
+      <div class="loader">
+        <!-- <img :src="'../assets/img/mednefits_icon_blue.png'" style="  width: 25px;margin-top: 20px;"> -->
+      </div>
     </div>
   </div>
 </template>
