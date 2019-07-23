@@ -8,16 +8,21 @@
           <div class="mednefits-body-box">
             <img :src="'../assets/img/overview.png'">
             <h2>
-              <span>Good afternoon, </span>
-              <span>Allan Alzula</span>
+              <span v-if="isMorning">Good morning,</span>
+              <span v-if="isAfternoon">Good afternoon,</span>
+              <span v-if="isEvening">Good evening,</span>
+              <span> {{intro.contact_name}}</span>
             </h2>
             <h5 class="text-center text-white body-subtext">
-              <strong>StackGecko</strong> is covering
-              <strong>
-                <span>12</span> employees &amp; dependents
+              <strong>{{intro.company_name}}</strong> is covering
+              <strong v-if="intro.dependents">
+                <span>{{intro.total_enrolled}}</span> employees &amp; dependents
+              </strong>
+              <strong v-if="!intro.dependents">
+                <span>{{intro.total_enrolled}}</span> employees &amp; dependents
               </strong> from
-              <strong>02 January 2019</strong> and ends on
-              <strong>01 January 2020</strong>
+              <strong>{{intro.plan_start}}</strong> and ends on
+              <strong>{{intro.plan_end}}</strong>
             </h5>
             <router-link to="/company/enrollment-options">
               <button class="btn-info" @click="toEnrollment('enrollment')">Employee Enrollment</button>
@@ -39,14 +44,16 @@
               <div class="credit-allocated-container">
                 <h1>
                   S$
-                  <span>51,200.00</span>
+                  <span v-if="spendingType.value === 0">{{credits.total_medical_employee_allocated}}</span>
+                  <span v-if="spendingType.value === 1">{{credits.total_wellness_employee_allocated}}</span>
                 </h1>
                 <span class="credit-text">ALLOCATED</span>
               </div>
               <div class="credit-spent-container">
                 <h1>
                   S$
-                  <span>14,578.72</span>
+                  <span v-if="spendingType.value === 0">{{credits.total_medical_employee_spent}}</span>
+                  <span v-if="spendingType.value === 1">{{credits.total_wellness_employee_spent}}</span>
                 </h1>
                 <span class="credit-text">SPENT</span>
               </div>
@@ -58,34 +65,34 @@
             </div>
             <div class="mednefits-body-box">
               <div>
-                <h3 class="enrollment-status-number">12</h3>
+                <h3 class="enrollment-status-number">{{progress.employees.total_employees}}</h3>
                 <h3 class="enrollment-status-text">Total number of seats</h3>
               </div>
               <div>
-                <h3 class="enrollment-status-number">8</h3>
+                <h3 class="enrollment-status-number">{{progress.employees.completed}}</h3>
                 <h3 class="enrollment-status-text">Occupied seats</h3>
               </div>
               <div>
-                <h3 class="enrollment-status-number">4</h3>
+                <h3 class="enrollment-status-number">{{progress.employees.in_progress}}</h3>
                 <h3 class="enrollment-status-text">Vacant seats</h3>
               </div>
             </div>
           </div>
-          <div class="dependent-enrollment-box mednefits-box">
+          <div class="dependent-enrollment-box mednefits-box" v-if="progress.dependents.status">
             <div class="mednefits-header-box">
               <h5>Dependent Enrollment Status</h5>
             </div>
             <div class="mednefits-body-box">
               <div>
-                <h3 class="enrollment-status-number">29</h3>
+                <h3 class="enrollment-status-number">{{progress.dependents.total_number_of_seats}}</h3>
                 <h3 class="enrollment-status-text">Total number of seats</h3>
               </div>
               <div>
-                <h3 class="enrollment-status-number">4</h3>
+                <h3 class="enrollment-status-number">{{progress.dependents.occupied_seats}}</h3>
                 <h3 class="enrollment-status-text">Occupied seats</h3>
               </div>
               <div>
-                <h3 class="enrollment-status-number">25</h3>
+                <h3 class="enrollment-status-number">{{progress.dependents.vacant_seats}}</h3>
                 <h3 class="enrollment-status-text">Vacant seats</h3>
               </div>
             </div>
@@ -97,82 +104,35 @@
             <div class="task-box-title">
               <h4>TASK</h4>
             </div>
-            <div>
-              <div class="task-box-list mednefits-box">
+            <div v-for="list in task_lists" :key="list.index"> <!-- v-for dri -->
+              <div class="task-box-list mednefits-box" v-if="list.type == 'pending_activation'">
                 <div class="task-box-details">
                   <h5 class="task-info">
-                    <span>4</span> employees have yet to enroll into the company benefits plan.
-                    <a
-                      href
-                    >Enroll them now.</a>
+                    Payment for Plan Subscription is due on <span>{{list.invoice_due}}</span>. Please kindly make payment as soon as possible, Thank you.
                   </h5>
                 </div>
               </div>
-              <div class="task-box-list mednefits-box">
+              <div class="task-box-list mednefits-box" v-if="list.type == 'pending_enrollment' && list.total_employees > 0">
                 <div class="task-box-details">
                   <h5 class="task-info">
-                    <span>25</span> dependents have yet to enroll into the company benefits plan.
-                    <a href></a>
+                    <span>{{list.total_employees}}</span> employees have yet to enroll into the company benefits plan. 
+                    <router-link to="/company/enrollment-options">
+                      Enroll them now.
+                    </router-link>
                   </h5>
                 </div>
               </div>
-              <div class="task-box-list mednefits-box">
+              <div class="task-box-list mednefits-box" v-if="list.type == 'pending_enrollment_dependent' && list.total_employees > 0">
                 <div class="task-box-details">
                   <h5 class="task-info">
-                    Payment for Plan Subscription is due on 27/12/2017. Please kindly make payment as soon as possible, Thank you.
-                    <a
-                      href
-                    ></a>
+                    <span>{{list.total_employees}}</span> dependents have yet to enroll into the company benefits plan.
                   </h5>
                 </div>
               </div>
-              <div class="task-box-list mednefits-box">
+              <div class="task-box-list mednefits-box" v-if="list.type == 'vacant_seat'">
                 <div class="task-box-details">
                   <h5 class="task-info">
-                    Payment for Plan Subscription is due on 27/12/2017. Please kindly make payment as soon as possible, Thank you.
-                    <a
-                      href
-                    ></a>
-                  </h5>
-                </div>
-              </div>
-              <div class="task-box-list mednefits-box">
-                <div class="task-box-details">
-                  <h5 class="task-info">
-                    Payment for Plan Subscription is due on 27/12/2017. Please kindly make payment as soon as possible, Thank you.
-                    <a
-                      href
-                    ></a>
-                  </h5>
-                </div>
-              </div>
-              <div class="task-box-list mednefits-box">
-                <div class="task-box-details">
-                  <h5 class="task-info">
-                    Payment for Plan Subscription is due on 27/12/2017. Please kindly make payment as soon as possible, Thank you.
-                    <a
-                      href
-                    ></a>
-                  </h5>
-                </div>
-              </div>
-              <div class="task-box-list mednefits-box">
-                <div class="task-box-details">
-                  <h5 class="task-info">
-                    Payment for Plan Subscription is due on 27/12/2017. Please kindly make payment as soon as possible, Thank you.
-                    <a
-                      href
-                    ></a>
-                  </h5>
-                </div>
-              </div>
-              <div class="task-box-list mednefits-box">
-                <div class="task-box-details">
-                  <h5 class="task-info">
-                    Schedule for Vacant Seat Enrollment for
-                    <span>Employee</span> is
-                    <span>15/03/2019</span>.
-                    <a href>Enroll the new Employee</a> that will occupy this seat now.
+                    	Schedule for Vacant Seat Enrollment for <span v-if="list.user_type == 'employee'">Employee</span> <span v-if="list.user_type == 'dependent'">Dependent</span> is <span>{{list.date_of_enrollment}}</span>. <a>Enroll the new Employee</a> that will occupy this seat now.
                   </h5>
                 </div>
               </div>
@@ -188,7 +148,7 @@
                 <h6 class="subscription-current-balance">Current balance due</h6>
                 <h4 class="subscription-price">
                   S$
-                  <span>1,902.85</span>
+                  <span>{{billing_status.total_plan_due}}</span>
                 </h4>
               </div>
               <div class="health-spending-accounts-container">
@@ -196,11 +156,11 @@
                 <h6 class="subscription-current-balance">Current balance due</h6>
                 <h4 class="subscription-price">
                   S$
-                  <span>15,624.29</span>
+                  <span>{{billing_status.total_spending.spending_total_due}}</span>
                 </h4>
-                <h6 class="subscription-date">
+                <h6 class="subscription-date" v-if="billing_status.total_spending.due_date">
                   Due by
-                  <span>16 May 2019</span>
+                  <span>{{billing_status.total_spending.due_date}}</span>
                 </h6>
               </div>
               <div class="view-invoice-button">
