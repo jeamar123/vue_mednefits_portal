@@ -154,6 +154,10 @@
 	.txt-center{ text-align: center; }
 	.txt-left{ text-align: left; }
 	.txt-right{ text-align: right; }
+
+	.txt-center-imp{ text-align: center !important; }
+	.txt-left-imp{ text-align: left !important; }
+	.txt-right-imp{ text-align: right !important; }
 /*-------------*/
 
 /*-------------*/
