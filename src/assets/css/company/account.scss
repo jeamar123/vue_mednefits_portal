@@ -337,6 +337,27 @@
 			float: right;
 		}
 	}
+
+	.add-tier-btn-wrapper{
+		text-align: center;
+
+		h4{
+			font-weight: 700;
+	    font-size: 18px;
+	    line-height: 1.1;
+		}
+		button{
+			margin-top: 20px;
+	    background: transparent;
+	    border: 2px dashed #d6d6d6;
+	    border-radius: 50%;
+	    height: 70px;
+	    width: 70px;
+		}
+		img{
+			height: 16px;
+		}
+	}
 }
 
 .edit-business-info-modal,
