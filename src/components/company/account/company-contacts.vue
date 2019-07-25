@@ -109,6 +109,45 @@ let accountCompany = {
         }
       });
     },
+    updateBusinessContact( update_data ){
+      this.$swal({
+        title: "Confirm",
+        text: "Are you sure you want to UPDATE your business information?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        customClass: "warning-global-container primary"
+      }).then(result => {
+        if (result.value) {
+          var data = {
+            customer_business_contact_id  : update_data.customer_business_contact_id ,
+            first_name : update_data.first_name,
+            last_name : update_data.last_name,
+            work_email  : update_data.work_email,
+            phone : update_data.phone,
+            job_title : update_data.job_title,
+          }
+          this.$parent.showLoading();
+          axios.post( axios.defaults.serverUrl + '/hr/update/business_contact', data )
+            .then(res => {
+              this.$parent.hideLoading();
+              console.log(res);
+              if( res.data.status ){
+                this.$parent.swal('Success!', res.data.message, 'success');
+                this.getCompanyContactsData();
+              }else{
+                this.$parent.swal('Error!', res.data.message, 'error');
+              }
+            })
+            .catch(err => {
+              console.log( err );
+              this.$parent.hideLoading();
+              this.$parent.swal('Error!', err,'error');
+            });
+        }
+      });
+    },
     updateBillingContact( update_data ){
       this.$swal({
         title: "Confirm",

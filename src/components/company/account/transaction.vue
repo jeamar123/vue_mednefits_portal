@@ -64,29 +64,29 @@ let transaction = {
     },
     downDepedentInvoice( id ){
 
-      window.open( axios.defaults.serverUrl + '/hr/download_dependent_invoice?dependent_plan_id=' + id + '&token=' + this.download_token.token );
+      window.open( axios.defaults.serverUrl + '/hr/download_dependent_invoice?dependent_plan_id=' + id + '&token=' + this.download_token );
     },
     downloadSpendingReceipt( data ){
       if(this.download_token.live == true) {
-        window.open(this.download_token.download_link + "/spending_receipt_download?id=" + data.statement_id + '&token=' + this.download_token.token);
+        window.open(this.download_token.download_link + "/spending_receipt_download?id=" + data.statement_id + '&token=' + this.download_token);
       } else {
-        window.open(axios.defaults.serverUrl + '/hr/download_spending_receipt?statement_id=' + data.statement_id + '&token=' + this.download_token.token);
+        window.open(axios.defaults.serverUrl + '/hr/download_spending_receipt?statement_id=' + data.statement_id + '&token=' + this.download_token);
       }
     },
     downloadSpendingInvoice( data ){
       if(this.download_token.live == true) {
-        window.open(this.download_token.download_link + "/spending_invoice_download?id=" + data.statement_id + '&token=' + this.download_token.token);
+        window.open(this.download_token.download_link + "/spending_invoice_download?id=" + data.statement_id + '&token=' + this.download_token);
       } else {
-        window.open(axios.defaults.serverUrl + '/hr/statement_download?id=' + data.statement_id + '&token=' + this.download_token.token);
+        window.open(axios.defaults.serverUrl + '/hr/statement_download?id=' + data.statement_id + '&token=' + this.download_token);
       }
     },
     downloadSpendingDeposit( id ){
 
-      window.open( axios.defaults.serverUrl + '/hr/spending_desposit?id=' + data + '&token=' + this.download_token.token);
+      window.open( axios.defaults.serverUrl + '/hr/spending_desposit?id=' + id + '&token=' + this.download_token);
     },
     downloadRefund( id ){
 
-      window.open( axios.defaults.serverUrl + '/hr/get_cancellation_details?id=' + id + '&token=' + this.download_token.token);
+      window.open( axios.defaults.serverUrl + '/hr/get_cancellation_details?id=' + id + '&token=' + this.download_token);
     },
     transactionsNextPrev( isNext ){
       if( isNext ){
@@ -212,15 +212,8 @@ let transaction = {
         });
     },
     getDownloadToken(){
-      axios.get( axios.defaults.serverUrl + '/hr/get_download_token')
-        .then(res => {
-          console.log(res);
-          this.download_token = res.data;
-        })
-        .catch(err => {
-          console.log( err );
-          this.$parent.swal('Error!', err,'error');
-        });
+      this.download_token = localStorage.getItem('vue_session');
+      console.log( this.download_token );
     },
     getJobList(){
       axios.get( '../assets/json/job.json')

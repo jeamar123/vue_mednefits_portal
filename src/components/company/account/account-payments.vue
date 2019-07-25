@@ -26,6 +26,7 @@ let accountPayments = {
     };
   },
   created(){
+    this.getDownloadToken();
     this.getCompanyContactsData();
     this.getBillingList();
     this.getPlanSubscriptions();
@@ -62,7 +63,7 @@ let accountPayments = {
       window.open( axios.defaults.serverUrl + '/hr/download_dependent_invoice?dependent_plan_id=' + data.dependent_plan_id + '&token=' + this.download_token );
     },
     downloadSpendingDeposit( data ){
-      window.open(serverUrl.url + '/hr/spending_desposit?id=' + data.deposit_id + '&token=' + this.download_token );
+      window.open( axios.defaults.serverUrl + '/hr/spending_desposit?id=' + data.deposit_id + '&token=' + this.download_token );
     },
     goToEmpOverview(){
 
@@ -113,15 +114,7 @@ let accountPayments = {
       });
     },
     getDownloadToken(){
-      axios.get( axios.defaults.serverUrl + '/hr/get_download_token')
-        .then(res => {
-          console.log(res);
-          this.download_token = res.data;
-        })
-        .catch(err => {
-          console.log( err );
-          this.$parent.swal('Error!', err,'error');
-        });
+      this.download_token = localStorage.getItem('vue_session');
     },
     getActivePlanDetails( data ){
       this.$parent.showLoading();
