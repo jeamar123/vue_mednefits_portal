@@ -45,11 +45,11 @@ let overview = {
       });
     },
     getDay() {
-       this.isMorning = this.time_now.isAfter( moment('5:00 AM', 'HH:mm A') ) && this.time_now.isBefore( moment('11:59 AM', 'HH:mm A') );
+      this.isMorning = this.time_now.isAfter( moment('5:00 AM', 'HH:mm A') ) && this.time_now.isBefore( moment('11:59 AM', 'HH:mm A') );
 
       this.isAfternoon = this.time_now.isAfter( moment('12:00 PM', 'HH:mm A') ) && this.time_now.isBefore( moment('6:00 PM', 'HH:mm A') );
 
-       this.isEvening = this.time_now.isAfter( moment('6:01 PM', 'HH:mm A') ) && this.time_now.isBefore( moment('4:59 AM', 'HH:mm A').add('days',1) );
+      this.isEvening = this.time_now.isAfter( moment('6:01 PM', 'HH:mm A') ) && this.time_now.isBefore( moment('4:59 AM', 'HH:mm A').add('days',1) );
     },
     /// api call
     dashboardApi() { //api container

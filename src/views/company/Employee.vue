@@ -6,7 +6,7 @@
         	<div class="overview-title">
         		<h1>Employee Overview</h1>
         		<h4>
-        			<span>12</span> total members
+        			<span>{{member_count}}</span> total members
         		</h4>
         	</div>
         	<div class="overview-menu">
@@ -46,59 +46,70 @@
         			</tr>
         		</thead>
         		<tbody>
-							<tr v-for="n in 10" :key="n.id">
-								<router-link to="/company/employee/employee-details">   
-								<td class="emp-name-container">
-									<strong>allan cheam alzula {{n}}</strong>
-								</td>
-								<td class="status-details-container">
-									<div class="status-details">
-										<span class="status-color active"></span>
-										<span>Active</span>
-									</div>
-									<div class="status-expired-details">
-										<span>Removed on 14/03/2019</span>
-									</div>
-								</td>
-								<td class="nric-fin-container">S1349508D</td>
-								<td class="plan-start-container">
-									<span>Tier 1</span>
-									<div class="plan-details">
-										<strong>Plan type:</strong>
-										<span>Pro Plan</span>
-									</div>
-									<div class="plan-details">
-										<strong>Start date:</strong>
-										<span>01/01/2018</span>
-									</div>
-								</td>
-								<td class="family-coverage-container">
-									<div class="family-dependent-details">
-										<strong>Dependent:</strong>
-										<span>0</span>
-									</div>
-								</td>
-								<td class="medical-details-container">
-									<div class="medical-details">
-										<strong>Allocation:</strong>
-										<span>S$ <span>100.00</span></span>
-									</div>
-									<div class="plan-details">
-										<strong>Balance:</strong>
-										<span>S$ <span>100.00</span></span>
-									</div>
-								</td>
-								<td class="wellness-details-container">
-									<div class="wellness-details">
-										<strong>Allocation:</strong>
-										<span>S$ <span>100.00</span></span>
-									</div>
-									<div class="wellness-details">
-										<strong>Balance:</strong>
-										<span>S$ <span>100.00</span></span>
-									</div>
-								</td>
-								</router-link>
+							<tr v-for="(emp, index) in employees.data" :key="emp.member_id">
+								<a @click="singleEmployee(emp,index)">   
+									<td class="emp-name-container">
+										<strong>{{emp.name}}</strong>
+									</td>
+									<td class="status-details-container">
+										<div class="status-details"  v-if="emp.account_status && emp.emp_status == 'pending'">
+											<span class="status-color active"></span>
+											<span>Pending</span>
+										</div>
+										<div class="status-details"  v-if="emp.account_status && emp.emp_status == 'active' || emp.account_status && emp.schedule">
+											<span class="status-color active"></span>
+											<span>Active</span>
+										</div>
+										<div class="status-details"  v-if="!emp.account_status || emp.emp_status == 'deleted'">
+											<span class="status-color active"></span>
+											<span>Removed</span>
+										</div>
+										<div class="status-expired-details" v-if="emp.deletion || emp.schedule">
+											<span>{{emp.deletion_text}}</span>
+										</div>
+										<!-- <div class="status-expired-details">
+											<span>Removed on 14/03/2019</span>
+										</div> -->
+									</td>
+									<td class="nric-fin-container">{{emp.nric}}</td>
+									<td class="plan-start-container">
+										<span>{{emp.plan_tier? emp.plan_tier.plan_tier_name: ''}}</span>
+										<div class="plan-details">
+											<strong>Plan type:</strong>
+											<span>{{emp.plan_name}}</span>
+										</div>
+										<div class="plan-details">
+											<strong>Start date:</strong>
+											<span>{{emp.start_date}}</span>
+										</div>
+									</td>
+									<td class="family-coverage-container">
+										<div class="family-dependent-details">
+											<strong>Dependent:</strong>
+											<span>{{emp.dependents}}</span>
+										</div>
+									</td>
+									<td class="medical-details-container">
+										<div class="medical-details">
+											<strong>Allocation:</strong>
+											<span>S$ <span>{{emp.spending_account.medical.credits_allocation}}</span></span>
+										</div>
+										<div class="plan-details">
+											<strong>Balance:</strong>
+											<span>S$ <span>{{emp.spending_account.medical.balance}}</span></span>
+										</div>
+									</td>
+									<td class="wellness-details-container">
+										<div class="wellness-details">
+											<strong>Allocation:</strong>
+											<span>S$ <span>{{emp.spending_account.wellness.credits_allocation_wellness}}</span></span>
+										</div>
+										<div class="wellness-details">
+											<strong>Balance:</strong>
+											<span>S$ <span>{{emp.spending_account.wellness.balance}}</span></span>
+										</div>
+									</td>
+								</a>
 							</tr>
         		</tbody>
         	</table>

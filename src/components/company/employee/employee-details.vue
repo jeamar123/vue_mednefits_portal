@@ -2,12 +2,23 @@
 /* eslint-disable */
 import Modal from "../../../views/company/modal/Modal.vue";
 import HealthSpending from "../../../views/company/employee/Health-spending.vue";
+import employee from "../../../views/company/Employee.vue";
+import axios from 'axios';
+import moment from "moment";
 
 // Methods here
 let employeeDetails = {
   components: {
     Modal,
     HealthSpending
+  },
+  props:{
+    id: {
+      type: Number
+    },
+    employees : {
+      type: Object
+    }
   },
   data() {
     return {
@@ -28,8 +39,23 @@ let employeeDetails = {
         sideStyle: {},
         sideContainer: {},
         empInfoWrapper: {}
-      }
+      },
+      isTierDetailsShow: false,
+      formats: {
+	        input: ['DD/MM/YYYY'], 
+	        data: ['DD/MM/YYYY']
+      },
+      selected_emp_dependents : {},
+      toEdit: {},
+      dependentIndex: null,
     };
+  },
+  created() {
+  },  
+  mounted() {
+    this.getEmpPlans(this.id);
+    this.getEmpDependents(this.id);
+    console.log('mao ning data', this.employees);
   },
   methods: {
     editDetailsData(data) { //for modal edit in employee information
@@ -118,9 +144,141 @@ let employeeDetails = {
         $("body").scrollTop(0);
       }, 2000);
       
+    },
+    getUsage(x,y) {
+      return ( parseFloat(x) + parseFloat(y) );
+    },
+    editEmployees() {
+      this.modalEdit.employee = !this.modalEdit.employee;
+      this.toEdit = {
+        fname : this.employees.fname,
+        email : this.employees.email,
+        lname : this.employees.lname,
+        phone_no : this.employees.phone_no,
+        nric : this.employees.nric,
+        postal_code : this.employees.postal_code,
+        member_id : this.employees.member_id,
+        job_title : this.employees.job_title,
+        dob : this.employees.dob,
+        bank_account : this.employees.bank_account,
+      }
+    },
+    editDependents(index) {
+      this.modalEdit.dependent = !this.modalEdit.dependent;
+      this.dependentIndex = index;
+      this.toEdit = {
+        first_name :  this.selected_emp_dependents[index].first_name,
+        dob :  this.selected_emp_dependents[index].dob,
+        last_name :  this.selected_emp_dependents[index].last_name,
+        relationship :  this.selected_emp_dependents[index].relationship,
+        member_id :  this.selected_emp_dependents[index].member_id,
+        nric :  this.selected_emp_dependents[index].nric,
+      }
+      console.log( this.toEdit);
+    },
+    update(source, index) {
+      if(source == 'employees') {
+        this.$swal({
+          title: "Confirm",
+          text: "Are you sure you want to update this employee?",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Yes",
+          confirmButtonColor: "#0392CF",
+          cancelButtonText: "No",
+          customClass: "warning-global-container primary"
+        }).then(result => {
+          if (result.value) {
+            this.modalEdit.employee = false;
+            this.updateToApi(source);
+            this.$swal(
+              "Updated!",
+              "Employee Details Has Been Updated.",
+              "success"
+            );
+          }
+        });
+      } else if (source == 'dependents') {
+        this.$swal({
+          title: "Confirm",
+          text: "Are you sure you want to update this employee?",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Yes",
+          confirmButtonColor: "#0392CF",
+          cancelButtonText: "No",
+          customClass: "warning-global-container primary"
+        }).then(result => {
+          if (result.value) {
+            this.modalEdit.dependent = false;
+            this.updateToApi(source, index);
+            this.dependentIndex = null;
+            this.$swal(
+              "Updated!",
+              "Dependent Details Has Been Updated.",
+              "success"
+            );
+          }
+        });
+      }
+    },
+    updateToApi(source, index) {
+
+      if(source == 'employees') {
+        this.employees = this.toEdit;
+      } else if (source == 'dependents') {
+        this.selected_emp_dependents[index] = this.toEdit;
+      }
+
+    },
+
+    //API calls
+    getEmpPlans(id) {
+      axios.get( `${axios.defaults.serverUrl}/hr/get_employee_plan_covers?employee_id=${id}`)
+      .then(res => {
+      
+        this.employees.plan_list = res.data;
+        this.$forceUpdate();
+      })
+      .catch(err => {
+        console.log( err );
+        this.$parent.hideLoading();
+        this.$parent.swal('Error!', err,'error');
+      });
+    },
+    getEmpDependents(id) {
+      axios.get( `${axios.defaults.serverUrl}/hr/get_employee_dependents?employee_id=${id}`)
+      .then(res => {
+        this.selected_emp_dependents = res.data.dependents;
+
+        this.selected_emp_dependents.map( (value, key) => {
+          value.dob = new Date( value.dob );
+        });
+        this.$forceUpdate();
+      })
+      .catch(err => {
+        console.log( err );
+        this.$parent.hideLoading();
+        this.$parent.swal('Error!', err,'error');
+      });
     }
   },
-  created() {}
+  filters: {
+    decimalTwo(value) {
+      if (value !=0) {
+        return parseFloat(value).toFixed(2);
+      } else {
+        return 0;
+      }
+    },
+    formatDate(value, format) {
+      if (value !=0) {
+        return moment(String(value)).format(format);
+      } else {
+        return 'N/A'
+      }
+    },
+  },
 };
 
 export default employeeDetails;

@@ -464,7 +464,26 @@
   }
   .employee-plan div {
   	margin: 5px;
-  }
+	}
+	
+	.employee-tier-container {
+		cursor: pointer;
+		.col-2 {
+			text-align: right;
+			font-size: 20px;
+		}
+	}
+
+	.tier-dropdown-details {
+		font-size: 12px;
+		margin: 10px 0;
+		
+		>div {
+			display: grid;
+			grid-template-columns: 2fr 1fr;
+		}
+	}
+
 	.usage-container-wrapper {
 		position: relative;
 
