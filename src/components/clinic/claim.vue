@@ -1,10 +1,18 @@
 <script>
-	import axios from 'axios'
+	import axios from 'axios';
+	import Modal from "../../views/clinic/modal/Modal.vue";
 
 	var claim = {
+		components: {
+	    Modal
+	  },
 		data() {
 			return {
-				showIconLoader : false,
+				modalClaim: {
+	        verifyUser: false,
+	        manualClaims: false,
+	        eCardModal: false,
+	      },
 			}
 		},
 		

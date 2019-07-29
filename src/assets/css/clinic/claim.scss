@@ -93,6 +93,7 @@
 
 .successful-trans-header-container {
   display: flex;
+  margin: 0 0 20px;
 
   h4 {
     font-size: 18px;
@@ -171,10 +172,376 @@
   vertical-align: top;
 }
 
+.table-registration td, 
+.table-trans-preview td, 
+.table-successfulTransaction td, 
+.table-nric td, 
+.table-manual td {
+  padding: 10px 15px 10px 0;
+}
+
+.table-nric td, 
+.table-manual td {
+  padding: 20px 15px 20px 0;
+  vertical-align: middle;
+}
+
+.table-nric th:last-child,
+.table-nric td:last-child {
+  text-align: left
+}
+
+.table-manual th:nth-child(1), 
+.table-manual td:nth-child(1) {
+  padding-left: 30px;
+  width: 150px;
+}
+
+.table-manual th:nth-child(2), 
+.table-manual tr td:nth-child(2) {
+  width: 20%;
+}
+
 span.arrow-right {
   padding: 0 15px;
 }
 
+.verify-user-modal .modal-clinic-container {
+  width: 600px;
+}
+
+.manual-claim-modal .modal-clinic-container {
+  width: 1170px;
+}
+
+.ecard-modal .modal-clinic-container {
+  top: 30px;
+  width: 450px;
+  height: auto;
+  background: #f8f8f8;
+  border-radius: 8px;
+  margin: 0 auto 50px;
+
+  .modal-header,
+  .modal-footer {
+    display: none;
+  }
+
+  .modal-body {
+    height: 100%;
+    padding: 30px;
+
+    i {
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: #cbcbcb;
+      font-size: 16px;
+    }
+  }
+
+  .ecard-container {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    padding: 20px;
+
+    >div {
+      margin: 0 0 5px;
+    }
+
+    .coverage-box {
+      font-size: 12px;
+      overflow-y: auto;
+      max-height: 200px;
+      margin: 0;
+    }
+  }
+
+  .cov-item {
+    display: flex;
+    margin: 0 0 20px;
+
+    >div:nth-child(1) {
+      width: 33.33333333%;
+      float: left;
+      padding: 0 15px 0 0;
+    }
+
+    >div:nth-child(2) {
+      width: 67%;
+      float: left;
+      padding: 0 15px 0 30px;
+      line-height: 1.42857143;
+    }
+  }
+
+  img {
+    width: 50px;
+    margin: 0 0 10px;
+  }
+
+  .ecard-full-name {
+    font-size: 20px;
+    color: #319EF4;
+  }
+}
+
+.modal-clinic-container {
+  background-color: #fff;
+  position: relative;
+  top: 130px;
+  height: 250px;
+  margin: 0 auto;
+
+  .modal-header,
+  .modal-body {
+    padding: 20px 40px;
+  }
+
+  .modal-header {
+    font-weight: 700;
+    font-size: 18px;
+    color: #333;
+    background-color: #fff;
+
+    h4 {
+      line-height: 1.1;
+      margin: 10px 0;
+    }
+
+    i {
+      float: right;
+      cursor: pointer;
+      margin: 10px 0;
+    }
+  }
+
+  .modal-body {
+    padding: 0 40px 20px;
+
+    .table-nric {
+      margin: 20px 0 0;
+    }
+
+    input::placeholder {
+      font-weight: 700;
+    }
+
+    td>div {
+      position: relative;
+    }
+  }
+
+  .modal-body {
+    button {
+      border-radius: 3px;
+      background: #638db1;
+      border: 0;
+      color: #fff;
+      padding: 10px 16px;
+      font-size: 18px;
+    }
+
+    button:hover {
+      color: #333;
+    }
+  }
+
+  .verfiy-user-body-modal {
+    display: flex;
+
+    input {
+      background-color: #f5f5f5;
+      border-radius: 4px;
+      border: 0;
+      color: #555;
+      height: 46px;
+      font-weight: 700;
+      line-height: 1.42857;
+      padding: 6px 12px;
+      width: 40%;
+      margin: 0 15px 0 0;
+    }
+  }
+
+  .manual-claim-body-modal {
+
+    input {
+      width: 100%;
+      background: #fff;
+      border-radius: 2px;
+      border: 1px solid #4a4a4a6e;
+      height: 46px;
+      padding: 8px 14px;
+      margin: 0 0 5px;
+    }
+
+    button {
+      margin: 0 0 5px;
+      padding: 12px 16px;
+    }
+
+    .calendar-input-wrapper input,
+    .time-visit-input-wrapper input {
+      border: 0;
+      height: auto;
+      padding: 4px 14px;
+      font-weight: 700;
+    }
+
+    .time-visit-input-wrapper .fa-clock-o {
+      width: 30px;
+      margin: 0 10px 0 0;
+      text-align: center;
+    }
+
+    .time-visit-input-wrapper input {
+      padding: 0;
+      margin: 0;
+    }
+
+    .am-pm-container {
+      width: 30px;
+      margin: 0 10px;
+    }
+  }
+
+  .calendar-input-wrapper,
+  .time-visit-input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #4a4a4a6e;
+    height: 46px;
+    border-radius: 2px;
+    margin: 0 0 5px;
+
+    .fa-calendar,
+    .fa-clock-o {
+      color: #55c8fb;
+      font-size: 20px;
+      width: 30px;
+      margin: 0 0 0 10px;
+      text-align: center;
+    }
+  }
+
+  .nric-list-container {
+    position: absolute;
+    top: 47px;
+    display: flex;
+    background-color: #2b669a;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 5px 15px;
+
+    .img-wrapper {
+      width: 50px;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 50%;
+    }
+
+    .details {
+      margin-left: 10px;
+    }
+
+    .nric {
+      background-color: #d9edf7;
+      color: #31708f;
+      display: inline-block;
+      padding: 5px;
+    }
+  }
+
+  .select-procedure-container {
+    .service-dropdown {
+      position: absolute;
+      border: 1px solid #999;
+      background-color: #fff;
+      width: 100%;
+    }
+
+    .service-list {
+      display: flex;
+      padding: 10px 15px;
+      border-bottom: 1px solid #999;
+      color: #444;
+    }
+
+    i {
+      cursor: pointer;
+    }
+
+    .service-list>span:first-child {
+      flex: 1;
+    }
+  }
+
+  .am-pm-dropdown-container {
+    position: absolute;
+    top: 47px;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #999;
+    width: 50px;
+    text-align: center;
+
+    span {
+      display: block;
+      padding: 5px;
+      cursor: pointer;
+    }
+  }
+
+  .timepicker-container {
+    position: absolute;
+    top: 47px;
+    border: 1px solid #999;
+    background-color: #fff;
+    width: 100%;
+    color: #999;
+
+    .top,
+    .middle,
+    .bottom {
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+
+    .arrow,
+    .hour-wrapper,
+    .minute-wrapper {
+      flex: 1;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .hour-wrapper,
+    .minute-wrapper {
+      flex: 1.5;
+    }
+
+    .middle .divider {
+      width: 5px;
+      text-align: center;
+    }
+  }
+
+  .cash-input-wrapper {
+    span {
+      color: #55c8fb;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  }
+}
 
 
 
@@ -183,7 +550,7 @@ span.arrow-right {
     padding-right: 15px;
   }*/
 
-  .transactions .search {
+ /* .transactions .search {
     border: unset;
     border-radius: 4px;
     background: #ebebeb;
@@ -191,7 +558,7 @@ span.arrow-right {
     height: 32px;
     width: 135px;
     padding: 0 10px;
-  }
+  }*/
 
   /*.transactions .search-icon {
     position: relative;
@@ -236,7 +603,7 @@ span.arrow-right {
 
 
 
-  .transactions .search-wrapper {
+  /*.transactions .search-wrapper {
     width: fit-content;
   }
 
@@ -250,11 +617,11 @@ span.arrow-right {
 
   .buttons button {
     margin-right: 15px;
-  }
+  }*/
 
   /* table styles */
 
-  .table-trans-preview,
+  /*.table-trans-preview,
   .table-registration,
   .table-successfulTransaction,
   .table-nric,
@@ -273,7 +640,7 @@ span.arrow-right {
 
   .table-successfulTransaction th:nth-child(1){
     padding-left: 0;
-  }
+  }*/
 
 
  /* .table-trans-preview th:nth-child(1),
@@ -285,7 +652,7 @@ span.arrow-right {
     width: 20%;
   }*/
 
-  .table-trans-preview th:nth-child(2),
+  /*.table-trans-preview th:nth-child(2),
   .table-trans-preview td:nth-child(2),
   .table-registration th:nth-child(2),
   .table-registration td:nth-child(2) {
@@ -307,8 +674,6 @@ span.arrow-right {
   .table-successfulTransaction td,
   .table-nric td,
   .table-manual td {
-    /*padding-top: 10px;
-    padding-bottom: 10px;*/
     padding: 10px 15px 10px 0;
     font-weight: bold;
     vertical-align: top;
@@ -323,26 +688,24 @@ span.arrow-right {
     background: var(--danger) !important;
     border-radius: 0px;
     color: #FFF;
-  }
+  }*/
 
-  @media only screen and (max-width : 1200px) {
+  /*@media only screen and (max-width : 1200px) {
     .table-successfulTransaction th,
     .table-successfulTransaction td{
       font-size: 13px;
     }
-  }
+  }*/
 
   /* modal styles */
 
-  .nric-modalWrapper {
+  /*.nric-modalWrapper {
     border-radius: unset !important;
     min-width: 500px !important;
     min-height: 250px;
-    /*top: unset !important;*/
-    /*transform: translate(-15%, 50%);*/
-  }
+  }*/
 
-  .manual-modalWrapper {
+  /*.manual-modalWrapper {
     border-radius: unset !important;
     min-width: 1170px !important;
     min-height: 250px;
@@ -366,9 +729,9 @@ span.arrow-right {
   .nric-content-wrapper,
   .manual-content-wrapper {
     padding-top: 10px;
-  }
+  }*/
 
-  .search-button button {
+  /*.search-button button {
     border-radius: 3px;
     background: #638db1;
     position: relative;
@@ -406,10 +769,10 @@ span.arrow-right {
 
   .manual-form.date .icon-wrapper i{
     font-size: 20px; 
-  }
+  }*/
 
 
-  .manual-form.time{
+  /*.manual-form.time{
     display: flex;
     height: 44px;
     padding: 0;
@@ -441,9 +804,9 @@ span.arrow-right {
 
   .container-fluid.manual-wrapper {
     padding: 20px 50px;
-  }
+  }*/
 
-  .table-nric td,
+  /*.table-nric td,
   .table-manual td {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -473,7 +836,7 @@ span.arrow-right {
   .table-manual td:nth-child(3) .manual-form,
   .table-manual td:nth-child(4) .manual-form,
   .table-manual td:nth-child(5) .manual-form {
-    /*width: 75% !important;*/
+    
   }
 
   .table-manual td:nth-child(6) {
@@ -484,7 +847,6 @@ span.arrow-right {
     border-radius: 3px;
     background: #638db1;
     position: relative;
-    /*left: -15px;*/
     color: var(--light);
   }
 
@@ -501,9 +863,9 @@ span.arrow-right {
     padding-left: 5px;
     padding: 12px 0 12px 10px;
     margin-left: 10px;
-  }
+  }*/
 
-  #modalManual .nric-drop{
+  /*#modalManual .nric-drop{
     position: absolute;
     top: 67px;
     left: 30px;
@@ -542,8 +904,8 @@ span.arrow-right {
   #modalManual .nric-list .details p{
     margin-bottom: 3px;
     margin-left: 10px;
-  }
-  #modalManual .nric-list .details p.nric{
+  }*/
+  /*#modalManual .nric-list .details p.nric{
     background-color: #d9edf7;
     color: #31708f;
     display: inline-block;
@@ -569,26 +931,26 @@ span.arrow-right {
   }
   #modalManual .service-drop .service-list span{
     flex: 1;
-  }
-  #modalManual .service-drop .service-list span.remove-span{
+  }*/
+  /*#modalManual .service-drop .service-list span.remove-span{
     width: 20px;
     text-align: right;
     flex: none;
-  }
-  #modalManual .service-drop .service-list:not(:last-child){
+  }*/
+  /*#modalManual .service-drop .service-list:not(:last-child){
     border-bottom: 1px solid #999;
-  }
+  }*/
 
-  .cursor-pointer{
+ /* .cursor-pointer{
     cursor: pointer;
-  }
+  }*/
 
-  .datepicker,
+ /* .datepicker,
   .datepicker *{
     font-family: 'helvetica light' !important;
-  }
+  }*/
 
-  .daytime-container{
+  /*.daytime-container{
     position: absolute;
     top: 69px;
     right: 9%;
@@ -598,13 +960,14 @@ span.arrow-right {
     border: 1px solid #999;
     text-align: center;
     display: none;
-  }
-  .daytime-container .daytime{
+  }*/
+
+  /*.daytime-container .daytime{
     font-size: 16px;
     padding: 5px;
     border-bottom: 1px solid #f9f9f9;
     cursor: pointer;
-  }
+  }*/
 
   /*===== TIMEPICKER =====*/
     /*.timepicker-container{

@@ -4,8 +4,8 @@
 			<!-- content here -->
 			<div class="claim-content">
 				<section class="clinic-claim-btn-container">
-					<button class="btn-nric">Verify User by NRIC</button>
-					<button class="btn-manual">Manual Claims</button>
+					<button class="btn-nric" @click="modalClaim.verifyUser = true">Verify User by NRIC</button>
+					<button class="btn-manual" @click="modalClaim.manualClaims = true">Manual Claims</button>
 				</section>
 
 				<section class="claim-card claim-registration-container">
@@ -467,6 +467,232 @@
 					</div>
 					
 				</section>
+
+
+				<div>
+				 <Modal class="verify-user-modal" v-if="modalClaim.verifyUser">
+		        <div slot="header" class="verify-user-header-container">
+		          <h4>Verify User by NRIC</h4>
+		          <i @click="modalClaim.verifyUser = false" class="fa fa-times"></i>
+		        </div>
+		        <div slot="body">
+		         	<div class="verfiy-user-body-modal">
+		         		<input type="text" placeholder="Search">
+		         		<button>Search</button> 
+		         	</div>
+		         	<table class="table-nric">
+		         		<thead>
+		         			<tr>
+		         				<th>Name</th>
+		         				<th>NRIC</th>
+		         			</tr>
+		         		</thead>
+		         		<tbody>
+		         			<tr>
+		         				<td>
+		         					<span>Alfred</span>
+		         				</td>
+		         				<td>
+		         					<span>G8472947H</span>
+		         				</td>
+		         			</tr>
+		         		</tbody>
+		         	</table>
+		        </div>
+		      </Modal>
+
+		      <Modal class="manual-claim-modal" v-if="modalClaim.manualClaims">
+		        <div slot="header" class="verify-user-header-container">
+		          <h4>Manual Claim</h4>
+		          <i @click="modalClaim.manualClaims = false" class="fa fa-times"></i>
+		        </div>
+		        <div slot="body">
+		         	<div class="manual-claim-body-modal">
+			         	<table class="table-manual">
+			         		<thead>
+			         			<tr>
+			         				<th>NRIC</th>
+			         				<th>Service</th>
+			         				<th>Date of Visit</th>
+			         				<th>Time of Visit</th>
+			         				<th>Cash</th>
+			         				<th>Option</th>
+			         			</tr>
+			         		</thead>
+			         		<tbody>
+			         			<tr>
+			         				<td>
+			         					<div>
+			         						<input type="text" placeholder="Search NRIC">
+			         						<div v-if="true" class="nric-list-container" @click="modalClaim.eCardModal = true">
+			         							<div class="img-wrapper">
+			         								<img :src="'https://res.cloudinary.com/www-medicloud-sg/image/upload/v1427972951/ls7ipl3y7mmhlukbuz6r.png'">
+			         							</div>
+			         							<div class="details">
+			         								<div>
+			         									<span>Shan Yin Yow</span>
+			         								</div>
+			         								<div>
+			         									<span>nicoleyow@asiamalls.com.sg</span>
+			         								</div>
+			         								<div class="nric">
+			         									<span>S8869985H</span>
+			         								</div>
+			         								<div>
+			         									<span>Corporate User</span>
+			         								</div>
+			         							</div>
+			         						</div>
+			         					</div>
+			         				</td>
+			         				<td>
+			         					<div class="select-procedure-container">
+			         						<input type="text" placeholder="Select Procedure">
+			         						<div v-if="false" class="service-dropdown">
+			         							<div class="service-list">
+			         								<span>Consultation</span>
+			         								<span>
+			         									<i class="fa fa-times"></i>
+			         								</span>
+			         							</div>
+			         							<div class="service-list">
+			         								<span>Sample Service</span>
+			         								<span>
+			         									<i class="fa fa-times"></i>
+			         								</span>
+			         							</div>
+			         						</div>
+			         					</div>
+			         				</td>
+			         				<td>
+			         					<div class="calendar-input-wrapper">
+			         						<input type="text">
+			         						<div>
+			         							<i class="fa fa-calendar" aria-hidden="true"></i>
+			         						</div>
+			         					</div>
+			         				</td>
+			         				<td>
+			         					<div class="time-visit-input-wrapper">
+			         						<div>
+			         							<i class="fa fa-clock-o" aria-hidden="true"></i>
+			         						</div>
+			         						<input type="text">
+			         						<div class="am-pm-container">
+			         							<span>AM</span>
+			         						</div>
+
+			         						<div v-if="false" class="am-pm-dropdown-container">
+		         								<span>AM</span>
+		         								<span>PM</span>
+		         							</div>
+
+			         						<div v-if="false" class="timepicker-container">
+														<div class="top">
+															<div class="arrow">
+																<i class="fa fa-caret-up"></i>
+															</div>
+															<div class="divider">
+															</div>
+															<div class="arrow">
+																<i class="fa fa-caret-up"></i>
+															</div>
+														</div>
+														<div class="middle">
+															<div class="hour-wrapper">
+																<span>11</span>
+															</div>
+															<div class="divider">
+																:
+															</div>
+															<div class="minute-wrapper">
+																<span>34</span>
+															</div>
+														</div>
+														<div class="bottom">
+															<div class="arrow">
+																<i class="fa fa-caret-down"></i>
+															</div>
+															<div class="divider">
+															</div>
+															<div class="arrow">
+																<i class="fa fa-caret-down"></i>
+															</div>
+														</div>
+													</div>
+			         					</div>
+			         				</td>
+			         				<td>
+			         					<div class="cash-input-wrapper">
+			         						<input type="text">
+			         						<span>S$</span>
+			         					</div>
+			         				</td>
+			         				<td>
+			         					<div>
+			         						<button>Submit</button>
+			         					</div>
+			         				</td>
+			         			</tr>
+			         		</tbody>
+			         	</table>
+		         	</div>
+		        </div>
+		      </Modal>
+
+		      <Modal class="ecard-modal" v-if="modalClaim.eCardModal">
+		      	<div slot="body">
+		      		<i @click="modalClaim.eCardModal = false" class="fa fa-times"></i>
+		      		<div class="ecard-container">
+		      			<img :src="'../assets/img/mednefits_icon_blue.png'">
+		      			<div class="ecard-full-name">Shan Yin Yow</div>
+		      			<div>
+		      				Member ID : <span>21755</span>
+		      			</div>
+		      			<div>
+		      				Mednefits Care : <span>Bundle Pro</span>
+		      			</div>
+		      			<div>
+		      				Company : <span>AsiaMalls Management Pte Ltd</span>
+		      			</div>
+		      			<div>
+		      				Start Date : <span>01 January 2019</span>
+		      			</div>
+		      			<div>
+		      				Valid Thru : <span>31 December 2019</span>
+		      			</div>
+		      			<div>Your Basic Coverage</div>
+		      			<div class="coverage-box">
+				      		<div class="cov-item">
+				      			<div>Outpatient GP</div>
+				      			<div>Consultation: S$0, covered by us. Medicine &amp; Treatment: Pay using Mednefits Credits.</div>
+				      		</div>
+				      		<div class="cov-item">
+				      			<div>Health Screening</div>
+				      			<div>1 complimentary basic health screening per year</div>
+				      		</div>
+				      		<div class="cov-item">
+				      			<div>Health Specialist</div>
+				      			<div>Save up to 60% on consultation.</div>
+				      		</div>
+				      		<div class="cov-item">
+				      			<div>Wellness Benefits</div>
+				      			<div>Save up to 40% on wellness services.</div>
+				      		</div>
+				      		<div class="cov-item">
+				      			<div>Dental Care</div>
+				      			<div>Up to 30% off dental services.</div>
+				      		</div>
+				      		<div class="cov-item">
+				      			<div>TCM</div>
+				      			<div>100% consultation covered by Mednefits. You only need to pay for medicine</div>
+				      		</div>
+				      	</div>
+		      		</div>
+		      	</div>
+		      </Modal>
+
+				</div>
 			</div>
 		</div>
 	</div>
