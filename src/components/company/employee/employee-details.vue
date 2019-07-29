@@ -4,7 +4,7 @@ import Modal from "../../../views/company/modal/Modal.vue";
 import HealthSpending from "../../../views/company/employee/Health-spending.vue";
 import employee from "../../../views/company/Employee.vue";
 import axios from 'axios';
-import moment from "moment";
+import moment, { locale } from "moment";
 
 // Methods here
 let employeeDetails = {
@@ -14,11 +14,20 @@ let employeeDetails = {
   },
   props:{
     id: {
-      type: Number
+      type: null
     },
-    employees : {
-      type: Object
-    }
+    indexOfEmployees : {
+       type: null
+    },
+    page_ctr : {
+      type: null
+    },
+    page_active : {
+      type: null
+    },
+    emp : {
+      type: null
+    },
   },
   data() {
     return {
@@ -45,17 +54,22 @@ let employeeDetails = {
 	        input: ['DD/MM/YYYY'], 
 	        data: ['DD/MM/YYYY']
       },
+      employees: JSON.parse(localStorage.getItem('employeesLocal')),
       selected_emp_dependents : {},
       toEdit: {},
       dependentIndex: null,
     };
   },
   created() {
+    // this.employees = employees_deserialized;
+    // console.log('mao ning data', this.employees);
   },  
   mounted() {
-    this.getEmpPlans(this.id);
-    this.getEmpDependents(this.id);
+    this.employeeDetailsApi();
+    // this.getEmployeeList();
+    this.$forceUpdate();
     console.log('mao ning data', this.employees);
+    
   },
   methods: {
     editDetailsData(data) { //for modal edit in employee information
@@ -161,12 +175,14 @@ let employeeDetails = {
         job_title : this.employees.job_title,
         dob : this.employees.dob,
         bank_account : this.employees.bank_account,
+        user_id :  this.employees.user_id,
       }
     },
     editDependents(index) {
       this.modalEdit.dependent = !this.modalEdit.dependent;
       this.dependentIndex = index;
       this.toEdit = {
+        user_id:  this.selected_emp_dependents[index].user_id,
         first_name :  this.selected_emp_dependents[index].first_name,
         dob :  this.selected_emp_dependents[index].dob,
         last_name :  this.selected_emp_dependents[index].last_name,
@@ -174,9 +190,10 @@ let employeeDetails = {
         member_id :  this.selected_emp_dependents[index].member_id,
         nric :  this.selected_emp_dependents[index].nric,
       }
-      console.log( this.toEdit);
+
+      console.log(this.selected_emp_dependents[index]);
     },
-    update(source, index) {
+    update(source, index) { //to update employee and dependent details
       if(source == 'employees') {
         this.$swal({
           title: "Confirm",
@@ -189,8 +206,8 @@ let employeeDetails = {
           customClass: "warning-global-container primary"
         }).then(result => {
           if (result.value) {
-            this.modalEdit.employee = false;
             this.updateToApi(source);
+            this.modalEdit.employee = false;
             this.$swal(
               "Updated!",
               "Employee Details Has Been Updated.",
@@ -210,8 +227,8 @@ let employeeDetails = {
           customClass: "warning-global-container primary"
         }).then(result => {
           if (result.value) {
-            this.modalEdit.dependent = false;
             this.updateToApi(source, index);
+            this.modalEdit.dependent = false;
             this.dependentIndex = null;
             this.$swal(
               "Updated!",
@@ -222,23 +239,59 @@ let employeeDetails = {
         });
       }
     },
-    updateToApi(source, index) {
+    updateToApi(source, index) { // Post to api
 
       if(source == 'employees') {
-        this.employees = this.toEdit;
+        let updated_data = {
+          name: `${this.toEdit.fname} ${this.toEdit.lname}`,
+          dob: moment(this.toEdit.dob).format("YYYY-MM-DD"),
+          nric: this.toEdit.nric,
+          email: this.toEdit.email,
+          phone_no: this.toEdit.phone_no,
+          job_title: this.toEdit.job_title,
+          postal_code: this.toEdit.postal_code,
+          bank_account: this.toEdit.bank_account,
+          user_id: this.toEdit.user_id
+        };
+        
+        console.log(updated_data);
+        this.postEmployee(updated_data);
+
       } else if (source == 'dependents') {
-        this.selected_emp_dependents[index] = this.toEdit;
+
+        let updated_data = {
+          user_id:  this.toEdit.user_id,
+          name: `${this.toEdit.first_name} ${this.toEdit.last_name}`,
+          first_name :  this.toEdit.first_name,
+          dob :  moment(this.toEdit.dob).format("YYYY-MM-DD"),
+          last_name :  this.toEdit.last_name,
+          relationship :  this.toEdit.relationship,
+          member_id :  this.toEdit.member_id,
+          nric :  this.toEdit.nric,
+        };
+        this.postDependent(updated_data);
+        this.$forceUpdate();
+
+        console.log(updated_data);
+        // this.selected_emp_dependents[index] = this.toEdit;
       }
 
     },
 
     //API calls
-    getEmpPlans(id) {
-      axios.get( `${axios.defaults.serverUrl}/hr/get_employee_plan_covers?employee_id=${id}`)
+    employeeDetailsApi() {
+      // this.getEmployeeList();
+      this.getEmpPlans(this.id);
+      // this.getEmpDependents(this.id);
+    },
+    getEmpPlans(id) { //Get API
+      axios.get( `${axios.defaults.serverUrl}/hr/get_employee_plan_covers?employee_id=${this.id}`)
       .then(res => {
-      
         this.employees.plan_list = res.data;
         this.$forceUpdate();
+
+        console.log('sa plan list', this.employees);
+         this.getEmpDependents(this.id);
       })
       .catch(err => {
         console.log( err );
@@ -246,14 +299,16 @@ let employeeDetails = {
         this.$parent.swal('Error!', err,'error');
       });
     },
-    getEmpDependents(id) {
-      axios.get( `${axios.defaults.serverUrl}/hr/get_employee_dependents?employee_id=${id}`)
+    getEmpDependents(id) { //Get API
+      axios.get( `${axios.defaults.serverUrl}/hr/get_employee_dependents?employee_id=${this.id}`)
       .then(res => {
         this.selected_emp_dependents = res.data.dependents;
 
         this.selected_emp_dependents.map( (value, key) => {
           value.dob = new Date( value.dob );
         });
+
+        console.log(this.selected_emp_dependents);
         this.$forceUpdate();
       })
       .catch(err => {
@@ -261,7 +316,66 @@ let employeeDetails = {
         this.$parent.hideLoading();
         this.$parent.swal('Error!', err,'error');
       });
-    }
+    },
+    getEmployeeList() { //Get API
+
+      let num = this.page_ctr;
+      let page = this.page_active;
+
+      axios.get( `${axios.defaults.serverUrl}/hr/employee/list/${num}?page=${page}`)
+      .then(res => {
+        this.employees = res.data;
+          
+          this.employees.data.map( (value, key) => {
+          value.fname = this.employees.data[key].name.substring( 0, value.name.lastIndexOf(" ") );
+          value.lname = this.employees.data[key].name.substring( value.name.lastIndexOf(" ") + 1 );
+          value.start_date = moment( value.start_date ).format("DD MMMM YYYY");
+          value.expiry_date = moment( value.expiry_date ).format("DD MMMM YYYY");
+          value.dob = new Date( value.dob );
+          value.start_date_format = moment( value.start_date ).format("DD/MM/YYYY");
+          value.expiry_date_fromat = moment( value.expiry_date ).format("DD/MM/YYYY");
+          value.end_date_format = moment( value.expiry_date ).format("DD/MM/YYYY");
+
+          if( this.employees.data.length - 1 == key) {
+            localStorage.setItem('employeesLocal', JSON.stringify(this.employees.data[this.indexOfEmployees]));
+
+            this.employees = JSON.parse(localStorage.getItem('employeesLocal'));
+            console.log('sa getemp ni',this.employees);
+          }
+        });
+        // this.getEmpPlans(this.id);
+        
+      })
+      .catch(err => {
+        console.log( err );
+        this.$parent.hideLoading();
+        this.$parent.swal('Error!', err,'error');
+      });
+    },
+    postEmployee(data){ //POST API 
+      axios.post( `${axios.defaults.serverUrl}/hr/employee/update`, data)
+      .then(res => {
+        this.$parent.hideLoading();
+        this.getEmployeeList();
+      })
+      .catch(err => {
+        console.log( err );
+        this.$parent.hideLoading();
+        this.$parent.swal('Error!', err,'error');
+      });
+    },
+    postDependent(data){ //POST API 
+      axios.post( `${axios.defaults.serverUrl}/hr/update_dependent_details`, data)
+      .then(res => {
+        this.$parent.hideLoading();
+        this.getEmpDependents(this.id);
+      })
+      .catch(err => {
+        console.log( err );
+        this.$parent.hideLoading();
+        this.$parent.swal('Error!', err,'error');
+      });
+    },
   },
   filters: {
     decimalTwo(value) {

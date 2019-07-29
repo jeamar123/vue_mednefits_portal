@@ -21,15 +21,21 @@ let employee = {
     this.employeeOverviewApi();
   },
   methods: {
-    singleEmployee(emp, index) {
+    singleEmployee(index) {
       this.$router.push({
         // path: `/company/employee/${emp.member_id}`,
         name: 'CompanyEmployeeDetails',
         params: {
-          id: emp.user_id,
-          employees : emp
+          id: this.employees.data[index].user_id,
+          emp : this.employees.data[index],
+          indexOfEmployees: index,
+          page_ctr: this.page_ctr,
+          page_active :this.page_active
         }
       });
+
+      let employees_serialized = JSON.stringify(this.employees.data[index]);
+      localStorage.setItem('employeesLocal', employees_serialized);
     },
     // api calls
     employeeOverviewApi() {
@@ -72,6 +78,9 @@ let employee = {
           value.expiry_date_fromat = moment( value.expiry_date ).format("DD/MM/YYYY");
           value.end_date_format = moment( value.expiry_date ).format("DD/MM/YYYY");
         });
+
+        // let employees_serialized = JSON.stringify(this.employees.data);
+        // localStorage.setItem('employeesLocal', employees_serialized);
       })
       .catch(err => {
         console.log( err );

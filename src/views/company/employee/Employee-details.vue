@@ -8,7 +8,7 @@
           <div class="person-image-name-info">
             <span v-show="sideInfo.trigger" class="close" @click="toggleSideInfo(0)"><i class="fa fa-times" aria-hidden="true"></i></span>
             <img :src="'../assets/img/user-new.png'">
-            <h1>{{employees.fname}} {{employees.lname}}</h1>
+            <h1>{{employees.name}}</h1>
             <div class="status-information">
               <div class="status-active-container">
                 <div class="status-label-container">
@@ -181,11 +181,11 @@
           </div>
           <div class="btn-person-info-container">
             <router-link to="/company/employee-details/remove-employee">
-              <button v-if="true" class="btn-remove-employee">Remove
+              <button v-if="employees.emp_status == 'active'" class="btn-remove-employee">Remove
                 Employee
               </button>
             </router-link>
-            <button @click="viewEmployeeSpendingSummary()" v-if="false" class="btn-health-spending">Health Spending
+            <button @click="viewEmployeeSpendingSummary()" v-if="employees.emp_status == 'deleted'" class="btn-health-spending">Health Spending
               Account Summary</button>
           </div>
         </div>

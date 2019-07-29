@@ -47,7 +47,7 @@
         		</thead>
         		<tbody>
 							<tr v-for="(emp, index) in employees.data" :key="emp.member_id">
-								<a @click="singleEmployee(emp,index)">   
+								<a @click="singleEmployee(index)">   
 									<td class="emp-name-container">
 										<strong>{{emp.name}}</strong>
 									</td>
