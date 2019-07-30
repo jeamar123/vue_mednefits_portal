@@ -31,7 +31,53 @@
 			<div class="dash-trans-history-container">
 				<div class="trans-history-header">
 					<h4>Transaction History</h4>
-				</div>	
+				</div>
+
+				<table class="trans-history-tbl">
+					<thead>
+						<tr>
+							<th>DATE</th>
+							<th>TRANSACTION ID</th>
+							<th>NAME</th>
+							<th>NRIC</th>
+							<th>SERVICE/S</th>
+							<th>MEDNEFITS FEE</th>
+							<th>MEDNEFITS CREDIT</th>
+							<th>CASH</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<span>25 July 2019, 09:29 am</span>
+							</td>
+							<td>
+								<span>STA001866</span>
+							</td>
+							<td>
+								<span>Dhonald Lite</span>
+							</td>
+							<td>
+								<span>S8788703J</span>
+							</td>
+							<td>
+								<span>Consultation and Sample Service	</span>
+							</td>
+							<td>
+								<span>S$</span>
+								<span>13.91</span>
+							</td>
+							<td>
+								<span>S$</span>
+								<span>0.20</span>
+							</td>
+							<td>
+								<span>S$</span>
+								<span>0.00</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>	
 			</div>
 		</div>
 	</div>

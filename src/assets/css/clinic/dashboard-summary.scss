@@ -77,4 +77,30 @@
   		padding: 0 0 20px;
   	}
   }
+
+  .trans-history-tbl {
+  	width: 92%;
+  	margin: 0 auto;
+  	color: #666666;
+  	font-size: 14px;
+
+  	thead th {
+  		background-color: #CDE9F5;
+  		border-bottom: 2px solid #ddd;
+  		padding: 10px;
+  	}
+
+  	thead th:first-child {
+  		padding: 10px 10px 10px 20px;
+  	}
+
+  	tbody td {
+  		border-bottom: 1px solid #ddd;
+    	padding: 25px 10px;
+  	}
+
+  	tbody td:first-child {
+  		padding: 25px 10px 25px 20px;
+  	}
+  }
 }
