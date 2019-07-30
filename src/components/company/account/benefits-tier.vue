@@ -138,7 +138,6 @@ let benefitsTier = {
       });
     },
     getTiers(){
-      
       axios.get( axios.defaults.serverUrl + '/hr/get_plan_tiers' )
         .then(res => {
           this.$parent.hideLoading();

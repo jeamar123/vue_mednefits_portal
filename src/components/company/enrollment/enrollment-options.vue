@@ -10,15 +10,14 @@ let enrollmentOptions = {
   methods: {
     toggleEnrollmentOptions( opt ) {
       this.isRequiredTiering = opt;
-      console.log(this.isRequiredTiering);
     },
     next() {
       if ( this.isRequiredTiering === 1 ) {
         this.$router.push( "create-team-benefits-tier" );
-        
       } else if ( this.isRequiredTiering === 0 ) {
         this.$router.push( "enrollment" );
       }
+      localStorage.setItem('isRequiredTiering', this.isRequiredTiering == 1 ? true : false );
     }
   }
 };

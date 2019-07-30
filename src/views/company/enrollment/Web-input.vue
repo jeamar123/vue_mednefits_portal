@@ -9,10 +9,12 @@
         <div class="web-input-wrapper">
           <div v-if="isState === 'web' && selected_emp_dep_tab  == 1" class="employee-details-wrapper">
             <div class="employee-tier-title">
+              {{ isTiering ? 'TIER ' + (activeTier.index + 1) + ' :' : ''}}
               EMPLOYEE
-              <span>17</span> OF
-              <span>27</span>
+              <span v-if="isTiering">{{ tierEmployeeCountIndex }} OF {{ activeTier.member_head_count + 1 }}</span>
+              <span v-if="!isTiering">{{ employeeCountIndex }} OF {{ enrollment_progress.total_employees }}</span>
             </div>
+
             <div class="employee-details-header">
               <h1>Employee Details</h1>
               <div class="add-dependent-btn">
@@ -35,19 +37,12 @@
               </div>
               <div class="employee-input-container">
                 <div class="employee-input-wrapper nric">
-                  <label>
-                    <input type="radio" name="id_status" value="nric" v-model="employeeDetails.idType">
-                    NRIC
-                  </label>
-                  <label>
-                    <input type="radio" name="id_status" value="fin" v-model="employeeDetails.idType">
-                    FIN
-                  </label>
+                  <label for="nric-fin">NRIC/FIN</label>
                   <input type="text" name="nric-fin" v-model="employeeDetails.nricFinNo">
                 </div>
                 <div class="employee-input-wrapper dob">
                   <label for="fname">Date of Birth</label>
-                  <v-date-picker :max-date='new Date()' v-model="employeeDetails.dob"
+                  <v-date-picker v-model="employeeDetails.dob"
                     :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true}'
                     popover-visibility='focus'>
                   </v-date-picker>
@@ -70,7 +65,7 @@
                 </div>
                 <div class="employee-input-wrapper">
                   <label for="fname">Start Date</label>
-                  <v-date-picker :max-date='new Date()' v-model="employeeDetails.startDate"
+                  <v-date-picker v-model="employeeDetails.startDate"
                     :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
                     popover-visibility='focus' popover-direction='top'>
                   </v-date-picker>
@@ -157,9 +152,10 @@
           <!-- Add dependent section -->
           <div class="dependent-details-wrapper" v-if="dependentState ">
             <div class="employee-tier-title">
+              {{ isTiering ? 'TIER ' + (activeTier.index + 1) + ' :' : ''}}
               DEPENDENT
-              <span>4</span> OF
-              <span>4</span>
+              <span v-if="isTiering">{{ tierDependentCountIndex }} OF {{ activeTier.dependent_head_count }}</span>
+              <span v-if="!isTiering">{{ dependentCountIndex }} OF {{ dependent_progress.total_number_of_seats }}</span>
             </div>
             <div class="employee-details-header">
               <h1>Dependent details</h1>
@@ -177,17 +173,12 @@
               </div>
               <div class="employee-input-container">
                 <div class="employee-input-wrapper nric">
-                  <label>
-                    <input type="radio" name="id_status" value="nric"> NRIC
-                  </label>
-                  <label>
-                    <input type="radio" name="id_status" value="fin"> FIN
-                  </label>
+                  <label>NRIC/FIN</label>
                   <input type="text" name="nric-fin" v-model="dependentDetails.nricFinNo">
                 </div>
                 <div class="employee-input-wrapper dob">
                   <label for="">Date of Birth</label>
-                  <v-date-picker :max-date='new Date()' v-model="dependentDetails.dob"
+                  <v-date-picker v-model="dependentDetails.dob"
                     :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
                     popover-visibility='focus'>
                   </v-date-picker>
@@ -206,7 +197,7 @@
                 </div>
                 <div class="employee-input-wrapper">
                   <label for="fname">Start Date</label>
-                  <v-date-picker :max-date='new Date()' v-model="dependentDetails.startDate"
+                  <v-date-picker v-model="dependentDetails.startDate"
                     :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: false}'
                     popover-visibility='focus'>
                   </v-date-picker>
@@ -223,7 +214,7 @@
             <div class="dependent-details-btn">
               <button @click="cancelDep" class="btn-cancel">CANCEL</button>
               <div class="btn-right-container">
-                <button class="btn-add" @click="prevNextEmp('add', 1)">ADD</button>
+                <button v-show="( tierDependentCountIndex < activeTier.dependent_head_count ) || ( dependentCountIndex == dependent_progress.total_number_of_seats )" class="btn-add" @click="prevNextEmp('add', 1)">ADD</button>
                 <button class="btn-save-continue" @click="addDependentStorage('save')">SAVE & CONTINUE</button>
               </div>
             </div>

@@ -32,6 +32,9 @@ let overview = {
     this.dashboardApi();
 	},
   methods: {
+    goToNewEmployee( data ){
+      window.open( axios.defaults.serverUrl + '/company-benefits-dashboard/#/vacant-seat-enrollment?vacant_id=' + data.replacement_seat_id + '&type=' + data.user_type );
+    },
     spendType(value, text) {
       //spending either medical or wellness
       this.spendingType.value = value;
@@ -42,6 +45,8 @@ let overview = {
       this.$emit("overviewData", {
         isState: data
       });
+      this.$router.push({ name: 'CompanyEnrollmentOptions' });
+      // this.$router.push({ name: 'CompanyEnrollment' });
     },
     getDay() {
        this.isMorning = this.time_now.isAfter( moment('5:00 AM', 'HH:mm A') ) && this.time_now.isBefore( moment('11:59 AM', 'HH:mm A') );

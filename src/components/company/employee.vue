@@ -11,6 +11,9 @@ let employee = {
       
     };
   },
+  created(){
+    
+  },
   methods: {
   	
 	

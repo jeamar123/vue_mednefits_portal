@@ -1143,6 +1143,11 @@
 		width: 200px
 	}
 
+	.btn-employee:disabled {
+		opacity: .5;
+		cursor: not-allowed;
+	}
+
 	.btn-enroll {
 		position: relative;
 		color: #fff;

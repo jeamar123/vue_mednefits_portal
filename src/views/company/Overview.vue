@@ -24,9 +24,9 @@
               <strong>{{intro.plan_start}}</strong> and ends on
               <strong>{{intro.plan_end}}</strong>
             </h5>
-            <router-link to="/company/enrollment-options">
-              <button class="btn-info" @click="toEnrollment('enrollment')">Employee Enrollment</button>
-            </router-link>
+            <!-- <router-link to="/company/enrollment-options"> -->
+            <button class="btn-info" @click="toEnrollment('enrollment')">Employee Enrollment</button>
+            <!-- </router-link> -->
           </div>
         </div>
 
@@ -116,9 +116,11 @@
                 <div class="task-box-details">
                   <h5 class="task-info">
                     <span>{{list.total_employees}}</span> employees have yet to enroll into the company benefits plan. 
-                    <router-link to="/company/enrollment-options">
+                    <!-- <router-link to="/company/enrollment-options"> -->
+                    <a v-on:click="toEnrollment('enrollment')">
                       Enroll them now.
-                    </router-link>
+                    </a> 
+                    <!-- </router-link> -->
                   </h5>
                 </div>
               </div>
@@ -132,7 +134,7 @@
               <div class="task-box-list mednefits-box" v-if="list.type == 'vacant_seat'">
                 <div class="task-box-details">
                   <h5 class="task-info">
-                    	Schedule for Vacant Seat Enrollment for <span v-if="list.user_type == 'employee'">Employee</span> <span v-if="list.user_type == 'dependent'">Dependent</span> is <span>{{list.date_of_enrollment}}</span>. <a>Enroll the new Employee</a> that will occupy this seat now.
+                    	Schedule for Vacant Seat Enrollment for <span v-if="list.user_type == 'employee'">Employee</span> <span v-if="list.user_type == 'dependent'">Dependent</span> is <span>{{list.date_of_enrollment}}</span>. <a v-on:click="goToNewEmployee( list )">Enroll the new Employee</a> that will occupy this seat now.
                   </h5>
                 </div>
               </div>
