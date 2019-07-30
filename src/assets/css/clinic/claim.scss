@@ -67,7 +67,7 @@
   .card-title {
     font-size: 18px;
     font-weight: 700;
-    margin: 10px 0;
+    margin: 5px 0 30px;
   }
 
   table thead {
@@ -285,6 +285,67 @@ span.arrow-right {
   .ecard-full-name {
     font-size: 20px;
     color: #319EF4;
+  }
+}
+
+.check-claims-modal .modal-clinic-container {
+  width: 550px;
+  height: auto;
+
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: 15px;
+  }
+
+  .modal-header {
+    background-color: #114158;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .transaction-title {
+    font-size: 20px;
+    margin: 0 0 10px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .your-transaction,
+  .other-transaction {
+    div >label {
+      font-weight: 700;
+    }
+  }
+
+  .other-transaction .transaction-title {
+    margin: 10px 0;
+  }
+
+  .other-transac-info-container {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .type-text {
+    color: #000;
+    font-weight: 400;
+    font-family: 'helvetica Medium'
+  }
+
+  .modal-footer {
+    button {
+      color: #fff;
+      border: 0;
+      border-radius: 2px;
+      font-weight: 400;
+      padding: 10px 30px;
+    }
+
+    button:nth-child(1) {
+      background-color: #b52c2c;
+      margin: 0 10px 0 0;
+    }
   }
 }
 

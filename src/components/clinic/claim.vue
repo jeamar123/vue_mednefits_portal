@@ -12,6 +12,7 @@
 	        verifyUser: false,
 	        manualClaims: false,
 	        eCardModal: false,
+	        checkClaims: false,
 	      },
 			}
 		},

@@ -630,7 +630,7 @@
 			         				</td>
 			         				<td>
 			         					<div>
-			         						<button>Submit</button>
+			         						<button @click="modalClaim.checkClaims = true">Submit</button>
 			         					</div>
 			         				</td>
 			         			</tr>
@@ -689,6 +689,75 @@
 				      		</div>
 				      	</div>
 		      		</div>
+		      	</div>
+		      </Modal>
+
+		      <Modal class="check-claims-modal" v-if="modalClaim.checkClaims">
+		      	<div slot="header">
+		      		<div class="check-claim-header-container">
+		      			<p>You have similar transactions with this user.</p>
+		      			<p>Please check and make sure it is not a duplicate claim entry.</p>
+		      		</div>
+		      	</div>
+		      	<div slot="body">
+		      		<div class="your-transaction">
+		      			<div class="transaction-title">
+		      				<span>Your transaction</span>
+		      			</div>
+		      			<div>
+		      				<label>Name: </label>
+		      				<span>Dhonald Lite</span>
+		      			</div>
+		      			<div>
+		      				<label>Service:</label>
+		      				<span></span>
+		      			</div>
+		      			<div>
+		      				<label>Date: </label>
+		      				<span>25 July 2019</span>
+		      			</div>
+		      			<div>
+		      				<label>Amount: </label>
+		      				<span>S$ </span>
+		      				<span>10.00</span>
+		      			</div>
+		      			<div>
+		      				<label>Type: </label>
+		      				<span class="type-text">Cash</span>
+		      			</div>
+		      		</div>
+		      		<div class="other-transaction">
+		      			<div class="transaction-title">
+		      				<span>Similar transaction</span>
+		      			</div>
+		      			<div class="other-transac-info-container">
+			      			<div>
+			      				<label>Name: </label>
+			      				<span>Dhonald Lite</span>
+			      			</div>
+			      			<div>
+			      				<label>Service: </label>
+			      				<span>Consultation and Sample Service</span>
+			      			</div>
+			      			<div>
+			      				<label>Date: </label>
+			      				<span>25 July 2019, 09:29am</span>
+			      			</div>
+			      			<div>
+			      				<label>Amount: </label>
+			      				<span>S$ </span>
+			      				<span>14.11</span>
+			      			</div>
+			      			<div>
+			      				<label>Type: </label>
+			      				<span class="type-text">Credits</span>
+			      			</div>
+		      			</div>
+		      		</div>
+		      	</div>
+		      	<div slot="footer">
+		      		<button @click="modalClaim.checkClaims = false">Cancel</button>
+		      		<button>Proceed</button>
 		      	</div>
 		      </Modal>
 
