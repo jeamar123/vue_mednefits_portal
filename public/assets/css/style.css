@@ -428,61 +428,11 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
     transition: all .3s ease;
   }
 
-/*  .modal-header{
-    background: #0392CF;
-    padding: 16px 20px;
-  }
-
-  .modal-header p {
-    color: #eee;
-    font-weight: 700;
-    font-size: 16px;
-  }
-
-  .modal-header .close {
-    text-align: right;
-    width: 50px;
-  }
-
-  .modal-header .close a{
-    font-size: 10px;
-    color: #fff;
-  }
-
-  .modal-body {
-    padding: 25px 20px;
-  }
-
-  .modal-footer {
-    padding: 35px 10px 10px 10px;
-    text-align: right;
-  }
-
-  .modal-button{
-    display: inline-block;
-    border: none;
-    line-height: 1;
-    padding: 10px 15px;
-    font-size: 12px;
-    color: rgba(255,255,255,0.87);
-    background-color: #076086;
-    border-radius: 2px;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
-    text-transform: uppercase;
-    -webkit-transition-duration: .5s;
-    transition-duration: .5s;
-    -webkit-transition-timing-function: cubic-bezier(.35,0,.25,1);
-    transition-timing-function: cubic-bezier(.35,0,.25,1);
-    -webkit-transition-property: background-color,fill,color;
-    transition-property: background-color,fill,color;
-    font-family: inherit;
-    text-align: center;
-    font-weight: 700;
-    margin: 0 5px;
-  }*/
-
   .modal-button.cancel-button{
-    opacity: .7;
+    /*opacity: .7;*/
+    border: 2px solid #ccc;
+    background-color: #fff;
+    color: #5d5d5d;
   }
 
   .confirm-dialog .modal-container{
@@ -513,8 +463,8 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
   }
 
   .confirm-dialog .modal-footer{
-    padding: 10px;
-    text-align: center;
+    padding: 20px;
+    text-align: right;
   }
 
   /*
@@ -645,7 +595,9 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
 
   .form-div select,
   .form-div input[type="text"],
-  .form-div input[type="password"]{
+  .form-div input[type="number"],
+  .form-div input[type="password"],
+  .form-div textarea{
     width: 100%;
     border: 1px solid #dedede;
     border-radius: 2px;
