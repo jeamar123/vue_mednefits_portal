@@ -49,8 +49,8 @@ import Portal from './views/Portal.vue'
 // CLINIC views
   import ClinicAuth from './views/clinic/Auth.vue'
   import ClinicDashboard from './views/clinic/Dashboard.vue'
+  import ClinicDashboardSummary from './views/clinic/Dashboard-summary.vue'
   import ClinicClaim from './views/clinic/Claim.vue'
-
 
 Vue.use(Router)
 Vue.use(axios)
@@ -148,7 +148,8 @@ export default new Router({
       component: ClinicDashboard,
       meta: { auth: true },
       children: [
-        { name: 'MemberHome', path: '/clinic/claim', component: ClinicClaim },
+        { name: 'clinicClaim', path: '/clinic/claim', component: ClinicClaim },
+        { name: 'clinicDashboardSummary', path: '/clinic/dashboard-summary',component: ClinicDashboardSummary }
       ]
     },
   ]

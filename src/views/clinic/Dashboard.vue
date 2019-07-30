@@ -7,7 +7,7 @@
 		  	</div>
 		  	<div class="nav-items">
 		  		<ul class="nav-ul">
-		  			<router-link tag="li" to="/clinic/dashboard"><a href="#">Dashboard</a></router-link>
+		  			<router-link tag="li" to="/clinic/dashboard-summary"><a href="#">Dashboard</a></router-link>
 		  			<router-link tag="li" to="/clinic/claim"><a href="#">Claim</a></router-link>
 		  			<router-link tag="li" to="/clinic/calendar"><a href="#">Calendar</a></router-link>
 		  		</ul>
