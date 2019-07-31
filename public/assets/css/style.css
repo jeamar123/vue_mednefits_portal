@@ -938,7 +938,7 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
 
 
 .vue-slider-mark-label {
-  font-size: 16px !important;
+  font-size: 16px;
 }
 
 /* for statement responsive */
