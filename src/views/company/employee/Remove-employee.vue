@@ -11,19 +11,21 @@
           <div class="employee-input-container">
             <div class="employee-input-wrapper">
               <label class="remove-label" for="fname">First / Given Name</label>
-              <input type="text" name="fname">
+              <input type="text" name="fname" readonly='true' v-model="removeData.employeeInfo.fname">
             </div>
             <div class="employee-input-wrapper">
               <label class="remove-label" for="fname">Last / Family Name</label>
-              <input type="text" name="lname">
+              <input type="text" name="lname" readonly='true' v-model="removeData.employeeInfo.lname">
             </div>
           </div>
           <div class="employee-input-container">
             <div class="employee-input-wrapper remove-dob">
-              <label class="remove-label" for="">Date of Birth</label>
+              <label class="remove-label" for="">Last day of coverage</label>
               <v-date-picker
                   :max-date='new Date()'
-                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                  :formats='formats'
+                  v-model="removeData.last_day_coverage"
+                  :input-props='{class: "vDatepicker", placeholder: "DD/MM/YYYY", readonly: true, }'
               >
               </v-date-picker>
             </div>
@@ -267,7 +269,7 @@
       <div v-if="removeState === 'health_spending_wrapper'" class="health-spending-wrapper">
 
         <!-- Health Spending Account -->
-        <div v-if="removeState === 'health_spending_wrapper' && spendingState === 'account_summary'" class="account-summary-wrapper">
+        <div v-if="removeState === 'health_spending_wrapper' && spendingState === 'reserve' || spendingState === 'remove'" class="account-summary-wrapper">
           <span class="account-summary-name">Serene Song</span>
           <h1>Health Spending Account Summary</h1>
           <div class="credits-summary-container">
@@ -275,22 +277,22 @@
               Pro-rated allocation from
               <span>
                 <strong>Start</strong> -
-                <span class="account-summary-date">01/01/2019</span>
+                <span class="account-summary-date">{{health_spending_summary.date.pro_rated_start}}</span>
               </span> to
               <span>
                 <strong>End</strong> -
-                <span class="account-summary-date">08/04/2019</span>
+                <span class="account-summary-date">{{health_spending_summary.date.pro_rated_end}}</span>
               </span>
             </div>
             <div class="account-summary-usage">
               Usage from
               <span>
                 <strong>Start</strong> -
-                <span class="account-summary-date">01/01/2019</span>
+                <span class="account-summary-date">{{health_spending_summary.date.usage_start}}</span>
               </span> to
               <span>
                 <strong>Current</strong> -
-                <span class="account-summary-date">19/03/2019</span>
+                <span class="account-summary-date">{{health_spending_summary.date.usage_end}}</span>
               </span>
             </div>
           </div>
@@ -302,21 +304,25 @@
                   <strong>Initial Allocation</strong>
                   <div>
                     S$
-                    <span>0.00</span>
+                    <span>{{health_spending_summary.medical.initial_allocation}}</span>
                   </div>
                 </div>
                 <div class="bills-spending-container pro-rated">
                   <strong>Pro-rated Allocation</strong>
                   <div>
                     S$
-                    <span>0.00</span>
+                    <span>{{health_spending_summary.medical.pro_allocation}}</span>
                   </div>
                 </div>
                 <div class="bills-spending-container current-usage">
                   <strong>Current Usage</strong>
-                  <div>
+                  <div v-if="health_spending_summary.medical.exceed == false">
                     S$
-                    <span>0.00</span>
+                    <span>{{health_spending_summary.medical.current_usage}}</span>
+                  </div>
+                  <div v-if="health_spending_summary.medical.exceed == true">
+                    S$
+                    <span>{{health_spending_summary.medical.current_usage}}</span>
                   </div>
                 </div>
                 <div class="current-usage-details">
@@ -324,14 +330,14 @@
                     <span>Spent</span>
                     <div>
                       S$
-                      <span>0.00</span>
+                      <span>{{health_spending_summary.medical.spent}}</span>
                     </div>
                   </div>
                   <div class="bills-spending-container">
                     Pending claim
                     <div>
                       S$
-                      <span>0.00</span>
+                      <span>{{health_spending_summary.medical.pending_e_claim}}</span>
                     </div>
                   </div>
                 </div>
@@ -339,11 +345,12 @@
                   <strong>Balance</strong>
                   <div>
                     S$
-                    <span>0.00</span>
+                    <span>{{health_spending_summary.medical.balance}}</span>
                   </div>
                 </div>
               </div>
-              <div class="spending-account-status on-track">On Track</div>
+              <div v-if="health_spending_summary.medical.exceed == false" class="spending-account-status on-track">On Track</div>
+              <div v-if="health_spending_summary.medical.exceed == true" class="spending-account-status on-track">Exceed</div>
             </div>
             <div class="separator"></div>
             <div class="wellness-container">
@@ -353,21 +360,25 @@
                   <strong>Initial Allocation</strong>
                   <div>
                     S$
-                    <span>0.00</span>
+                    <span>{{health_spending_summary.wellness.initial_allocation}}</span>
                   </div>
                 </div>
                 <div class="bills-spending-container pro-rated">
                   <strong>Pro-rated Allocation</strong>
                   <div>
                     S$
-                    <span>0.00</span>
+                    <span>{{health_spending_summary.wellness.pro_allocation}}</span>
                   </div>
                 </div>
                 <div class="bills-spending-container current-usage">
                   <strong>Current Usage</strong>
-                  <div>
+                  <div v-if="health_spending_summary.wellness.exceed == false">
                     S$
-                    <span>0.00</span>
+                    <span>{{health_spending_summary.wellness.current_usage}}</span>
+                  </div>
+                  <div v-if="health_spending_summary.wellness.exceed == true">
+                    S$
+                    <span>{{health_spending_summary.wellness.current_usage}}</span>
                   </div>
                 </div>
                 <div class="current-usage-details">
@@ -375,14 +386,14 @@
                     <span>Spent</span>
                     <div>
                       S$
-                      <span>0.00</span>
+                      <span>{{health_spending_summary.wellness.spent}}</span>
                     </div>
                   </div>
                   <div class="bills-spending-container">
                     <span>Pending claim</span>
                     <div>
                       S$
-                      <span>0.00</span>
+                      <span>{{health_spending_summary.wellness.pending_e_claim}}</span>
                     </div>
                   </div>
                 </div>
@@ -390,11 +401,12 @@
                   <strong>Balance</strong>
                   <div>
                     S$
-                    <span>0.00</span>
+                    <span>{{health_spending_summary.wellness.balance}}</span>
                   </div>
                 </div>
               </div>
-              <div class="spending-account-status exceed">Exceed</div>
+              <div v-if="health_spending_summary.wellness.exceed == false" class="spending-account-status exceed">On Track</div>
+              <div v-if="health_spending_summary.wellness.exceed == true" class="spending-account-status exceed">Exceed</div>
             </div>
           </div>
         </div>
@@ -407,8 +419,8 @@
           <p class="members-wallet-note">(note: by doing so, this member might not be able to pay with credits if the current usage exceeded the pro-rated allocation)
           </p>
           <div class="spending-account-btn-container">
-            <button class="active">NO</button>
-            <button>YES</button>
+            <button class="active" :class="{'active': changeMemberWalletUpdateStatus == false}" @click="changeMemberWalletUpdateStatus = false">NO</button>
+            <button :class="{'active': update_member_wallet_status == true}" @click="update_member_wallet_status = true">YES</button>
           </div>
         </div>
       </div>
@@ -419,16 +431,16 @@
           <button v-if="removeState === 'default'" class="back-btn" @click="$router.go(-1)">Back</button>
           <button v-if="removeState === 'replacement'" class="back-btn" @click="removeState = 'todo'">Back</button>
           <button v-if="removeState === 'todo'" class="back-btn" @click="removeState = 'default'">Back</button>
-          <button v-if="removeState === 'health_spending_wrapper' && spendingState === 'account_summary'" class="back-btn" @click="removeState = 'default'">Back</button>
+          <button v-if="removeState === 'health_spending_wrapper' && spendingState === 'reserve' || removeState === 'health_spending_wrapper' && spendingState === 'remove'" class="back-btn" @click="removeState = 'default'">Back</button>
           <button v-if="removeState === 'health_spending_wrapper' && spendingState === 'update_member'" class="back-btn" @click="removeState = 'default'">Back</button>
 
           <!-- next Buttons -->
           <button v-if="removeState === 'default'" class="next-btn" @click="removeState = 'todo'">Next</button>
           <button v-if="removeState === 'replacement'" class="next-btn" @click="next('replacement')">Next</button>
-          <button v-if="removeState === 'todo'" class="next-btn" @click="next('outcome')">Next</button>
+          <button v-if="removeState === 'todo' && outcome_checked != 0" class="next-btn" @click="next('outcome')">Next</button>
 
           <!-- health spending -->
-          <button v-if="removeState === 'health_spending_wrapper' && spendingState === 'account_summary'" class="next-btn" @click="spendingState = 'update_member'">Next</button>
+          <button v-if="removeState === 'health_spending_wrapper' && spendingState === 'reserve' || removeState === 'health_spending_wrapper' && spendingState === 'remove'" class="next-btn" @click="spendingState = 'update_member'">Next</button>
 
           <button v-if="removeState === 'health_spending_wrapper' && spendingState === 'update_member'" class="next-btn confirm-btn" @click="next('confirm')">Confirm</button>
         </div>

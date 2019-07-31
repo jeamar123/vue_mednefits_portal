@@ -54,7 +54,7 @@ let employeeDetails = {
 	        input: ['DD/MM/YYYY'], 
 	        data: ['DD/MM/YYYY']
       },
-      employees: JSON.parse(localStorage.getItem('employeesLocal')),
+      employees: JSON.parse(localStorage.getItem('selectedEmployee')),
       selected_emp_dependents : {},
       toEdit: {},
       dependentIndex: null,
@@ -337,9 +337,9 @@ let employeeDetails = {
           value.end_date_format = moment( value.expiry_date ).format("DD/MM/YYYY");
 
           if( this.employees.data.length - 1 == key) {
-            localStorage.setItem('employeesLocal', JSON.stringify(this.employees.data[this.indexOfEmployees]));
+            localStorage.setItem('selectedEmployee', JSON.stringify(this.employees.data[this.indexOfEmployees]));
 
-            this.employees = JSON.parse(localStorage.getItem('employeesLocal'));
+            this.employees = JSON.parse(localStorage.getItem('selectedEmployee'));
             console.log('sa getemp ni',this.employees);
           }
         });

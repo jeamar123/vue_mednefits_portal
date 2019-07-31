@@ -112,7 +112,7 @@
 			float: left;
 		}
 		tbody {
-			display: grid;
+			// display: block;
 			/*height: 287px;*/
 			height: calc(100vh - 340px);
 			font-size: 12px;
@@ -1776,6 +1776,13 @@
 					width: 257px;
 					margin-bottom: 10px;
 				}	
+			}
+		}
+
+		table {
+			tbody {
+				display: grid;
+				align-items: center;
 			}
 		}
 	}

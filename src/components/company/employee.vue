@@ -35,7 +35,7 @@ let employee = {
       });
 
       let employees_serialized = JSON.stringify(this.employees.data[index]);
-      localStorage.setItem('employeesLocal', employees_serialized);
+      localStorage.setItem('selectedEmployee', employees_serialized);
     },
     // api calls
     employeeOverviewApi() {
