@@ -8,6 +8,7 @@
 	  },
 		data() {
 			return {
+				timeFrame: {},
 				modalClaim: {
 	        verifyUser: false,
 	        manualClaims: false,

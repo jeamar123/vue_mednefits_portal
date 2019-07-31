@@ -65,7 +65,10 @@
 										<div class="left-icon-wrapper">
 											<i class="fa fa-calendar" aria-hidden="true"></i>
 										</div>
-										<input type="text" class="start-datepicker">
+										<v-date-picker :max-date='new Date()' v-model="timeFrame.start"
+				              :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
+				              popover-visibility='focus'>
+				            </v-date-picker>
 										<div class="right-icon-wrapper">
 											<i class="fa fa-chevron-down" aria-hidden="true"></i>
 										</div>
@@ -77,7 +80,10 @@
 										<div class="left-icon-wrapper">
 											<i class="fa fa-calendar" aria-hidden="true"></i>
 										</div>
-										<input type="text" class="end-datepicker">
+										<v-date-picker :max-date='new Date()' v-model="timeFrame.end"
+				              :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
+				              popover-visibility='focus'>
+				            </v-date-picker>
 										<div class="right-icon-wrapper">
 											<i class="fa fa-chevron-down" aria-hidden="true"></i>
 										</div>
