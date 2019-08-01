@@ -1,0 +1,51 @@
+.settings-clinic-wrapper {
+	padding: 90px 0 0;
+}
+
+.settings-clinic-container {
+	display: grid;
+	grid-template-columns: 10% 90%;
+}
+
+.side-panel {
+	height: 895px;
+	border-right: 1px solid #ddd;
+	background-color: #72CEF3;
+
+	li {
+		display: block;
+
+		&.active {
+			background-color: #B0E2F9;
+		}
+	}
+
+	li a{
+		color: #555;
+		display: block;
+		font-weight: 700;
+		padding: 20px 0;
+		text-align: center;
+	}
+
+	img {
+		height: 40px;
+		width: 40px;
+		margin: 0 0 5px;
+	}
+
+	.account-img {
+		height: 35px;
+		width: 35px;
+	}
+
+	.profile-img {
+		height: 48px;
+		width: 48px;
+	}
+
+	.transaction-img {
+		height: 32px;
+		width: 32px;
+	}
+}
