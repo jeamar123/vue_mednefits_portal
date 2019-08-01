@@ -1,5 +1,6 @@
 .settings-clinic-wrapper {
 	padding: 90px 0 0;
+	background-color: #fff;
 }
 
 .settings-clinic-container {
@@ -47,5 +48,116 @@
 	.transaction-img {
 		height: 32px;
 		width: 32px;
+	}
+}
+
+.clinic-account-wrapper {
+	margin: 20px 0 0;
+	padding: 0 50px;
+
+	.account-header-title {
+		padding: 0 0 15px;
+		border-bottom: 1px solid #ccc;
+		margin: 0 0 20px;
+	}
+
+	h2 {
+		padding: 10px 0 0;
+		font-size: 18px;
+		font-weight: 700;
+	}
+
+	.line-break {
+		padding: 20px 0 30px 0;
+		border-bottom: 1px solid #DCDCDC;
+		color: #666666;
+		font-size: 15px;
+		font-weight: 700;
+		display: grid;
+		grid-template-columns: 25% 75%;
+	}
+
+	.calendar-selector-container {
+		cursor: pointer;
+		display: block;
+		margin: 20px 0 0;
+
+		span {
+			padding: 0 0 0 10px;
+		}
+	}
+
+	.account-input-wrapper {
+		position: relative;
+		font-size: 14px;
+
+		input {
+			background-color: #fff;
+			border: 1px solid #999;
+			border-radius: 4px;
+			display: inline-block;
+			height: 37px;
+			width: 125px;
+			padding: 6px 30px 6px 12px;
+			text-align: left;
+		}
+
+		i {
+			position: absolute;
+			left: 105px;
+			top: 12px;
+		}
+	}
+
+	.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 25px;
+    overflow: hidden;
+    line-height: 28px;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 400;
+	}
+
+
+	input:checked + .slider {
+    background-color: #e0e0e0;
+    color: #333;
+    left: -38px;
+	}
+
+	.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0px;
+    right: 0;
+    bottom: 0;
+    background-color: #1b9bd7;
+    transition: .4s;
+    border-radius: 2px;
+    width: 130px;
+    color: #FFF;
+	}
+
+	.slider:before {
+    position: absolute;
+    content: "";
+    height: 25px;
+    width: 8px;
+    border-radius: 4px;
+    left: 35px;
+    bottom: 0;
+    background-color: #6fc9f5;
+    transition: .4s;
+	}
+
+	.slider span {
+    display: inline-block;
+    width: 40px;
+    height: 25px;
+    text-align: center;
 	}
 }

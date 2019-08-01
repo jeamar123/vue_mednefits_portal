@@ -158,6 +158,7 @@ export default new Router({
         { name: 'clinicClaim', path: '/clinic/claim', component: ClinicClaim },
         { name: 'clinicDashboardSummary', path: '/clinic/dashboard-summary',component: ClinicDashboardSummary },
         { name: 'clinicSettings', path: '/clinic/settings',component: ClinicSettings, 
+          redirect: '/clinic/settings/clinic-account',
           children: [
             { 
               name: 'ClinicAccount', path: '/clinic/settings/clinic-account', components: {account: ClinicAccount}
