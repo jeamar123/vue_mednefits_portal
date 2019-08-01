@@ -28,7 +28,7 @@ let webInput = {
       },
       dependentDetails: {
         dob: '',
-        startDate : ''
+        startDate : undefined
       },
       employeeStorage: [],
       dependentStorage: [],
@@ -285,7 +285,7 @@ let webInput = {
               arrStorage[this.indexData].dependents = [this.dependentStorage];
 
               console.log("save both to existing employee");
-              arrStorage[this.indexData].dependents[0].push({
+              arrStorage[this.indexData].dependents.push({
                 first_name: this.dependentDetails.fname,
                 last_name: this.dependentDetails.lname,
                 relationship: this.dependentDetails.relation,
@@ -296,7 +296,7 @@ let webInput = {
               this.dependentStorage = [];
               this.dependentDetails = {};
             } else {
-              arrStorage[this.indexData].dependents[0].push({
+              arrStorage[this.indexData].dependents.push({
                 first_name: this.dependentDetails.fname,
                 last_name: this.dependentDetails.lname,
                 relationship: this.dependentDetails.relation,
@@ -343,7 +343,7 @@ let webInput = {
             if (index == 0) {
               this.prevDisabled = true;
             }
-            if (arrStorage[index].dependents[0].length != 0) {
+            if (arrStorage[index].dependents.length != 0) {
               this.empDepNavState = true;
             }
           }
@@ -360,7 +360,7 @@ let webInput = {
               this.employeeDetails = {
                 mCredits : 0,
                 wCredits : 0,
-                startDate : ''
+                startDate : undefined
               };
             }
           } else if (index >= limit) {
@@ -388,7 +388,7 @@ let webInput = {
               this.employeeDetails = {
                 mCredits : 0,
                 wCredits : 0,
-                startDate : ''
+                startDate : undefined
               };
             } else {
               this.employeeDetails = {
@@ -487,16 +487,16 @@ let webInput = {
           if (depIndex == 0) {
             console.log("prev disabled");
           } else {
-            let limit = viewDept.dependents[0].length;
+            let limit = viewDept.dependents.length;
             this.tierDependentCountIndex -= 1;
             depIndex = --this.depIndexData;
             this.dependentDetails = {
-              fname: viewDept.dependents[0][depIndex].fname,
-              lname: viewDept.dependents[0][depIndex].lname,
-              relation: viewDept.dependents[0][depIndex].relation,
-              nricFinNo: viewDept.dependents[0][depIndex].nricFinNo
-              // dob: viewDept.dependents[0].dob,
-              // startDate: viewDept.dependents[0].startDate
+              fname: viewDept.dependents[depIndex].fname,
+              lname: viewDept.dependents[depIndex].lname,
+              relation: viewDept.dependents[depIndex].relation,
+              nricFinNo: viewDept.dependents[depIndex].nricFinNo
+              // dob: viewDept.dependents.dob,
+              // startDate: viewDept.dependents.startDate
             };
             if (limit > depIndex) {
               this.depPrevChevronState = true;
@@ -508,26 +508,26 @@ let webInput = {
             }
           }
         } else if (data == "next") {
-          let limit = viewDept.dependents[0].length - 1;
+          let limit = viewDept.dependents.length - 1;
           if (depIndex == limit) {
             this.depPrevChevronState = true;
             this.depNextChevronState = false;
           } else {
             this.tierDependentCountIndex += 1;
             depIndex = ++this.depIndexData;
-            if (viewDept.dependents[0][depIndex] === undefined) {
+            if (viewDept.dependents[depIndex] === undefined) {
               this.dependentDetails = {};
               // this.depNextChevronState = false;
               // this.depPrevChevronState = true;
             } else {
               this.depPrevChevronState = true;
               this.dependentDetails = {
-                fname: viewDept.dependents[0][depIndex].fname,
-                lname: viewDept.dependents[0][depIndex].lname,
-                relation: viewDept.dependents[0][depIndex].relation,
-                nricFinNo: viewDept.dependents[0][depIndex].nricFinNo,
-                dob: viewDept.dependents[0][depIndex].dob,
-                startDate: viewDept.dependents[0][depIndex].startDate
+                fname: viewDept.dependents[depIndex].fname,
+                lname: viewDept.dependents[depIndex].lname,
+                relation: viewDept.dependents[depIndex].relation,
+                nricFinNo: viewDept.dependents[depIndex].nricFinNo,
+                dob: viewDept.dependents[depIndex].dob,
+                startDate: viewDept.dependents[depIndex].startDate
               };
               if (limit == depIndex) {
                 this.depPrevChevronState = true;
@@ -565,8 +565,8 @@ let webInput = {
             lname: this.dependentStorage[this.depIndexData].lname,
             relation: this.dependentStorage[this.depIndexData].relation,
             nricFinNo: this.dependentStorage[this.depIndexData].nricFinNo
-            // dob: viewDept.dependents[0].dob,
-            // startDate: viewDept.dependents[0].startDate
+            // dob: viewDept.dependents.dob,
+            // startDate: viewDept.dependents.startDate
           };
           if (this.depIndexData >= 1) {
             this.depPrevChevronState = true;
@@ -574,14 +574,14 @@ let webInput = {
           }
         } else if (this.employeeStorage.length != 0) {
           let viewDept = this.employeeStorage[this.indexData];
-          this.depIndexData = viewDept.dependents[0].length - 1;
+          this.depIndexData = viewDept.dependents.length - 1;
           this.dependentDetails = {
-            fname: viewDept.dependents[0][this.depIndexData].fname,
-            lname: viewDept.dependents[0][this.depIndexData].lname,
-            relation: viewDept.dependents[0][this.depIndexData].relation,
-            nricFinNo: viewDept.dependents[0][this.depIndexData].nricFinNo
-            // dob: viewDept.dependents[0].dob,
-            // startDate: viewDept.dependents[0].startDate
+            fname: viewDept.dependents[this.depIndexData].fname,
+            lname: viewDept.dependents[this.depIndexData].lname,
+            relation: viewDept.dependents[this.depIndexData].relation,
+            nricFinNo: viewDept.dependents[this.depIndexData].nricFinNo
+            // dob: viewDept.dependents.dob,
+            // startDate: viewDept.dependents.startDate
           };
           if (this.depIndexData >= 1) {
             this.depPrevChevronState = true;

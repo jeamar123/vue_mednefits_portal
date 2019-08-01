@@ -229,15 +229,15 @@
                 <li v-for="(summary,index) in employeeStorage" v-bind:key="summary.id">
                   <div>
                     <span>{{index + 1}}</span>.
-                    <span>{{summary.fname}} </span>
-                    <span>{{summary.lname}}</span>
+                    <span>{{summary.first_name}} </span>
+                    <span>{{summary.last_name}}</span>
                   </div>
                   <div v-if="summary.dependents[0] !=null">
                     <div class="summary-dependent" v-for="(dependent, letter) in summary.dependents[0]"
                       :key="dependent.id">
                       <span>{{ String.fromCharCode('a'.charCodeAt() + letter) }}</span>.
-                      <span>{{dependent.fname}}</span>
-                      <span>{{dependent.lname}}</span>
+                      <span>{{dependent.first_name}}</span>
+                      <span>{{dependent.last_name}}</span>
                     </div>
                   </div>
                 </li>
@@ -260,7 +260,7 @@
               class="btn-prev-emp btn-employee" @click="prevNextEmp('prev', 0)">
               <span class="text">PREVIOUS <span class="text-employee">EMPLOYEE</span></span>
             </button>
-            <button v-if="isState === 'web'" class="btn-next-emp btn-employee" @click="prevNextEmp('next', 0)">
+            <button v-if="isState === 'web'" class="btn-next-emp btn-employee" :disabled="( tierEmployeeCountIndex == activeTier.member_head_count + 1 ) || ( employeeCountIndex == enrollment_progress.total_employees )" @click="prevNextEmp('next', 0)">
               <span class="text">NEXT <span class="text-employee">EMPLOYEE</span></span>
             </button>
             <button class="btn-enroll-web next-btn" v-if="isState === 'web'" @click="enroll('enrollsum')">Enroll</button>
