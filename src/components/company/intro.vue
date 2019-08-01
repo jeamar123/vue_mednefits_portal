@@ -1,4 +1,5 @@
 <script>
+/* eslint-disable */
 import axios from 'axios';
 // Methods here
 let intro = {

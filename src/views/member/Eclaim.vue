@@ -25,7 +25,7 @@
 			  		<div class="eclaim-input-wrapper">
 			  			<select v-model="eclaim_data.claim_type">
 				  			<option></option>
-				  			<option v-for="list in claimTypesArr">{{ list.name }}</option>
+				  			<option v-for="list in claimTypesArr" :key="list.index">{{ list.name }}</option>
 				  		</select>
 			  		</div>
 			  	</div>
@@ -123,7 +123,7 @@
 			  		<div class="eclaim-input-wrapper">
 			  			<select v-model="eclaim_data.member">
 				  			<option></option>
-				  			<option v-bind:value="list" v-for="list in claimMembers">{{ list.name }}</option>
+				  			<option v-bind:value="list" v-for="list in claimMembers" :key="list.index">{{ list.name }}</option>
 				  		</select>
 			  		</div>
 			  	</div>
@@ -144,7 +144,7 @@
 
 		  		<p class="uploaded-text">Uploaded</p>
 					<div class="uploads-box">
-						<div class="upload-wrapper" v-for="(img,index) in uploading_files">
+						<div class="upload-wrapper" v-for="(img,index) in uploading_files" :key="img.index">
 							<div class="img-wrapper">
 								<img v-if="img.type == 'image/png' || img.type == 'image/jpeg'" :src="'../assets/img/file-types/Receipt-png.png'" style="width: 30px;">
 								<img v-if="img.type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'" :src="'../assets/img/file-types/Receipt-doc-xls.png'" style="width: 30px;">
@@ -240,7 +240,7 @@
 		  				</div>
 		  				<div class="value">
 		  					<div class="receipt-imgs">
-						    	<div v-for="img in uploaded_files" class="receipt">
+						    	<div v-for="img in uploaded_files" class="receipt" :key="img.index">
 						    		<!-- <img :src="'../assets/img/coverage/Submit-E-Claim---Visit-Date.png'"> -->
 						    		<img v-if="img.receipt_type == 'image'" :src="img.receipt_file" style="">
 						    		<img v-if="img.receipt_type == 'pdf'" :src="'../assets/e-claim/img/new-assets/Receipt-pdf.png'" style="">

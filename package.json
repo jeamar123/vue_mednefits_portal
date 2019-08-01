@@ -10,7 +10,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@statnett/vue-plotly": "^0.2.0",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "babel-polyfill": "^6.26.0",
     "plotly.js": "^1.47.4",
     "v-calendar": "^0.9.7",
