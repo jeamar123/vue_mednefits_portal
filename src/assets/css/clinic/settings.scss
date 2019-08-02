@@ -208,6 +208,64 @@
 		width: 100%;
 	}
 
+	.doctor-tooltip {
+		position: absolute;
+		right: -130px;
+    z-index: 1;
+    background-color: #fff;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, .2);
+
+    h3 {
+    	background-color: #d8f5f9;
+    	color: #666666;
+    	padding: 8px 14px;
+    	border-bottom: 1px solid #ebebeb;
+    	border-radius: 5px 5px 0 0;
+    	font-weight: 400;
+    }
+
+    .arrow:after {
+    	display: block;
+	    background-color: #fff;
+	    height: 20px;
+	    width: 20px;
+    }
+
+    .tooltip-content {
+    	padding: 9px 14px;
+    }
+
+    input {
+    	width: 250px;
+    	height: 46px;
+    	background-color: #fff;
+    	border-radius: 4px;
+    	border: 1px solid #929292;
+    	padding: 6px 12px;
+    	margin: 0 0 20px;
+    }
+
+    button {
+    	background-color: transparent;
+    	border: 0;
+    	border-radius: 4px;
+    	padding: 8px 12px;
+    	width: 75px;
+    }
+
+    .btn-add-doctor {
+    	width: 110px;
+    	color: #fff;
+    	background-color: #1597d1;
+    	margin: 0 10px 0 0;
+    }
+
+    .btn-cancel {
+    	border: 1px solid #929292;
+    }
+	}
+
 	.staff-side-list {
 		background-color: rgb(176, 226, 249);
 		font-weight: 700;
@@ -220,6 +278,7 @@
 
 	.add-img-container {
 		float: right;
+		position: relative;
 	}
 
 	.add-img-container img {
@@ -289,11 +348,21 @@
 
 		&.line-break {
     	border-bottom: 1px solid #DCDCDC;
-    	padding: 20px 0 30px 0;
+    	padding: 35px 0 35px 0;
 		}
 
 		&.btn-update-container {
 			padding: 0 0 30px 0;
+		}
+
+		&.pin-container .btn-staff {
+			margin: 0 0 0 15px
+		}
+
+		&.google-sync-container,
+		&.btn-update-container,
+		&.pin-container {
+			margin: 0px;
 		}
 
 		>div:nth-child(1) {
@@ -323,6 +392,12 @@
 			padding: 12px 15px;
 			font-weight: 700;
 			width: 300px;
+		}
+
+		input.input-error {
+			border: 1px solid red;
+   	 	border-color: red;
+   	 	box-shadow: 0 0 5px red;
 		}
 
 		.btn-staff {

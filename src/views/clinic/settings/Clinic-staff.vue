@@ -8,6 +8,20 @@
 					<a>
 						<img :src="'../assets/img/ico_add new.svg'">
 					</a>
+
+					<div class="doctor-tooltip">
+						<div class="arrow"></div>
+						<h3>Add New Doctor</h3>
+						<div class="tooltip-content">
+							<input type="text" placeholder="Doctor Name">
+							<input type="text" placeholder="Doctor Email">
+							<div class="tooltip-btn-container">
+								<button class="btn-add-doctor">Add Doctor</button>
+								<button class="btn-cancel">Cancel</button>
+							</div>
+						</div>
+					</div>
+
 				</div>
 			</div>
 
@@ -99,19 +113,21 @@
 							</div>
 						</div>
 						<div class="staff-row-container btn-update-container line-break">
+							<div></div>
 							<div>
 								<button class="btn-staff">Update</button>
 							</div>
 						</div>
-						<div class="staff-row-container line-break">
+						<div class="staff-row-container pin-container line-break">
 							<div class="text-label">
 								<span>PIN</span>
 							</div>
 							<div>
-								<input type="text" placeholder="4 Digit PIN">
+								<input class="" type="text" placeholder="4 Digit PIN">
+								<button class="btn-staff">Enter</button>
 							</div>
 						</div>
-						<div class="staff-row-container line-break">
+						<div class="staff-row-container google-sync-container line-break">
 							<div class="text-label">
 								<span>Google Sync</span>
 							</div>
