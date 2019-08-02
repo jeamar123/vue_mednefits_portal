@@ -9,9 +9,18 @@
 		data() {
 			return {
 				timeFrame: {},
+					detail_active: {
+	        value: 0,
+	        text: ""
+	      },
 			}
 		},
-		
+		methods: {
+			selectDetail(value, text) {
+	      this.detail_active.value = value;
+	      this.detail_active.text = text; 
+	    }
+		}
 	
 	}
 

@@ -145,56 +145,218 @@
 			overflow-y: auto;
 		}
 	}
+}
 
-	.switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 25px;
-    overflow: hidden;
-    line-height: 28px;
-    border-radius: 2px;
-    font-size: 12px;
-    font-weight: 400;
-	}
-
-
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 25px;
+  overflow: hidden;
+  line-height: 28px;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 400;
+  
 	input:checked + .slider {
-    background-color: #e0e0e0;
-    color: #333;
-    left: -38px;
+	  background-color: #e0e0e0;
+	  color: #333;
+	  left: -38px;
 	}
 
 	.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0px;
-    right: 0;
-    bottom: 0;
-    background-color: #1b9bd7;
-    transition: .4s;
-    border-radius: 2px;
-    width: 130px;
-    color: #FFF;
+	  position: absolute;
+	  cursor: pointer;
+	  top: 0;
+	  left: 0px;
+	  right: 0;
+	  bottom: 0;
+	  background-color: #1b9bd7;
+	  transition: .4s;
+	  border-radius: 2px;
+	  width: 130px;
+	  color: #FFF;
 	}
 
 	.slider:before {
-    position: absolute;
-    content: "";
-    height: 25px;
-    width: 8px;
-    border-radius: 4px;
-    left: 35px;
-    bottom: 0;
-    background-color: #6fc9f5;
-    transition: .4s;
+	  position: absolute;
+	  content: "";
+	  height: 25px;
+	  width: 8px;
+	  border-radius: 4px;
+	  left: 35px;
+	  bottom: 0;
+	  background-color: #6fc9f5;
+	  transition: .4s;
 	}
 
 	.slider span {
-    display: inline-block;
-    width: 40px;
-    height: 25px;
-    text-align: center;
+	  display: inline-block;
+	  width: 40px;
+	  height: 25px;
+	  text-align: center;
+	}
+}
+
+.clinic-staff-wrapper {
+
+	display: grid;
+	grid-template-columns: 20% 80%;
+	height: 100%;
+
+	.setting-info-container {
+		width: 100%;
+	}
+
+	.staff-side-list {
+		background-color: rgb(176, 226, 249);
+		font-weight: 700;
+		padding: 20px 0 0;
+
+		.staff-header-list {
+			padding: 0 15px;
+		}
+	}
+
+	.add-img-container {
+		float: right;
+	}
+
+	.add-img-container img {
+		height: 25px;
+		width: 25px;
+	}
+
+	.staff-doctor-container {
+		padding: 20px 30px 10px;
+
+		img {
+			height: 40px;
+			width: 40px;
+		}
+
+		span {
+			display: inline-block;
+			padding: 15px 15px 0;
+			font-size: 12px;
+			color: #000;
+		}
+	}
+
+	.detail-wrapper {
+		padding: 10px 30px;
+	}
+
+	.detail-header-container {
+		border-bottom: 1px solid #ddd;
+		position: relative;
+
+		ul {
+			display: flex;
+		}
+
+		li a {
+			display: block;
+			color: #5F6565;
+			padding: 15px;
+		}
+
+		li a.active {
+			font-weight: 700;
+			color: #000;
+		}
+
+		.trash-img-container {
+			position: absolute;
+			top: 13px;
+			right: 0;
+			font-size: 16px;
+		}
+
+		.trash-img-container a {
+			color: #000;
+		}
+	}
+
+	.detail-body-container {
+		margin: 20px 0 0;
+	}
+
+	.staff-row-container {
+		display: flex;
+		align-items: center;
+		margin: 0 0 20px;
+
+		&.line-break {
+    	border-bottom: 1px solid #DCDCDC;
+    	padding: 20px 0 30px 0;
+		}
+
+		&.btn-update-container {
+			padding: 0 0 30px 0;
+		}
+
+		>div:nth-child(1) {
+			width: 25%;
+			text-align: right;
+			padding: 0 27px 0 0;
+		}
+
+		>div:nth-child(2) {
+			width: 75%;
+		}
+
+		img {
+			width: 85px;
+			height: 85px;
+		}
+
+		.text-label {
+			color: #666666;
+			font-weight: 700;
+		}
+
+		input {
+			background-color: #fff;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			padding: 12px 15px;
+			font-weight: 700;
+			width: 300px;
+		}
+
+		.btn-staff {
+			background: #1b9bd7;
+	    border: 0px;
+	    color: #fff;
+	    width: 75px;
+	    height: 42px;
+	    border-radius: 5px;
+	    font-weight: 700;
+		}
+	}
+
+	.phone-number-input-wrapper {
+		display: table;
+
+		.input-group-addon {
+			display: table-cell;
+			border: 1px solid #ddd;
+			color: #686868;
+			background-color: #fff;
+			height: 20px;
+			width: 40px;
+			cursor: pointer;
+			border-right: 0;
+	    padding: 10px 16px;
+	    border-top-left-radius: 5px;
+	    border-bottom-left-radius: 5px;
+		}
+
+		input {
+			width: 242px;
+			border-bottom-left-radius: 0;
+    	border-top-left-radius: 0;
+		}
 	}
 }
