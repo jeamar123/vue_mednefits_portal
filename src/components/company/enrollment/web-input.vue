@@ -189,7 +189,7 @@ let webInput = {
         });
       } else if (source == "enroll" && this.employeeStorage.length == this.indexData && !this.isEmpty(this.employeeDetails)) {
         //this.dependentStorage.length != 0 && !this.isEmpty(this.dependentDetails)
-        if( this.employeeDetails.fname && this.employeeDetails.lname ){
+        if( this.employeeDetails.fname || this.employeeDetails.lname ){
           if( this.checkEmployeeForm( this.employeeDetails ) == false ){
             return false;
           }
@@ -226,9 +226,7 @@ let webInput = {
       //used in web input
       let arrStorage = this.employeeStorage;
       let limit = arrStorage.length;
-      if( this.checkDependentForm( this.dependentDetails ) == false ){
-        return false;
-      }
+      
       if (data == "add" && !this.isEmpty(this.dependentDetails)) {
         //if add button click
         // this.dependentState = !this.dependentState;
@@ -236,6 +234,9 @@ let webInput = {
         //   this.isState = "web";
         // }
         // store to temp storage when adding employees
+        if( this.checkDependentForm( this.dependentDetails ) == false ){
+          return false;
+        }
         this.dependentStorage.push({
           first_name: this.dependentDetails.fname,
           last_name: this.dependentDetails.lname,
@@ -250,6 +251,12 @@ let webInput = {
         this.$refs.formDep.reset();
       } else if (data == "save") {
         //else Save and Continue click
+        if( this.dependentStorage.length == 0 ){
+          if( this.checkDependentForm( this.dependentDetails ) == false ){
+            return false;
+          }
+        }
+
         this.dependentState = false;
         if (this.dependentState === false) {
           this.isState = "web";
@@ -260,7 +267,7 @@ let webInput = {
 
           if (this.isEmpty(this.dependentDetails)) {
             if (this.indexData != limit || limit != 0) {
-              arrStorage[this.indexData].dependents = [this.dependentStorage];
+              arrStorage[this.indexData].dependents = this.dependentStorage;
 
               this.dependentStorage = [];
               this.dependentDetails = {};
@@ -269,6 +276,11 @@ let webInput = {
             }
           } else {
             if (this.indexData == limit || limit == 0) {
+              if( this.dependentDetails.fname || this.dependentDetails.lname ){
+                if( this.checkDependentForm( this.dependentDetails ) == false ){
+                  return false;
+                }
+              }
               this.dependentStorage.push({
                 first_name: this.dependentDetails.fname,
                 last_name: this.dependentDetails.lname,
@@ -282,9 +294,14 @@ let webInput = {
               this.dependentStorage.length != 0 &&
               !this.isEmpty(this.dependentDetails)
             ) {
-              arrStorage[this.indexData].dependents = [this.dependentStorage];
+              arrStorage[this.indexData].dependents = this.dependentStorage;
 
               console.log("save both to existing employee");
+              if( this.dependentDetails.fname || this.dependentDetails.lname ){
+                if( this.checkDependentForm( this.dependentDetails ) == false ){
+                  return false;
+                }
+              }
               arrStorage[this.indexData].dependents.push({
                 first_name: this.dependentDetails.fname,
                 last_name: this.dependentDetails.lname,
@@ -296,6 +313,11 @@ let webInput = {
               this.dependentStorage = [];
               this.dependentDetails = {};
             } else {
+              if( this.dependentDetails.fname || this.dependentDetails.lname ){
+                if( this.checkDependentForm( this.dependentDetails ) == false ){
+                  return false;
+                }
+              }
               arrStorage[this.indexData].dependents.push({
                 first_name: this.dependentDetails.fname,
                 last_name: this.dependentDetails.lname,
@@ -309,6 +331,7 @@ let webInput = {
             // store to temp storage when adding employees
           }
         }
+        
       }
       return true;
     },
@@ -319,7 +342,7 @@ let webInput = {
       let viewDept = this.employeeStorage[this.indexData];
       let index = this.indexData; //for employee index
       let depIndex = this.depIndexData; // for dependent index
-
+      console.log( arrStorage );
       if (type == 0) {
         if (data == "prev") {
           if (index == 0) {
@@ -557,6 +580,7 @@ let webInput = {
       //used in web input
       this.selected_emp_dep_tab = opt;
       console.log( this.dependentStorage );
+      console.log( this.depIndexData );
       if (this.selected_emp_dep_tab == 2) {
         if (this.dependentStorage.length != 0) {
           this.depIndexData = this.dependentStorage.length - 1;
