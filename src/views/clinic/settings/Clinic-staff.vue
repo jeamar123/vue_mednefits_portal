@@ -5,11 +5,11 @@
 			<div class="staff-header-list">
 				<span>1 Doctors</span>
 				<div class="add-img-container">
-					<a>
+					<a @click="btnAddDoctor()">
 						<img :src="'../assets/img/ico_add new.svg'">
 					</a>
 
-					<div class="doctor-tooltip">
+					<div v-if="showAddDoctorTooltip" class="doctor-tooltip">
 						<div class="arrow"></div>
 						<h3>Add New Doctor</h3>
 						<div class="tooltip-content">
@@ -54,9 +54,17 @@
 				</ul>
 
 				<span class="trash-img-container">
-					<a>
+					<a @click="btnDeleteDoctor()">
 						<i class="fa fa-trash" aria-hidden="true"></i>
 					</a>
+					<div v-if="showDeleteDoctorTooltip" class="doctor-tooltip">
+						<div class="arrow"></div>
+						<h3>Are you sure?</h3>
+						<div class="tooltip-btn-container">
+							<button class="btn-delete">Delete</button>
+							<button class="btn-cancel">Cancel</button>
+						</div>
+					</div>
 				</span>	
 			</div>
 
@@ -92,8 +100,70 @@
 								<span>Mobile</span>
 							</div>
 							<div class="phone-number-input-wrapper">
-								<span class="input-group-addon">+65</span>
+								<span @click="btnCountryCode()" class="input-group-addon">+65</span>
 								<input type="text" placeholder="Phone Number">
+								<ul v-if="showCountryCodeList" class="dropdown-menu">
+									<li>
+										<span>Afghanistan</span>
+										<span>+358</span>
+									</li>
+									<li>
+										<span>Afghanistan</span>
+										<span>+358</span>
+									</li>
+									<li>
+										<span>Afghanistan</span>
+										<span>+358</span>
+									</li>
+									<li>
+										<span>Afghanistan</span>
+										<span>+358</span>
+									</li>
+									<li>
+										<span>Afghanistan</span>
+										<span>+358</span>
+									</li>
+									<li>
+										<span>Afghanistan</span>
+										<span>+358</span>
+									</li>
+									<li>
+										<span>Afghanistan</span>
+										<span>+358</span>
+									</li>
+									<li>
+										<span>Afghanistan</span>
+										<span>+358</span>
+									</li>
+									<li>
+										<span>Afghanistan</span>
+										<span>+358</span>
+									</li>
+									<li>
+										<span>Afghanistan</span>
+										<span>+358</span>
+									</li>
+									<li>
+										<span>Afghanistan</span>
+										<span>+358</span>
+									</li>
+									<li>
+										<span>Afghanistan</span>
+										<span>+358</span>
+									</li>
+									<li>
+										<span>Afghanistan</span>
+										<span>+358</span>
+									</li>
+									<li>
+										<span>Afghanistan</span>
+										<span>+358</span>
+									</li>
+									<li>
+										<span>Afghanistan</span>
+										<span>+358</span>
+									</li>
+								</ul>
 							</div>
 						</div>
 						<div class="staff-row-container">
