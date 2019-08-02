@@ -118,7 +118,10 @@
                 </div>
                 <div class="employee-input-wrapper dob">
                   <label for="">Date of Birth</label>
-                  <input type="text" name="lname" placeholder="DD/MM/YYYY" v-model="dependentDetails.dob">
+                  <v-date-picker v-model="dependentDetails.dob"
+                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true}'
+                    popover-visibility='focus'>
+                  </v-date-picker>
                 </div>
               </div>
               <div class="employee-input-container">
@@ -133,7 +136,10 @@
                 </div>
                 <div class="employee-input-wrapper">
                   <label for="fname">Start Date</label>
-                  <input type="text" name="stard-date" v-model="dependentDetails.startDate">
+                  <v-date-picker v-model="dependentDetails.startDate"
+                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true}'
+                    popover-visibility='focus'>
+                  </v-date-picker>
                 </div>
               </div>
             </form>

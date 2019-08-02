@@ -556,17 +556,17 @@ let webInput = {
     selectEmpDepTab(opt) {
       //used in web input
       this.selected_emp_dep_tab = opt;
-
+      console.log( this.dependentStorage );
       if (this.selected_emp_dep_tab == 2) {
         if (this.dependentStorage.length != 0) {
           this.depIndexData = this.dependentStorage.length - 1;
           this.dependentDetails = {
-            fname: this.dependentStorage[this.depIndexData].fname,
-            lname: this.dependentStorage[this.depIndexData].lname,
-            relation: this.dependentStorage[this.depIndexData].relation,
-            nricFinNo: this.dependentStorage[this.depIndexData].nricFinNo
-            // dob: viewDept.dependents.dob,
-            // startDate: viewDept.dependents.startDate
+            fname: this.dependentStorage[this.depIndexData].first_name,
+            lname: this.dependentStorage[this.depIndexData].last_name,
+            relation: this.dependentStorage[this.depIndexData].relationship,
+            nricFinNo: this.dependentStorage[this.depIndexData].nric,
+            dob: this.dependentStorage[this.depIndexData].dob,
+            startDate: this.dependentStorage[this.depIndexData].plan_start
           };
           if (this.depIndexData >= 1) {
             this.depPrevChevronState = true;
@@ -576,12 +576,12 @@ let webInput = {
           let viewDept = this.employeeStorage[this.indexData];
           this.depIndexData = viewDept.dependents.length - 1;
           this.dependentDetails = {
-            fname: viewDept.dependents[this.depIndexData].fname,
-            lname: viewDept.dependents[this.depIndexData].lname,
-            relation: viewDept.dependents[this.depIndexData].relation,
-            nricFinNo: viewDept.dependents[this.depIndexData].nricFinNo
-            // dob: viewDept.dependents.dob,
-            // startDate: viewDept.dependents.startDate
+            fname: this.dependentStorage[this.depIndexData].first_name,
+            lname: this.dependentStorage[this.depIndexData].last_name,
+            relation: this.dependentStorage[this.depIndexData].relationship,
+            nricFinNo: this.dependentStorage[this.depIndexData].nric,
+            dob: this.dependentStorage[this.depIndexData].dob,
+            startDate: this.dependentStorage[this.depIndexData].plan_start
           };
           if (this.depIndexData >= 1) {
             this.depPrevChevronState = true;
