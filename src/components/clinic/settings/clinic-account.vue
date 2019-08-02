@@ -9,9 +9,34 @@
 		data() {
 			return {
 				timeFrame: {},
+				showWeekSelector: false,
+				showTimeSelector: false,
+				showStartHourSeletor: false,
 			}
 		},
-		
+		methods: {
+			btnWeekSelector() {
+				if (this.showWeekSelector === false) {
+					this.showWeekSelector = true;
+				} else {
+					this.showWeekSelector = false;
+				}
+			},
+			btnTimeSelector() {
+				if (this.showTimeSelector === false) {
+					this.showTimeSelector = true;
+				} else {
+					this.showTimeSelector = false;
+				}
+			},
+			btnStartHourSelector() {
+				if (this.showStartHourSeletor === false) {
+					this.showStartHourSeletor = true;
+				} else {
+					this.showStartHourSeletor = false;
+				}
+			}
+		}
 	
 	}
 

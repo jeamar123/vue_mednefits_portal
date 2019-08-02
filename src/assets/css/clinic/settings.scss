@@ -109,6 +109,43 @@
 		}
 	}
 
+	.dropdown-menu {
+		width: 125px;
+		background-color: #fff;
+		border: 1px solid rgba(0, 0, 0, .15);
+		border-radius: 4px;
+		box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+		position: absolute;
+		top: 38px;
+		padding: 5px 0;
+		z-index: 1;
+
+		li a {
+			color: #333;
+			display: block;
+			font-weight: 400;
+			padding: 3px 20px;
+		}
+
+		li a:hover {
+			background-color: #e8e8e8;
+			background-image: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+		}
+	}
+
+	.timepicker-wrapper {
+		position: absolute;
+		top: 0;
+		z-index: 1;
+		background-color: #fff;
+
+		.dropdown-menu {
+			position: inherit;
+			height: 150px;
+			overflow-y: auto;
+		}
+	}
+
 	.switch {
     position: relative;
     display: inline-block;
