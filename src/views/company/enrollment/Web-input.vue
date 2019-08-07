@@ -1,7 +1,8 @@
 <template>
   <transition name="fade">
     <div class="enrollment-wrapper">
-      <div class="employee-dependent-header" v-if="isState === 'web' && empDepNavState">
+      <!-- empDepNavState -->
+      <div class="employee-dependent-header" v-if="isState === 'web' && dependentStorage.length > 0">
         <span v-bind:class="{'active' : selected_emp_dep_tab  == 1}" @click="selectEmpDepTab(1)">Employee</span>
         <span v-bind:class="{'active' : selected_emp_dep_tab  == 2}" @click="selectEmpDepTab(2)">Dependent</span>
       </div>
@@ -17,7 +18,7 @@
 
             <div class="employee-details-header">
               <h1>Employee Details</h1>
-              <div class="add-dependent-btn">
+              <div v-show="( isTiering && tierDependentCountIndex <= activeTier.dependent_head_count ) || ( !isTiering && dependentCountIndex <= dependent_progress.total_number_of_seats )" class="add-dependent-btn">
                 <h4 class="add-dependent-title-header">Add a Dependent?</h4>
                 <button @click="addDependent">
                   <img :src="'../assets/img/icons/add-employee.svg'"> Add
@@ -89,9 +90,9 @@
           <!-- View dependent sercion-->
           <div class="dependent-details-wrapper" v-if="selected_emp_dep_tab  == 2">
             <div class="employee-tier-title">
+              {{ isTiering ? 'TIER ' + (activeTier.index + 1) + ' :' : ''}}
               DEPENDENT
-              <span>4</span> OF
-              <span>4</span>
+              <span>{{ dependetStorageIndex + 1 }} OF {{ dependentStorage.length }}</span>
             </div>
             <div class="employee-details-header">
               <h1>Dependent details</h1>
@@ -103,22 +104,22 @@
               <div class="employee-input-container">
                 <div class="employee-input-wrapper">
                   <label for="fname">First / Given Name</label>
-                  <input type="text" name="fname" v-model="dependentDetails.fname">
+                  <input type="text" name="fname" v-model="dependentStorage[ dependetStorageIndex ].first_name">
                 </div>
                 <div class="employee-input-wrapper">
                   <label for="fname">Last / Family Name</label>
-                  <input type="text" name="lname" v-model="dependentDetails.lname">
+                  <input type="text" name="lname" v-model="dependentStorage[ dependetStorageIndex ].last_name">
                 </div>
               </div>
               <div class="employee-input-container">
                 <div class="employee-input-wrapper nric">
                   <label>NRIC</label>
                   <label>FIN</label>
-                  <input type="text" name="nric-fin" v-model="dependentDetails.nricFinNo">
+                  <input type="text" name="nric-fin" v-model="dependentStorage[ dependetStorageIndex ].nric">
                 </div>
                 <div class="employee-input-wrapper dob">
                   <label for="">Date of Birth</label>
-                  <v-date-picker v-model="dependentDetails.dob"
+                  <v-date-picker v-model="dependentStorage[ dependetStorageIndex ].dob"
                     :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true}'
                     popover-visibility='focus'>
                   </v-date-picker>
@@ -127,7 +128,7 @@
               <div class="employee-input-container">
                 <div class="employee-input-wrapper">
                   <label for="fname">Relationship</label>
-                  <select v-model="dependentDetails.relation">
+                  <select v-model="dependentStorage[ dependetStorageIndex ].relationship">
                     <option value="Spouse">Spouse</option>
                     <option value="Child">Child</option>
                     <option value="Family">Family</option>
@@ -136,7 +137,7 @@
                 </div>
                 <div class="employee-input-wrapper">
                   <label for="fname">Start Date</label>
-                  <v-date-picker v-model="dependentDetails.startDate"
+                  <v-date-picker v-model="dependentStorage[ dependetStorageIndex ].plan_start"
                     :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true}'
                     popover-visibility='focus'>
                   </v-date-picker>
@@ -144,14 +145,19 @@
               </div>
             </form>
             <div class="summary-left-right-btn" v-if="true">
-              <img v-show="depPrevChevronState && dependentStorage.length === 0" class="summary-left-btn"
+              <!-- <img v-show="dependentStorage.length === 0" class="summary-left-btn"
                 @click="prevNextEmp('prev', 2)" :src="'../assets/img/icons/left.png'">
               <img v-show="depPrevChevronState && dependentStorage.length != 0" class="summary-left-btn"
                 @click="prevNextEmp('prev', 1)" :src="'../assets/img/icons/left.png'">
               <img v-show="depNextChevronState && dependentStorage.length === 0" class="summary-right-btn"
                 @click="prevNextEmp('next', 2)" :src="'../assets/img/icons/right.png'">
               <img v-show="depNextChevronState && dependentStorage.length != 0" class="summary-right-btn"
-                @click="prevNextEmp('next', 1)" :src="'../assets/img/icons/right.png'">
+                @click="prevNextEmp('next', 1)" :src="'../assets/img/icons/right.png'"> -->
+
+                <img v-show="dependetStorageIndex > 0" class="summary-left-btn"
+                  @click="prevNextEmp('prev', 2)" :src="'../assets/img/icons/left.png'">
+                <img v-show="dependetStorageIndex + 1 < dependentStorage.length && dependentStorage.length > 1" class="summary-right-btn"
+                  @click="prevNextEmp('next', 2)" :src="'../assets/img/icons/right.png'">
             </div>
           </div>
 
@@ -204,7 +210,7 @@
                 <div class="employee-input-wrapper">
                   <label for="fname">Start Date</label>
                   <v-date-picker v-model="dependentDetails.startDate"
-                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: false}'
+                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true}'
                     popover-visibility='focus'>
                   </v-date-picker>
                   <!-- <input type="text" name="stard-date"> -->
