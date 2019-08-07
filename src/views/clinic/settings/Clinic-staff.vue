@@ -201,7 +201,7 @@
 							<div class="text-label">
 								<span>Google Sync</span>
 							</div>
-							<label class="switch">
+							<label class="clinic-switch-container">
 			          <input type="checkbox" checked="">
 			          <span class="slider">
 			            <span class="off">On</span>
@@ -212,22 +212,564 @@
 					</div>
 				</div>
 
-				<div v-if="detail_active.value === 1">
-					<h1>SERVICES</h1>
+				<div v-if="detail_active.value === 1" class="services-info-container">
+					<div class="detail-body-info-header">
+						<div>
+							<img :src="'../assets/img/clinic/ico_Profile.svg'">
+						</div>
+						<div>
+							<h1>Services You Provide:</h1>
+							<button>Add Service</button>
+						</div>
+					</div>
+
+					<div class="services-body-container">
+						<div class="services-row-container">
+							<div>
+								<input type="checkbox" name="">
+							</div>
+							<div class="select-all-services-text">
+								<span>Select All Services</span>
+							</div>
+						</div>
+
+						<div class="services-row-container">
+							<div class="right-container">
+								<div>
+									<input type="checkbox" name="">
+								</div>
+								<div>
+									<span>consultation</span>
+								</div>
+							</div>
+
+							<div class="left-container">
+								<div>
+									<span>30 mins</span>
+								</div>
+								<div>
+									<span>10</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="services-row-container">
+							<div class="right-container">
+								<div>
+									<input type="checkbox" name="">
+								</div>
+								<div>
+									<span>sample device</span>
+								</div>
+							</div>
+
+							<div class="left-container">
+								<div>
+									<span>30 mins</span>
+								</div>
+								<div>
+									<span>0</span>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<div v-if="detail_active.value === 2">
-					<h1>WORKING HOURS</h1>
+					<div class="detail-body-info-header">
+						<div>
+							<img :src="'../assets/img/clinic/ico_Profile.svg'">
+						</div>
+						<div>
+							<h1>Working Hours for you:</h1>
+						</div>
+					</div>
+
+					<div class="working-hour-body-container">
+						<div v-for="( list, index ) in weekDayNames" class="working-row-container">
+							<div class="day-container">
+								<span>{{ list }}</span>
+							</div>
+							<label class="clinic-switch-container">
+			          <input type="checkbox" checked="">
+			          <span class="slider">
+			            <span class="off">On</span>
+			            <span class="on">Off</span>
+			          </span>
+			        </label>
+							<div class="timepicker-container">
+								<div>
+									<span v-if="false">08:00AM</span>
+									<!-- <span v-on:click="showWorkingHourStart( index )">08:00AM</span> -->
+									<ul v-if="false" class="dropdown-menu">
+									<!-- <ul v-if="false" v-show="workingHourStartArr[ index ] == true" class="dropdown-menu"> -->
+										<li>
+											<a>12:00 AM</a>
+										</li>
+										<li>
+											<a>01:00 AM</a>
+										</li>
+										<li>
+											<a>02:00 AM</a>
+										</li>
+										<li>
+											<a>03:00 AM</a>
+										</li>
+										<li>
+											<a>04:00 AM</a>
+										</li>
+										<li>
+											<a>05:00 AM</a>
+										</li>
+										<li>
+											<a>06:00 AM</a>
+										</li>
+										<li>
+											<a>07:00 AM</a>
+										</li>
+										<li>
+											<a>09:00 AM</a>
+										</li>
+										<li>
+											<a>10:00 AM</a>
+										</li>
+										<li>
+											<a>11:00 AM</a>
+										</li>
+										<li>
+											<a>12:00 PM</a>
+										</li>
+										<li>
+											<a>01:00 PM</a>
+										</li>
+										<li>
+											<a>02:00 PM</a>
+										</li>
+										<li>
+											<a>03:00 PM</a>
+										</li>
+										<li>
+											<a>04:00 PM</a>
+										</li>
+										<li>
+											<a>05:00 PM</a>
+										</li>
+										<li>
+											<a>06:00 PM</a>
+										</li>
+										<li>
+											<a>07:00 PM</a>
+										</li>
+										<li>
+											<a>08:00 PM</a>
+										</li>
+										<li>
+											<a>09:00 PM</a>
+										</li>
+										<li>
+											<a>10:00 PM</a>
+										</li>
+										<li>
+											<a>11:00 PM</a>
+										</li>
+									</ul>
+
+									<select>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+									</select>
+								</div>
+								
+								<span>to</span>
+								<div>
+									<span v-if="false">05:30PM</span>
+									<ul v-if="false" class="dropdown-menu">
+										<li>
+											<a>12:00 AM</a>
+										</li>
+										<li>
+											<a>01:00 AM</a>
+										</li>
+										<li>
+											<a>02:00 AM</a>
+										</li>
+										<li>
+											<a>03:00 AM</a>
+										</li>
+										<li>
+											<a>04:00 AM</a>
+										</li>
+										<li>
+											<a>05:00 AM</a>
+										</li>
+										<li>
+											<a>06:00 AM</a>
+										</li>
+										<li>
+											<a>07:00 AM</a>
+										</li>
+										<li>
+											<a>09:00 AM</a>
+										</li>
+										<li>
+											<a>10:00 AM</a>
+										</li>
+										<li>
+											<a>11:00 AM</a>
+										</li>
+										<li>
+											<a>12:00 PM</a>
+										</li>
+										<li>
+											<a>01:00 PM</a>
+										</li>
+										<li>
+											<a>02:00 PM</a>
+										</li>
+										<li>
+											<a>03:00 PM</a>
+										</li>
+										<li>
+											<a>04:00 PM</a>
+										</li>
+										<li>
+											<a>05:00 PM</a>
+										</li>
+										<li>
+											<a>06:00 PM</a>
+										</li>
+										<li>
+											<a>07:00 PM</a>
+										</li>
+										<li>
+											<a>08:00 PM</a>
+										</li>
+										<li>
+											<a>09:00 PM</a>
+										</li>
+										<li>
+											<a>10:00 PM</a>
+										</li>
+										<li>
+											<a>11:00 PM</a>
+										</li>
+									</ul>
+									<select>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+									</select>
+								</div>	
+							</div>
+						</div>
+					</div>
 				</div>
 
-				<div v-if="detail_active.value === 3">
-					<h1>BREAKS</h1>
+				<div v-if="detail_active.value === 3" class="breaks-body-info-wrapper">
+					<div class="detail-body-info-header">
+						<div>
+							<img :src="'../assets/img/clinic/ico_Profile.svg'">
+						</div>
+						<div>
+							<h1>Breaks for you:</h1>
+						</div>
+					</div>
+
+					<div class="breaks-body-info-container">
+
+						<div v-for="( list, index ) in  dayBreakNames" class="working-row-container">
+							<div class="day-container">
+								<span>{{ list }}</span>
+							</div>
+							<div>
+								<button>Add Break</button>
+							</div>
+							<div class="timepicker-container">
+								<div>
+									<span v-if="false">08:00AM</span>
+									<ul v-if="false" class="dropdown-menu">
+										<li>
+											<a>12:00 AM</a>
+										</li>
+										<li>
+											<a>01:00 AM</a>
+										</li>
+										<li>
+											<a>02:00 AM</a>
+										</li>
+										<li>
+											<a>03:00 AM</a>
+										</li>
+										<li>
+											<a>04:00 AM</a>
+										</li>
+										<li>
+											<a>05:00 AM</a>
+										</li>
+										<li>
+											<a>06:00 AM</a>
+										</li>
+										<li>
+											<a>07:00 AM</a>
+										</li>
+										<li>
+											<a>09:00 AM</a>
+										</li>
+										<li>
+											<a>10:00 AM</a>
+										</li>
+										<li>
+											<a>11:00 AM</a>
+										</li>
+										<li>
+											<a>12:00 PM</a>
+										</li>
+										<li>
+											<a>01:00 PM</a>
+										</li>
+										<li>
+											<a>02:00 PM</a>
+										</li>
+										<li>
+											<a>03:00 PM</a>
+										</li>
+										<li>
+											<a>04:00 PM</a>
+										</li>
+										<li>
+											<a>05:00 PM</a>
+										</li>
+										<li>
+											<a>06:00 PM</a>
+										</li>
+										<li>
+											<a>07:00 PM</a>
+										</li>
+										<li>
+											<a>08:00 PM</a>
+										</li>
+										<li>
+											<a>09:00 PM</a>
+										</li>
+										<li>
+											<a>10:00 PM</a>
+										</li>
+										<li>
+											<a>11:00 PM</a>
+										</li>
+									</ul>
+									<select>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+									</select>
+								</div>
+								<span>to</span>
+								<div>
+									<span v-if="false">05:30PM</span>
+									<ul v-if="false" class="dropdown-menu">
+										<li>
+											<a>12:00 AM</a>
+										</li>
+										<li>
+											<a>01:00 AM</a>
+										</li>
+										<li>
+											<a>02:00 AM</a>
+										</li>
+										<li>
+											<a>03:00 AM</a>
+										</li>
+										<li>
+											<a>04:00 AM</a>
+										</li>
+										<li>
+											<a>05:00 AM</a>
+										</li>
+										<li>
+											<a>06:00 AM</a>
+										</li>
+										<li>
+											<a>07:00 AM</a>
+										</li>
+										<li>
+											<a>09:00 AM</a>
+										</li>
+										<li>
+											<a>10:00 AM</a>
+										</li>
+										<li>
+											<a>11:00 AM</a>
+										</li>
+										<li>
+											<a>12:00 PM</a>
+										</li>
+										<li>
+											<a>01:00 PM</a>
+										</li>
+										<li>
+											<a>02:00 PM</a>
+										</li>
+										<li>
+											<a>03:00 PM</a>
+										</li>
+										<li>
+											<a>04:00 PM</a>
+										</li>
+										<li>
+											<a>05:00 PM</a>
+										</li>
+										<li>
+											<a>06:00 PM</a>
+										</li>
+										<li>
+											<a>07:00 PM</a>
+										</li>
+										<li>
+											<a>08:00 PM</a>
+										</li>
+										<li>
+											<a>09:00 PM</a>
+										</li>
+										<li>
+											<a>10:00 PM</a>
+										</li>
+										<li>
+											<a>11:00 PM</a>
+										</li>
+									</ul>
+									<select>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+										<option>12:00AM</option>
+									</select>
+								</div>
+								<div class="trash-container">
+									<i class="fa fa-trash"></i>
+								</div>	
+							</div>
+						</div>
+
+
+					</div>
 				</div>
 
-				<div v-if="detail_active.value === 4">
-					<h1>TIME-OFF</h1>
+				<div v-if="detail_active.value === 4" class="time-off-info-wrapper">
+					<div class="detail-body-info-header">
+						<div>
+							<img :src="'../assets/img/clinic/ico_Profile.svg'">
+						</div>
+						<div>
+							<h1>Time off for you:</h1>
+							<div class="add-img-container">
+								<a><img :src="'../assets/img/ico_add new.svg'"></a>
+							</div>
+						</div>
+					</div>
+
+					<div class="time-off-body-info-container">
+						<div>
+							<p>Add your first Time off by clicking below button</p>
+							<button @click="modalStaff.addTimeOffModal = true"> <img :src="'../assets/img/ico_add new.svg'"> Add Time Off</button>
+						</div>
+					</div>
 				</div>
 			</div>
+
+			<Modal class="add-time-modal" v-if="modalStaff.addTimeOffModal">
+        <div slot="header">
+          <h4>Add New Time Off</h4>
+          <i @click="modalStaff.addTimeOffModal = false" class="fa fa-times"></i>
+        </div>
+        <div slot="body">
+        	<div v-if="showDayTime" class="daytime-off">
+	         	<div class="time-off-input-wrapper">
+	         		<label>Start Date</label>
+	         		<input type="text">	
+	         	</div>
+	         	<div class="time-off-input-wrapper">
+	         		<label>End Date</label>
+	         		<input type="text">	
+	         	</div>
+         	</div>
+         	<div v-if="showCustomTime" class="custom-time-off">
+         		<div class="">
+		         	<div class="time-off-input-wrapper">
+		         		<label>Start Date</label>
+		         		<div>
+		         			<input type="text">
+		         		</div>	
+		         	</div>
+		         	<div class="time-off-input-wrapper">
+		         		<label>Start Time</label>
+		         		<div>
+		         			<input type="text">
+		         		</div>
+		         	</div>
+	         	</div>
+
+	         	<div>
+		         	<div class="time-off-input-wrapper">
+		         		<label>End Date</label>
+		         		<div>
+		         			<input type="text">
+		         		</div>
+		         	</div>
+		         	<div class="time-off-input-wrapper">
+		         		<label>End Time</label>
+		         		<div>
+		         			<input type="text">
+		         		</div>
+		         	</div>
+	         	</div>
+         	</div>
+         	<div class="time-off-input-wrapper">
+         		<label>Notes</label>
+         		<input type="text" placeholder="Details ...">
+         	</div>
+
+         	<div class="staff-day-checkbox">
+         		<label class="checkbox-container"> All Day
+						  <input type="checkbox" checked="checked" @click="toggleCheckBox()">
+						  <span class="checkmark"></span>
+						</label>
+         	</div>
+
+         	<div class="time-wall">
+         		From 06 August 2019, 08:00 AM to 06 August 2019, 05:00 PM
+         	</div>
+   				
+         	<div class="btn-footer">
+   					<button>Save Changes</button>
+   				</div>	
+        </div>
+      </Modal>
+
 		</div>
 	</div>
 </template>

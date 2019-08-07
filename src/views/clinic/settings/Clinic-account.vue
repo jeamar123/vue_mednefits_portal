@@ -176,7 +176,7 @@
 				<span>Enable PIN Verification</span>
 			</div>
 			<div class="account-input-wrapper">
-				<label class="switch">
+				<label class="clinic-switch-container">
           <input type="checkbox" checked="">
           <span class="slider">
             <span class="off">On</span>

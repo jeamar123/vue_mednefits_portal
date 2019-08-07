@@ -8,6 +8,8 @@
 	  },
 		data() {
 			return {
+				weekDayNames: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+				dayBreakNames: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
 				timeFrame: {},
 					detail_active: {
 	        value: 0,
@@ -16,19 +18,25 @@
 	      showAddDoctorTooltip: false,
 	      showDeleteDoctorTooltip: false,
 	      showCountryCodeList: false,
+	      showDayTime: true,
+	      showCustomTime: false,
+	      modalStaff: {
+	      	addTimeOffModal: false,
+	      }
 			}
 		},
 		methods: {
+			// showWorkingHourStart( index ){
+			// 	this.workingHourStartArr[ index ] = ( this.workingHourStartArr[ index ] ) ? true : false;
+			// 	this.$forceUpdate();
+			// 	console.log( this.workingHourStartArr );
+			// },
 			selectDetail(value, text) {
 	      this.detail_active.value = value;
 	      this.detail_active.text = text; 
 	    },
 	    btnAddDoctor() {
-	    	if (this.showAddDoctorTooltip === false) {
-	    		this.showAddDoctorTooltip = true;
-	    	} else {
-	    		this.showAddDoctorTooltip = false;
-	    	}
+	    	this.showAddDoctorTooltip = ( this.showAddDoctorTooltip === false ) ? true : false;
 	    },
 	    btnDeleteDoctor() {
 	    	if (this.showDeleteDoctorTooltip === false) {
@@ -43,6 +51,16 @@
 	    	} else {
 	    		this.showCountryCodeList = false;
 	    	}
+	    },
+	    toggleCheckBox() {
+	    	console.log('gana please');
+	    	if (this.showDayTime === true ) {
+	    		this.showDayTime = false;
+	    		this.showCustomTime = true;
+	    	} else {
+	    		this.showCustomTime = false;
+	    		this.showDayTime = true;
+	    	}
 	    }
 		}
 	
@@ -51,6 +69,6 @@
 	export default clinicStaff
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "./src/assets/css/clinic/settings.scss";
 </style>

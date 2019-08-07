@@ -147,7 +147,7 @@
 	}
 }
 
-.switch {
+.clinic-switch-container {
   position: relative;
   display: inline-block;
   width: 40px;
@@ -494,5 +494,392 @@
 		li span:nth-child(2) {
 			float: right;
 		}
+
+		li:hover {
+			cursor: pointer;
+			color: #fff;
+			background-color: #1997D4;
+		}
 	}
 }
+
+.detail-body-info-header {
+	display: flex;
+  align-items: center;
+
+  img {
+  	height: 75px;
+  	width: 75px;
+  }
+
+  >div:nth-child(1) {
+  	width: 16.66666667%;
+  	text-align: right;
+  	padding: 0 15px;
+  }
+
+  >div:nth-child(2) {
+  	width: 60%;
+  	padding: 15px;
+  	border-bottom: 2px solid #DEDEDE;
+  }
+
+  h1 {
+  	font-size: 25px;
+  	font-weight: 700;
+  	float: left;
+  }
+
+ 	button {
+ 		float: right;
+    height: 30px;
+    width: 100px;
+    background: #1b9bd7;
+    color: white;
+    border: 1px solid #1b9bd7;
+    border-radius: 3px;
+ 	}
+}
+
+.services-body-container {
+	padding: 20px 0 0 190px;
+}
+
+.services-row-container {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	color: #999999;
+	margin: 0 0 20px 0;
+
+	.select-all-services-text {
+		color: #1667AC;
+	}
+
+	input {
+		margin: 0 10px 0 0;
+	}
+
+	.right-container {
+		width: 35%;
+		display: flex;
+	}
+
+	.left-container {
+		width: 50%;
+		text-align: left;
+
+		>div {
+			display: inline-block;
+		}
+
+		>div:nth-child(1) {
+			padding: 0 30px 0 0;
+		}
+	}
+}
+
+.working-hour-body-container {
+	padding: 20px 0 0 165px;
+}
+.working-row-container {
+	display: flex;
+	margin: 0 0 20px;
+
+	.day-container {
+		width: 12%;
+	}
+
+	.timepicker-container {
+		display: flex;
+		align-items: center;
+		padding: 0 0 0 85px;
+
+		>span {
+			display: inline-block;
+			margin: 0 10px;
+		}
+
+		.trash-container {
+			padding: 0 0 0 50px;
+
+		}
+
+		.trash-container i {
+			color: #000;
+			font-size: 16px;
+		}
+
+		>div select {
+			position: relative;
+			display: inline-block;
+			color: #777676;
+			cursor: pointer;
+			background-color: #f5f5f5;
+			border: 0;
+			-webkit-appearance: none;
+			border-radius: 5px;
+			padding: 3px 10px;
+			width: 80px;
+			text-align: center;
+		}		
+	}
+}
+
+.breaks-body-info-wrapper {
+	.detail-body-info-header >div:nth-child(2) {
+		border-bottom: 0;
+	}
+}
+
+.breaks-body-info-container {
+
+	button {
+		background: #1b9bd7;
+    border: 0px;
+    color: #fff;
+    width: 85px;
+    height: 26px;
+    border-radius: 3px;
+    font-weight: 700;
+	}
+
+	.working-row-container {
+		padding: 20px 0 30px 165px;
+		border-bottom: 1px solid #DCDCDC;
+
+		.timepicker-container {
+			padding: 0 0 0 45px;
+		}
+	}
+
+	.weekends-container {
+		color: #ACACAA;
+
+		button {
+			background-color: #EDEDEB;
+		}
+	}
+}
+
+.time-off-info-wrapper {
+	.add-img-container {
+		top: 6px;
+	}
+
+	.add-img-container img {
+		width: 20px;
+		height: 20px;
+	}
+}
+
+.time-off-body-info-container {
+	text-align: center;
+	padding: 15px 0 0 165px;
+
+	>div {
+		width: 72%;
+		border: 1px solid #BDBDBD;
+    border-radius: 5px;
+    padding: 25px 0 32px 0;
+	}
+
+	p {
+		padding: 0 0 20px 0;
+	}
+
+	img {
+		height: 25px;
+		width: 25px;
+		margin: 0 5px 0 0;
+	}
+
+	button {
+		border: 1px solid #777;
+    padding: 5px 12px;
+    border-radius: 5px;
+    color: #000;
+    cursor: pointer;
+    font-weight: 700;
+	}
+}
+
+.add-time-modal	.modal-clinic-container {
+	width: 600px;
+	height: auto;
+	border-radius: 6px;
+
+	.modal-header {
+		background-color: #114158;
+		border-top-left-radius: 6px;
+		border-top-right-radius: 6px;
+		color: #fff;
+
+		h4, i {
+			margin: 0;
+		}
+	}
+
+	.modal-body {
+		font-size: 12px;
+		padding: 30px 30px 0;
+	}
+
+	.time-off-input-wrapper {
+		color: #5A5A5A;
+		margin: 0 0 20px;
+
+		label {
+			width: 16%;
+			display: inline-block;
+		}
+
+		input {
+			height: 27px;
+			width: 410px;
+			color: #686868;
+			border: 1px solid #d9d9d9;
+	    border-radius: 5px;
+	    padding:7px 10px;
+		}
+	}
+
+	.custom-time-off {
+		>div {
+			display: inline-block;
+			width: 50%;
+		}
+
+		input {
+			width: 135px;
+			height: 42px;
+		}
+
+		.time-off-input-wrapper {
+			display: grid;
+			grid-template-columns: 32% 68%;
+		}
+
+		.time-off-input-wrapper label {
+			width: auto;
+		}
+	}
+
+	.time-wall {
+		text-align: center;
+		border-radius: 3px;
+		border: 1px solid rgb(220, 220, 220);
+		background: #FDFFE5;
+		padding: 9px;
+		margin: 20px 0;
+		line-height: 1.4;
+	}
+
+	.btn-footer {
+		text-align: center;
+		padding: 10px 0 0;
+		border-top: 1px solid #ddd;
+
+		button {
+			background-color: #6fc9f5;
+			border: 0;
+			color: #fff;
+			font-size: 12px;
+			font-weight: 700;
+			padding: 7px 10px;
+		}
+	}	
+
+	.staff-day-checkbox {
+		padding: 0 0 0 85px;
+	}
+
+	/* The container */
+	.checkbox-container {
+	  display: block;
+	  position: relative;
+	  padding-left: 35px;
+	  margin-bottom: 12px;
+	  cursor: pointer;
+	  -webkit-user-select: none;
+	  -moz-user-select: none;
+	  -ms-user-select: none;
+	  user-select: none;
+	}
+
+	/* Hide the browser's default checkbox */
+	.checkbox-container input {
+	  position: absolute;
+	  opacity: 0;
+	  cursor: pointer;
+	  height: 0;
+	  width: 0;
+	}
+
+	/* Create a custom checkbox */
+	.checkmark {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  height: 25px;
+	  width: 25px;
+	  background-color: #fff;
+	  border: 1px solid #ccc;
+	  border-radius: 4px;
+	}
+
+	/* When the checkbox is checked, add a blue background */
+	.checkbox-container input:checked ~ .checkmark {
+	  background-color: #fff;
+	}
+
+	/* Create the checkmark/indicator (hidden when not checked) */
+	.checkmark:after {
+	  content: "";
+	  position: absolute;
+	  display: none;
+	}
+
+	/* Show the checkmark when checked */
+	.checkbox-container input:checked ~ .checkmark:after {
+	  display: block;
+	}
+
+	/* Style the checkmark/indicator */
+	.checkbox-container .checkmark:after {
+	  left: 8px;
+	  top: 4px;
+	  width: 5px;
+	  height: 10px;
+	  border: solid #2196F3;
+	  border-width: 0 3px 3px 0;
+	  -webkit-transform: rotate(45deg);
+	  -ms-transform: rotate(45deg);
+	  transform: rotate(45deg);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
