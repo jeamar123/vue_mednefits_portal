@@ -9,10 +9,17 @@
 		data() {
 			return {
 				timeFrame: {},
+				showAddServiceWrapper: false,
 			}
 		},
-		
-	
+		methods: {
+			btnAddService() {
+				this.showAddServiceWrapper = true;
+			},
+			btnCancel() {
+				this.showAddServiceWrapper = false;
+			}
+		}
 	}
 
 	export default clinicServices

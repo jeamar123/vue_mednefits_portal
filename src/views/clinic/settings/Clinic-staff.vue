@@ -755,12 +755,16 @@
 
          	<div class="staff-day-checkbox">
          		<label class="checkbox-container"> All Day
-						  <input type="checkbox" checked="checked" @click="toggleCheckBox()">
-						  <span class="checkmark"></span>
+						  <input type="checkbox" v-model="showDayTime" @click="toggleCheckBox()">
+						  <span class="checkmark" id="custom-checkmark"></span>
 						</label>
          	</div>
 
-         	<div class="time-wall">
+         	<div v-if="showDayTime" class="time-wall">
+         		From 06 August 2019 to 06 August 2019
+         	</div>
+
+         		<div v-if="showCustomTime" class="custom-time-off-text time-wall">
          		From 06 August 2019, 08:00 AM to 06 August 2019, 05:00 PM
          	</div>
    				

@@ -53,13 +53,14 @@
 	    	}
 	    },
 	    toggleCheckBox() {
-	    	console.log('gana please');
 	    	if (this.showDayTime === true ) {
 	    		this.showDayTime = false;
 	    		this.showCustomTime = true;
+	    		
 	    	} else {
 	    		this.showCustomTime = false;
 	    		this.showDayTime = true;
+	    		
 	    	}
 	    }
 		}
