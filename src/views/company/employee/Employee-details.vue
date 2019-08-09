@@ -19,6 +19,9 @@
                   <span class="status-text pending" v-if="employees.emp_status == 'pending'">Pending</span>
                   <span class="status-text removed" v-if="!employees.account_status">Removed</span>
                 </div>
+                <div class="" v-if="employees.deletion || employees.schedule">
+                  <!-- need CSS -->
+						    </div>
                 <div class="status-removed" v-if="employees.deletion || employees.schedule">
                   <!-- need CSS -->
 							    <span>{{employees.deletion_text}}</span>
@@ -180,9 +183,9 @@
             </div>
           </div>
           <div class="btn-person-info-container">
-            <router-link to="/company/employee-details/remove-employee">
-              <button v-if="employees.emp_status == 'active'" class="btn-remove-employee">Remove
-                Employee
+            <router-link :to="{ name: 'CompanyRemoveEmployee', params: { name: 'employee' }}">
+              <button v-if="employees.emp_status == 'active'" class="btn-remove-employee">
+                Remove Employee
               </button>
             </router-link>
             <button @click="viewEmployeeSpendingSummary()" v-if="employees.emp_status == 'deleted'" class="btn-health-spending">Health Spending
@@ -270,8 +273,13 @@
               <h3 class="employee-details-title">Dependent Information</h3>
               <div v-for="(list, index) in selected_emp_dependents" :key="list.index">
                 <div class="dependent-btn-container">
-                  <button>
+                  <router-link :to="{ name: 'CompanyRemoveEmployee', params: { name: 'dependent', dep: selected_emp_dependents[index] }}">
+                  <button v-if="!list.deletion">
                     <img :src="'../assets/img/icons/dustbin.png'">Remove
+                  </button>
+                  </router-link>
+                  <button class="btn-removed" v-if="list.deletion" disabled>
+                    <span>{{list.deletion_text}}</span>
                   </button>
                   <button @click="editDependents(index)">
                     <img :src="'../assets/img/icons/edit.png'">Edit
@@ -332,52 +340,63 @@
           <div class="employee-details-header">
             <h1>Add a dependent</h1>
           </div>
-          <div class="employee-tier-title">
+          <div v-if="employees.plan_tier" class="employee-tier-title">
+            <span ng-bind="selectedEmployee.plan_tier.plan_tier_name">1</span> :
+            {{employees.plan_tier.plan_tier_name}} : DEPENDENT
+            <span>{{addActiveDependent_index}}</span> OF
+            <span>{{employees.plan_tier.dependent_head_count}}</span>
+          </div>
+          <div v-if="!employees.plan_tier" class="employee-tier-title">
             DEPENDENT
-            <span>4</span> OF
-            <span>4</span>
+            <span>{{addActiveDependent_index}}</span> OF
+            <span>{{dependents.total_number_of_seats}}</span>
           </div>
           <form class="form-input-container">
             <div class="employee-input-container">
               <div class="employee-input-wrapper">
                 <label for="fname">First / Given Name</label>
-                <input type="text" name="fname">
+                <input type="text" name="fname" v-model="dependent_data.first_name">
               </div>
               <div class="employee-input-wrapper">
                 <label for="fname">Last / Family Name</label>
-                <input type="text" name="lname">
+                <input type="text" name="lname" v-model="dependent_data.last_name">
               </div>
             </div>
             <div class="employee-input-container">
               <div class="employee-input-wrapper nric">
                 <label>
-                  <input type="radio" name="id_status" value="nric"> NRIC
+                  <input type="radio" name="id_status" value="nric" v-model="dependent_data.nric_status_dependents"> NRIC
                 </label>
                 <label>
-                  <input type="radio" name="id_status" value="fin"> FIN
+                  <input type="radio" name="id_status" value="fin" v-model="dependent_data.fin_status_dependents"> FIN
                 </label>
-                <input type="text" name="nric-fin">
+                <input type="text" name="nric-fin" v-model="dependent_data.nric">
               </div>
               <div class="employee-input-wrapper dob">
                 <label for>Date of Birth</label>
                 <v-date-picker :max-date="new Date()"
-                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'></v-date-picker>
+                  v-model="dependent_data.dob"
+                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                  popover-visibility='focus' popover-direction='top'></v-date-picker>
               </div>
             </div>
             <div class="employee-input-container">
               <div class="employee-input-wrapper">
                 <label for="fname">Relationship</label>
-                <select>
-                  <option value="Spouse">Spouse</option>
-                  <option value="Child">Child</option>
-                  <option value="Family">Family</option>
+                <select v-model="dependent_data.relationship">
+                  <option value="spouse">Spouse</option>
+                  <option value="child">Child</option>
+                  <option value="family">Family</option>
+                  <option value="parent">Parent</option>
                 </select>
                 <img :src="'../assets/img/icons/down-arrow.svg'">
               </div>
               <div class="employee-input-wrapper">
                 <label for="fname">Start Date</label>
                 <v-date-picker :max-date="new Date()"
-                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'></v-date-picker>
+                  v-model="dependent_data.start_date"
+                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                  popover-visibility='focus' popover-direction='top'></v-date-picker>
               </div>
             </div>
           </form>
@@ -388,8 +407,7 @@
           <div class="dependent-details-btn">
             <button @click="toggleAddDependents( 'cancel' )" class="btn-cancel">CANCEL</button>
             <div class="btn-right-container">
-              <button class="btn-add">ADD</button>
-              <button class="btn-save-continue">SAVE & CONTINUE</button>
+              <button class="btn-save-continue" @click="saveActiveDependents()">SAVE & CONTINUE</button>
             </div>
           </div>
         </div>

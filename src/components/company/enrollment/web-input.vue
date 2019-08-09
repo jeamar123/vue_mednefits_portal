@@ -26,34 +26,8 @@ let webInput = {
         dob: '',
         startDate : ''
       }, //used in web input
-      employeeStorage: [
-        //used in web input
-        // {
-        // //   fname: "jazer",
-        // //   lname: "zayas",
-        // //   dependents: [
-        // //     {
-        // //       fname: "jazer",
-        // //       lname: "zayas"
-        // //     },
-        // //     {
-        // //       fname: "jazer",
-        // //       lname: "zayas"
-        // //     }
-        // //   ]
-        // }
-      ],
-      dependentStorage: [
-        //used in web input
-        //     {
-        //       fname: "jazer",
-        //       lname: "zayas"
-        //     },
-        //     {
-        //       fname: "jazer",
-        //       lname: "zayas"
-        //     }
-      ],
+      employeeStorage: [],
+      dependentStorage: [],
     };
   },
   methods: {
@@ -494,7 +468,7 @@ let webInput = {
         this.prevDisabled = false;
       }
     },
-    //to check is object empty globall
+    //to check is object empty -  globall
     isEmpty(obj) {
       for (var key in obj) {
         if (obj.hasOwnProperty(key)) return false;
