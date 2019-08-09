@@ -153,6 +153,7 @@ let webInput = {
         if( this.checkEmployeeForm( this.employeeDetails ) == false ){
           return false;
         }
+        this.$parent.showLoading();
         this.employeeStorage.push({
           first_name: this.employeeDetails.fname,
           last_name: this.employeeDetails.lname,
@@ -168,11 +169,13 @@ let webInput = {
           wellness_credits: this.employeeDetails.wCredits,
           dependents: this.dependentStorage
         });
+        this.$parent.hideLoading();
       } else if (source == "enroll" && this.employeeStorage.length === 0 && this.isEmpty(this.employeeDetails) == false ) {
         //this.dependentStorage.length != 0 && !this.isEmpty(this.dependentDetails)
         if( this.checkEmployeeForm( this.employeeDetails ) == false ){
           return false;
         }
+        this.$parent.showLoading();
         this.employeeStorage.push({
           first_name: this.employeeDetails.fname,
           last_name: this.employeeDetails.lname,
@@ -188,12 +191,14 @@ let webInput = {
           wellness_credits: this.employeeDetails.wCredits,
           dependents: this.dependentStorage
         });
+        this.$parent.hideLoading();
       } else if (source == "enroll" && this.employeeStorage.length == this.indexData && this.isEmpty(this.employeeDetails) == false ) {
         //this.dependentStorage.length != 0 && !this.isEmpty(this.dependentDetails)
         if( this.employeeDetails.fname || this.employeeDetails.lname ){
           if( this.checkEmployeeForm( this.employeeDetails ) == false ){
             return false;
           }
+          this.$parent.showLoading();
           this.employeeStorage.push({
             first_name: this.employeeDetails.fname,
             last_name: this.employeeDetails.lname,
@@ -209,6 +214,7 @@ let webInput = {
             wellness_credits: this.employeeDetails.wCredits,
             dependents: this.dependentStorage
           });
+          this.$parent.hideLoading();
         }
       } else if( this.checkEmployeeForm( this.employeeDetails ) == false ) {
         console.log("no data to be pushed");
@@ -220,7 +226,7 @@ let webInput = {
         wCredits : 0,
       };
       this.employeeDetails.dob = undefined;
-      console.log( this.employeeStorage );
+      // console.log( this.employeeStorage );
       return true;
     },
     addDependentStorage(data) {
@@ -230,6 +236,7 @@ let webInput = {
       // this.dependentDetails = {};
 
       if (data == "add") {
+
         if( this.checkDependentForm( this.dependentDetails ) == false ){
           return false;
         }
@@ -238,6 +245,7 @@ let webInput = {
         }else{
           this.dependentCountIndex += 1;
         }
+        this.$parent.showLoading();
         this.dependentStorage.push({
           first_name: this.dependentDetails.fname,
           last_name: this.dependentDetails.lname,
@@ -248,6 +256,7 @@ let webInput = {
         });
         this.dependentDetails = {};
         this.$refs.formDep.reset();
+        this.$parent.hideLoading();
       }else{
         if( this.dependentStorage.length == 0 && this.isEmpty( this.dependentDetails ) == true ){
           if( this.checkDependentForm( this.dependentDetails ) == false ){
@@ -263,6 +272,7 @@ let webInput = {
           }else{
             this.dependentCountIndex += 1;
           }
+          this.$parent.showLoading();
           this.dependentStorage.push({
             first_name: this.dependentDetails.fname,
             last_name: this.dependentDetails.lname,
@@ -272,6 +282,7 @@ let webInput = {
             plan_start: this.dependentDetails.startDate
           });
           this.$refs.formDep.reset();
+          this.$parent.hideLoading();
         }       
         this.dependentDetails = {};
         this.dependentState = false;
@@ -497,6 +508,17 @@ let webInput = {
         this.depIndexData = 0;
       }
     },
+    removeAddedDependent( index ){
+      this.dependentStorage.splice( index , 1 );
+      if( this.isTiering ){
+        this.tierDependentCountIndex -= 1;
+      }else{
+        this.dependentCountIndex -= 1;
+      }
+      if( this.dependentStorage.length == 0 ){
+        this.selectEmpDepTab( 1 );
+      }
+    },
     selectEmpDepTab(opt) {
       //used in web input
       this.selected_emp_dep_tab = opt;
@@ -546,21 +568,48 @@ let webInput = {
     enroll(data) {
       if (data == "enrollsum") {
         if( this.addToStorage('enroll') == true ){
-          this.isState = "enrollsum";
-          this.$emit("webInputData", {
-            isState: "enrollsum"
-          });
-          this.$router.push({
-            name: 'CompanyEnroll',
-            params: {
-              employeeStorage : this.employeeStorage
+          for( var i = 0; i < this.employeeStorage.length; i++ ){
+            this.employeeStorage[i].dob = moment( this.employeeStorage[i].dob ).format( 'YYYY-MM-DD' );
+            this.employeeStorage[i].plan_start = moment( this.employeeStorage[i].plan_start ).format( 'YYYY-MM-DD' );
+            for( var x = 0; x < this.employeeStorage[i].dependents.length; x++ ){
+              this.employeeStorage[i].dependents[x].dob = moment( this.employeeStorage[i].dependents[x].dob ).format( 'YYYY-MM-DD' );
+              this.employeeStorage[i].dependents[x].plan_start = moment( this.employeeStorage[i].dependents[x].plan_start ).format( 'YYYY-MM-DD' );
+              if( i == this.employeeStorage.length -1 ){
+                if( x == this.employeeStorage[i].dependents.length -1 ){
+                  console.log( this.employeeStorage );
+                  this.submitEnrollEmployees();
+                }
+              }
             }
-          });
-          // this.addToStorage("enroll");
-          // this.indexData = this.employeeStorage.length;
-          this.prevDisabled = false;
+          }
+          
         }
       }
+    },
+    submitEnrollEmployees(){
+      this.$parent.showLoading();
+      var data = {
+        employees : this.employeeStorage,
+        plan_tier_id : this.isTiering ? this.activeTier.plan_tier_id : null
+      }
+      axios.post( axios.defaults.serverUrl + '/hr/create/employee_enrollment', data )
+        .then(res => {
+          this.$parent.hideLoading();
+          console.log(res);
+          if( res.data.status ){
+            this.isState = "enrollsum";
+            this.$emit("webInputData", { isState: "enrollsum" });
+            this.$router.push({ name: 'CompanyEnroll' });
+            this.prevDisabled = false;
+          }else{
+            this.$parent.swal('Error!', res.data.message, 'error');
+          }
+        })
+        .catch(err => {
+          console.log( err );
+          this.$parent.hideLoading();
+          this.$parent.swal('Error!', err,'error');
+        });
     },
     //to check is object empty globall
     isEmpty(obj) {

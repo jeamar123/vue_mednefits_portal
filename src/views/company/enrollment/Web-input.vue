@@ -8,7 +8,7 @@
       </div>
       <div class="container">
         <div class="web-input-wrapper">
-          <div v-if="isState === 'web' && selected_emp_dep_tab  == 1" class="employee-details-wrapper">
+          <div v-if="isState === 'web' && selected_emp_dep_tab == 1" class="employee-details-wrapper">
             <div class="employee-tier-title">
               {{ isTiering ? 'TIER ' + (activeTier.index + 1) + ' :' : ''}}
               EMPLOYEE
@@ -88,7 +88,7 @@
           </div>
 
           <!-- View dependent sercion-->
-          <div class="dependent-details-wrapper" v-if="selected_emp_dep_tab  == 2">
+          <div class="dependent-details-wrapper" v-if="selected_emp_dep_tab == 2">
             <div class="employee-tier-title">
               {{ isTiering ? 'TIER ' + (activeTier.index + 1) + ' :' : ''}}
               DEPENDENT
@@ -96,7 +96,7 @@
             </div>
             <div class="employee-details-header">
               <h1>Dependent details</h1>
-              <button class="btn-remove">
+              <button class="btn-remove" v-on:click="removeAddedDependent( dependetStorageIndex )">
                 <img :src="'../assets/img/icons/dustbin.png'">Remove
               </button>
             </div>
@@ -245,10 +245,10 @@
                     <span>{{summary.last_name}}</span>
                   </div>
                   <div v-if="summary.dependents[0] !=null">
-                    <div class="summary-dependent" v-for="(dependent, letter) in summary.dependents[0]"
+                    <div class="summary-dependent" v-for="(dependent, letter) in summary.dependents"
                       :key="dependent.id">
                       <span>{{ String.fromCharCode('a'.charCodeAt() + letter) }}</span>.
-                      <span>{{dependent.first_name}}</span>
+                      <span>{{dependent.first_name}} </span> 
                       <span>{{dependent.last_name}}</span>
                     </div>
                   </div>
@@ -268,14 +268,14 @@
 
           <div class="btn-enroll-container">
             <button v-if="false" class="btn-employee">DELETE</button>
-            <button v-if="employeeStorage.length != 0 && isState === 'web'" :disabled="prevDisabled"
+            <button v-if="employeeStorage.length != 0 && isState === 'web' && selected_emp_dep_tab == 1" :disabled="prevDisabled"
               class="btn-prev-emp btn-employee" @click="prevNextEmp('prev', 0)">
               <span class="text">PREVIOUS <span class="text-employee">EMPLOYEE</span></span>
             </button>
-            <button v-if="isState === 'web'" class="btn-next-emp btn-employee" :disabled="( tierEmployeeCountIndex == activeTier.member_head_count + 1 ) || ( employeeCountIndex == enrollment_progress.total_employees )" @click="prevNextEmp('next', 0)">
+            <button v-if="isState === 'web' && selected_emp_dep_tab == 1" class="btn-next-emp btn-employee" :disabled="( tierEmployeeCountIndex == activeTier.member_head_count + 1 ) || ( employeeCountIndex == enrollment_progress.total_employees )" @click="prevNextEmp('next', 0)">
               <span class="text">NEXT <span class="text-employee">EMPLOYEE</span></span>
             </button>
-            <button class="btn-enroll-web next-btn" v-if="isState === 'web'" @click="enroll('enrollsum')">Enroll</button>
+            <button class="btn-enroll-web next-btn" v-if="isState === 'web' && selected_emp_dep_tab == 1" @click="enroll('enrollsum')">Enroll</button>
           </div>
         </div>
       </div>

@@ -1,18 +1,11 @@
 <script>
 /* eslint-disable */
+import axios from 'axios';
 import moment from "moment";
 import Modal from "../../../views/company/modal/Modal.vue";
 import { deprecate } from "util";
 
 let enrollSumamary = {
-  props: {
-    employeeStorage: {
-      type: Array,
-      default: function() {
-        return { msg: "hello" };
-      }
-    }
-  },
   components: {
     Modal
   },
@@ -23,23 +16,24 @@ let enrollSumamary = {
       isChecked: [], // used in enrollment summary
       employeeDetails: {},
       maxDep: 0,
+      employeeStorage: [],
     };
+  },
+  created(){
+    this.getTempEmployees();
   },
   methods: {
     findMaxDep() { // methods to find maximum depdents each employee
       let depLength = []; //holds array of all dependent array length to find na fax depdendent on each employee
       let dep;
       let value;
-
-      for (let i=0; i<=this.employeeStorage.length-1; i++){ //TO SELECT 1 EMPLOYEE
-        dep = this.employeeStorage[i].dependents[0];
+      for (let i = 0; i <= this.employeeStorage.length-1; i++){ //TO SELECT 1 EMPLOYEE
+        dep = this.employeeStorage[i].dependents;
         value = dep.length;
         depLength.push(value);
       };
       let max = Math.max.apply(Math, depLength);
       this.maxDep = max;
-      console.log('max', depLength, this.maxDep);
-      
     },
     back() {
       this.$router.go(-1);
@@ -47,7 +41,6 @@ let enrollSumamary = {
         stepStatus: 1
       });
     },
-
     enroll(data) {
       if (data === "successEnroll") {
         this.isState = "successEnroll";
@@ -56,7 +49,6 @@ let enrollSumamary = {
         // });
       }
     },
-
     editEmployee(data, index) {
       // used in enrollment summary
       let x = data;
@@ -133,7 +125,6 @@ let enrollSumamary = {
     },
     remove(data) {
       //remove used in enrollment summary
-
       this.$swal({
         title: "Confirm",
         text: "Are you sure you want to remove this employee?",
@@ -174,21 +165,34 @@ let enrollSumamary = {
           }
         }
       });
-    }
+    },
+    getTempEmployees(){
+      this.$parent.showLoading();
+      axios.get( axios.defaults.serverUrl + '/hr/get/plan_tier_enrolless' )
+        .then(res => {
+          this.$parent.hideLoading();
+          console.log(res);
+          if( res.data.status ){
+            this.employeeStorage = res.data.data;
+            this.findMaxDep();
+          }else{
+            this.$parent.swal('Error!', res.data.message, 'error');
+          }
+        })
+        .catch(err => {
+          console.log( err );
+          this.$parent.hideLoading();
+          this.$parent.swal('Error!', err,'error');
+        });
+    },
   },
   filters: {
     formatDate: function(value) {
       if (value) {
-        return moment(String(value)).format("MM/DD//YYYY");
+        return moment( String(value), [ 'YYYY-MM-DDTHH:mm:ss.SSSSZ', 'DD/MM/YYYY' ] ).format("MM/DD/YYYY");
       }
     },
   },
-  created() {
-    this.findMaxDep();
-  },
-  mounted() {
-   
-  }
 };
 
 export default enrollSumamary;

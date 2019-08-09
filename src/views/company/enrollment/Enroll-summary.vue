@@ -34,7 +34,7 @@
               </thead>
               <tbody>
                 <!-- <tr class="dependent-hover-container" v-for="(enroll, index) in employeeStorage" v-bind:key="enroll.id"> -->
-                <tr class="dependent-hover-container" v-for="(enroll, index) in employeeStorage" v-bind:key="enroll.id">
+                <tr class="dependent-hover-container" v-for="(enroll, index) in employeeStorage" v-bind:key="enroll.id" v-bind:class="{ 'has-error' : enroll.error_logs.error }">
                   <td>
                     <input type="checkbox" v-model="isChecked" :value="index">
                   </td>
@@ -46,26 +46,33 @@
                             <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
                       </span>-->
                       <!-- <span class="fname">{{enroll.fname}}</span> -->
-                      <span class="fname">{{enroll.fname}}</span>
+                      <span class="fname">{{enroll.employee.first_name}}</span>
                       <button @click="editEmployee('edit', index)" class="dependent-hover-btn">Edit</button>
                     </div>
                   </td>
                   <!-- <td>{{enroll.lname}}</td> -->
-                  <td>{{enroll.lname}}</td>
-                  <td>{{enroll.nricFinNo}}</td>
-                  <td>{{enroll.dob | formatDate}}</td>
-                  <td>{{enroll.email}}</td>
-                  <td>{{enroll.mNumber}}</td>
-                  <td>{{enroll.mCredits}}</td>
-                  <td>{{enroll.wCredits}}</td>
-                  <template v-for="depDetails in enroll.dependents[0]">
-                    <td :key="depDetails.id">{{depDetails.fname}}</td>
-                    <td :key="depDetails.id">{{depDetails.lname}}</td>
-                    <td :key="depDetails.id">{{depDetails.nricFinNo}}</td>
-                    <td :key="depDetails.id">{{depDetails.dob | formatDate}}</td>
-                    <td :key="depDetails.id">{{depDetails.relation}}</td>
+                  <td>{{enroll.employee.last_name}}</td>
+                  <td>{{enroll.employee.nric}}</td>
+                  <td>{{enroll.employee.dob | formatDate}}</td>
+                  <td>{{enroll.employee.email}}</td>
+                  <td>{{enroll.employee.format_mobile}}</td>
+                  <td>{{enroll.employee.credits}}</td>
+                  <td>{{enroll.employee.wellness_credits}}</td>
+                  <template v-if="enroll.dependents.length == 0" v-for="depHead in maxDep">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </template>
-                  <td>{{enroll.startDate | formatDate}}</td>
+                  <template v-for="depDetails in enroll.dependents">
+                    <td :key="depDetails.id">{{depDetails.enrollee.first_name}}</td>
+                    <td :key="depDetails.id">{{depDetails.enrollee.last_name}}</td>
+                    <td :key="depDetails.id">{{depDetails.enrollee.nric}}</td>
+                    <td :key="depDetails.id">{{depDetails.enrollee.dob | formatDate}}</td>
+                    <td :key="depDetails.id">{{depDetails.enrollee.relationship}}</td>
+                  </template>
+                  <td>{{enroll.employee.start_date | formatDate}}</td>
                 </tr>
               </tbody>
             </table>

@@ -685,6 +685,10 @@
 		    padding: 10px 20px;
 		    min-width: 130px;
 			}
+
+			tbody tr:not( :last-child ) td{
+				border-bottom: 1px solid #f1f1f1;
+			}
 			
 			.fname-container {
 				display: flex;
@@ -751,13 +755,13 @@
 		tbody tr {
 			color: #888;
 
-			.has-error {
+			&.has-error {
 				background-color: #fee2e2;
 			}
 
-			&:hover {
+			/*&:hover {
 				background-color: #f5f8fa;
-			}
+			}*/
 
 			&:hover .dependent-hover-btn {
 				display: inline-block;

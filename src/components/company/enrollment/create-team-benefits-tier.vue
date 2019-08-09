@@ -22,10 +22,10 @@ let createTeamBenefitsTier = {
   methods: {
     toggleGPcapStatus(opt) {
       this.tierDetials.gp_cap_status = opt;
-      this.$forceUpdate();1
+      this.$forceUpdate();
     },
     selectTier( data, index ){
-      console.log( data );
+      // console.log( data );
       this.activeTier = data;
       this.activeTier.index = index;
     },
@@ -34,7 +34,6 @@ let createTeamBenefitsTier = {
       this.isTierBtn = false;
       this.isTierSummary = false;
       this.isEditActive = opt == 'edit' ? true : false;
-
       if (opt == "add") {
         this.tierDetials = {
           gp_cap_status: false,
@@ -51,7 +50,6 @@ let createTeamBenefitsTier = {
           empCount: data.member_head_count,
           depCount: data.dependent_head_count
         };
-
       }
     },
     closeBtn( ) {
@@ -105,13 +103,11 @@ let createTeamBenefitsTier = {
         customClass: "warning-global-container danger "
       }).then(result => {
         if (result.value) {
-          this.isTierInput = false;
-          this.isTierBtn = true;
           this.tierDetials= {};
           //delete tier
           let index = this.tierCounter - 1;
           const data = this.tierStorage.indexOf(index);
-          this.tierStorage.splice(data, 1);
+          this.closeBtn();
           //succes SWAL
           this.$swal("Deleted!", "Tier has been deleted.", "success");
         }
@@ -130,7 +126,7 @@ let createTeamBenefitsTier = {
       axios.post( axios.defaults.serverUrl + '/hr/create/plan_tier', add_data )
         .then(res => {
           this.$parent.hideLoading();
-          console.log(res);
+          // console.log(res);
           if( res.data.status ){
             this.$parent.swal('Success!', res.data.message, 'success');
             this.closeBtn();
@@ -169,7 +165,7 @@ let createTeamBenefitsTier = {
           axios.post( axios.defaults.serverUrl + '/hr/update_plan_tier', add_data )
             .then(res => {
               this.$parent.hideLoading();
-              console.log(res);
+              // console.log(res);
               if( res.data.status ){
                 this.$parent.swal('Success!', res.data.message, 'success');
                 this.closeBtn();
@@ -190,7 +186,7 @@ let createTeamBenefitsTier = {
       axios.get( axios.defaults.serverUrl + '/hr/get_plan_tiers' )
         .then(res => {
           this.$parent.hideLoading();
-          console.log(res);
+          // console.log(res);
           if( res.status == 200 ){
             this.tierStorage = res.data.data;
             this.isTierSummary = this.tierStorage.length > 0 ? true : false;
