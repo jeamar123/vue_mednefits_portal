@@ -1,10 +1,12 @@
 <script>
-/* eslint-disable */
+import axios from 'axios';
 // script here
 import Enrollment from "./enrollment";
 import Excel from "../../views/company/enrollment/Excel.vue";
 import WebInput from "../../views/company/enrollment/Web-input.vue";
 import Overview from "./overview";
+
+axios.defaults.headers.common['Authorization'] = localStorage.getItem('vue_hr_session');
 
 let dashboard = {
   components: {
@@ -19,11 +21,32 @@ let dashboard = {
       isActive: false,
       isDropdown: false, //hide show Dropdown,
       accountDropdown: false,
+      showIconLoader: false,
+      showLoader: false,
       navbarCollapse: false,
       hideNavbarCollapse: true
     };
   },
   methods: {
+    swal( title, message, type ) {
+      this.$swal( title, message, type);
+    },
+    showIconLoading() {
+      this.showIconLoader = true;
+    },
+    hideIconLoading() {
+      setTimeout(()=>{
+        this.showIconLoader = false;
+      },1000);
+    },
+    showLoading() {
+      this.showLoader = true;
+    },
+    hideLoading() {
+      setTimeout(()=>{
+        this.showLoader = false;
+      },1000);
+    },
     // change the title on navigation to Web Input and Enrollment and excel
     // functions from $emit data from another component
     excelData(state) {

@@ -44,19 +44,45 @@
               <tbody>
                 <tr>
                   <td class="verified-img-container">
-                    <img :src="'../assets/img/icons/verified.png'">
-                  </td>
-                  <td class="required-info-wrapper">
-                    <p class="required-info-text">Required Information:</p>
-                    <div>
-                      <p>Payee cheque information (company name, address,ACRA number) can be found in invoice</p>
+                    <div class="check-wrapper">
+                      <img :src="'../assets/img/icons/verified.png'">
                     </div>
-                    <div>
-                      <p>You may download the invoice from Welcome Email or the company portal under Account & Billing.</p>
+                  </td>
+                  <td class="required-info-wrapper verified-img-container">
+                    <div class="check-wrapper">
+                      <img v-if="introData.paid == true" :src="'../assets/img/icons/verified.png'">
+                    </div>
+                    <div v-if="introData.paid == false">
+                      <p class="required-info-text">Required Information:</p>
+                      <div>
+                        <p>Payee cheque information (company name, address,ACRA number) can be found in invoice</p>
+                      </div>
+                      <div>
+                        <p>You may download the invoice from Welcome Email or the company portal under Account & Billing.</p>
+                      </div>
                     </div>
                   </td>
                   <td class="verified-img-container">
-                    <img :src="'../assets/img/icons/verified.png'">
+                    <div class="check-wrapper">
+                      <img v-if="introData.employee_count > 0" :src="'../assets/img/icons/verified.png'">
+                    </div>
+                    <div v-if="introData.employee_count == 0">
+                      <p class="required-info-text">Required information</p>
+                      <ul>
+                        <li>Employee full name, last name</li>
+                        <li>Employee date of birth</li>
+                        <li>Employee NRIC/FIN</li>
+                        <li>Employee work email</li>
+                        <li>Employee mobile number</li>
+                        <li>Employee job title</li>
+                      </ul>
+                      <ul v-if="introData.dependent_status">
+                        <li>Dependent first name, last name</li>
+                        <li>Dependent date of birth</li>
+                        <li>Dependent NRIC/FIN</li>
+                        <li>Dependent relationship</li>
+                      </ul>
+										</div>
                   </td>
                 </tr>
               </tbody>
