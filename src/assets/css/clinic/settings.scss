@@ -6,10 +6,11 @@
 .settings-clinic-container {
 	display: grid;
 	grid-template-columns: 10% 90%;
+	min-height: 100vh;
 }
 
 .side-panel {
-	height: 895px;
+	height: auto;
 	border-right: 1px solid #ddd;
 	background-color: #72CEF3;
 
@@ -384,122 +385,137 @@
 	.detail-body-container {
 		margin: 20px 0 0;
 	}
+}
 
-	.staff-row-container {
-		display: flex;
-		align-items: center;
-		margin: 0 0 20px;
+.clinic-row-container {
+	display: flex;
+	align-items: center;
+	margin: 0 0 20px;
 
-		&.line-break {
-    	border-bottom: 1px solid #DCDCDC;
-    	padding: 35px 0 35px 0;
-		}
+	&.line-break {
+  	border-bottom: 1px solid #DCDCDC;
+  	padding: 35px 0 35px 0;
+	}
 
-		&.btn-update-container {
-			padding: 0 0 30px 0;
-		}
+	&.btn-update-container {
+		padding: 0 0 30px 0;
+	}
 
-		&.pin-container .btn-staff {
-			margin: 0 0 0 15px
-		}
+	&.pin-container .btn-staff {
+		margin: 0 0 0 15px
+	}
 
-		&.google-sync-container,
-		&.btn-update-container,
-		&.pin-container {
-			margin: 0px;
-		}
+	&.google-sync-container,
+	&.btn-update-container,
+	&.pin-container {
+		margin: 0px;
+	}
 
-		>div:nth-child(1) {
-			width: 25%;
-			text-align: right;
-			padding: 0 27px 0 0;
-		}
+	>div:nth-child(1) {
+		width: 25%;
+		text-align: right;
+		padding: 0 27px 0 0;
+	}
 
-		>div:nth-child(2) {
-			width: 75%;
-		}
+	>div:nth-child(2) {
+		width: 75%;
+	}
 
-		img {
-			width: 85px;
-			height: 85px;
-		}
+	img {
+		width: 85px;
+		height: 85px;
+	}
 
-		.text-label {
-			color: #666666;
-			font-weight: 700;
-		}
+	.text-label {
+		color: #666666;
+		font-weight: 700;
+	}
 
-		input {
-			background-color: #fff;
-			border: 1px solid #ddd;
-			border-radius: 5px;
-			padding: 12px 15px;
-			font-weight: 700;
-			width: 300px;
-		}
+	input,textarea,button {
+		background-color: #fff;
+		border: 1px solid #ddd;
+		border-radius: 5px;
+		padding: 12px 15px;
+		font-weight: 700;
+		width: 300px;
+	}
 
-		input.input-error {
-			border: 1px solid red;
-   	 	border-color: red;
-   	 	box-shadow: 0 0 5px red;
-		}
+	button {
+		position: relative;
+		text-align: left;
+		color: #666666;
+		box-shadow: none;
+		font-size: 14px;
+		width: 200px;
 
-		.btn-staff {
-			background: #1b9bd7;
-	    border: 0px;
-	    color: #fff;
-	    width: 75px;
-	    height: 42px;
-	    border-radius: 5px;
-	    font-weight: 700;
+		i {
+			position: absolute;
+			right: 10px;
+			
 		}
 	}
 
-	.phone-number-input-wrapper {
-		position: relative;
-		display: table;
+	input.input-error {
+		border: 1px solid red;
+ 	 	border-color: red;
+ 	 	box-shadow: 0 0 5px red;
+	}
 
-		.input-group-addon {
-			display: table-cell;
-			border: 1px solid #ddd;
-			color: #686868;
-			background-color: #fff;
-			height: 20px;
-			width: 40px;
-			cursor: pointer;
-			border-right: 0;
-	    padding: 10px 16px;
-	    border-top-left-radius: 5px;
-	    border-bottom-left-radius: 5px;
-		}
+	.btn-staff {
+		background: #1b9bd7;
+    border: 0px;
+    color: #fff;
+    width: 75px;
+    height: 42px;
+    border-radius: 5px;
+    font-weight: 700;
+	}
+}
 
-		input {
-			width: 242px;
-			border-bottom-left-radius: 0;
-    	border-top-left-radius: 0;
-		}
+.phone-number-input-wrapper {
+	position: relative;
+	display: table;
 
-		ul {
-			width: 300px;
-	    top: 44px;
-	    left: 0;
-	    max-height: 180px;
-    	overflow-y: auto;
-		}
+	.input-group-addon {
+		display: table-cell;
+		border: 1px solid #ddd;
+		color: #686868;
+		background-color: #fff;
+		height: 20px;
+		width: 40px;
+		cursor: pointer;
+		border-right: 0;
+    padding: 10px 16px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+	}
 
-		ul li {
-			padding: 5px 15px 5px 15px;
-		}
+	input {
+		width: 242px;
+		border-bottom-left-radius: 0;
+  	border-top-left-radius: 0;
+	}
 
-		li span:nth-child(2) {
-			float: right;
-		}
+	ul {
+		width: 300px;
+    top: 44px;
+    left: 0;
+    max-height: 180px;
+  	overflow-y: auto;
+	}
 
-		li:hover {
-			cursor: pointer;
-			color: #fff;
-			background-color: #1997D4;
-		}
+	ul li {
+		padding: 5px 15px 5px 15px;
+	}
+
+	li span:nth-child(2) {
+		float: right;
+	}
+
+	li:hover {
+		cursor: pointer;
+		color: #fff;
+		background-color: #1997D4;
 	}
 }
 
@@ -588,6 +604,16 @@
 
 	.day-container {
 		width: 12%;
+	}
+
+	.break-timepicker-wrapper {
+		>div {
+			margin: 0 0 10px;
+		}
+
+		>div:last-child {
+			margin: 0;
+		}
 	}
 
 	.timepicker-container {
@@ -1053,6 +1079,167 @@
 		}
 	}
 }
+
+.clinic-profile-wrapper {
+	display: grid;
+	grid-template-columns: 25% 75%;
+	height: 100%;
+
+	.profile-detail-container {
+		padding: 20px 0 0 40px;
+
+		.clinic-row-container input {
+			width: 200px;
+		}
+
+		.clinic-row-container .text-label span {
+			font-weight: 700;
+		}
+
+		.phone-number-input-wrapper .input-group-addon {
+			padding: 10px 12px;
+		}
+
+		.phone-number-input-wrapper input {
+			width: 150px;
+		}
+	}
+
+	.medicloud-booking-header {
+		font-size: 18px;
+		font-weight: 700;
+		padding: 0 0 15px;
+		margin: 0 0 35px;
+		border-bottom: 1px solid #ccc;
+	}
+
+	.btn-update-changes {
+		background: #1b9bd7;
+    border: 0px;
+    color: #fff;
+    text-align: center;
+    width: 150px;
+	}
+
+	.business-hours-header {
+		ul {
+			display: flex;
+			color: #5F6565;
+			border-bottom: 1px solid #ddd;
+		}
+
+		li a {
+			font-weight: 700;
+			padding: 15px;
+			display: block;
+		}
+
+		li.active a {
+			color: #000;
+		}
+	}
+
+	.time-zone-container {
+		display: flex;
+		padding: 30px 15px;
+		border-bottom: 1px solid #ddd;
+		color: #777;
+		font-weight: 700;
+
+		>div:nth-child(1) {
+			width: 17%;
+			color: #333;
+		}
+	}
+
+	.clinic-opening-container,
+	.breaks-clinic-container {
+		margin: 40px 0 0;
+		h1 {
+			font-size: 22px;
+			font-weight: 700;
+			margin: 0 0 50px;
+		}
+	}
+
+	.breaks-body-info-container .working-row-container {
+		padding: 20px 0 30px 0px;
+	}
+
+	.working-row-container {
+		.timepicker-container >div select {
+			height: 30px;
+	    width: 80px;
+	    background: white;
+	    border: 1px solid #999999;
+		}
+	}
+}
+
+.profile-side-list {
+	background-color: rgb(176, 226, 249);
+
+	.configure-container {
+		border-bottom: 1px solid #D0D0D0;
+	}
+
+	.configure-container,
+	.integrate-container {
+		padding: 20px 0;
+
+		>span {
+			padding: 0 30px;
+		}
+
+		>div {
+			color: #777676;
+			cursor: pointer;
+			padding: 30px 30px 10px;
+		}
+
+		>div.active {
+			color: #000;
+		}
+
+		>div span {
+			padding: 0 10px;
+		}
+	}
+	
+	.configure-container {
+
+		>div:nth-child(2) img {
+			height: 35px;
+			width: 30px;
+		}
+
+		>div:nth-child(3) img {
+			height: 30px;
+			width: 30px;
+		}
+
+		>div:nth-child(4) img {
+			height: 20px;
+			width: 30px;
+		}
+
+		>div:nth-child(5) img {
+			height: 31px;
+			width: 30px;
+		}
+	}
+
+	.integrate-container {
+
+		>div:nth-child(2) img,
+		>div:nth-child(3) img {
+			height: 30px;
+			width: 30px;
+		}
+	}
+}
+
+
 
 
 

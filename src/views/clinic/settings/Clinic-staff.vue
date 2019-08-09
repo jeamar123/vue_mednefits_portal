@@ -71,7 +71,7 @@
 			<div class="detail-body-container">
 				<div v-if="detail_active.value === 0" class="details-info-container">
 					<div>
-						<div class="staff-row-container">
+						<div class="clinic-row-container">
 							<div>
 								<img :src="'../assets/img/img-portfolio-place.png'">
 							</div>
@@ -79,7 +79,7 @@
 								<input type="text" placeholder="Doctor Name">
 							</div>
 						</div>
-						<div class="staff-row-container">
+						<div class="clinic-row-container">
 							<div class="text-label">
 								<span>Qualification</span>
 							</div>
@@ -87,7 +87,7 @@
 								<input type="text" placeholder="Doctor Qualification">
 							</div>
 						</div>
-						<div class="staff-row-container">
+						<div class="clinic-row-container">
 							<div class="text-label">
 								<span>Designation</span>
 							</div>
@@ -95,7 +95,7 @@
 								<input type="text" placeholder="Doctor Designation">
 							</div>
 						</div>
-						<div class="staff-row-container">
+						<div class="clinic-row-container">
 							<div class="text-label">
 								<span>Mobile</span>
 							</div>
@@ -166,7 +166,7 @@
 								</ul>
 							</div>
 						</div>
-						<div class="staff-row-container">
+						<div class="clinic-row-container">
 							<div class="text-label">
 								<span>Email</span>
 							</div>
@@ -174,7 +174,7 @@
 								<input type="text" placeholder="Example@gmail.com">
 							</div>
 						</div>
-						<div class="staff-row-container">
+						<div class="clinic-row-container">
 							<div class="text-label">
 								<span>CS Emails to</span>
 							</div>
@@ -182,13 +182,13 @@
 								<input type="text" placeholder="Doctor CC E-Mail">
 							</div>
 						</div>
-						<div class="staff-row-container btn-update-container line-break">
+						<div class="clinic-row-container btn-update-container line-break">
 							<div></div>
 							<div>
 								<button class="btn-staff">Update</button>
 							</div>
 						</div>
-						<div class="staff-row-container pin-container line-break">
+						<div class="clinic-row-container pin-container line-break">
 							<div class="text-label">
 								<span>PIN</span>
 							</div>
@@ -197,7 +197,7 @@
 								<button class="btn-staff">Enter</button>
 							</div>
 						</div>
-						<div class="staff-row-container google-sync-container line-break">
+						<div class="clinic-row-container google-sync-container line-break">
 							<div class="text-label">
 								<span>Google Sync</span>
 							</div>
@@ -497,181 +497,185 @@
 							<div>
 								<button>Add Break</button>
 							</div>
-							<div class="timepicker-container">
+							<div class="break-timepicker-wrapper">
 								<div>
-									<span v-if="false">08:00AM</span>
-									<ul v-if="false" class="dropdown-menu">
-										<li>
-											<a>12:00 AM</a>
-										</li>
-										<li>
-											<a>01:00 AM</a>
-										</li>
-										<li>
-											<a>02:00 AM</a>
-										</li>
-										<li>
-											<a>03:00 AM</a>
-										</li>
-										<li>
-											<a>04:00 AM</a>
-										</li>
-										<li>
-											<a>05:00 AM</a>
-										</li>
-										<li>
-											<a>06:00 AM</a>
-										</li>
-										<li>
-											<a>07:00 AM</a>
-										</li>
-										<li>
-											<a>09:00 AM</a>
-										</li>
-										<li>
-											<a>10:00 AM</a>
-										</li>
-										<li>
-											<a>11:00 AM</a>
-										</li>
-										<li>
-											<a>12:00 PM</a>
-										</li>
-										<li>
-											<a>01:00 PM</a>
-										</li>
-										<li>
-											<a>02:00 PM</a>
-										</li>
-										<li>
-											<a>03:00 PM</a>
-										</li>
-										<li>
-											<a>04:00 PM</a>
-										</li>
-										<li>
-											<a>05:00 PM</a>
-										</li>
-										<li>
-											<a>06:00 PM</a>
-										</li>
-										<li>
-											<a>07:00 PM</a>
-										</li>
-										<li>
-											<a>08:00 PM</a>
-										</li>
-										<li>
-											<a>09:00 PM</a>
-										</li>
-										<li>
-											<a>10:00 PM</a>
-										</li>
-										<li>
-											<a>11:00 PM</a>
-										</li>
-									</ul>
-									<select>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-									</select>
+									<div class="timepicker-container">
+										<div>
+											<span v-if="false">08:00AM</span>
+											<ul v-if="false" class="dropdown-menu">
+												<li>
+													<a>12:00 AM</a>
+												</li>
+												<li>
+													<a>01:00 AM</a>
+												</li>
+												<li>
+													<a>02:00 AM</a>
+												</li>
+												<li>
+													<a>03:00 AM</a>
+												</li>
+												<li>
+													<a>04:00 AM</a>
+												</li>
+												<li>
+													<a>05:00 AM</a>
+												</li>
+												<li>
+													<a>06:00 AM</a>
+												</li>
+												<li>
+													<a>07:00 AM</a>
+												</li>
+												<li>
+													<a>09:00 AM</a>
+												</li>
+												<li>
+													<a>10:00 AM</a>
+												</li>
+												<li>
+													<a>11:00 AM</a>
+												</li>
+												<li>
+													<a>12:00 PM</a>
+												</li>
+												<li>
+													<a>01:00 PM</a>
+												</li>
+												<li>
+													<a>02:00 PM</a>
+												</li>
+												<li>
+													<a>03:00 PM</a>
+												</li>
+												<li>
+													<a>04:00 PM</a>
+												</li>
+												<li>
+													<a>05:00 PM</a>
+												</li>
+												<li>
+													<a>06:00 PM</a>
+												</li>
+												<li>
+													<a>07:00 PM</a>
+												</li>
+												<li>
+													<a>08:00 PM</a>
+												</li>
+												<li>
+													<a>09:00 PM</a>
+												</li>
+												<li>
+													<a>10:00 PM</a>
+												</li>
+												<li>
+													<a>11:00 PM</a>
+												</li>
+											</ul>
+											<select>
+												<option>12:00AM</option>
+												<option>12:00AM</option>
+												<option>12:00AM</option>
+												<option>12:00AM</option>
+												<option>12:00AM</option>
+												<option>12:00AM</option>
+												<option>12:00AM</option>
+												<option>12:00AM</option>
+												<option>12:00AM</option>
+											</select>
+										</div>
+										<span>to</span>
+										<div>
+											<span v-if="false">05:30PM</span>
+											<ul v-if="false" class="dropdown-menu">
+												<li>
+													<a>12:00 AM</a>
+												</li>
+												<li>
+													<a>01:00 AM</a>
+												</li>
+												<li>
+													<a>02:00 AM</a>
+												</li>
+												<li>
+													<a>03:00 AM</a>
+												</li>
+												<li>
+													<a>04:00 AM</a>
+												</li>
+												<li>
+													<a>05:00 AM</a>
+												</li>
+												<li>
+													<a>06:00 AM</a>
+												</li>
+												<li>
+													<a>07:00 AM</a>
+												</li>
+												<li>
+													<a>09:00 AM</a>
+												</li>
+												<li>
+													<a>10:00 AM</a>
+												</li>
+												<li>
+													<a>11:00 AM</a>
+												</li>
+												<li>
+													<a>12:00 PM</a>
+												</li>
+												<li>
+													<a>01:00 PM</a>
+												</li>
+												<li>
+													<a>02:00 PM</a>
+												</li>
+												<li>
+													<a>03:00 PM</a>
+												</li>
+												<li>
+													<a>04:00 PM</a>
+												</li>
+												<li>
+													<a>05:00 PM</a>
+												</li>
+												<li>
+													<a>06:00 PM</a>
+												</li>
+												<li>
+													<a>07:00 PM</a>
+												</li>
+												<li>
+													<a>08:00 PM</a>
+												</li>
+												<li>
+													<a>09:00 PM</a>
+												</li>
+												<li>
+													<a>10:00 PM</a>
+												</li>
+												<li>
+													<a>11:00 PM</a>
+												</li>
+											</ul>
+											<select>
+												<option>12:00AM</option>
+												<option>12:00AM</option>
+												<option>12:00AM</option>
+												<option>12:00AM</option>
+												<option>12:00AM</option>
+												<option>12:00AM</option>
+												<option>12:00AM</option>
+												<option>12:00AM</option>
+												<option>12:00AM</option>
+											</select>
+										</div>
+										<div class="trash-container">
+											<i class="fa fa-trash"></i>
+										</div>	
+									</div>
 								</div>
-								<span>to</span>
-								<div>
-									<span v-if="false">05:30PM</span>
-									<ul v-if="false" class="dropdown-menu">
-										<li>
-											<a>12:00 AM</a>
-										</li>
-										<li>
-											<a>01:00 AM</a>
-										</li>
-										<li>
-											<a>02:00 AM</a>
-										</li>
-										<li>
-											<a>03:00 AM</a>
-										</li>
-										<li>
-											<a>04:00 AM</a>
-										</li>
-										<li>
-											<a>05:00 AM</a>
-										</li>
-										<li>
-											<a>06:00 AM</a>
-										</li>
-										<li>
-											<a>07:00 AM</a>
-										</li>
-										<li>
-											<a>09:00 AM</a>
-										</li>
-										<li>
-											<a>10:00 AM</a>
-										</li>
-										<li>
-											<a>11:00 AM</a>
-										</li>
-										<li>
-											<a>12:00 PM</a>
-										</li>
-										<li>
-											<a>01:00 PM</a>
-										</li>
-										<li>
-											<a>02:00 PM</a>
-										</li>
-										<li>
-											<a>03:00 PM</a>
-										</li>
-										<li>
-											<a>04:00 PM</a>
-										</li>
-										<li>
-											<a>05:00 PM</a>
-										</li>
-										<li>
-											<a>06:00 PM</a>
-										</li>
-										<li>
-											<a>07:00 PM</a>
-										</li>
-										<li>
-											<a>08:00 PM</a>
-										</li>
-										<li>
-											<a>09:00 PM</a>
-										</li>
-										<li>
-											<a>10:00 PM</a>
-										</li>
-										<li>
-											<a>11:00 PM</a>
-										</li>
-									</ul>
-									<select>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-									</select>
-								</div>
-								<div class="trash-container">
-									<i class="fa fa-trash"></i>
-								</div>	
 							</div>
 						</div>
 
