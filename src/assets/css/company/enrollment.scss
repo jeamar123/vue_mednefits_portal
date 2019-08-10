@@ -1199,6 +1199,8 @@
 	}
 }
 .modal-input-wrapper {
+	position: relative;
+
 	label {
 		color: #616161;
 		display: block;
@@ -1214,6 +1216,22 @@
 		width: 95%;
 		height: 40px;
 		margin-bottom: 15px;
+	}
+	select {
+		-webkit-appearance: none;
+	}
+	.err-msg{
+		color: #ff8a8a;
+    font-size: 11px;
+    display: block;
+    line-height: 1;
+    margin-bottom: 10px;
+	}
+	img{
+    width: 15px;
+    position: absolute;
+    top: 42px;
+    right: 25px;
 	}
 }
 .modal-footer {
@@ -1238,6 +1256,21 @@
 		border: solid 1px #0392cf;
 		background-color: #0392cf;
 		color: #fff;
+	}
+}
+.summary-edit-modal{
+	.modal-input-wrapper{
+		input{
+			margin-bottom: 5px;
+		}
+	}
+	.dependent-text{
+		font-weight: 700;
+    color: #333;
+    border-bottom: 1px solid #999;
+    padding: 10px 0;
+    width: 80%;
+    margin-bottom: 10px;
 	}
 }
 

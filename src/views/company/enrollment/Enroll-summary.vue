@@ -92,7 +92,7 @@
         </div>
 
         <!-- modal edit -->
-        <Modal v-if="modalEdit">
+        <Modal v-if="modalEdit" class="summary-edit-modal">
           <div slot="header">
             <h4>Edit Employee Details</h4>
             <img @click="editEmployee('close')" :src="'../assets/img/icons/close.svg'">
@@ -103,14 +103,17 @@
               <div class="modal-input-wrapper">
                 <label>First Name</label>
                 <input type="text" v-model="employeeDetails.fname">
+                <span class="err-msg">{{ employeeDetails.errors.first_name_message }}</span>
               </div>
               <div class="modal-input-wrapper">
                 <label>Last Name</label>
                 <input type="text" v-model="employeeDetails.lname">
+                <span class="err-msg">{{ employeeDetails.errors.last_name_message }}</span>
               </div>
               <div class="modal-input-wrapper">
                 <label>NRIC/FIN</label>
                 <input type="text" v-model="employeeDetails.nricFinNo">
+                <span class="err-msg">{{ employeeDetails.errors.nric_message }}</span>
               </div>
               <div class="modal-input-wrapper">
                 <label>Date of Birth</label>
@@ -121,27 +124,33 @@
                   :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
                   popover-visibility="focus"
                 ></v-date-picker>
-                <!-- <input type="text"  v-model="employeeDetails.dob"> -->
+                <span class="err-msg">{{ employeeDetails.errors.dob_message }}</span>
               </div>
               <div class="modal-input-wrapper">
                 <label>Work Email</label>
                 <input type="text" v-model="employeeDetails.email">
+                <span class="err-msg">{{ employeeDetails.errors.email_message }}</span>
               </div>
               <div class="modal-input-wrapper">
                 <label>Mobile</label>
                 <input type="text" v-model="employeeDetails.mNumber">
+                <span class="err-msg">{{ employeeDetails.errors.mobile_message }}</span>
               </div>
               <div class="modal-input-wrapper">
                 <label>Mobile Area Code</label>
                 <input type="text" v-model="employeeDetails.mAreaCode">
+                <span class="err-msg"></span>
+                <!-- <span class="err-msg">{{ employeeDetails.errors.mobile_area_code_message }}</span> -->
               </div>
               <div class="modal-input-wrapper">
                 <label>Medical Credits</label>
                 <input type="number" v-model="employeeDetails.mCredits">
+                <span class="err-msg">{{ employeeDetails.errors.credits_medical_message }}</span>
               </div>
               <div class="modal-input-wrapper">
                 <label>Wellness Credits</label>
                 <input type="number" v-model="employeeDetails.wCredits">
+                <span class="err-msg">{{ employeeDetails.errors.credits_wellnes_message }}</span>
               </div>
               <div class="modal-input-wrapper">
                 <label>Start Date</label>
@@ -152,8 +161,58 @@
                   :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
                   popover-visibility="focus"
                 ></v-date-picker>
-                <!-- <input type="text" v-model="employeeDetails.startDate"> -->
+                <span class="err-msg">{{ employeeDetails.errors.start_date_message }}</span>
               </div>
+              <template v-for="list in employeeDetails.dependents">
+                <p class="dependent-text">Dependent 1</p>
+                <div class="modal-input-wrapper">
+                  <label>First Name</label>
+                  <input type="text" v-model="list.enrollee.first_name">
+                  <span class="err-msg">{{ employeeDetails.errors.first_name_message }}</span>
+                </div>
+                <div class="modal-input-wrapper">
+                  <label>Last Name</label>
+                  <input type="text" v-model="list.enrollee.last_name">
+                  <span class="err-msg">{{ employeeDetails.errors.last_name_message }}</span>
+                </div>
+                <div class="modal-input-wrapper">
+                  <label>NRIC/FIN</label>
+                  <input type="text" v-model="list.enrollee.nric">
+                  <span class="err-msg">{{ employeeDetails.errors.nric_message }}</span>
+                </div>
+                <div class="modal-input-wrapper">
+                  <label>Date of Birth</label>
+                  <v-date-picker
+                    popoverDirection="top"
+                    :max-date="new Date()"
+                    v-model="list.enrollee.dob"
+                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                    popover-visibility="focus"
+                  ></v-date-picker>
+                  <span class="err-msg">{{ employeeDetails.errors.dob_message }}</span>
+                </div>
+                <div class="modal-input-wrapper">
+                  <label>Relationship</label>
+                  <select v-model="list.enrollee.relationship">
+                    <option value="Spouse">Spouse</option>
+                    <option value="Child">Child</option>
+                    <option value="Family">Family</option>
+                  </select>
+                  <img :src="'../assets/img/icons/down-arrow.svg'">
+                  <span class="err-msg">{{ employeeDetails.errors.relationship_message }}</span>
+                </div>
+                <div class="modal-input-wrapper">
+                  <label>Start Date</label>
+                  <v-date-picker
+                    popoverDirection="top"
+                    :date="new Date()"
+                    v-model="list.enrollee.plan_start"
+                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                    popover-visibility="focus"
+                  ></v-date-picker>
+                  <span class="err-msg">{{ employeeDetails.errors.start_date_message }}</span>
+                </div>
+              </template>
             </form>
           </div>
           <div slot="footer">

@@ -36,9 +36,22 @@ let enrollSumamary = {
       this.maxDep = max;
     },
     back() {
-      this.$router.go(-1);
-      this.$emit("enrollData", {
-        stepStatus: 1
+      this.$swal({
+        title: "Confirm",
+        text: "Temporary employee data will be deleted, Proceed?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        confirmButtonColor: "#0392CF",
+        cancelButtonText: "No",
+        customClass: "warning-global-container primary"
+      }).then(result => {
+        if (result.value) {
+          this.$router.go(-1);
+          this.$emit("enrollData", {
+            stepStatus: 1
+          });
+        }
       });
     },
     enroll(data) {
@@ -54,21 +67,27 @@ let enrollSumamary = {
       let x = data;
       this.indexData = index;
       if (x === "edit") {
-        this.modalEdit = !this.modalEdit;
         console.log(this.employeeStorage[index]);
         this.employeeDetails = {
-          fname: this.employeeStorage[index].fname,
-          lname: this.employeeStorage[index].lname,
-          nricFinNo: this.employeeStorage[index].nricFinNo,
-          dob: this.employeeStorage[index].dob,
-          email: this.employeeStorage[index].email,
-          mNumber: this.employeeStorage[index].mNumber,
-          mAreaCode: this.employeeStorage[index].mAreaCode,
-          mCredits: this.employeeStorage[index].mCredits,
-          wCredits: this.employeeStorage[index].wCredits,
-          startDate: this.employeeStorage[index].startDate
+          fname: this.employeeStorage[index].employee.first_name,
+          lname: this.employeeStorage[index].employee.last_name,
+          nricFinNo: this.employeeStorage[index].employee.nric,
+          dob: new Date( this.employeeStorage[index].employee.dob ),
+          email: this.employeeStorage[index].employee.email,
+          mNumber: this.employeeStorage[index].employee.mobile,
+          mAreaCode: this.employeeStorage[index].employee.mobile_area_code,
+          mCredits: this.employeeStorage[index].employee.credits,
+          wCredits: this.employeeStorage[index].employee.wellness_credits,
+          startDate: new Date( this.employeeStorage[index].employee.start_date ),
+          errors: this.employeeStorage[index].error_logs,
+          dependents: this.employeeStorage[index].dependents
         };
-      } else if (x === "close") {
+        for( var i = 0; i < this.employeeDetails.depdendents.length; i++ ){
+          if( i == this.employeeDetails.depdendents.length - 1 ){
+            this.modalEdit = !this.modalEdit;
+          }
+        }
+      }else{
         this.modalEdit = !this.modalEdit;
       }
     },
@@ -100,6 +119,7 @@ let enrollSumamary = {
       this.employeeDetails.dob = undefined;
     },
     update() {
+      console.log( this.employeeDetails );
       // used in enrollment summary
       this.$swal({
         title: "Confirm",
@@ -112,14 +132,39 @@ let enrollSumamary = {
         customClass: "warning-global-container primary"
       }).then(result => {
         if (result.value) {
-          this.modalEdit = false;
-          let index = this.indexData;
-          this.addToStorage("edit", index);
-          this.$swal(
-            "Updated!",
-            "Employee details has been updated.",
-            "success"
-          );
+          var data = {
+            temp_enrollment_id : this.employeeStorage[this.indexData].employee.temp_enrollment_id,
+            first_name: this.employeeDetails.fname,
+            last_name: this.employeeDetails.lname,
+            nric: this.employeeDetails.nricFinNo,
+            dob: moment(this.employeeDetails.dob).format('YYYY-MM-DD'),
+            email: this.employeeDetails.email,
+            mobile: this.employeeDetails.mNumber,
+            job_title: this.employeeStorage[this.indexData].employee.job_title,
+            medical_credits: this.employeeDetails.mCredits,
+            wellness_credits: this.employeeDetails.wCredits,
+            plan_start: moment(this.employeeDetails.startDate).format('YYYY-MM-DD'),
+            postal_code: this.employeeStorage[this.indexData].employee.postal_code,
+            mobile_area_code: this.employeeDetails.mAreaCode
+          }
+          this.$parent.showLoading();
+          axios.post( axios.defaults.serverUrl + '/hr/update/tier_employee_enrollee_details', data )
+            .then(res => {
+              this.$parent.hideLoading();
+              console.log(res);
+              if( res.data.status ){
+                this.modalEdit = false;
+                this.$parent.swal('Success!', res.data.message, 'success');
+                this.getTempEmployees();
+              }else{
+                this.$parent.swal('Error!', res.data.message, 'error');
+              }
+            })
+            .catch(err => {
+              console.log( err );
+              this.$parent.hideLoading();
+              this.$parent.swal('Error!', err,'error');
+            });
         }
       });
     },
