@@ -216,7 +216,7 @@
             </form>
           </div>
           <div slot="footer">
-            <button @click="remove('fromEdit')">REMOVE</button>
+            <button @click="removeEmployee( employeeStorage[indexData].employee.temp_enrollment_id )">REMOVE</button>
             <button @click="update">UPDATE</button>
           </div>
         </Modal>

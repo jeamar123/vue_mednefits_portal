@@ -44,6 +44,7 @@
                 <div class="employee-input-wrapper dob">
                   <label for="fname">Date of Birth</label>
                   <v-date-picker v-model="employeeDetails.dob"
+                    :max-date='new Date()'
                     :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true}'
                     popover-visibility='focus'>
                   </v-date-picker>
@@ -120,6 +121,7 @@
                 <div class="employee-input-wrapper dob">
                   <label for="">Date of Birth</label>
                   <v-date-picker v-model="dependentStorage[ dependetStorageIndex ].dob"
+                    :max-date='new Date()'
                     :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true}'
                     popover-visibility='focus'>
                   </v-date-picker>
@@ -191,6 +193,7 @@
                 <div class="employee-input-wrapper dob">
                   <label for="">Date of Birth</label>
                   <v-date-picker v-model="dependentDetails.dob"
+                    :max-date='new Date()'
                     :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
                     popover-visibility='focus'>
                   </v-date-picker>
