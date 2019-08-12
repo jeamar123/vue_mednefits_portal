@@ -17,7 +17,12 @@
 				business_active: {
 					value: 0,
 					text: ""
-				}
+				},
+				showDayTime: true,
+	      showCustomTime: false,
+				modalProfile: {
+	      	addTimeOffModal: false,
+	      }
 			}
 		},
 		methods: {
@@ -29,6 +34,17 @@
 	    	this.business_active.value = value;
 	      this.business_active.text = text; 
 	    },
+	    toggleCheckBox() {
+	    	if (this.showDayTime === true ) {
+	    		this.showDayTime = false;
+	    		this.showCustomTime = true;
+	    		
+	    	} else {
+	    		this.showCustomTime = false;
+	    		this.showDayTime = true;
+	    		
+	    	}
+	    }
 		}
 	}
 	export default clinicProfile

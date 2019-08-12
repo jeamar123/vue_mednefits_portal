@@ -678,8 +678,6 @@
 								</div>
 							</div>
 						</div>
-
-
 					</div>
 				</div>
 
@@ -697,6 +695,7 @@
 					</div>
 
 					<div class="time-off-body-info-container">
+						<div></div>
 						<div>
 							<p>Add your first Time off by clicking below button</p>
 							<button @click="modalStaff.addTimeOffModal = true"> <img :src="'../assets/img/ico_add new.svg'"> Add Time Off</button>
@@ -705,80 +704,81 @@
 				</div>
 			</div>
 
-			<Modal class="add-time-modal" v-if="modalStaff.addTimeOffModal">
-        <div slot="header">
-          <h4>Add New Time Off</h4>
-          <i @click="modalStaff.addTimeOffModal = false" class="fa fa-times"></i>
-        </div>
-        <div slot="body">
-        	<div v-if="showDayTime" class="daytime-off">
-	         	<div class="time-off-input-wrapper">
-	         		<label>Start Date</label>
-	         		<input type="text">	
-	         	</div>
-	         	<div class="time-off-input-wrapper">
-	         		<label>End Date</label>
-	         		<input type="text">	
-	         	</div>
-         	</div>
-         	<div v-if="showCustomTime" class="custom-time-off">
-         		<div class="">
-		         	<div class="time-off-input-wrapper">
-		         		<label>Start Date</label>
-		         		<div>
-		         			<input type="text">
-		         		</div>	
-		         	</div>
-		         	<div class="time-off-input-wrapper">
-		         		<label>Start Time</label>
-		         		<div>
-		         			<input type="text">
-		         		</div>
-		         	</div>
-	         	</div>
-
-	         	<div>
-		         	<div class="time-off-input-wrapper">
-		         		<label>End Date</label>
-		         		<div>
-		         			<input type="text">
-		         		</div>
-		         	</div>
-		         	<div class="time-off-input-wrapper">
-		         		<label>End Time</label>
-		         		<div>
-		         			<input type="text">
-		         		</div>
-		         	</div>
-	         	</div>
-         	</div>
-         	<div class="time-off-input-wrapper">
-         		<label>Notes</label>
-         		<input type="text" placeholder="Details ...">
-         	</div>
-
-         	<div class="staff-day-checkbox">
-         		<label class="checkbox-container"> All Day
-						  <input type="checkbox" v-model="showDayTime" @click="toggleCheckBox()">
-						  <span class="checkmark" id="custom-checkmark"></span>
-						</label>
-         	</div>
-
-         	<div v-if="showDayTime" class="time-wall">
-         		From 06 August 2019 to 06 August 2019
-         	</div>
-
-         		<div v-if="showCustomTime" class="custom-time-off-text time-wall">
-         		From 06 August 2019, 08:00 AM to 06 August 2019, 05:00 PM
-         	</div>
-   				
-         	<div class="btn-footer">
-   					<button>Save Changes</button>
-   				</div>	
-        </div>
-      </Modal>
 
 		</div>
+
+		<Modal class="add-time-modal" v-if="modalStaff.addTimeOffModal">
+      <div slot="header">
+        <h4>Add New Time Off</h4>
+        <i @click="modalStaff.addTimeOffModal = false" class="fa fa-times"></i>
+      </div>
+      <div slot="body">
+      	<div v-if="showDayTime" class="daytime-off">
+         	<div class="time-off-input-wrapper">
+         		<label>Start Date</label>
+         		<input type="text">	
+         	</div>
+         	<div class="time-off-input-wrapper">
+         		<label>End Date</label>
+         		<input type="text">	
+         	</div>
+       	</div>
+       	<div v-if="showCustomTime" class="custom-time-off">
+       		<div class="">
+	         	<div class="time-off-input-wrapper">
+	         		<label>Start Date</label>
+	         		<div>
+	         			<input type="text">
+	         		</div>	
+	         	</div>
+	         	<div class="time-off-input-wrapper">
+	         		<label>Start Time</label>
+	         		<div>
+	         			<input type="text">
+	         		</div>
+	         	</div>
+         	</div>
+
+         	<div>
+	         	<div class="time-off-input-wrapper">
+	         		<label>End Date</label>
+	         		<div>
+	         			<input type="text">
+	         		</div>
+	         	</div>
+	         	<div class="time-off-input-wrapper">
+	         		<label>End Time</label>
+	         		<div>
+	         			<input type="text">
+	         		</div>
+	         	</div>
+         	</div>
+       	</div>
+       	<div class="time-off-input-wrapper">
+       		<label>Notes</label>
+       		<input type="text" placeholder="Details ...">
+       	</div>
+
+       	<div class="staff-day-checkbox">
+       		<label class="checkbox-container"> All Day
+					  <input type="checkbox" v-model="showDayTime" @click="toggleCheckBox()">
+					  <span class="checkmark" id="custom-checkmark"></span>
+					</label>
+       	</div>
+
+       	<div v-if="showDayTime" class="time-wall">
+       		From 06 August 2019 to 06 August 2019
+       	</div>
+
+       		<div v-if="showCustomTime" class="custom-time-off-text time-wall">
+       		From 06 August 2019, 08:00 AM to 06 August 2019, 05:00 PM
+       	</div>
+ 				
+       	<div class="btn-footer">
+ 					<button>Save Changes</button>
+ 				</div>	
+      </div>
+    </Modal>
 	</div>
 </template>
 
