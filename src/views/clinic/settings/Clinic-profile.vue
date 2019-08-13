@@ -35,7 +35,7 @@
 
 		<div class="profile-detail-container">
 			<div v-if="detail_active.value === 0">
-				<div class="medicloud-booking-header">
+				<div class="clinic-profile-header">
 					<h4>Configure Your Medicloud Booking Page</h4>
 				</div>
 				<div class="medicloud-booking-body">
@@ -829,17 +829,131 @@
 					</div>
 				</div>
 			</div>
-			<div v-if="detail_active.value === 2">
-				<h1>PASSWORD</h1>
+			<div v-if="detail_active.value === 2" class="clinic-password-wrapper">
+				<div class="clinic-profile-header">
+					<h4>Change Your Password Here</h4>
+				</div>
+				<div>
+					<div class="clinic-row-container">
+						<div class="profile-password-img">
+							<img :src="'../assets/img/clinic/ico_Profile.svg'">
+						</div>
+						<div class="profile-password-label">
+							<span>Stackgecko GP</span>
+						</div>
+					</div>
+					<div class="clinic-row-container">
+						<div class="text-label">
+							<span>Current Password</span>
+						</div>
+						<div class="profile-input-wrapper">
+							<input type="text">
+						</div>
+					</div>
+					<div class="clinic-row-container">
+						<div class="text-label">
+							<span>New Password</span>
+						</div>
+						<div class="profile-input-wrapper">
+							<input type="text">
+						</div>
+					</div>
+					<div class="clinic-row-container">
+						<div class="text-label">
+							<span>Confirm Password</span>
+						</div>
+						<div class="profile-input-wrapper">
+							<input type="text">
+						</div>
+					</div>
+					<div class="clinic-row-container">
+						<div>
+						</div>
+						<div>
+							<button class="btn-update-changes">Update Changes</button>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div v-if="detail_active.value === 3">
-				<h1>PAYMENT DETAILS</h1>
+				<div class="clinic-profile-header">
+					<h4>Enter Your Payment Details</h4>
+				</div>
+				<div>
+					<div class="clinic-row-container">
+						<div class="text-label">
+							<span>Company Name</span>
+						</div>
+						<div class="profile-input-wrapper">
+							<input type="text">
+						</div>
+					</div>
+					<div class="clinic-row-container">
+						<div class="text-label">
+							<span>Billing Address</span>
+						</div>
+						<div class="profile-input-wrapper">
+							<input type="text">
+						</div>
+					</div>
+					<div class="clinic-row-container">
+						<div class="text-label">
+							<span>Bank Account Type</span>
+						</div>
+						<div class="profile-input-wrapper">
+							<input type="text" placeholder="i.e UOB Account">
+						</div>
+					</div>
+					<div class="clinic-row-container">
+						<div class="text-label">
+							<span>Bank Account Number</span>
+						</div>
+						<div class="profile-input-wrapper">
+							<input type="text">
+						</div>
+					</div>
+					<div class="clinic-row-container">
+						<div>
+						</div>
+						<div class="profile-input-wrapper">
+							<button class="btn-update">Update</button>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div v-if="detail_active.value === 4">
-				<h1>WIDGET</h1>
+				<div class="clinic-profile-header">
+					<h4>Booking Widget Integration</h4>
+				</div>
+				<div>
+					<div class="booking-widget-row-container">
+						<div>
+							<span>Widget Code</span>
+						</div>
+						<div>
+							<textarea></textarea>
+						</div>
+					</div>
+					<div class="booking-widget-row-container">
+						<div>
+						</div>
+						<div>
+							<span>Copy & paste this link into your website.</span>
+							<button class="btn-copy-clipboard">Copy to Clipboard</button>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div v-if="detail_active.value === 5">
-				<h1>QR CODE</h1>
+			<div v-if="detail_active.value === 5" class="clinic-qr-code-wrapper">
+				<div class="mednefits-icon-container">
+					<img :src="'../assets/img/mednefits_icon_blue.png'">
+				</div>
+				<div class="qr-code-container">
+					<img :src="'../assets/img/qr_code_PNG2.png'">
+				</div>
+				<div>
+					<h4>Stackgecko GP</h4>
+				</div>
 			</div>
 		</div>
 

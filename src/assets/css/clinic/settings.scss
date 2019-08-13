@@ -1084,13 +1084,14 @@
 	}
 }
 
-.clinic-profile-wrapper {
+.clinic-profile-wrapper,
+.clinic-transactions-wrapper {
 	display: grid;
 	grid-template-columns: 25% 75%;
 	height: 100%;
 
 	.profile-detail-container {
-		padding: 20px 0 0 40px;
+		padding: 20px 40px 0;
 
 		.clinic-row-container input {
 			width: 200px;
@@ -1107,9 +1108,23 @@
 		.phone-number-input-wrapper input {
 			width: 150px;
 		}
+
+		.profile-input-wrapper input {
+			width: 300px;
+		}
+
+		.profile-password-img img {
+			height: 75px;
+			width: 75px;
+		}
+
+		.profile-password-label span {
+			font-size: 18px;
+			font-weight: 700;
+		}
 	}
 
-	.medicloud-booking-header {
+	.clinic-profile-header {
 		font-size: 18px;
 		font-weight: 700;
 		padding: 0 0 15px;
@@ -1123,6 +1138,25 @@
     color: #fff;
     text-align: center;
     width: 150px;
+	}
+
+	.btn-update {
+		background: #1b9bd7;
+		color: #fff;
+		padding: 6px 12px;
+    width: auto;
+    font-weight: 700;
+    line-height: 1.42857143;
+	}
+
+	.btn-copy-clipboard  {
+		background: #1b9bd7;
+    border: 0px;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    width: 150px;
+    padding: 12px 15px;
 	}
 
 	.business-hours-header {
@@ -1188,7 +1222,8 @@
 	}
 
 	.configure-container,
-	.integrate-container {
+	.integrate-container,
+	.payments-container {
 		padding: 20px 0;
 
 		>span {
@@ -1241,6 +1276,158 @@
 			width: 30px;
 		}
 	}
+
+	.payments-container {
+		img {
+			width: 30px;
+			height: 35px;
+		}
+	}
+}
+
+.booking-widget-row-container {
+	display: flex;
+  padding: 0 0 20px 0;
+  margin: 0 0 20px 0;
+
+  &:nth-child(1) {
+  	border-bottom: 1px solid #eee;		
+  }
+
+	>div:nth-child(1) {
+		width: 16.66666667%;
+	}
+
+	textarea {
+		border: 1px solid rgb(217, 217, 217);
+    border-radius: 5px;
+    color: rgb(104, 104, 104);
+    height: 145px;
+		width: 485px;
+		padding: 12px;
+	}
+
+	>div:nth-child(2) span {
+		display: block;
+		margin: 0 0 20px;
+	}
+}
+
+.clinic-qr-code-wrapper {
+	text-align: center;
+	position: relative;
+	margin: 100px 0 0;
+
+	.mednefits-icon-container {
+		position: relative;
+		top: 150px;
+
+		img {
+			width: 30px;
+		}
+	}
+
+	.qr-code-container img {
+		height: 256px;
+		width: 256px;
+	}
+
+	h4 {
+		font-size: 18px;
+		font-weight: 700;
+		margin: 10px 0;
+	}
+}
+
+.transaction-body-detail {
+	padding: 40px 35px;
+
+	h4 {
+		color: #777;
+		font-size: 18px;
+		font-weight: 700;
+		padding: 10px 0;
+		margin: 10px 0;
+	}
+
+	.dashboard-summary-wrapper {
+		padding: 0;
+		box-shadow: 0px 0px 7px #999;
+		margin: 0 0 50px;
+
+		.claim-slider-container {
+			padding: 50px 50px 30px;
+		}
+
+		.custom-picker-wrapper {
+			padding: 0;
+		}
+
+		.time-frame-container {
+			padding: 30px 45px;
+		}
+
+		.year-selector:nth-child(4) {
+			border-right: 0;
+		}
+
+		.custom-date-selector-wrapper {
+			margin: 20px 0 30px 0;
+		}
+	}
+
+	.trans-history-tbl {
+		width: 100%;
+ 	}
+
+ 	.search-wrapper {
+ 		float: left;
+
+ 		input {
+ 			background-color: #f5f5f5;
+ 			height: 34px;
+ 			border: 0;
+ 			border-radius: 4px 0 0 4px;
+    	color: #555;
+    	font-weight: 700;
+    	padding: 6px 12px;
+ 		}
+
+ 		input::placeholder {
+ 			font-size: 14px;
+ 		}
+
+ 		button {
+ 			background-color: #bbb;
+ 			color: #fff;
+ 			border-radius: 0 4px 4px 0;
+ 			border: 0;
+ 			height: 34px;
+ 			width: 55px;
+ 			font-size: 18px;
+ 		}
+ 	}
+
+ 	.export-wrapper {
+ 		float: right;
+
+ 		button {
+ 			background: #fff;
+ 			border: 1px solid #d3d3d3;
+ 			border-radius: 4px;
+ 			color: #aaa;
+ 			padding: 6px 12px;
+ 			line-height: 1.42857143;
+ 		}
+
+ 		button:nth-child(1) {
+ 			margin: 0 5px 0 0;
+ 		}
+
+ 		i {
+ 			margin: 0 5px 0 0;
+ 		}
+ 	}
 }
 
 

@@ -33,7 +33,7 @@
 			}
 		},
 		methods: {
-			 setYear(value, text) {
+			setYear(value, text) {
 	      this.year_active.value = value;
 	      this.year_active.text = text; 
 	    }
