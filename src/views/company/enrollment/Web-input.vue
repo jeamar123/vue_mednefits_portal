@@ -12,7 +12,7 @@
             <div class="employee-tier-title">
               {{ isTiering ? 'TIER ' + (activeTier.index + 1) + ' :' : ''}}
               EMPLOYEE
-              <span v-if="isTiering">{{ tierEmployeeCountIndex }} OF {{ activeTier.member_head_count + 1 }}</span>
+              <span v-if="isTiering">{{ tierEmployeeCountIndex }} OF {{ activeTier.member_head_count }}</span>
               <span v-if="!isTiering">{{ employeeCountIndex }} OF {{ enrollment_progress.total_employees }}</span>
             </div>
 
@@ -53,11 +53,12 @@
               <div class="employee-input-container">
                 <div class="employee-input-wrapper">
                   <label for="fname">Work Email</label>
-                  <input type="email" name="work-email" v-model="employeeDetails.email">
+                  <input type="email" name="work-email" v-model="employeeDetails.email" >
                 </div>
-                <div class="employee-input-wrapper">
+                <div class="employee-input-wrapper mobile-div">
                   <label for="fname">Mobile</label>
-                  <input type="number" name="mobile" v-model="employeeDetails.mNumber">
+                  <vue-tel-input ref="areaCode" v-model="employeeDetails.mNumber" v-bind="telProps" @input="setAreaCode"></vue-tel-input>
+                  <!-- <input type="number" name="mobile" v-model="employeeDetails.mNumber"> -->
                 </div>
               </div>
               <div class="employee-input-container">
@@ -131,9 +132,9 @@
                 <div class="employee-input-wrapper">
                   <label for="fname">Relationship</label>
                   <select v-model="dependentStorage[ dependetStorageIndex ].relationship">
-                    <option value="Spouse">Spouse</option>
-                    <option value="Child">Child</option>
-                    <option value="Family">Family</option>
+                    <option value="spouse">Spouse</option>
+                    <option value="child">Child</option>
+                    <option value="family">Family</option>
                   </select>
                   <img :src="'../assets/img/icons/down-arrow.svg'">
                 </div>
@@ -204,9 +205,9 @@
                 <div class="employee-input-wrapper">
                   <label for="fname">Relationship</label>
                   <select v-model="dependentDetails.relation">
-                    <option value="Spouse">Spouse</option>
-                    <option value="Child">Child</option>
-                    <option value="Family">Family</option>
+                    <option value="spouse">Spouse</option>
+                    <option value="child">Child</option>
+                    <option value="family">Family</option>
                   </select>
                   <img :src="'../assets/img/icons/down-arrow.svg'">
                 </div>
@@ -275,7 +276,7 @@
               class="btn-prev-emp btn-employee" @click="prevNextEmp('prev', 0)">
               <span class="text">PREVIOUS <span class="text-employee">EMPLOYEE</span></span>
             </button>
-            <button v-if="isState === 'web' && selected_emp_dep_tab == 1" class="btn-next-emp btn-employee" :disabled="( tierEmployeeCountIndex == activeTier.member_head_count + 1 ) || ( employeeCountIndex == enrollment_progress.total_employees )" @click="prevNextEmp('next', 0)">
+            <button v-if="isState === 'web' && selected_emp_dep_tab == 1 && ( ( isTiering && tierEmployeeCountIndex != activeTier.member_head_count ) || ( !isTiering && employeeCountIndex != enrollment_progress.total_employees ) )" class="btn-next-emp btn-employee" :disabled="( tierEmployeeCountIndex == activeTier.member_head_count + 1 ) || ( employeeCountIndex == enrollment_progress.total_employees )" @click="prevNextEmp('next', 0)">
               <span class="text">NEXT <span class="text-employee">EMPLOYEE</span></span>
             </button>
             <button class="btn-enroll-web next-btn" v-if="isState === 'web' && selected_emp_dep_tab == 1" @click="enroll('enrollsum')">Enroll</button>

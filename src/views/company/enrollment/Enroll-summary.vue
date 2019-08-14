@@ -10,7 +10,7 @@
               <thead>
                 <tr>
                   <th>
-                    <input type="checkbox">
+                    <input type="checkbox" v-model="isAllChecked" v-on:change="checkAll( isAllChecked )">
                   </th>
                   <th>First Name</th>
                   <th>Last Name</th>
@@ -36,16 +36,15 @@
                 <!-- <tr class="dependent-hover-container" v-for="(enroll, index) in employeeStorage" v-bind:key="enroll.id"> -->
                 <tr class="dependent-hover-container" v-for="(enroll, index) in employeeStorage" v-bind:key="enroll.id" v-bind:class="{ 'has-error' : enroll.error_logs.error }">
                   <td>
-                    <input type="checkbox" v-model="isChecked" :value="index">
+                    <input type="checkbox" v-model="isChecked[ index ]" v-on:change="checkOne( isChecked[ index ], enroll )">
                   </td>
                   <td>
                     <div class="fname-container">
-                      <!-- <span class="icon">
-                            <i class="fa fa-check" style="display: none;"></i>
-                            <i class="fa fa-times" style="display: none;"></i>
-                            <i class="fa fa-circle-o-notch fa-spin" style="display: none;"></i>
-                      </span>-->
-                      <!-- <span class="fname">{{enroll.fname}}</span> -->
+                      <span v-if="enroll.icon == true" class="icon">
+                        <i v-if="enroll.loading == true" class="fa fa-circle-o-notch fa-spin"></i>
+                        <i v-if="enroll.success == true" class="fa fa-check"></i>
+                        <i v-if="enroll.fail == true" class="fa fa-times"></i>
+                      </span>
                       <span class="fname">{{enroll.employee.first_name}}</span>
                       <button @click="editEmployee('edit', index)" class="dependent-hover-btn">Edit</button>
                     </div>
@@ -83,8 +82,8 @@
         <div class="successfully-enrolled-wrapper" v-if="isState == 'successEnroll'">
           <h1>
             We've succesfully enrolled
-            <span>1</span> employees and
-            <span>0</span> dependents to the selected tier plan
+            <span>{{ empCtr }}</span> employees and
+            <span>{{ depCtr }}</span> dependents to the selected tier plan
           </h1>
           <div class="successfully-enrolled-img">
             <img :src="'../assets/img/successful.png'">
@@ -168,17 +167,17 @@
                 <div class="modal-input-wrapper">
                   <label>First Name</label>
                   <input type="text" v-model="list.enrollee.first_name">
-                  <span class="err-msg">{{ employeeDetails.errors.first_name_message }}</span>
+                  <span class="err-msg">{{ list.error_logs.first_name_message }}</span>
                 </div>
                 <div class="modal-input-wrapper">
                   <label>Last Name</label>
                   <input type="text" v-model="list.enrollee.last_name">
-                  <span class="err-msg">{{ employeeDetails.errors.last_name_message }}</span>
+                  <span class="err-msg">{{ list.error_logs.last_name_message }}</span>
                 </div>
                 <div class="modal-input-wrapper">
                   <label>NRIC/FIN</label>
                   <input type="text" v-model="list.enrollee.nric">
-                  <span class="err-msg">{{ employeeDetails.errors.nric_message }}</span>
+                  <span class="err-msg">{{ list.error_logs.nric_message }}</span>
                 </div>
                 <div class="modal-input-wrapper">
                   <label>Date of Birth</label>
@@ -189,17 +188,17 @@
                     :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
                     popover-visibility="focus"
                   ></v-date-picker>
-                  <span class="err-msg">{{ employeeDetails.errors.dob_message }}</span>
+                  <span class="err-msg">{{ list.error_logs.dob_message }}</span>
                 </div>
                 <div class="modal-input-wrapper">
                   <label>Relationship</label>
                   <select v-model="list.enrollee.relationship">
-                    <option value="Spouse">Spouse</option>
-                    <option value="Child">Child</option>
-                    <option value="Family">Family</option>
+                    <option value="spouse">Spouse</option>
+                    <option value="child">Child</option>
+                    <option value="family">Family</option>
                   </select>
                   <img :src="'../assets/img/icons/down-arrow.svg'">
-                  <span class="err-msg">{{ employeeDetails.errors.relationship_message }}</span>
+                  <span class="err-msg">{{ list.error_logs.relationship_message }}</span>
                 </div>
                 <div class="modal-input-wrapper">
                   <label>Start Date</label>
@@ -210,7 +209,7 @@
                     :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
                     popover-visibility="focus"
                   ></v-date-picker>
-                  <span class="err-msg">{{ employeeDetails.errors.start_date_message }}</span>
+                  <span class="err-msg">{{ list.error_logs.start_date_message }}</span>
                 </div>
               </template>
             </form>
@@ -224,27 +223,27 @@
 
       <div class="prev-next-button-container">
         <span v-if="isState === 'enrollsum'" class="responsive-enroll-text pending-enroll-text">
-          <span>7</span> PENDING TO ENROLL
+          <span>{{ enrollment_progress.in_progress }}</span> PENDING TO ENROLL
         </span>
         <div class="button-container">
           <button v-if="isState === 'enrollsum'" @click="back" class="summary-back-btn back-btn">Back</button>
           <router-link to="/company/dashboard">
             <button v-if="isState == 'successEnroll'" class="back-home-btn back-btn">BACK TO HOME</button>
           </router-link>
-          <button v-if="isChecked.length !=0" class="delete-btn" @click="remove('fromCheck')">Delete</button>
+          <button v-if="selected_emp.length !=0" class="delete-btn" @click="removeCheckedEmployees()">Delete</button>
 
           <div class="btn-enroll-container">
             <div v-if="isState === 'enrollsum'" class="btn-summary-enroll-container">
               <span class="pending-enroll-text">
-                <span>7</span> PENDING TO ENROLL
+                <span>{{ enrollment_progress.in_progress }}</span> PENDING TO ENROLL
               </span>
               <button class="summary-enroll-btn next-btn btn-enroll" @click="enroll('successEnroll')">
                 ENROLL
-                <span class="enroll-badge">4</span>
+                <span class="enroll-badge">{{ employeeStorage.length }}</span>
               </button>
             </div>
             <div class="btn-successfully-enrolled-container" v-if="isState == 'successEnroll'">
-              <button @click="$router.push('enrollment-options')">CONTINUE WITH ENROLLMENT</button>
+              <button @click="$router.push({ name : 'CompanyEnrollmentOptions' })">CONTINUE WITH ENROLLMENT</button>
             </div>
           </div>
         </div>

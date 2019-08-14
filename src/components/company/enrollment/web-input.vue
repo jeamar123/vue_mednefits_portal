@@ -25,6 +25,8 @@ let webInput = {
       employeeDetails: {
         mCredits : 0,
         wCredits : 0,
+        startDate : undefined,
+        mobile_area_code : '65',
       },
       dependentDetails: {
         dob: '',
@@ -41,11 +43,24 @@ let webInput = {
       tierEmployeeCountIndex: 0,
       tierDependentCountIndex: 0,
       dependetStorageIndex: 0,
+      telProps: {
+        defaultCountry: "SG",
+        placeholder: "",
+        enabledCountryCode: true,
+        enabledFlags: true,
+        autocomplete: "off",
+      },
+      sgAreaCode: {
+        areaCodes: null,
+        dialCode: "65",
+        iso2: "SG",
+        name: "Singapore",
+        priority: 0,
+      }
     };
   },
   created() {
     console.log( this.activeTier );
-
     this.getCompanyEnrollmentCountStatus();
     this.getDependentCountStatus();
 
@@ -53,8 +68,12 @@ let webInput = {
     this.tierDependentCountIndex = this.activeTier.dependent_enrolled_count + 1;
   },
   methods: {
+    setAreaCode( formattedNumber, { number, isValid, country } ){
+      this.employeeDetails.mobile_area_code = country.dialCode;
+      this.employeeDetails.mobile_area_code_country = country;
+    },
     checkDependentForm( data ){
-      console.log( data );
+      // console.log( data );
       var err = 0;
       if( !data.fname ){
         this.$parent.swal( 'Error!', 'First name is required!', 'error' );
@@ -88,7 +107,7 @@ let webInput = {
       return true; 
     },
     checkEmployeeForm( data ){
-      // console.log( data );
+      console.log( data );
       var err = 0;
       if( !data.fname ){
         this.$parent.swal( 'Error!', 'First name is required!', 'error' );
@@ -162,7 +181,8 @@ let webInput = {
           dob: this.employeeDetails.dob,
           email: this.employeeDetails.email,
           mobile: this.employeeDetails.mNumber,
-          mobile_area_code: this.employeeDetails.mAreaCode,
+          mobile_area_code: this.employeeDetails.mobile_area_code,
+          mobile_area_code_country: this.employeeDetails.mobile_area_code_country,
           postal_code: this.employeeDetails.postal,
           plan_start: this.employeeDetails.startDate,
           medical_credits: this.employeeDetails.mCredits,
@@ -184,7 +204,8 @@ let webInput = {
           dob: this.employeeDetails.dob,
           email: this.employeeDetails.email,
           mobile: this.employeeDetails.mNumber,
-          mobile_area_code: this.employeeDetails.mAreaCode,
+          mobile_area_code: this.employeeDetails.mobile_area_code,
+          mobile_area_code_country: this.employeeDetails.mobile_area_code_country,
           postal_code: this.employeeDetails.postal,
           plan_start: this.employeeDetails.startDate,
           medical_credits: this.employeeDetails.mCredits,
@@ -207,7 +228,8 @@ let webInput = {
             dob: this.employeeDetails.dob,
             email: this.employeeDetails.email,
             mobile: this.employeeDetails.mNumber,
-            mobile_area_code: this.employeeDetails.mAreaCode,
+            mobile_area_code: this.employeeDetails.mobile_area_code,
+            mobile_area_code_country: this.employeeDetails.mobile_area_code_country,
             postal_code: this.employeeDetails.postal,
             plan_start: this.employeeDetails.startDate,
             medical_credits: this.employeeDetails.mCredits,
@@ -216,14 +238,14 @@ let webInput = {
           });
           this.$parent.hideLoading();
         }
-      } else if( this.checkEmployeeForm( this.employeeDetails ) == false ) {
-        console.log("no data to be pushed");
-        return false;
       }
       this.dependentStorage = [];
+      this.$refs.areaCode.choose( this.sgAreaCode );
       this.employeeDetails = {
         mCredits : 0,
         wCredits : 0,
+        startDate : undefined,
+        mobile_area_code : '65',
       };
       this.employeeDetails.dob = undefined;
       // console.log( this.employeeStorage );
@@ -321,12 +343,15 @@ let webInput = {
               dob: arrStorage[index].dob,
               email: arrStorage[index].email,
               mNumber: arrStorage[index].mobile,
+              mobile_area_code : arrStorage[index].mobile_area_code,
+              mobile_area_code_country : arrStorage[index].mobile_area_code_country,
               postal: arrStorage[index].postal_code,
               mCredits: arrStorage[index].medical_credits,
               wCredits: arrStorage[index].wellness_credits,
               startDate: arrStorage[index].plan_start,
               dependents: arrStorage[index].dependents
             };
+            this.$refs.areaCode.choose( this.employeeDetails.mobile_area_code_country );
             this.dependentStorage = arrStorage[index].dependents;
             console.log( arrStorage[index] );
             if (index == 0) {
@@ -350,10 +375,12 @@ let webInput = {
               }
               index = ++this.indexData;
               this.empDepNavState = false;
+              this.$refs.areaCode.choose( this.sgAreaCode );
               this.employeeDetails = {
                 mCredits : 0,
                 wCredits : 0,
-                startDate : undefined
+                startDate : undefined,
+                mobile_area_code : '65',
               };
               this.dependentStorage = [];
             }
@@ -368,13 +395,15 @@ let webInput = {
               dob: this.employeeDetails.dob,
               email: this.employeeDetails.email,
               mobile: this.employeeDetails.mNumber,
-              mobile_area_code: this.employeeDetails.mAreaCode,
+              mobile_area_code: this.employeeDetails.mobile_area_code,
+              mobile_area_code_country: this.employeeDetails.mobile_area_code_country,
               postal_code: this.employeeDetails.postal,
               plan_start: this.employeeDetails.startDate,
               medical_credits: this.employeeDetails.mCredits,
               wellness_credits: this.employeeDetails.wCredits,
               dependents: this.dependentStorage
             };
+            this.$refs.areaCode.choose( this.employeeDetails.mobile_area_code_country );
             if( this.isTiering ){
               this.tierEmployeeCountIndex += 1;
             }else{
@@ -383,10 +412,12 @@ let webInput = {
             index = ++this.indexData;
             if (arrStorage[index] === undefined) {
               this.empDepNavState = false;
+              this.$refs.areaCode.choose( this.sgAreaCode );
               this.employeeDetails = {
                 mCredits : 0,
                 wCredits : 0,
-                startDate : undefined
+                startDate : undefined,
+                mobile_area_code : '65',
               };
               this.dependentStorage = [];
             } else {
@@ -397,12 +428,15 @@ let webInput = {
                 dob: arrStorage[index].dob,
                 email: arrStorage[index].email,
                 mNumber: arrStorage[index].mobile,
+                mobile_area_code: arrStorage[index].mobile_area_code,
+                mobile_area_code_country: arrStorage[index].mobile_area_code_country,
                 postal: arrStorage[index].postal_code,
                 mCredits: arrStorage[index].medical_credits,
                 wCredits: arrStorage[index].wellness_credits,
                 startDate: arrStorage[index].plan_start,
                 dependents: this.dependentStorage
               };
+              this.$refs.areaCode.choose( this.employeeDetails.mobile_area_code_country );
             }
           }
           this.selected_emp_dep_tab = 1;
@@ -571,18 +605,24 @@ let webInput = {
           for( var i = 0; i < this.employeeStorage.length; i++ ){
             this.employeeStorage[i].dob = moment( this.employeeStorage[i].dob ).format( 'YYYY-MM-DD' );
             this.employeeStorage[i].plan_start = moment( this.employeeStorage[i].plan_start ).format( 'YYYY-MM-DD' );
-            for( var x = 0; x < this.employeeStorage[i].dependents.length; x++ ){
-              this.employeeStorage[i].dependents[x].dob = moment( this.employeeStorage[i].dependents[x].dob ).format( 'YYYY-MM-DD' );
-              this.employeeStorage[i].dependents[x].plan_start = moment( this.employeeStorage[i].dependents[x].plan_start ).format( 'YYYY-MM-DD' );
-              if( i == this.employeeStorage.length -1 ){
-                if( x == this.employeeStorage[i].dependents.length -1 ){
-                  console.log( this.employeeStorage );
-                  this.submitEnrollEmployees();
+            if( this.employeeStorage[i].dependents.length > 0 ){
+              for( var x = 0; x < this.employeeStorage[i].dependents.length; x++ ){
+                this.employeeStorage[i].dependents[x].dob = moment( this.employeeStorage[i].dependents[x].dob ).format( 'YYYY-MM-DD' );
+                this.employeeStorage[i].dependents[x].plan_start = moment( this.employeeStorage[i].dependents[x].plan_start ).format( 'YYYY-MM-DD' );
+                if( i == this.employeeStorage.length -1 ){
+                  if( x == this.employeeStorage[i].dependents.length -1 ){
+                    console.log( this.employeeStorage );
+                    this.submitEnrollEmployees();
+                  }
                 }
+              }
+            }else{
+              if( i == this.employeeStorage.length -1 ){
+                console.log( this.employeeStorage );
+                this.submitEnrollEmployees();
               }
             }
           }
-          
         }
       }
     },
@@ -597,6 +637,7 @@ let webInput = {
           this.$parent.hideLoading();
           console.log(res);
           if( res.data.status ){
+            this.$parent.swal('Success!', res.data.message, 'success');
             this.isState = "enrollsum";
             this.$emit("webInputData", { isState: "enrollsum" });
             this.$router.push({ name: 'CompanyEnroll' });

@@ -403,6 +403,12 @@
 				margin-left: 16px;
 			}
 
+			.vue-tel-input{
+				border: none;
+		    box-shadow: none;
+				margin-top: -3px;
+			}
+
 			label {
 				display: block;
 				color: #848484;
@@ -696,6 +702,16 @@
 					display: block;
 					margin-right: 10px;
 				}
+			}
+
+			td .fa-check{
+				color: #048204;
+			}
+			td .fa-circle-o-notch{
+				color: #218acc;
+			}
+			td .fa-times{
+				color: #FF5722;
 			}
 
 			th input,
@@ -1127,6 +1143,11 @@
 		background-color: #0392cf;
 		border: 2px solid #0392cf;
 		float: right;
+	}
+
+	.next-btn:disabled{
+		opacity: .5;
+		cursor: not-allowed;
 	}
 
 	.confirm-btn {

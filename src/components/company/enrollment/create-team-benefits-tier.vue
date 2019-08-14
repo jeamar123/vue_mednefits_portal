@@ -103,13 +103,26 @@ let createTeamBenefitsTier = {
         customClass: "warning-global-container danger "
       }).then(result => {
         if (result.value) {
-          this.tierDetials= {};
-          //delete tier
-          let index = this.tierCounter - 1;
-          const data = this.tierStorage.indexOf(index);
-          this.closeBtn();
-          //succes SWAL
-          this.$swal("Deleted!", "Tier has been deleted.", "success");
+          var data = {
+            plan_tier_id : this.tierDetials.plan_tier_id
+          }
+          this.$parent.showLoading();
+          axios.post( axios.defaults.serverUrl + '/hr/remove_plan_tier', data )
+            .then(res => {
+              this.$parent.hideLoading();
+              console.log(res);
+              if( res.data.status ){
+                this.$parent.swal('Success!', res.data.message, 'success');
+                this.closeBtn();
+              }else{
+                this.$parent.swal('Error!', res.data.message, 'error');
+              }
+            })
+            .catch(err => {
+              console.log( err );
+              this.$parent.hideLoading();
+              this.$parent.swal('Error!', err,'error');
+            });
         }
       });
     },
