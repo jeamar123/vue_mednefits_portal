@@ -1,117 +1,98 @@
 <script>
 /* eslint-disable */
+import axios from 'axios';  
 // Methods here
 let createTeamBenefitsTier = {
   data() {
     return {
-      gp_cap_status: false,
-      isTierBtn: true,
+      isTierBtn: false,
       isTierInput: false,
       isTierSummary: false,
       isEditActive: false,
       tierCounter: 0,
-      tierDetials: {},
-      tierStorage: []
+      tierDetials: {
+        gp_cap_status: false,
+      },
+      tierStorage: [],
+      activeTier: null,
     };
+  },
+  created(){
+    this.getTierList();
   },
   methods: {
     toggleGPcapStatus(opt) {
-      this.gp_cap_status = opt;
+      this.tierDetials.gp_cap_status = opt;
+      this.$forceUpdate();
     },
-    addTierBtn() {
+    selectTier( data, index ){
+      // console.log( data );
+      this.activeTier = data;
+      this.activeTier.index = index;
+    },
+    addTierBtn(opt, index, data) {
       this.isTierInput = true;
       this.isTierBtn = false;
       this.isTierSummary = false;
-
-      if (this.tierStorage.length == 0) {
-        this.tierCounter += 1;
-      } else if (this.tierStorage.length != 0) {
-        this.tierCounter = this.tierStorage.length + 1;
+      this.isEditActive = opt == 'edit' ? true : false;
+      if (opt == "add") {
+        this.tierDetials = {
+          gp_cap_status: false,
+        };
+        this.tierDetials.index = this.tierStorage.length + 1;
+      } else if (opt == "edit") {
+        this.tierDetials.index = index;
+        this.tierDetials = {
+          plan_tier_id: data.plan_tier_id,
+          medCap: data.medical_annual_cap,
+          wellCap: data.wellness_annual_cap,
+          gp_cap_status: ( data.gp_cap_status ) ? true : false,
+          gpCap: data.gp_cap_per_visit,
+          empCount: data.member_head_count,
+          depCount: data.dependent_head_count
+        };
       }
     },
-    backBtn(data) {
+    closeBtn( ) {
       this.isTierInput = false;
-      this.isTierBtn = true;
+      this.isTierBtn = false;
       this.isEditActive = false;
-      this.isTierSummary = true;
-
-      if (data == "add") {
-        if (this.tierStorage.length == 0) {
-          this.tierCounter -= 1;
-        } else if (this.tierStorage.length != 0) {
-          this.tierCounter = this.tierStorage.length - 1;
-        }
-      } else if (data == "edit") {
-        console.log("edit");
-      }
-      this.tierDetials = {};
-    },
-    saveTierData(data) {
-      if (data == "save" && !this.isEmpty(this.tierDetials)) {
-        this.$swal("Successful!", "Tier has been added.", "success");
-        this.tierStorage.push({
-          medCap: this.tierDetials.medCap,
-          wellCap: this.tierDetials.wellCap,
-          gpCap: this.tierDetials.gpCap,
-          empCount: this.tierDetials.empCount,
-          depCount: this.tierDetials.depCount
-        });
-        this.isTierInput = false;
-        this.isTierSummary = true;
-        this.tierDetials = {}; //empty form
-        console.log("tierDetials", this.tierDetials);
-        console.log("tierStorage", this.tierStorage);
-      } else if (data == "edit") {
-        let index = this.tierCounter - 1;
-        this.$swal({
-          title: "Confirm",
-          text: "Are you sure you want to update this tier?",
-          type: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Yes",
-          confirmButtonColor: "#0392CF",
-          cancelButtonText: "No",
-          customClass: "warning-global-container primary"
-        }).then(result => {
-          if (result.value) {
-            this.tierStorage[index] = {
-              medCap: this.tierDetials.medCap,
-              wellCap: this.tierDetials.wellCap,
-              gpCap: this.tierDetials.gpCap,
-              empCount: this.tierDetials.empCount,
-              depCount: this.tierDetials.depCount
-            };
-            this.isTierInput = false;
-            this.isTierSummary = true;
-            this.tierDetials = {}; //empty form
-            console.log("tierDetials", this.tierDetials);
-            console.log("tierStorage", this.tierStorage);
-            this.$swal(
-              "Updated!",
-              "Tier details has been updated.",
-              "success"
-            );
-          }
-        });
-      } else {
-        console.log("Nothing to save");
-      }
-    },
-    editTierData(index) {
-      this.isTierInput = true;
-      this.isEditActive = true;
       this.isTierSummary = false;
-
-      this.tierCounter = index + 1;
-      this.tierDetials = {
-        medCap: this.tierStorage[index].medCap,
-        wellCap: this.tierStorage[index].wellCap,
-        gpCap: this.tierStorage[index].gpCap,
-        empCount: this.tierStorage[index].empCount,
-        depCount: this.tierStorage[index].depCount
-      };
+      this.tierDetials = {};
+      this.activeTier = null;
+      this.getTierList();
     },
-    remove() {
+    nextBtn(){
+      localStorage.setItem('tierSelected', JSON.stringify(this.activeTier) );
+      this.$router.push({ name: 'CompanyEnrollment' });
+    },
+    saveTierData() {
+      // console.log( this.tierDetials );
+      if( this.isEmpty(this.tierDetials) == true ){
+        this.$parent.swal( 'Error!', "Input values should be 1 or more", 'error' );
+        return false;
+      }
+      if( this.tierDetials.medCap == 0 || this.tierDetials.wellCap == 0 || this.tierDetials.empCount == 0 || this.tierDetials.depCount == 0 ){
+        this.$parent.swal( 'Error!', "Input values should be 1 or more", 'error' );
+        return false;
+      }
+      if( this.tierDetials.gp_cap_status == true && (!this.tierDetials.gpCap || this.tierDetials.gpCap == 0) ){
+        this.$parent.swal( 'Error!', "Input values should be 1 or more", 'error' );
+        return false;
+      }
+      if (this.isEditActive == true) {
+        this.updateTier( this.tierDetials );
+      } else {
+        this.addTier( this.tierDetials );
+      }
+    },
+    isEmpty(obj) {
+      for (var key in obj) {
+        if (obj.hasOwnProperty(key)) return false;
+      }
+      return true;
+    },
+    removeTier() {
       this.$swal({
         title: "Confirm",
         text: "Are you sure you want to remove this tier?",
@@ -123,24 +104,118 @@ let createTeamBenefitsTier = {
         customClass: "warning-global-container danger "
       }).then(result => {
         if (result.value) {
-          this.isTierInput = false;
-          this.isTierBtn = true;
-          this.tierDetials= {};
-          //delete tier
-          let index = this.tierCounter - 1;
-          const data = this.tierStorage.indexOf(index);
-          this.tierStorage.splice(data, 1);
-          //succes SWAL
-          this.$swal("Deleted!", "Tier has been deleted.", "success");
+          var data = {
+            plan_tier_id : this.tierDetials.plan_tier_id
+          }
+          this.$parent.showLoading();
+          axios.post( axios.defaults.serverUrl + '/hr/remove_plan_tier', data )
+            .then(res => {
+              this.$parent.hideLoading();
+              console.log(res);
+              if( res.data.status ){
+                this.$parent.swal('Success!', res.data.message, 'success');
+                this.closeBtn();
+              }else{
+                this.$parent.swal('Error!', res.data.message, 'error');
+              }
+            })
+            .catch(err => {
+              console.log( err );
+              this.$parent.hideLoading();
+              this.$parent.swal('Error!', err,'error');
+            });
         }
       });
     },
-    isEmpty(obj) {
-      for (var key in obj) {
-        if (obj.hasOwnProperty(key)) return false;
-      }
-      return true;
-    }
+    addTier( data ){
+      this.$parent.showLoading();
+      var add_data = {
+        medical_annual_cap: data.medCap,
+        wellness_annual_cap: data.wellCap,
+        gp_cap_status: data.gp_cap_status,
+        gp_cap_per_visit: data.gpCap,
+        member_head_count: data.empCount,
+        dependent_head_count: data.depCount
+      };
+      axios.post( axios.defaults.serverUrl + '/hr/create/plan_tier', add_data )
+        .then(res => {
+          this.$parent.hideLoading();
+          // console.log(res);
+          if( res.data.status ){
+            this.$parent.swal('Success!', res.data.message, 'success');
+            this.closeBtn();
+          }else{
+            this.$parent.swal('Error!', res.data.message, 'error');
+          }
+        })
+        .catch(err => {
+          console.log( err );
+          this.$parent.hideLoading();
+          this.$parent.swal('Error!', err,'error');
+        });
+    },
+    updateTier( data ){
+      this.$swal({
+        title: "Confirm",
+        text: "Are you sure you want to update this tier?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        confirmButtonColor: "#0392CF",
+        cancelButtonText: "No",
+        customClass: "warning-global-container primary"
+      }).then(result => {
+        if (result.value) {
+          this.$parent.showLoading();
+          var add_data = {
+            plan_tier_id: data.plan_tier_id,
+            medical_annual_cap: data.medCap,
+            wellness_annual_cap: data.wellCap,
+            gp_cap_status: data.gp_cap_status,
+            gp_cap_per_visit: data.gpCap,
+            member_head_count: data.empCount,
+            dependent_head_count: data.depCount
+          };
+          axios.post( axios.defaults.serverUrl + '/hr/update_plan_tier', add_data )
+            .then(res => {
+              this.$parent.hideLoading();
+              // console.log(res);
+              if( res.data.status ){
+                this.$parent.swal('Success!', res.data.message, 'success');
+                this.closeBtn();
+              }else{
+                this.$parent.swal('Error!', res.data.message, 'error');
+              }
+            })
+            .catch(err => {
+              console.log( err );
+              this.$parent.hideLoading();
+              this.$parent.swal('Error!', err,'error');
+            });
+        }
+      });
+    },
+    getTierList(){
+      this.$parent.showLoading();
+      axios.get( axios.defaults.serverUrl + '/hr/get_plan_tiers' )
+        .then(res => {
+          this.$parent.hideLoading();
+          // console.log(res);
+          if( res.status == 200 ){
+            this.tierStorage = res.data.data;
+            this.isTierSummary = this.tierStorage.length > 0 ? true : false;
+            this.isTierBtn = this.tierStorage.length == 0 ? true : false;
+          }else{
+            this.$parent.swal('Error!', res.data.message, 'error');
+          }
+        })
+        .catch(err => {
+          console.log( err );
+          this.$parent.hideLoading();
+          this.$parent.swal('Error!', err,'error');
+        });
+    },
+
   }
 };
 

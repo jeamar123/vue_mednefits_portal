@@ -60,7 +60,6 @@ let dashboard = {
     },
     overviewData(state) {
       this.isState = state.isState;
-      console.log(this.isState);
     },
     //Dropdown methods toggle show hide dropdown
     dropdownClicked(data) {

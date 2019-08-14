@@ -68,14 +68,19 @@ let enrollment = {
       checkedlistEmpDependents: [],
     };
   },
+  created() {
+    this.$emit("enrollmentData", {
+      isState: "enrollment"
+    });
+  },
   methods: {
     type(data) { //used in enrollment
       this.isType = data;
-      console.log(this.isType);
+      // console.log(this.isType);
     },
     next(data) { // use in enrollment
       if (this.isType === "web") {
-        this.isState = "web"
+        this.isState = "web";
         this.$router.push('enrollment/web-input');
       } else if (this.isType === "excel") {
         this.isState = "excel";
@@ -83,6 +88,7 @@ let enrollment = {
       } else {
         console.log("select 1 item");
       }
+      localStorage.setItem('enrollmentOption', this.isType );
     },
     //to check is object empty globall
     isEmpty(obj) {
@@ -92,12 +98,7 @@ let enrollment = {
       return true;
     }
   },
-  created() {
-    this.$emit("enrollmentData", {
-      isState: "enrollment"
-    });
-    console.log("enrolment page");
-  }
+  
 };
 
 export default enrollment;

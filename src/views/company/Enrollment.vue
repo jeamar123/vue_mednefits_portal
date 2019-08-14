@@ -70,7 +70,7 @@
 
       <div class="prev-next-button-container">
         <div class="button-container">
-          <button v-if="isState === 'enrollment'" @click="$router.go(-1)" class="back-btn">Back</button>
+          <button v-if="isState === 'enrollment'" @click="$router.push({ name : 'CompanyEnrollmentOptions' })" class="back-btn">Back</button>
          
 
           <div class="btn-enroll-container">

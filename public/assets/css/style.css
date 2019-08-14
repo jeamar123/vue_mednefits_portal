@@ -411,7 +411,7 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
     background-color: rgba(0, 0, 0, .5);
     display: table;
     transition: opacity .3s ease;
-    /* z-index: 99999; */
+    z-index: 99;
   }
 
   .modal-wrapper {
@@ -932,6 +932,9 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
   }
   .warning-global-container.swal2-popup .swal2-styled.swal2-cancel:hover {
     background-color: #aeaeae !important;
+  }
+  .warning-global-container.swal2-popup.danger .swal2-confirm{
+    background-color: #ef6562 !important;
   }
 
 /*----------------*/

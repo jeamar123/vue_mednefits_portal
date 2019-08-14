@@ -16,7 +16,6 @@ let employee = {
       page_active: 1,
     };
   },
-
   created(){
     this.employeeOverviewApi();
   },
@@ -41,7 +40,6 @@ let employee = {
     employeeOverviewApi() {
       this.getTotalMembers();
       this.getEmployeeList();
-      
     },
     getTotalMembers () {
       axios.get( `${axios.defaults.serverUrl}/hr/get_total_members`)
@@ -56,37 +54,35 @@ let employee = {
       });
     },
     getEmployeeList() {
-
       let num = this.page_ctr;
       let page = this.page_active;
-
       axios.get( `${axios.defaults.serverUrl}/hr/employee/list/${num}?page=${page}`)
-      .then(res => {
-        this.employees = res.data;
-          
-        this.employees.data.map( (value, key) => {
-          // this.employees.data[key].push({
-          //   fname: this.employees.data[key].name.substring( 0, value.name.lastIndexOf(" ") ),
-          //   lname: this.employees.data[ key ].name.substring( value.name.lastIndexOf(" ") + 1 )
-          // });
-          value.fname = this.employees.data[key].name.substring( 0, value.name.lastIndexOf(" ") );
-          value.lname = this.employees.data[key].name.substring( value.name.lastIndexOf(" ") + 1 );
-          value.start_date = moment( value.start_date ).format("DD MMMM YYYY");
-          value.expiry_date = moment( value.expiry_date ).format("DD MMMM YYYY");
-          value.dob = new Date( value.dob );
-          value.start_date_format = moment( value.start_date ).format("DD/MM/YYYY");
-          value.expiry_date_fromat = moment( value.expiry_date ).format("DD/MM/YYYY");
-          value.end_date_format = moment( value.expiry_date ).format("DD/MM/YYYY");
-        });
+        .then(res => {
+          this.employees = res.data;
+            
+          this.employees.data.map( (value, key) => {
+            // this.employees.data[key].push({
+            //   fname: this.employees.data[key].name.substring( 0, value.name.lastIndexOf(" ") ),
+            //   lname: this.employees.data[ key ].name.substring( value.name.lastIndexOf(" ") + 1 )
+            // });
+            value.fname = this.employees.data[key].name.substring( 0, value.name.lastIndexOf(" ") );
+            value.lname = this.employees.data[key].name.substring( value.name.lastIndexOf(" ") + 1 );
+            value.start_date = moment( value.start_date ).format("DD MMMM YYYY");
+            value.expiry_date = moment( value.expiry_date ).format("DD MMMM YYYY");
+            value.dob = new Date( value.dob );
+            value.start_date_format = moment( value.start_date ).format("DD/MM/YYYY");
+            value.expiry_date_fromat = moment( value.expiry_date ).format("DD/MM/YYYY");
+            value.end_date_format = moment( value.expiry_date ).format("DD/MM/YYYY");
+          });
 
-        // let employees_serialized = JSON.stringify(this.employees.data);
-        // localStorage.setItem('employeesLocal', employees_serialized);
-      })
-      .catch(err => {
-        console.log( err );
-        this.$parent.hideLoading();
-        this.$parent.swal('Error!', err,'error');
-      });
+          // let employees_serialized = JSON.stringify(this.employees.data);
+          // localStorage.setItem('employeesLocal', employees_serialized);
+        })
+        .catch(err => {
+          console.log( err );
+          this.$parent.hideLoading();
+          this.$parent.swal('Error!', err,'error');
+        });
     }
 	}
 };

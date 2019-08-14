@@ -403,6 +403,12 @@
 				margin-left: 16px;
 			}
 
+			.vue-tel-input{
+				border: none;
+		    box-shadow: none;
+				margin-top: -3px;
+			}
+
 			label {
 				display: block;
 				color: #848484;
@@ -685,6 +691,10 @@
 		    padding: 10px 20px;
 		    min-width: 130px;
 			}
+
+			tbody tr:not( :last-child ) td{
+				border-bottom: 1px solid #f1f1f1;
+			}
 			
 			.fname-container {
 				display: flex;
@@ -692,6 +702,16 @@
 					display: block;
 					margin-right: 10px;
 				}
+			}
+
+			td .fa-check{
+				color: #048204;
+			}
+			td .fa-circle-o-notch{
+				color: #218acc;
+			}
+			td .fa-times{
+				color: #FF5722;
 			}
 
 			th input,
@@ -751,13 +771,13 @@
 		tbody tr {
 			color: #888;
 
-			.has-error {
+			&.has-error {
 				background-color: #fee2e2;
 			}
 
-			&:hover {
+			/*&:hover {
 				background-color: #f5f8fa;
-			}
+			}*/
 
 			&:hover .dependent-hover-btn {
 				display: inline-block;
@@ -1125,6 +1145,11 @@
 		float: right;
 	}
 
+	.next-btn:disabled{
+		opacity: .5;
+		cursor: not-allowed;
+	}
+
 	.confirm-btn {
 		background-color: #33cccb;
 		border-color: #33cccb;
@@ -1141,6 +1166,11 @@
 		border: 2px solid #d6d6d6;
 		margin-right: 20px;
 		width: 200px
+	}
+
+	.btn-employee:disabled {
+		opacity: .5;
+		cursor: not-allowed;
 	}
 
 	.btn-enroll {
@@ -1190,6 +1220,8 @@
 	}
 }
 .modal-input-wrapper {
+	position: relative;
+
 	label {
 		color: #616161;
 		display: block;
@@ -1205,6 +1237,22 @@
 		width: 95%;
 		height: 40px;
 		margin-bottom: 15px;
+	}
+	select {
+		-webkit-appearance: none;
+	}
+	.err-msg{
+		color: #ff8a8a;
+    font-size: 11px;
+    display: block;
+    line-height: 1;
+    margin-bottom: 10px;
+	}
+	img{
+    width: 15px;
+    position: absolute;
+    top: 42px;
+    right: 25px;
 	}
 }
 .modal-footer {
@@ -1229,6 +1277,21 @@
 		border: solid 1px #0392cf;
 		background-color: #0392cf;
 		color: #fff;
+	}
+}
+.summary-edit-modal{
+	.modal-input-wrapper{
+		input{
+			margin-bottom: 5px;
+		}
+	}
+	.dependent-text{
+		font-weight: 700;
+    color: #333;
+    border-bottom: 1px solid #999;
+    padding: 10px 0;
+    width: 80%;
+    margin-bottom: 10px;
 	}
 }
 

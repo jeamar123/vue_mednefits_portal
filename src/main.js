@@ -6,6 +6,7 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import VuePlotly from '@statnett/vue-plotly';
 import VueMoment from 'vue-moment';
 import VueSlider from 'vue-slider-component';
+import VueTelInput from 'vue-tel-input'
 import JsonExcel from 'vue-json-excel'
  
 import $ from 'jquery'; 
@@ -16,6 +17,7 @@ import 'vue-slider-component/theme/default.css';
 import App from './App.vue';
 import router from './router';
 
+Vue.use(VueTelInput)
 Vue.use(VCalendar);
 Vue.use(vClickOutside);
 Vue.use(VueSweetalert2);
