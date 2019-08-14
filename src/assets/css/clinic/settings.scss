@@ -1401,7 +1401,6 @@
  			background-color: #bbb;
  			color: #fff;
  			border-radius: 0 4px 4px 0;
- 			border: 0;
  			height: 34px;
  			width: 55px;
  			font-size: 18px;
@@ -1409,25 +1408,260 @@
  	}
 
  	.export-wrapper {
- 		float: right;
+		float: right;
+	}
+}
 
- 		button {
- 			background: #fff;
- 			border: 1px solid #d3d3d3;
- 			border-radius: 4px;
- 			color: #aaa;
- 			padding: 6px 12px;
- 			line-height: 1.42857143;
- 		}
 
- 		button:nth-child(1) {
- 			margin: 0 5px 0 0;
- 		}
 
- 		i {
- 			margin: 0 5px 0 0;
- 		}
- 	}
+.btn-export {
+	background: #fff;
+	border: 1px solid #d3d3d3;
+	border-radius: 4px;
+	color: #aaa;
+	padding: 6px 12px;
+	line-height: 1.42857143;
+
+	&:nth-child(1) {
+		margin: 0 5px 0 0;
+	}
+
+	i {
+		margin: 0 5px 0 0;
+	}
+}
+
+
+
+.clinic-invoice-wrapper {
+	display: inline-block;
+	max-width: 700px;
+
+	h4 {
+		color: #333;
+		margin: 0 0 20px 0;
+		padding: 0;
+	}
+
+	.custom-date-selector {
+		position: relative;
+    background: #fff;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    width: 185px;
+    height: 40px;
+    margin: 0 10px 0 0;
+
+    .fa-calendar {
+			padding: 0 0 0 10px;
+		}
+
+		.fa-caret-down {
+			padding: 0 10px 0 0;
+		}
+
+		.fa-arrow-right {
+			margin: 0 14px;
+		}
+
+		.activity-custom-input {
+			line-height: 1.42857143;
+	    letter-spacing: .5px;
+	    padding: 5px 10px;
+	    text-align: center;
+	    color: #555;
+	    font-weight: 700;
+	    border: 0;
+	    width: 100%;
+	    cursor: pointer;
+		}
+
+		input::placeholder {
+			font-size: 12px;
+		}
+	}
+
+	.view-invoice-month-selector {
+		display: flex;
+		margin: 0 0 40px 0;
+
+		.btn-go {
+			padding: 6px 12px;
+			background: #1B9BD7;
+			border: 0;
+			border-radius: 4px;
+			color: #fff;
+		}
+
+		.btn-export {
+			margin: 0 0 0 50px;
+		}
+	}
+}
+
+.invoice-card-wrapper {
+	border: 1px solid #EEE;
+	box-shadow: 0px 0px 10px #CCC;
+	width: 100%;
+
+	.invoice-info-wrapper {
+		width: 645px;
+	}
+
+	.no-trans-text {
+		text-align: center;
+		font-size: 24px;
+		margin: 20px 0 15px;
+	}
+
+	.header {
+		border-bottom: 1px solid #DCDFE0;
+		overflow: hidden;
+		padding: 20px 30px 10px 30px;
+		text-align: right;
+
+		img {
+			max-width: 250px;
+	    max-height: 135px;
+	    border: 1px solid #F1F1F1;
+	    margin: 30px 0 0;
+	    float: left;
+		}
+
+		.header-right-info h1 {
+			font-size: 35px;
+			font-weight: 500;
+			font-family: 'Open-Sans', sans-serif;
+			margin: 20px 0 10px;
+			line-height: 1.1;
+		}
+
+		.mednefits-wallet-text {
+			color: #999;
+			font-weight: 700;
+			margin: 0 0 20px 0;
+		}
+	}
+
+	.invoice-row-container {
+		font-weight: 700;
+		label {
+			color: #555;
+			display: inline-block;
+			margin: 0 10px 5px 0;
+		}
+	}
+
+	.bill-to {
+		border-bottom: 1px solid #DCDFE0;
+		padding: 20px 0px 20px 30px;
+		overflow: hidden;
+
+		.bill-to-left-info {
+			float: left;
+			width: 48%;
+		}
+
+		.bill-to-left-info h5 {
+			line-height: 1.1;
+			margin: 0 0 10px 0;
+		}
+
+		.bill-to-left-info h5:first-child {
+			color: #aaa;
+			margin: 0;
+		}
+
+		.bill-to-right-info {
+			float: left;
+			width: 52%;
+			margin: 10px 0 0 0;
+			background-color: #eee;
+			padding: 5px 30px 5px 15px;
+		}
+
+		.bill-to-right-info label {
+			text-align: right;
+			width: 130px;
+		}
+	}
+
+	.description {
+		padding: 10px 30px;
+
+		>div:nth-child(1) label {
+			text-decoration: underline;
+		}
+	}
+
+	.table-wrapper {
+		padding: 0 30px;
+
+		label {
+			display: inline-block;
+			padding: 0 0 15px 0;
+		}
+
+		table {
+			font-size: 14px;
+		}
+
+		thead tr th {
+			background-color: #0392CF;
+			border: 1px solid #0392CF;
+			color: #fff;
+			font-weight: 700;
+			padding: 8px;
+		}
+
+		tbody {
+			border: 0;
+		}
+
+		tbody tr td {
+			border: 1px solid #ddd;
+			padding: 8px;
+			font-weight: 700;
+			text-align: center;
+		}
+
+		tbody tr td:first-child {
+			text-align: left;
+		}
+
+		tbody tr:last-child td {
+			border: 0;
+		}
+
+		tbody tr:last-child td:first-child {
+			text-align: right;
+		}
+	}
+
+	.notes {
+		padding: 0 30px 10px 30px;
+
+		>div:first-child span {
+			display: block;
+			font-weight: 700;
+			margin: 0 0 10px 0;
+		}
+	}
+
+	.copyright {
+		padding: 0 0 20px 0;
+		font-weight: 700;
+		text-align: center;
+
+		h5 {
+			color: #999;
+			font-weight: 700;
+			margin: 10px 0;
+		}
+	}
 }
 
 
