@@ -37,7 +37,7 @@
 					</div>
 				</div>
 				<div class="employee-search-container">
-					<span>1 Employee</span>
+					<span>{{employees.length}} Employee</span>
 					<div>
 						<!-- <form > -->
 							<input type="text" placeholder="Search Employee" v-model="search" @keyup.enter="searchEmployee()">
