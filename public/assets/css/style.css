@@ -403,7 +403,7 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: v
 
  .modal-mask {
     position: fixed;
-    z-index: 50;
+    z-index: 999 !important;
     top: 0;
     left: 0;
     width: 100%;

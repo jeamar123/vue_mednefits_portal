@@ -1,5 +1,4 @@
 <script>
-	import axios from 'axios';
 	import Modal from "../../views/clinic/modal/Modal.vue";
 
 	var claim = {
