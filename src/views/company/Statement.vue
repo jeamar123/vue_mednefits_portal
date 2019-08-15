@@ -11,14 +11,19 @@
   			</div>
 
         <div v-if="showRangeMonthSlider" class="claim-slider-container">
-					<vue-slider class="range-slider" v-model="range_values" :marks="range_marks" :enableCross="true" :min="1" :max="12" :process="false"></vue-slider>
+					<vue-slider class="range-slider" v-model="range_values" :marks="range_marks" :enableCross="true" :tooltip="'none'" :min="1" :max="12" :process="false" @drag-start="() => inDragging = true" @drag-end="() => inDragging = false" :dragEnd="sliderDragged( range_values )"></vue-slider>
 
           <div id="date-responsive" class="date-selection-container">
             <div class="custom-date-selector">
               <i class="fa fa-calendar"></i>
-              <v-date-picker :max-date='new Date()' v-model="timeFrame.start"
+              <v-date-picker 
+                mode='single' 
+                popoverDirection="bottom" 
+                :formats="formats"
+                v-model='start_date' 
                 :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
-                popover-visibility='focus'>
+                popover-visibility='focus'
+              >
               </v-date-picker>
               <i class="fa fa-caret-down"></i>
             </div>
@@ -27,9 +32,14 @@
             
             <div class="custom-date-selector">  
               <i class="fa fa-calendar"></i>
-              <v-date-picker :max-date='new Date()' v-model="timeFrame.end"
+              <v-date-picker 
+                mode='single' 
+                popoverDirection="bottom" 
+                :formats="formats"
+                v-model='end_date' 
                 :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
-                popover-visibility='focus'>
+                popover-visibility='focus'
+              >
               </v-date-picker>
               <i class="fa fa-caret-down"></i>  
             </div> 
@@ -42,9 +52,14 @@
 
           <div class="custom-date-selector">
             <i class="fa fa-calendar"></i>
-            <v-date-picker :max-date='new Date()' v-model="timeFrame.start"
+            <v-date-picker 
+              mode='single' 
+              popoverDirection="bottom" 
+              :formats="formats"
+              v-model='start_date' 
               :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
-              popover-visibility='focus'>
+              popover-visibility='focus'
+            >
             </v-date-picker>
             <i class="fa fa-caret-down"></i>
           </div>
@@ -53,9 +68,14 @@
           
           <div class="custom-date-selector">  
             <i class="fa fa-calendar"></i>
-            <v-date-picker :max-date='new Date()' v-model="timeFrame.end"
+            <v-date-picker 
+              mode='single' 
+              popoverDirection="bottom" 
+              :formats="formats"
+              v-model='end_date' 
               :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
-              popover-visibility='focus'>
+              popover-visibility='focus'
+            >
             </v-date-picker>
             <i class="fa fa-caret-down"></i>  
           </div>    
