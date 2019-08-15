@@ -28,6 +28,8 @@
 	        input: ['MM/DD/YYYY'], 
 	        data: ['YYYY-MM-DD']
 	      },
+	      viewSelector: false,
+	      viewStatementAccount: false,
 			}
 		},
 		methods: {
@@ -39,6 +41,20 @@
 	      this.year_active.value = value;
 	      this.year_active.text = text; 
 	    },
+	    btnView() {
+	    	if( this.viewSelector === false ) {
+	    		this.viewSelector = true;
+	    	} else {
+	    		this.viewSelector = false;
+	    	}
+	    },
+	    viewStatement() {
+	    	if( this.viewStatementAccount === false ) {
+	    		this.viewStatementAccount = true;
+		    } else {
+		    	this.viewStatementAccount = false;
+		    }
+	    }
 		}
 	
 	}
