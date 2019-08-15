@@ -1248,12 +1248,12 @@
 		}
 
 		>div {
-			display: flex;
+			display: -webkit-box;
 
 		}
 
-		.total-container {
-			flex: .51;
+		.total-container, .alocated-container, .unalocated-container {
+			margin-right: 20px;
 		}
 	}
 
