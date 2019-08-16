@@ -11,7 +11,20 @@
   			</div>
 
         <div v-if="showRangeMonthSlider" class="claim-slider-container">
-					<vue-slider class="range-slider" v-model="range_values" :marks="range_marks" :enableCross="true" :tooltip="'none'" :min="1" :max="12" :process="false" @drag-start="() => inDragging = true" @drag-end="() => inDragging = false" :dragEnd="sliderDragged( range_values )"></vue-slider>
+					<vue-slider 
+            class="range-slider" 
+            v-model="range_values" 
+            :marks="range_marks" 
+            :enableCross="true" 
+            :tooltip="'none'" 
+            :min="1" 
+            :max="12" 
+            :process="false" 
+            @drag-start="() => inDragging = true" 
+            @drag-end="() => { inDragging = false, isFromSlider = true }" 
+            @click.native="() => { inDragging = false, isFromSlider = true }"
+            :dragEnd="sliderDragged( range_values, this )"
+          ></vue-slider>
 
           <div id="date-responsive" class="date-selection-container">
             <div class="custom-date-selector">

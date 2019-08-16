@@ -16,6 +16,7 @@ let statement = {
       full_active: false,
       showTransDetails: false,
       inDragging : false,
+      isFromSlider : false,
       timeFrame: {},
       year_active: {
         value: 0,
@@ -50,7 +51,7 @@ let statement = {
   },
   methods: {
     sliderDragged( value ){
-      if( !this.inDragging ){
+      if( this.inDragging == false && this.isFromSlider == true){
         this.setFirstEndDate( value );
         // this.setFirstEndDate( value[0], value[1] );
         this.getStatementData( );
@@ -76,8 +77,9 @@ let statement = {
         this.showRangeMonthSlider = false;
         this.showInputDate = true;
       }
-      // this.start_date = new Date(moment( moment( this.start_date ).format('MMMM') + " " + this.current_year ).startOf('year'));
-      // this.end_date = new Date(moment( moment( this.end_date ).format('MMMM') + " " + this.current_year ).endOf('month'));
+      this.start_date = new Date(moment( moment( this.start_date ).format('MMMM') + " " + this.current_year ).startOf('year'));
+      this.end_date = new Date(moment( moment( this.end_date ).format('MMMM') + " " + this.current_year ).endOf('month'));
+      this.getStatementData( );
     },
   	statementType(value, text) {
       //spending either medical or wellness
@@ -158,7 +160,8 @@ let statement = {
           this.$parent.swal('Error!', err,'error');
         });
     },
-    getStatementData( data ){
+    getStatementData(  ){
+      this.isFromSlider = false;
       var data = {
         start : moment(this.start_date).format('YYYY-MM-DD'),
         end : moment(this.end_date).format('YYYY-MM-DD'),

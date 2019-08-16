@@ -8,7 +8,18 @@
 		</div>
 
 		<!-- <div class="activity-slider-container">
-			<vue-slider class="range-slider" v-model="range_values" :marks="range_marks" :enableCross="true" :min="1" :max="12" :tooltip="'none'" @drag-start="() => inDragging = true" @drag-end="() => inDragging = false" :dragEnd="sliderDragged( range_values )"></vue-slider>
+			<vue-slider 
+        class="range-slider" 
+        v-model="range_values" 
+        :marks="range_marks" 
+        :enableCross="true" 
+        :tooltip="'none'" 
+        :min="1" 
+        :max="12" 
+        :process="false" 
+        @drag-start="() => inDragging = true" 
+        @change="sliderDragged( range_values )" 
+      ></vue-slider>
 		</div> -->
 		<div class="date-picker-container">
 			<div class="btn-picker">
