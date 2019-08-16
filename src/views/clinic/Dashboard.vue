@@ -30,7 +30,8 @@
 		  		<div v-if="isLogoutDropShow" class="logout-drop">
 		  			<ul>
 		  				<li><a @click.prevent="toggleSMSModal()">SMS</a></li>
-		  				<li><a @click.prevent="toggleUpdatePass()">Settings</a></li>
+		  				<!-- <li><a @click.prevent="toggleUpdatePass()">Settings</a></li> -->
+		  				<router-link tag="li" to="/clinic/settings"><a href="#" @click.prevent="toggleUpdatePass()">Settings</a></router-link>
 		  				<li><a @click.prevent="logout()">Logout</a></li>
 		  			</ul>
 		  		</div>

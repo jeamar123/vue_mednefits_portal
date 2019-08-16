@@ -52,6 +52,13 @@ import Portal from './views/Portal.vue'
   import ClinicDashboard from './views/clinic/Dashboard.vue'
   import ClinicDashboardSummary from './views/clinic/Dashboard-summary.vue'
   import ClinicClaim from './views/clinic/Claim.vue'
+  import ClinicSettings from './views/clinic/Settings.vue'
+// settings 
+  import ClinicAccount from './views/clinic/settings/Clinic-account.vue'
+  import ClinicStaff from './views/clinic/settings/Clinic-staff.vue'
+  import ClinicServices from './views/clinic/settings/Clinic-services.vue'
+  import ClinicProfile from './views/clinic/settings/Clinic-profile.vue'
+  import ClinicTransactions from './views/clinic/settings/Clinic-transactions.vue'
 
 Vue.use(Router)
 Vue.use(axios)
@@ -150,7 +157,27 @@ export default new Router({
       meta: { auth: true },
       children: [
         { name: 'clinicClaim', path: '/clinic/claim', component: ClinicClaim },
-        { name: 'clinicDashboardSummary', path: '/clinic/dashboard-summary',component: ClinicDashboardSummary }
+        { name: 'clinicDashboardSummary', path: '/clinic/dashboard-summary',component: ClinicDashboardSummary },
+        { name: 'clinicSettings', path: '/clinic/settings',component: ClinicSettings, 
+          redirect: '/clinic/settings/clinic-account',
+          children: [
+            { 
+              name: 'ClinicAccount', path: '/clinic/settings/clinic-account', components: {account: ClinicAccount}
+            },
+            { 
+              name: 'ClinicStaff', path: '/clinic/settings/clinic-staff', components: {account: ClinicStaff}
+            },
+             { 
+              name: 'ClinicServices', path: '/clinic/settings/clinic-services', components: {account: ClinicServices}
+            },
+             { 
+              name: 'ClinicProfile', path: '/clinic/settings/clinic-profile', components: {account: ClinicProfile}
+            },
+             { 
+              name: 'ClinicTransactions', path: '/clinic/settings/clinic-transactions', components: {account: ClinicTransactions}
+            },
+          ]
+        }
       ]
     },
   ]
