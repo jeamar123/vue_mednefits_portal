@@ -253,14 +253,14 @@
 															<div class="manual-form date">
 																<input type="text" class="datepicker">
 																<div class="icon-wrapper">
-																	<i class="fa fa-calendar myColor-secondary" aria-hidden="true"></i>
+																	<i class="fa fa-calendar" aria-hidden="true"></i>
 																</div>
 															</div>
 														</td>
 														<td class="datepicker-td">
 															<div class="manual-form time">
 																<div class="left-icon-wrapper">
-																	<i class="fa fa-clock-o myColor-secondary" aria-hidden="true"></i>
+																	<i class="fa fa-clock-o" aria-hidden="true"></i>
 																</div>
 																<input type="text">
 																<div class="right-icon-wrapper cursor-pointer">
@@ -309,8 +309,8 @@
 														</td>
 														<td>
 															<input valid-number class="manual-form" type="text"> 
-															<span class="SgDollar myColor-secondary">S$</span>
-															<span class="SgDollar myColor-secondary">RM</span>
+															<span class="SgDollar">S$</span>
+															<span class="SgDollar">RM</span>
 														</td>
 														<td>
 															<button class="btn btn-lg">Submit</button>
@@ -572,7 +572,10 @@
 			         				</td>
 			         				<td>
 			         					<div class="calendar-input-wrapper">
-			         						<input type="text">
+			         						<v-date-picker :max-date='new Date()' v-model="timeFrame.end"
+							              :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
+							              popover-visibility='focus'>
+							            </v-date-picker>
 			         						<div>
 			         							<i class="fa fa-calendar" aria-hidden="true"></i>
 			         						</div>

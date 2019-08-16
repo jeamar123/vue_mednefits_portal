@@ -661,7 +661,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<tr v-if="true">
 								<td>
 									<div class="status paid">PAID</div>
 								</td>
@@ -693,6 +693,11 @@
 											</li>
 										</ul>	
 									</div>
+								</td>
+							</tr>
+							<tr v-if="false">
+								<td>
+									<h6 class="no-data-text">No data available in table</h6>
 								</td>
 							</tr>
 						</tbody>
