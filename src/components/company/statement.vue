@@ -42,6 +42,7 @@ let statement = {
       options: {},
       overview_data: {},
       employee_list: [],
+      slideCtr: 0,
     };
   },
   created(){
@@ -51,16 +52,27 @@ let statement = {
   },
   methods: {
     sliderDragged( value ){
-      if( this.inDragging == false && this.isFromSlider == true){
-        this.setFirstEndDate( value );
-        // this.setFirstEndDate( value[0], value[1] );
-        this.getStatementData( );
-      }
+      console.log( value );
+      console.log( this.inDragging );
+      console.log( this.isFromSlider );
+      // setTimeout(() => {
+        if( this.inDragging == false && this.isFromSlider == true){
+          this.setFirstEndDate( value );
+          this.isFromSlider = false;
+          // this.setFirstEndDate( value[0], value[1] );
+          // this.getStatementData( );
+        }
+      // }, 500);
     },
     setFirstEndDate( firstMonth, lastMonth ){
       this.start_date = moment( firstMonth + " " + this.current_year,'MM YYYY' ).startOf('month').format('YYYY-MM-DD');
       this.end_date   = moment( firstMonth + " " + this.current_year,'MM YYYY' ).endOf('month').format('YYYY-MM-DD');
       // this.end_date   = moment( lastMonth + " " + this.current_year,'MM YYYY' ).endOf('month').format('YYYY-MM-DD');
+    },
+    dateSelected( start, end ){
+      this.start_date = moment( start ).format('YYYY-MM-DD');
+      this.end_date   = moment( end ).format('YYYY-MM-DD');
+      this.getStatementData();
     },
     showCustomDate(value, text) {
       this.year_active.value = value;
@@ -69,17 +81,20 @@ let statement = {
         this.showRangeMonthSlider = true;
         this.showInputDate = false;
         this.current_year = moment( ).format('YYYY');
-      }else if (this.year_active.text == 'last-year') {
+      }
+      if (this.year_active.text == 'last-year') {
         this.showRangeMonthSlider = true;
         this.showInputDate = false;
         this.current_year = moment( ).subtract( 1, 'years' ).format('YYYY');
-      }else if (this.year_active.text == 'custom') {
-        this.showRangeMonthSlider = false;
-        this.showInputDate = true;
       }
       this.start_date = new Date(moment( moment( this.start_date ).format('MMMM') + " " + this.current_year ).startOf('year'));
       this.end_date = new Date(moment( moment( this.end_date ).format('MMMM') + " " + this.current_year ).endOf('month'));
-      this.getStatementData( );
+      if (this.year_active.text == 'custom') {
+        this.showRangeMonthSlider = false;
+        this.showInputDate = true;
+      }else{
+        this.getStatementData( );
+      }
     },
   	statementType(value, text) {
       //spending either medical or wellness

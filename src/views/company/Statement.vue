@@ -22,8 +22,8 @@
             :process="false" 
             @drag-start="() => inDragging = true" 
             @drag-end="() => { inDragging = false, isFromSlider = true }" 
-            @click.native="() => { inDragging = false, isFromSlider = true }"
-            :dragEnd="sliderDragged( range_values, this )"
+            @change="() => { isFromSlider = true }"
+            :dragEnd="sliderDragged( range_values )"
           ></vue-slider>
 
           <div id="date-responsive" class="date-selection-container">
@@ -72,6 +72,7 @@
               v-model='start_date' 
               :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
               popover-visibility='focus'
+              :input='dateSelected( "start" , start_date )'
             >
             </v-date-picker>
             <i class="fa fa-caret-down"></i>
@@ -88,6 +89,7 @@
               v-model='end_date' 
               :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
               popover-visibility='focus'
+              :input='dateSelected( "end" , end_date )'
             >
             </v-date-picker>
             <i class="fa fa-caret-down"></i>  
