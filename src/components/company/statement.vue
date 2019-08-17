@@ -55,14 +55,14 @@ let statement = {
       console.log( value );
       console.log( this.inDragging );
       console.log( this.isFromSlider );
-      // setTimeout(() => {
+      setTimeout(() => {
         if( this.inDragging == false && this.isFromSlider == true){
           this.setFirstEndDate( value );
           this.isFromSlider = false;
           // this.setFirstEndDate( value[0], value[1] );
-          // this.getStatementData( );
+          this.getStatementData( );
         }
-      // }, 500);
+      }, 500);
     },
     setFirstEndDate( firstMonth, lastMonth ){
       this.start_date = moment( firstMonth + " " + this.current_year,'MM YYYY' ).startOf('month').format('YYYY-MM-DD');
@@ -70,9 +70,11 @@ let statement = {
       // this.end_date   = moment( lastMonth + " " + this.current_year,'MM YYYY' ).endOf('month').format('YYYY-MM-DD');
     },
     dateSelected( start, end ){
-      this.start_date = moment( start ).format('YYYY-MM-DD');
-      this.end_date   = moment( end ).format('YYYY-MM-DD');
-      this.getStatementData();
+      console.log( start );
+      console.log( end );
+      this.start_date = new Date( moment( start ).format('YYYY-MM-DD') );
+      this.end_date   = new Date( moment( end ).format('YYYY-MM-DD') );
+      // this.getStatementData();
     },
     showCustomDate(value, text) {
       this.year_active.value = value;
