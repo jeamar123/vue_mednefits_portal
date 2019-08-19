@@ -45,4 +45,5 @@ export default dashboardSummary;
 
 <style lang="scss">
 @import "./src/assets/css/clinic/dashboard-summary.scss";
+@import "./src/assets/css/clinic/clinic-responsive.scss";
 </style>

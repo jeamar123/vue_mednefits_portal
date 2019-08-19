@@ -12,7 +12,8 @@
 				showSMSModal : false,
 				send_sms_data : {},
 				isWhiteHeader : false,
-				showMenuCollapse : false
+				showMenuCollapse : false,
+				navbarCollapse: false,
 			}
 		},
 		created() {
@@ -27,6 +28,16 @@
 			// },3000);
 		},
 		methods: {
+			btnNavbarCollapse() {
+	      if(this.navbarCollapse == false ) {
+	        this.navbarCollapse = true;
+	      }else {
+	        this.navbarCollapse = false;
+	      }
+	    },
+	    btnHideNavbarCollapse() {
+	    	this.navbarCollapse = false;
+	    },
 			swal( title, message, type ) {
         this.$swal( title, message, type);
       },
@@ -78,6 +89,7 @@
 
 <style lang="scss" scoped>
 @import "./src/assets/css/clinic/dashboard.scss";
+@import "./src/assets/css/clinic/clinic-responsive.scss"
 </style>
 
 

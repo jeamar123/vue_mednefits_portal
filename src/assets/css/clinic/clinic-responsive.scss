@@ -1,0 +1,79 @@
+
+@media (max-width: 992px) {
+	.dashboard-summary-wrapper {
+
+		.time-frame-container {
+			padding: 40px 50px;
+		}
+
+		.values-container {
+			width: auto;
+		}
+	}
+
+	.trans-history-tbl-wrapper {
+		margin: 0 50px;
+		overflow-x: auto;
+
+		.trans-history-tbl {
+			width: 992px;
+		}
+
+		&::-webkit-scrollbar {
+			height: 3px;
+		}
+	}
+}
+
+@media (min-width: 800px) {
+	.navbar {
+		.menu-bar-right {
+			display: none;
+		}
+	}
+}
+
+@media (max-width: 800px) {
+	.navbar {
+		height: 70px;
+
+		.nav-items ul {
+			padding-left: 0;
+		}
+
+		.menu-bar-right {
+			display: block;
+		}
+
+		.navbar-collapse {
+			top: 70px;
+		}
+	}
+}
+
+@media (min-width: 767px) {
+	.current-last-year-wrapper {
+		display: none;
+	}
+}
+
+@media (max-width: 767px) {
+	.dashboard-summary-wrapper {
+
+		.current-last-year-wrapper {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.claim-slider-container {
+			display: none;
+		}
+	}
+}
+
+
+
+
+
+
