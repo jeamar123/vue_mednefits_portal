@@ -17,6 +17,7 @@ let statement = {
       showTransDetails: false,
       inDragging : false,
       isFromSlider : false,
+      isNoTransaction : false,
       timeFrame: {},
       year_active: {
         value: 0,
@@ -40,29 +41,60 @@ let statement = {
       },
       download_token: null,
       options: {},
-      overview_data: {},
+      overview_data: {
+        statement: {},
+        e_claim_transactions: [],
+        in_network_transactions: [],
+      },
       employee_list: [],
       slideCtr: 0,
+      spendingTypeFilter: undefined,
     };
   },
   created(){
     this.getSession();
     this.getDownloadToken();
     this.getEmployeeLists();
+    this.getStatementData();
   },
   methods: {
+    setSpendingType(){
+      this.$parent.showLoading();
+      scope.spendingTypeOpt = opt;
+
+      if( opt == 0 ){
+        this.spendingTypeFilter = 'medical';
+      }else if( opt == 1 ){
+        this.spendingTypeFilter = 'wellness';
+      }else{
+        this.spendingTypeFilter = undefined;
+      }
+
+      this.$parent.hideLoading();
+    },
+    downloadPDF( data ){
+      if(this.download_token.live == true) {
+        window.open(this.download_token.download_link + "/spending_invoice_download?id=" + data.statement_id + '&token=' + this.download_token.token);
+      } else {
+        window.open(serverUrl.url + '/hr/statement_download?id=' + data.statement_id + '&token=' + window.localStorage.getItem('token'));
+      }
+    },
+    filterDate( date, format ){
+
+      return moment( date ).format( format );
+    },
+    roundFloatValue( value ){
+
+      return parseFloat( value ).toFixed(2);
+    },
     sliderDragged( value ){
-      console.log( value );
-      console.log( this.inDragging );
-      console.log( this.isFromSlider );
-      setTimeout(() => {
-        if( this.inDragging == false && this.isFromSlider == true){
+      if( this.inDragging == false && this.isFromSlider == true){
+        setTimeout(() => {
           this.setFirstEndDate( value );
-          this.isFromSlider = false;
           // this.setFirstEndDate( value[0], value[1] );
           this.getStatementData( );
-        }
-      }, 500);
+        }, 500);
+      }
     },
     setFirstEndDate( firstMonth, lastMonth ){
       this.start_date = moment( firstMonth + " " + this.current_year,'MM YYYY' ).startOf('month').format('YYYY-MM-DD');
@@ -70,11 +102,9 @@ let statement = {
       // this.end_date   = moment( lastMonth + " " + this.current_year,'MM YYYY' ).endOf('month').format('YYYY-MM-DD');
     },
     dateSelected( start, end ){
-      console.log( start );
-      console.log( end );
-      this.start_date = new Date( moment( start ).format('YYYY-MM-DD') );
-      this.end_date   = new Date( moment( end ).format('YYYY-MM-DD') );
-      // this.getStatementData();
+      this.start_date = new Date( start );
+      this.end_date   = new Date( end );
+      this.getStatementData();
     },
     showCustomDate(value, text) {
       this.year_active.value = value;
@@ -188,10 +218,12 @@ let statement = {
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);
-          if( res.status == 200 ){
+          if( res.data.status ){
             this.overview_data = res.data.data;
+            this.isNoTransaction = false;
           }else{
-            this.$parent.swal('Error!', res.data.message, 'error');
+            this.isNoTransaction = true;
+            // this.$parent.swal('Error!', res.data.message, 'error');
           }
         })
         .catch(err => {

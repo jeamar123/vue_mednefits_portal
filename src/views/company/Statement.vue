@@ -87,6 +87,7 @@
               popoverDirection="bottom" 
               :formats="formats"
               v-model='end_date' 
+              :min-date='start_date'
               :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
               popover-visibility='focus'
               v-on:input='dateSelected( start_date , end_date )'
@@ -127,7 +128,8 @@
   		</div>
 
       <!-- overview -->
-      <div v-if="overview_active" class="download-container">DOWNLOAD <img :src="'../assets/img/coverage/Download.png'"></div>
+      <div v-if="overview_active && !isNoTransaction" class="download-container" v-on:click="downloadPDF( overview_data.statement )">DOWNLOAD <img :src="'../assets/img/coverage/Download.png'"></div>
+      <div v-if="overview_active && isNoTransaction" class="download-container" style="cursor: not-allowed;">DOWNLOAD <img :src="'../assets/img/coverage/Download.png'"></div>
       
 
 
@@ -187,8 +189,7 @@
 
     <div class="statement-title-col">
       <h4>Statement for 
-        <span>1 June</span> - <span>30 June</span> 
-        <span> 2019</span>
+        <span>{{ filterDate( start_date, 'D MMMM YYYY' ) }}</span> - <span>{{ filterDate( end_date, 'D MMMM YYYY' ) }}</span>
       </h4>
     </div>
 
@@ -216,40 +217,40 @@
             </div>
           </div>
 
-          <div v-if="false" class="no-transaction-month-container">
+          <div v-if="isNoTransaction" class="no-transaction-month-container">
             <div>No Transactions for this Month.</div>
-            <div>( <span>1 June</span> - <span>30 June </span> <span>2019</span> )</div>
+            <div>( <span>{{ filterDate( start_date, 'D MMMM YYYY' ) }}</span> - <span>{{ filterDate( end_date, 'D MMMM YYYY' ) }}</span> )</div>
           </div>
 
-          <div class="transaction-month-container">
+          <div v-if="!isNoTransaction" class="transaction-month-container">
 
             <div class="benefits-statement-container">
               <div class="benefits-statement-col-1">
                 <div>Team Benefits Statement</div>
-                <div>Mednefits</div>
+                <div>{{ overview_data.statement.company }}</div>
                 <div class="company-address">
-                  7 Temasek Boulevard #18-02 Suntec T
+                  {{ overview_data.statement.company_address ? overview_data.statement.company_address : 'No Address Specified' }}
                 </div>
-                <div>Fillbert Singapore</div>
-                <div>62547889</div>
-                <div>filbert@mednefits.com</div>
+                <div>{{ overview_data.statement.statement_contact_name }}</div>
+                <div>{{ overview_data.statement.statement_contact_number }}</div>
+                <div>{{ overview_data.statement.statement_contact_email }}</div>
               </div>
               <div class="benefits-statement-col-2">
                 <div>
                   <label>Statement Number:</label>
-                  <span>MC00000036</span>
+                  <span>{{ overview_data.statement.statement_number }}</span>
                 </div>
                 <div>
                   <label>Statement Date:</label>
-                  <span>1 Apr 2019</span>
+                  <span>{{ filterDate( overview_data.statement.statement_date, 'D MMM YYYY' ) }}</span>
                 </div>
                 <div>
                   <label>Payment Due:</label>
-                  <span>16 Apr 2019</span>
+                  <span>{{ filterDate( overview_data.statement.statement_due, 'D MMM YYYY' ) }}</span>
                 </div>
                 <div>
                   <label>Amount Due (SGD):</label>
-                  <span>$270.00</span>
+                  <span>${{ overview_data.statement.statement_total_amount }}</span>
                 </div>
               </div>
             </div>
@@ -260,27 +261,25 @@
               <div class="charges-row">
                 <div class="spending-account-container">
                   In-Network Spending Account Usage
-                  <span class="pull-right-amount">S$ 153</span>
+                  <span class="pull-right-amount">S$ {{ roundFloatValue( overview_data.statement.statement_in_network_amount ) }}</span>
                 </div>
                 <div class="statement-month-container">
                   Statement for
-                  <span>1 March</span> - 
-                  <span>31 March</span>
-                  <span> 2019</span>
+                  <span>{{ filterDate( start_date, 'D MMMM YYYY' ) }}</span> - <span>{{ filterDate( end_date, 'D MMMM YYYY' ) }}</span>
                 </div>
-                <div class="charges-lite-plan">
+                <div v-if="overview_data.lite_plan" class="charges-lite-plan">
                   Consultation Spent - General Practitioner 
-                  <span class="pull-right-amount">S$ 117.00</span>
+                  <span class="pull-right-amount">S$ {{ overview_data.total_consultation }}</span>
                 </div>
               </div>
 
               <div class="charges-row sub-total-container">
                 Sub Total
-                <span class="pull-right-amount">S$ 270.00</span>
+                <span class="pull-right-amount">S$ {{ overview_data.sub_total }}</span>
               </div>
 
               <div class="total-due-container">
-                Total Due <span class="pull-right-amount">S$ 270.00</span>
+                Total Due <span class="pull-right-amount">S$ {{ overview_data.sub_total }}</span>
               </div>
             </div>
 
@@ -299,6 +298,7 @@
                 <div class="bank-detail">Bank: UOB</div>
                 <div class="bank-detail">Account Name: Medicloud Pte Ltd</div>
                 <div class="bank-detail">Account Number: 3743069399</div>
+                <div v-if="overview_data.statement.payment_remarks" class="bank-detail">Note: {{ overview.statement.payment_remarks }}</div>
               </div>
             </div>
 
