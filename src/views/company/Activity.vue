@@ -10,7 +10,7 @@
 
 						<div class="custom-date-selector">
 							<i class="fa fa-calendar"></i>
-							<v-date-picker :max-date='new Date()' v-model="timeFrame.start"
+							<v-date-picker :max-date='new Date()' v-model="timeFrame.rangePicker_start"
                 :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
                 popover-visibility='focus'>
               </v-date-picker>
@@ -21,14 +21,14 @@
 						
 						<div class="custom-date-selector">	
 							<i class="fa fa-calendar"></i>
-							<v-date-picker :max-date='new Date()' v-model="timeFrame.end"
+							<v-date-picker :max-date='new Date()' v-model="timeFrame.rangePicker_end"
                 :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
-                popover-visibility='focus'>
+                popover-visibility='focus' :formats='formats'>
               </v-date-picker>
-							<i class="fa fa-caret-down"></i>	
+							<i class="fa fa-caret-down"></i>
 						</div>		
 
-						<button class="btn-apply">
+						<button class="btn-apply" @click="applyDates()">
 							Apply
 						</button>
 						
@@ -66,34 +66,43 @@
 					</div>
 					<div class="cost-wrapper">
 						<div class="benefit-box">
-							<h5>S$ <span>0.00</span></h5>
+							<h5>S$ <span>{{activity.total_spent_format_number | decimalTwo}}</span></h5>
 							<p>SPENT</p>
 						</div>
 						<div class="benefit-box">
-							<h5>S$ <span>0.00</span></h5>
+							<h5>S$ 
+								<span v-if="spendingType.value == 0">{{credits.total_medical_employee_balance}}</span>
+								<span v-if="spendingType.value == 1">{{credits.total_wellness_employee_balance}}</span>
+							</h5>
 							<p>BALANCE</p>
 						</div>
 						<div class="benefit-box">
-							<h5>S$ <span>0.00</span></h5>
+							<h5>S$ 
+								<span v-if="spendingType.value == 0">{{credits.total_medical_employee_allocated}}</span>
+								<span v-if="spendingType.value == 1">{{credits.total_wellness_employee_allocated}}</span>
+							</h5>
 							<p>ALLOCATED</p>
 						</div>
 						<div class="benefit-box">
-							<h5>S$ <span>0.00</span></h5>
+							<h5>S$ 
+								<span v-if="activity.spending_type == 'medical'">{{total_allocation.total_allocation | decimalTwo}}</span>
+								<span v-if="activity.spending_type == 'wellness'">{{total_allocation.total_wellness_allocation | decimalTwo}}</span>
+							</h5>
 							<p>TOTAL COMPANY CREDITS</p>
 						</div>
 					</div>
 					<div class="spent-box">
 						<div class="spending-title">Spending Breakdown</div>
 						<div class="progress-wrapper">
-							<div class="progress-bar"></div>
+							<div class="progress-bar transition-easeInOutCubic-900ms"  :style='progressBar'></div>
 						</div>
 						<div class="in-out-network-container">
 							<div class="in-network-box">
-								<div>S$ <span>53,545.65</span></div>
+								<div>S$ <span>{{activity.in_network_spending_format_number | decimalTwo}}</span></div>
 								<span>IN-NETWORK</span>
 							</div>
 							<div class="out-network-box">
-								<div>S$ <span>145.00</span></div>
+								<div>S$ <span>{{activity.e_claim_spending_format_number | decimalTwo}}</span></div>
 								<span>E-CLAIM(OUT-OF-NETWORK)</span>
 							</div>
 						</div>
@@ -124,9 +133,9 @@
 				<div class="transaction-container transition-easeInOutCubic-600ms" id="transaction-container-inNetwork" :class="{'transaction-container-active': toggleSidebar.in === true}" v-if="networkType.value === 0">
 					<div class="total-transac-header">
 						<div>
-							<span>297</span> Total Transactions 
+							<span>{{activity.total_in_network_transactions}}</span> Total Transactions 
 							<div>Total Spent 
-								<span>S$<span>51,938.73</span></span>
+								<span>S$<span>{{activity.total_in_network_spent_format_number | decimalTwo}}</span></span>
 							</div>
 						</div>
 					</div>
@@ -297,9 +306,9 @@
 				<div class="transaction-container e-claim-transactions transition-easeInOutCubic-600ms" :class="{'transaction-container-active': toggleSidebar.out === true}" v-if="networkType.value === 1">
 					<div class="total-transac-header">
 						<div>
-							<span>3</span> Total Transactions 
+							<span>{{activity.e_claim_transactions.length}}</span> Total Transactions 
 							<div>Total Spent 
-								<span>S$<span>130.00</span></span>
+								<span>S$<span>{{activity.e_claim_spending_format_number | decimalTwo}}</span></span>
 							</div>
 						</div>
 					</div>

@@ -467,10 +467,7 @@ let employeeDetails = {
         });
     },
     companyDependents() {
-      axios
-        .get(
-          `${axios.defaults.serverUrl}/hr/get_dependent_status`
-        )
+      axios.get(`${axios.defaults.serverUrl}/hr/get_dependent_status`)
         .then(res => {
           this.dependents = res.data;
           this.overall_dep_count = this.dependents.occupied_seats + 1;
