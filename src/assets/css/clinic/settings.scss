@@ -316,6 +316,7 @@
 	}
 
 	.staff-side-list {
+		height: 100vh;
 		background-color: rgb(176, 226, 249);
 		font-weight: 700;
 		padding: 20px 0 0;
@@ -608,16 +609,24 @@
 		}
 	}
 }
+.working-hour-body-wrapper {
+	display: flex;
 
+	>div:first-child {
+		width: 17%;
+    padding: 0 15px;
+	}
+}
 .working-hour-body-container {
-	padding: 20px 0 0 165px;
+	width: 83%;
+	padding: 20px 0 0 0px;
 }
 .working-row-container {
 	display: flex;
 	margin: 0 0 20px;
 
 	.day-container {
-		width: 12%;
+		width: 20%;
 	}
 
 	.break-timepicker-wrapper {
@@ -747,6 +756,7 @@
 		border: 1px solid #777;
     padding: 5px 12px;
     border-radius: 5px;
+    background: #fff;
     color: #000;
     cursor: pointer;
     font-weight: 700;
@@ -1235,6 +1245,7 @@
 
 .profile-side-list {
 	background-color: rgb(176, 226, 249);
+	height: 100vh;
 
 	.configure-container {
 		border-bottom: 1px solid #D0D0D0;

@@ -4,10 +4,12 @@
 			<div class="select-frame-wrapper">
 				<div class="activity-date-header">
 					<span>Select a timeframe:</span>
-					<span v-bind:class="{'active': year_active.value === 0}" @click="setYear(0,'this-year')" class="year-selector">This year</span>
-					<span v-bind:class="{'active': year_active.value === 1}" @click="setYear(1,'last-year')" class="year-selector">Last year</span>
-					<span v-bind:class="{'active': year_active.value === 2}" @click="setYear(2,'custom')" class="year-selector">Custom</span>
-					<span v-bind:class="{'active': year_active.value === 3}" @click="setYear(3,'today')" class="year-selector">Today</span>
+					<span class="year-selector-wrapper">
+						<span v-bind:class="{'active': year_active.value === 0}" @click="setYear(0,'this-year')" class="year-selector">This year</span>
+						<span v-bind:class="{'active': year_active.value === 1}" @click="setYear(1,'last-year')" class="year-selector">Last year</span>
+						<span v-bind:class="{'active': year_active.value === 2}" @click="setYear(2,'custom')" class="year-selector">Custom</span>
+						<span v-bind:class="{'active': year_active.value === 3}" @click="setYear(3,'today')" class="year-selector">Today</span>
+					</span>
 				</div>
 			</div>
 
@@ -27,6 +29,7 @@
 					</div>
 
 					<span>
+						<i class="fa fa-arrow-down"></i>
 						<i class="fa fa-arrow-right"></i>
 					</span>
 
@@ -51,6 +54,7 @@
 					</div>
 
 					<span>
+						<i class="fa fa-arrow-down"></i>
 						<i class="fa fa-arrow-right"></i>
 					</span>
 

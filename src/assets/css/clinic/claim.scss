@@ -208,6 +208,10 @@
   width: 20%;
 }
 
+.date-wrapper .fa-long-arrow-down {
+  display: none;
+}
+
 span.arrow-right {
   padding: 0 15px;
 }
@@ -218,6 +222,10 @@ span.arrow-right {
 
 .manual-claim-modal .modal-clinic-container {
   width: 1170px;
+}
+
+.manual-head-text-input {
+  display: none;
 }
 
 .ecard-modal .modal-clinic-container {

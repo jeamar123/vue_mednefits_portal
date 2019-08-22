@@ -11,7 +11,7 @@
 		color: #555;
 		font-weight: 700;
 
-		span:first-child {
+		>span:first-child {
 			margin: 0 10px 0 0;
 		}
 	}
@@ -23,7 +23,7 @@
 		padding: 0 15px;
 		font-weight: 700;
 
-		&:nth-child(5) {
+		&:nth-child(4) {
 			border-right: 0;
 		}
 
@@ -70,6 +70,10 @@
 
 		.fa-arrow-right {
 			margin: 0 14px;
+		}
+
+		.fa-arrow-down {
+			display: none;
 		}
 
 		.activity-custom-input {
