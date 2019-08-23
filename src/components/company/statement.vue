@@ -1,6 +1,8 @@
 <script>
 import axios from 'axios';
-import moment from 'moment'
+import moment from 'moment';
+import JSZip from 'jszip';
+import FileSaver from 'file-saver';
 //Methods here
 let statement = {
   data() {
@@ -18,6 +20,7 @@ let statement = {
       inDragging : false,
       isFromSlider : false,
       isNoTransaction : false,
+      isActiveSearch : false,
       timeFrame: {},
       year_active: {
         value: 0,
@@ -28,8 +31,8 @@ let statement = {
         text: ""
       },
       spendingTypeOpt: {
-        value: 0,
-        text: ""
+        value: 2,
+        text: "both"
       },
       networkType: {
         value: 0,
@@ -48,35 +51,101 @@ let statement = {
       },
       employee_list: [],
       slideCtr: 0,
+      selected_user_id: null,
       spendingTypeFilter: undefined,
+      search_emp: '',
     };
   },
   created(){
     this.getSession();
     this.getDownloadToken();
-    this.getEmployeeLists();
-    this.getStatementData();
+  },
+  computed: {
+    searchedEmployee(){
+      if( this.search_emp != '' ){
+        return this.employee_list.filter((value) => {
+          return value.Name.startsWith( this.search_emp );
+        })
+      }else{
+        return this.employee_list;
+      }
+    },
+    filteredInNetwork(){
+      if( this.spendingTypeOpt.text != 'both' ){
+        return this.overview_data.in_network_transactions.filter((value) => {
+          return value.spending_type == this.spendingTypeOpt.text;
+        })
+      }else{
+        return this.overview_data.in_network_transactions;
+      }
+    },
+    filteredOutNetwork(){
+      if( this.spendingTypeOpt.text != 'both' ){
+        return this.overview_data.e_claim_transactions.filter((value) => {
+          return value.spending_type == this.spendingTypeOpt.text;
+        })
+      }else{
+        return this.overview_data.e_claim_transactions;
+      }
+    }
   },
   methods: {
-    setSpendingType(){
-      this.$parent.showLoading();
-      scope.spendingTypeOpt = opt;
-
-      if( opt == 0 ){
-        this.spendingTypeFilter = 'medical';
-      }else if( opt == 1 ){
-        this.spendingTypeFilter = 'wellness';
+    closeSearchEmp(){
+      this.isActiveSearch = false;
+      this.search_emp = "";
+    },
+    selectEmployeeSearch( id ){
+      this.selected_user_id = id;
+      this.getStatementDataByEmployee();
+    },
+    searchEmployeeChanged( value ){
+      if( value.length > 0 ){
+        this.isActiveSearch = true;
       }else{
-        this.spendingTypeFilter = undefined;
+        this.isActiveSearch = false;
       }
+    },
+    downloadFullINPDF( invoice_data, type ){
 
-      this.$parent.hideLoading();
+    },
+    downloadFullOUTPDF( invoice_data, type ){
+
+    },
+    downloadCSV(){
+
     },
     downloadPDF( data ){
       if(this.download_token.live == true) {
         window.open(this.download_token.download_link + "/spending_invoice_download?id=" + data.statement_id + '&token=' + this.download_token.token);
       } else {
-        window.open(serverUrl.url + '/hr/statement_download?id=' + data.statement_id + '&token=' + window.localStorage.getItem('token'));
+        window.open(axios.defaults.serverUrl + '/hr/statement_download?id=' + data.statement_id + '&token=' + window.localStorage.getItem('vue_hr_session'));
+      }
+    },
+    downloadReceipt( receipt, list ){
+      this.$parent.showLoading();
+      var zip = new JSZip();
+      var main_folder = zip.folder( list.member + "_" + list.transaction_id );
+      for( var i = 0; i < receipt.length; i++ ){
+        var value = receipt[i];
+        var filename = $.trim( value.file.split('/').pop() );
+        filename = ( filename.indexOf("?") >= 0 ) ? filename.substring(0, filename.indexOf('?')) : filename;
+        
+        var promise = $.ajax({
+          url: value.file,
+          method: 'GET',
+          xhrFields: {
+            responseType: 'blob'
+          }
+        });
+
+        main_folder.file(filename, promise);
+
+        if( i == (receipt.length-1) ){
+          zip.generateAsync({type:"blob"}).then(function(content) {
+            FileSaver.saveAs(content, list.member + "_" + list.transaction_id + ".zip");
+          });
+          this.$parent.hideLoading();
+        }
       }
     },
     filterDate( date, format ){
@@ -119,7 +188,7 @@ let statement = {
         this.showInputDate = false;
         this.current_year = moment( ).subtract( 1, 'years' ).format('YYYY');
       }
-      this.start_date = new Date(moment( moment( this.start_date ).format('MMMM') + " " + this.current_year ).startOf('year'));
+      this.start_date = new Date(moment( moment( this.start_date ).format('MMMM') + " " + this.current_year ).startOf('month'));
       this.end_date = new Date(moment( moment( this.end_date ).format('MMMM') + " " + this.current_year ).endOf('month'));
       if (this.year_active.text == 'custom') {
         this.showRangeMonthSlider = false;
@@ -144,20 +213,58 @@ let statement = {
     setSpendingType(value, text) {
       this.spendingTypeOpt.value = value;
       this.spendingTypeOpt.text = text;
+      // if( this.selected_user_id != null ){
+      //   this.getStatementDataByEmployee();
+      // }else{
+      //   this.getStatementData();
+      // }
     },
     netType(value, text) {
       this.networkType.value = value;
       this.networkType.text = text;
     },
-    toggleDetails() {
-
-      this.showTransDetails = !this.showTransDetails;
+    toggleDetails( list ) {
+      list.showTransDetails = !list.showTransDetails;
+      this.$forceUpdate();
+    },
+    uploadReceipt( list, upload_data ){
+      if( !list.transaction_files ){
+        list.transaction_files = [];
+      }
+      list.uploading = true;
+      let formData = new FormData();
+      formData.append('file', upload_data[0]);
+      formData.append('e_claim_id', list.transaction_id);
+      this.$parent.showLoading();
+      axios.post( 
+        axios.defaults.serverUrl + "/hr/upload_e_claim_receipt", 
+        formData, 
+        { headers: { 'Content-Type': 'multipart/form-data' } })
+        .then(res => {
+          // console.log( res );
+          list.uploading = false;
+          if( res.data.status == true ){
+            list.files.push( res.data.file_link );
+            list.upload_err = false;
+          }else{
+            list.upload_err = true;
+            list.upload_err_message = res.data.message;
+          }
+          this.$parent.hideLoading();
+        })
+        .catch(err => {
+          console.log( err );
+          list.uploading = false;
+          list.upload_err = true;
+          list.upload_err_message = 'Something went wrong. Please check your internet connection.'
+          this.$parent.hideLoading();
+        });
     },
     getDownloadToken(){
-      this.$parent.showLoading();
+      // this.$parent.showLoading();
       axios.get( axios.defaults.serverUrl + '/hr/get_download_token' )
         .then(res => {
-          this.$parent.hideLoading();
+          // this.$parent.hideLoading();
           console.log(res);
           if( res.status == 200 ){
             this.download_token = res.data;
@@ -167,7 +274,7 @@ let statement = {
         })
         .catch(err => {
           console.log( err );
-          this.$parent.hideLoading();
+          // this.$parent.hideLoading();
           this.$parent.swal('Error!', err,'error');
         });
     },
@@ -175,10 +282,11 @@ let statement = {
       this.$parent.showLoading();
       axios.get( axios.defaults.serverUrl + '/get-hr-session' )
         .then(res => {
-          this.$parent.hideLoading();
+          // this.$parent.hideLoading();
           console.log(res);
           if( res.status == 200 ){
             this.options = res.data;
+            this.getEmployeeLists();
           }else{
             this.$parent.swal('Error!', res.data.message, 'error');
           }
@@ -190,15 +298,43 @@ let statement = {
         });
     },
     getEmployeeLists(){
-      this.$parent.showLoading();
+      // this.$parent.showLoading();
       axios.get( axios.defaults.serverUrl + '/hr/employee_lists' )
         .then(res => {
-          this.$parent.hideLoading();
+          // this.$parent.hideLoading();
           console.log(res);
           if( res.status == 200 ){
             this.employee_list = res.data.data;
+            this.getStatementData();
           }else{
             this.$parent.swal('Error!', res.data.message, 'error');
+          }
+        })
+        .catch(err => {
+          console.log( err );
+          // this.$parent.hideLoading();
+          this.$parent.swal('Error!', err,'error');
+        });
+    },
+    getStatementDataByEmployee( ){
+      this.isFromSlider = false;
+      var data = {
+        start : moment(this.start_date).format('YYYY-MM-DD'),
+        end : moment(this.end_date).format('YYYY-MM-DD'),
+        user_id : this.selected_user_id,
+      }
+      this.$parent.showLoading();
+      this.closeSearchEmp();
+      axios.post( axios.defaults.serverUrl + '/hr/search_employee_statement', data )
+        .then(res => {
+          this.$parent.hideLoading();
+          console.log(res);
+          if( res.data.status ){
+            this.overview_data = res.data.data;
+            this.isNoTransaction = false;
+          }else{
+            this.isNoTransaction = true;
+            // this.$parent.swal('Error!', res.data.message, 'error');
           }
         })
         .catch(err => {
@@ -207,7 +343,7 @@ let statement = {
           this.$parent.swal('Error!', err,'error');
         });
     },
-    getStatementData(  ){
+    getStatementData( ){
       this.isFromSlider = false;
       var data = {
         start : moment(this.start_date).format('YYYY-MM-DD'),
