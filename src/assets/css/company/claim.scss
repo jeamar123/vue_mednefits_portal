@@ -305,10 +305,23 @@
 	    display: block;
 	    margin-bottom: 20px;
 	    font-weight: 300;
+	    position: relative;
+	    cursor: pointer;
 
       &.disabled {
-        background: #0086d38a;
+        /*background: #0086d38a;*/
         cursor: not-allowed;
+        background: #DFDFDF;
+	    color: #9F9F9F!important;
+      }
+      input{
+  	    position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    opacity: 0;
+		    cursor: pointer;
       }
     }
   }

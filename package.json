@@ -12,6 +12,8 @@
     "@statnett/vue-plotly": "^0.2.0",
     "axios": "^0.18.1",
     "babel-polyfill": "^6.26.0",
+    "file-saver": "^2.0.2",
+    "jszip": "^3.2.2",
     "plotly.js": "^1.47.4",
     "v-calendar": "^0.9.7",
     "v-click-outside": "^2.0.2",

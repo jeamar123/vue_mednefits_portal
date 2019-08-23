@@ -11,14 +11,32 @@
   			</div>
 
         <div v-if="showRangeMonthSlider" class="claim-slider-container">
-					<vue-slider class="range-slider" v-model="range_values" :marks="range_marks" :enableCross="true" :min="1" :max="12" :process="false"></vue-slider>
+					<vue-slider 
+            class="range-slider" 
+            v-model="range_values" 
+            :marks="range_marks" 
+            :enableCross="true" 
+            :tooltip="'none'" 
+            :min="1" 
+            :max="12" 
+            :process="false" 
+            @drag-start="() => inDragging = true" 
+            @drag-end="() => inDragging = false" 
+            @change="() => isFromSlider = true"
+            :dragEnd="sliderDragged( range_values )"
+          ></vue-slider>
 
           <div id="date-responsive" class="date-selection-container">
             <div class="custom-date-selector">
               <i class="fa fa-calendar"></i>
-              <v-date-picker :max-date='new Date()' v-model="timeFrame.start"
+              <v-date-picker 
+                mode='single' 
+                popoverDirection="bottom" 
+                :formats="formats"
+                v-model='start_date' 
                 :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
-                popover-visibility='focus'>
+                popover-visibility='focus'
+              >
               </v-date-picker>
               <i class="fa fa-caret-down"></i>
             </div>
@@ -27,24 +45,33 @@
             
             <div class="custom-date-selector">  
               <i class="fa fa-calendar"></i>
-              <v-date-picker :max-date='new Date()' v-model="timeFrame.end"
+              <v-date-picker 
+                mode='single' 
+                popoverDirection="bottom" 
+                :formats="formats"
+                v-model='end_date' 
                 :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
-                popover-visibility='focus'>
+                popover-visibility='focus'
+              >
               </v-date-picker>
               <i class="fa fa-caret-down"></i>  
             </div> 
           </div>
 				</div>
 
-          
-
         <div v-if="showInputDate" class="date-selection-container">
 
           <div class="custom-date-selector">
             <i class="fa fa-calendar"></i>
-            <v-date-picker :max-date='new Date()' v-model="timeFrame.start"
+            <v-date-picker 
+              mode='single' 
+              popoverDirection="bottom" 
+              :formats="formats"
+              v-model='start_date' 
               :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
-              popover-visibility='focus'>
+              popover-visibility='focus'
+              v-on:input='dateSelected( start_date , end_date )'
+            >
             </v-date-picker>
             <i class="fa fa-caret-down"></i>
           </div>
@@ -53,13 +80,19 @@
           
           <div class="custom-date-selector">  
             <i class="fa fa-calendar"></i>
-            <v-date-picker :max-date='new Date()' v-model="timeFrame.end"
+            <v-date-picker 
+              mode='single' 
+              popoverDirection="bottom" 
+              :formats="formats"
+              v-model='end_date' 
+              :min-date='start_date'
               :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
-              popover-visibility='focus'>
+              popover-visibility='focus'
+              v-on:input='dateSelected( start_date , end_date )'
+            >
             </v-date-picker>
             <i class="fa fa-caret-down"></i>  
           </div>    
-
         </div>
 
   			<div class="team-benefits-wrapper">
@@ -76,7 +109,6 @@
 						</div>
 					</div>
           
-          
           <div v-if="full_active" class="health-spending-container">
             
             <span class="header-content">Choose which Health Spending Account</span>
@@ -92,39 +124,32 @@
   		</div>
 
       <!-- overview -->
-      <div v-if="overview_active" class="download-container">DOWNLOAD <img :src="'../assets/img/coverage/Download.png'"></div>
-      
-
+      <div v-if="overview_active && !isNoTransaction" class="download-container" v-on:click="downloadPDF( overview_data.statement )">DOWNLOAD <img :src="'../assets/img/coverage/Download.png'"></div>
+      <div v-if="overview_active && isNoTransaction" class="download-container" style="cursor: not-allowed;">DOWNLOAD <img :src="'../assets/img/coverage/Download.png'"></div>
 
       <!-- full -->
       <div v-if="full_active" class="statement-header-wrapper">
         <div class="search-wrapper">
           <div class="input-group">
-            <input class="search-input" placeholder="Search Employee Name">
-            <ul v-if="false" class="dropdown-menu">
-              <li class="active">
-                <a class="dropdown-item" href="#" role="option">allan cheam alzula</a>
-              </li>
-              <li class="">
-                <a class="dropdown-item" href="#" role="option">allan cheam alzula</a>
-              </li>
-              <li class="">
-                <a class="dropdown-item" href="#" role="option">allan cheam alzula</a>
+            <input class="search-input" placeholder="Search Employee Name" v-model="search_emp" v-on:input="searchEmployeeChanged( search_emp )">
+            <ul v-show="isActiveSearch" class="dropdown-menu">
+              <li v-for="list in searchedEmployee ">
+                <a class="dropdown-item" v-on:click="selectEmployeeSearch( list.user_id )" role="option">{{ list.Name }}</a>
               </li>
             </ul>
             <span class="input-group-btn">
-              <button><i class="fa fa-search"></i></button>
-              <button v-if="false"><i class="fa fa-close"></i></button>
+              <button v-if="!isActiveSearch"><i class="fa fa-search"></i></button>
+              <button v-if="isActiveSearch" v-on:click="closeSearchEmp()"><i class="fa fa-close"></i></button>
             </span>
           </div>
         </div>
         <div class="statement-transaction-header">
           <div>
             <div class="total-transactions-container">
-              <span> </span> Total Transactions
+              <span>{{ networkType.value == 0 ? filteredInNetwork.length : filteredOutNetwork.length }}</span> Total Transactions
             </div>
             <div class="total-spent-container"> Total Spent
-              <span>S$ <span>0.00</span> </span> 
+              <span>S$ <span>{{ networkType.value == 0 ? roundFloatValue( overview_data.sub_total ) : roundFloatValue( overview_data.total_e_claim_spent )  }}</span> </span> 
             </div>
           </div>
           <div>
@@ -140,8 +165,11 @@
           <div>
             <div class="download-statement-container">
               <span>Download Statement</span>
-              <button class="btn-pdf">PDF</button>
-              <button class="btn-csv">CSV</button>
+              <button v-if="networkType.value === 0" class="btn-pdf" v-on:click="downloadFullINPDF( overview_data.statement, 'pdf' )">PDF</button>
+              <button v-if="networkType.value === 0" class="btn-csv" v-on:click="downloadFullINPDF( overview_data.statement, 'csv' )">CSV</button>
+
+              <button v-if="networkType.value === 1" class="btn-pdf" v-on:click="downloadFullINPDF( overview_data.statement, 'pdf' )">PDF</button>
+              <button v-if="networkType.value === 1" class="btn-csv" v-on:click="downloadCSV( )">CSV</button>
             </div>
           </div>
         </div>
@@ -152,8 +180,7 @@
 
     <div class="statement-title-col">
       <h4>Statement for 
-        <span>1 June</span> - <span>30 June</span> 
-        <span> 2019</span>
+        <span>{{ filterDate( start_date, 'D MMMM YYYY' ) }}</span> - <span>{{ filterDate( end_date, 'D MMMM YYYY' ) }}</span>
       </h4>
     </div>
 
@@ -181,40 +208,40 @@
             </div>
           </div>
 
-          <div v-if="false" class="no-transaction-month-container">
+          <div v-if="isNoTransaction" class="no-transaction-month-container">
             <div>No Transactions for this Month.</div>
-            <div>( <span>1 June</span> - <span>30 June </span> <span>2019</span> )</div>
+            <div>( <span>{{ filterDate( start_date, 'D MMMM YYYY' ) }}</span> - <span>{{ filterDate( end_date, 'D MMMM YYYY' ) }}</span> )</div>
           </div>
 
-          <div class="transaction-month-container">
+          <div v-if="!isNoTransaction" class="transaction-month-container">
 
             <div class="benefits-statement-container">
               <div class="benefits-statement-col-1">
                 <div>Team Benefits Statement</div>
-                <div>Mednefits</div>
+                <div>{{ overview_data.statement.company }}</div>
                 <div class="company-address">
-                  7 Temasek Boulevard #18-02 Suntec T
+                  {{ overview_data.statement.company_address ? overview_data.statement.company_address : 'No Address Specified' }}
                 </div>
-                <div>Fillbert Singapore</div>
-                <div>62547889</div>
-                <div>filbert@mednefits.com</div>
+                <div>{{ overview_data.statement.statement_contact_name }}</div>
+                <div>{{ overview_data.statement.statement_contact_number }}</div>
+                <div>{{ overview_data.statement.statement_contact_email }}</div>
               </div>
               <div class="benefits-statement-col-2">
                 <div>
                   <label>Statement Number:</label>
-                  <span>MC00000036</span>
+                  <span>{{ overview_data.statement.statement_number }}</span>
                 </div>
                 <div>
                   <label>Statement Date:</label>
-                  <span>1 Apr 2019</span>
+                  <span>{{ filterDate( overview_data.statement.statement_date, 'D MMM YYYY' ) }}</span>
                 </div>
                 <div>
                   <label>Payment Due:</label>
-                  <span>16 Apr 2019</span>
+                  <span>{{ filterDate( overview_data.statement.statement_due, 'D MMM YYYY' ) }}</span>
                 </div>
                 <div>
                   <label>Amount Due (SGD):</label>
-                  <span>$270.00</span>
+                  <span>${{ overview_data.statement.statement_total_amount }}</span>
                 </div>
               </div>
             </div>
@@ -225,27 +252,25 @@
               <div class="charges-row">
                 <div class="spending-account-container">
                   In-Network Spending Account Usage
-                  <span class="pull-right-amount">S$ 153</span>
+                  <span class="pull-right-amount">S$ {{ roundFloatValue( overview_data.statement.statement_in_network_amount ) }}</span>
                 </div>
                 <div class="statement-month-container">
                   Statement for
-                  <span>1 March</span> - 
-                  <span>31 March</span>
-                  <span> 2019</span>
+                  <span>{{ filterDate( start_date, 'D MMMM YYYY' ) }}</span> - <span>{{ filterDate( end_date, 'D MMMM YYYY' ) }}</span>
                 </div>
-                <div class="charges-lite-plan">
+                <div v-if="overview_data.lite_plan" class="charges-lite-plan">
                   Consultation Spent - General Practitioner 
-                  <span class="pull-right-amount">S$ 117.00</span>
+                  <span class="pull-right-amount">S$ {{ overview_data.total_consultation }}</span>
                 </div>
               </div>
 
               <div class="charges-row sub-total-container">
                 Sub Total
-                <span class="pull-right-amount">S$ 270.00</span>
+                <span class="pull-right-amount">S$ {{ overview_data.sub_total }}</span>
               </div>
 
               <div class="total-due-container">
-                Total Due <span class="pull-right-amount">S$ 270.00</span>
+                Total Due <span class="pull-right-amount">S$ {{ overview_data.sub_total }}</span>
               </div>
             </div>
 
@@ -264,6 +289,7 @@
                 <div class="bank-detail">Bank: UOB</div>
                 <div class="bank-detail">Account Name: Medicloud Pte Ltd</div>
                 <div class="bank-detail">Account Number: 3743069399</div>
+                <div v-if="overview_data.statement.payment_remarks" class="bank-detail">Note: {{ overview.statement.payment_remarks }}</div>
               </div>
             </div>
 
@@ -284,32 +310,34 @@
                   <th>ITEM/SERVICE</th>
                   <th>PROVIDER</th>
                   <th>TOTAL AMOUNT</th>
-                  <th>MEDICINE & TREATMENT</th>
-                  <th>CONSULTATION</th>
+                  <th v-if="overview_data.lite_plan">MEDICINE & TREATMENT</th>
+                  <th v-if="overview_data.lite_plan">CONSULTATION</th>
                   <th>EMPLOYEE</th>
                   <th></th>
                 </tr>
               </thead>
-              <tbody>
-                <tr @click="toggleDetails()">
+              <tbody v-for="list in filteredInNetwork">
+                <tr @click="toggleDetails( list )">
                   <td>
-                    <span>29 April 2019, 10:52am</span>
+                    <!-- <span>29 April 2019, 10:52am</span> -->
+                    <span>{{ list.date_of_transaction }}</span>
                   </td>
                   <td>
-                    <span>General Practitioner - Medicine & Treatment</span>
+                    <span>{{ list.clinic_type_and_service }}</span>
                   </td>
                   <td>
-                    <span>Dover Medical Centre</span>
+                    <span>{{ list.clinic_name }}</span>
                   </td>
                   <td>
-                    S$ <span>24.41</span>
+                    S$ <span>{{ list.total_amount }}</span>
                   </td>
-                  <td>10.50</td>
-                  <td>13.91</td>
+                  <td v-if="list.lite_plan">{{ list.amount }}</td>
+                  <td v-if="list.lite_plan">{{ list.consultation }}</td>
                   <td>
-                    <span>Dith Tan</span>
+                    <span>{{ list.member }}</span>
                     <div class="spouse-member">
-                      <span>Child </span> of <span>Filbert Tan</span>
+                      <span v-if="list.dependent_relationship != null">{{ list.dependent_relationship }}</span> of <span>{{ list.owner_account }}</span>
+                      <span v-if="list.dependent_relationship == null">Dependent</span> of <span>{{ list.owner_account }}</span>
                     </div>
                   </td>
                   <td>
@@ -319,15 +347,15 @@
                   </td>
                 </tr>
                 <transition name="fade">
-                  <tr v-if="showTransDetails" class="in-network-subtr">
+                  <tr v-show="list.showTransDetails" class="in-network-subtr">
                     <td colspan="8">
                       <div class="provider-item-wrapper">
-                        <img :src="'https://res.cloudinary.com/www-medicloud-sg/image/upload/v1439208475/medilogo_cn6d0x.png'">
-                        <div>Dover Medical Centre</div>
+                        <img :src="list.clinic_image">
+                        <div>{{ list.clinic_name }}</div>
                         <div class="service-box">
-                          <img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1514515238/tidzdguqbafiq4pavekj.png'">
+                          <img :src="list.clinic_type_image">
                           <label>
-                            <span>General Practitioner</span>
+                            <span>{{ list.clinic_type_name }}</span>
                           </label>
                         </div>
                       </div>
@@ -335,66 +363,80 @@
                         <div class="transac-details">
                           <div>
                             <label>MEMBER</label>
-                            <span>Dith Tan</span>
+                            <span>{{ list.member }}</span>
                           </div>
-                          <div>
+                          <div v-if="list.sub_account_user_type">
                             <label>EMPLOYEE</label>
-                            <span>Filbert Tan</span>
+                            <span>{{ list.owner_account }}</span>
                           </div>
-                          <div class="dependent-relationship-container">
+                          <div v-if="list.sub_account_user_type" class="dependent-relationship-container">
                             <label>DEPENDENT RELATIONSHIP</label>
-                            <span>Child</span>
+                            <span v-if="list.dependent_relationship != null">{{ list.dependent_relationship }}</span>
+                            <span v-if="list.dependent_relationship == null">Dependent of <span>{{ list.member }}</span></span>
                           </div>
                           <div>
                             <label>DATE</label>
-                            <span>29 April 2019, 10:52am</span>
+                            <span>{{ list.date_of_transaction }}</span>
                           </div>
                           <div>
                             <label>TRANSACTION #</label>
-                            <span>DOV000940</span>
+                            <span>{{ list.transaction_id }}</span>
                           </div>
                           <div>
                             <label>ITEM/SERVICE</label>
-                            <div class="desc-wrapper">
-                              <span>General Practitioner - Medicine & Treatment</span>
-                            </div>  
+                            <span>{{ list.clinic_type_and_service }}</span>
                           </div>
                           <div>
-                            <label>TOTAL AMOUNT</label>
-                            <span>S$ 24.41</span>
+                            <div class="label-wrapper">
+                              <label>TOTAL AMOUNT</label>
+                              <span>S$ {{ list.total_amount }}</span>
+                            </div>
                           </div>
-                          <div>
+                          <div v-if="list.lite_plan">
                             <div class="service-container">
                               <label>
                                 <div class="credit-container">
-                                  <span>Credit</span>
+                                  <span v-if="!list.service_credits && list.transaction_type == 'cash' || list.service_credits && list.transaction_type == 'cash'">Cash</span>
+                                  <span v-if="list.service_credits && list.transaction_type == 'credits'">Credit</span>
                                 </div>  
                               </label>
                               <div class="desc-wrapper">
-                                <span>Medicine & Treatment</span>
-                                <div>S$ <span>10.50</span></div>
+                                <span>{{ list.service }}</span>
+                                <div>S$ <span>{{ list.amount }}</span></div>
                               </div>
                             </div>
                             <div class="service-container">
                               <label>
                                 <div class="credit-container">
-                                  <span>Credit</span>
+                                  <span v-if="list.consultation_credits || list.service_credits">Credit</span>
+                                  <span hidden>Cash</span>
                                 </div>  
                               </label>
                               <div class="desc-wrapper">
                                 <span>Consultation</span>
-                                <div>S$ <span>13.91</span></div>
+                                <div>S$ <span>{{ list.consultation }}</span></div>
                               </div>
                             </div>
                           </div>
                           <div>
                             <label>PAYMENT TYPE</label>
-                            <span>In-Network</span>
+                            <span>{{ list.type }}</span>
                           </div>
                         </div>
                       </div>
                       <div class="download-receipt-container">
-                        <button class="btn-download-receipt disabled">Download Receipt</button>
+                        <button class="btn-download-receipt" v-bind:class="{'disabled' : !list.receipt_files || list.receipt_files.length == 0}" v-on:click="downloadReceipt( list.receipt_files, list )">Download Receipt</button>
+
+                        <div class="trans-receipts-wrapper">
+                          <div v-for="img in list.receipt_files" class="click-box-wrapper">
+                            <div class="click-box">
+                              <i class="fa fa-plus"></i>
+                            </div>
+                            <img v-if="img.type == 'excel'" :src="'../assets/img/Receipt-doc-xls.png'" >
+                            <img v-if="img.type == 'pdf'" :src="'../assets/img/Receipt-pdf.png'" >
+                            <img v-if="img.type == 'image'" :src="img.file" >
+                          </div>
+                        </div>
                       </div>
                     </td>
                   </tr>
@@ -417,28 +459,35 @@
                   <th></th>
                 </tr>
               </thead>
-              <tbody>
-                <tr @click="toggleDetails()">
+              <tbody v-for="list in filteredOutNetwork">
+                <tr @click="toggleDetails( list )">
                   <td>
-                    <label class="status-text approved">Approved</label>
+                    <label v-if="list.status == 0" class="status-text pending" >Pending</label>
+                    <label v-if="list.status == 1" class="status-text approved" >Approved</label>
+                    <label v-if="list.status == 2" class="status-text rejected" >Rejected</label>
                   </td>
                   <td>
-                    <span>16 April 2019</span>
+                    <span>{{ list.approved_date }}</span>
                   </td>
                   <td>
-                    <span>16 April 2019</span>
+                    <span>{{ list.claim_date }}</span>
                   </td>
                   <td>
-                    <span>Traditional Chinese Medicine</span>
+                    <span>{{ list.service }}</span>
                   </td>
                   <td>
-                    <span>Test TCM</span>
+                    <span>{{ list.merchant }}</span>
                   </td>
-                  <td>S$ <span>58.00</span></td>
+                  <td>S$ <span>{{ list.amount }}</span></td>
                   <td>
-                    <span>Calvin Lee</span>
-                    <div class="spouse-member">
-                      <span>Child </span> of <span>Filbert Tan</span>
+                    <span>{{ list.member }}</span>
+                    <div v-if="list.sub_account" class="spouse-member">
+                      <span v-if="list.dependent_relationship != null">
+                        <span>{{ list.dependent_relationship }}</span> of <span>{{ list.sub_account }}</span>
+                      </span>
+                      <span v-if="list.dependent_relationship == null">
+                        <span>Dependent</span> of <span>{{ list.sub_account }}</span>
+                      </span>
                     </div>
                   </td>
                   <td>
@@ -448,7 +497,7 @@
                   </td>
                 </tr>
                 <transition name="fade">
-                  <tr v-if="showTransDetails" class="in-network-subtr">
+                  <tr v-show="list.showTransDetails" class="in-network-subtr">
                     <td colspan="8">
                       <div class="status-left-wrapper">
                         <div class="status-box-left">
@@ -511,20 +560,21 @@
                         </div>
                       </div>
                       <div class="download-receipt-container">
-                        <button class="btn-download-receipt">Upload Receipt</button>
-                        <button class="btn-download-receipt">Download Receipt</button>
+                        <button class="btn-download-receipt">
+                          Upload Receipt
+                          <input type="file" v-on:change="uploadReceipt( list, $event.target.files )">
+                          <span v-if="list.uploading"><i class="fa fa-circle-o-notch fa-spin"></i></span>
+                        </button>
+                        <button class="btn-download-receipt" v-bind:class="{'disabled' : !list.files || list.files.length == 0}" v-on:click="downloadReceipt( list.files, list )">Download Receipt</button>
+                        
                         <div class="trans-receipts-wrapper">
-                          <div class="click-box-wrapper">
+                          <div v-for="img in list.files" class="click-box-wrapper">
                             <div class="click-box">
                               <i class="fa fa-plus"></i>
                             </div>
-                            <img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1557387401/nhulevaerr46wlfy07d7.png'">
-                          </div>
-                          <div class="click-box-wrapper">
-                            <div class="click-box">
-                              <i class="fa fa-plus"></i>
-                            </div>
-                            <img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1557387401/nhulevaerr46wlfy07d7.png'">
+                            <img v-if="img.type == 'excel' || img.file_type == 'excel'" :src="'../assets/img/Receipt-doc-xls.png'" >
+                            <img v-if="img.type == 'pdf' || img.file_type == 'pdf'" :src="'../assets/img/Receipt-pdf.png'" >
+                            <img v-if="img.type == 'image' || img.file_type == 'image'" :src="img.file" >
                           </div>
                         </div>
                       </div>
