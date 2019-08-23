@@ -22,7 +22,8 @@
 	      showCustomTime: false,
 				modalProfile: {
 	      	addTimeOffModal: false,
-	      }
+	      },
+	      toggleSideBar: false,
 			}
 		},
 		methods: {
@@ -44,12 +45,33 @@
 	    		this.showDayTime = true;
 	    		
 	    	}
-	    }
+	    },
+	    sideBarCollapse( data ) {
+
+				if ( data === 0 ) {
+					if ( this.toggleSideBar === false ) {
+						
+						document.getElementById('profile-side-wrapper').style.left = "0";
+						document.getElementById('profile-detail-wrapper').style.left = "0";
+						this.toggleSideBar = true;
+					} else {
+
+						document.getElementById('profile-side-wrapper').style.left = "-320px";
+						document.getElementById('profile-detail-wrapper').style.left ="-320px";
+						this.toggleSideBar = false;
+					}
+				}
+			},
+			closeLeftContainer() {
+				this.toggleSideBar = true;
+        this.sideBarCollapse(0);
+			},
 		}
 	}
 	export default clinicProfile
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "./src/assets/css/clinic/settings.scss";
+@import "./src/assets/css/clinic/clinic-responsive.scss";
 </style>

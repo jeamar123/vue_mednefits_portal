@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="business-hours-wrapper">
 		<div class="business-hours-header">
 			<ul>
 				<li v-bind:class="{'active': business_active.value === 0}" @click="selectBusinessHours(0,'business-hours')">

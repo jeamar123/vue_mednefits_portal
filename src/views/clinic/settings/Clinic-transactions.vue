@@ -1,6 +1,11 @@
 <template>
 	<div class="clinic-transactions-wrapper">
-		<div class="profile-side-list">
+		<div class="profile-side-list" id="trans-side-list">
+
+			<div>
+				<i @click="closeLeftContainer()" class="fa fa-times"></i>
+			</div>
+
 			<div class="payments-container">
 				<span>Payments</span>
 				<div v-bind:class="{'active': ($route.name == 'TransactionHistory')}">
@@ -23,7 +28,10 @@
 				</div>
 			</div>
 		</div>
-		<div class="transaction-body-detail">
+		<div class="transaction-body-detail" id="trans-body-detail">
+			<div>
+				<i @click="sideBarCollapse(0)" class="fa fa-bars"></i>
+			</div>
 			<router-view name='transactions'></router-view>
 		</div>
 	</div>
