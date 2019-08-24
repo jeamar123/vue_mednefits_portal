@@ -277,7 +277,7 @@
 	.clinic-view-statement-wrapper table {
 		width: 920px;
 	}
-	
+
 }
 
 @media (max-width: 820px) {
@@ -345,6 +345,10 @@
 	}
 
 	.clinic-staff-wrapper .detail-header-container ul:nth-child(2) {
+		display: none;
+	}
+
+	.btn-preview-container {
 		display: none;
 	}
 }
@@ -653,6 +657,48 @@
 			margin: 20px 0 30px 0;
 		}
 
+	}
+
+	.clinic-transactions-wrapper {
+		.statement-account-wrapper {
+			display: none;
+		}
+	}
+
+	.btn-preview-container {
+		display: block;
+		position: relative;
+
+		button {
+			background-color: #0392cf;
+			border-radius: 4px;
+			border: 0;
+			color: #fff;
+			padding: 10px 30px;
+			font-size: 18px;
+			letter-spacing: .5px;
+		}
+
+		button i {
+			margin: 0 10px 0 0;
+		}
+
+		.fa-times {
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+	}
+
+	.clinic-invoice-wrapper {
+		.invoice-card-wrapper {
+			box-shadow: none;
+			border: 0;
+		}
+	}
+
+	.view-invoice-detail-container {
+		display: none;
 	}
 }
 

@@ -97,130 +97,142 @@
 
 		</div>
 
-		<div v-if="viewStatementAccount" class="invoice-card-wrapper statement-account-wrapper">
-			<div>
-				<i @click="viewStatement()" class="fa fa-times"></i>
-			</div>
-			<div class="header">
-				<div class="statment-account-header-title">
-					<h1>STATEMENT OF ACCOUNT</h1>
-					<h5>
-						(Generated on <span>May 23, 2019</span>)
-					</h5>
-				</div>
-
+		<div v-if="viewStatementAccount">
+			<div class="btn-preview-container">
 				<div>
-					<img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1549795986/up0ebkyrragfte9bany7.jpg'">
+					<button class="btn-preview"><i class="fa fa-eye"></i>Preview</button>
 				</div>
-				<div class="header-right-info">
-					<div class="statement-row-container">
-						<span class="statement-bank-name">N/a</span>
-					</div>
-					<div class="statement-row-container">
-						<span class="statement-bank-address">N/a</span>
-					</div>
+				<div>
+					<i @click="viewStatement()" class="fa fa-times"></i>
 				</div>
 			</div>
-			<div class="bill-to">
-				<div class="bill-to-left-info">
-					<h5>BILL TO</h5>
-					<h5>Medicloud Private Limited</h5>
+
+			<div class="invoice-card-wrapper statement-account-wrapper">
+				<div>
+					<i @click="viewStatement()" class="fa fa-times"></i>
+				</div>
+				<div class="header">
+					<div class="statment-account-header-title">
+						<h1>STATEMENT OF ACCOUNT</h1>
+						<h5>
+							(Generated on <span>May 23, 2019</span>)
+						</h5>
+					</div>
+
 					<div>
-						<div>7 Temasek Boulevard #18-02 Suntec Tower One</div>
-						<div>038987</div>
-						<div>Singapore</div>
+						<img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1549795986/up0ebkyrragfte9bany7.jpg'">
+					</div>
+					<div class="header-right-info">
+						<div class="statement-row-container">
+							<span class="statement-bank-name">N/a</span>
+						</div>
+						<div class="statement-row-container">
+							<span class="statement-bank-address">N/a</span>
+						</div>
 					</div>
 				</div>
-				<div class="bill-to-right-info">
-					<div class="account-summary-title">
-						<span>Account Summary</span>
+				<div class="bill-to">
+					<div class="bill-to-left-info">
+						<h5>BILL TO</h5>
+						<h5>Medicloud Private Limited</h5>
+						<div>
+							<div>7 Temasek Boulevard #18-02 Suntec Tower One</div>
+							<div>038987</div>
+							<div>Singapore</div>
+						</div>
 					</div>
-					<div class="statement-row-container">
-						<label>Invoiced: </label>
-						<span>S$ <span class="statement-amount-due">4,023.87</span></span>
-					</div>
-					<div class="statement-row-container">
-						<label>Payments: </label>
-						<span>(S$ <span class="statement-amount-paid">4031.36</span>)</span>
-					</div>
-					<div class="statement-row-container">
-						<label>Ending Balance <span class="statement-created-at">May 23,2019 </span>:</label>
-						<span>S$ <span class="statement-amount-total">NaN</span></span>
+					<div class="bill-to-right-info">
+						<div class="account-summary-title">
+							<span>Account Summary</span>
+						</div>
+						<div class="statement-row-container">
+							<label>Invoiced: </label>
+							<span>S$ <span class="statement-amount-due">4,023.87</span></span>
+						</div>
+						<div class="statement-row-container">
+							<label>Payments: </label>
+							<span>(S$ <span class="statement-amount-paid">4031.36</span>)</span>
+						</div>
+						<div class="statement-row-container">
+							<label>Ending Balance <span class="statement-created-at">May 23,2019 </span>:</label>
+							<span>S$ <span class="statement-amount-total">NaN</span></span>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="invoices-payments-container">
-				<div>SHOWING ALL INVOICES AND PAYMENTS BETWEEN <span>FEB 01, 2017</span> AND <span>FEB 28,2017</span></div>
-			</div>
-			<div class="invoices-payments-tbl-container">
-				<table>
-					<thead>
-						<tr>
-							<th>
-								<span>Date</span>
-							</th>
-							<th>
-								<span>Details</span>
-							</th>
-							<th>
-								<span>Amount</span>
-							</th>
-							<th>
-								<span>Balance</span>
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>
-								<span>Feb 01,2017</span>
-							</td>
-							<td>
-								<span>Invoce #<span class="statement-invoice-number">MNST00005</span> (due <span>FEB 28, 2017</span>)</span>
-							</td>
-							<td> S$ 
-								<span class="statement-amount-due">4,023.87</span>
-							</td>
-							<td> S$ 
-								<span class="statement-amount-total">4,023.87</span>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<span>Feb 28,2017</span>
-							</td>
-							<td> Payment 
-								<span>Invoice #<span class="statement-invoice-number">MNST00005</span> </span>
-							</td>
-							<td> (S$ 
-								<span class="statement-amount-due">4031.36</span>)
-							</td>
-							<td> S$ 
-								<span class="statement-amount-total">NaN</span>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<span>May 23,2019</span>
-							</td>
-							<td>
-								<span>Ending Balance</span>
-							</td>
-							<td> 
-								<span class="statement-amount-due"></span>
-							</td>
-							<td> S$ 
-								<span class="statement-amount-total">NaN</span>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="total">
-				<h4>Amount due (SGD)</h4>
-				<div>S$ <span class="statement-amount-total">NaN</span></div>
+				<div class="invoices-payments-container">
+					<div>SHOWING ALL INVOICES AND PAYMENTS BETWEEN <span>FEB 01, 2017</span> AND <span>FEB 28,2017</span></div>
+				</div>
+				<div class="invoices-payments-tbl-container">
+					<table>
+						<thead>
+							<tr>
+								<th>
+									<span>Date</span>
+								</th>
+								<th>
+									<span>Details</span>
+								</th>
+								<th>
+									<span>Amount</span>
+								</th>
+								<th>
+									<span>Balance</span>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<span>Feb 01,2017</span>
+								</td>
+								<td>
+									<span>Invoce #<span class="statement-invoice-number">MNST00005</span> (due <span>FEB 28, 2017</span>)</span>
+								</td>
+								<td> S$ 
+									<span class="statement-amount-due">4,023.87</span>
+								</td>
+								<td> S$ 
+									<span class="statement-amount-total">4,023.87</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>Feb 28,2017</span>
+								</td>
+								<td> Payment 
+									<span>Invoice #<span class="statement-invoice-number">MNST00005</span> </span>
+								</td>
+								<td> (S$ 
+									<span class="statement-amount-due">4031.36</span>)
+								</td>
+								<td> S$ 
+									<span class="statement-amount-total">NaN</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>May 23,2019</span>
+								</td>
+								<td>
+									<span>Ending Balance</span>
+								</td>
+								<td> 
+									<span class="statement-amount-due"></span>
+								</td>
+								<td> S$ 
+									<span class="statement-amount-total">NaN</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="total">
+					<h4>Amount due (SGD)</h4>
+					<div>S$ <span class="statement-amount-total">NaN</span></div>
+				</div>
 			</div>
 		</div>
+
 	</div> 
 </template>
 
