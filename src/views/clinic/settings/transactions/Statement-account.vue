@@ -24,74 +24,77 @@
 				</li>
 			</ul>
 
-			<table class="invoice-tbl-container">
-				<thead>
-					<tr>
-						<th>
-							<span>Status</span>
-						</th>
-						<th>
-							<span>Date</span>
-						</th>
-						<th>
-							<span>Number</span>
-						</th>
-						<th>
-							<span>Customer</span>
-						</th>
-						<th>
-							<span>Total</span>
-						</th>
-						<th>
-							<span>Amount due</span>
-						</th>
-						<th>
-							<span>Actions</span>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr v-if="true">
-						<td>
-							<div class="status paid">PAID</div>
-						</td>
-						<td>
-							<span>Apr 01, 2019</span>
-						</td>
-						<td>
-							<span>MNST00005</span>
-						</td>
-						<td>
-							<span>Stackgecko GP</span>
-						</td>
-						<td>
-							<span>$4,023.87</span>
-						</td>
-						<td>
-							<span>$0.00</span>
-						</td>
-						<td>
-							<a @click="viewStatement()" class="view-statement-button">View</a>
-							<div>
-								<button @click="btnView()"><i class="fa fa-caret-down"></i></button>
-								<ul v-if="viewSelector" class="dropdown-menu">
-									<li>
-										<a>Export as PDF</a>
-									</li>
-									<li>
-										<a>Print</a>
-									</li>
-								</ul>	
-							</div>
-						</td>
-					</tr>
-					<tr v-if="false">
-						<td>
-							<h6 class="no-data-text">No data available in table</h6>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="invoice-tbl-wrapper">
+				<table class="invoice-tbl-container">
+					<thead>
+						<tr>
+							<th>
+								<span>Status</span>
+							</th>
+							<th>
+								<span>Date</span>
+							</th>
+							<th>
+								<span>Number</span>
+							</th>
+							<th>
+								<span>Customer</span>
+							</th>
+							<th>
+								<span>Total</span>
+							</th>
+							<th>
+								<span>Amount due</span>
+							</th>
+							<th>
+								<span>Actions</span>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-if="true">
+							<td>
+								<div class="status paid">PAID</div>
+							</td>
+							<td>
+								<span>Apr 01, 2019</span>
+							</td>
+							<td>
+								<span>MNST00005</span>
+							</td>
+							<td>
+								<span>Stackgecko GP</span>
+							</td>
+							<td>
+								<span>$4,023.87</span>
+							</td>
+							<td>
+								<span>$0.00</span>
+							</td>
+							<td>
+								<a @click="viewStatement()" class="view-statement-button">View</a>
+								<div>
+									<button @click="btnView()"><i class="fa fa-caret-down"></i></button>
+									<ul v-if="viewSelector" class="dropdown-menu">
+										<li>
+											<a>Export as PDF</a>
+										</li>
+										<li>
+											<a>Print</a>
+										</li>
+									</ul>	
+								</div>
+							</td>
+						</tr>
+						<tr v-if="false">
+							<td>
+								<h6 class="no-data-text">No data available in table</h6>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
 		</div>
 
 		<div v-if="viewStatementAccount" class="invoice-card-wrapper statement-account-wrapper">

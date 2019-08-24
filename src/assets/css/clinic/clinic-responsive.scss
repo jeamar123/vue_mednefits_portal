@@ -265,6 +265,19 @@
 	.clinic-transactions-wrapper .trans-history-tbl-wrapper {
 		margin: 0;
 	}
+
+	.invoice-tbl-wrapper {
+		overflow-x: auto;
+
+		&::-webkit-scrollbar {
+			height: 3px;
+		}	
+	}
+
+	.clinic-view-statement-wrapper table {
+		width: 920px;
+	}
+	
 }
 
 @media (max-width: 820px) {
