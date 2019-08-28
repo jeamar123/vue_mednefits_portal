@@ -7,11 +7,11 @@ import FileSaver from 'file-saver';
 let statement = {
   data() {
     return {
-      range_values : moment().format('M'),
       range_marks : { '1' : 'JAN', '2' : 'FEB', '3' : 'MAR', '4' : 'APR', '5' : 'MAY', '6' : 'JUN', '7' : 'JUL', '8' : 'AUG', '9' : 'SEP', '10' : 'OCT', '11' : 'NOV', '12' : 'DEC', },
       current_year : moment( ).format('YYYY'),
       start_date : new Date(moment().startOf('month')),
       end_date : new Date(moment().endOf('month')),
+      range_values : moment().format('M'),
       showRangeMonthSlider: true,
       showInputDate: false,
       overview_active: true,

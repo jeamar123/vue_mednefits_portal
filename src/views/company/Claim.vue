@@ -8,10 +8,16 @@
 
 						<div class="custom-date-selector">
 							<i class="fa fa-calendar"></i>
-							<v-date-picker :max-date='new Date()' v-model="timeFrame.start"
-                :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
-                popover-visibility='focus'>
-              </v-date-picker>
+              <v-date-picker 
+	              mode='single' 
+	              popoverDirection="bottom" 
+	              :formats="formats"
+	              v-model='start_date' 
+	              :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
+	              popover-visibility='focus'
+	              v-on:input='dateSelected( start_date , end_date )'
+	            >
+	            </v-date-picker>
 							<i class="fa fa-caret-down"></i>
 						</div>
 
@@ -19,10 +25,17 @@
 						
 						<div class="custom-date-selector">	
 							<i class="fa fa-calendar"></i>
-							<v-date-picker :max-date='new Date()' v-model="timeFrame.end"
-                :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
-                popover-visibility='focus'>
-              </v-date-picker>
+							<v-date-picker 
+	              mode='single' 
+	              popoverDirection="bottom" 
+	              :formats="formats"
+	              v-model='end_date' 
+	              :min-date='start_date'
+	              :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
+	              popover-visibility='focus'
+	              v-on:input='dateSelected( start_date , end_date )'
+	            >
+	            </v-date-picker>
 							<i class="fa fa-caret-down"></i>	
 						</div>		
 
@@ -80,25 +93,19 @@
 						  </div>
 	    			</div>
 	    			<div class="search-wrapper">
-							<div class="input-group">
-								<input class="search-input" placeholder="Search Employee Name">
-								<ul v-if="false" class="dropdown-menu">
-									<li class="active">
-										<a class="dropdown-item" href="#" role="option">allan cheam alzula</a>
-									</li>
-									<li class="">
-										<a class="dropdown-item" href="#" role="option">allan cheam alzula</a>
-									</li>
-									<li class="">
-										<a class="dropdown-item" href="#" role="option">allan cheam alzula</a>
-									</li>
-								</ul>
-					      <span class="input-group-btn">
-					        <button><i class="fa fa-search"></i></button>
-					        <button v-if="false"><i class="fa fa-close"></i></button>
-					      </span>
-							</div>
-						</div>
+		          <div class="input-group">
+		            <input class="search-input" placeholder="Search Employee Name" v-model="search_emp" v-on:input="searchEmployeeChanged( search_emp )">
+		            <ul v-show="isActiveSearch" class="dropdown-menu">
+		              <li v-for="list in searchedEmployee ">
+		                <a class="dropdown-item" v-on:click="selectEmployeeSearch( list.user_id )" role="option">{{ list.Name }}</a>
+		              </li>
+		            </ul>
+		            <span class="input-group-btn">
+		              <button v-if="!isActiveSearch"><i class="fa fa-search"></i></button>
+		              <button v-if="isActiveSearch" v-on:click="closeSearchEmp()"><i class="fa fa-close"></i></button>
+		            </span>
+		          </div>
+		        </div>
 	    		</div>
 	    	</div>
 
