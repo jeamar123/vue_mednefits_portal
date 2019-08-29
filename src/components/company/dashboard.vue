@@ -2,7 +2,7 @@
 import axios from 'axios';
 // script here
 import Enrollment from "./enrollment";
-import Excel from "../../views/company/enrollment/Excel.vue";
+// import Excel from "../../views/company/enrollment/Excel.vue";
 import WebInput from "../../views/company/enrollment/Web-input.vue";
 import Overview from "./overview";
 

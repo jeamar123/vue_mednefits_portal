@@ -114,6 +114,7 @@
 
 	.dropdown-menu {
 		position: absolute;
+		z-index: 1;
 		top: 34px;
 		left: 0px;
 		min-width: 215px;
@@ -587,8 +588,8 @@
 			color: #fff;
 			background: rgb(79, 151, 98);
 			padding: 5px;
-    	border-radius: 4px;
-    	font-size: 12px;
+    		border-radius: 4px;
+    		font-size: 12px;
 		}
 
 		.credit-cash-wrap > span {
