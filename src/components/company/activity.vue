@@ -30,7 +30,8 @@ let activity = {
 				value: 0,
 				text: ""
 			},
-			toggleSidebar: { in: false,
+			toggleSidebar: { 
+				in: false,
 				out: false
 			},
 			showPreview: false,
@@ -136,6 +137,12 @@ let activity = {
 			}
 		},
 		applyDates() {
+
+			this.toggleSidebar.in = false;
+			this.toggleSidebar.out = false;
+			this.showPreview = false;
+
+
 			let activity_search = {
 				start: moment(this.timeFrame.rangePicker_start, 'DD/MM/YYYY').format('YYYY-MM-DD'),
 				end: moment(this.timeFrame.rangePicker_end, 'DD/MM/YYYY').format('YYYY-MM-DD'),
