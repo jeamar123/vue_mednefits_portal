@@ -92,10 +92,11 @@ let statement = {
   methods: {
     closeSearchEmp(){
       this.isActiveSearch = false;
-      this.search_emp = "";
+      // this.search_emp = "";
     },
-    selectEmployeeSearch( id ){
+    selectEmployeeSearch( id, name ){
       this.selected_user_id = id;
+      this.search_emp = name;
       this.getStatementDataByEmployee();
     },
     searchEmployeeChanged( value ){

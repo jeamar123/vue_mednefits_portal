@@ -18,22 +18,10 @@ let claim = {
       end_date : new Date(moment().endOf('month')),
     	eclaimSpendingType: {
     		value: 0,
-        text: ""
+        text: "medical"
       },
       viewData : 'All',
       viewEclaim: false,
-      test : [
-        {
-          id: 1,
-          name: 'test',
-          showTransDetails: false,
-        },
-        {
-          id: 2,
-          name: 'test',
-          showTransDetails: false,
-        }
-      ],
       formats: {
         input: ['MM/DD/YYYY'], 
         data: ['YYYY-MM-DD']
@@ -61,15 +49,25 @@ let claim = {
         return this.employee_list;
       }
     },
+    filteredEclaimTransactions(){
+      if( this.viewData != 'All' ){
+        return this.claim_data.e_claim_transactions.filter((value) => {
+          return value.status_text == this.viewData;
+        })
+      }else{
+        return this.claim_data.e_claim_transactions;
+      }
+    },
   },
   methods: {
     closeSearchEmp(){
       this.isActiveSearch = false;
-      this.search_emp = "";
+      // this.search_emp = "";
     },
-    selectEmployeeSearch( id ){
+    selectEmployeeSearch( id, name ){
       this.selected_user_id = id;
-      // this.getStatementDataByEmployee();
+      this.search_emp = name;
+      this.getClaimsByEmployee();
     },
     searchEmployeeChanged( value ){
       if( value.length > 0 ){
@@ -82,8 +80,10 @@ let claim = {
       //spending either medical or wellness
       this.eclaimSpendingType.value = value;
       this.eclaimSpendingType.text = text;
+      this.getClaims();
     },
     toggleDetails(data) {
+
       data.showTransDetails = !data.showTransDetails;
     },
     viewEclaimToggle(opt, data) {
@@ -152,11 +152,36 @@ let claim = {
       // this.$parent.showLoading();
       axios.get( axios.defaults.serverUrl + '/hr/details' )
         .then(res => {
-          this.$parent.hideLoading();
+          // this.$parent.hideLoading();
           console.log(res);
           if( res.status == 200 ){
             this.company_details = res.data.data;
             this.getClaims();
+          }else{
+            this.$parent.swal('Error!', res.data.message, 'error');
+          }
+        })
+        .catch(err => {
+          console.log( err );
+          this.$parent.hideLoading();
+          this.$parent.swal('Error!', err,'error');
+        });
+    },
+    getClaimsByEmployee(){
+      var data = {
+        start : moment(this.start_date).format('YYYY-MM-DD'),
+        end : moment(this.end_date).format('YYYY-MM-DD'),
+        spending_type : this.eclaimSpendingType.text,
+        user_id : this.selected_user_id,
+      }
+      this.closeSearchEmp();
+      this.$parent.showLoading();
+      axios.post( axios.defaults.serverUrl + '/hr/search_employee_e_claim_activity', data)
+        .then(res => {
+          this.$parent.hideLoading();
+          console.log(res);
+          if( res.status == 200 ){
+            this.claim_data = res.data;
           }else{
             this.$parent.swal('Error!', res.data.message, 'error');
           }
@@ -172,7 +197,7 @@ let claim = {
         start : moment(this.start_date).format('YYYY-MM-DD'),
         end : moment(this.end_date).format('YYYY-MM-DD'),
         page : this.pageCtr,
-        spending_type : this.eclaimSpendingType.value,
+        spending_type : this.eclaimSpendingType.text,
       }
       this.$parent.showLoading();
       axios.get( axios.defaults.serverUrl + '/hr/e_claim_activity?page=' + data.page + '&start=' + data.start + '&end=' + data.end + '&spending_type=' + data.spending_type )
@@ -181,6 +206,10 @@ let claim = {
           console.log(res);
           if( res.status == 200 ){
             this.claim_data = res.data.data;
+            if( this.claim_data.last_page > 0 && this.pageCtr != this.claim_data.last_page ){
+              this.pageCtr += 1;
+              this.getClaims();
+            }
           }else{
             this.$parent.swal('Error!', res.data.message, 'error');
           }

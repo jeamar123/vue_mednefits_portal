@@ -15,7 +15,6 @@
 	              v-model='start_date' 
 	              :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
 	              popover-visibility='focus'
-	              v-on:input='dateSelected( start_date , end_date )'
 	            >
 	            </v-date-picker>
 							<i class="fa fa-caret-down"></i>
@@ -33,13 +32,12 @@
 	              :min-date='start_date'
 	              :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
 	              popover-visibility='focus'
-	              v-on:input='dateSelected( start_date , end_date )'
 	            >
 	            </v-date-picker>
 							<i class="fa fa-caret-down"></i>	
 						</div>		
 
-						<button class="btn-apply">
+						<button class="btn-apply" v-on:click="getClaims()">
 							Apply
 						</button>
 						
@@ -56,20 +54,20 @@
 					</div>
 					<div class="cost-wrapper">
 						<div class="benefit-box">
-							<h5>S$ <span>0.00</span></h5>
-							<p>SPENT</p>
+							<h5>S$ <span>{{ claim_data.total_e_claim_submitted }}</span></h5>
+							<p>TOTAL CLAIM SUBMITTED</p>
 						</div>
 						<div class="benefit-box">
-							<h5>S$ <span>0.00</span></h5>
-							<p>BALANCE</p>
+							<h5>S$ <span>{{ claim_data.total_e_claim_pending }}</span></h5>
+							<p>PENDING</p>
 						</div>
 						<div class="benefit-box">
-							<h5>S$ <span>0.00</span></h5>
-							<p>ALLOCATED</p>
+							<h5>S$ <span>{{ claim_data.total_e_claim_approved }}</span></h5>
+							<p>APPROVED</p>
 						</div>
 						<div class="benefit-box">
-							<h5>S$ <span>0.00</span></h5>
-							<p>TOTAL COMPANY CREDITS</p>
+							<h5>S$ <span>{{ claim_data.total_e_claim_rejected }}</span></h5>
+							<p>REJECTED</p>
 						</div>
 					</div>
 				</div>
@@ -96,13 +94,13 @@
 		          <div class="input-group">
 		            <input class="search-input" placeholder="Search Employee Name" v-model="search_emp" v-on:input="searchEmployeeChanged( search_emp )">
 		            <ul v-show="isActiveSearch" class="dropdown-menu">
-		              <li v-for="list in searchedEmployee ">
-		                <a class="dropdown-item" v-on:click="selectEmployeeSearch( list.user_id )" role="option">{{ list.Name }}</a>
+		              <li v-for="list in searchedEmployee">
+		                <a class="dropdown-item" v-on:click="selectEmployeeSearch( list.user_id, list.Name )" role="option">{{ list.Name }}</a>
 		              </li>
 		            </ul>
 		            <span class="input-group-btn">
-		              <button v-if="!isActiveSearch"><i class="fa fa-search"></i></button>
-		              <button v-if="isActiveSearch" v-on:click="closeSearchEmp()"><i class="fa fa-close"></i></button>
+		              <button v-if="search_emp == ''"><i class="fa fa-search"></i></button>
+		              <button v-if="isActiveSearch && search_emp != ''" v-on:click="closeSearchEmp()"><i class="fa fa-close"></i></button>
 		            </span>
 		          </div>
 		        </div>
@@ -137,10 +135,10 @@
 							<th></th>
 						</tr>
 	    		</thead>
-	    		<tbody v-for="n in test" :key="n.id">
+	    		<tbody v-for="list in filteredEclaimTransactions" >
 						<tr @click="toggleDetails(n)">
 							<td>
-								<label class="status-text pending">Pending {{n.id}}</label>
+								<label class="status-text pending">Pending</label>
 							</td>
 							<td>
 								<span>15 May 2019 05:09 PM</span>
@@ -164,17 +162,17 @@
 								</div>
 							</td>
 							<td>
-								<i class="fa fa-angle-right transition-easeInOutCubic-300ms" :class="{'fa-angle-down-active': n.showTransDetails === true}" ></i>
+								<i class="fa fa-angle-right transition-easeInOutCubic-300ms" :class="{'fa-angle-down-active': list.showTransDetails === true}" ></i>
 							</td>
 						</tr>
 						<transition name="fade">
-							<tr class="in-network-subtr" v-if="n.showTransDetails">
+							<tr class="in-network-subtr" v-if="list.showTransDetails">
 								<td colspan="8">
 
 
 									<div class="status-left-wrapper">
 										<div class="status-box-left">
-											<div class="status_text">Pending {{n.id}}</div>
+											<div class="status_text">Pending</div>
 											<div class="claim-date-text">Claim Date: <span>15 May 2019 05:09 PM</span></div>
 										</div>
 

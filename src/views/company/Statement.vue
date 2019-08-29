@@ -134,12 +134,12 @@
             <input class="search-input" placeholder="Search Employee Name" v-model="search_emp" v-on:input="searchEmployeeChanged( search_emp )">
             <ul v-show="isActiveSearch" class="dropdown-menu">
               <li v-for="list in searchedEmployee ">
-                <a class="dropdown-item" v-on:click="selectEmployeeSearch( list.user_id )" role="option">{{ list.Name }}</a>
+                <a class="dropdown-item" v-on:click="selectEmployeeSearch( list.user_id, list.Name )" role="option">{{ list.Name }}</a>
               </li>
             </ul>
             <span class="input-group-btn">
-              <button v-if="!isActiveSearch"><i class="fa fa-search"></i></button>
-              <button v-if="isActiveSearch" v-on:click="closeSearchEmp()"><i class="fa fa-close"></i></button>
+              <button v-if="search_emp == ''"><i class="fa fa-search"></i></button>
+              <button v-if="isActiveSearch && search_emp != ''" v-on:click="closeSearchEmp()"><i class="fa fa-close"></i></button>
             </span>
           </div>
         </div>
