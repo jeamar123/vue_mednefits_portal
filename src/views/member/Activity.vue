@@ -162,7 +162,7 @@
 							<th></th>
 						</tr>
 					</thead>
-					<tbody v-for="list in in_transactions">
+					<tbody v-for="list in in_transactions" :key="list.index">
 						<tr v-on:click="toggleTransactionDrop( list )">
 							<td>
 								<span>{{ list.date_of_transaction }}</span>
@@ -283,10 +283,10 @@
 
 											<p v-if="list.upload_err" class="text-error">{{ list.upload_err_message }}</p>
 											<div class="trans-receipts-wrapper">
-												<div class="click_box_wrapper" v-on:click="showPreview(img)" v-for="img in list.transaction_files">
+												<div class="click_box_wrapper" v-on:click="showPreview(img)" v-for="img in list.transaction_files" :key="img.index">
 													<a href="javascript:void(0)">
 														<div class="click_box">
-															<span class="oi" data-glyph="plus"aria-hidden="true"></span>
+															<span class="oi" data-glyph="plus" aria-hidden="true"></span>
 														</div>
 														<img v-if="img.type == 'image' || img.file_type == 'image'" :src="img.file" >
 														<img v-if="img.type == 'excel' || img.file_type == 'excel'" :src="'../assets/e-claim/img/new-assets/Receipt-doc-xls.png'" >
@@ -319,7 +319,7 @@
 							<th></th>
 						</tr>
 					</thead>
-					<tbody v-for="list in out_transactions">
+					<tbody v-for="list in out_transactions" :key="list.index">
 						<tr v-on:click="toggleTransactionDrop( list )">
 							<td class="status-box-container">
 								<label v-if="list.status == 0" class="status-box pending" >Pending</label>
@@ -456,7 +456,7 @@
 		<div class="preview-box">
 			<div class="img-container">
 				<a href="javascript:void(0)" id="hidePreview" v-on:click="hidePreview()">
-					<span class="oi" data-glyph="x"aria-hidden="true"></span>
+					<span class="oi" data-glyph="x" aria-hidden="true"></span>
 				</a>
 
 				<img hidden>

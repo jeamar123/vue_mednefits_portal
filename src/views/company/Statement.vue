@@ -133,7 +133,7 @@
           <div class="input-group">
             <input class="search-input" placeholder="Search Employee Name" v-model="search_emp" v-on:input="searchEmployeeChanged( search_emp )">
             <ul v-show="isActiveSearch" class="dropdown-menu">
-              <li v-for="list in searchedEmployee ">
+              <li v-for="list in searchedEmployee " :key="list.index">
                 <a class="dropdown-item" v-on:click="selectEmployeeSearch( list.user_id )" role="option">{{ list.Name }}</a>
               </li>
             </ul>
@@ -316,7 +316,7 @@
                   <th></th>
                 </tr>
               </thead>
-              <tbody v-for="list in filteredInNetwork">
+              <tbody v-for="list in filteredInNetwork" :key="list.index">
                 <tr @click="toggleDetails( list )">
                   <td>
                     <!-- <span>29 April 2019, 10:52am</span> -->
@@ -428,7 +428,7 @@
                         <button class="btn-download-receipt" v-bind:class="{'disabled' : !list.receipt_files || list.receipt_files.length == 0}" v-on:click="downloadReceipt( list.receipt_files, list )">Download Receipt</button>
 
                         <div class="trans-receipts-wrapper">
-                          <div v-for="img in list.receipt_files" class="click-box-wrapper">
+                          <div v-for="img in list.receipt_files" :key="img.index" class="click-box-wrapper">
                             <div class="click-box">
                               <i class="fa fa-plus"></i>
                             </div>
@@ -459,7 +459,7 @@
                   <th></th>
                 </tr>
               </thead>
-              <tbody v-for="list in filteredOutNetwork">
+              <tbody v-for="list in filteredOutNetwork" :key="list.index">
                 <tr @click="toggleDetails( list )">
                   <td>
                     <label v-if="list.status == 0" class="status-text pending" >Pending</label>
@@ -568,7 +568,7 @@
                         <button class="btn-download-receipt" v-bind:class="{'disabled' : !list.files || list.files.length == 0}" v-on:click="downloadReceipt( list.files, list )">Download Receipt</button>
                         
                         <div class="trans-receipts-wrapper">
-                          <div v-for="img in list.files" class="click-box-wrapper">
+                          <div v-for="img in list.files" :key="img.index" class="click-box-wrapper">
                             <div class="click-box">
                               <i class="fa fa-plus"></i>
                             </div>
