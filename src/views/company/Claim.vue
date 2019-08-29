@@ -54,19 +54,19 @@
 					</div>
 					<div class="cost-wrapper">
 						<div class="benefit-box">
-							<h5>S$ <span>{{ claim_data.total_e_claim_submitted }}</span></h5>
+							<h5>S$ <span>{{ claim_data.total_e_claim_submitted_formatted }}</span></h5>
 							<p>TOTAL CLAIM SUBMITTED</p>
 						</div>
 						<div class="benefit-box">
-							<h5>S$ <span>{{ claim_data.total_e_claim_pending }}</span></h5>
+							<h5>S$ <span>{{ claim_data.total_e_claim_pending_formatted }}</span></h5>
 							<p>PENDING</p>
 						</div>
 						<div class="benefit-box">
-							<h5>S$ <span>{{ claim_data.total_e_claim_approved }}</span></h5>
+							<h5>S$ <span>{{ claim_data.total_e_claim_approved_formatted }}</span></h5>
 							<p>APPROVED</p>
 						</div>
 						<div class="benefit-box">
-							<h5>S$ <span>{{ claim_data.total_e_claim_rejected }}</span></h5>
+							<h5>S$ <span>{{ claim_data.total_e_claim_rejected_formatted }}</span></h5>
 							<p>REJECTED</p>
 						</div>
 					</div>
@@ -108,8 +108,16 @@
 	    	</div>
 
 	    	<div class="total-claim-transaction">
-	    		<div class="total-transaction-container"><span>124</span> Total Transactions</div>
-	    		<div class="total-claim-container">Total Claim <span>S$ <span>811.05</span></span></div>
+	    		<div class="total-transaction-container"><span>{{ ( filteredEclaimTransactions ) ? filteredEclaimTransactions.length : "" }}</span> Total Transactions</div>
+	    		<div class="total-claim-container">
+	    			Total Claim 
+	    			<span>S$ 
+	    				<span v-if="viewData == 'All'">{{ claim_data.total_e_claim_submitted }}</span>
+	    				<span v-if="viewData == 'Pending'">{{ claim_data.total_e_claim_pending }}</span>
+	    				<span v-if="viewData == 'Approved'">{{ claim_data.total_e_claim_approved }}</span>
+	    				<span v-if="viewData == 'Rejected'">{{ claim_data.total_e_claim_rejected }}</span>
+	    			</span>
+	    		</div>
 	    	</div>
 
 	    	<div class="download-btn-container">

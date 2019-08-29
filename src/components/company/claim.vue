@@ -23,7 +23,7 @@ let claim = {
       viewData : 'All',
       viewEclaim: false,
       formats: {
-        input: ['MM/DD/YYYY'], 
+        input: ['DD/MM/YYYY'], 
         data: ['YYYY-MM-DD']
       },
       showPreview: false,
@@ -62,7 +62,7 @@ let claim = {
   methods: {
     closeSearchEmp(){
       this.isActiveSearch = false;
-      // this.search_emp = "";
+      this.search_emp = "";
     },
     selectEmployeeSearch( id, name ){
       this.selected_user_id = id;
@@ -174,7 +174,7 @@ let claim = {
         spending_type : this.eclaimSpendingType.text,
         user_id : this.selected_user_id,
       }
-      this.closeSearchEmp();
+      this.isActiveSearch = false;
       this.$parent.showLoading();
       axios.post( axios.defaults.serverUrl + '/hr/search_employee_e_claim_activity', data)
         .then(res => {
@@ -202,15 +202,29 @@ let claim = {
       this.$parent.showLoading();
       axios.get( axios.defaults.serverUrl + '/hr/e_claim_activity?page=' + data.page + '&start=' + data.start + '&end=' + data.end + '&spending_type=' + data.spending_type )
         .then(res => {
-          this.$parent.hideLoading();
+          
           console.log(res);
           if( res.status == 200 ){
-            this.claim_data = res.data.data;
-            if( this.claim_data.last_page > 0 && this.pageCtr != this.claim_data.last_page ){
+            if( this.pageCtr != 1 ){
+              this.claim_data.all_transaction_total_formatted += res.data.data.all_transaction_total_formatted;
+              this.claim_data.pending_transaction_total_formatted += res.data.data.pending_transaction_total_formatted;
+              this.claim_data.rejected_transaction_total_formatted += res.data.data.rejected_transaction_total_formatted;
+              this.claim_data.total_e_claim_approved_formatted += res.data.data.total_e_claim_approved_formatted;
+              this.claim_data.total_e_claim_pending_formatted += res.data.data.total_e_claim_pending_formatted;
+              this.claim_data.total_e_claim_rejected_formatted += res.data.data.total_e_claim_rejected_formatted;
+              this.claim_data.total_e_claim_submitted_formatted += res.data.data.total_e_claim_submitted_formatted;
+            }else{
+              this.claim_data = res.data.data;
+            }
+            
+            if( res.data.last_page > 0 && this.pageCtr != res.data.last_page ){
               this.pageCtr += 1;
               this.getClaims();
+            }else{
+              this.$parent.hideLoading();
             }
           }else{
+            this.$parent.hideLoading();
             this.$parent.swal('Error!', res.data.message, 'error');
           }
         })

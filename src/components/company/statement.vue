@@ -92,7 +92,7 @@ let statement = {
   methods: {
     closeSearchEmp(){
       this.isActiveSearch = false;
-      // this.search_emp = "";
+      this.search_emp = "";
     },
     selectEmployeeSearch( id, name ){
       this.selected_user_id = id;
@@ -325,7 +325,7 @@ let statement = {
         user_id : this.selected_user_id,
       }
       this.$parent.showLoading();
-      this.closeSearchEmp();
+      this.isActiveSearch = false;
       axios.post( axios.defaults.serverUrl + '/hr/search_employee_statement', data )
         .then(res => {
           this.$parent.hideLoading();
