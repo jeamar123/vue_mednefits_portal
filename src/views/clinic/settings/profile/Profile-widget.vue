@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="booking-widget-wrapper">
 		<div class="clinic-profile-header">
 			<h4>Booking Widget Integration</h4>
 		</div>

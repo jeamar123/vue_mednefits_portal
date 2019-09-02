@@ -36,6 +36,36 @@
 		  			</ul>
 		  		</div>
 		  	</div>
+
+		  	<div class="menu-bar-right">
+		  		<button @click="btnNavbarCollapse()" class="menu-bar-wrapper">
+		  			<div class="icon-bar"></div>
+		  			<div class="icon-bar"></div>
+		  			<div class="icon-bar"></div>
+		  		</button>
+		  		<div v-if="navbarCollapse" class="navbar-collapse">
+		  			<ul>
+		  				<li @click="btnHideNavbarCollapse()">
+		  					<a href="#/clinic/dashboard-summary" class="router-link-exact-active router-active">DASHBOARD</a>
+		  				</li>
+		  				<li @click="btnHideNavbarCollapse()">
+		  					<a href="#/clinic/claim" class="">CLAIM</a>
+		  				</li>
+		  				<li @click="btnHideNavbarCollapse()">
+		  					<a class="">CALENDAR</a>
+		  				</li>
+		  				<li @click="btnHideNavbarCollapse()">
+		  					<a @click.prevent="toggleSMSModal()" class="">SMS</a>
+		  				</li>
+		  				<li @click="btnHideNavbarCollapse()">
+		  					<a href="#/clinic/settings" class="">SETTINGS</a>
+		  				</li>
+		  				<li @click="btnHideNavbarCollapse()">
+		  					<a @click.prevent="logout()" class="">LOGOUT</a>
+		  				</li>
+		  			</ul>
+		  		</div>
+		  	</div>
 		  </div>
 
 		  <div class="child-content">

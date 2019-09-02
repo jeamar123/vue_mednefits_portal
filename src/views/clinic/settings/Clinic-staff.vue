@@ -1,6 +1,10 @@
 <template>
 	<div class="clinic-staff-wrapper">
-		<div class="staff-side-list">
+		<div class="staff-side-list" id="staff-side-wrapper">
+
+			<div>
+				<i @click="closeLeftContainer()" class="fa fa-times"></i>
+			</div>
 
 			<div class="staff-header-list">
 				<span>1 Doctors</span>
@@ -33,23 +37,45 @@
 			</div>
 
 		</div>
-		<div class="detail-wrapper">
+		<div class="detail-wrapper" id="staff-detail-wrapper">
 			<div class="detail-header-container">
 				<ul>
 					<li>
-						<a v-bind:class="{'active': detail_active.value === 0}" @click="selectDetail(0,'details')">DETAILS</a>
+						<a @click="sideBarCollapse(0)">
+							<i class="fa fa-bars" ></i>
+						</a>
 					</li>
 					<li>
-						<a v-bind:class="{'active': detail_active.value === 1}" @click="selectDetail(1,'services')">SERVICES</a>
+						<a v-bind:class="{'active': detail_active.value === 0}" @click="selectDetail('0','details')">DETAILS</a>
 					</li>
 					<li>
-						<a v-bind:class="{'active': detail_active.value === 2}" @click="selectDetail(2,'working-hours')">WORKING HOURS</a>
+						<a v-bind:class="{'active': detail_active.value === 1}" @click="selectDetail('1','services')">SERVICES</a>
 					</li>
 					<li>
-						<a v-bind:class="{'active': detail_active.value === 3}" @click="selectDetail(3,'breaks')">BREAKS</a>
+						<a v-bind:class="{'active': detail_active.value === 2}" @click="selectDetail('2','working-hours')">WORKING HOURS</a>
 					</li>
 					<li>
-						<a v-bind:class="{'active': detail_active.value === 4}" @click="selectDetail(4,'time-off')">TIME-OFF</a>
+						<a v-bind:class="{'active': detail_active.value === 3}" @click="selectDetail('3','breaks')">BREAKS</a>
+					</li>
+					<li>
+						<a v-bind:class="{'active': detail_active.value === 4}" @click="selectDetail('4','time-off')">TIME-OFF</a>
+					</li>
+				</ul>
+
+				<ul class="staff-select-header-wrapper">
+					<li>
+						<a @click="sideBarCollapse(0)">
+							<i class="fa fa-bars" ></i>
+						</a>
+					</li>
+					<li>
+						<select v-model="detail_active.value">
+							<option value="0">DETAILS</option>
+							<option value="1">SERVICES</option>
+							<option value="2">WORKING HOURS</option>
+							<option value="3">BREAKS</option>
+							<option value="4">TIME-OFF</option>
+						</select>
 					</li>
 				</ul>
 
@@ -69,7 +95,7 @@
 			</div>
 
 			<div class="detail-body-container">
-				<div v-if="detail_active.value === 0" class="details-info-container">
+				<div v-if=" detail_active.value === '0' " class="details-info-container">
 					<div>
 						<div class="clinic-row-container">
 							<div>
@@ -212,7 +238,7 @@
 					</div>
 				</div>
 
-				<div v-if="detail_active.value === 1" class="services-info-container">
+				<div v-if="detail_active.value === '1' " class="services-info-container">
 					<div class="detail-body-info-header">
 						<div>
 							<img :src="'../assets/img/clinic/ico_Profile.svg'">
@@ -275,7 +301,7 @@
 					</div>
 				</div>
 
-				<div v-if="detail_active.value === 2">
+				<div v-if="detail_active.value === '2' " class="working-hours-info-container">
 					<div class="detail-body-info-header">
 						<div>
 							<img :src="'../assets/img/clinic/ico_Profile.svg'">
@@ -284,201 +310,203 @@
 							<h1>Working Hours for you:</h1>
 						</div>
 					</div>
-
-					<div class="working-hour-body-container">
-						<div v-for="( list, index ) in weekDayNames" class="working-row-container">
-							<div class="day-container">
-								<span>{{ list }}</span>
-							</div>
-							<label class="clinic-switch-container">
-			          <input type="checkbox" checked="">
-			          <span class="slider">
-			            <span class="off">On</span>
-			            <span class="on">Off</span>
-			          </span>
-			        </label>
-							<div class="timepicker-container">
-								<div>
-									<span v-if="false">08:00AM</span>
-									<!-- <span v-on:click="showWorkingHourStart( index )">08:00AM</span> -->
-									<ul v-if="false" class="dropdown-menu">
-									<!-- <ul v-if="false" v-show="workingHourStartArr[ index ] == true" class="dropdown-menu"> -->
-										<li>
-											<a>12:00 AM</a>
-										</li>
-										<li>
-											<a>01:00 AM</a>
-										</li>
-										<li>
-											<a>02:00 AM</a>
-										</li>
-										<li>
-											<a>03:00 AM</a>
-										</li>
-										<li>
-											<a>04:00 AM</a>
-										</li>
-										<li>
-											<a>05:00 AM</a>
-										</li>
-										<li>
-											<a>06:00 AM</a>
-										</li>
-										<li>
-											<a>07:00 AM</a>
-										</li>
-										<li>
-											<a>09:00 AM</a>
-										</li>
-										<li>
-											<a>10:00 AM</a>
-										</li>
-										<li>
-											<a>11:00 AM</a>
-										</li>
-										<li>
-											<a>12:00 PM</a>
-										</li>
-										<li>
-											<a>01:00 PM</a>
-										</li>
-										<li>
-											<a>02:00 PM</a>
-										</li>
-										<li>
-											<a>03:00 PM</a>
-										</li>
-										<li>
-											<a>04:00 PM</a>
-										</li>
-										<li>
-											<a>05:00 PM</a>
-										</li>
-										<li>
-											<a>06:00 PM</a>
-										</li>
-										<li>
-											<a>07:00 PM</a>
-										</li>
-										<li>
-											<a>08:00 PM</a>
-										</li>
-										<li>
-											<a>09:00 PM</a>
-										</li>
-										<li>
-											<a>10:00 PM</a>
-										</li>
-										<li>
-											<a>11:00 PM</a>
-										</li>
-									</ul>
-
-									<select>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-									</select>
+					<div class="working-hour-body-wrapper">
+						<div></div>
+						<div class="working-hour-body-container">
+							<div v-for="( list, index ) in weekDayNames" class="working-row-container">
+								<div class="day-container">
+									<span>{{ list }}</span>
 								</div>
-								
-								<span>to</span>
-								<div>
-									<span v-if="false">05:30PM</span>
-									<ul v-if="false" class="dropdown-menu">
-										<li>
-											<a>12:00 AM</a>
-										</li>
-										<li>
-											<a>01:00 AM</a>
-										</li>
-										<li>
-											<a>02:00 AM</a>
-										</li>
-										<li>
-											<a>03:00 AM</a>
-										</li>
-										<li>
-											<a>04:00 AM</a>
-										</li>
-										<li>
-											<a>05:00 AM</a>
-										</li>
-										<li>
-											<a>06:00 AM</a>
-										</li>
-										<li>
-											<a>07:00 AM</a>
-										</li>
-										<li>
-											<a>09:00 AM</a>
-										</li>
-										<li>
-											<a>10:00 AM</a>
-										</li>
-										<li>
-											<a>11:00 AM</a>
-										</li>
-										<li>
-											<a>12:00 PM</a>
-										</li>
-										<li>
-											<a>01:00 PM</a>
-										</li>
-										<li>
-											<a>02:00 PM</a>
-										</li>
-										<li>
-											<a>03:00 PM</a>
-										</li>
-										<li>
-											<a>04:00 PM</a>
-										</li>
-										<li>
-											<a>05:00 PM</a>
-										</li>
-										<li>
-											<a>06:00 PM</a>
-										</li>
-										<li>
-											<a>07:00 PM</a>
-										</li>
-										<li>
-											<a>08:00 PM</a>
-										</li>
-										<li>
-											<a>09:00 PM</a>
-										</li>
-										<li>
-											<a>10:00 PM</a>
-										</li>
-										<li>
-											<a>11:00 PM</a>
-										</li>
-									</ul>
-									<select>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-										<option>12:00AM</option>
-									</select>
-								</div>	
+								<label class="clinic-switch-container">
+				          <input type="checkbox" checked="">
+				          <span class="slider">
+				            <span class="off">On</span>
+				            <span class="on">Off</span>
+				          </span>
+				        </label>
+								<div class="timepicker-container">
+									<div>
+										<span v-if="false">08:00AM</span>
+										<!-- <span v-on:click="showWorkingHourStart( index )">08:00AM</span> -->
+										<ul v-if="false" class="dropdown-menu">
+										<!-- <ul v-if="false" v-show="workingHourStartArr[ index ] == true" class="dropdown-menu"> -->
+											<li>
+												<a>12:00 AM</a>
+											</li>
+											<li>
+												<a>01:00 AM</a>
+											</li>
+											<li>
+												<a>02:00 AM</a>
+											</li>
+											<li>
+												<a>03:00 AM</a>
+											</li>
+											<li>
+												<a>04:00 AM</a>
+											</li>
+											<li>
+												<a>05:00 AM</a>
+											</li>
+											<li>
+												<a>06:00 AM</a>
+											</li>
+											<li>
+												<a>07:00 AM</a>
+											</li>
+											<li>
+												<a>09:00 AM</a>
+											</li>
+											<li>
+												<a>10:00 AM</a>
+											</li>
+											<li>
+												<a>11:00 AM</a>
+											</li>
+											<li>
+												<a>12:00 PM</a>
+											</li>
+											<li>
+												<a>01:00 PM</a>
+											</li>
+											<li>
+												<a>02:00 PM</a>
+											</li>
+											<li>
+												<a>03:00 PM</a>
+											</li>
+											<li>
+												<a>04:00 PM</a>
+											</li>
+											<li>
+												<a>05:00 PM</a>
+											</li>
+											<li>
+												<a>06:00 PM</a>
+											</li>
+											<li>
+												<a>07:00 PM</a>
+											</li>
+											<li>
+												<a>08:00 PM</a>
+											</li>
+											<li>
+												<a>09:00 PM</a>
+											</li>
+											<li>
+												<a>10:00 PM</a>
+											</li>
+											<li>
+												<a>11:00 PM</a>
+											</li>
+										</ul>
+
+										<select>
+											<option>12:00AM</option>
+											<option>12:00AM</option>
+											<option>12:00AM</option>
+											<option>12:00AM</option>
+											<option>12:00AM</option>
+											<option>12:00AM</option>
+											<option>12:00AM</option>
+											<option>12:00AM</option>
+											<option>12:00AM</option>
+										</select>
+									</div>
+									
+									<span>to</span>
+									<div>
+										<span v-if="false">05:30PM</span>
+										<ul v-if="false" class="dropdown-menu">
+											<li>
+												<a>12:00 AM</a>
+											</li>
+											<li>
+												<a>01:00 AM</a>
+											</li>
+											<li>
+												<a>02:00 AM</a>
+											</li>
+											<li>
+												<a>03:00 AM</a>
+											</li>
+											<li>
+												<a>04:00 AM</a>
+											</li>
+											<li>
+												<a>05:00 AM</a>
+											</li>
+											<li>
+												<a>06:00 AM</a>
+											</li>
+											<li>
+												<a>07:00 AM</a>
+											</li>
+											<li>
+												<a>09:00 AM</a>
+											</li>
+											<li>
+												<a>10:00 AM</a>
+											</li>
+											<li>
+												<a>11:00 AM</a>
+											</li>
+											<li>
+												<a>12:00 PM</a>
+											</li>
+											<li>
+												<a>01:00 PM</a>
+											</li>
+											<li>
+												<a>02:00 PM</a>
+											</li>
+											<li>
+												<a>03:00 PM</a>
+											</li>
+											<li>
+												<a>04:00 PM</a>
+											</li>
+											<li>
+												<a>05:00 PM</a>
+											</li>
+											<li>
+												<a>06:00 PM</a>
+											</li>
+											<li>
+												<a>07:00 PM</a>
+											</li>
+											<li>
+												<a>08:00 PM</a>
+											</li>
+											<li>
+												<a>09:00 PM</a>
+											</li>
+											<li>
+												<a>10:00 PM</a>
+											</li>
+											<li>
+												<a>11:00 PM</a>
+											</li>
+										</ul>
+										<select>
+											<option>12:00AM</option>
+											<option>12:00AM</option>
+											<option>12:00AM</option>
+											<option>12:00AM</option>
+											<option>12:00AM</option>
+											<option>12:00AM</option>
+											<option>12:00AM</option>
+											<option>12:00AM</option>
+											<option>12:00AM</option>
+										</select>
+									</div>	
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div v-if="detail_active.value === 3" class="breaks-body-info-wrapper">
+				<div v-if="detail_active.value === '3' " class="breaks-body-info-wrapper">
 					<div class="detail-body-info-header">
 						<div>
 							<img :src="'../assets/img/clinic/ico_Profile.svg'">
@@ -681,7 +709,7 @@
 					</div>
 				</div>
 
-				<div v-if="detail_active.value === 4" class="time-off-info-wrapper">
+				<div v-if="detail_active.value === '4' " class="time-off-info-wrapper">
 					<div class="detail-body-info-header">
 						<div>
 							<img :src="'../assets/img/clinic/ico_Profile.svg'">

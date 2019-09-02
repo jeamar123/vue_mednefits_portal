@@ -24,14 +24,14 @@
 							<span>SERVICES</span>
 						</router-link>
 					</li>
-					<li v-bind:class="{'active': ($route.name == 'ClinicProfile')}">
+					<li v-bind:class="{'active': ($route.name == 'ClinicDetails' || $route.name == 'BusinessHours' || $route.name == 'ProfilePassword' || $route.name == 'PaymentDetails' || $route.name == 'ProfileWidget' || $route.name == 'QrCode' )}">
 						<router-link to="/clinic/settings/clinic-profile">
 							<img class="profile-img" :src="'../assets/img/ico_profile_2.svg'">
 							<br>
 							<span>PROFILE</span>
 						</router-link>
 					</li>
-					<li v-bind:class="{'active': ($route.name == 'ClinicTransactions')}">
+					<li v-bind:class="{'active': ($route.name == 'TransactionHistory' || $route.name == 'TransactionInvoice' || $route.name == 'StatementAccount')}">
 						<router-link to="/clinic/settings/clinic-transactions">
 							<img class="transaction-img" :src="'../assets/img/Transaction.png'">
 							<br>
