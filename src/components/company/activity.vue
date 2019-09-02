@@ -30,8 +30,7 @@ let activity = {
 				value: 0,
 				text: ""
 			},
-			toggleSidebar: { 
-				in: false,
+			toggleSidebar: { in: false,
 				out: false
 			},
 			showPreview: false,
