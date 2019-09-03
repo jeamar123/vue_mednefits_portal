@@ -10,6 +10,7 @@ import VueTelInput from 'vue-tel-input';
 import JsonExcel from 'vue-json-excel';
 import JSZip from 'jszip';
 import FileSaver from 'file-saver';
+import Vue2Filters from 'vue2-filters'
  
 import $ from 'jquery'; 
 
@@ -25,6 +26,7 @@ Vue.use(vClickOutside);
 Vue.use(VueSweetalert2);
 Vue.use(VuePlotly);
 Vue.use(VueMoment);
+Vue.use(Vue2Filters)
 Vue.component('VueSlider', VueSlider);
 Vue.component('downloadExcel', JsonExcel)
 Vue.config.productionTip = false;

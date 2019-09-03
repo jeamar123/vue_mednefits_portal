@@ -23,6 +23,7 @@ let dashboard = {
       accountDropdown: false,
       showIconLoader: false,
       showLoader: false,
+      isFloatingBox: false,
       navbarCollapse: false,
       hideNavbarCollapse: true
     };
@@ -45,6 +46,17 @@ let dashboard = {
     hideLoading() {
       setTimeout(()=>{
         this.showLoader = false;
+      },1000);
+    },
+    showFloatingBox() {
+      this.isFloatingBox = true;
+    },
+    hideFloatingBox() {
+      setTimeout(()=>{
+        this.isFloatingBox = false;
+        $('.receipt-download').hide();
+        $('.receipt-download #receipt_total').text( 1 );
+        $('.receipt-download #receipt_count').text( 1 );
       },1000);
     },
     // change the title on navigation to Web Input and Enrollment and excel

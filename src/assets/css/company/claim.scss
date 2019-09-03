@@ -100,6 +100,10 @@
 	    margin-left: 5px;	
 		}
 	}
+	button:disabled{
+		opacity: .5;
+		cursor: not-allowed;
+	}
 }
 
 .transaction-table-container {

@@ -54,19 +54,19 @@
 					</div>
 					<div class="cost-wrapper">
 						<div class="benefit-box">
-							<h5>S$ <span>{{ claim_data.total_e_claim_submitted_formatted }}</span></h5>
+							<h5><span>{{ claim_data.total_e_claim_submitted_formatted | currency }}</span></h5>
 							<p>TOTAL CLAIM SUBMITTED</p>
 						</div>
 						<div class="benefit-box">
-							<h5>S$ <span>{{ claim_data.total_e_claim_pending_formatted }}</span></h5>
+							<h5><span>{{ claim_data.total_e_claim_pending_formatted | currency }}</span></h5>
 							<p>PENDING</p>
 						</div>
 						<div class="benefit-box">
-							<h5>S$ <span>{{ claim_data.total_e_claim_approved_formatted }}</span></h5>
+							<h5><span>{{ claim_data.total_e_claim_approved_formatted | currency }}</span></h5>
 							<p>APPROVED</p>
 						</div>
 						<div class="benefit-box">
-							<h5>S$ <span>{{ claim_data.total_e_claim_rejected_formatted }}</span></h5>
+							<h5><span>{{ claim_data.total_e_claim_rejected_formatted | currency }}</span></h5>
 							<p>REJECTED</p>
 						</div>
 					</div>
@@ -100,7 +100,7 @@
 		            </ul>
 		            <span class="input-group-btn">
 		              <button v-if="search_emp == ''"><i class="fa fa-search"></i></button>
-		              <button v-if="isActiveSearch && search_emp != ''" v-on:click="closeSearchEmp()"><i class="fa fa-close"></i></button>
+		              <button v-if="search_emp != ''" v-on:click="closeSearchEmp()"><i class="fa fa-close"></i></button>
 		            </span>
 		          </div>
 		        </div>
@@ -112,17 +112,17 @@
 	    		<div class="total-claim-container">
 	    			Total Claim 
 	    			<span>S$ 
-	    				<span v-if="viewData == 'All'">{{ claim_data.total_e_claim_submitted }}</span>
-	    				<span v-if="viewData == 'Pending'">{{ claim_data.total_e_claim_pending }}</span>
-	    				<span v-if="viewData == 'Approved'">{{ claim_data.total_e_claim_approved }}</span>
-	    				<span v-if="viewData == 'Rejected'">{{ claim_data.total_e_claim_rejected }}</span>
+	    				<span v-if="viewData == 'All'">{{ claim_data.total_e_claim_submitted_formatted | currency }}</span>
+	    				<span v-if="viewData == 'Pending'">{{ claim_data.total_e_claim_pending_formatted | currency }}</span>
+	    				<span v-if="viewData == 'Approved'">{{ claim_data.total_e_claim_approved_formatted | currency }}</span>
+	    				<span v-if="viewData == 'Rejected'">{{ claim_data.total_e_claim_rejected_formatted | currency }}</span>
 	    			</span>
 	    		</div>
 	    	</div>
 
 	    	<div class="download-btn-container">
-	    		<button>Download CSV <i class="fa fa-download"></i></button>
-	    		<button>Download receipts <i class="fa fa-download"></i></button>
+	    		<button v-on:click="downloadCSV()">Download CSV <i class="fa fa-download"></i></button>
+	    		<button v-on:click="downloadAllReceipts()" :disabled="all_receipts.length == 0">Download receipts <i class="fa fa-download"></i></button>
 	    	</div>
     	</div>
 
@@ -144,29 +144,32 @@
 						</tr>
 	    		</thead>
 	    		<tbody v-for="list in filteredEclaimTransactions" >
-						<tr @click="toggleDetails(n)">
+						<tr @click="toggleDetails( list )">
 							<td>
-								<label class="status-text pending">Pending</label>
+								<label v-if="list.status == 0" class="status-text pending">Pending</label>
+								<label v-if="list.status == 1" class="status-text approved">Approved</label>
+								<label v-if="list.status == 2" class="status-text rejected">Rejected</label>
 							</td>
 							<td>
-								<span>15 May 2019 05:09 PM</span>
+								<span>{{ list.claim_date }}</span>
 							</td>
 							<td>
-								<span>09 May 2019 04:21 PM</span>
+								<span v-if="list.approved_date"></span>
+								<span v-if="list.rejected_date"></span>
 							</td>
 							<td class="claim-type-details">
-								<span>General Practice</span>
+								<span>{{ list.service }}</span>
 							</td>
 							<td>
-								<span>qwer</span>
+								<span>{{ list.merchant }}</span>
 							</td>
 							<td> S$
-								<span>12.00</span>
+								<span>{{ list.amount }}</span>
 							</td>
 							<td>
-								<span>Chryst Gundran</span>
-								<div class="spouse-member">
-									<span>Family </span> of <span>Jaz Zayas</span>
+								<span>{{ list.member }}</span>
+								<div v-if="list.owner_account" class="spouse-member">
+									<span>{{ list.relationship }} </span> of <span>{{ list.owner_account }}</span>
 								</div>
 							</td>
 							<td>
@@ -174,20 +177,22 @@
 							</td>
 						</tr>
 						<transition name="fade">
-							<tr class="in-network-subtr" v-if="list.showTransDetails">
+							<tr class="in-network-subtr" v-show="list.showTransDetails">
 								<td colspan="8">
 
 
 									<div class="status-left-wrapper">
 										<div class="status-box-left">
-											<div class="status_text">Pending</div>
-											<div class="claim-date-text">Claim Date: <span>15 May 2019 05:09 PM</span></div>
+											<div class="status_text">{{ list.status_text }}</div>
+											<div class="claim-date-text" v-if="list.status == 0">Claim Date: <span>{{ list.claim_date }}</span></div>
+											<div class="claim-date-text" v-if="list.status == 1">Approved Date: <span>{{ list.approved_date }}</span></div>
+											<div class="claim-date-text" v-if="list.status == 2">Rejected Date: <span>{{ list.rejected_date }}</span></div>
 										</div>
 
 										<!-- this will appear when the status is rejected -->
-										<div class="reason-container">
-											<div class="label">REASON:</div>
-											<div>qwe</div>
+										<div v-if="list.status == 2" class="reason-container">
+											<div v-if="list.rejected_reason == null" class="label">REASON:</div>
+											<div>{{ list.rejected_reason }}</div>
 										</div>
 									</div>
 
@@ -195,79 +200,105 @@
 										<div class="transac-details">
 											<div>
 												<label>MEMBER</label>
-												<span>Chryst Gundran</span>
+												<span>{{ list.member }}</span>
 											</div>
-											<div>
+											<div v-if="list.owner_account">
 												<label>EMPLOYEE</label>
-												<span>Jaz Zayas</span>
+												<span>{{ list.owner_account }}</span>
 											</div>
-											<div>
-												<label>DEPENDENT RELATIONSHIP</label>
-												<span>Family</span>
+											<div v-if="list.owner_account">
+												<label v-if="list.sub_account_type">DEPENDENT RELATIONSHIP</label>
+												<span v-if="list.relationship != null">{{ list.relationship }}</span>
+												<span v-if="list.relationship == null">Dependent of {{ list.member }}</span>
 											</div>
 											<div>
 												<label>APPROVED DATE</label>
-												<span></span>
+												<span>{{ list.approved_date }}</span>
 											</div>
 											<div>
 												<label>CLAIM DATE</label>
-												<span>15 May 2019 05:09 PM</span>
+												<span>{{ list.claim_date }}</span>
 											</div>
 											<div>
 												<label>VISIT DATE</label>
-												<span>15 May 2019 08:00 AM</span>
+												<span>{{ list.visit_date }}</span>
 											</div>
 											<div>
 												<label>TRANSACTION #</label>
-												<span>MNF000340</span>
+												<span>{{ list.transaction_id }}</span>
 											</div>
 											<div>
 												<label>CLAIM TYPE</label>
-												<span>General Practice</span>
+												<span>{{ list.service }}</span>
 											</div>
 											<div>
 												<label>PROVIDER</label>
-												<span>qwer</span>
+												<span>{{ list.merchant }}</span>
 											</div>
 											<div>
 												<label>CLAIM AMOUNT</label>
-												<span>S$ 12.00</span>
+												<span>S$ {{ list.amount }}</span>
 											</div>
 											<div>
 												<label>PAYMENT TYPE</label>
-												<span>E-Claim</span>
+												<span>{{ list.type }}</span>
 											</div>
 											<div>
 												<label>REMARKS</label>
-												<span></span>
+												<span>{{ list.remarks }}</span>
 											</div>
 										</div>
 
-										<div class="transac-details-btn">
-											<button v-if="false" class="btn-approved">Approve Claim</button>
-											<button v-if="false" class="btn-rejected">Reject Claim</button>
-											<button class="btn-check-pending">Change to Pending</button>
+										<p class="text-center" v-if="list.message">
+											<span v-if="list.res == false" class="text-error">{{ list.message }}</span>
+											<span v-if="list.res == true" class="text-success">{{ list.message }}</span>
+										</p>
+
+										<div v-if="!list.showReasonInput && !list.showRemarksInput" class="transac-details-btn">
+											<button v-if="list.status == 0" class="btn-approved" v-on:click="updateStatus(list, 1)">Approve Claim</button>
+											<button v-if="list.status == 0" class="btn-rejected" v-on:click="updateStatus(list, 2)">Reject Claim</button>
+											<button v-if="list.status != 0" class="btn-check-pending" v-on:click="updateStatus(list,3)">Change to Pending</button>
+										</div>
+
+										<div v-show="list.showReasonInput == true" class="form-group reason-wrapper" style="text-align: left;display:block;width: 240px;margin: 0 auto;">
+											<label>Reason</label>
+											<input type="text" v-model="list.reason" class="form-control" style="border-radius: 0;border-width: 0 0 1px 0;" />
+											<div style="width: 100%;text-align: center;">
+												<button class="btn font-medium" v-on:click="hideReasonInput(list)">Cancel</button>
+												<button class="btn btn-reject font-medium" style="background: #de6f6f" v-on:click="updateStatusText(list,2)">Proceed</button>
+											</div>
+										</div>
+
+										<div v-show="list.showRemarksInput == true" class="reason-wrapper" style="text-align: left;display:block;width: 240px;margin: 0 auto;">
+											<label>Remarks</label>
+											<input type="text" v-model="list.reason" class="form-control" style="border-radius: 0;border-width: 0 0 1px 0;" />
+											<div style="width: 100%;text-align: center;">
+												<button class="btn font-medium" v-on:click="hideReasonInput(list)">Cancel</button>
+												<button class="btn btn-reject font-medium" style="background: #0086D3" v-on:click="updateStatusText(list,1)">Proceed</button>
+											</div>
 										</div>
 									</div>
 
 									<div class="download-receipt-container">
-										<button class="btn-download-receipt">Download Receipt</button>
+										<button class="btn-download-receipt" v-bind:class="{'disabled' : list.receipt_status == false}" v-on:click="downloadReceipt( list.files, list )">Download Receipt</button>
 
 										<div class="trans-receipts-wrapper">
-											<div class="click-box-wrapper">
+											<div v-for="img in list.files" class="click-box-wrapper">
 												<a>
-													<div @click="showPreview = true" class="click-box transition-easeInOutCubic-200ms">
+													<div v-on:click="togglePreview( img )" class="click-box transition-easeInOutCubic-200ms">
 														<i class="fa fa-plus"></i>
 													</div>
-													<img class="thumbnail" :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1557387401/nhulevaerr46wlfy07d7.png'">
+													<img v-if="img.type == 'image' || img.file_type == 'image'" class="thumbnail" :src="img.file">
+													<img v-if="img.type == 'excel' || img.file_type == 'excel'" class="thumbnail" :src="'../assets/img/Receipt-doc-xls.png'">
+													<img v-if="img.type == 'pdf' || img.file_type == 'pdf'" class="thumbnail" :src="'../assets/img/Receipt-pdf.png'">
 												</a>
 												
-												<ImgPreview v-if="showPreview">
+												<ImgPreview v-show="img.showPreview">
 													<div slot="content">
-														<a @click="showPreview = false">
+														<a v-on:click="togglePreview( img )">
 															<i class="fa fa-times"></i>
 														</a>
-														<img :src="'https://res.cloudinary.com/dzh9uhsqr/image/upload/v1557387401/nhulevaerr46wlfy07d7.png'">
+														<img v-if="img.type == 'image' || img.file_type == 'image'" :src="img.file">
 													</div>
 												</ImgPreview>
 

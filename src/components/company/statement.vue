@@ -39,7 +39,7 @@ let statement = {
         text: ""
       },
       formats: {
-        input: ['MM/DD/YYYY'], 
+        input: ['DD/MM/YYYY'], 
         data: ['YYYY-MM-DD']
       },
       download_token: null,
@@ -93,6 +93,7 @@ let statement = {
     closeSearchEmp(){
       this.isActiveSearch = false;
       this.search_emp = "";
+      this.getStatementData();
     },
     selectEmployeeSearch( id, name ){
       this.selected_user_id = id;

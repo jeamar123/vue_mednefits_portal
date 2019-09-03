@@ -139,7 +139,7 @@
             </ul>
             <span class="input-group-btn">
               <button v-if="search_emp == ''"><i class="fa fa-search"></i></button>
-              <button v-if="isActiveSearch && search_emp != ''" v-on:click="closeSearchEmp()"><i class="fa fa-close"></i></button>
+              <button v-if="search_emp != ''" v-on:click="closeSearchEmp()"><i class="fa fa-close"></i></button>
             </span>
           </div>
         </div>

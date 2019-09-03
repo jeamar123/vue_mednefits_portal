@@ -272,6 +272,33 @@
 	  border-left: 8px solid transparent;
 	}
 }
+.floating-blue-box{
+	position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background: rgba(18, 119, 162, 0.82);
+  width: 300px;
+  padding: 18px 20px;
+  box-shadow: 0px 2px 10px #333;
+  z-index: 9999;
+
+	.box-message{
+
+	}
+	p{
+		font-weight: 700;
+    color: #fff;
+    font-size: 14px;
+    margin: 0;
+
+    i{
+    	font-size: 25px;
+	    margin-right: 10px;
+	    vertical-align: middle;
+	    color: #fff;
+    }
+	}
+}
 
 @media (max-width: 1128px ) {
 	.top-navbar {
