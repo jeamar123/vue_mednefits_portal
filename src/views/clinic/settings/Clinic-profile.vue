@@ -1,6 +1,11 @@
 <template>
 	<div class="clinic-profile-wrapper">
-		<div class="profile-side-list">
+		<div class="profile-side-list" id="profile-side-wrapper">
+
+			<div>
+				<i @click="closeLeftContainer()" class="fa fa-times"></i>
+			</div>
+
 			<div class="configure-container">
 				<span>Configure</span>
 				<div v-bind:class="{'active': ($route.name == 'ClinicDetails')}">
@@ -45,8 +50,11 @@
 			</div>
 		</div>
 
-		<div class="profile-detail-container">
-				<router-view name='profile'></router-view>
+		<div class="profile-detail-container" id="profile-detail-wrapper">
+			<div>
+				<i @click="sideBarCollapse(0)" class="fa fa-bars"></i>
+			</div>	
+			<router-view name='profile'></router-view>
 		</div>
 
 		

@@ -6,27 +6,29 @@
 				<h4>Here is the List of all Services</h4>
 				<button class="btn-add-service" @click="btnAddService()">Add Service</button>
 			</div>
-		
-			<div class="service-details">
-				<div>
-					<img :src="'../assets/img/clinic/ico_Profile.svg'">
-					<span>consultation</span>
-				</div>
-				<div>
-					<span>30 mins</span>
-				</div>
-				<div>
-					<span>10</span>
-				</div>
-				<div>
-					<span>Span & Pay Page</span>
-					<label class="switch">
-	          <input type="checkbox">
-	          <span class="slider">
-	            <span class="off">Hide</span>
-	            <span class="on">Show</span>
-	          </span>
-        	</label>
+			
+			<div class="service-details-wrapper">
+				<div class="service-details">
+					<div>
+						<img :src="'../assets/img/clinic/ico_Profile.svg'">
+						<span>consultation</span>
+					</div>
+					<div>
+						<span>30 mins</span>
+					</div>
+					<div>
+						<span>10</span>
+					</div>
+					<div>
+						<span>Span & Pay Page</span>
+						<label class="switch">
+		          <input type="checkbox">
+		          <span class="slider">
+		            <span class="off">Hide</span>
+		            <span class="on">Show</span>
+		          </span>
+	        	</label>
+					</div>
 				</div>
 			</div>
 		</div>

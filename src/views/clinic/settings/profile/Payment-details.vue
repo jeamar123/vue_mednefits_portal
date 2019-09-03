@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="payment-details-wrapper">
 		<div class="clinic-profile-header">
 			<h4>Enter Your Payment Details</h4>
 		</div>

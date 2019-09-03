@@ -74,6 +74,7 @@
 										</div>
 									</div>
 									<span class="arrow-right">
+										<i class="fa fa-long-arrow-down" aria-hidden="true"></i>
 										<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 									</span>
 									<div class="btn-date">
@@ -148,7 +149,7 @@
 
 				<section v-if="false">
 					<!-- Modals -->
-					<div id="modalNRIC" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myNRICModalLabel">
+					<!-- <div id="modalNRIC" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myNRICModalLabel">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content nric-modalWrapper">
 								<div class="container nric-wrapper">
@@ -190,10 +191,10 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
 					<!-- modal Manual -->
-					<div id="modalManual" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myManualModalLabel">
+					<!-- <div id="modalManual" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myManualModalLabel">
 						<div class="modal-dialog modal-sm" role="document">
 							<div class="modal-content manual-modalWrapper">
 								<div class="container-fluid manual-wrapper">
@@ -470,7 +471,7 @@
 					      </div>
 					    </div>
 					  </div>
-					</div>
+					</div> -->
 					
 				</section>
 
@@ -529,6 +530,7 @@
 			         			<tr>
 			         				<td>
 			         					<div>
+			         						<span class="manual-head-text-input">NRIC</span>
 			         						<input type="text" placeholder="Search NRIC">
 			         						<div v-if="true" class="nric-list-container" @click="modalClaim.eCardModal = true">
 			         							<div class="img-wrapper">
@@ -553,6 +555,7 @@
 			         				</td>
 			         				<td>
 			         					<div class="select-procedure-container">
+			         						<span class="manual-head-text-input">Service</span>
 			         						<input type="text" placeholder="Select Procedure">
 			         						<div v-if="false" class="service-dropdown">
 			         							<div class="service-list">
@@ -571,6 +574,7 @@
 			         					</div>
 			         				</td>
 			         				<td>
+			         					<span class="manual-head-text-input">Date of Visit</span>
 			         					<div class="calendar-input-wrapper">
 			         						<v-date-picker :max-date='new Date()' v-model="timeFrame.end"
 							              :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
@@ -582,6 +586,7 @@
 			         					</div>
 			         				</td>
 			         				<td>
+			         					<span class="manual-head-text-input">Time of Visit</span>
 			         					<div class="time-visit-input-wrapper">
 			         						<div>
 			         							<i class="fa fa-clock-o" aria-hidden="true"></i>
@@ -632,6 +637,7 @@
 			         					</div>
 			         				</td>
 			         				<td>
+			         					<span class="manual-head-text-input">Cash</span>
 			         					<div class="cash-input-wrapper">
 			         						<input type="text">
 			         						<span>S$</span>

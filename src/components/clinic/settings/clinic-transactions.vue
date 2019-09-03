@@ -30,6 +30,7 @@
 	      },
 	      viewSelector: false,
 	      viewStatementAccount: false,
+	      toggleSideBar: false,
 			}
 		},
 		methods: {
@@ -54,7 +55,26 @@
 		    } else {
 		    	this.viewStatementAccount = false;
 		    }
-	    }
+	    },
+	    sideBarCollapse( data ) {
+				if ( data === 0 ) {
+					if ( this.toggleSideBar === false ) {
+						
+						document.getElementById('trans-side-list').style.left = "0";
+						document.getElementById('trans-body-detail').style.left = "0";
+						this.toggleSideBar = true;
+					} else {
+
+						document.getElementById('trans-side-list').style.left = "-320px";
+						document.getElementById('trans-body-detail').style.left ="-320px";
+						this.toggleSideBar = false;
+					}
+				}
+			},
+			closeLeftContainer() {
+				this.toggleSideBar = true;
+        this.sideBarCollapse(0);
+			},
 		}
 	
 	}
@@ -64,4 +84,5 @@
 
 <style lang="scss" scoped>
 @import "./src/assets/css/clinic/settings.scss";
+@import "./src/assets/css/clinic/clinic-responsive.scss";
 </style>

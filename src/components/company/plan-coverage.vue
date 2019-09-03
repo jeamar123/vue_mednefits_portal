@@ -7,7 +7,7 @@ let planCoverage = {
       showPlanCoverageInfo: {
       	value: 0,
       	text: ""
-      }
+			},
     };
   },
   methods: {

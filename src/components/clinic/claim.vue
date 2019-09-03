@@ -25,6 +25,7 @@
 
 <style lang="scss" scoped>
 @import "./src/assets/css/clinic/claim.scss";
+@import "./src/assets/css/clinic/clinic-responsive.scss";
 </style>
 
 

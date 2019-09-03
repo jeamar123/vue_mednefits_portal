@@ -316,6 +316,7 @@
 	}
 
 	.staff-side-list {
+		height: 100vh;
 		background-color: rgb(176, 226, 249);
 		font-weight: 700;
 		padding: 20px 0 0;
@@ -608,16 +609,24 @@
 		}
 	}
 }
+.working-hour-body-wrapper {
+	display: flex;
 
+	>div:first-child {
+		width: 17%;
+    padding: 0 15px;
+	}
+}
 .working-hour-body-container {
-	padding: 20px 0 0 165px;
+	width: 83%;
+	padding: 20px 0 0 0px;
 }
 .working-row-container {
 	display: flex;
 	margin: 0 0 20px;
 
 	.day-container {
-		width: 12%;
+		width: 20%;
 	}
 
 	.break-timepicker-wrapper {
@@ -747,6 +756,7 @@
 		border: 1px solid #777;
     padding: 5px 12px;
     border-radius: 5px;
+    background: #fff;
     color: #000;
     cursor: pointer;
     font-weight: 700;
@@ -908,7 +918,7 @@
 }
 
 .clinic-services-wrapper {
-	padding: 0 20px 0 45px;
+	padding: 0 20px;
 }
 
 
@@ -955,6 +965,7 @@
 
 .service-details {
 	display: flex;
+	align-items: center;
 	border-bottom: 1px solid #C1C1C1;
 	color: #999;
 	padding: 0 0 20px;
@@ -1109,8 +1120,16 @@
 	grid-template-columns: 25% 75%;
 	height: 100%;
 
+	.fa-bars {
+		display: none;
+	}
+
 	.profile-detail-container {
 		padding: 20px 40px 0;
+
+		.fa-bars {
+			display: none;
+		}
 
 		.clinic-row-container input {
 			width: 200px;
@@ -1187,7 +1206,7 @@
 
 		li a {
 			font-weight: 700;
-			padding: 15px;
+			padding: 2px 15px 15px;
 			display: block;
 		}
 
@@ -1235,6 +1254,11 @@
 
 .profile-side-list {
 	background-color: rgb(176, 226, 249);
+	min-height: 100vh;
+
+	.fa-times {
+		display: none;
+	}
 
 	.configure-container {
 		border-bottom: 1px solid #D0D0D0;
@@ -1435,6 +1459,12 @@
 	}
 }
 
+
+.clinic-transactions-wrapper {
+	.dashboard-summary-wrapper .year-selector:nth-child(3) {
+		border-right: 0;
+	}
+}
 
 
 .btn-export {

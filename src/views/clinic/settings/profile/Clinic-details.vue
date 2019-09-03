@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="medicloud-booking-wrapper">
 		<div class="clinic-profile-header">
 			<h4>Configure Your Medicloud Booking Page</h4>
 		</div>

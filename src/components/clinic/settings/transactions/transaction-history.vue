@@ -35,4 +35,5 @@
 
 <style lang="scss" scoped>
 @import "./src/assets/css/clinic/settings.scss";
+@import "./src/assets/css/clinic/clinic-responsive.scss";
 </style>
