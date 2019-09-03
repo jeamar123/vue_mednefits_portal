@@ -28,7 +28,7 @@ Vue.use(vClickOutside);
 Vue.use(VueSweetalert2);
 Vue.use(VuePlotly);
 Vue.use(VueMoment);
-Vue.use(Vue2Filters);
+Vue.use(Vue2Filters)
 Vue.component('VueSlider', VueSlider);
 Vue.component('downloadExcel', JsonExcel)
 Vue.config.productionTip = false;

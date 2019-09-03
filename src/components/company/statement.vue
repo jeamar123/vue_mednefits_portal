@@ -7,11 +7,11 @@ import FileSaver from 'file-saver';
 let statement = {
   data() {
     return {
-      range_values : moment().format('M'),
       range_marks : { '1' : 'JAN', '2' : 'FEB', '3' : 'MAR', '4' : 'APR', '5' : 'MAY', '6' : 'JUN', '7' : 'JUL', '8' : 'AUG', '9' : 'SEP', '10' : 'OCT', '11' : 'NOV', '12' : 'DEC', },
       current_year : moment( ).format('YYYY'),
       start_date : new Date(moment().startOf('month')),
       end_date : new Date(moment().endOf('month')),
+      range_values : moment().format('M'),
       showRangeMonthSlider: true,
       showInputDate: false,
       overview_active: true,
@@ -39,7 +39,7 @@ let statement = {
         text: ""
       },
       formats: {
-        input: ['MM/DD/YYYY'], 
+        input: ['DD/MM/YYYY'], 
         data: ['YYYY-MM-DD']
       },
       download_token: null,
@@ -93,9 +93,11 @@ let statement = {
     closeSearchEmp(){
       this.isActiveSearch = false;
       this.search_emp = "";
+      this.getStatementData();
     },
-    selectEmployeeSearch( id ){
+    selectEmployeeSearch( id, name ){
       this.selected_user_id = id;
+      this.search_emp = name;
       this.getStatementDataByEmployee();
     },
     searchEmployeeChanged( value ){
@@ -324,7 +326,7 @@ let statement = {
         user_id : this.selected_user_id,
       }
       this.$parent.showLoading();
-      this.closeSearchEmp();
+      this.isActiveSearch = false;
       axios.post( axios.defaults.serverUrl + '/hr/search_employee_statement', data )
         .then(res => {
           this.$parent.hideLoading();

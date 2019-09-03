@@ -298,10 +298,16 @@
     <div class="child-content">
       <router-view v-on:overviewData="overviewData" @excelData="excelData" @enrollData="enrollData" @webInputData='webInputData'></router-view>
     </div>
-
+    <!--    -->
     <div v-if="showLoader" class="main-body-loader">
       <div class="loader">
         <!-- <img :src="'../assets/img/mednefits_icon_blue.png'" style="  width: 25px;margin-top: 20px;"> -->
+      </div>
+    </div>
+    <!--   -->
+    <div v-if="isFloatingBox" class="floating-blue-box">
+      <div class="receipt-download" style="display: none;">
+        <p><i class="fa fa-circle-o-notch fa-spin"></i> Downloading <span id="receipt_count">1</span> of <span id="receipt_total">1</span> receipts.</p>
       </div>
     </div>
   </div>
