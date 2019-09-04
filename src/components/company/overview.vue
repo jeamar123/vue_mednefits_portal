@@ -29,7 +29,9 @@ let overview = {
   },
   created() {
     this.getDay();
-    this.dashboardApi();
+    setTimeout(() => {
+      this.dashboardApi();
+    }, 500);
 	},
   methods: {
     goToNewEmployee( data ){

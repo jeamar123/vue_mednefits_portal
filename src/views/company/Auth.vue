@@ -82,7 +82,12 @@
 			}
 		},
 		created() {
-			
+			if( !localStorage.getItem('vue_hr_session') || localStorage.getItem('vue_hr_session') == null || localStorage.getItem('vue_hr_session') == 'null' ){
+	      this.$router.push({ name: 'CompanyAuth' });
+	    }else{
+	    	axios.defaults.headers.common['Authorization'] = localStorage.getItem('vue_hr_session');
+	    	this.getCompanyStatus();
+	    }
 		},
 		methods: {
       showLoading() {
@@ -122,12 +127,16 @@
       	}
       	axios.post( axios.defaults.serverUrl + '/company-benefits-dashboard-login', data)
 					.then(res => {
-						this.hideLoading();
+						
 						console.log(res);
 						if( res.data.status ){
 							localStorage.setItem('vue_hr_session', res.data.token);
-							location.href = "#/company/intro";
+							axios.defaults.headers.common['Authorization'] = localStorage.getItem('vue_hr_session');
+							setTimeout(() => {
+			          this.getCompanyStatus();
+			        }, 1000);
 						}else{
+							this.hideLoading();
 							this.swal('Error!', res.data.message, 'error');
 						}
 					})
@@ -169,6 +178,29 @@
 						this.swal('Error!', err,'error');
 					});
       },
+      getCompanyStatus(){
+	  		this.showLoading();
+	    	axios.get( axios.defaults.serverUrl + '/hr/check_plan' )
+					.then(res => {
+						console.log(res);
+						if( res.data.status ){
+							this.introData = res.data.data;
+							if( res.data.data.checks == true ){
+								this.$router.push({ name: 'CompanyHome' });
+							}else{
+								this.$router.push({ name: 'CompanyIntro' });
+							}
+						}else{
+							this.$parent.hideLoading();
+							this.$parent.swal('Error!', res.data.message, 'error');
+						}
+					})
+					.catch(err => {
+						console.log( err );
+						this.$parent.hideLoading();
+						this.$parent.swal('Error!', err,'error');
+					});
+	  	}
     }
 	}
 </script>

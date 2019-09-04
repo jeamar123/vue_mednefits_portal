@@ -40,7 +40,9 @@
           <div class="account-list-container" v-if="accountDropdown">
             <ul>
               <li>
-                <a>Account &amp; Billing</a>
+                <router-link to="/company/account">
+                  <h4>Account &amp; Billing</h4>
+                </router-link>
               </li>
 
               <li>
@@ -52,7 +54,7 @@
               <li>
                 <!-- <a href="/company-benefits-dashboard-logout">Log Out</a> -->
 
-                <a id="logout-btn">Log Out</a>
+                <a id="logout-btn" v-on:click="logoutAccount()">Log Out</a>
               </li>
             </ul>
           </div>

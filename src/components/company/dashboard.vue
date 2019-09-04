@@ -109,10 +109,20 @@ let dashboard = {
     },
     btnHideNavbarCollapse() {
       this.navbarCollapse = false;
-    }
+    },
+    logoutAccount(){
+      this.showLoading();
+      localStorage.setItem('vue_hr_session', null);
+      this.$router.push({ name: 'CompanyAuth' });
+      this.hideLoading();
+    },
     // Your Methods here
   },
   created() {
+    axios.defaults.headers.common['Authorization'] = localStorage.getItem('vue_hr_session');
+    if( !localStorage.getItem('vue_hr_session') || localStorage.getItem('vue_hr_session') == null || localStorage.getItem('vue_hr_session') == 'null' ){
+      this.$router.push({ name: 'CompanyAuth' });
+    }
     // close dropdown when click anywhere in page
     document.addEventListener("click", this.employeeDocumentClick);
     document.addEventListener("click", this.accountDocumentClick);
