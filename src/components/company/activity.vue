@@ -349,8 +349,9 @@ let activity = {
 					}
 				});
 		},
-		searchEmployeeActivity(user_id) {
-			console.log('searchEmployeeActivity()', user_id);
+		searchEmployeeActivity(user_id, name) {
+			console.log('searchEmployeeActivity()', user_id, name);
+			this.search_emp = name;
 			this.isActiveSearch = false;
 			this.currentPage = 1;
 
@@ -372,6 +373,7 @@ let activity = {
 						this.activity_dates = [];
 						this.eclaim_dates = [];
 						this.activity = res.data;
+						console.log('activity', this.activity);
 						this.activity.total_lite_plan_consultation = res.data.total_lite_plan_consultation;
 
 						if (this.activity.spending_type == "medical") {

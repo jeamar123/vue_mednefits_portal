@@ -36,7 +36,7 @@
 							<!-- @input="searchEmployeeActivity(search_emp)" -->
 							<ul v-if="isActiveSearch" class="dropdown-menu">
 								<!-- <template v-for="list in activity_dates"> -->
-									<li :class="{'active': false}" v-for="(item) in filterBy(searchRes, search_emp)" :key="item.index" @click="searchEmployeeActivity(item.user_id)">
+									<li :class="{'active': false}" v-for="(item) in filterBy(searchRes, search_emp)" :key="item.index" @click="searchEmployeeActivity(item.user_id, item.Name)">
 										<a class="dropdown-item" href="#" role="option">{{item.Name}}</a>
 									</li>
 								<!-- </template> -->
@@ -139,7 +139,7 @@
 						<div class="timeline" v-for="month in activity_dates" :key="month.index">
 							<div class="date-box">{{month.month}}</div>
 							<!-- para sa each transaction -->
-							<div class="transaction-tr" :class="{'active': selected_list.index == index }" @click="toggleShowSidebar(index,trans)" v-for="(trans,index) in filterBy(month.transactions, search_emp) " :key="trans.id">
+							<div class="transaction-tr" :class="{'active': selected_list.index == index }" @click="toggleShowSidebar(index,trans)" v-for="(trans,index) in filterBy(month.transactions, search_emp)" :key="trans.id">
 								<div class="dot-box">
 									<div class="dot-circle"></div>
 								</div>
@@ -367,7 +367,7 @@
 					<div class="transaction-rows">
 						<div class="timeline" v-for="month in eclaim_dates" :key="month.index">
 							<div class="date-box">{{month.month}}</div>
-							<div class="transaction-tr" :class="{ 'active': selectedOut_list.index == index}" @click.prevent="toggleShowSidebar(index, trans)" v-for="(trans,index) in month.transactions" :key="trans.index">
+							<div class="transaction-tr" :class="{ 'active': selectedOut_list.index == index}" @click.prevent="toggleShowSidebar(index, trans)" v-for="(trans,index) in filterBy(month.transactions, search_emp)" :key="trans.index">
 								<div class="dot-box">
 									<div class="dot-circle"></div>
 								</div>
