@@ -91,7 +91,7 @@ var dashboardSummary = {
 			let start = moment(firstDay).format('YYYY-MM-DD');
 			let end = moment(lastDay).format('YYYY-MM-DD');
 
-			this.timeFrame.start = firstday;
+			this.timeFrame.start = firstDay;
 			this.timeFrame.end = lastDay;
 
 			return {
