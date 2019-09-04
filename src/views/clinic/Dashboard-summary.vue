@@ -60,7 +60,7 @@
 
 					<div class="custom-date-selector">
 						<i class="fa fa-calendar"></i>
-						<v-date-picker :max-date='new Date()' v-model="timeFrame.start"
+						<v-date-picker :max-date='new Date()' v-model="timeFrame.end"
               :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}'
               popover-visibility='focus'>
             </v-date-picker>

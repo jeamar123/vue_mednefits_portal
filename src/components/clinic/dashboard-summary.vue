@@ -53,7 +53,7 @@ var dashboardSummary = {
 				this.setDateToday();
 			}
 
-			if (value == 0 || value == 1) {
+			if (value != 3) {
 				let range_data = this.range_values;
 
 				this.monthToday = range_data[0];
@@ -73,6 +73,20 @@ var dashboardSummary = {
 			this.getTransactions(activity_search);
 
 			this.timeFrame.today = moment().format('DD/MM/YYYY');
+		},
+		showCustomDate() {
+			this.timeFrame.start = firstDay;
+			this.timeFrame.end = lastDay;
+
+			if (this.timeFrame.end && (this.timeFrame.end > this.timeFrame.start)) {
+				var activity_search = {
+					start: moment(this.timeFrame.start, 'DD/MM/YYYY').format('YYYY-MM-DD'),
+					end: moment(this.timeFrame.end, 'DD/MM/YYYY').format('YYYY-MM-DD'),
+				};
+				// console.log(activity_search);
+				this.getTransactions(activity_search);
+			}
+
 		},
 		getFirstEndDate(firstMonth, lastMonth) {
 			firstMonth = moment(firstMonth + " " + this.yearToday, 'MM YYYY').format('YYYY-MM-DD');
