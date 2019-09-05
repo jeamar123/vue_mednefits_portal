@@ -260,21 +260,21 @@
 											<button v-if="list.status != 0" class="btn-check-pending" v-on:click="updateStatus(list,3)">Change to Pending</button>
 										</div>
 
-										<div v-show="list.showReasonInput == true" class="form-group reason-wrapper" style="text-align: left;display:block;width: 240px;margin: 0 auto;">
+										<div v-show="list.showReasonInput == true" class="reason-wrapper">
 											<label>Reason</label>
-											<input type="text" v-model="list.reason" class="form-control" style="border-radius: 0;border-width: 0 0 1px 0;" />
-											<div style="width: 100%;text-align: center;">
-												<button class="btn font-medium" v-on:click="hideReasonInput(list)">Cancel</button>
-												<button class="btn btn-reject font-medium" style="background: #de6f6f" v-on:click="updateStatusText(list,2)">Proceed</button>
+											<input type="text" v-model="list.reason" />
+											<div>
+												<button class="btn-cancel" v-on:click="hideReasonInput(list)">Cancel</button>
+												<button class="btn-proceed btn-approve-proceed" v-on:click="updateStatusText(list,2)">Proceed</button>
 											</div>
 										</div>
 
-										<div v-show="list.showRemarksInput == true" class="reason-wrapper" style="text-align: left;display:block;width: 240px;margin: 0 auto;">
+										<div v-show="list.showRemarksInput == true" class="reason-wrapper">
 											<label>Remarks</label>
-											<input type="text" v-model="list.reason" class="form-control" style="border-radius: 0;border-width: 0 0 1px 0;" />
-											<div style="width: 100%;text-align: center;">
-												<button class="btn font-medium" v-on:click="hideReasonInput(list)">Cancel</button>
-												<button class="btn btn-reject font-medium" style="background: #0086D3" v-on:click="updateStatusText(list,1)">Proceed</button>
+											<input type="text" v-model="list.reason" />
+											<div>
+												<button class="btn-cancel" v-on:click="hideReasonInput(list)">Cancel</button>
+												<button class="btn-proceed btn-reject-proceed" v-on:click="updateStatusText(list,1)">Proceed</button>
 											</div>
 										</div>
 									</div>
