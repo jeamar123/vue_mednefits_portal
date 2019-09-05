@@ -40,6 +40,14 @@ var dashboardSummary = {
 			trans_data: null,
 		}
 	},
+	mounted() {
+
+		let range_data = this.range_values;
+		let activity_search = this.getFirstEndDate(range_data[0], range_data[1]);
+		// var activity_search = scope.getFirstEndDate( monthToday , monthToday );
+		// console.log(activity_search);
+		this.getTransactions(activity_search);
+	},
 	methods: {
 		setYear(value, text) {
 			this.year_active.value = value;
