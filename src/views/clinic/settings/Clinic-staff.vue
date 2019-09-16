@@ -126,70 +126,15 @@
 								<span>Mobile</span>
 							</div>
 							<div class="phone-number-input-wrapper">
-								<span @click="btnCountryCode()" class="input-group-addon">+65</span>
+								<vue-tel-input ref="areaCode" v-bind="telProps" @input="setAreaCode"></vue-tel-input>
+								<!-- <span @click="btnCountryCode()" class="input-group-addon">+65</span>
 								<input type="text" placeholder="Phone Number">
 								<ul v-if="showCountryCodeList" class="dropdown-menu">
 									<li>
 										<span>Afghanistan</span>
 										<span>+358</span>
 									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-								</ul>
+								</ul> -->
 							</div>
 						</div>
 						<div class="clinic-row-container">
