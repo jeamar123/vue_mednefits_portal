@@ -10,22 +10,28 @@
         <form class="form-input-container">
           <div class="employee-input-container">
             <div class="employee-input-wrapper">
-              <label class="remove-label" for="fname">First / Given Name</label>
+              <label class="remove-label" for="fname">Full Name</label>
               <input type="text" name="fname" readonly='true' v-model="removeData.employeeInfo.fname">
             </div>
-            <div class="employee-input-wrapper">
+             <div class="employee-input-wrapper remove-dob">
+              <label class="remove-label" for="">Last day of coverage</label>
+              <v-date-picker :max-date='new Date()' :formats='formats' v-model="removeData.last_day_coverage"
+                :input-props='{class: "vDatepicker", placeholder: "DD/MM/YYYY", readonly: true, }'>
+              </v-date-picker>
+            </div>
+            <!-- <div class="employee-input-wrapper">
               <label class="remove-label" for="fname">Last / Family Name</label>
               <input type="text" name="lname" readonly='true' v-model="removeData.employeeInfo.lname">
-            </div>
+            </div> -->
           </div>
-          <div class="employee-input-container">
+          <!-- <div class="employee-input-container">
             <div class="employee-input-wrapper remove-dob">
               <label class="remove-label" for="">Last day of coverage</label>
               <v-date-picker :max-date='new Date()' :formats='formats' v-model="removeData.last_day_coverage"
                 :input-props='{class: "vDatepicker", placeholder: "DD/MM/YYYY", readonly: true, }'>
               </v-date-picker>
             </div>
-          </div>
+          </div> -->
         </form>
       </div>
 
@@ -34,21 +40,23 @@
         <form class="form-input-container">
           <div class="employee-input-container">
             <div class="employee-input-wrapper">
-              <label class="remove-label" for="fname">First / Given Name</label>
+              <label class="remove-label" for="fname">Full Name</label>
               <input type="text" name="fname" readonly='true' v-model="removeData.dependentInfo.first_name">
             </div>
-            <div class="employee-input-wrapper">
-              <label class="remove-label" for="fname">Last / Family Name</label>
-              <input type="text" name="lname" readonly='true' v-model="removeData.dependentInfo.last_name">
-            </div>
-          </div>
-          <div class="employee-input-container">
             <div class="employee-input-wrapper remove-dob">
               <label class="remove-label" for="">Last day of coverage</label>
               <v-date-picker :max-date='new Date()' :formats='formats' v-model="removeData.last_day_coverage"
                 :input-props='{class: "vDatepicker", placeholder: "DD/MM/YYYY", readonly: true, }'>
               </v-date-picker>
             </div>
+          </div>
+          <div class="employee-input-container">
+            <!-- <div class="employee-input-wrapper remove-dob">
+              <label class="remove-label" for="">Last day of coverage</label>
+              <v-date-picker :max-date='new Date()' :formats='formats' v-model="removeData.last_day_coverage"
+                :input-props='{class: "vDatepicker", placeholder: "DD/MM/YYYY", readonly: true, }'>
+              </v-date-picker>
+            </div> -->
           </div>
         </form>
       </div>
@@ -108,16 +116,22 @@
         <form>
           <div class="employee-input-container">
             <div class="employee-input-wrapper">
-              <label for="fname">First / Given Name</label>
+              <label for="fname">Full Name</label>
               <input type="text" name="fname" v-model="replace_emp_data.fname">
             </div>
-            <div class="employee-input-wrapper">
+            <div class="employee-input-wrapper dob">
+              <label>Date of Birth</label>
+              <v-date-picker v-model="replace_emp_data.dob" popoverDirection="top" :max-date='new Date()'
+                :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
+              </v-date-picker>
+            </div>
+            <!-- <div class="employee-input-wrapper">
               <label for="lname">Last / Family Name</label>
               <input type="text" name="lname" v-model="replace_emp_data.lname">
-            </div>
+            </div> -->
           </div>
           <div class="employee-input-container">
-            <div class="employee-input-wrapper nric">
+            <!-- <div class="employee-input-wrapper nric">
               <label>
                 <input type="radio" name="id_status" value="nric" v-model="replace_emp_data.nric_status">
                 NRIC
@@ -127,13 +141,13 @@
                 FIN
               </label>
               <input type="text" name="nric-fin" v-model="replace_emp_data.nricFinNo">
-            </div>
-            <div class="employee-input-wrapper dob">
+            </div> -->
+            <!-- <div class="employee-input-wrapper dob">
               <label>Date of Birth</label>
               <v-date-picker v-model="replace_emp_data.dob" popoverDirection="top" :max-date='new Date()'
                 :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
               </v-date-picker>
-            </div>
+            </div> -->
           </div>
           <div class="employee-input-container">
             <div class="employee-input-wrapper">
@@ -142,7 +156,8 @@
             </div>
             <div class="employee-input-wrapper">
               <label for="mobile">Mobile</label>
-              <input type="number" name="mobile" v-model="replace_emp_data.mNumber">
+              <vue-tel-input ref="areaCode" v-model="replace_emp_data.mNumber" v-bind="telProps" @input="setAreaCode"></vue-tel-input>
+              <!-- <input type="number" name="mobile" v-model="replace_emp_data.mNumber"> -->
             </div>
           </div>
           <div class="employee-input-container">

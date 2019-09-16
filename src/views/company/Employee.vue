@@ -34,7 +34,7 @@
         					</div>
         				</th>
         				<th class="status-title">Status</th>
-        				<th class="nric-fin-title">NRIC/FIN</th>
+        				<th class="nric-fin-title">Mobile Number</th>
         				<th class="plan-details-title">Plan details</th>
         				<th class="family-coverage-title">Family coverage</th>
         				<th class="spending-account-medical-title">
@@ -71,7 +71,7 @@
 											<span>Removed on 14/03/2019</span>
 										</div> -->
 									</td>
-									<td class="nric-fin-container">{{emp.nric}}</td>
+									<td class="nric-fin-container">{{emp.phone_no}}</td>
 									<td class="plan-start-container">
 										<span>{{emp.plan_tier? emp.plan_tier.plan_tier_name: ''}}</span>
 										<div class="plan-details">

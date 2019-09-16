@@ -4,7 +4,7 @@
 			<!-- content here -->
 			<div class="claim-content">
 				<section class="clinic-claim-btn-container">
-					<button class="btn-nric" @click="modalClaim.verifyUser = true">Verify User by NRIC</button>
+					<button class="btn-nric" @click="modalClaim.verifyUser = true">Verify User by Mobile Number</button>
 					<button class="btn-manual" @click="modalClaim.manualClaims = true">Manual Claims</button>
 				</section>
 
@@ -22,7 +22,7 @@
 									<thead>
 										<th>Registration Date/Time</th>
 										<th>Name</th>
-										<th>NRIC</th>
+										<!-- <th>NRIC</th> -->
 										<th>Cap Per Visit</th>
 										<th>Remarks</th>
 										<th>Option</th>
@@ -31,7 +31,7 @@
 										<tr>
 											<td><span>26 July 2019, 06:03 pm</span></td>
 											<td><span>Allan Cheam Alzula</span></td>
-											<td><span>G4635143L</span></td>
+											<!-- <td><span>G4635143L</span></td> -->
 											<td>
 												<span>S$</span>
 												<span>30.00</span>
@@ -101,7 +101,7 @@
 										<th>Payment Date/Time</th>
 										<th>Transaction ID</th>
 										<th>Name</th>
-										<th>NRIC</th>
+										<th>Mobile Number</th>
 										<th>Service</th>
 										<th>Mednefits Fee</th>
 										<th>Mednefits Credit</th>
@@ -117,7 +117,7 @@
 											<td>04 April 2019, 03:57pm</td>
 											<td>MED013675</td>
 											<td>Kum Kin Cheong</td>
-											<td>G8472947H</td>
+											<td>+65 10101010</td>
 											<td>Medicine & Treatment</td>
 											<td>
 												<span>S$<span></span></span>
@@ -479,7 +479,7 @@
 				<div>
 				 <Modal class="verify-user-modal" v-if="modalClaim.verifyUser">
 		        <div slot="header" class="verify-user-header-container">
-		          <h4>Verify User by NRIC</h4>
+		          <h4>Verify User by Mobile Number</h4>
 		          <i @click="modalClaim.verifyUser = false" class="fa fa-times"></i>
 		        </div>
 		        <div slot="body">
@@ -491,7 +491,7 @@
 		         		<thead>
 		         			<tr>
 		         				<th>Name</th>
-		         				<th>NRIC</th>
+		         				<th>Mobile Number</th>
 		         			</tr>
 		         		</thead>
 		         		<tbody>
@@ -500,7 +500,7 @@
 		         					<span>Alfred</span>
 		         				</td>
 		         				<td>
-		         					<span>G8472947H</span>
+		         					<span>+65 84729471</span>
 		         				</td>
 		         			</tr>
 		         		</tbody>
