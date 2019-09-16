@@ -518,7 +518,7 @@
 			         	<table class="table-manual">
 			         		<thead>
 			         			<tr>
-			         				<th>NRIC</th>
+			         				<th>Mobile Number</th>
 			         				<th>Service</th>
 			         				<th>Date of Visit</th>
 			         				<th>Time of Visit</th>
@@ -530,8 +530,8 @@
 			         			<tr>
 			         				<td>
 			         					<div>
-			         						<span class="manual-head-text-input">NRIC</span>
-			         						<input type="text" placeholder="Search NRIC">
+			         						<span class="manual-head-text-input">Mobile Number</span>
+			         						<input type="text" placeholder="Search Mobile number">
 			         						<div v-if="true" class="nric-list-container" @click="modalClaim.eCardModal = true">
 			         							<div class="img-wrapper">
 			         								<img :src="'https://res.cloudinary.com/www-medicloud-sg/image/upload/v1427972951/ls7ipl3y7mmhlukbuz6r.png'">
@@ -544,7 +544,7 @@
 			         									<span>nicoleyow@asiamalls.com.sg</span>
 			         								</div>
 			         								<div class="nric">
-			         									<span>S8869985H</span>
+			         									<span>+65 88699851</span>
 			         								</div>
 			         								<div>
 			         									<span>Corporate User</span>
