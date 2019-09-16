@@ -217,16 +217,16 @@
                 <div class="col-1-employee-information-details">
                   <div>
                     <strong>First Name</strong>
-                    <span>{{employees.fname || 'N/A'}}</span>
+                    <span>{{employees.name || 'N/A'}}</span>
                   </div>
-                  <div>
+                  <!-- <div>
                     <strong>Last Name</strong>
                     <span>{{employees.lname || 'N/A'}}</span>
-                  </div>
-                  <div>
+                  </div> -->
+                  <!-- <div>
                     <strong>NRIC/FIN</strong>
                     <span>{{employees.nric || 'N/A'}}</span>
-                  </div>
+                  </div> -->
                   <div>
                     <strong>Member ID</strong>
                     <span>{{employees.member_id || 'N/A'}}</span>
@@ -235,12 +235,13 @@
                     <strong>Date of Birth</strong>
                     <span>{{employees.dob | formatDate('DD/MM/YYYY')}}</span>
                   </div>
-                </div>
-                <div class="col-2-employee-information-details">
                   <div>
                     <strong>Work Email</strong>
                     <span>{{employees.email || 'N/A'}}</span>
                   </div>
+                  
+                </div>
+                <div class="col-2-employee-information-details">
                   <div>
                     <strong>Mobile Number</strong>
                     <span>{{employees.phone_no || 'N/A'}}</span>
@@ -291,20 +292,20 @@
                       <strong>First Name</strong>
                       <span>{{list.first_name || 'N/A'}}</span>
                     </div>
-                    <div>
+                    <!-- <div>
                       <strong>Last Name</strong>
                       <span>{{list.last_name || 'N/A'}}</span>
-                    </div>
-                    <div>
+                    </div> -->
+                    <!-- <div>
                       <strong>NRIC/FIN</strong>
                       <span>{{list.nric || 'N/A'}}</span>
-                    </div>
-                  </div>
-                  <div class="col-2-employee-information-details">
+                    </div> -->
                     <div>
                       <strong>Date of Birth</strong>
                       <span>{{list.dob | formatDate('DD/MM/YYYY')}}</span>
                     </div>
+                  </div>
+                  <div class="col-2-employee-information-details">
                     <div>
                       <strong>Relationship</strong>
                       <span v-if="list.relationship != null">{{list.relationship || 'N/A'}}</span>
@@ -354,16 +355,24 @@
           <form class="form-input-container">
             <div class="employee-input-container">
               <div class="employee-input-wrapper">
-                <label for="fname">First / Given Name</label>
+                <label for="fname">Full Name</label>
                 <input type="text" name="fname" v-model="dependent_data.first_name">
               </div>
-              <div class="employee-input-wrapper">
+              <div class="employee-input-wrapper dob">
+                <label for>Date of Birth</label>
+                <v-date-picker :max-date="new Date()"
+                  v-model="dependent_data.dob"
+                  :formats='formats'
+                  :input-props='{class: "vDatepicker", placeholder: "DD/MM/YYYY", readonly: true, }'
+                  popover-visibility='focus' popover-direction='top'></v-date-picker>
+              </div>
+              <!-- <div class="employee-input-wrapper">
                 <label for="fname">Last / Family Name</label>
                 <input type="text" name="lname" v-model="dependent_data.last_name">
-              </div>
+              </div> -->
             </div>
             <div class="employee-input-container">
-              <div class="employee-input-wrapper nric">
+              <!-- <div class="employee-input-wrapper nric">
                 <label>
                   <input type="radio" name="id_status" value="nric" v-model="dependent_data.nric_status_dependents"> NRIC
                 </label>
@@ -378,7 +387,7 @@
                   v-model="dependent_data.dob"
                   :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
                   popover-visibility='focus' popover-direction='top'></v-date-picker>
-              </div>
+              </div> -->
             </div>
             <div class="employee-input-container">
               <div class="employee-input-wrapper">
@@ -393,9 +402,10 @@
               </div>
               <div class="employee-input-wrapper">
                 <label for="fname">Start Date</label>
-                <v-date-picker :max-date="new Date()"
+                <v-date-picker
                   v-model="dependent_data.start_date"
-                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                  :formats='formats'
+                  :input-props='{class: "vDatepicker", placeholder: "DD/MM/YYYY", readonly: true, }'
                   popover-visibility='focus' popover-direction='top'></v-date-picker>
               </div>
             </div>
@@ -435,7 +445,7 @@
           <form>
             <div class="employee-input-container">
               <div class="employee-input-wrapper">
-                <label for="fname">First Name</label>
+                <label for="fname">Full Name</label>
                 <input type="text" name="fname" v-model="toEdit.fname">
               </div>
               <div class="employee-input-wrapper">
@@ -444,24 +454,29 @@
               </div>
             </div>
             <div class="employee-input-container">
-              <div class="employee-input-wrapper">
+              <!-- <div class="employee-input-wrapper">
                 <label for="lname">Last Name</label>
                 <input type="text" name="lname" v-model="toEdit.lname">
-              </div>
-              <div class="employee-input-wrapper">
-                <label for="number">Mobile Number</label>
-                <input type="number" name="number" v-model="toEdit.phone_no">
-              </div>
-            </div>
-            <div class="employee-input-container">
-              <div class="employee-input-wrapper">
-                <label>NRIC</label>
-                <input type="text" name="nric-fin" v-model="toEdit.nric">
-              </div>
+              </div> -->
               <div class="employee-input-wrapper">
                 <label for="postal-code">Postal Code</label>
                 <input type="text" name="postal-code" v-model="toEdit.postal_code">
               </div>
+              <div class="employee-input-wrapper">
+                <label for="number">Mobile Number</label>
+                <vue-tel-input ref="areaCode" v-model="toEdit.phone_no" v-bind="telProps" @input="setAreaCode"></vue-tel-input>
+                <!-- <input type="number" name="number" v-model="toEdit.phone_no"> -->
+              </div>
+            </div>
+            <div class="employee-input-container">
+              <!-- <div class="employee-input-wrapper">
+                <label>NRIC</label>
+                <input type="text" name="nric-fin" v-model="toEdit.nric">
+              </div> -->
+              <!-- <div class="employee-input-wrapper">
+                <label for="postal-code">Postal Code</label>
+                <input type="text" name="postal-code" v-model="toEdit.postal_code">
+              </div> -->
             </div>
             <div class="employee-input-container">
               <div class="employee-input-wrapper">
@@ -484,11 +499,11 @@
                 <v-date-picker
                   mode= 'single'
                   v-model="toEdit.dob"
-                  :formats="formats"
+                  :formats = 'formats'
                   :max-date="new Date()"
                   popoverDirection="top" 
                   popoverVisibility="focus"
-                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'>
+                  :input-props='{class: "vDatepicker", placeholder: "DD/MM/YYYY", readonly: true, }'>
                 </v-date-picker>
                 <!-- <input class="vDatepicker" placeholder="DD/MM/YYYY" :value="employees.dob"> -->
               </div>
@@ -515,7 +530,7 @@
           <form>
             <div class="employee-input-container">
               <div class="employee-input-wrapper">
-                <label for="fname">First Name</label>
+                <label for="fname">Full Name</label>
                 <input type="text" name="fname" v-model="toEdit.first_name">
               </div>
               <div class="employee-input-wrapper dob">
@@ -529,9 +544,13 @@
               </div>
             </div>
             <div class="employee-input-container">
-              <div class="employee-input-wrapper">
+              <!-- <div class="employee-input-wrapper">
                 <label for="lname">Last Name</label>
                 <input type="text" name="lname" v-model="toEdit.last_name">
+              </div> -->
+              <div class="employee-input-wrapper">
+                <label>Member ID</label>
+                <input type="number" name="member-id" v-model="toEdit.member_id">
               </div>
               <div class="employee-input-wrapper">
                 <label for="postal-code">Relationship</label>
@@ -546,14 +565,14 @@
               </div>
             </div>
             <div class="employee-input-container">
-              <div class="employee-input-wrapper">
+              <!-- <div class="employee-input-wrapper">
                 <label>Member ID</label>
                 <input type="number" name="member-id" v-model="toEdit.member_id">
-              </div>
-              <div class="employee-input-wrapper">
+              </div> -->
+              <!-- <div class="employee-input-wrapper">
                 <label>NRIC/FIN</label>
                 <input type="text" name="member-id" v-model="toEdit.nric">
-              </div>
+              </div> -->
             </div>
           </form>
         </div>

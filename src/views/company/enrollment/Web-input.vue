@@ -28,15 +28,24 @@
             <form>
               <div class="employee-input-container">
                 <div class="employee-input-wrapper">
-                  <label for="fname">First / Given Name</label>
+                  <label for="fname">Full Name</label>
                   <input type="text" name="fname" v-model="employeeDetails.fname">
                 </div>
-                <div class="employee-input-wrapper">
+                <div class="employee-input-wrapper dob">
+                  <label for="fname">Date of Birth</label>
+                  <v-date-picker v-model="employeeDetails.dob"
+                    :max-date='new Date()'
+                    :formats='formats'
+                    :input-props='{class: "vDatepicker", placeholder: "DD/MM/YYYY", readonly: true}'
+                    popover-visibility='focus'>
+                  </v-date-picker>
+                </div>
+                <!-- <div class="employee-input-wrapper">
                   <label for="fname">Last / Family Name</label>
                   <input type="text" name="lname" v-model="employeeDetails.lname">
-                </div>
+                </div> -->
               </div>
-              <div class="employee-input-container">
+              <!-- <div class="employee-input-container">
                 <div class="employee-input-wrapper nric">
                   <label for="nric-fin">NRIC/FIN</label>
                   <input type="text" name="nric-fin" v-model="employeeDetails.nricFinNo">
@@ -45,11 +54,12 @@
                   <label for="fname">Date of Birth</label>
                   <v-date-picker v-model="employeeDetails.dob"
                     :max-date='new Date()'
-                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true}'
+                    :fromats = 'formats'
+                    :input-props='{class: "vDatepicker", placeholder: "DD/MM/YYYY", readonly: true}'
                     popover-visibility='focus'>
                   </v-date-picker>
                 </div>
-              </div>
+              </div> -->
               <div class="employee-input-container">
                 <div class="employee-input-wrapper">
                   <label for="fname">Work Email</label>
@@ -58,7 +68,7 @@
                 <div class="employee-input-wrapper mobile-div">
                   <label for="fname">Mobile</label>
                   <vue-tel-input ref="areaCode" v-model="employeeDetails.mNumber" v-bind="telProps" @input="setAreaCode"></vue-tel-input>
-                  <!-- <input type="number" name="mobile" v-model="employeeDetails.mNumber"> -->
+                  <!-- <input name="mobile" v-model="employeeDetails.mNumber" @keypress="isNumber($event)" > -->
                 </div>
               </div>
               <div class="employee-input-container">
@@ -69,6 +79,7 @@
                 <div class="employee-input-wrapper">
                   <label for="fname">Start Date</label>
                   <v-date-picker v-model="employeeDetails.startDate"
+                    :formats='formats'
                     :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
                     popover-visibility='focus' popover-direction='top'>
                   </v-date-picker>
@@ -105,28 +116,37 @@
             <form class="form-input-container">
               <div class="employee-input-container">
                 <div class="employee-input-wrapper">
-                  <label for="fname">First / Given Name</label>
+                  <label for="fname">Full Name</label>
                   <input type="text" name="fname" v-model="dependentStorage[ dependetStorageIndex ].first_name">
                 </div>
-                <div class="employee-input-wrapper">
+                <div class="employee-input-wrapper dob">
+                  <label for="">Date of Birth</label>
+                  <v-date-picker v-model="dependentStorage[ dependetStorageIndex ].dob"
+                    :max-date='new Date()'
+                    :formats ='formats'
+                    :input-props='{class: "vDatepicker", placeholder: "DD/MM/YYYY", readonly: true}'
+                    popover-visibility='focus'>
+                  </v-date-picker>
+                </div>
+                <!-- <div class="employee-input-wrapper">
                   <label for="fname">Last / Family Name</label>
                   <input type="text" name="lname" v-model="dependentStorage[ dependetStorageIndex ].last_name">
-                </div>
+                </div> -->
               </div>
               <div class="employee-input-container">
-                <div class="employee-input-wrapper nric">
+                <!-- <div class="employee-input-wrapper nric">
                   <label>NRIC</label>
                   <label>FIN</label>
                   <input type="text" name="nric-fin" v-model="dependentStorage[ dependetStorageIndex ].nric">
-                </div>
-                <div class="employee-input-wrapper dob">
+                </div> -->
+                <!-- <div class="employee-input-wrapper dob">
                   <label for="">Date of Birth</label>
                   <v-date-picker v-model="dependentStorage[ dependetStorageIndex ].dob"
                     :max-date='new Date()'
                     :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true}'
                     popover-visibility='focus'>
                   </v-date-picker>
-                </div>
+                </div> -->
               </div>
               <div class="employee-input-container">
                 <div class="employee-input-wrapper">
@@ -178,28 +198,37 @@
             <form ref="formDep" class="form-input-container">
               <div class="employee-input-container">
                 <div class="employee-input-wrapper">
-                  <label for="fname">First / Given Name</label>
+                  <label for="fname">Full Name</label>
                   <input type="text" name="fname" v-model="dependentDetails.fname">
                 </div>
-                <div class="employee-input-wrapper">
+                <div class="employee-input-wrapper dob">
+                  <label for="">Date of Birth</label>
+                  <v-date-picker v-model="dependentDetails.dob"
+                    :max-date='new Date()'
+                    :formats ='formats'
+                    :input-props='{class: "vDatepicker", placeholder: "DD/MM/YYYY", readonly: true, }'
+                    popover-visibility='focus'>
+                  </v-date-picker>
+                  <!-- <input type="text" name="lname" placeholder="DD/MM/YYYY"> -->
+                </div>
+                <!-- <div class="employee-input-wrapper">
                   <label for="fname">Last / Family Name</label>
                   <input type="text" name="lname" v-model="dependentDetails.lname">
-                </div>
+                </div> -->
               </div>
               <div class="employee-input-container">
-                <div class="employee-input-wrapper nric">
+                <!-- <div class="employee-input-wrapper nric">
                   <label>NRIC/FIN</label>
                   <input type="text" name="nric-fin" v-model="dependentDetails.nricFinNo">
-                </div>
-                <div class="employee-input-wrapper dob">
+                </div> -->
+                <!-- <div class="employee-input-wrapper dob">
                   <label for="">Date of Birth</label>
                   <v-date-picker v-model="dependentDetails.dob"
                     :max-date='new Date()'
                     :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
                     popover-visibility='focus'>
                   </v-date-picker>
-                  <!-- <input type="text" name="lname" placeholder="DD/MM/YYYY"> -->
-                </div>
+                </div> -->
               </div>
               <div class="employee-input-container">
                 <div class="employee-input-wrapper">
@@ -214,7 +243,8 @@
                 <div class="employee-input-wrapper">
                   <label for="fname">Start Date</label>
                   <v-date-picker v-model="dependentDetails.startDate"
-                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true}'
+                    :formats ='formats'
+                    :input-props='{class: "vDatepicker", placeholder: "DD/MM/YYYY", readonly: true}'
                     popover-visibility='focus'>
                   </v-date-picker>
                   <!-- <input type="text" name="stard-date"> -->
@@ -246,14 +276,12 @@
                   <div>
                     <span>{{index + 1}}</span>.
                     <span>{{summary.first_name}} </span>
-                    <span>{{summary.last_name}}</span>
                   </div>
                   <div v-if="summary.dependents[0] !=null">
                     <div class="summary-dependent" v-for="(dependent, letter) in summary.dependents"
                       :key="dependent.id">
                       <span>{{ String.fromCharCode('a'.charCodeAt() + letter) }}</span>.
-                      <span>{{dependent.first_name}} </span> 
-                      <span>{{dependent.last_name}}</span>
+                      <span>{{dependent.first_name}} </span>
                     </div>
                   </div>
                 </li>
