@@ -24,7 +24,7 @@
 	  <div v-if="!isResetPasswordShow" class="login-container">
 	  	<form @submit.prevent="submitLogin()">
 		  	<div class="form-div">
-		  		<input type="text" placeholder="Email Address" v-model="login_data.email">
+		  		<input type="text" placeholder="Mobile Number" v-model="login_data.email">
 		  	</div>
 		  	<div class="white-space-10"></div>
 		  	<div class="form-div">
@@ -48,7 +48,7 @@
 	  <div v-if="isResetPasswordShow" class="forgot-password-container">
 	  	<form @submit.prevent="submitResetEmail()">
 	  		<div class="form-div">
-		  		<input type="text" placeholder="Email Address" v-model="reset_data.email">
+		  		<input type="text" placeholder="Mobile Number" v-model="reset_data.email">
 		  	</div>
 		  	<div class="login-button-wrapper">
 		  		<button class="btn">Reset Password</button>
