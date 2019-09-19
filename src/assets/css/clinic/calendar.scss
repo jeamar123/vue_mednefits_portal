@@ -1,5 +1,188 @@
 
-
 .clinic-calendar-wrapper {
-    padding: 130px 30px 50px;
+  padding: 90px 0px 50px;
+  background: #fff;
+  min-height: 100vh;
+
+  .calendar-wrapper {
+  	position: absolute;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .calendar-header {
+  	background: #fff;
+  	padding: 15px 45px;
+  	display: flex;
+
+  	.header-dropdown-list {
+  		position: absolute;
+  		top: 30px;
+  		background: #fff;
+	    border: 1px solid rgba(0, 0, 0, .15);
+	    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+  		border-radius: 4px;
+	    padding: 5px 0;
+	    min-width: 160px;
+	    z-index: 1;
+  	}
+
+  	.header-dropdown-list a {
+  		display: block;
+	    padding: 3px 20px;
+	    color: #333;
+  	}
+  }
+
+  .view-tabs-doctors-container {
+  	margin-bottom: 20px;
+    background: #F1F5F9;
+    overflow: hidden;
+
+    ul {
+    	border-bottom: 1px solid #ddd;
+    }
+
+    li:nth-child(1) {
+    	padding: 0 0 0 70px;
+    }
+
+    li {
+    	float: left;
+    	margin: 0 0 -1px;
+    }
+
+    li a {
+    	background-color: #fff;
+	    border: 1px solid #ddd;
+	    border-bottom-color: transparent;
+	    cursor: pointer;
+	    display: block;
+    	padding: 10px 15px;
+    	line-height: 1.42857143;
+    }
+  }
+
+  .calendar-header >div {
+  	display: flex;
+  	align-items: center;
+  }
+
+  .header-list {
+  	width: 42%;
+
+  	>div {
+  		margin: 0 20px 0 0;
+  		position: relative;
+  	}
+
+  	>div>div {
+  		display: flex;
+  		align-items: center;
+  	}
+
+  	i {
+  		margin: 0 0 0 5px;
+  	}
+  }
+
+  .dr-container img {
+  	margin: 0 5px 0 0;
+  }
+
+  .calendar-view {
+  	width: 28%;
+  }
+
+  .calendar-view button {
+  	background: #fff;
+  	border: 1px solid #ccc;
+  	border-radius: 4px;
+  	box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
+  	line-height: 1.42857143;
+  	padding: 6px 12px;
+
+  	&.btn-today {
+  		margin: 0 5px 0 0;
+  	}
+  	&.btn-date {
+  		border-radius: 0px;
+  	}
+  	&.btn-left {
+  		border-radius: 4px 0 0 4px;
+  		border-right: 0;
+  	}
+  	&.btn-right {
+  		border-radius: 0 4px 4px 0;
+  		border-left: 0;
+  	}
+  }
+
+  .header-legend {
+  	width: 30%;
+
+  	>div {
+  		margin: 0 30px 0 0;
+  	}
+
+  	.fa-circle {
+  		width: 15px;
+  		text-align: center;
+  		margin: 0 5px 0 0;
+  	}
+
+  	.blue .fa-circle {
+  		color: #33b5e5;
+    	background: #C5EDFF;
+  	}
+
+  	.green .fa-circle {
+  		color: #00C851;
+    	background: #CBFFC5;
+  	}
+
+  	.yellow .fa-circle {
+  		color: #ffbb33;
+    	background: #FEF6C5;
+  	}
+  }
+
+  .header-tool {
+
+  	>div:first-child {
+  		margin: 0 5px 0 0;
+  		position: relative;
+  	}
+
+  	.header-dropdown-list {
+  		right: 0;
+  		width: 170px;
+  	}
+
+  	.header-dropdown-list .divider {
+  		display: block;
+  		height: 1px;
+  		margin: 9px 0;
+  		background-color: #e5e5e5;
+  	}
+  }
+
+  .header-tool .provider-selector {
+  	font-size: 13px;
+
+  	a {
+  		display: flex;
+  		align-items: center;
+  	}
+
+  	input {
+  		margin: 0 5px 0 0;
+  	}
+  }
+
+  .fc-unthemed {
+  	padding: 129px 0 0 30px;
+  	z-index: 0;
+    position: relative;
+  }
 }
