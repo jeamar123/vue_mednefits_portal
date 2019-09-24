@@ -3,15 +3,23 @@
 		<div class="clinic-calendar-wrapper">
 			Calendar ni sya besh
 	
-			<FullCalendar :defaultView="calendarView"
+			<FullCalendar @dateClick="handleDateClick" @eventClick="handleEventClick" :defaultView="calendarView"
 				ref="fullCalendar" 
-				:plugins="calendarPlugins" 
-				:weekends="false" 
+				:plugins="calendarPlugins"
+				slotDuration='00:15'
+				:locales="locales"
+				:locale="locale"
+				:firstDay ="firstDay"
+				:events="events"
+				:now="dateNow"
+				:businessHours="businessHours"
+				:weekends= true 
 				:header = false
-				:events="[
-					{ title: 'event 1', date: '2019-09-09' },
-					{ title: 'event 2', date: '2019-09-09' }
-				]"
+				:editable = true
+				:eventLimit= true
+				:nowIndicator = true
+				
+    		
 			/>
 			<!-- 
 				:header="{
