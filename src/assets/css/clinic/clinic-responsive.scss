@@ -16,6 +16,22 @@
 	}
 }
 
+@media (max-width: 1233px) {
+	.clinic-calendar-wrapper {
+		.header-list {
+			width: 30%;
+		}
+
+		.calendar-view {
+			width: 35%;
+		}
+
+		.header-legend {
+			width: 35%;
+		}
+	}
+}
+
 
 @media (max-width: 1263px) {
 
@@ -145,6 +161,66 @@
 			margin: 0 0 10px;
 		}
 
+	}
+
+	.clinic-calendar-wrapper {
+		
+		.calendar-wrapper {
+			position: absolute;
+			width: 100%;
+			z-index: 1;
+		}
+
+		.calendar-header {
+			display: block;
+		}
+
+		.calendar-header >div {
+			display: inline-block;
+		}
+
+		.header-list {
+			/*display: inline-block;*/
+			width: 35%;
+		}
+
+		.header-list >div {
+			display: inline-block;
+		}
+
+		.calendar-view {
+			/*display: inline-block;*/
+			width: 65%;
+		}
+
+		.calendar-view >div {
+			display: inline-block;
+		}
+
+		.calendar-header >div.header-legend{
+			display: flex;
+			margin: 20px 0 0 0;
+    	width: 100%;
+		}
+
+		.header-tool {
+			/*display: block;*/
+			position: absolute;
+    	top: 15px;
+    	right: 45px;
+		}
+
+		.header-tool >div{
+			display: inline-block;
+		}
+
+		.fc-unthemed {
+			padding: 169px 0 0 30px;
+		}
+	}
+
+	.navbar {
+		position: fixed;
 	}
 }
 
@@ -700,6 +776,41 @@
 	.view-invoice-detail-container {
 		display: none;
 	}
+
+	.clinic-calendar-wrapper {
+		padding: 70px 0px 50px;
+
+		.calendar-header {
+			padding: 15px 20px;
+		}
+
+		.calendar-header > div {
+			display: block;
+		}
+
+		.header-list,
+		.calendar-view {
+			width: 100%;
+		}
+
+		.calendar-view {
+			margin: 20px 0 0 0;
+		}
+
+		.header-legend >div {
+			margin: 0 10px 0 0;
+		}
+
+		.header-tool {
+			right: 20px;
+		}
+
+		.fc-unthemed {
+			padding: 213px 10px 0;
+		}
+
+	}
+
 }
 
 @media (max-width: 700px) {

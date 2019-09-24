@@ -79,7 +79,7 @@ var calendar = {
 export default calendar;
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "./src/assets/css/clinic/calendar.scss";
 @import "./src/assets/css/clinic/clinic-responsive.scss";
 @import '~@fullcalendar/core/main.css';
