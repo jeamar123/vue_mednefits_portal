@@ -31,30 +31,12 @@
 			</div>
 			<div class="account-input-wrapper">
 				<div>
-					<input @click="btnWeekSelector()" type="button" value="Monday">
+					<input @click="btnWeekSelector()" type="button" v-model="selectedDay">
 					<i class="fa fa-caret-down" aria-hidden="true"></i>
 				</div>
-				<ul v-if="showWeekSelector" class="dropdown-menu">
-					<li>
-						<a>Monday</a>
-					</li>
-					<li>
-						<a>Tuesday</a>
-					</li>
-					<li>
-						<a>Wednesday</a>
-					</li>
-					<li>
-						<a>Thursday</a>
-					</li>
-					<li>
-						<a>Friday</a>
-					</li>
-					<li>
-						<a>Saturday</a>
-					</li>
-					<li>
-						<a>Sunday</a>
+				<ul v-if="showWeekSelector" class="dropdown-menu" @mouseleave="showWeekSelector = false">
+					<li v-for="days in itemWeekDays" :key="days.index" >
+						<a @click="itemWeekSelector(days)">{{days}}</a>
 					</li>
 				</ul>	
 			</div>
@@ -65,24 +47,12 @@
 			</div>
 			<div class="account-input-wrapper">
 				<div>
-					<input @click="btnTimeSelector()" type="button" value="15 Min">
+					<input @click="btnTimeSelector()" type="button" :value="`${selectedTime} Min`">
 					<i class="fa fa-caret-down" aria-hidden="true"></i>
 				</div>
-				<ul v-if="showTimeSelector" class="dropdown-menu">
-					<li>
-						<a>05 Min</a>
-					</li>
-					<li>
-						<a>15 Min</a>
-					</li>
-					<li>
-						<a>30 Min</a>
-					</li>
-					<li>
-						<a>45 Min</a>
-					</li>
-					<li>
-						<a>60 Min</a>
+				<ul v-if="showTimeSelector" class="dropdown-menu" @mouseleave="showTimeSelector = false">
+					<li v-for="time in timeUnit" :key="time.index">
+						<a @click="itemTimeSelector(time)">{{time}} Min</a>
 					</li>
 				</ul>	
 			</div>
@@ -93,79 +63,13 @@
 			</div>
 			<div class="account-input-wrapper">
 				<div>
-					<input @click="btnStartHourSelector()" type="button" value="12:00 AM">
+					<input @click="btnStartHourSelector()" type="button" v-model="selectedHour">
 					<i class="fa fa-caret-down" aria-hidden="true"></i>
 				</div>
 				<div class="timepicker-wrapper">
 					<ul v-if="showStartHourSeletor" class="dropdown-menu">
-						<li>
-							<a>12:00 AM</a>
-						</li>
-						<li>
-							<a>01:00 AM</a>
-						</li>
-						<li>
-							<a>02:00 AM</a>
-						</li>
-						<li>
-							<a>03:00 AM</a>
-						</li>
-						<li>
-							<a>04:00 AM</a>
-						</li>
-						<li>
-							<a>05:00 AM</a>
-						</li>
-						<li>
-							<a>06:00 AM</a>
-						</li>
-						<li>
-							<a>07:00 AM</a>
-						</li>
-						<li>
-							<a>09:00 AM</a>
-						</li>
-						<li>
-							<a>10:00 AM</a>
-						</li>
-						<li>
-							<a>11:00 AM</a>
-						</li>
-						<li>
-							<a>12:00 PM</a>
-						</li>
-						<li>
-							<a>01:00 PM</a>
-						</li>
-						<li>
-							<a>02:00 PM</a>
-						</li>
-						<li>
-							<a>03:00 PM</a>
-						</li>
-						<li>
-							<a>04:00 PM</a>
-						</li>
-						<li>
-							<a>05:00 PM</a>
-						</li>
-						<li>
-							<a>06:00 PM</a>
-						</li>
-						<li>
-							<a>07:00 PM</a>
-						</li>
-						<li>
-							<a>08:00 PM</a>
-						</li>
-						<li>
-							<a>09:00 PM</a>
-						</li>
-						<li>
-							<a>10:00 PM</a>
-						</li>
-						<li>
-							<a>11:00 PM</a>
+						<li v-for=" hours in hoursPerday" :key='hours.index'>
+							<a @click="itemHourSelector(hours)">{{hours}}</a>
 						</li>
 					</ul>
 				</div>

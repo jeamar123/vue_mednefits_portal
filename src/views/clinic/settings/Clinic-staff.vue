@@ -190,7 +190,9 @@
 						</div>
 						<div>
 							<h1>Services You Provide:</h1>
-							<button>Add Service</button>
+							<router-link :to="{ name: 'ClinicServices' }">
+								<button>Add Service</button>
+							</router-link>
 						</div>
 					</div>
 

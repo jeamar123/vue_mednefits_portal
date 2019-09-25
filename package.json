@@ -9,6 +9,10 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
+    "@fullcalendar/core": "^4.3.1",
+    "@fullcalendar/daygrid": "^4.3.0",
+    "@fullcalendar/timegrid": "^4.3.0",
+    "@fullcalendar/vue": "^4.3.1",
     "@statnett/vue-plotly": "^0.2.0",
     "axios": "^0.18.1",
     "babel-polyfill": "^6.26.0",
