@@ -15,6 +15,10 @@ var calendar = {
 	data() {
 		return {
 
+			formats: { //v-date-picker
+				input: ["MMM DD YYYY"],
+				data: ["MMMM DD YYYY"]
+			},
 			//Calendar Data
 			calendarPlugins: [
 				dayGridPlugin,
@@ -35,14 +39,27 @@ var calendar = {
 				startTime: '10:00', // a start time (10am in this example)
 				endTime: '17:00', // an end time (6pm in this example)
 			},
+			selectState: 1,
 			// End Calendar Data
 			//for new event
-			newEvent: [{
-				title: 'The event 1', // a property!
-				allDay: false, // Boolean (true or false).
-				start: '2019-09-16 10:00', // a property! YYYY - MM - DD hh:mm:ss:sss
-				end: '2019-09-16 10:15', // a property! ** see important note below about 'end' ** YYYY - MM - DD hh:mm:ss:sss
-			}, ],
+			newEvent: [
+				// {
+				// 	title: 'The event 1', // a property!
+				// 	allDay: false, // Boolean (true or false).
+				// 	start: '2019-09-16 10:00', // a property! YYYY - MM - DD hh:mm:ss:sss
+				// 	end: '2019-09-16 10:15', // a property! ** see important note below about 'end' ** YYYY - MM - DD hh:mm:ss:sss
+				// }, 
+			],
+			appModal: false,
+			dropDownService : false,
+			dropDownDoctor : false,
+			dropDownDuration: false,
+			dropDownDay: false,
+
+			// DATA FORMS
+			appDetails : {},
+			serviceCustomIndicator: 0,
+
 			dataSample: false
 		};
 	},
@@ -50,6 +67,8 @@ var calendar = {
 		this.events = this.newEvent; // should be array format
 	},
 	methods: {
+
+		//calendar methods
 		handleDateClick(data) {
 			let time = moment(data.date).format('hh:mm');
 			let start = moment(data.date).format('YYYY-MM-DD HH:mm');
@@ -72,6 +91,138 @@ var calendar = {
 		},
 		handleEventClick(data) {
 			console.log('event clicked')
+		},
+		handelSelect(info) {
+
+			if (moment(info.start).format('HH:mm') >= this.businessHours.startTime && moment(info.end).format('HH:mm') <= this.businessHours.endTime && info.start > this.dateNow) {
+				this.selectState = 1;
+				this.appModal = true;
+				this.dropDownService = false;
+				this.serviceCustomIndicator = 0;
+				this.appDetails = {};
+			} else {
+				this.selectState = 0;
+			}
+
+			let start = moment(info.startStr).format('YYYY-MM-DD HH:mm');
+			let end = moment(info.endStr).format('YYYY-MM-DD HH:mm');
+			console.log(start, end);
+
+			let item = {
+				title: ' ', // a property!
+				allDay: false, // Boolean (true or false).
+				start: start, // a property! YYYY - MM - DD hh:mm:ss:sss
+				end: end, // a property! ** see important note below about 'end' ** YYYY - MM - DD hh:mm:ss:sss
+				backgroundColor: '#3a87ad',
+			};
+			this.newEvent.push(item);
+			this.events = this.newEvent; // should be array format
+			console.log('item', item, 'Event', this.events);
+		},
+		handleMouseLeave() {
+			if (this.selectState == 0) {
+				this.events.pop();
+				this.selectState = 1;
+			} else {
+				console.log(`don't remove`);
+			}
+		},
+		// End of Calendar methods
+
+		//Modal Methods
+			//Appointments
+			handleSelectDoctor() {
+				this.dropDownDoctor = !this.dropDownDoctor;
+			},
+			handleSelectService() {
+				this.dropDownService = !this.dropDownService;
+			},
+			handleSelectDuration() {
+				this.dropDownDuration = !this.dropDownDuration;
+			},
+			handleSelectDay() {
+				this.dropDownDay = !this.dropDownDay;
+			},
+			selectedData(type,data,indicator) {
+				if(type == 'doctor') {
+					this.appDetails.doctor = data;
+					this.handleSelectDoctor();
+				} else if (type == 'service') {
+					this.appDetails.service = data;
+					
+					if (indicator == 2) {
+						this.appDetails.service = undefined;
+						this.serviceCustomIndicator = indicator;
+						console.log(this.serviceCustomIndicator);
+					}
+					this.handleSelectService();
+				}
+
+				
+			}
+
+	},
+	computed: {
+		//For Services li
+		services() {
+			let service = [
+				{
+					name: 'Slot Blocker',
+					type: 1,
+					time: 'Custom'
+				},
+				{
+					name: 'Appointment Without SMS Notification',
+					type: 2,
+					time: 'Custom'
+				}, 
+				{
+					name: 'Medicine & Treatment',
+					type: 3,
+					time: '10 mins'
+				}
+			];
+
+			let service2  = [
+				{
+					name: 'Medicine & Treatment',
+					type: 3,
+					time: '10 mins'
+				}
+			]
+
+			if(this.serviceCustomIndicator == 2 ) {
+				return service2;
+			}else {
+				return service
+			}
+		},
+		doctors() {
+			let doctor = [
+				{
+					name: 'Dr Jimmy Yap',
+					imgUrl: '../assets/img/clinic/ico_Profile.svg'
+				}
+			];
+			return doctor;
+		},
+		hoursPerday() {
+			let day = 23;
+			let hours = []
+			let formatTime;
+
+			for ( let i = 0 ; i < day+1; i++) {
+				let min = 15;
+				for (let x = 4; x > 0 ; x--) {
+					formatTime = (moment().hours(day).subtract(i, 'hours').minutes(min*x).format('hh:mmA'));
+					hours.unshift(formatTime);
+				}
+				
+			}
+			// formatTime = (moment().subtract(22, 'hours').format('hh:00 A'));
+			// hours.unshift(formatTime);
+			
+			return hours;
 		}
 	}
 };
