@@ -269,7 +269,7 @@
 											<i class="icon fa fa-chevron-down"></i>
 											<input type="text" @click="handleSelectDuration" v-model="appDetails.duration" class="modal-calendar-input-container" placeholder="Mins" readonly="readonly">
 										</div>
-										<ul v-if="dropDownDuration" class="dropdown-container">
+										<!-- <ul v-if="dropDownDuration" class="dropdown-container">
 											<li>
 												<a @click="selectedData('duration','Hours')">
 													<div class="dr-container">
@@ -284,7 +284,7 @@
 													</div>
 												</a>
 											</li>
-										</ul>
+										</ul> -->
 									</div>
 								</div>
 							</div>
@@ -392,7 +392,7 @@
 				</div>
 			</Modal>
 	
-			<Modal v-if="false" class="clinic-config-modal">
+			<Modal v-if="true" class="clinic-config-modal">
 				<div slot="header">
 					<div class="setup-uncompleted-line"></div>
 					<ul>
@@ -572,7 +572,7 @@
 	
 						</div>
 					</div>
-					<div v-if="true" class="fourth-step">
+					<div v-if="false" class="fourth-step">
 						<div class="panel-header">
 							<div>
 								<h3>Add the Services You Offer</h3>
@@ -624,22 +624,40 @@
 									<div class="modal-calendar-input-wrapper">
 										<input class="modal-calendar-input-container" type="text" placeholder="Service Name">
 									</div>
-									<div class="time-container">
+									<div class="time-container modal-calendar-input-wrapper">
 										<div class="modal-calendar-input-wrapper">
 											<input class="modal-calendar-input-container" type="text" placeholder="0">
 										</div>
 										<div>
 											<button class="btn-mins">Mins</button>
+											<ul class="dropdown-container">
+												<li>
+													<a>Mins</a>
+												</li>
+												<li>
+													<a>Hours</a>
+												</li>
+											</ul>
 										</div>
 									</div>
 									<div class="modal-calendar-input-wrapper">
 										<input class="modal-calendar-input-container" type="text" placeholder="$ 0">
 									</div>
-									<div>
+									<div class="select-doctor-container">
 										<button class="btn-select-doctor">
-			    								<i class="fa fa-user-md"> </i>
-			    								<i class="fa fa-caret-down" ></i>
-			    							</button>
+	    								<i class="fa fa-user-md"> </i>
+	    								<i class="fa fa-caret-down" ></i>
+	    							</button>
+	    							<ul v-if="false" class="dropdown-container">
+	    								<li>
+	    									<span>Who can perform this service?</span>
+	    								</li>
+	    								<li>
+	    									<label class="doctor-list-container">
+	    										<input type="checkbox"> <span>Noelou</span>
+	    									</label>
+	    								</li>
+	    							</ul>
 									</div>
 									<div>
 										<button class="btn-add">Add</button>
@@ -648,15 +666,49 @@
 							</div>
 						</div>
 					</div>
-					<div v-if="false" class="fifth-step">
+					<div v-if="true" class="fifth-step">
 						<div class="panel-header">
 							<div>
-								<h3>Welcome to Medicloud</h3>
-								<span>We'll get you setup in no time</span>
+								<h3>All done! Time to get down to business.</h3>
 							</div>
 						</div>
-						<div class="panel-body">
-	
+						<div class="setup-dashboard">
+							<div class="setup-dashboard-link">
+								<div>
+									<img :src="'../assets/img/business/calendar-thumbnails.png'">
+								</div>	
+								<h1>Start Booking Appointments</h1>
+							</div>
+							<div class="setup-features-list">
+								<div>
+									<div class="setup-dashboard-link">
+										<div class="features-img-container">
+											<img :src="'../assets/img/business/booking-page-thumbnail.png'">
+										</div>
+										<span>See My Booking Page >></span>
+									</div>
+									<div class="setup-dashboard-link">
+										<div class="features-img-container">
+											<img :src="'../assets/img/business/booknow-btn-thumbnail.png'">
+										</div>
+										<span>Get the Booking Button >></span>
+									</div>
+								</div>
+								<div>
+									<div class="setup-dashboard-link">
+										<div class="features-img-container">
+											<img :src="'../assets/img/business/integration-thumbnail.png'">
+										</div>
+										<span>View Integrations >></span>
+									</div>
+									<div class="setup-dashboard-link">
+										<div class="features-img-container">
+											<img :src="'../assets/img/business/staff-or-service-thumbnail.png'">
+										</div>
+										<span>Add Staff / Services >></span>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
