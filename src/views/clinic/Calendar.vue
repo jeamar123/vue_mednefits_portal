@@ -381,54 +381,54 @@
 				</div>
 			</Modal>
 	
-			<Modal v-if="true" class="clinic-config-modal">
+			<Modal v-if="false" class="clinic-config-modal">
 				<div slot="header">
 					<div class="setup-uncompleted-line"></div>
 					<ul>
 						<li>
 							<label>Welcome</label>
 							<a>
-				    				<span class="clinic-badge">
-				    				1
-				    				<i class="clinic-check-icon"></i>
-				    				</span>
-			    				</a>
+		    				<span class="clinic-badge active">
+		    				
+		    				<i class="fa fa-check done-step"></i>
+		    				</span>
+	    				</a>
 						</li>
 						<li>
 							<label>Hours</label>
 							<a>
-				    				<span class="clinic-badge">
-				    				2
-				    				<i class="clinic-check-icon"></i>
-				    				</span>
-			    				</a>
+		    				<span class="clinic-badge">
+		    				2
+		    				<i v-if="false" class="fa fa-check"></i>
+		    				</span>
+	    				</a>
 						</li>
 						<li>
 							<label>Doctors</label>
 							<a>
-				    				<span class="clinic-badge">
-				    				3
-				    				<i class="clinic-check-icon"></i>
-				    				</span>
-			    				</a>
+		    				<span class="clinic-badge">
+		    				3
+		    				<i v-if="false" class="fa fa-check"></i>
+		    				</span>
+	    				</a>
 						</li>
 						<li>
 							<label>Service</label>
 							<a>
-				    				<span class="clinic-badge">
-				    				4
-				    				<i class="clinic-check-icon"></i>
-				    				</span>
-			    				</a>
+		    				<span class="clinic-badge">
+		    				4
+		    				<i v-if="false" class="fa fa-check"></i>
+		    				</span>
+	    				</a>
 						</li>
 						<li>
 							<label>DONE!</label>
 							<a>
-				    				<span class="clinic-badge">
-				    				5
-				    				<i class="clinic-check-icon"></i>
-				    				</span>
-			    				</a>
+		    				<span class="clinic-badge">
+		    				5
+		    				<i v-if="false" class="fa fa-check"></i>
+		    				</span>
+	    				</a>
 						</li>
 					</ul>
 				</div>
@@ -697,6 +697,12 @@
 										<span>Add Staff / Services >></span>
 									</div>
 								</div>
+							</div>
+						</div>
+						<div class="panel-footer">
+							<div>
+								<button class="btn-prev"><i class="fa fa-chevron-left"></i></button>
+								<button>Close</button>
 							</div>
 						</div>
 					</div>
