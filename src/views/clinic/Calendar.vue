@@ -139,7 +139,7 @@
 							<a>PATIENT</a>
 						</li>
 					</ul>
-					<form>
+					<form v-if="true">
 						<div class="modal-calendar-row-input-container">
 							<label>Doctor</label>
 							<div class="modal-calendar-input-wrapper">
@@ -191,7 +191,7 @@
 							<div class="modal-calendar-row-input-container">
 								<label>Duration</label>
 								<div class="modal-calendar-input-wrapper">
-									<input type="number" style="cursor:text" class="duration-container modal-calendar-input-container" placeholder="60">
+									<input type="number" class="duration-container modal-calendar-input-container" placeholder="60">
 									<div class="duration-wrapper mins-container">
 										<i class="icon fa fa-chevron-down"></i>
 										<input type="text" @click="handleSelectDuration" class="modal-calendar-input-container" placeholder="Mins" readonly="readonly">
@@ -255,7 +255,7 @@
 								<div class="modal-calendar-row-input-container">
 									<label>Duration</label>
 									<div class="modal-calendar-input-wrapper">
-										<input type="number" style="cursor:text" class="duration-container modal-calendar-input-container" placeholder="60">
+										<input type="number" class="duration-container modal-calendar-input-container" placeholder="60">
 										<div class="duration-wrapper mins-container">
 											<i class="icon fa fa-chevron-down"></i>
 											<input type="text" @click="handleSelectDuration" class="modal-calendar-input-container" placeholder="Mins" readonly="readonly">
@@ -365,10 +365,18 @@
 						<div class="modal-calendar-row-input-container">
 							<label>Notes</label>
 							<div class="modal-calendar-input-wrapper">
-								<input class="modal-calendar-input-container" style="cursor:text" type="text" placeholder="Notes / Instructions">
+								<input class="modal-calendar-input-container" type="text" placeholder="Notes / Instructions">
 							</div>
 						</div>
-	
+						
+						<div v-if="false" class="modal-calendar-row-input-container error-message">
+							<label></label>
+							<div>
+								<span>Please select a procedure!</span>
+								<span>Please insert a duration!</span>
+							</div>
+						</div>
+
 						<div class="modal-calendar-row-input-container">
 							<label></label>
 							<div class="modal-calendar-input-wrapper">
@@ -378,6 +386,120 @@
 						</div>
 	
 					</form>
+
+					<div v-if="false" class="search-panel">
+						<div class="modal-calendar-input-wrapper">
+							<input class="modal-calendar-input-container" type="text" placeholder="Search Email Address or Phone Number">
+							<i class="fa fa-search"></i>
+						</div>
+						<button class="btn-continue"><i class="fa fa-plus"></i> New Patient</button>
+					</div>
+
+					<div v-if="false" class="new-customer">
+						<div class="modal-calendar-row-input-container">
+							<label><img :src="'../assets/img/clinic/ico_Profile.svg'"></label>
+							<div class="modal-calendar-input-wrapper">
+								<input class="modal-calendar-input-container" placeholder="Name">
+							</div>
+						</div>
+						<div class="modal-calendar-row-input-container">
+							<label></label>
+							<div class="modal-calendar-input-wrapper area-code-container">
+								<button>+65</button>
+								<input class="modal-calendar-input-container" placeholder="Mobile Number" type="number">
+							</div>
+						</div>
+						<div class="modal-calendar-row-input-container">
+							<label></label>
+							<div class="modal-calendar-input-wrapper">
+								<input class="modal-calendar-input-container" placeholder="Email">
+							</div>
+						</div>
+						<div class="modal-calendar-row-input-container">
+							<label></label>
+							<div class="modal-calendar-input-wrapper">
+								<input class="modal-calendar-input-container" placeholder="Address">
+							</div>
+						</div>
+						<div class="modal-calendar-row-input-container">
+							<label></label>
+							<div class="city-state-zip-container">
+								<div class="modal-calendar-row-input-container">
+									<div class="modal-calendar-input-wrapper">
+										<input class="modal-calendar-input-container" placeholder="City">
+									</div>
+								</div>
+								<div class="modal-calendar-row-input-container">
+									<div class="modal-calendar-input-wrapper">
+										<input class="modal-calendar-input-container" placeholder="State">
+									</div>
+								</div>
+								<div class="modal-calendar-row-input-container">
+									<div class="modal-calendar-input-wrapper">
+										<input class="modal-calendar-input-container" placeholder="Zip" type="number">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="modal-calendar-row-input-container">
+							<label></label>
+							<div class="back-next-container">
+								<button class="btn-continue appoint-back-btn">Back</button>
+								<button class="btn-continue">Next</button>
+							</div>
+						</div>
+					</div>
+
+					<div v-if="false" class="check-save">
+						<h4>Confirm Appointment : </h4>
+						<div class="confirm-info-wrapper">
+							<div class="confirm-appointment-container">
+								<div>
+									<label>Doctor</label>
+									<span>Dr Test</span>								
+								</div>
+								<div>
+									<label>Procedure</label>
+									<span>Scaling & Polishing</span>
+								</div>
+							</div>
+							<div class="confirm-appointment-container">
+								<div>
+									<label>Namer</label>
+									<span>Jan</span>								
+								</div>
+								<div>
+									<label>Email & Phone</label>
+									<span>jan@gmail.com</span>
+								</div>
+							</div>
+							<div class="confirm-appointment-container">
+								<div>
+									<label>Date & Time</label>
+									<span>Monday, September 30 2019</span>		
+									<br>
+									<span>4:30 PM</span>						
+								</div>
+								<div>
+									<label>Price</label>
+									<span>0</span>
+								</div>
+							</div>
+							<div class="confirm-appointment-container">
+								<div>
+									<label>Notes</label>
+									<span></span>								
+								</div>
+							</div>
+						</div>
+
+						<div class="confirm-appointment-btn-container">
+							<button class="btn-continue appoint-back-btn">Back</button>
+							<button class="btn-continue">Save Appointment</button>
+						</div>
+					</div>
+
 				</div>
 			</Modal>
 	
@@ -708,6 +830,57 @@
 					</div>
 				</div>
 			</Modal>
+
+			<Modal v-if="false" class="appointment-details-modal">
+				<div slot="header">
+					<h1>Appointment Details</h1>
+					<i class="fa fa-times"></i>
+				</div>
+				<div slot="body">
+					<div class="appointment-date-time">
+						<div>
+							<span>Monday, September 30, 2019</span>
+						</div>
+						<div>
+							<span>4:15 pm - 4:25 pm</span>
+						</div>
+					</div>
+					<div class="appointment-details-row">
+						<label>Doctor</label>
+						<span>Dr Test</span>
+					</div>
+					<div class="appointment-details-row">
+						<label>Service</label>
+						<span>Machine & Treatment</span>
+					</div>
+					<div class="appointment-details-row">
+						<label>Cost</label>
+						<span>As Charged</span>
+					</div>
+					<div class="appointment-details-row">
+						<label>Customer</label>
+						<span></span>
+					</div>
+					<div class="appointment-details-row">
+						<label>Email</label>
+						<span></span>
+					</div>
+					<div class="appointment-details-row">
+						<label>Phone</label>
+						<span></span>
+					</div>
+
+				</div>
+				<div slot="footer">
+					<div class="appointment-btn-footer">
+						<button>Edit Details</button>
+						<button>Claim</button>
+						<button>No Show</button>
+						<button class="btn-delete">Delete</button>
+					</div>
+				</div>
+			</Modal>
+
 		</div>
 	
 	</div>
