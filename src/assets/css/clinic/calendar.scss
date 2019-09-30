@@ -494,6 +494,13 @@
     &.active {
       background: rgb(42, 164, 216);
     }
+
+    .done-step {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      margin: 0;  
+    }
   }
 
   .modal-body {
@@ -501,7 +508,8 @@
     padding: 30px;
   }
 
-  .panel-header {
+  .panel-header,
+  .panel-footer {
     display: inline-block;
     width: 100%;
 
@@ -567,6 +575,11 @@
       margin: 20px 0 0 0;
       padding: 0 15px;
     }
+  }
+
+  .panel-footer {
+    text-align: center;
+    margin: 20px 0 0;
   }
 
   .modal-calendar-row-input-container {
