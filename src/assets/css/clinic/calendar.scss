@@ -428,7 +428,7 @@
   .modal-clinic-container {
     width: 550px;
     height: auto;
-    margin: 0 auto;
+    margin: 0 auto 50px;
 
     .timepicker-container {
       position: inherit;
@@ -701,7 +701,7 @@
 
     .btn-mins,
     .btn-select-doctor {
-      height: 35px;
+      height: 38px;
       width: 50px;
       font-size: 14px;
       background: #ececec;
@@ -718,6 +718,117 @@
   .panel-body > div.service-input-container {
     border-top: 1px solid rgb(216, 216, 216);
     padding: 20px 0 0;
+
+    >div >div:nth-child(1) {
+      width: 35%;
+    }
+
+    .time-container {
+      width: 25%;
+      padding: 0 10px;
+    }
+
+    .time-container >div:nth-child(1) {
+      padding: 0 3px 0 0;
+    }
+
+    >div >div:nth-child(3) {
+      width: 15%;
+    }
+
+    >div >div:nth-child(4) {
+      width: 13%;
+      padding: 0 0 0 10px;
+    }
+
+    >div >div:nth-child(5) {
+      width: 14%;
+      padding: 0 0 0 10px;
+    }
+  }
+
+  .select-doctor-container {
+    position: relative;
+
+    .dropdown-container {
+      position: absolute;
+      top: 38px;
+      right: 0;
+      background-color: #fff;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      z-index: 1;
+      width: 230px;
+      max-height: 130px;
+    }
+
+    li {
+      padding: 3px 20px;
+      font-weight: 700;
+    }
+
+    li:nth-child(1) {
+      border-bottom: 1px solid #e5e5e5;
+      padding: 3px 20px 5px;
+    }
+
+    .doctor-list-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .doctor-list-container input {
+      margin: 0 10px 0 0;
+    }
+  }
+
+  .setup-dashboard {
+  
+    >div:first-child {
+      display: flex;
+    }
+
+    >div:first-child >div, h1 {
+      width: 50%;
+    }
+
+    h1 {
+      font-size: 30px;
+      color: #1B9BD7;
+      font-weight: 700;
+      line-height: 1;
+      padding-top: 20px;
+    }
+  }
+
+  .setup-dashboard-link {
+    border: solid 3px #BFEDF9;
+    padding: 30px 0;
+    text-align: center;
+    background-color: #fff;
+
+
+    .features-img-container {
+      height: 90px;
+    }
+
+    span {
+      color: #777;
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+    }
+  }
+
+  .setup-features-list {
+    >div {
+      display: flex;
+    }
+
+    .setup-dashboard-link {
+      width: 50%;
+    }
   }
 
   .modal-footer {
