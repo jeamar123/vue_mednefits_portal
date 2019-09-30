@@ -444,7 +444,7 @@
 					</ul>
 				</div>
 				<div slot="body">
-					<div v-if="false" class="first-step">
+					<div v-if="true" class="first-step">
 						<div class="panel-header">
 							<div>
 								<h3>Welcome to Medicloud</h3>
@@ -666,7 +666,7 @@
 							</div>
 						</div>
 					</div>
-					<div v-if="true" class="fifth-step">
+					<div v-if="false" class="fifth-step">
 						<div class="panel-header">
 							<div>
 								<h3>All done! Time to get down to business.</h3>
