@@ -41,7 +41,16 @@
 						<button class="btn-today">Today</button>
 						<div class="datepicker-btn">
 							<button class="btn-left"><img :src="'../assets/img/ico_left arrow.svg'"></button>
-							<button class="btn-date">Sep 23 – 29, 2019</button>
+							<button class="btn-date">
+								<v-date-picker v-model="appDetails.dateRange"
+									mode='range'
+									:max-date='new Date()'
+									:formats='formats'
+									:input-props='{class: "vDatepicker btn-date", placeholder: "MM/DD/YYYY", readonly: true}'
+									popover-visibility='focus' popover-direction='bottom'>
+								</v-date-picker>
+							</button>
+							
 							<button class="btn-right"><img :src="'../assets/img/ico_right arrow.svg'"></button>
 						</div>
 					</div>
@@ -187,25 +196,25 @@
 						</div>
 	
 						<!-- Select a service -->
-						<div v-if="appDetails.service == 'Slot Blocker' || appDetails.service == 'Medicine & Treatment' " class="duration-form-container">
+						<div v-if="appDetails.service == 'Slot Blocker' || appDetails.service == 'Medicine & Treatment' &&  serviceCustomIndicator != 2" class="duration-form-container">
 							<div class="modal-calendar-row-input-container">
 								<label>Duration</label>
 								<div class="modal-calendar-input-wrapper">
-									<input type="number" style="cursor:text" class="duration-container modal-calendar-input-container" placeholder="60">
+									<input type="number" style="cursor:text" class="duration-container modal-calendar-input-container" placeholder="60" v-model="appDetails.valHoursMin">
 									<div class="duration-wrapper mins-container">
 										<i class="icon fa fa-chevron-down"></i>
-										<input type="text" @click="handleSelectDuration" class="modal-calendar-input-container" placeholder="Mins" readonly="readonly">
+										<input type="text" @click="handleSelectDuration" v-model="appDetails.duration" class="modal-calendar-input-container" placeholder="Mins" readonly="readonly">
 									</div>
 									<ul v-if="dropDownDuration" class="dropdown-container">
 										<li>
-											<a>
+											<a @click="selectedData('duration','Hours')">
 												<div class="dr-container">
 													<span>Hours</span>
 												</div>
 											</a>
 										</li>
 										<li>
-											<a>
+											<a @click="selectedData('duration','Mins')">
 												<div class="dr-container">
 													<span>Mins</span>
 												</div>
@@ -248,28 +257,28 @@
 								<div class="modal-calendar-row-input-container">
 									<label>Price</label>
 									<div class="modal-calendar-input-wrapper">
-										<input class="modal-calendar-input-container">
+										<input class="modal-calendar-input-container" v-model="appDetails.price">
 									</div>
 								</div>
 	
 								<div class="modal-calendar-row-input-container">
 									<label>Duration</label>
 									<div class="modal-calendar-input-wrapper">
-										<input type="number" style="cursor:text" class="duration-container modal-calendar-input-container" placeholder="60">
+										<input type="number" style="cursor:text" class="duration-container modal-calendar-input-container" placeholder="60" v-model="appDetails.valHoursMin">
 										<div class="duration-wrapper mins-container">
 											<i class="icon fa fa-chevron-down"></i>
-											<input type="text" @click="handleSelectDuration" class="modal-calendar-input-container" placeholder="Mins" readonly="readonly">
+											<input type="text" @click="handleSelectDuration" v-model="appDetails.duration" class="modal-calendar-input-container" placeholder="Mins" readonly="readonly">
 										</div>
 										<ul v-if="dropDownDuration" class="dropdown-container">
 											<li>
-												<a>
+												<a @click="selectedData('duration','Hours')">
 													<div class="dr-container">
 														<span>Hours</span>
 													</div>
 												</a>
 											</li>
 											<li>
-												<a>
+												<a @click="selectedData('duration','Mins')">
 													<div class="dr-container">
 														<span>Mins</span>
 													</div>
@@ -304,14 +313,15 @@
 							<div v-if="true" class="modal-calendar-row-input-container">
 								<label>Name</label>
 								<div class="modal-calendar-input-wrapper">
-									<input class="modal-calendar-input-container" placeholder="Name">
+									<input class="modal-calendar-input-container" placeholder="Name" v-model="appDetails.name">
 								</div>
 							</div>
 	
 							<div v-if="true" class="modal-calendar-row-input-container">
 								<label>Email <span>(Optional)</span></label>
 								<div class="modal-calendar-input-wrapper">
-									<input class="modal-calendar-input-container" placeholder="Email">
+									<input class="modal-calendar-input-container" placeholder="Email"
+									v-model="appDetails.email">
 								</div>
 							</div>
 	
@@ -319,8 +329,9 @@
 							<div v-if="true" class="modal-calendar-row-input-container">
 								<label>Phone <span>(Optional)</span></label>
 								<div class="modal-calendar-input-wrapper area-code-container">
-									<button>+65</button>
-									<input class="modal-calendar-input-container" placeholder="Mobile Number">
+									<!-- <button>+65</button>
+									<input class="modal-calendar-input-container" placeholder="Mobile Number"> -->
+									<vue-tel-input ref="areaCode" v-model="appDetails.mobile" v-bind="telProps" @input="setAreaCode"></vue-tel-input>
 								</div>
 							</div>
 	
@@ -332,7 +343,7 @@
 								<div class="modal-calendar-input-wrapper">
 									<div>
 										<!-- <span>Saturday, September 21 2019</span> -->
-										<v-date-picker v-model="appDetails.day"
+										<v-date-picker v-model="appDetails.dateDay"
                     :max-date='new Date()'
                     :formats='formats'
                     :input-props='{class: "vDatepicker modal-calendar-input-container", placeholder: "MM/DD/YYYY", readonly: true}'
@@ -347,11 +358,11 @@
 								<div class="modal-calendar-input-wrapper">
 									<div class="time-wrapper">
 										<i class="icon fa fa-chevron-down"></i>
-										<input type="text" @click="handleSelectDay" class="modal-calendar-input-container" placeholder="1:00 AM" readonly="readonly">
+										<input type="text" @click="handleSelectDay" v-model="appDetails.time" class="modal-calendar-input-container" placeholder="1:00 AM" readonly="readonly">
 									</div>
 									<ul v-if="dropDownDay" class="dropdown-container">
 										<li v-for="hours in hoursPerday" :key='hours.index'>
-											<a>
+											<a @click="selectedData('day',hours)"> 
 												<div class="dr-container">
 													<span>{{hours}}</span>
 												</div>
@@ -365,14 +376,14 @@
 						<div class="modal-calendar-row-input-container">
 							<label>Notes</label>
 							<div class="modal-calendar-input-wrapper">
-								<input class="modal-calendar-input-container" style="cursor:text" type="text" placeholder="Notes / Instructions">
+								<input class="modal-calendar-input-container" style="cursor:text" type="text" placeholder="Notes / Instructions" v-model="appDetails.notes">
 							</div>
 						</div>
 	
 						<div class="modal-calendar-row-input-container">
 							<label></label>
 							<div class="modal-calendar-input-wrapper">
-								<button class="btn-continue">Continue</button>
+								<button class="btn-continue" @click.prevent="btnContinue()">Continue</button>
 								<button v-if="false" class="btn-continue">Reserve</button>
 							</div>
 						</div>

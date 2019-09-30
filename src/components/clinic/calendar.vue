@@ -17,8 +17,12 @@ var calendar = {
 
 			formats: { //v-date-picker
 				input: ["MMM DD YYYY"],
-				data: ["MMMM DD YYYY"]
+				data: ["MMM DD YYYY"]
 			},
+			dateRange: {
+        start: new Date(2018, 0, 16), // Jan 16th, 2018
+        end: new Date(2018, 0, 19)    // Jan 19th, 2018
+      },
 			//Calendar Data
 			calendarPlugins: [
 				dayGridPlugin,
@@ -57,6 +61,22 @@ var calendar = {
 			dropDownDay: false,
 
 			// DATA FORMS
+			telProps: {
+				defaultCountry: "SG",
+				placeholder: "",
+				enabledCountryCode: true,
+				enabledFlags: true,
+				autocomplete: "off",
+				validCharactersOnly: true,
+				maxLen: 8,
+			},
+			sgAreaCode: {
+				areaCodes: null,
+				dialCode: "65",
+				iso2: "SG",
+				name: "Singapore",
+				priority: 0,
+			},
 			appDetails : {},
 			serviceCustomIndicator: 0,
 
@@ -67,6 +87,18 @@ var calendar = {
 		this.events = this.newEvent; // should be array format
 	},
 	methods: {
+		setAreaCode(formattedNumber, { number, isValid, country }) {
+			this.appDetails.mobile_area_code = country.dialCode;
+			this.appDetails.mobile_area_code_country = country;
+
+			if (country.iso2 == 'SG') {
+				this.telProps.maxLen = 8;
+			} else if (country.iso2 == 'MY' || country.iso2 == 'PH') {
+				this.telProps.maxLen = 10;
+			} else {
+				this.telProps.maxLen = 0;
+			}
+		},
 
 		//calendar methods
 		handleDateClick(data) {
@@ -156,9 +188,16 @@ var calendar = {
 						console.log(this.serviceCustomIndicator);
 					}
 					this.handleSelectService();
+				} else if (type == 'duration') {
+					this.appDetails.duration = data;
+					this.handleSelectDuration();
+				} else if (type == 'day') {
+					this.appDetails.time = data;
+					this.handleSelectDay();
 				}
-
-				
+			},
+			btnContinue() {
+				console.log('Modal form data', this.appDetails);
 			}
 
 	},
