@@ -256,6 +256,10 @@
       padding: 10px 12px;
       margin: 20px 0 0 0;
     }
+
+    .appoint-back-btn {
+      margin: 0px 10px 0 0; 
+    }
   }
 }
 
@@ -282,6 +286,16 @@
   .area-code-container .modal-calendar-input-container {
     border: 0;
     height: auto;
+  }
+
+  &.error-message span {
+    display: block;
+    color: #ff0000;
+    line-height: 1.5;
+  }
+
+  input::placeholder {
+    font-size: 12px;
   }
 }
 
@@ -320,7 +334,7 @@
     border: 1px solid #d9d9d9;
     border-radius: 4px;
     z-index: 1;
-    padding: 5px;
+    padding: 0px;
     width: 100%;
     max-height: 130px;
 
@@ -336,6 +350,10 @@
         background: #1997d4;
         color: white !important;
       }
+    }
+
+    li:nth-child(3) {
+      border-top: 1px solid #e5e5e5;
     }
   }
 
@@ -358,7 +376,7 @@
     width: 100%;
     line-height: 35px;
     color: #686868;
-    cursor: pointer;
+    // cursor: pointer;
   }
 
   .service-wrapper, .doctor-wrapper, 
@@ -862,3 +880,170 @@
     display: none;
   }
 }
+
+.search-panel {
+  padding: 30px 10px 0;
+
+  .fa-search {
+    position: absolute;
+    top: 12px;
+    right: 40px;
+  }
+
+  .modal-calendar-input-wrapper {
+    padding: 0px 30px 30px;
+    border-bottom: 1px solid #C1C0C0;
+  }
+
+  input::placeholder {
+    font-size: 12px;
+  }
+}
+
+.new-customer {
+  padding: 15px 70px;
+
+  .modal-calendar-row-input-container {
+    margin: 0 0 20px;
+  }
+
+  img {
+    width: 50px;
+  }
+
+  .modal-calendar-input-wrapper {
+    margin: 0;
+  }
+
+  .city-state-zip-container {
+    display: flex;
+
+    .modal-calendar-row-input-container {
+      margin: 0;
+    }
+
+    .modal-calendar-row-input-container >div {
+      width: 100%;
+    }
+
+    >div:nth-child(1) {
+      width: 40%;
+    }
+
+    >div:nth-child(2) {
+      width: 35%;
+      padding: 0 10px;
+    }
+
+    >div:nth-child(3) {
+      width: 25%;
+    }
+  }
+}
+
+.check-save {
+  padding: 30px 15px 15px;
+
+  h4 {
+    font-size: 20px;
+    border-bottom: 1px solid #bbb;
+    margin: 0 0 30px;
+    padding: 0 0 20px;
+    text-align: center;
+  }
+
+  .confirm-info-wrapper {
+    width: 480px;
+    margin: 0 auto;
+  }
+
+  .confirm-appointment-container {
+    display: flex;
+
+
+    >div {
+      width: 50%;
+      height: 70px;
+      margin: 0 0 20px;
+    }
+
+    label {
+      display: block;
+      color: #999;
+    }
+
+    span {
+      font-size: 12px;
+    }
+  }
+
+  .confirm-appointment-btn-container {
+    text-align: center;
+  }
+}
+
+.appointment-details-modal {
+
+  .modal-clinic-container {
+    height: auto;
+    width: 400px;
+    margin: 0 auto;
+
+    .modal-header {
+      padding: 10px 15px;
+      position: relative;
+    }
+
+    .modal-header .fa-times {
+      position: absolute;
+      top: 8px;
+      right: 15px;
+    }
+
+    .modal-body {
+      padding: 15px 30px;
+      border-top: 1px solid #DDDDDD;
+      border-bottom: 1px solid #DDDDDD;
+    }
+
+    .modal-footer {
+      padding: 10px 0;
+      text-align: center;
+    }
+  }
+
+  .appointment-date-time {
+    font-weight: 700;
+    margin: 0 0 20px;
+  }
+
+  .appointment-details-row {
+    color: #777;
+    margin: 0 0 10px;
+    font-weight: 700;
+
+    label {
+      display: inline-block;
+      width: 30%;
+    }
+  }
+
+  .appointment-btn-footer button {
+    background-color: #1B9BD7;
+    color: #fff;
+    padding: 5px 10px;
+    border: 0;
+    font-weight: 700;
+    margin: 0 5px;
+
+    &.btn-delete {
+      background-color: #fff;
+      border: 1px solid #BFB6B6;
+      color: #333;
+      letter-spacing: 1.5;
+    }
+  }
+}
+
+
+
