@@ -269,7 +269,7 @@
 											<i class="icon fa fa-chevron-down"></i>
 											<input type="text" @click="handleSelectDuration" v-model="appDetails.duration" class="modal-calendar-input-container" placeholder="Mins" readonly="readonly">
 										</div>
-										<!-- <ul v-if="dropDownDuration" class="dropdown-container">
+										<ul v-if="dropDownDuration && serviceCustomIndicator == 2" class="dropdown-container">
 											<li>
 												<a @click="selectedData('duration','Hours')">
 													<div class="dr-container">
@@ -284,7 +284,7 @@
 													</div>
 												</a>
 											</li>
-										</ul> -->
+										</ul>
 									</div>
 								</div>
 							</div>
@@ -392,66 +392,69 @@
 				</div>
 			</Modal>
 	
-			<Modal v-if="false" class="clinic-config-modal">
+			<Modal v-if="setupModal" class="clinic-config-modal">
 				<div slot="header">
 					<div class="setup-uncompleted-line"></div>
 					<ul>
 						<li>
 							<label>Welcome</label>
 							<a>
-		    				<span class="clinic-badge active">
-		    				
-		    				<i class="fa fa-check done-step"></i>
+		    				<span class="clinic-badge" :class="{'active': setup.stepper >= 1}">
+								<span v-if="setup.stepper <= 1">1</span>
+		    				<i v-if="setup.stepper >= 2" class="fa fa-check done-step"></i>
 		    				</span>
 	    				</a>
 						</li>
 						<li>
 							<label>Hours</label>
 							<a>
-		    				<span class="clinic-badge">
-		    				2
-		    				<i v-if="false" class="fa fa-check"></i>
+		    				<span class="clinic-badge" :class="{'active': setup.stepper >= 2 }">
+		    				<span v-if="setup.stepper <= 2">2</span>
+		    				<i v-if="setup.stepper >= 3" class="fa fa-check done-step"></i>
 		    				</span>
 	    				</a>
 						</li>
 						<li>
 							<label>Doctors</label>
 							<a>
-		    				<span class="clinic-badge">
-		    				3
-		    				<i v-if="false" class="fa fa-check"></i>
+		    				<span class="clinic-badge" :class="{'active': setup.stepper >= 3 }">
+		    				<span v-if="setup.stepper <= 3">3</span>
+		    				<i v-if="setup.stepper >= 4" class="fa fa-check done-step"></i>
 		    				</span>
 	    				</a>
 						</li>
 						<li>
 							<label>Service</label>
 							<a>
-		    				<span class="clinic-badge">
-		    				4
-		    				<i v-if="false" class="fa fa-check"></i>
+		    				<span class="clinic-badge" :class="{'active': setup.stepper >= 4 }">
+		    				<span v-if="setup.stepper <= 4">4</span>
+		    				<i v-if="setup.stepper >= 5" class="fa fa-check done-step"></i>
 		    				</span>
 	    				</a>
 						</li>
 						<li>
 							<label>DONE!</label>
 							<a>
-		    				<span class="clinic-badge">
-		    				5
-		    				<i v-if="false" class="fa fa-check"></i>
+		    				<span class="clinic-badge" :class="{'active': setup.stepper == 5 }">
+		    				<span v-if="setup.stepper < 5">5</span>
+		    				<i v-if="setup.stepper == 5" class="fa fa-check done-step"></i>
 		    				</span>
 	    				</a>
 						</li>
 					</ul>
 				</div>
 				<div slot="body">
-					<div v-if="true" class="first-step">
+					<div v-if="setup.stepper == 1" class="first-step">
 						<div class="panel-header">
 							<div>
 								<h3>Welcome to Medicloud</h3>
 								<span>We'll get you setup in no time</span>
 							</div>
 							<div>
-								<button>Next <i class="fa fa-chevron-right"></i></button>
+								<button @click="next()">Next <i class="fa fa-chevron-right"></i></button>
+								<!-- <button v-if="setup.stepper == 2" @click="next(3)">Next <i class="fa fa-chevron-right"></i></button>
+								<button v-if="setup.stepper == 3" @click="next(4)">Next <i class="fa fa-chevron-right"></i></button>
+								<button v-if="setup.stepper == 4" @click="next(5)">Next <i class="fa fa-chevron-right"></i></button> -->
 							</div>
 						</div>
 						<div class="panel-body">
@@ -466,8 +469,17 @@
 								<div class="modal-calendar-row-input-container">
 									<label>Speciality</label>
 									<div class="modal-calendar-input-wrapper area-code-container">
-										<input class="modal-calendar-input-container" placeholder="">
+										<input @click="handleSpeciality()" class="modal-calendar-input-container" placeholder="" readonly="readonly" v-model="setup.dataStorage.speciality">
 										<i class="fa fa-chevron-down"></i>
+										<ul v-if="setupSpeciality" class="dropdown-container">
+											<li v-for="item in specialities" :key="item.index">
+												<a @click="selectedData('speciality',item.name, item.type)">
+													<div class="dr-container">
+														<span>{{item.name}}</span>
+													</div>
+												</a>
+											</li>
+										</ul>
 									</div>
 								</div>
 								<div class="modal-calendar-row-input-container">
@@ -480,15 +492,15 @@
 							</div>
 						</div>
 					</div>
-					<div v-if="false" class="second-step">
+					<div v-if="setup.stepper == 2" class="second-step">
 						<div class="panel-header">
 							<div>
 								<h3>Set Yours Business Hours</h3>
 								<span>Let your customers know when you're open</span>
 							</div>
 							<div>
-								<button class="btn-prev"><i class="fa fa-chevron-left"></i></button>
-								<button>Next <i class="fa fa-chevron-right"></i></button>
+								<button @click="back()" class="btn-prev"><i class="fa fa-chevron-left"></i></button>
+								<button @click="next()">Next <i class="fa fa-chevron-right"></i></button>
 							</div>
 						</div>
 						<div class="panel-body">
@@ -500,6 +512,35 @@
 									<span>Monday</span>
 								</div>
 								<label class="clinic-switch-container">
+			    						<input type="checkbox" :checked="true">
+			    						<span class="slider">
+			    							<span class="off">On</span>
+			    							<span class="on">Off</span>
+			    						</span>
+			    					</label>
+								<div class="timepicker-container">
+									<div>
+										<select >
+											<option v-for="time in hoursPerday" :key="time.index" :value="time">
+												{{time}}
+											</option>
+										</select>
+									</div>
+									<span>to</span>
+									<div>
+										<select >
+											<option v-for="time in hoursPerday" :key="time.index" :value="time">
+												{{time}}
+											</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="working-row-container">
+								<div class="day-container">
+									<span>Tuesday</span>
+								</div>
+								<label class="clinic-switch-container">
 			    						<input type="checkbox" checked="checked">
 			    						<span class="slider">
 			    							<span class="off">On</span>
@@ -508,31 +549,178 @@
 			    					</label>
 								<div class="timepicker-container">
 									<div>
-										<select>
-			    								<option>12:00AM</option>
-			    								<option>12:00AM</option>
-			    							</select>
+										<select >
+											<option v-for="time in hoursPerday" :key="time.index" :value="time">
+												{{time}}
+											</option>
+										</select>
 									</div>
 									<span>to</span>
 									<div>
-										<select>
-			    								<option>12:00AM</option>
-			    								<option>12:00AM</option>
-			    							</select>
+										<select >
+											<option v-for="time in hoursPerday" :key="time.index" :value="time">
+												{{time}}
+											</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="working-row-container">
+								<div class="day-container">
+									<span>Wednesday</span>
+								</div>
+								<label class="clinic-switch-container">
+			    						<input type="checkbox" checked="checked">
+			    						<span class="slider">
+			    							<span class="off">On</span>
+			    							<span class="on">Off</span>
+			    						</span>
+			    					</label>
+								<div class="timepicker-container">
+									<div>
+										<select >
+											<option v-for="time in hoursPerday" :key="time.index" :value="time">
+												{{time}}
+											</option>
+										</select>
+									</div>
+									<span>to</span>
+									<div>
+										<select >
+											<option v-for="time in hoursPerday" :key="time.index" :value="time">
+												{{time}}
+											</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="working-row-container">
+								<div class="day-container">
+									<span>Thursday</span>
+								</div>
+								<label class="clinic-switch-container">
+			    						<input type="checkbox" checked="checked">
+			    						<span class="slider">
+			    							<span class="off">On</span>
+			    							<span class="on">Off</span>
+			    						</span>
+			    					</label>
+								<div class="timepicker-container">
+									<div>
+										<select >
+											<option v-for="time in hoursPerday" :key="time.index" :value="time">
+												{{time}}
+											</option>
+										</select>
+									</div>
+									<span>to</span>
+									<div>
+									<select >
+											<option v-for="time in hoursPerday" :key="time.index" :value="time">
+												{{time}}
+											</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="working-row-container">
+								<div class="day-container">
+									<span>Friday</span>
+								</div>
+								<label class="clinic-switch-container">
+			    						<input type="checkbox" checked="checked">
+			    						<span class="slider">
+			    							<span class="off">On</span>
+			    							<span class="on">Off</span>
+			    						</span>
+			    					</label>
+								<div class="timepicker-container">
+									<div>
+										<select >
+											<option v-for="time in hoursPerday" :key="time.index" :value="time">
+												{{time}}
+											</option>
+										</select>
+									</div>
+									<span>to</span>
+									<div>
+										<select >
+											<option v-for="time in hoursPerday" :key="time.index" :value="time">
+												{{time}}
+											</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="working-row-container">
+								<div class="day-container">
+									<span>Saturday</span>
+								</div>
+								<label class="clinic-switch-container">
+			    						<input type="checkbox" checked="checked">
+			    						<span class="slider">
+			    							<span class="off">On</span>
+			    							<span class="on">Off</span>
+			    						</span>
+			    					</label>
+								<div class="timepicker-container">
+									<div>
+										<select >
+											<option v-for="time in hoursPerday" :key="time.index" :value="time">
+												{{time}}
+											</option>
+										</select>
+									</div>
+									<span>to</span>
+									<div>
+									<select >
+											<option v-for="time in hoursPerday" :key="time.index" :value="time">
+												{{time}}
+											</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="working-row-container">
+								<div class="day-container">
+									<span>Sunday</span>
+								</div>
+								<label class="clinic-switch-container">
+			    						<input type="checkbox" checked="checked">
+			    						<span class="slider">
+			    							<span class="off">On</span>
+			    							<span class="on">Off</span>
+			    						</span>
+			    					</label>
+								<div class="timepicker-container">
+									<div>
+										<select >
+											<option v-for="time in hoursPerday" :key="time.index" :value="time">
+												{{time}}
+											</option>
+										</select>
+									</div>
+									<span>to</span>
+									<div>
+									<select >
+											<option v-for="time in hoursPerday" :key="time.index" :value="time">
+												{{time}}
+											</option>
+										</select>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div v-if="false" class="third-step">
+					<div v-if="setup.stepper == 3" class="third-step">
 						<div class="panel-header">
 							<div>
 								<h3>Add Doctors</h3>
 								<span>Dont worry - you can always edit these later</span>
 							</div>
 							<div>
-								<button class="btn-prev"><i class="fa fa-chevron-left"></i></button>
-								<button>Next <i class="fa fa-chevron-right"></i></button>
+								<button @click="back()" class="btn-prev"><i class="fa fa-chevron-left"></i></button>
+								<button @click="next()">Next <i class="fa fa-chevron-right"></i></button>
 							</div>
 						</div>
 						<div class="panel-body">
@@ -572,15 +760,15 @@
 	
 						</div>
 					</div>
-					<div v-if="false" class="fourth-step">
+					<div v-if="setup.stepper == 4" class="fourth-step">
 						<div class="panel-header">
 							<div>
 								<h3>Add the Services You Offer</h3>
 								<span>Dont worry - you'll be able to edit these later</span>
 							</div>
 							<div>
-								<button class="btn-prev"><i class="fa fa-chevron-left"></i></button>
-								<button>Next <i class="fa fa-chevron-right"></i></button>
+								<button @click="back()" class="btn-prev"><i class="fa fa-chevron-left"></i></button>
+								<button @click="next()">Next <i class="fa fa-chevron-right"></i></button>
 							</div>
 						</div>
 						<div class="panel-body">
@@ -629,13 +817,13 @@
 											<input class="modal-calendar-input-container" type="text" placeholder="0">
 										</div>
 										<div>
-											<button class="btn-mins">Mins</button>
-											<ul class="dropdown-container">
+											<button @click="handleServiceTime()" class="btn-mins">{{setup.dataStorage.serviceTime}}</button>
+											<ul v-if="setupServiceTime" class="dropdown-container">
 												<li>
-													<a>Mins</a>
+													<a @click="selectedData('serviceTime', 'Mins')">Mins</a>
 												</li>
 												<li>
-													<a>Hours</a>
+													<a @click="selectedData('serviceTime', 'Hours')">Hours</a>
 												</li>
 											</ul>
 										</div>
@@ -644,11 +832,11 @@
 										<input class="modal-calendar-input-container" type="text" placeholder="$ 0">
 									</div>
 									<div class="select-doctor-container">
-										<button class="btn-select-doctor">
+										<button @click="handleSetupDoctor()" class="btn-select-doctor">
 	    								<i class="fa fa-user-md"> </i>
 	    								<i class="fa fa-caret-down" ></i>
 	    							</button>
-	    							<ul v-if="false" class="dropdown-container">
+	    							<ul v-if="setupDoctor" class="dropdown-container">
 	    								<li>
 	    									<span>Who can perform this service?</span>
 	    								</li>
@@ -666,7 +854,7 @@
 							</div>
 						</div>
 					</div>
-					<div v-if="false" class="fifth-step">
+					<div v-if="setup.stepper == 5" class="fifth-step">
 						<div class="panel-header">
 							<div>
 								<h3>All done! Time to get down to business.</h3>
@@ -712,8 +900,8 @@
 						</div>
 						<div class="panel-footer">
 							<div>
-								<button class="btn-prev"><i class="fa fa-chevron-left"></i></button>
-								<button>Close</button>
+								<button @click="back()" class="btn-prev"><i class="fa fa-chevron-left"></i></button>
+								<button @click="setupModal = false">Close</button>
 							</div>
 						</div>
 					</div>
