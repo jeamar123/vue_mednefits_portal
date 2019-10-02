@@ -174,7 +174,7 @@
 									<!-- <span>Select a service</span> -->
 								</div>
 	
-								<ul v-if="dropDownService" class="dropdown-container">
+								<ul v-if="dropDownService" class="dropdown-container service-dropdown-container">
 									<li v-for="service in services" :key="service.index">
 										<a @click="selectedData('service',service.name,service.type)">
 											<div class="dr-container">
@@ -349,7 +349,7 @@
 										<i class="icon fa fa-chevron-down"></i>
 										<input type="text" @click="handleSelectDay" class="modal-calendar-input-container" placeholder="1:00 AM" readonly="readonly">
 									</div>
-									<ul v-if="dropDownDay" class="dropdown-container">
+									<ul v-if="dropDownDay" class="dropdown-container time-dropdown-container">
 										<li v-for="hours in hoursPerday" :key='hours.index'>
 											<a>
 												<div class="dr-container">
@@ -466,7 +466,7 @@
 							</div>
 							<div class="confirm-appointment-container">
 								<div>
-									<label>Namer</label>
+									<label>Name</label>
 									<span>Jan</span>								
 								</div>
 								<div>
@@ -477,8 +477,7 @@
 							<div class="confirm-appointment-container">
 								<div>
 									<label>Date & Time</label>
-									<span>Monday, September 30 2019</span>		
-									<br>
+									<span>Monday, September 30 2019 </span> 
 									<span>4:30 PM</span>						
 								</div>
 								<div>
@@ -503,7 +502,7 @@
 				</div>
 			</Modal>
 	
-			<Modal v-if="false" class="clinic-config-modal">
+			<Modal v-if="true" class="clinic-config-modal">
 				<div slot="header">
 					<div class="setup-uncompleted-line"></div>
 					<ul>
@@ -635,7 +634,7 @@
 							</div>
 						</div>
 					</div>
-					<div v-if="false" class="third-step">
+					<div v-if="true" class="third-step">
 						<div class="panel-header">
 							<div>
 								<h3>Add Doctors</h3>
@@ -647,20 +646,22 @@
 							</div>
 						</div>
 						<div class="panel-body">
-	
-							<div class="add-doctors-info-container">
-								<div class="add-doctors-list">
-									<div>
-										<img :src="'../assets/img/clinic/ico_Profile.svg'">
-									</div>
-									<div>
-										<span>Odin</span>
-									</div>
-									<div>
-										<span>odil@gmail.com</span>
-									</div>
-									<div>
-										<i class="fa fa-times"></i>
+							
+							<div class="add-doctors-info-wrapper">
+								<div class="add-doctors-info-container">
+									<div class="add-doctors-list">
+										<div>
+											<img :src="'../assets/img/clinic/ico_Profile.svg'">
+										</div>
+										<div>
+											<span>Odin</span>
+										</div>
+										<div>
+											<span>odil@gmail.com</span>
+										</div>
+										<div>
+											<i class="fa fa-times"></i>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -777,7 +778,7 @@
 							</div>
 						</div>
 					</div>
-					<div v-if="true" class="fifth-step">
+					<div v-if="false" class="fifth-step">
 						<div class="panel-header">
 							<div>
 								<h3>All done! Time to get down to business.</h3>
