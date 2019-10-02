@@ -457,6 +457,7 @@
 }
 
 .clinic-config-modal {
+
   .modal-clinic-container {
     width: 550px;
     height: auto;
@@ -600,9 +601,8 @@
       font-weight: 700;
     }
 
-    > div {
-      margin: 20px 0 0 0;
-      padding: 0 15px;
+    .time-zone-set-text {
+      margin: 0 0 20px;
     }
   }
 
@@ -637,14 +637,6 @@
       text-align: center;
       display: block;
       font-weight: 700;
-    }
-  }
-
-  .third-step,
-  .fourth-step {
-    .panel-body > div {
-      padding: 0;
-      margin: 0;
     }
   }
 
@@ -770,7 +762,7 @@
     }
   }
 
-  .panel-body > div.service-input-container {
+  .service-input-container {
     border-top: 1px solid rgb(216, 216, 216);
     padding: 20px 0 0;
 

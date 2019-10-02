@@ -626,9 +626,9 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<span>
-			    					Your time Zone is set to <u style="cursor: pointer;">SINGAPORE (UTC+08:00)</u>.
-			    				</span>
+							<span class="time-zone-set-text">
+	    					Your time Zone is set to <u style="cursor: pointer;">SINGAPORE (UTC+08:00)</u>.
+	    				</span>
 							<div class="working-row-container">
 								<div class="day-container">
 									<span>Monday</span>
@@ -897,38 +897,40 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<div class="service-info-container">
-								<div class="service-header">
-									<div>
-										<span>Service Name</span>
+							<div class="service-info-wrapper">
+								<div class="service-info-container">
+									<div class="service-header">
+										<div>
+											<span>Service Name</span>
+										</div>
+										<div>
+											<span>Time</span>
+										</div>
+										<div>
+											<span>Price</span>
+										</div>
+										<div>
+											<span>Doctors</span>
+										</div>
 									</div>
-									<div>
-										<span>Time</span>
-									</div>
-									<div>
-										<span>Price</span>
-									</div>
-									<div>
-										<span>Doctors</span>
-									</div>
-								</div>
-								<div class="service-info-list">
-									<div>
-										<span>Noel</span>
-									</div>
-									<div>
-										<span>1 </span>
-										<span>mins</span>
-									</div>
-									<div>
-										<span>1</span>
-									</div>
-									<div>
-										<i class="fa fa-user-md"> </i>
-										<span>1</span>
-									</div>
-									<div>
-										<i class="fa fa-times"></i>
+									<div class="service-info-list">
+										<div>
+											<span>Noel</span>
+										</div>
+										<div>
+											<span>1 </span>
+											<span>mins</span>
+										</div>
+										<div>
+											<span>1</span>
+										</div>
+										<div>
+											<i class="fa fa-user-md"> </i>
+											<span>1</span>
+										</div>
+										<div>
+											<i class="fa fa-times"></i>
+										</div>
 									</div>
 								</div>
 							</div>
