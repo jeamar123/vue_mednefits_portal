@@ -17,8 +17,12 @@ var calendar = {
 
 			formats: { //v-date-picker
 				input: ["MMM DD YYYY"],
-				data: ["MMMM DD YYYY"]
+				data: ["MMM DD YYYY"]
 			},
+			dateRange: {
+        start: new Date(2018, 0, 16), // Jan 16th, 2018
+        end: new Date(2018, 0, 19)    // Jan 19th, 2018
+      },
 			//Calendar Data
 			calendarPlugins: [
 				dayGridPlugin,
@@ -51,14 +55,40 @@ var calendar = {
 				// }, 
 			],
 			appModal: false,
+			setupModal:true,
 			dropDownService : false,
 			dropDownDoctor : false,
 			dropDownDuration: false,
 			dropDownDay: false,
+			setupSpeciality: false,
+			setupServiceTime: false,
+			setupDoctor: false,
 
 			// DATA FORMS
+			telProps: {
+				defaultCountry: "SG",
+				placeholder: "",
+				enabledCountryCode: true,
+				enabledFlags: true,
+				autocomplete: "off",
+				validCharactersOnly: true,
+				maxLen: 8,
+			},
+			sgAreaCode: {
+				areaCodes: null,
+				dialCode: "65",
+				iso2: "SG",
+				name: "Singapore",
+				priority: 0,
+			},
 			appDetails : {},
 			serviceCustomIndicator: 0,
+			setup: {
+				dataStorage: {
+					serviceTime: 'Mins',
+				},
+				stepper: 1,
+			},
 
 			dataSample: false
 		};
@@ -67,6 +97,18 @@ var calendar = {
 		this.events = this.newEvent; // should be array format
 	},
 	methods: {
+		setAreaCode(formattedNumber, { number, isValid, country }) {
+			this.appDetails.mobile_area_code = country.dialCode;
+			this.appDetails.mobile_area_code_country = country;
+
+			if (country.iso2 == 'SG') {
+				this.telProps.maxLen = 8;
+			} else if (country.iso2 == 'MY' || country.iso2 == 'PH') {
+				this.telProps.maxLen = 10;
+			} else {
+				this.telProps.maxLen = 0;
+			}
+		},
 
 		//calendar methods
 		handleDateClick(data) {
@@ -97,7 +139,10 @@ var calendar = {
 			if (moment(info.start).format('HH:mm') >= this.businessHours.startTime && moment(info.end).format('HH:mm') <= this.businessHours.endTime && info.start > this.dateNow) {
 				this.selectState = 1;
 				this.appModal = true;
+				this.dropDownDoctor = false;
 				this.dropDownService = false;
+				this.dropDownDuration = false;
+				this.dropDownDay = false;
 				this.serviceCustomIndicator = 0;
 				this.appDetails = {};
 			} else {
@@ -133,15 +178,54 @@ var calendar = {
 			//Appointments
 			handleSelectDoctor() {
 				this.dropDownDoctor = !this.dropDownDoctor;
+				this.dropDownService = false;
+				this.dropDownDuration = false;
+				this.dropDownDay = false;
 			},
 			handleSelectService() {
 				this.dropDownService = !this.dropDownService;
+				this.dropDownDoctor = false;
+				this.dropDownDuration = false;
+				this.dropDownDay = false;
 			},
 			handleSelectDuration() {
 				this.dropDownDuration = !this.dropDownDuration;
+				this.dropDownService = false;
+				this.dropDownDoctor = false;
+				this.dropDownDay = false;
+				
 			},
 			handleSelectDay() {
 				this.dropDownDay = !this.dropDownDay;
+				this.dropDownService = false;
+				this.dropDownDoctor = false;
+				this.dropDownDuration = false;
+			},
+			//setup
+			handleSpeciality() {
+				this.setupSpeciality = !this.setupSpeciality;
+			},
+			handleServiceTime() {
+				this.setupServiceTime = !this.setupServiceTime;
+				this.setupDoctor = false;
+			},
+			handleSetupDoctor() {
+				this.setupDoctor = !this.setupDoctor;
+				this.setupServiceTime = false;
+			},
+			next() {
+				let limit = 5;
+				if(this.setup.stepper < limit){
+					this.setup.stepper++
+					// this.$forceUpdate();
+				}
+			},
+			back(){
+				let limit = 0;
+				if(this.setup.stepper > limit){
+					this.setup.stepper--
+					// this.$forceUpdate();
+				}
 			},
 			selectedData(type,data,indicator) {
 				if(type == 'doctor') {
@@ -156,9 +240,24 @@ var calendar = {
 						console.log(this.serviceCustomIndicator);
 					}
 					this.handleSelectService();
+				} else if (type == 'duration') {
+					this.appDetails.duration = data;
+					this.handleSelectDuration();
+				} else if (type == 'day') {
+					this.appDetails.time = data;
+					this.handleSelectDay();
+				} 
+					//setup modal
+				else if (type == 'speciality') {
+					this.setup.dataStorage.speciality = data;
+					this.handleSpeciality();
+				} else if (type == 'serviceTime') {
+					this.setup.dataStorage.serviceTime = data;
+					this.handleServiceTime();
 				}
-
-				
+			},
+			btnContinue() {
+				console.log('Modal form data', this.appDetails);
 			}
 
 	},
@@ -205,6 +304,24 @@ var calendar = {
 				}
 			];
 			return doctor;
+		},
+		specialities(){
+			let specialities = [
+				{
+					name: 'Health Specialist',
+					type: 1,
+				},
+				{
+					name: 'Wellness',
+					type: 2,
+				}, 
+				{
+					name: 'Medical Spa',
+					type: 3,
+				}
+			];
+
+			return specialities;
 		},
 		hoursPerday() {
 			let day = 23;

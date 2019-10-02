@@ -260,7 +260,7 @@
 					<div class="working-hour-body-wrapper">
 						<div></div>
 						<div class="working-hour-body-container">
-							<div v-for="( list, index ) in weekDayNames" class="working-row-container">
+							<div v-for="( list ) in weekDayNames" class="working-row-container" :key="list.index">
 								<div class="day-container">
 									<span>{{ list }}</span>
 								</div>
@@ -465,7 +465,7 @@
 
 					<div class="breaks-body-info-container">
 
-						<div v-for="( list, index ) in  dayBreakNames" class="working-row-container">
+						<div v-for="( list ) in  dayBreakNames" class="working-row-container" :key="list.index">
 							<div class="day-container">
 								<span>{{ list }}</span>
 							</div>
