@@ -41,16 +41,18 @@
 						<button class="btn-today">Today</button>
 						<div class="datepicker-btn">
 							<button class="btn-left"><img :src="'../assets/img/ico_left arrow.svg'"></button>
+							<div class="custom btn-date">
+								{{selectedDateRange}}
+							</div>
+
 							<button class="btn-date">
-								<v-date-picker v-model="appDetails.dateRange"
-									mode='range'
-									:max-date='new Date()'
+								<v-date-picker v-model="dateRange"
+									mode='single'
 									:formats='formats'
 									:input-props='{class: "vDatepicker btn-date", placeholder: "MM/DD/YYYY", readonly: true}'
 									popover-visibility='focus' popover-direction='bottom'>
 								</v-date-picker>
 							</button>
-							
 							<button class="btn-right"><img :src="'../assets/img/ico_right arrow.svg'"></button>
 						</div>
 					</div>
@@ -108,8 +110,11 @@
 	
 			<FullCalendar @select="handelSelect" @eventMouseLeave="handleMouseLeave" @eventClick="handleEventClick" 
 			:defaultView="calendarView" 
-			ref="fullCalendar" 
+			ref="fullCalendar"
 			:plugins="calendarPlugins" 
+			:timeZone="timeZone"
+			:defaultDate="defaultDate"
+			:gotoDate="gotoDate"
 			slotDuration='00:15' 
 			:locales="locales" 
 			:locale="locale" 

@@ -19,10 +19,6 @@ var calendar = {
 				input: ["MMM DD YYYY"],
 				data: ["MMM DD YYYY"]
 			},
-			dateRange: {
-        start: new Date(2018, 0, 16), // Jan 16th, 2018
-        end: new Date(2018, 0, 19)    // Jan 19th, 2018
-      },
 			//Calendar Data
 			calendarPlugins: [
 				dayGridPlugin,
@@ -31,6 +27,9 @@ var calendar = {
 			],
 			locales: allLocales,
 			locale: 'en',
+			timeZone: 'local',
+			defaultDate: null,
+			gotoDate: null,
 			firstDay: 1,
 			calendarView: 'timeGridWeek', // dayGridMonth,timeGridWeek,timeGridDay
 			dateNow: new Date(),
@@ -44,6 +43,7 @@ var calendar = {
 				endTime: '17:00', // an end time (6pm in this example)
 			},
 			selectState: 1,
+			dateRange: new Date(),
 			// End Calendar Data
 			//for new event
 			newEvent: [
@@ -55,9 +55,9 @@ var calendar = {
 				// }, 
 			],
 			appModal: false,
-			setupModal:true,
-			dropDownService : false,
-			dropDownDoctor : false,
+			setupModal: false,
+			dropDownService: false,
+			dropDownDoctor: false,
 			dropDownDuration: false,
 			dropDownDay: false,
 			setupSpeciality: false,
@@ -81,7 +81,6 @@ var calendar = {
 				name: "Singapore",
 				priority: 0,
 			},
-			appDetails : {},
 			serviceCustomIndicator: 0,
 			setup: {
 				dataStorage: {
@@ -95,6 +94,7 @@ var calendar = {
 	},
 	created() {
 		this.events = this.newEvent; // should be array format
+		// this.defaultDate = moment(this.appDetails.dateRange).format('YYYY-MM-DD');
 	},
 	methods: {
 		setAreaCode(formattedNumber, { number, isValid, country }) {
@@ -175,97 +175,96 @@ var calendar = {
 		// End of Calendar methods
 
 		//Modal Methods
-			//Appointments
-			handleSelectDoctor() {
-				this.dropDownDoctor = !this.dropDownDoctor;
-				this.dropDownService = false;
-				this.dropDownDuration = false;
-				this.dropDownDay = false;
-			},
-			handleSelectService() {
-				this.dropDownService = !this.dropDownService;
-				this.dropDownDoctor = false;
-				this.dropDownDuration = false;
-				this.dropDownDay = false;
-			},
-			handleSelectDuration() {
-				this.dropDownDuration = !this.dropDownDuration;
-				this.dropDownService = false;
-				this.dropDownDoctor = false;
-				this.dropDownDay = false;
-				
-			},
-			handleSelectDay() {
-				this.dropDownDay = !this.dropDownDay;
-				this.dropDownService = false;
-				this.dropDownDoctor = false;
-				this.dropDownDuration = false;
-			},
-			//setup
-			handleSpeciality() {
-				this.setupSpeciality = !this.setupSpeciality;
-			},
-			handleServiceTime() {
-				this.setupServiceTime = !this.setupServiceTime;
-				this.setupDoctor = false;
-			},
-			handleSetupDoctor() {
-				this.setupDoctor = !this.setupDoctor;
-				this.setupServiceTime = false;
-			},
-			next() {
-				let limit = 5;
-				if(this.setup.stepper < limit){
-					this.setup.stepper++
+		//Appointments
+		handleSelectDoctor() {
+			this.dropDownDoctor = !this.dropDownDoctor;
+			this.dropDownService = false;
+			this.dropDownDuration = false;
+			this.dropDownDay = false;
+		},
+		handleSelectService() {
+			this.dropDownService = !this.dropDownService;
+			this.dropDownDoctor = false;
+			this.dropDownDuration = false;
+			this.dropDownDay = false;
+		},
+		handleSelectDuration() {
+			this.dropDownDuration = !this.dropDownDuration;
+			this.dropDownService = false;
+			this.dropDownDoctor = false;
+			this.dropDownDay = false;
+
+		},
+		handleSelectDay() {
+			this.dropDownDay = !this.dropDownDay;
+			this.dropDownService = false;
+			this.dropDownDoctor = false;
+			this.dropDownDuration = false;
+		},
+		//setup
+		handleSpeciality() {
+			this.setupSpeciality = !this.setupSpeciality;
+		},
+		handleServiceTime() {
+			this.setupServiceTime = !this.setupServiceTime;
+			this.setupDoctor = false;
+		},
+		handleSetupDoctor() {
+			this.setupDoctor = !this.setupDoctor;
+			this.setupServiceTime = false;
+		},
+		next() {
+			let limit = 5;
+			if (this.setup.stepper < limit) {
+				this.setup.stepper++
 					// this.$forceUpdate();
-				}
-			},
-			back(){
-				let limit = 0;
-				if(this.setup.stepper > limit){
-					this.setup.stepper--
-					// this.$forceUpdate();
-				}
-			},
-			selectedData(type,data,indicator) {
-				if(type == 'doctor') {
-					this.appDetails.doctor = data;
-					this.handleSelectDoctor();
-				} else if (type == 'service') {
-					this.appDetails.service = data;
-					
-					if (indicator == 2) {
-						this.appDetails.service = undefined;
-						this.serviceCustomIndicator = indicator;
-						console.log(this.serviceCustomIndicator);
-					}
-					this.handleSelectService();
-				} else if (type == 'duration') {
-					this.appDetails.duration = data;
-					this.handleSelectDuration();
-				} else if (type == 'day') {
-					this.appDetails.time = data;
-					this.handleSelectDay();
-				} 
-					//setup modal
-				else if (type == 'speciality') {
-					this.setup.dataStorage.speciality = data;
-					this.handleSpeciality();
-				} else if (type == 'serviceTime') {
-					this.setup.dataStorage.serviceTime = data;
-					this.handleServiceTime();
-				}
-			},
-			btnContinue() {
-				console.log('Modal form data', this.appDetails);
 			}
+		},
+		back() {
+			let limit = 0;
+			if (this.setup.stepper > limit) {
+				this.setup.stepper--
+					// this.$forceUpdate();
+			}
+		},
+		selectedData(type, data, indicator) {
+			if (type == 'doctor') {
+				this.appDetails.doctor = data;
+				this.handleSelectDoctor();
+			} else if (type == 'service') {
+				this.appDetails.service = data;
+
+				if (indicator == 2) {
+					this.appDetails.service = undefined;
+					this.serviceCustomIndicator = indicator;
+					console.log(this.serviceCustomIndicator);
+				}
+				this.handleSelectService();
+			} else if (type == 'duration') {
+				this.appDetails.duration = data;
+				this.handleSelectDuration();
+			} else if (type == 'day') {
+				this.appDetails.time = data;
+				this.handleSelectDay();
+			}
+			//setup modal
+			else if (type == 'speciality') {
+				this.setup.dataStorage.speciality = data;
+				this.handleSpeciality();
+			} else if (type == 'serviceTime') {
+				this.setup.dataStorage.serviceTime = data;
+				this.handleServiceTime();
+			}
+		},
+		btnContinue() {
+			console.log('Modal form data', this.appDetails);
+		}
 
 	},
 	computed: {
 		//For Services li
 		services() {
-			let service = [
-				{
+			let service = [{
 					name: 'Slot Blocker',
 					type: 1,
 					time: 'Custom'
@@ -274,7 +273,7 @@ var calendar = {
 					name: 'Appointment Without SMS Notification',
 					type: 2,
 					time: 'Custom'
-				}, 
+				},
 				{
 					name: 'Medicine & Treatment',
 					type: 3,
@@ -282,39 +281,34 @@ var calendar = {
 				}
 			];
 
-			let service2  = [
-				{
-					name: 'Medicine & Treatment',
-					type: 3,
-					time: '10 mins'
-				}
-			]
+			let service2 = [{
+				name: 'Medicine & Treatment',
+				type: 3,
+				time: '10 mins'
+			}]
 
-			if(this.serviceCustomIndicator == 2 ) {
+			if (this.serviceCustomIndicator == 2) {
 				return service2;
-			}else {
+			} else {
 				return service
 			}
 		},
 		doctors() {
-			let doctor = [
-				{
-					name: 'Dr Jimmy Yap',
-					imgUrl: '../assets/img/clinic/ico_Profile.svg'
-				}
-			];
+			let doctor = [{
+				name: 'Dr Jimmy Yap',
+				imgUrl: '../assets/img/clinic/ico_Profile.svg'
+			}];
 			return doctor;
 		},
-		specialities(){
-			let specialities = [
-				{
+		specialities() {
+			let specialities = [{
 					name: 'Health Specialist',
 					type: 1,
 				},
 				{
 					name: 'Wellness',
 					type: 2,
-				}, 
+				},
 				{
 					name: 'Medical Spa',
 					type: 3,
@@ -328,18 +322,36 @@ var calendar = {
 			let hours = []
 			let formatTime;
 
-			for ( let i = 0 ; i < day+1; i++) {
+			for (let i = 0; i < day + 1; i++) {
 				let min = 15;
-				for (let x = 4; x > 0 ; x--) {
-					formatTime = (moment().hours(day).subtract(i, 'hours').minutes(min*x).format('hh:mmA'));
+				for (let x = 4; x > 0; x--) {
+					formatTime = (moment().hours(day).subtract(i, 'hours').minutes(min * x).format('hh:mmA'));
 					hours.unshift(formatTime);
 				}
-				
+
 			}
 			// formatTime = (moment().subtract(22, 'hours').format('hh:00 A'));
 			// hours.unshift(formatTime);
-			
+
 			return hours;
+		},
+		selectedDateRange() {
+			let date = this.dateRange;
+			let first = moment(date).date() - moment(date).day() + 1; // First day is the day of the month - the day of the week
+			let last = first + 6; // last day is the first day + 6
+
+			let firstday = moment().date(first).format('MMM DD');
+			let lastday = moment().date(last).format('DD YYYY');
+
+			console.log(first, last);
+			let selectedDate;
+
+			selectedDate = `${firstday} - ${lastday}`;
+			console.log(firstday, lastday);
+
+
+
+			return selectedDate;
 		}
 	}
 };
