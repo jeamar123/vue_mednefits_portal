@@ -193,6 +193,10 @@
 			width: 65%;
 		}
 
+		.calendar-view .datepicker-btn {
+			display: inline-flex;
+		}
+
 		.calendar-view >div {
 			display: inline-block;
 		}
@@ -1334,6 +1338,33 @@
 		.custom-date-selector-wrapper {
 			padding: 0px;
 		}
+	}
+}
+
+@media (max-width: 400px) {
+	.clinic-calendar-wrapper .calendar-header {
+		padding: 15px 10px;
+
+		.calendar-view {
+			display: flex;
+		}
+	}
+
+	.custom-btn-wrapper {
+		width: 150px;
+
+		.popover-origin.direction-bottom.align-left, 
+		.popover-origin.direction-top.align-left {
+			left: -84px;
+		}
+
+		.popover-origin .popover-content-wrapper .popover-content.align-left:after {
+			left: 130px;
+		}
+	}
+
+	.clinic-calendar-wrapper .datepicker-btn .custom.btn-date {
+		min-width: 150px;
 	}
 }
 
