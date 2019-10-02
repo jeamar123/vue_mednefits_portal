@@ -188,7 +188,7 @@
 									<!-- <span>Select a service</span> -->
 								</div>
 	
-								<ul v-if="dropDownService" class="dropdown-container">
+								<ul v-if="dropDownService" class="dropdown-container service-dropdown-container">
 									<li v-for="service in services" :key="service.index">
 										<a @click="selectedData('service',service.name,service.type)">
 											<div class="dr-container">
@@ -365,7 +365,7 @@
 										<i class="icon fa fa-chevron-down"></i>
 										<input type="text" @click="handleSelectDay" v-model="appDetails.time" class="modal-calendar-input-container" placeholder="1:00 AM" readonly="readonly">
 									</div>
-									<ul v-if="dropDownDay" class="dropdown-container">
+									<ul v-if="dropDownDay" class="dropdown-container time-dropdown-container">
 										<li v-for="hours in hoursPerday" :key='hours.index'>
 											<a @click="selectedData('day',hours)"> 
 												<div class="dr-container">
@@ -482,7 +482,7 @@
 							</div>
 							<div class="confirm-appointment-container">
 								<div>
-									<label>Namer</label>
+									<label>Name</label>
 									<span>Jan</span>								
 								</div>
 								<div>
@@ -493,8 +493,7 @@
 							<div class="confirm-appointment-container">
 								<div>
 									<label>Date & Time</label>
-									<span>Monday, September 30 2019</span>		
-									<br>
+									<span>Monday, September 30 2019 </span> 
 									<span>4:30 PM</span>						
 								</div>
 								<div>
@@ -519,6 +518,7 @@
 				</div>
 			</Modal>
 	
+
 			<Modal v-if="setupModal" class="clinic-config-modal">
 				<div slot="header">
 					<div class="setup-uncompleted-line"></div>
@@ -631,9 +631,9 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<span>
-			    					Your time Zone is set to <u style="cursor: pointer;">SINGAPORE (UTC+08:00)</u>.
-			    				</span>
+							<span class="time-zone-set-text">
+	    					Your time Zone is set to <u style="cursor: pointer;">SINGAPORE (UTC+08:00)</u>.
+	    				</span>
 							<div class="working-row-container">
 								<div class="day-container">
 									<span>Monday</span>
@@ -839,6 +839,7 @@
 							</div>
 						</div>
 					</div>
+
 					<div v-if="setup.stepper == 3" class="third-step">
 						<div class="panel-header">
 							<div>
@@ -851,20 +852,22 @@
 							</div>
 						</div>
 						<div class="panel-body">
-	
-							<div class="add-doctors-info-container">
-								<div class="add-doctors-list">
-									<div>
-										<img :src="'../assets/img/clinic/ico_Profile.svg'">
-									</div>
-									<div>
-										<span>Odin</span>
-									</div>
-									<div>
-										<span>odil@gmail.com</span>
-									</div>
-									<div>
-										<i class="fa fa-times"></i>
+							
+							<div class="add-doctors-info-wrapper">
+								<div class="add-doctors-info-container">
+									<div class="add-doctors-list">
+										<div>
+											<img :src="'../assets/img/clinic/ico_Profile.svg'">
+										</div>
+										<div>
+											<span>Odin</span>
+										</div>
+										<div>
+											<span>odil@gmail.com</span>
+										</div>
+										<div>
+											<i class="fa fa-times"></i>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -899,38 +902,40 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<div class="service-info-container">
-								<div class="service-header">
-									<div>
-										<span>Service Name</span>
+							<div class="service-info-wrapper">
+								<div class="service-info-container">
+									<div class="service-header">
+										<div>
+											<span>Service Name</span>
+										</div>
+										<div>
+											<span>Time</span>
+										</div>
+										<div>
+											<span>Price</span>
+										</div>
+										<div>
+											<span>Doctors</span>
+										</div>
 									</div>
-									<div>
-										<span>Time</span>
-									</div>
-									<div>
-										<span>Price</span>
-									</div>
-									<div>
-										<span>Doctors</span>
-									</div>
-								</div>
-								<div class="service-info-list">
-									<div>
-										<span>Noel</span>
-									</div>
-									<div>
-										<span>1 </span>
-										<span>mins</span>
-									</div>
-									<div>
-										<span>1</span>
-									</div>
-									<div>
-										<i class="fa fa-user-md"> </i>
-										<span>1</span>
-									</div>
-									<div>
-										<i class="fa fa-times"></i>
+									<div class="service-info-list">
+										<div>
+											<span>Noel</span>
+										</div>
+										<div>
+											<span>1 </span>
+											<span>mins</span>
+										</div>
+										<div>
+											<span>1</span>
+										</div>
+										<div>
+											<i class="fa fa-user-md"> </i>
+											<span>1</span>
+										</div>
+										<div>
+											<i class="fa fa-times"></i>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -981,6 +986,7 @@
 							</div>
 						</div>
 					</div>
+
 					<div v-if="setup.stepper == 5" class="fifth-step">
 						<div class="panel-header">
 							<div>

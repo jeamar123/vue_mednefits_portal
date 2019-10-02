@@ -827,6 +827,97 @@
 	}
 }
 
+@media (max-width: 650px) {
+	.appointment-modal {
+
+		.appointment-body-container ul {
+			padding: 5px 10px;
+		}
+
+		.modal-body form {
+			padding: 15px 10px;
+			overflow: initial;
+		}
+
+		.service-dropdown-container {
+			padding: 0;
+		}
+
+		.appointment-body-container .time-dropdown-container a {
+			text-align: center;
+			padding: 10px 0;
+		}
+	}
+
+
+	.service-dropdown-container {
+
+		.dr-container >span:nth-child(1) {
+			display: inline-block;
+			width: 150px;
+		}
+	}
+
+	.appointment-modal .modal-clinic-container {
+		width: 100%;
+		margin: 30px 0px;
+
+		.modal-calendar-row-input-container {
+			display: block;
+		}
+
+		.day-time-container {
+			>div:nth-child(1) >div{
+				width: 98%;
+			}
+
+			>div:nth-child(2) {
+				width: 35%;
+			}
+		}
+
+		.modal-calendar-row-input-container > div {
+			width: 100%;
+		}
+	}
+
+
+	.search-panel {
+		.modal-calendar-input-wrapper {
+			padding: 0 0 30px;
+		}
+
+		.fa-search {
+			right: 10px;
+		}
+	}
+
+	.new-customer {
+		padding: 15px 10px;
+
+		img {
+			margin: 0 0 10px;
+		}
+	}
+
+	.check-save {
+		padding: 30px 15px 15px;
+
+		.confirm-info-wrapper {
+			width: 100%;
+		}
+
+		.confirm-appointment-container {
+			display: block;
+		}
+
+		.confirm-appointment-container >div {
+			width: 100%;
+			height: 60px;
+		}
+	}	
+}
+
 @media (max-width: 575px) {
 
 	.dashboard-summary-wrapper {
@@ -1061,6 +1152,166 @@
 	.transactions-body-detail .dashboard-summary-wrapper {
 		.time-frame-container {
 			padding: 30px 20px;
+		}
+	}
+
+	.appointment-details-modal {
+
+		.modal-clinic-container {
+			width: 100%;
+		}
+
+		.appointment-btn-footer button {
+			margin: 0 2px;
+		}
+	}
+
+
+	.clinic-config-modal {
+
+		.panel-header >div:nth-child(2) {
+			float: inherit;
+			display: block;
+		}
+
+		.modal-wrapper {
+			max-width: 100vw;
+		}
+
+		.panel-body >div {
+			.service-input-container >div {
+				display: block;
+			}
+		}
+
+		.modal-header .setup-uncompleted-line {
+			width: 100%;
+			margin: 51px 0 0;
+		}
+
+		.clinic-badge {
+			margin: 0;
+		}
+
+		.modal-header li {
+			width: 20%;
+			font-size: 12px;
+		}
+
+		.modal-body {
+			padding: 20px 10px;
+		}
+
+		.modal-clinic-container {
+			width: 100%;
+		}
+
+		.setup-dashboard >div:first-child {
+			display: block;
+
+			>div, h1 {
+				width: 100%;
+			}
+		}
+
+		.setup-features-list >div {
+			display: block;
+		}
+
+		.setup-features-list .setup-dashboard-link {
+			width: 100%;
+		}
+
+		.add-doctors-input-container {
+			display: block;
+
+			.modal-calendar-input-wrapper {
+				margin: 0 0 20px;
+			}
+
+			.btn-add {
+				width: 100%;
+			}
+		} 
+
+		.add-doctors-input-container >div:nth-child(2) {
+			display: block;
+		}
+
+		.service-input-container .btn-add,
+		.service-input-container .btn-select-doctor {
+			width: 100%;
+			margin: 0 0 10px;
+		}
+
+		.service-input-container >div {
+			display: block;
+
+			>div:nth-child(1),
+			>div:nth-child(3),
+			>div:nth-child(4),
+			>div:nth-child(5) {
+				width: 100%;
+				padding: 0;
+			}
+		}
+
+		.service-input-container .time-container {
+			width: 100%;
+			padding: 0px;
+
+			>div:first-child {
+				width: 100%;
+				margin: 0;
+			}
+		}
+	}
+
+	.service-input-container {
+		.modal-calendar-input-wrapper ul.dropdown-container {
+			right: 0;
+			width: 80px;
+		}
+	}
+
+
+	.add-doctors-input-container {
+		>div:nth-child(1) {
+			display: none;
+		}
+	}
+
+	.modal-calendar-row-input-container {
+		display: block;
+
+		.modal-calendar-input-wrapper {
+			width: 100%;
+		}
+	}
+
+	.working-row-container {
+		display: block;
+
+		.clinic-switch-container {
+			margin: 10px 0;
+		}
+
+		.timepicker-container {
+			padding: 0;
+		}
+	}
+
+	.add-doctors-info-wrapper,
+	.service-info-wrapper {
+		overflow-x: auto;
+
+		.add-doctors-info-container,
+		.service-info-container {
+			width: 502px;
+		}
+
+		&::-webkit-scrollbar {
+			height: 3px;
 		}
 	}
 }
