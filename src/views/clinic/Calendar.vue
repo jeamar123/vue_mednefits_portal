@@ -40,19 +40,21 @@
 					<div class="calendar-view">
 						<button class="btn-today">Today</button>
 						<div class="datepicker-btn">
-							<button @click="calNextPrev('prev')" class="btn-left"><img :src="'../assets/img/ico_left arrow.svg'"></button>
-							<div class="custom btn-date">
+							<button  @click="calNextPrev('prev')" class="btn-left"><img :src="'../assets/img/ico_left arrow.svg'"></button>
+							<div class="custom-btn-wrapper">
+								<div class="custom btn-date">
 									{{selectedDateRange}}
-							</div>
+								</div>
 
-							<button class="btn-date">
-								<v-date-picker v-model="dateRange"
-									mode='single'
-									:formats='formats'
-									:input-props='{class: "vDatepicker btn-date", placeholder: "MM/DD/YYYY", readonly: true}'
-									popover-visibility='focus' popover-direction='bottom'>
-								</v-date-picker>
-							</button>
+								<button class="btn-date">
+									<v-date-picker v-model="dateRange"
+										mode='single'
+										:formats='formats'
+										:input-props='{class: "vDatepicker btn-date", placeholder: "MM/DD/YYYY", readonly: true}'
+										popover-visibility='focus' popover-direction='bottom'>
+									</v-date-picker>
+								</button>
+							</div>
 							<button @click="calNextPrev('next')" class="btn-right"><img :src="'../assets/img/ico_right arrow.svg'"></button>
 						</div>
 					</div>
