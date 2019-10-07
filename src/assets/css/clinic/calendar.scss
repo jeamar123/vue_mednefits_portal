@@ -98,6 +98,11 @@
     margin: 0 5px 0 0;
   }
 
+  .dr-container, .cal-view 
+  , .settings-icon {
+    cursor: pointer;
+  }
+
   .calendar-view {
     width: 28%;
   }

@@ -6,33 +6,33 @@
 					<div class="header-list">
 						<div>
 							<div>
-								<div class="dr-container">
+								<div @click="handleSelectHeaderDoctor()" class="dr-container">
 									<img :src="'../assets/img/clinic/ico_Profile.svg'">
 									<span>Dr Jimmy Yap</span>
 								</div>
 								<i class="fa fa-caret-down" aria-hidden="true"></i>
 							</div>
-							<ul class="header-dropdown-list" v-if="false">
-								<li>
-									<a>Dr Jimmy Yap</a>
+							<ul @mouseleave="headerDoctorDropdown = false" class="header-dropdown-list" v-if="headerDoctorDropdown">
+								<li v-for="doctor in doctors" :key="doctor.index">
+									<a>{{doctor.name}}</a>
 								</li>
 							</ul>
 						</div>
-						<div>
-							<span>Weeky</span>
+						<div @click="handleSelectCalendarView()" class="cal-view">
+							<span>{{calendarView}}</span>
 							<i class="fa fa-caret-down" aria-hidden="true"></i>
-							<ul class="header-dropdown-list" v-if="false">
+							<ul @mouseleave="headerCalendarView = false" class="header-dropdown-list" v-if="headerCalendarView">
 								<li>
-									<a>Weekly</a>
+									<a @click="handleDefaultView('timeGridWeek','Weekly')">Weekly</a>
 								</li>
 								<li>
-									<a>Daily</a>
+									<a @click="handleDefaultView('timeGridDay','Daily')">Daily</a>
 								</li>
 								<li>
-									<a>Monthly</a>
+									<a @click="handleDefaultView('dayGridMonth','Monthly')">Monthly</a>
 								</li>
 								<li>
-									<a>By Group</a>
+									<a @click="handleDefaultView('timeGridWeek','By Group')">By Group</a>
 								</li>
 							</ul>
 						</div>
@@ -40,9 +40,9 @@
 					<div class="calendar-view">
 						<button class="btn-today">Today</button>
 						<div class="datepicker-btn">
-							<button class="btn-left"><img :src="'../assets/img/ico_left arrow.svg'"></button>
+							<button @click="calNextPrev('prev')" class="btn-left"><img :src="'../assets/img/ico_left arrow.svg'"></button>
 							<div class="custom btn-date">
-								{{selectedDateRange}}
+									{{selectedDateRange}}
 							</div>
 
 							<button class="btn-date">
@@ -53,7 +53,7 @@
 									popover-visibility='focus' popover-direction='bottom'>
 								</v-date-picker>
 							</button>
-							<button class="btn-right"><img :src="'../assets/img/ico_right arrow.svg'"></button>
+							<button @click="calNextPrev('next')" class="btn-right"><img :src="'../assets/img/ico_right arrow.svg'"></button>
 						</div>
 					</div>
 					<div class="header-legend">
@@ -69,20 +69,20 @@
 					</div>
 					<div class="header-tool">
 						<div>
-							<img :src="'../assets/img/ico_Settings.svg'">
-							<ul class="header-dropdown-list" v-if="false">
+							<img class="settings-icon" @click="handleSelectSettingsDropdown()" :src="'../assets/img/ico_Settings.svg'">
+							<ul @mouseleave="headerSettingsDropdown = false" class="header-dropdown-list" v-if="headerSettingsDropdown">
 								<li>
 									<a>Providers</a>
 								</li>
 								<li class="provider-selector">
 									<a>
-												<input type="checkbox">
-												<span>View as Dropdown</span>
-											</a>
+										<input type="checkbox" name="type" v-model="headerSettings.dropDown">
+										<span>View as Dropdown</span>
+									</a>
 								</li>
 								<li class="provider-selector">
 									<a>
-												<input type="checkbox">
+												<input type="checkbox" name="type" v-model="headerSettings.tabs">
 												<span>View as Tabs</span>
 											</a>
 								</li>
@@ -95,7 +95,7 @@
 					</div>
 				</div>
 				<div class="view-tabs-doctors-container">
-					<ul>
+					<ul v-if="headerSettings.doctorstab">
 						<li>
 							<a class="active">
 								<div class="dr-container">
@@ -108,13 +108,38 @@
 				</div>
 			</div>
 	
-			<FullCalendar @select="handelSelect" @eventMouseLeave="handleMouseLeave" @eventClick="handleEventClick" 
-			:defaultView="calendarView" 
-			ref="fullCalendar"
+			<FullCalendar ref="calendar" @select="handelSelect" @eventMouseLeave="handleMouseLeave" @eventClick="handleEventClick"
+			:plugins="config.plugins"
+			:defaultView="config.defaultView"
+			:timeZone="config.timeZone"
+			:defaultDate="config.defaultDate"
+			:slotDuration='config.slotDuration' 
+			:locales="config.locales" 
+			:locale="config.locale" 
+			:firstDay="config.firstDay"
+			:events="config.events" 
+			:now="config.now" 
+			:businessHours="config.businessHours" 
+			:weekends="config.weekends" 
+			:header="config.header" 
+			:editable="config.editable" 
+			:eventLimit="config.eventLimit" 
+			:nowIndicator="config.nowIndicator"
+			:selectable="config.selectable"
+			/>
+			<!-- 
+						:header="{
+							right: 'today prev,next',
+							center: 'title',
+							left: 'dayGridMonth,timeGridWeek,timeGridDay'
+		      	}"
+					 -->
+	<!-- 
+		:defaultView="calendarView"
+			ref="calendar"
 			:plugins="calendarPlugins" 
 			:timeZone="timeZone"
 			:defaultDate="defaultDate"
-			:gotoDate="gotoDate"
 			slotDuration='00:15' 
 			:locales="locales" 
 			:locale="locale" 
@@ -127,14 +152,8 @@
 			:editable= true 
 			:eventLimit= true 
 			:nowIndicator= true 
-			:selectable= true />
-			<!-- 
-						:header="{
-							right: 'today prev,next',
-							center: 'title',
-							left: 'dayGridMonth,timeGridWeek,timeGridDay'
-		      	}"
-					 -->
+			:selectable= true 
+	 -->
 		</div>
 	
 		<div class="calendar-modal">
