@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import Modal from "../../../views/clinic/modal/Modal.vue";
+import moment from "moment";
 
 var clinicStaff = {
 	components: {
@@ -9,7 +10,36 @@ var clinicStaff = {
 	data() {
 		return {
 			weekDayNames: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-			dayBreakNames: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+			dayBreakNames: [
+				{
+					day: 'Monday',
+					state: false,
+				},
+				{
+					day: 'Tuesday',
+					state: false,
+				},
+				{
+					day: 'Wednesday',
+					state: false,
+				},
+				{
+					day: 'Thursday',
+					state: false,
+				},
+				{
+					day: 'Friday',
+					state: false,
+				},
+				{
+					day: 'Saturday',
+					state: false,
+				},
+				{
+					day: 'Sunday',
+					state: false,
+				},
+			],
 			timeFrame: {},
 			detail_active: {
 				value: '0',
@@ -41,6 +71,9 @@ var clinicStaff = {
 				name: "Singapore",
 				priority: 0,
 			},
+
+			addBreak: false,
+			addBreakIndex: null,
 		}
 	},
 	methods: {
@@ -111,6 +144,26 @@ var clinicStaff = {
 				this.showDayTime = true;
 
 			}
+		},
+		btnAddBreak(index, day) {
+			this.dayBreakNames[index].state = true;
+			console.log(this.dayBreakNames[index].state, day);
+		}
+	},
+	computed: {
+		hoursPerday() {
+			let day = 23;
+			let hours = []
+			let formatTime;
+
+			for ( let i = 0 ; i < day+1; i++) {
+				formatTime = (moment().hours(day).subtract(i, 'hour').format('hh:00 A'));
+				hours.unshift(formatTime);
+			}
+			// formatTime = (moment().subtract(22, 'hours').format('hh:00 A'));
+			// hours.unshift(formatTime);
+			
+			return hours;
 		}
 	}
 

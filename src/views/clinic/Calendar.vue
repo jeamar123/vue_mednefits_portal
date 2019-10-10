@@ -38,7 +38,7 @@
 						</div>
 					</div>
 					<div class="calendar-view">
-						<button class="btn-today">Today</button>
+						<button @click="calNextPrev('today')" class="btn-today">Today</button>
 						<div class="datepicker-btn">
 							<button  @click="calNextPrev('prev')" class="btn-left"><img :src="'../assets/img/ico_left arrow.svg'"></button>
 							<div class="custom-btn-wrapper">
@@ -129,33 +129,7 @@
 			:nowIndicator="config.nowIndicator"
 			:selectable="config.selectable"
 			/>
-			<!-- 
-						:header="{
-							right: 'today prev,next',
-							center: 'title',
-							left: 'dayGridMonth,timeGridWeek,timeGridDay'
-		      	}"
-					 -->
-	<!-- 
-		:defaultView="calendarView"
-			ref="calendar"
-			:plugins="calendarPlugins" 
-			:timeZone="timeZone"
-			:defaultDate="defaultDate"
-			slotDuration='00:15' 
-			:locales="locales" 
-			:locale="locale" 
-			:firstDay="firstDay"
-			:events="events" 
-			:now="dateNow" 
-			:businessHours="businessHours" 
-			:weekends= true 
-			:header= false 
-			:editable= true 
-			:eventLimit= true 
-			:nowIndicator= true 
-			:selectable= true 
-	 -->
+
 		</div>
 	
 		<div class="calendar-modal">
@@ -168,13 +142,13 @@
 				<div slot="body" class="appointment-body-container">
 					<ul>
 						<li class="left">
-							<a>BOOKING</a>
+							<a @click="searchNewPatient = undefined">BOOKING</a>
 						</li>
 						<li class="left">
 							<a>PATIENT</a>
 						</li>
 					</ul>
-					<form v-if="true">
+					<form v-if="searchNewPatient == undefined">
 						<div class="modal-calendar-row-input-container">
 							<label>Doctor</label>
 							<div class="modal-calendar-input-wrapper">
@@ -249,28 +223,6 @@
 									</ul>
 								</div>
 							</div>
-	
-							<!-- <div class="day-time-container">
-								<div class="modal-calendar-row-input-container">
-									<label>Day</label>
-									<div class="modal-calendar-input-wrapper">
-										<div class="modal-calendar-input-container">
-											<span>Saturday, September 21 2019</span>
-										</div>
-									</div>
-								</div>
-	
-								<div class="modal-calendar-row-input-container">
-									<label>Time</label>
-									<div class="modal-calendar-input-wrapper">
-										<div class="modal-calendar-input-container">
-											<span>1:00 PM</span>
-											<i class="fa fa-chevron-down"></i>
-										</div>
-									</div>
-								</div>
-							</div> -->
-	
 						</div>
 	
 						<!-- Reserve booking -->
@@ -314,27 +266,6 @@
 									</div>
 								</div>
 							</div>
-	
-							<!-- <div class="day-time-container">
-								<div class="modal-calendar-row-input-container">
-									<label>Day</label>
-									<div class="modal-calendar-input-wrapper">
-										<div class="modal-calendar-input-container">
-											<span>Saturday, September 21 2019</span>
-										</div>
-									</div>
-								</div>
-	
-								<div class="modal-calendar-row-input-container">
-									<label>Time</label>
-									<div class="modal-calendar-input-wrapper">
-										<div class="modal-calendar-input-container">
-											<span>1:00 PM</span>
-											<i class="fa fa-chevron-down"></i>
-										</div>
-									</div>
-								</div>
-							</div> -->
 	
 							<div v-if="true" class="modal-calendar-row-input-container">
 								<label>Name</label>
@@ -417,22 +348,25 @@
 						<div class="modal-calendar-row-input-container">
 							<label></label>
 							<div class="modal-calendar-input-wrapper">
-								<button class="btn-continue" @click.prevent="btnContinue()">Continue</button>
+								<button v-if="serviceCustomIndicator == 3" class="btn-continue" @click.prevent="btnContinue(serviceCustomIndicator)">Continue</button>
+								<button v-if="serviceCustomIndicator != 3" class="btn-continue" @click.prevent="btnContinue()">Continue</button>
 								<button v-if="false" class="btn-continue">Reserve</button>
 							</div>
 						</div>
 	
 					</form>
 
-					<div v-if="false" class="search-panel">
+					<!-- search employee -->
+					<div v-if="searchNewPatient == 0" class="search-panel"> 
 						<div class="modal-calendar-input-wrapper">
 							<input class="modal-calendar-input-container" type="text" placeholder="Search Email Address or Phone Number">
 							<i class="fa fa-search"></i>
 						</div>
-						<button class="btn-continue"><i class="fa fa-plus"></i> New Patient</button>
+						<button @click.prevent="btnContinue('newPatient')" class="btn-continue"><i class="fa fa-plus"></i> New Patient</button>
 					</div>
 
-					<div v-if="false" class="new-customer">
+					<!-- new patient -->
+					<div v-if="searchNewPatient == 1" class="new-customer">
 						<div class="modal-calendar-row-input-container">
 							<label><img :src="'../assets/img/clinic/ico_Profile.svg'"></label>
 							<div class="modal-calendar-input-wrapper">
@@ -442,8 +376,9 @@
 						<div class="modal-calendar-row-input-container">
 							<label></label>
 							<div class="modal-calendar-input-wrapper area-code-container">
-								<button>+65</button>
-								<input class="modal-calendar-input-container" placeholder="Mobile Number" type="number">
+								<!-- <button>+65</button>
+								<input class="modal-calendar-input-container" placeholder="Mobile Number" type="number"> -->
+								<vue-tel-input ref="areaCode" v-model="newPatient.mobile" v-bind="telProps" @input="setAreaCode"></vue-tel-input>
 							</div>
 						</div>
 						<div class="modal-calendar-row-input-container">
@@ -482,13 +417,14 @@
 						<div class="modal-calendar-row-input-container">
 							<label></label>
 							<div class="back-next-container">
-								<button class="btn-continue appoint-back-btn">Back</button>
-								<button class="btn-continue">Next</button>
+								<button @click="searchNewPatient = 0" class="btn-continue appoint-back-btn">Back</button>
+								<button @click="btnContinue('confirm')" class="btn-continue">Next</button>
 							</div>
 						</div>
 					</div>
 
-					<div v-if="false" class="check-save">
+					<!-- confirm appointment -->
+					<div v-if="searchNewPatient == 2" class="check-save">
 						<h4>Confirm Appointment : </h4>
 						<div class="confirm-info-wrapper">
 							<div class="confirm-appointment-container">
@@ -531,7 +467,7 @@
 						</div>
 
 						<div class="confirm-appointment-btn-container">
-							<button class="btn-continue appoint-back-btn">Back</button>
+							<button @click="searchNewPatient = 1" class="btn-continue appoint-back-btn">Back</button>
 							<button class="btn-continue">Save Appointment</button>
 						</div>
 					</div>
@@ -540,6 +476,7 @@
 			</Modal>
 	
 
+		<!-- setup calendar3 -->
 			<Modal v-if="setupModal" class="clinic-config-modal">
 				<div slot="header">
 					<div class="setup-uncompleted-line"></div>
@@ -1062,6 +999,7 @@
 				</div>
 			</Modal>
 
+			<!-- Appointment Details -->
 			<Modal v-if="false" class="appointment-details-modal">
 				<div slot="header">
 					<h1>Appointment Details</h1>

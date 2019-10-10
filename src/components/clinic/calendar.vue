@@ -20,7 +20,7 @@ var calendar = {
 				data: ["MMM DD YYYY"]
 			},
 			//Calendar Data
-			calViewNow: null,
+			calViewNow: null, //par sa custom na date view if mag select syag calendar view
 			calendarView: 'Weekly',
 			headerSettings: {
 				doctorstab: false,
@@ -51,7 +51,6 @@ var calendar = {
 				eventLimit: true,
 				nowIndicator: true,
 				selectable: true,
-				gotoDate: null,
 			},
 			selectState: 1,
 			dateRange: moment(),
@@ -79,6 +78,9 @@ var calendar = {
 			setupDoctor: false,
 
 			// DATA FORMS
+			appDetails: {}, // appointment details data object
+			serviceCustomIndicator: 0, // service indicator 0 - 3
+			searchNewPatient: undefined, // value only 0 - 2 , 0 for search, 1 for new patient, 2 for confirm appointment
 			telProps: {
 				defaultCountry: "SG",
 				placeholder: "",
@@ -95,13 +97,13 @@ var calendar = {
 				name: "Singapore",
 				priority: 0,
 			},
-			serviceCustomIndicator: 0,
 			setup: {
 				dataStorage: {
 					serviceTime: 'Mins',
 				},
 				stepper: 1,
 			},
+			newPatient: {},
 
 			dataSample: false
 		};
@@ -128,11 +130,22 @@ var calendar = {
 		//calendar methods
 		calNextPrev(type) {
 			let calendarApi = this.$refs.calendar.getApi();
-
+			
 			if(type == 'next'){
 				calendarApi.next();
+				this.dateRange = calendarApi.getDate();
+				// console.log(this.dateRange);
+
+
 			} else if(type == 'prev') {
 				calendarApi.prev();
+				this.dateRange = calendarApi.getDate();
+				// console.log(this.dateRange);
+				
+			} else if (type == 'today') {
+				calendarApi.today();
+				this.dateRange = calendarApi.getDate();
+				// console.log(this.dateRange);
 			}
 			
 
@@ -160,11 +173,15 @@ var calendar = {
 			}
 		},
 		handleEventClick(data) {
-			//console.log('event clicked')
+			console.log('event clicked')
 		},
 		handelSelect(info) {
+			let start = moment(info.startStr).format('YYYY-MM-DD HH:mm');
+			let end = moment(info.endStr).format('YYYY-MM-DD HH:mm');
 
-			if (moment(info.start).format('HH:mm') >= this.config.businessHours.startTime && moment(info.end).format('HH:mm') <= this.config.businessHours.endTime && info.start > this.config.now) {
+			if (info.allDay) {
+				console.log('dont click');
+			} else if (moment(info.start).format('HH:mm') >= this.config.businessHours.startTime && moment(info.end).format('HH:mm') <= this.config.businessHours.endTime && info.start > this.config.now) {
 				this.selectState = 1;
 				this.appModal = true;
 				this.dropDownDoctor = false;
@@ -173,23 +190,31 @@ var calendar = {
 				this.dropDownDay = false;
 				this.serviceCustomIndicator = 0;
 				this.appDetails = {};
+
+				let item = {
+					title: ' ', // a property!
+					allDay: false, // Boolean (true or false).
+					start: start, // a property! YYYY - MM - DD hh:mm:ss:sss
+					end: end, // a property! ** see important note below about 'end' ** YYYY - MM - DD hh:mm:ss:sss
+					backgroundColor: '#3a87ad',
+				};
+				this.newEvent.push(item);
+				this.config.events = this.newEvent; // should be array format
 			} else {
+				let item = {
+					title: ' ', // a property!
+					allDay: false, // Boolean (true or false).
+					start: start, // a property! YYYY - MM - DD hh:mm:ss:sss
+					end: end, // a property! ** see important note below about 'end' ** YYYY - MM - DD hh:mm:ss:sss
+					backgroundColor: '#3a87ad',
+				};
+				this.newEvent.push(item);
+				this.config.events = this.newEvent; // should be array format
 				this.selectState = 0;
 			}
-
-			let start = moment(info.startStr).format('YYYY-MM-DD HH:mm');
-			let end = moment(info.endStr).format('YYYY-MM-DD HH:mm');
 			//console.log(start, end);
 
-			let item = {
-				title: ' ', // a property!
-				allDay: false, // Boolean (true or false).
-				start: start, // a property! YYYY - MM - DD hh:mm:ss:sss
-				end: end, // a property! ** see important note below about 'end' ** YYYY - MM - DD hh:mm:ss:sss
-				backgroundColor: '#3a87ad',
-			};
-			this.newEvent.push(item);
-			this.config.events = this.newEvent; // should be array format
+			
 			//console.log('item', item, 'Event', this.config.events);
 		},
 		handleMouseLeave() {
@@ -197,7 +222,7 @@ var calendar = {
 				this.config.events.pop();
 				this.selectState = 1;
 			} else {
-				//console.log(`don't remove`);
+				console.log(`don't remove`);
 			}
 		},
 		handleDefaultView(data, name) {
@@ -206,6 +231,9 @@ var calendar = {
 			calendarApi.changeView(data);
 			// this.config.defaultView = data;
 			this.calendarView = name;
+			// if (this.calendarView == 'Monthly' && this.calViewNow == 'dayGridMonth') {
+			// 	this.config.selectable = false;
+			// }
 			//console.log(this.config.defaultView);
 		},
 		// End of Calendar methods
@@ -289,6 +317,8 @@ var calendar = {
 					this.appDetails.service = undefined;
 					this.serviceCustomIndicator = indicator;
 					//console.log(this.serviceCustomIndicator);
+				} else {
+					this.serviceCustomIndicator = indicator;
 				}
 				this.handleSelectService();
 			} else if (type == 'duration') {
@@ -307,7 +337,15 @@ var calendar = {
 				this.handleServiceTime();
 			}
 		},
-		btnContinue() {
+		btnContinue(indicator) {
+			console.log(indicator);
+			if (indicator == 3){
+				this.searchNewPatient = 0;
+			} else if (indicator == 'newPatient') {
+				this.searchNewPatient = 1;
+			} else if (indicator == 'confirm') { // newPatient button
+				this.searchNewPatient = 2;
+			}
 			//console.log('Modal form data', this.appDetails);
 		},
 
