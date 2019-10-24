@@ -446,16 +446,16 @@
 
 					<div class="breaks-body-info-container">
 
-						<div v-for="( list, index ) in  dayBreakNames" class="working-row-container" :key="list.index">
+						<div v-for="( list, index1 ) in  dayBreakNames" class="working-row-container" :key="list.index">
 							<div class="day-container">
 								<span>{{ list.day }}</span>
 							</div>
 							<div>
-								<button @click="btnAddBreak(index, list.day)">Add Break</button>
+								<button @click="btnAddBreak(index1, list.day)">Add Break</button>
 							</div>
-							<div v-if="list.state == true" class="break-timepicker-wrapper">
+							<div v-if="list.staffBreaktimePicker.length != 0" class="break-timepicker-wrapper">
 								<div>
-									<div class="timepicker-container">
+									<div v-for="(select,index2) in list.staffBreaktimePicker"  :key="select.index" class="timepicker-container">
 										<div>
 											<!-- <span v-if="false">08:00AM</span>
 											<ul v-if="false" class="dropdown-menu">
@@ -529,7 +529,8 @@
 													<a>11:00 PM</a>
 												</li>
 											</ul> -->
-											<select>
+											<select v-model="select.start">
+                        <option :value="select.start" disabled selected>{{select.start}}</option>
                         <option v-for="time in hoursPerday" :key="time.index">{{time}}</option>
 											</select>
 										</div>
@@ -607,12 +608,13 @@
 													<a>11:00 PM</a>
 												</li>
 											</ul> -->
-											<select>
+											<select v-model="select.end">
+                        <option :value="select.end" disabled selected>{{select.end}}</option>
                         <option v-for="time in hoursPerday" :key="time.index">{{time}}</option>
 											</select>
 										</div>
 										<div class="trash-container">
-											<i class="fa fa-trash"></i>
+											<i @click="btnDeleteBreak(index1, index2)" class="fa fa-trash"></i>
 										</div>	
 									</div>
 								</div>

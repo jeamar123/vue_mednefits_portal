@@ -14,30 +14,37 @@ var clinicStaff = {
 				{
 					day: 'Monday',
 					state: false,
+					staffBreaktimePicker:[],
 				},
 				{
 					day: 'Tuesday',
 					state: false,
+					staffBreaktimePicker: [],
 				},
 				{
 					day: 'Wednesday',
 					state: false,
+					staffBreaktimePicker: [],
 				},
 				{
 					day: 'Thursday',
 					state: false,
+					staffBreaktimePicker: [],
 				},
 				{
 					day: 'Friday',
 					state: false,
+					staffBreaktimePicker: [],
 				},
 				{
 					day: 'Saturday',
 					state: false,
+					staffBreaktimePicker: [],
 				},
 				{
 					day: 'Sunday',
 					state: false,
+					staffBreaktimePicker: [],
 				},
 			],
 			timeFrame: {},
@@ -145,9 +152,14 @@ var clinicStaff = {
 
 			}
 		},
-		btnAddBreak(index, day) {
-			this.dayBreakNames[index].state = true;
-			console.log(this.dayBreakNames[index].state, day);
+		btnAddBreak(index1, day) {
+			this.dayBreakNames[index1].staffBreaktimePicker.push({
+				start: moment().startOf('day').format('hh:mm A'),
+				end: moment().startOf('day').format('hh:mm A'),
+			});
+		},
+		btnDeleteBreak(index1, index2) {
+			this.dayBreakNames[index1].staffBreaktimePicker.splice(index2,1);
 		}
 	},
 	computed: {
@@ -164,7 +176,7 @@ var clinicStaff = {
 			// hours.unshift(formatTime);
 			
 			return hours;
-		}
+		},
 	}
 
 }
