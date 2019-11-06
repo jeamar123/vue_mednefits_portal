@@ -111,7 +111,7 @@ export default new Router({
         //employee
         { name: 'CompanyEmployee', path: '/company/employee/overview', component: CompanyEmployee },
         { name: 'CompanyCreditAllocation', path: '/company/employee/credit-allocation', component: CompanyCreditAllocation },
-        { name: 'CompanyEmployeeDetails', path: '/company/employee/id=:id&index=:indexOfEmployees&ctr=:page_ctr&active=:page_active', component: CompanyEmployeeDetails, props: true },
+        { name: 'CompanyEmployeeDetails', path: '/company/employee/employee-details', component: CompanyEmployeeDetails, props: true },
         { name: 'CompanyRemoveEmployee', path: '/company/employee-details/remove-:name', component: CompanyRemoveEmployee, props: true },
         //acitivity
         { name: 'CompanyActivity', path: '/company/activity', component: CompanyActivity },
