@@ -98,6 +98,11 @@
     margin: 0 5px 0 0;
   }
 
+  .dr-container, .cal-view 
+  , .settings-icon {
+    cursor: pointer;
+  }
+
   .calendar-view {
     width: 28%;
   }
@@ -917,6 +922,13 @@
 
   input::placeholder {
     font-size: 12px;
+  }
+}
+
+.search-panel {
+  .btn-continue {
+    display: block;
+    margin: 20px auto 0px !important;
   }
 }
 

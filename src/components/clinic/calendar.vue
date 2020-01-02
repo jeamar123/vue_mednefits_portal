@@ -20,30 +20,40 @@ var calendar = {
 				data: ["MMM DD YYYY"]
 			},
 			//Calendar Data
-			calendarPlugins: [
-				dayGridPlugin,
-				timeGridPlugin,
-				interactionPlugin
-			],
-			locales: allLocales,
-			locale: 'en',
-			timeZone: 'local',
-			defaultDate: null,
-			gotoDate: null,
-			firstDay: 1,
-			calendarView: 'timeGridWeek', // dayGridMonth,timeGridWeek,timeGridDay
-			dateNow: new Date(),
-			// titleFormat: 'YYYY-DD-MM', // you can now use format strings
-			events: [], // should be array format
-			businessHours: {
-				// days of week. an array of zero-based day of week integers (0=Sunday)
-				daysOfWeek: [1, 2, 3, 4, 5], // 1 -5 Monday - Friday 6 - 7 Saturday - Sunday
+			calViewNow: null, //par sa custom na date view if mag select syag calendar view
+			calendarView: 'Weekly',
+			headerSettings: {
+				doctorstab: false,
+				dropDown: true,
+				tabs: false,
+			},
+			config: {
+				defaultView: 'timeGridWeek', // dayGridMonth,timeGridWeek,timeGridDay
+				plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+				timeZone: 'local',
+				defaultDate: null,
+				slotDuration: '00:15',
+				locales: allLocales,
+				locale: 'en',
+				firstDay: 1,
+				events: [],
+				now: new Date(),
+				businessHours: {
+					// days of week. an array of zero-based day of week integers (0=Sunday)
+					daysOfWeek: [1, 2, 3, 4, 5], // 1 -5 Monday - Friday 6 - 7 Saturday - Sunday
 
-				startTime: '10:00', // a start time (10am in this example)
-				endTime: '17:00', // an end time (6pm in this example)
+					startTime: '10:00', // a start time (10am in this example)
+					endTime: '17:00', // an end time (6pm in this example)
+				},
+				weekends: true,
+				header: false,
+				editable: true,
+				eventLimit: true,
+				nowIndicator: true,
+				selectable: true,
 			},
 			selectState: 1,
-			dateRange: new Date(),
+			dateRange: moment(),
 			// End Calendar Data
 			//for new event
 			newEvent: [
@@ -54,6 +64,9 @@ var calendar = {
 				// 	end: '2019-09-16 10:15', // a property! ** see important note below about 'end' ** YYYY - MM - DD hh:mm:ss:sss
 				// }, 
 			],
+			headerDoctorDropdown: false,
+			headerCalendarView:false,
+			headerSettingsDropdown:false,
 			appModal: false,
 			setupModal: false,
 			dropDownService: false,
@@ -65,6 +78,9 @@ var calendar = {
 			setupDoctor: false,
 
 			// DATA FORMS
+			appDetails: {}, // appointment details data object
+			serviceCustomIndicator: 0, // service indicator 0 - 3
+			searchNewPatient: undefined, // value only 0 - 2 , 0 for search, 1 for new patient, 2 for confirm appointment
 			telProps: {
 				defaultCountry: "SG",
 				placeholder: "",
@@ -81,19 +97,20 @@ var calendar = {
 				name: "Singapore",
 				priority: 0,
 			},
-			serviceCustomIndicator: 0,
 			setup: {
 				dataStorage: {
 					serviceTime: 'Mins',
 				},
 				stepper: 1,
 			},
+			newPatient: {},
 
 			dataSample: false
 		};
 	},
 	created() {
-		this.events = this.newEvent; // should be array format
+		this.calViewNow = this.config.defaultView;
+		this.config.events = this.newEvent; // should be array format
 		// this.defaultDate = moment(this.appDetails.dateRange).format('YYYY-MM-DD');
 	},
 	methods: {
@@ -111,6 +128,30 @@ var calendar = {
 		},
 
 		//calendar methods
+		calNextPrev(type) {
+			let calendarApi = this.$refs.calendar.getApi();
+			
+			if(type == 'next'){
+				calendarApi.next();
+				this.dateRange = calendarApi.getDate();
+				// console.log(this.dateRange);
+
+
+			} else if(type == 'prev') {
+				calendarApi.prev();
+				this.dateRange = calendarApi.getDate();
+				// console.log(this.dateRange);
+				
+			} else if (type == 'today') {
+				calendarApi.today();
+				this.dateRange = calendarApi.getDate();
+				// console.log(this.dateRange);
+			}
+			
+
+			// this.$refs.calendar.gotoDate(moment("2019-11-03"));
+			// this.config.gotoDate =  moment("2019-10-30");
+		},
 		handleDateClick(data) {
 			let time = moment(data.date).format('hh:mm');
 			let start = moment(data.date).format('YYYY-MM-DD HH:mm');
@@ -123,20 +164,24 @@ var calendar = {
 				backgroundColor: '#3a87ad',
 			};
 			this.newEvent.push(item);
-			console.log('item', item, 'newEvent', this.newEvent);
-			if (data.date >= this.dateNow) {
+			//console.log('item', item, 'newEvent', this.newEvent);
+			if (data.date >= this.config.now) {
 				let timeClicked = moment(data.date).format('MMMM DD YYYY hh:mm A');
 				console.log(`book now at ${timeClicked}`);
 			} else {
-				console.log(`Invalid date`);
+				//console.log(`Invalid date`);
 			}
 		},
 		handleEventClick(data) {
 			console.log('event clicked')
 		},
 		handelSelect(info) {
+			let start = moment(info.startStr).format('YYYY-MM-DD HH:mm');
+			let end = moment(info.endStr).format('YYYY-MM-DD HH:mm');
 
-			if (moment(info.start).format('HH:mm') >= this.businessHours.startTime && moment(info.end).format('HH:mm') <= this.businessHours.endTime && info.start > this.dateNow) {
+			if (info.allDay) {
+				console.log('dont click');
+			} else if (moment(info.start).format('HH:mm') >= this.config.businessHours.startTime && moment(info.end).format('HH:mm') <= this.config.businessHours.endTime && info.start > this.config.now) {
 				this.selectState = 1;
 				this.appModal = true;
 				this.dropDownDoctor = false;
@@ -145,35 +190,69 @@ var calendar = {
 				this.dropDownDay = false;
 				this.serviceCustomIndicator = 0;
 				this.appDetails = {};
+
+				let item = {
+					title: ' ', // a property!
+					allDay: false, // Boolean (true or false).
+					start: start, // a property! YYYY - MM - DD hh:mm:ss:sss
+					end: end, // a property! ** see important note below about 'end' ** YYYY - MM - DD hh:mm:ss:sss
+					backgroundColor: '#3a87ad',
+				};
+				this.newEvent.push(item);
+				this.config.events = this.newEvent; // should be array format
 			} else {
+				let item = {
+					title: ' ', // a property!
+					allDay: false, // Boolean (true or false).
+					start: start, // a property! YYYY - MM - DD hh:mm:ss:sss
+					end: end, // a property! ** see important note below about 'end' ** YYYY - MM - DD hh:mm:ss:sss
+					backgroundColor: '#3a87ad',
+				};
+				this.newEvent.push(item);
+				this.config.events = this.newEvent; // should be array format
 				this.selectState = 0;
 			}
+			//console.log(start, end);
 
-			let start = moment(info.startStr).format('YYYY-MM-DD HH:mm');
-			let end = moment(info.endStr).format('YYYY-MM-DD HH:mm');
-			console.log(start, end);
-
-			let item = {
-				title: ' ', // a property!
-				allDay: false, // Boolean (true or false).
-				start: start, // a property! YYYY - MM - DD hh:mm:ss:sss
-				end: end, // a property! ** see important note below about 'end' ** YYYY - MM - DD hh:mm:ss:sss
-				backgroundColor: '#3a87ad',
-			};
-			this.newEvent.push(item);
-			this.events = this.newEvent; // should be array format
-			console.log('item', item, 'Event', this.events);
+			
+			//console.log('item', item, 'Event', this.config.events);
 		},
 		handleMouseLeave() {
 			if (this.selectState == 0) {
-				this.events.pop();
+				this.config.events.pop();
 				this.selectState = 1;
 			} else {
 				console.log(`don't remove`);
 			}
 		},
+		handleDefaultView(data, name) {
+			this.calViewNow = data;
+			let calendarApi = this.$refs.calendar.getApi();
+			calendarApi.changeView(data);
+			// this.config.defaultView = data;
+			this.calendarView = name;
+			// if (this.calendarView == 'Monthly' && this.calViewNow == 'dayGridMonth') {
+			// 	this.config.selectable = false;
+			// }
+			//console.log(this.config.defaultView);
+		},
 		// End of Calendar methods
-
+		//header Methods
+		handleSelectHeaderDoctor(){
+			this.headerDoctorDropdown = !this.headerDoctorDropdown;
+			this.headerCalendarView = false;
+			this.headerSettingsDropdown = false;
+		},
+		handleSelectCalendarView(){
+			this.headerCalendarView = !this.headerCalendarView;
+			this.headerDoctorDropdown = false;
+			this.headerSettingsDropdown = false;
+		},
+		handleSelectSettingsDropdown(){
+			this.headerSettingsDropdown = !this.headerSettingsDropdown;
+			this.headerDoctorDropdown = false;
+			this.headerCalendarView = false;
+		},
 		//Modal Methods
 		//Appointments
 		handleSelectDoctor() {
@@ -237,7 +316,9 @@ var calendar = {
 				if (indicator == 2) {
 					this.appDetails.service = undefined;
 					this.serviceCustomIndicator = indicator;
-					console.log(this.serviceCustomIndicator);
+					//console.log(this.serviceCustomIndicator);
+				} else {
+					this.serviceCustomIndicator = indicator;
 				}
 				this.handleSelectService();
 			} else if (type == 'duration') {
@@ -256,9 +337,17 @@ var calendar = {
 				this.handleServiceTime();
 			}
 		},
-		btnContinue() {
-			console.log('Modal form data', this.appDetails);
-		}
+		btnContinue(indicator) {
+			console.log(indicator);
+			if (indicator == 3){
+				this.searchNewPatient = 0;
+			} else if (indicator == 'newPatient') {
+				this.searchNewPatient = 1;
+			} else if (indicator == 'confirm') { // newPatient button
+				this.searchNewPatient = 2;
+			}
+			//console.log('Modal form data', this.appDetails);
+		},
 
 	},
 	computed: {
@@ -337,22 +426,51 @@ var calendar = {
 		},
 		selectedDateRange() {
 			let date = this.dateRange;
-			let first = moment(date).date() - moment(date).day() + 1; // First day is the day of the month - the day of the week
+			//console.log(`${moment(date).date()} date / ${moment(date).day()} day`);
+			let first = moment(date).date() - moment(date).day(); // First day is the day of the month - the day of the week
 			let last = first + 6; // last day is the first day + 6
 
-			let firstday = moment().date(first).format('MMM DD');
-			let lastday = moment().date(last).format('DD YYYY');
+			let firstday = moment(date).date(first+1).format('MMM DD');
+			let lastday = moment(date).date(last+1).format(' MMM DD YYYY');
 
-			console.log(first, last);
 			let selectedDate;
-
-			selectedDate = `${firstday} - ${lastday}`;
-			console.log(firstday, lastday);
-
-
-
-			return selectedDate;
+			//console.log(this.calViewNow);
+			if (this.calViewNow == 'timeGridWeek') {
+				selectedDate = `${firstday} - ${lastday}`;
+				//console.log(selectedDate);
+				return selectedDate;
+			} else if (this.calViewNow == 'dayGridMonth') {
+				selectedDate = `${moment(date).format('MMMM YYYY')}`;
+				//console.log(selectedDate);
+				return selectedDate;
+			}
 		}
+	},
+	watch: {
+		dateRange() {
+			let date = moment(this.dateRange).format('YYYY-MM-DD');
+			let calendarApi = this.$refs.calendar.getApi();
+
+			calendarApi.gotoDate(date);
+		},
+
+		'headerSettings.dropDown'(){
+			if(this.headerSettings.dropDown == true) {
+				this.headerSettings.tabs = false;
+				this.headerSettings.doctorstab = false;
+				
+			} else {
+				this.headerSettings.dropDown = false;
+			}
+		},
+		'headerSettings.tabs'(){
+			if(this.headerSettings.tabs == true) {
+				this.headerSettings.dropDown = false;
+				this.headerSettings.doctorstab = true;
+			} else {
+				this.headerSettings.tabs = false;
+			}
+		},
 	}
 };
 

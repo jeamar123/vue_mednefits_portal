@@ -6,41 +6,41 @@
 					<div class="header-list">
 						<div>
 							<div>
-								<div class="dr-container">
+								<div @click="handleSelectHeaderDoctor()" class="dr-container">
 									<img :src="'../assets/img/clinic/ico_Profile.svg'">
 									<span>Dr Jimmy Yap</span>
 								</div>
 								<i class="fa fa-caret-down" aria-hidden="true"></i>
 							</div>
-							<ul class="header-dropdown-list" v-if="false">
-								<li>
-									<a>Dr Jimmy Yap</a>
+							<ul @mouseleave="headerDoctorDropdown = false" class="header-dropdown-list" v-if="headerDoctorDropdown">
+								<li v-for="doctor in doctors" :key="doctor.index">
+									<a>{{doctor.name}}</a>
 								</li>
 							</ul>
 						</div>
-						<div>
-							<span>Weeky</span>
+						<div @click="handleSelectCalendarView()" class="cal-view">
+							<span>{{calendarView}}</span>
 							<i class="fa fa-caret-down" aria-hidden="true"></i>
-							<ul class="header-dropdown-list" v-if="false">
+							<ul @mouseleave="headerCalendarView = false" class="header-dropdown-list" v-if="headerCalendarView">
 								<li>
-									<a>Weekly</a>
+									<a @click="handleDefaultView('timeGridWeek','Weekly')">Weekly</a>
 								</li>
 								<li>
-									<a>Daily</a>
+									<a @click="handleDefaultView('timeGridDay','Daily')">Daily</a>
 								</li>
 								<li>
-									<a>Monthly</a>
+									<a @click="handleDefaultView('dayGridMonth','Monthly')">Monthly</a>
 								</li>
 								<li>
-									<a>By Group</a>
+									<a @click="handleDefaultView('timeGridWeek','By Group')">By Group</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 					<div class="calendar-view">
-						<button class="btn-today">Today</button>
+						<button @click="calNextPrev('today')" class="btn-today">Today</button>
 						<div class="datepicker-btn">
-							<button class="btn-left"><img :src="'../assets/img/ico_left arrow.svg'"></button>
+							<button  @click="calNextPrev('prev')" class="btn-left"><img :src="'../assets/img/ico_left arrow.svg'"></button>
 							<div class="custom-btn-wrapper">
 								<div class="custom btn-date">
 									{{selectedDateRange}}
@@ -55,7 +55,7 @@
 									</v-date-picker>
 								</button>
 							</div>
-							<button class="btn-right"><img :src="'../assets/img/ico_right arrow.svg'"></button>
+							<button @click="calNextPrev('next')" class="btn-right"><img :src="'../assets/img/ico_right arrow.svg'"></button>
 						</div>
 					</div>
 					<div class="header-legend">
@@ -71,20 +71,20 @@
 					</div>
 					<div class="header-tool">
 						<div>
-							<img :src="'../assets/img/ico_Settings.svg'">
-							<ul class="header-dropdown-list" v-if="false">
+							<img class="settings-icon" @click="handleSelectSettingsDropdown()" :src="'../assets/img/ico_Settings.svg'">
+							<ul @mouseleave="headerSettingsDropdown = false" class="header-dropdown-list" v-if="headerSettingsDropdown">
 								<li>
 									<a>Providers</a>
 								</li>
 								<li class="provider-selector">
 									<a>
-												<input type="checkbox">
-												<span>View as Dropdown</span>
-											</a>
+										<input type="checkbox" name="type" v-model="headerSettings.dropDown">
+										<span>View as Dropdown</span>
+									</a>
 								</li>
 								<li class="provider-selector">
 									<a>
-												<input type="checkbox">
+												<input type="checkbox" name="type" v-model="headerSettings.tabs">
 												<span>View as Tabs</span>
 											</a>
 								</li>
@@ -97,7 +97,7 @@
 					</div>
 				</div>
 				<div class="view-tabs-doctors-container">
-					<ul>
+					<ul v-if="headerSettings.doctorstab">
 						<li>
 							<a class="active">
 								<div class="dr-container">
@@ -110,33 +110,26 @@
 				</div>
 			</div>
 	
-			<FullCalendar @select="handelSelect" @eventMouseLeave="handleMouseLeave" @eventClick="handleEventClick" 
-			:defaultView="calendarView" 
-			ref="fullCalendar"
-			:plugins="calendarPlugins" 
-			:timeZone="timeZone"
-			:defaultDate="defaultDate"
-			:gotoDate="gotoDate"
-			slotDuration='00:15' 
-			:locales="locales" 
-			:locale="locale" 
-			:firstDay="firstDay"
-			:events="events" 
-			:now="dateNow" 
-			:businessHours="businessHours" 
-			:weekends= true 
-			:header= false 
-			:editable= true 
-			:eventLimit= true 
-			:nowIndicator= true 
-			:selectable= true />
-			<!-- 
-						:header="{
-							right: 'today prev,next',
-							center: 'title',
-							left: 'dayGridMonth,timeGridWeek,timeGridDay'
-		      	}"
-					 -->
+			<FullCalendar ref="calendar" @select="handelSelect" @eventMouseLeave="handleMouseLeave" @eventClick="handleEventClick"
+			:plugins="config.plugins"
+			:defaultView="config.defaultView"
+			:timeZone="config.timeZone"
+			:defaultDate="config.defaultDate"
+			:slotDuration='config.slotDuration' 
+			:locales="config.locales" 
+			:locale="config.locale" 
+			:firstDay="config.firstDay"
+			:events="config.events" 
+			:now="config.now" 
+			:businessHours="config.businessHours" 
+			:weekends="config.weekends" 
+			:header="config.header" 
+			:editable="config.editable" 
+			:eventLimit="config.eventLimit" 
+			:nowIndicator="config.nowIndicator"
+			:selectable="config.selectable"
+			/>
+
 		</div>
 	
 		<div class="calendar-modal">
@@ -149,13 +142,13 @@
 				<div slot="body" class="appointment-body-container">
 					<ul>
 						<li class="left">
-							<a>BOOKING</a>
+							<a @click="searchNewPatient = undefined">BOOKING</a>
 						</li>
 						<li class="left">
 							<a>PATIENT</a>
 						</li>
 					</ul>
-					<form v-if="true">
+					<form v-if="searchNewPatient == undefined">
 						<div class="modal-calendar-row-input-container">
 							<label>Doctor</label>
 							<div class="modal-calendar-input-wrapper">
@@ -230,28 +223,6 @@
 									</ul>
 								</div>
 							</div>
-	
-							<!-- <div class="day-time-container">
-								<div class="modal-calendar-row-input-container">
-									<label>Day</label>
-									<div class="modal-calendar-input-wrapper">
-										<div class="modal-calendar-input-container">
-											<span>Saturday, September 21 2019</span>
-										</div>
-									</div>
-								</div>
-	
-								<div class="modal-calendar-row-input-container">
-									<label>Time</label>
-									<div class="modal-calendar-input-wrapper">
-										<div class="modal-calendar-input-container">
-											<span>1:00 PM</span>
-											<i class="fa fa-chevron-down"></i>
-										</div>
-									</div>
-								</div>
-							</div> -->
-	
 						</div>
 	
 						<!-- Reserve booking -->
@@ -295,27 +266,6 @@
 									</div>
 								</div>
 							</div>
-	
-							<!-- <div class="day-time-container">
-								<div class="modal-calendar-row-input-container">
-									<label>Day</label>
-									<div class="modal-calendar-input-wrapper">
-										<div class="modal-calendar-input-container">
-											<span>Saturday, September 21 2019</span>
-										</div>
-									</div>
-								</div>
-	
-								<div class="modal-calendar-row-input-container">
-									<label>Time</label>
-									<div class="modal-calendar-input-wrapper">
-										<div class="modal-calendar-input-container">
-											<span>1:00 PM</span>
-											<i class="fa fa-chevron-down"></i>
-										</div>
-									</div>
-								</div>
-							</div> -->
 	
 							<div v-if="true" class="modal-calendar-row-input-container">
 								<label>Name</label>
@@ -398,22 +348,25 @@
 						<div class="modal-calendar-row-input-container">
 							<label></label>
 							<div class="modal-calendar-input-wrapper">
-								<button class="btn-continue" @click.prevent="btnContinue()">Continue</button>
+								<button v-if="serviceCustomIndicator == 3" class="btn-continue" @click.prevent="btnContinue(serviceCustomIndicator)">Continue</button>
+								<button v-if="serviceCustomIndicator != 3" class="btn-continue" @click.prevent="btnContinue()">Continue</button>
 								<button v-if="false" class="btn-continue">Reserve</button>
 							</div>
 						</div>
 	
 					</form>
 
-					<div v-if="false" class="search-panel">
+					<!-- search employee -->
+					<div v-if="searchNewPatient == 0" class="search-panel"> 
 						<div class="modal-calendar-input-wrapper">
 							<input class="modal-calendar-input-container" type="text" placeholder="Search Email Address or Phone Number">
 							<i class="fa fa-search"></i>
 						</div>
-						<button class="btn-continue"><i class="fa fa-plus"></i> New Patient</button>
+						<button @click.prevent="btnContinue('newPatient')" class="btn-continue"><i class="fa fa-plus"></i> New Patient</button>
 					</div>
 
-					<div v-if="false" class="new-customer">
+					<!-- new patient -->
+					<div v-if="searchNewPatient == 1" class="new-customer">
 						<div class="modal-calendar-row-input-container">
 							<label><img :src="'../assets/img/clinic/ico_Profile.svg'"></label>
 							<div class="modal-calendar-input-wrapper">
@@ -423,8 +376,9 @@
 						<div class="modal-calendar-row-input-container">
 							<label></label>
 							<div class="modal-calendar-input-wrapper area-code-container">
-								<button>+65</button>
-								<input class="modal-calendar-input-container" placeholder="Mobile Number" type="number">
+								<!-- <button>+65</button>
+								<input class="modal-calendar-input-container" placeholder="Mobile Number" type="number"> -->
+								<vue-tel-input ref="areaCode" v-model="newPatient.mobile" v-bind="telProps" @input="setAreaCode"></vue-tel-input>
 							</div>
 						</div>
 						<div class="modal-calendar-row-input-container">
@@ -463,13 +417,14 @@
 						<div class="modal-calendar-row-input-container">
 							<label></label>
 							<div class="back-next-container">
-								<button class="btn-continue appoint-back-btn">Back</button>
-								<button class="btn-continue">Next</button>
+								<button @click="searchNewPatient = 0" class="btn-continue appoint-back-btn">Back</button>
+								<button @click="btnContinue('confirm')" class="btn-continue">Next</button>
 							</div>
 						</div>
 					</div>
 
-					<div v-if="false" class="check-save">
+					<!-- confirm appointment -->
+					<div v-if="searchNewPatient == 2" class="check-save">
 						<h4>Confirm Appointment : </h4>
 						<div class="confirm-info-wrapper">
 							<div class="confirm-appointment-container">
@@ -512,7 +467,7 @@
 						</div>
 
 						<div class="confirm-appointment-btn-container">
-							<button class="btn-continue appoint-back-btn">Back</button>
+							<button @click="searchNewPatient = 1" class="btn-continue appoint-back-btn">Back</button>
 							<button class="btn-continue">Save Appointment</button>
 						</div>
 					</div>
@@ -521,6 +476,7 @@
 			</Modal>
 	
 
+		<!-- setup calendar3 -->
 			<Modal v-if="setupModal" class="clinic-config-modal">
 				<div slot="header">
 					<div class="setup-uncompleted-line"></div>
@@ -1043,6 +999,7 @@
 				</div>
 			</Modal>
 
+			<!-- Appointment Details -->
 			<Modal v-if="false" class="appointment-details-modal">
 				<div slot="header">
 					<h1>Appointment Details</h1>

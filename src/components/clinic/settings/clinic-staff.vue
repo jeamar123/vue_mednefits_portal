@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import Modal from "../../../views/clinic/modal/Modal.vue";
+import moment from "moment";
 
 var clinicStaff = {
 	components: {
@@ -9,7 +10,43 @@ var clinicStaff = {
 	data() {
 		return {
 			weekDayNames: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-			dayBreakNames: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+			dayBreakNames: [
+				{
+					day: 'Monday',
+					state: false,
+					staffBreaktimePicker:[],
+				},
+				{
+					day: 'Tuesday',
+					state: false,
+					staffBreaktimePicker: [],
+				},
+				{
+					day: 'Wednesday',
+					state: false,
+					staffBreaktimePicker: [],
+				},
+				{
+					day: 'Thursday',
+					state: false,
+					staffBreaktimePicker: [],
+				},
+				{
+					day: 'Friday',
+					state: false,
+					staffBreaktimePicker: [],
+				},
+				{
+					day: 'Saturday',
+					state: false,
+					staffBreaktimePicker: [],
+				},
+				{
+					day: 'Sunday',
+					state: false,
+					staffBreaktimePicker: [],
+				},
+			],
 			timeFrame: {},
 			detail_active: {
 				value: '0',
@@ -41,6 +78,9 @@ var clinicStaff = {
 				name: "Singapore",
 				priority: 0,
 			},
+
+			addBreak: false,
+			addBreakIndex: null,
 		}
 	},
 	methods: {
@@ -111,7 +151,32 @@ var clinicStaff = {
 				this.showDayTime = true;
 
 			}
+		},
+		btnAddBreak(index1, day) {
+			this.dayBreakNames[index1].staffBreaktimePicker.push({
+				start: moment().startOf('day').format('hh:mm A'),
+				end: moment().startOf('day').format('hh:mm A'),
+			});
+		},
+		btnDeleteBreak(index1, index2) {
+			this.dayBreakNames[index1].staffBreaktimePicker.splice(index2,1);
 		}
+	},
+	computed: {
+		hoursPerday() {
+			let day = 23;
+			let hours = []
+			let formatTime;
+
+			for ( let i = 0 ; i < day+1; i++) {
+				formatTime = (moment().hours(day).subtract(i, 'hour').format('hh:00 A'));
+				hours.unshift(formatTime);
+			}
+			// formatTime = (moment().subtract(22, 'hours').format('hh:00 A'));
+			// hours.unshift(formatTime);
+			
+			return hours;
+		},
 	}
 
 }

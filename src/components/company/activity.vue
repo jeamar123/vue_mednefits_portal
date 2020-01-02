@@ -62,11 +62,14 @@ let activity = {
 			selected_customer_id: null,
 			in_network_transactions: null,
 			e_claim_transactions: null,
+			inNetwork_pagination: {},
+			outNetwork_pagination: {},
 			currentPage: 1,
 			inNetwork_activePage: 1,
-			inNetwork_perPage: 10,
+			inNetwork_perPage: 5,
+			paginationDropdown: false,
 			outNetwork_activePage: 1,
-			outNetwork_perPage: 10,
+			outNetwork_perPage: 5,
 
 		};
 	},
@@ -255,6 +258,35 @@ let activity = {
 			};
 			this.getAllocation(activity_search);
 		},
+		//Pagination
+		perPage() {
+			this.paginationDropdown = !this.paginationDropdown;
+		},
+		selectedPerPage(data){
+			this.inNetwork_perPage = data;
+			this.outNetwork_perPage = data;
+			this.perPage();
+			this.searchActivityPagination();
+			// this.getEmployeeList();
+		},
+		transactionPagination(direction) { //direction is prev/next
+			if (direction == 'next') {
+				if( this.inNetwork_activePage < this.inNetwork_pagination.last_page || this.outNetwork_activePage < this.outNetwork_pagination.last_page) {
+					++this.inNetwork_activePage;
+					++this.outNetwork_activePage;
+					this.searchActivityPagination();
+					// this.getEmployeeList();
+				}
+			
+			} else if (direction == 'prev') {
+				if (this.inNetwork_activePage > 1 && this.outNetwork_activePage > 1) {
+					--this.inNetwork_activePage;
+					--this.outNetwork_activePage;
+					this.searchActivityPagination();
+					// this.getEmployeeList();
+				}
+			}
+		},
 
 		//api calls
 		getSession() {
@@ -349,10 +381,11 @@ let activity = {
 					}
 				});
 		},
-		searchEmployeeActivity(user_id) {
+		searchEmployeeActivity(user_id, name) {
 			console.log('searchEmployeeActivity()', user_id);
 			this.isActiveSearch = false;
 			this.currentPage = 1;
+			this.search_emp = name;
 
 			let activity_search = {
 				start: moment(this.timeFrame.rangePicker_start, 'DD/MM/YYYY').format('YYYY-MM-DD'),
@@ -414,6 +447,7 @@ let activity = {
 		},
 		getInNetworkPagination() {
 			//console.log('getInNetworkPagination()');
+			this.$parent.showLoading();
 			this.activity_dates = [];
 
 			let data = {
@@ -435,10 +469,12 @@ let activity = {
 					//console.log('getInNetworkPagination', res.data);
 					this.filterActivityByDateInNetwork(res.data.data);
 					console.log('in data', this.inNetwork_pagination.data);
+					this.$parent.hideLoading();
 				});
 		},
 		getOutNetworkPagination() {
 			//console.log('getOutNetworkPagination()');
+			this.$parent.showLoading();
 			this.eclaim_dates = [];
 
 			let data = {
@@ -460,6 +496,7 @@ let activity = {
 
 					this.filterActivityByDateEclaim(res.data.data);
 					console.log('out data', this.outNetwork_pagination.data);
+					this.$parent.hideLoading();
 				});
 		},
 
