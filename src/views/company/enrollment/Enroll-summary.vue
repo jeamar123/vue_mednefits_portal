@@ -117,7 +117,6 @@
                 <v-date-picker
                   popoverDirection="top"
                   :max-date="new Date()"
-                  v-model="employeeDetails.dob"
                   :formats ='formats'
                   :input-props='{class: "vDatepicker", placeholder: "DD/MM/YYYY", readonly: true, }'
                   popover-visibility="focus"
