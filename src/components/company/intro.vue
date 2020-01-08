@@ -24,6 +24,8 @@ let intro = {
 						if( this.introData.checks == true ){
 							this.$router.push({ name: 'CompanyHome' });
 							this.$parent.hideLoading();
+						} else {
+							this.$parent.hideLoading();
 						}
 					}else{
 						this.$parent.hideLoading();

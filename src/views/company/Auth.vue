@@ -121,11 +121,12 @@
       	}
       	this.showLoading();
       	var data = {
-      		email: this.login_data.email,
+      		// email: this.login_data.email,
+      		username: this.login_data.email,
           password: this.login_data.password,
           stay_signed_in: this.login_data.stay_signed_in == true ? true : false,
       	}
-      	axios.post( axios.defaults.serverUrl + '/company-benefits-dashboard-login', data)
+      	axios.post( axios.defaults.serverUrl + '/auth/signin', data)
 					.then(res => {
 						
 						console.log(res);
@@ -179,27 +180,29 @@
 					});
       },
       getCompanyStatus(){
-	  		this.showLoading();
-	    	axios.get( axios.defaults.serverUrl + '/hr/check_plan' )
-					.then(res => {
-						console.log(res);
-						if( res.data.status ){
-							this.introData = res.data.data;
-							if( res.data.data.checks == true ){
-								this.$router.push({ name: 'CompanyHome' });
-							}else{
-								this.$router.push({ name: 'CompanyIntro' });
-							}
-						}else{
-							this.$parent.hideLoading();
-							this.$parent.swal('Error!', res.data.message, 'error');
-						}
-					})
-					.catch(err => {
-						console.log( err );
-						this.$parent.hideLoading();
-						this.$parent.swal('Error!', err,'error');
-					});
+				this.showLoading();
+				this.$router.push({ name: 'CompanyIntro' });
+				this.$parent.hideLoading();
+	    	// axios.get( axios.defaults.serverUrl + '/hr/check_plan' )
+				// 	.then(res => {
+				// 		console.log(res);
+				// 		if( res.data.status ){
+				// 			this.introData = res.data.data;
+				// 			if( res.data.data.checks == true ){
+				// 				this.$router.push({ name: 'CompanyHome' });
+				// 			}else{
+				// 				this.$router.push({ name: 'CompanyIntro' });
+				// 			}
+				// 		}else{
+				// 			this.$parent.hideLoading();
+				// 			this.$parent.swal('Error!', res.data.message, 'error');
+				// 		}
+				// 	})
+				// 	.catch(err => {
+				// 		console.log( err );
+				// 		this.$parent.hideLoading();
+				// 		this.$parent.swal('Error!', err,'error');
+				// 	});
 	  	}
     }
 	}

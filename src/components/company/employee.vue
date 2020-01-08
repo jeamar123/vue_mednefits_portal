@@ -60,7 +60,7 @@ let employee = {
 		},
 		employeePagination(direction) { //direction is prev/next
 			if (direction == 'next') {
-				if (this.page_active < this.employees.last_page) {
+				if (this.employees.hasNextPage) {
 					++this.page_active;
 					this.getEmployeeList();
 				}
@@ -95,7 +95,7 @@ let employee = {
 			this.$parent.showLoading();
 			let num = this.page_ctr;
 			let page = this.page_active;
-			axios.get(`${axios.defaults.serverUrl}/hr/employee/list/${num}?page=${page}`)
+			axios.get(`${axios.defaults.serverUrl}/hr/employee_lists/?page=${page}&limit=${num}`)
 				.then(res => {
 
 					this.employees = res.data;
@@ -115,6 +115,10 @@ let employee = {
 						value.expiry_date_fromat = moment(value.expiry_date).format("DD/MM/YYYY");
 						value.end_date_format = moment(value.expiry_date).format("DD/MM/YYYY");
 					});
+
+					if (this.employees.pagingCounter>1){
+						this.employees.limit = this.employees.pagingCounter + this.employees.limit - 1;
+					}
 					this.$parent.hideLoading();
 					// let employees_serialized = JSON.stringify(this.employees.data);
 					// localStorage.setItem('employeesLocal', employees_serialized);
