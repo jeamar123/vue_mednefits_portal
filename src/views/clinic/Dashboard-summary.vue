@@ -113,7 +113,7 @@
 								<th>DATE</th>
 								<th>TRANSACTION ID</th>
 								<th>NAME</th>
-								<th>NRIC</th>
+								<th>MOBILE NUMBER</th>
 								<th>SERVICE/S</th>
 								<th>MEDNEFITS FEE</th>
 								<th>MEDNEFITS CREDIT</th>
@@ -132,7 +132,7 @@
 									<span>Dhonald Lite</span>
 								</td>
 								<td>
-									<span>S8788703J</span>
+									<span>+65 97887031</span>
 								</td>
 								<td>
 									<span>Consultation and Sample Service	</span>

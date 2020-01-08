@@ -2,8 +2,10 @@
 /* eslint-disable */
 import axios from 'axios';
 import moment from "moment";
+import Vue2Filters from 'vue2-filters'
 // Methods here
 let overview = {
+  mixins: [Vue2Filters.mixin],
   data() {
     return {
       intro : {},

@@ -39,7 +39,24 @@ let removeEmployee = {
       formats: {
         input: ["DD/MM/YYYY"],
         data: ["DD/MM/YYYY"]
-      }
+      },
+      telProps: {
+				defaultCountry: "SG",
+				placeholder: "",
+				enabledCountryCode: true,
+				enabledFlags: true,
+				autocomplete: "off",
+        validCharactersOnly: true,
+        maxLen: 8,
+      },
+      sgAreaCode: {
+				areaCodes: null,
+				dialCode: "65",
+				iso2: "SG",
+				name: "Singapore",
+				priority: 0,
+			},
+
     };
   },
   created() {
@@ -60,6 +77,21 @@ let removeEmployee = {
     );
   },
   methods: {
+    setAreaCode(formattedNumber, { number, isValid, country }) {
+			this.replace_emp_data.mobile_area_code = country.dialCode;
+      this.replace_emp_data.mobile_area_code_country = country;
+
+      if( country.iso2 == 'SG') {
+        this.telProps.maxLen = 8;
+      } else if (country.iso2 == 'MY' || country.iso2 == 'PH') {
+        this.telProps.maxLen = 10;
+      } else {
+        this.telProps.maxLen = 0;
+      }
+
+      // console.log(this.replace_emp_data.mNumber, country.iso2, this.replace_emp_data.mobile_area_code);
+
+		},
     next(data) {
       // this.getSpendingAccountSummary();
       if (data === "outcome") {
@@ -67,6 +99,7 @@ let removeEmployee = {
           //replace
           this.removeState = "replacement";
           this.outcome_checked = 1;
+          // this.$refs.areaCode.choose(this.sgAreaCode);
           console.log(this.outcome_checked, this.removeState);
         } else if (this.outcome_checked == 2) {
           //reserve

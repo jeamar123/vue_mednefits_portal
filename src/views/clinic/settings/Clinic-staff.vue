@@ -126,70 +126,15 @@
 								<span>Mobile</span>
 							</div>
 							<div class="phone-number-input-wrapper">
-								<span @click="btnCountryCode()" class="input-group-addon">+65</span>
+								<vue-tel-input ref="areaCode" v-bind="telProps" @input="setAreaCode"></vue-tel-input>
+								<!-- <span @click="btnCountryCode()" class="input-group-addon">+65</span>
 								<input type="text" placeholder="Phone Number">
 								<ul v-if="showCountryCodeList" class="dropdown-menu">
 									<li>
 										<span>Afghanistan</span>
 										<span>+358</span>
 									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-									<li>
-										<span>Afghanistan</span>
-										<span>+358</span>
-									</li>
-								</ul>
+								</ul> -->
 							</div>
 						</div>
 						<div class="clinic-row-container">
@@ -245,7 +190,9 @@
 						</div>
 						<div>
 							<h1>Services You Provide:</h1>
-							<button>Add Service</button>
+							<router-link :to="{ name: 'ClinicServices' }">
+								<button>Add Service</button>
+							</router-link>
 						</div>
 					</div>
 
@@ -313,7 +260,7 @@
 					<div class="working-hour-body-wrapper">
 						<div></div>
 						<div class="working-hour-body-container">
-							<div v-for="( list, index ) in weekDayNames" class="working-row-container">
+							<div v-for="( list ) in weekDayNames" class="working-row-container" :key="list.index">
 								<div class="day-container">
 									<span>{{ list }}</span>
 								</div>
@@ -326,10 +273,8 @@
 				        </label>
 								<div class="timepicker-container">
 									<div>
-										<span v-if="false">08:00AM</span>
-										<!-- <span v-on:click="showWorkingHourStart( index )">08:00AM</span> -->
+										<!-- <span v-if="false">08:00AM</span>
 										<ul v-if="false" class="dropdown-menu">
-										<!-- <ul v-if="false" v-show="workingHourStartArr[ index ] == true" class="dropdown-menu"> -->
 											<li>
 												<a>12:00 AM</a>
 											</li>
@@ -399,24 +344,15 @@
 											<li>
 												<a>11:00 PM</a>
 											</li>
-										</ul>
-
+										</ul> -->
 										<select>
-											<option>12:00AM</option>
-											<option>12:00AM</option>
-											<option>12:00AM</option>
-											<option>12:00AM</option>
-											<option>12:00AM</option>
-											<option>12:00AM</option>
-											<option>12:00AM</option>
-											<option>12:00AM</option>
-											<option>12:00AM</option>
+											<option v-for="time in hoursPerday" :key="time.index">{{time}}</option>
 										</select>
 									</div>
 									
 									<span>to</span>
 									<div>
-										<span v-if="false">05:30PM</span>
+										<!-- <span v-if="false">05:30PM</span>
 										<ul v-if="false" class="dropdown-menu">
 											<li>
 												<a>12:00 AM</a>
@@ -487,17 +423,9 @@
 											<li>
 												<a>11:00 PM</a>
 											</li>
-										</ul>
+										</ul> -->
 										<select>
-											<option>12:00AM</option>
-											<option>12:00AM</option>
-											<option>12:00AM</option>
-											<option>12:00AM</option>
-											<option>12:00AM</option>
-											<option>12:00AM</option>
-											<option>12:00AM</option>
-											<option>12:00AM</option>
-											<option>12:00AM</option>
+											<option v-for="time in hoursPerday" :key="time.index">{{time}}</option>
 										</select>
 									</div>	
 								</div>
@@ -518,18 +446,18 @@
 
 					<div class="breaks-body-info-container">
 
-						<div v-for="( list, index ) in  dayBreakNames" class="working-row-container">
+						<div v-for="( list, index1 ) in  dayBreakNames" class="working-row-container" :key="list.index">
 							<div class="day-container">
-								<span>{{ list }}</span>
+								<span>{{ list.day }}</span>
 							</div>
 							<div>
-								<button>Add Break</button>
+								<button @click="btnAddBreak(index1, list.day)">Add Break</button>
 							</div>
-							<div class="break-timepicker-wrapper">
+							<div v-if="list.staffBreaktimePicker.length != 0" class="break-timepicker-wrapper">
 								<div>
-									<div class="timepicker-container">
+									<div v-for="(select,index2) in list.staffBreaktimePicker"  :key="select.index" class="timepicker-container">
 										<div>
-											<span v-if="false">08:00AM</span>
+											<!-- <span v-if="false">08:00AM</span>
 											<ul v-if="false" class="dropdown-menu">
 												<li>
 													<a>12:00 AM</a>
@@ -600,22 +528,15 @@
 												<li>
 													<a>11:00 PM</a>
 												</li>
-											</ul>
-											<select>
-												<option>12:00AM</option>
-												<option>12:00AM</option>
-												<option>12:00AM</option>
-												<option>12:00AM</option>
-												<option>12:00AM</option>
-												<option>12:00AM</option>
-												<option>12:00AM</option>
-												<option>12:00AM</option>
-												<option>12:00AM</option>
+											</ul> -->
+											<select v-model="select.start">
+                        <option :value="select.start" disabled selected>{{select.start}}</option>
+                        <option v-for="time in hoursPerday" :key="time.index">{{time}}</option>
 											</select>
 										</div>
 										<span>to</span>
 										<div>
-											<span v-if="false">05:30PM</span>
+											<!-- <span v-if="false">05:30PM</span>
 											<ul v-if="false" class="dropdown-menu">
 												<li>
 													<a>12:00 AM</a>
@@ -686,21 +607,14 @@
 												<li>
 													<a>11:00 PM</a>
 												</li>
-											</ul>
-											<select>
-												<option>12:00AM</option>
-												<option>12:00AM</option>
-												<option>12:00AM</option>
-												<option>12:00AM</option>
-												<option>12:00AM</option>
-												<option>12:00AM</option>
-												<option>12:00AM</option>
-												<option>12:00AM</option>
-												<option>12:00AM</option>
+											</ul> -->
+											<select v-model="select.end">
+                        <option :value="select.end" disabled selected>{{select.end}}</option>
+                        <option v-for="time in hoursPerday" :key="time.index">{{time}}</option>
 											</select>
 										</div>
 										<div class="trash-container">
-											<i class="fa fa-trash"></i>
+											<i @click="btnDeleteBreak(index1, index2)" class="fa fa-trash"></i>
 										</div>	
 									</div>
 								</div>

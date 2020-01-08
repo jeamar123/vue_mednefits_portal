@@ -212,6 +212,50 @@
     float: left;
   }
 
+
+  .reason-wrapper {
+  	text-align: center;
+    display: block;
+    width: 240px;
+    margin: 0px auto;
+
+    input {
+	  	border-radius: 0px;
+	  	border-width: 0px 0px 1px;
+	  }
+
+	  >div {
+	  	width: 100%;
+	  	text-align: center;
+	  	margin: 10px 0 0;
+	  }
+
+	  button {
+	  	border-radius: 5px;
+	  	padding: 6px;
+	  	width: 80px;
+	  	border: 0;
+	  	color: #fff;
+	  }
+
+	  .btn-cancel {
+	  	color: #333;
+	  	border: 1px solid #ddd;
+	  	background: #fff;
+	  	margin: 0 5px 0 0;
+	  }
+
+	  .btn-approve-proceed {
+	  	background: #de6f6f;
+	  	margin: 0 0 0 5px;
+	  }
+
+	  .btn-reject-proceed {
+	  	background: #0086D3;
+	  	margin: 0 0 0 5px;
+	  }
+  }
+
   .status-box-left {
   	background: #ccc;
     padding: 20px 15px 8px 15px;

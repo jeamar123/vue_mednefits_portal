@@ -10,7 +10,7 @@
 	
 						<div class="custom-date-selector">
 							<i class="fa fa-calendar"></i>
-							<v-date-picker :max-date='new Date()' v-model="timeFrame.rangePicker_start" :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}' popover-visibility='focus'>
+							<v-date-picker :max-date='new Date()' v-model="timeFrame.rangePicker_start" :input-props='{class: "activity-custom-input", placeholder: "DD/MM/YYYY", readonly: true}' popover-visibility='focus'>
 							</v-date-picker>
 							<i class="fa fa-caret-down"></i>
 						</div>
@@ -19,7 +19,7 @@
 	
 						<div class="custom-date-selector">
 							<i class="fa fa-calendar"></i>
-							<v-date-picker :max-date='new Date()' v-model="timeFrame.rangePicker_end" :input-props='{class: "activity-custom-input", placeholder: "MM/DD/YYYY", readonly: true}' popover-visibility='focus' :formats='formats'>
+							<v-date-picker :max-date='new Date()' v-model="timeFrame.rangePicker_end" :input-props='{class: "activity-custom-input", placeholder: "DD/MM/YYYY", readonly: true}' popover-visibility='focus' :formats='formats'>
 							</v-date-picker>
 							<i class="fa fa-caret-down"></i>
 						</div>
@@ -36,7 +36,7 @@
 							<!-- @input="searchEmployeeActivity(search_emp)" -->
 							<ul v-if="isActiveSearch" class="dropdown-menu">
 								<!-- <template v-for="list in activity_dates"> -->
-									<li :class="{'active': false}" v-for="(item) in filterBy(searchRes, search_emp)" :key="item.index" @click="searchEmployeeActivity(item.user_id)">
+									<li :class="{'active': false}" v-for="(item) in filterBy(searchRes, search_emp)" :key="item.index" @click="searchEmployeeActivity(item.user_id, item.Name)">
 										<a class="dropdown-item" href="#" role="option">{{item.Name}}</a>
 									</li>
 								<!-- </template> -->
@@ -126,7 +126,8 @@
 				<div class="transaction-container transition-easeInOutCubic-600ms" id="transaction-container-inNetwork" :class="{'transaction-container-active': toggleSidebar.in === true}" v-if="networkType.value === 0">
 					<div class="total-transac-header">
 						<div>
-							<span>{{activity.total_in_network_transactions}}</span> Total Transactions
+							<span>{{inNetwork_pagination.total}}</span> Total Transactions
+							<!-- <span>{{activity.total_in_network_transactions}}</span> Total Transactions -->
 							<div>Total Spent
 								<span>S$<span>{{activity.total_in_network_spent_format_number | decimalTwo}}</span></span>
 							</div>
@@ -182,7 +183,7 @@
 						<div class="trans-pagination-shadow transition-easeInOutCubic-600ms" :class="{'trans-pagination-shadow-active': toggleSidebar.in === true}"></div>
 						<div class="global-pagination">
 							<div class="prev-pagination">
-								<i class="fa fa-angle-left"></i>
+								<i @click="transactionPagination('prev')" class="fa fa-angle-left"></i>
 								<!-- <span>Prev</span> -->
 							</div>
 							<!-- <span class="numeric-pagination active">1</span>
@@ -190,24 +191,24 @@
 									<span class="numeric-pagination">3</span>
 									<span class="numeric-pagination">4</span> -->
 							<div class="next-pagination">
-								<i class="fa fa-angle-right"></i>
+								<i @click="transactionPagination('next')" class="fa fa-angle-right"></i>
 								<!-- <span>Next</span> -->
 							</div>
 							<div class="total-item">
-								<span>1 - 10 of 100</span>
+								<span>{{inNetwork_pagination.from}} - {{inNetwork_pagination.to}} of {{inNetwork_pagination.total}}</span>
 							</div>
 							<div class="per-page-pagination">
-								<span>
-											<span>5</span> per page
+								<span @click="perPage()">
+											<span>{{inNetwork_perPage}}</span> per page
 								</span>
 								<i class="fa fa-angle-down"></i>
-								<div v-if="false" class="per-page">
+								<div v-if="paginationDropdown" class="per-page">
 									<ul class="nav">
-										<li><a href="">5</a></li>
-										<li><a href="">10</a></li>
-										<li><a href="">20</a></li>
-										<li><a href="">50</a></li>
-										<li><a href="">100</a></li>
+										<li><a @click="selectedPerPage(5)">5</a></li>
+										<li><a @click="selectedPerPage(10)">10</a></li>
+										<li><a @click="selectedPerPage(20)">20</a></li>
+										<li><a @click="selectedPerPage(50)">50</a></li>
+										<li><a @click="selectedPerPage(100)">100</a></li>
 									</ul>
 								</div>
 							</div>
@@ -357,7 +358,8 @@
 				<div class="transaction-container e-claim-transactions transition-easeInOutCubic-600ms" :class="{'transaction-container-active': toggleSidebar.out === true}" v-if="networkType.value === 1">
 					<div class="total-transac-header">
 						<div>
-							<span>{{activity.e_claim_transactions.length}}</span> Total Transactions
+							<span>{{outNetwork_pagination.total}}</span> Total Transactions
+							<!-- <span>{{activity.e_claim_transactions.length}}</span> Total Transactions -->
 							<div>Total Spent
 								<span>S$<span>{{activity.e_claim_spending_format_number | decimalTwo}}</span></span>
 							</div>
@@ -401,32 +403,35 @@
 					</div>
 	
 					<div class="activity-pagination-wrapper">
-						<div class="trans-pagination-shadow transition-easeInOutCubic-600ms" :class="{'trans-pagination-shadow-active': toggleSidebar.out === true}"></div>
+						<div class="trans-pagination-shadow transition-easeInOutCubic-600ms" :class="{'trans-pagination-shadow-active': toggleSidebar.in === true}"></div>
 						<div class="global-pagination">
 							<div class="prev-pagination">
-								<i class="fa fa-angle-left"></i>
-								<span>Prev</span>
+								<i @click="transactionPagination('prev')" class="fa fa-angle-left"></i>
+								<!-- <span>Prev</span> -->
 							</div>
-							<span class="numeric-pagination active">1</span>
-							<span class="numeric-pagination">2</span>
-							<span class="numeric-pagination">3</span>
-							<span class="numeric-pagination">4</span>
+							<!-- <span class="numeric-pagination active">1</span>
+									<span class="numeric-pagination">2</span>
+									<span class="numeric-pagination">3</span>
+									<span class="numeric-pagination">4</span> -->
 							<div class="next-pagination">
-								<i class="fa fa-angle-right"></i>
-								<span>Next</span>
+								<i @click="transactionPagination('next')" class="fa fa-angle-right"></i>
+								<!-- <span>Next</span> -->
+							</div>
+							<div class="total-item">
+								<span>{{inNetwork_pagination.from}} - {{inNetwork_pagination.to}} of {{inNetwork_pagination.total}}</span>
 							</div>
 							<div class="per-page-pagination">
-								<span>
-											<span>5</span> per page
+								<span @click="perPage()">
+											<span>{{inNetwork_perPage}}</span> per page
 								</span>
 								<i class="fa fa-angle-down"></i>
-								<div v-if="false" class="per-page">
+								<div v-if="paginationDropdown" class="per-page">
 									<ul class="nav">
-										<li><a href="">5</a></li>
-										<li><a href="">10</a></li>
-										<li><a href="">20</a></li>
-										<li><a href="">50</a></li>
-										<li><a href="">100</a></li>
+										<li><a @click="selectedPerPage(5)">5</a></li>
+										<li><a @click="selectedPerPage(10)">10</a></li>
+										<li><a @click="selectedPerPage(20)">20</a></li>
+										<li><a @click="selectedPerPage(50)">50</a></li>
+										<li><a @click="selectedPerPage(100)">100</a></li>
 									</ul>
 								</div>
 							</div>

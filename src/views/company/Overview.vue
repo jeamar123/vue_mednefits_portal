@@ -44,16 +44,16 @@
               <div class="credit-allocated-container">
                 <h1>
                   S$
-                  <span v-if="spendingType.value === 0">{{credits.total_medical_employee_allocated}}</span>
-                  <span v-if="spendingType.value === 1">{{credits.total_wellness_employee_allocated}}</span>
+                  <span v-if="spendingType.value === 0">{{credits.total_medical_employee_allocated | currency('')}}</span>
+                  <span v-if="spendingType.value === 1">{{credits.total_wellness_employee_allocated | currency('')}}</span>
                 </h1>
                 <span class="credit-text">ALLOCATED</span>
               </div>
               <div class="credit-spent-container">
                 <h1>
                   S$
-                  <span v-if="spendingType.value === 0">{{credits.total_medical_employee_spent}}</span>
-                  <span v-if="spendingType.value === 1">{{credits.total_wellness_employee_spent}}</span>
+                  <span v-if="spendingType.value === 0">{{credits.total_medical_employee_spent | currency('')}}</span>
+                  <span v-if="spendingType.value === 1">{{credits.total_wellness_employee_spent | currency('')}}</span>
                 </h1>
                 <span class="credit-text">SPENT</span>
               </div>
@@ -150,7 +150,7 @@
                 <h6 class="subscription-current-balance">Current balance due</h6>
                 <h4 class="subscription-price">
                   S$
-                  <span>{{billing_status.total_plan_due}}</span>
+                  <span>{{ billing_status.total_plan_due | currency('') }}</span>
                 </h4>
               </div>
               <div class="health-spending-accounts-container">
@@ -158,7 +158,7 @@
                 <h6 class="subscription-current-balance">Current balance due</h6>
                 <h4 class="subscription-price">
                   S$
-                  <span>{{billing_status.total_spending.spending_total_due}}</span>
+                  <span>{{billing_status.total_spending.spending_total_due | currency('')}}</span>
                 </h4>
                 <h6 class="subscription-date" v-if="billing_status.total_spending.due_date">
                   Due by

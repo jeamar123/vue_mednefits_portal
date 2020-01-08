@@ -27,7 +27,7 @@
 							<span>Speciality</span>
 						</div>
 						<div>
-							<button>General Practitioner</button>
+							<input placeholder="General Practitioner">
 						</div>
 					</div>
 					<div class="clinic-row-container">
@@ -35,19 +35,10 @@
 							<span>MRT</span>
 						</div>
 						<div class="mrt-selector-container">
-							<button>Jurong East <i class="fa fa-caret-down"></i></button>
-							<ul v-if="false" class="dropdown-menu">
-								<li>
-									<a>Jurong East</a>
-								</li>
-								<li>
-									<a>Bukit Batok</a>
-								</li>
-								<li>
-									<a>Bukit Gombak</a>
-								</li>
-								<li>
-									<a>Choa Chu Kang</a>
+							<button @click="showMrtSlector = !showMrtSlector">{{clinicDetails.mrt || 'Select MRT'}} <i class="fa fa-caret-down"></i></button>
+							<ul v-if="showMrtSlector" class="dropdown-menu">
+								<li v-for="list in mrt" :key="list"> 
+									<a @click="btnMrtSelector(list)">{{list}}</a>
 								</li>
 							</ul>
 						</div>
@@ -133,8 +124,7 @@
 							</div>
 						</div>
 						<div class="phone-number-input-wrapper">
-							<span class="input-group-addon">+65</span>
-							<input type="text" placeholder="Phone Number">
+							<vue-tel-input ref="areaCode" v-bind="telProps" @input="setAreaCode"></vue-tel-input>
 						</div>
 					</div>
 					<div class="clinic-row-container">

@@ -58,7 +58,7 @@
 
 .clinic-account-wrapper {
 	margin: 20px 0 0;
-	padding: 0 50px;
+	padding: 0 50px 50px;
 
 	.account-header-title {
 		padding: 0 0 15px;
@@ -419,7 +419,7 @@
 	}
 
 	>div:nth-child(2) {
-		width: 75%;
+		// width: 75%;
 	}
 
 	img {
@@ -506,7 +506,7 @@
 	}
 
 	input {
-		width: 242px;
+		width: 224px !important;
 		border-bottom-left-radius: 0;
   	border-top-left-radius: 0;
 	}
@@ -668,7 +668,7 @@
 			border: 0;
 			-webkit-appearance: none;
 			border-radius: 5px;
-			padding: 3px 10px;
+			padding: 5px 10px;
 			width: 80px;
 			text-align: center;
 		}		
@@ -698,7 +698,7 @@
 		border-bottom: 1px solid #DCDCDC;
 
 		.timepicker-container {
-			padding: 0 0 0 45px;
+			padding: 0 0 10px 45px;
 		}
 	}
 
