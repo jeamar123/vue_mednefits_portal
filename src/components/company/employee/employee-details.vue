@@ -83,7 +83,7 @@ let employeeDetails = {
 			addActiveDependent_index: 0,
 			dependents_ctr: 0,
 			cap_per_visit: 0,
-			addActiveDependent_index: 0,
+			// addActiveDependent_index: 0,
 
 			addDependents_arr: [],
 			dependent_data: {},
@@ -222,7 +222,7 @@ let employeeDetails = {
 		editEmployees() {
 			this.modalEdit.employee = !this.modalEdit.employee;
 			this.toEdit = {
-				fname: this.employees.fname,
+				fname: this.employees.name,
 				email: this.employees.email,
 				// lname: this.employees.lname,
 				phone_no: this.employees.phone_no,
@@ -231,7 +231,7 @@ let employeeDetails = {
 				member_id: this.employees.member_id,
 				job_title: this.employees.job_title,
 				dob: this.employees.dob,
-				bank_account: this.employees.bank_account,
+				bank_account_number: this.employees.bank_account_number,
 				user_id: this.employees.user_id
 			};
 			// this.$refs.areaCode.choose(this.sgAreaCode);
@@ -303,15 +303,15 @@ let employeeDetails = {
 
 			if (source == "employees") {
 				let updated_data = {
-					name: `${this.toEdit.fname}`,
+					fullname: `${this.toEdit.fname}`,
 					dob: moment(this.toEdit.dob).format("YYYY-MM-DD"),
 					// nric: this.toEdit.nric,
 					email: this.toEdit.email,
-					phone_no: this.toEdit.phone_no,
+					phone_no: String(this.toEdit.phone_no),
 					job_title: this.toEdit.job_title,
-					postal_code: this.toEdit.postal_code,
-					bank_account: this.toEdit.bank_account,
-					user_id: this.toEdit.user_id
+					postal_code: String(this.toEdit.postal_code),
+					bank_account_number: String(this.toEdit.bank_account_number),
+					member_id: this.toEdit.member_id
 				};
 
 				console.log(updated_data);
@@ -366,7 +366,7 @@ let employeeDetails = {
 		},
 		getSession() {
 			axios
-				.get(`${axios.defaults.serverUrl}/get-hr-session`)
+				.get(`${axios.defaults.serverUrl}/hr/get_hr_session`)
 				.then(res => {
 					this.customer_id = res.data.customer_buy_start_id;
 					this.$parent.hideLoading();
@@ -425,7 +425,7 @@ let employeeDetails = {
 			let page = this.page_active;
 
 			axios
-				.get(`${axios.defaults.serverUrl}/hr/employee/list/${num}?page=${page}`)
+				.get(`${axios.defaults.serverUrl}/hr/employee_lists/?page=${page}&limit=${num}`)
 				.then(res => {
 					this.employees = res.data;
 
@@ -475,7 +475,7 @@ let employeeDetails = {
 		postEmployee(data) {
 			//POST API
 			axios
-				.post(`${axios.defaults.serverUrl}/hr/employee/update`, data)
+				.put(`${axios.defaults.serverUrl}/hr/update_employee_details`, data)
 				.then(res => {
 					this.$parent.hideLoading();
 					this.getEmployeeList();

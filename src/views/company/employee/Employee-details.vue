@@ -256,7 +256,7 @@
                   </div>
                   <div>
                     <strong>Bank Account Number</strong>
-                    <span>{{employees.bank_account || 'N/A'}}</span>
+                    <span>{{employees.bank_account_number || 'N/A'}}</span>
                   </div>
                 </div>
               </div>
@@ -337,12 +337,11 @@
       <!-- add dependents -->
       <div class="add-dependent-wrapper" v-if="showAddDependents">
         <div class="dependent-details">
-          <div class="employee-name">Filbert Tan</div>
+          <div class="employee-name">{{employees.name}}</div>
           <div class="employee-details-header">
-            <h1>Add a dependent</h1>
+            <h1>Add a Dependent</h1>
           </div>
           <div v-if="employees.plan_tier" class="employee-tier-title">
-            <span ng-bind="selectedEmployee.plan_tier.plan_tier_name">1</span> :
             {{employees.plan_tier.plan_tier_name}} : DEPENDENT
             <span>{{addActiveDependent_index}}</span> OF
             <span>{{employees.plan_tier.dependent_head_count}}</span>
@@ -439,7 +438,7 @@
         <div slot="header" class="employee-name-container">
           <span>allan cheam alzula</span>
           <img @click="modalEdit.employee = false" :src="'../assets/img/icons/close-blue.svg'">
-          <h1>Edit employee details</h1>
+          <h1>Edit Employee Details</h1>
         </div>
         <div slot="body">
           <form>

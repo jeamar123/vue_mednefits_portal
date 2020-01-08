@@ -4,7 +4,8 @@ import axios from 'axios'
 
 axios.defaults.baseURL = process.env.BASE_URL;
 // axios.defaults.serverUrl = 'http://staging.medicloud.sg';
-axios.defaults.serverUrl = 'http://medicloud.local';
+// axios.defaults.serverUrl = 'http://medicloud.local';
+axios.defaults.serverUrl = 'http://localhost:5000';
 axios.defaults.user_id = null;
 
 

@@ -54,7 +54,7 @@
 								</td>
 								<td class="status-details-container">
 									<div class="status-details" v-if="emp.account_status && emp.emp_status == 'pending'">
-										<span class="status-color active"></span>
+										<span class="status-color pending"></span>
 										<span>Pending</span>
 									</div>
 									<div class="status-details" v-if="emp.account_status && emp.emp_status == 'active' || emp.account_status && emp.schedule">
@@ -62,7 +62,7 @@
 										<span>Active</span>
 									</div>
 									<div class="status-details" v-if="!emp.account_status || emp.emp_status == 'deleted'">
-										<span class="status-color active"></span>
+										<span class="status-color removed"></span>
 										<span>Removed</span>
 									</div>
 									<div class="status-expired-details" v-if="emp.deletion || emp.schedule">
@@ -117,7 +117,7 @@
 			</div>
 			<div v-if="!isSearchEmp" class="employee-pagination-wrapper">
 				<div class="global-pagination">
-					<div class="prev-pagination">
+					<div class="prev-pagination" :class="{notAllowed : !employees.hasPrevPage}">
 						<i @click="employeePagination('prev')" class="fa fa-angle-left"></i>
 						<!-- <img :src="'../assets/img/icons/right-arrow-angle-blue.svg'"> -->
 						<!-- <span>Prev</span> -->
@@ -126,13 +126,13 @@
 		        		<span class="numeric-pagination">2</span>
 		        		<span class="numeric-pagination">3</span>
 		        		<span class="numeric-pagination">4</span> -->
-					<div class="next-pagination">
+					<div class="next-pagination" :class="{notAllowed : !employees.hasNextPage}">
 						<i @click="employeePagination('next')" class="fa fa-angle-right"></i>
 						<!-- <img :src="'../assets/img/icons/right-arrow-angle-blue.svg'"> -->
 						<!-- <span>Next</span> -->
 					</div>
 					<div class="total-item">
-						<span>{{employees.from}} - {{employees.to}} of {{employees.total_data}}</span>
+						<span>{{employees.pagingCounter}} - {{employees.limit}} of {{employees.totalDocs}}</span>
 					</div>
 					<div class="per-page-pagination">
 						<span @click="perPage()">
