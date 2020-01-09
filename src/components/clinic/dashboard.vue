@@ -69,7 +69,7 @@ var dashboard = {
 		},
 		logout() {
 			this.showLoading();
-			axios.get(axios.defaults.serverUrl + '/app/e_claim/logout')
+			axios.get(axios.defaults.serverUrl.node_clinic + '/app/e_claim/logout')
 				.then(res => {
 					console.log(res);
 					this.hideLoading();

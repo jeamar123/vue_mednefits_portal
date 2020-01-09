@@ -125,7 +125,7 @@ var dashboardSummary = {
 		getTransactions(data) {
 			this.$parent.showLoading();
 			console.log('transaction', data);
-			axios.post(`${axios.defaults.serverUrl}/clinic/transaction_lists`, data)
+			axios.post(`${axios.defaults.serverUrl.node_clinic}/clinic/transaction_lists`, data)
 				.then(res => {
 					console.log(res);
 
