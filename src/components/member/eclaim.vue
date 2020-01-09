@@ -15,7 +15,7 @@
 				},
 				uploadOptions : {
 					headers : {},
-					url : axios.defaults.serverUrl + "/employee/save/e_claim_receipt",
+					url : axios.defaults.serverUrl.node_member + "/employee/save/e_claim_receipt",
 				},
 				isNextBtnDisabled : false,
 				claimTypesArr: [],
@@ -55,7 +55,7 @@
 	    	this.$refs.receiptUploader.value = null;
 	    	this.isNextBtnDisabled = true;
 				axios.post( 
-					axios.defaults.serverUrl + "/employee/save/e_claim_receipt", 
+					axios.defaults.serverUrl.node_member + "/employee/save/e_claim_receipt", 
 					formData, 
 					{ headers: { 'Content-Type': 'multipart/form-data' } })
 					.then(res => {
@@ -83,7 +83,7 @@
 			},
 			getClaimTypes( ){
 	    	this.$parent.showLoading();
-				axios.get( axios.defaults.serverUrl + "/employee/get_health_partner_lists?type=" + this.eclaim_data.spending_type )
+				axios.get( axios.defaults.serverUrl.node_member + "/employee/get_health_partner_lists?type=" + this.eclaim_data.spending_type )
 					.then(res => {
 						// console.log( res );
 						this.claimTypesArr = res.data;
@@ -95,7 +95,7 @@
 					});
 			},
 			getClaimMembers( ){
-				axios.get( axios.defaults.serverUrl + "/employee/get_members/" + this.$parent.user_id )
+				axios.get( axios.defaults.serverUrl.node_member + "/employee/get_members/" + this.$parent.user_id )
 					.then(res => {
 						// console.log( res );
 						this.claimMembers = res.data;
@@ -276,7 +276,7 @@
 				console.log( data );
 				this.$parent.showLoading();
 				if( this.eclaim_data.spending_type == 'medical' ){
-					axios.post( axios.defaults.serverUrl + "/employee/create/e_claim", data)
+					axios.post( axios.defaults.serverUrl.node_member + "/employee/create/e_claim", data)
 						.then(res => {
 							console.log( res );
 							this.$parent.hideLoading();
@@ -292,7 +292,7 @@
 							this.$parent.hideLoading();
 						});
 				}else{
-					axios.post( axios.defaults.serverUrl + "/employee/create/e_claim_wellness", data)
+					axios.post( axios.defaults.serverUrl.node_member + "/employee/create/e_claim_wellness", data)
 						.then(res => {
 							console.log( res );
 							this.$parent.hideLoading();

@@ -17,12 +17,12 @@ let documentCenter = {
   methods: {
     getDocumentData(){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/get/active_plan_hr')
+      axios.get( axios.defaults.serverUrl.node_company + '/get/active_plan_hr')
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);
           if( res.status == 200 ){
-            this.documentData = axios.defaults.serverUrl + '/get/certificate/' + res.data;
+            this.documentData = axios.defaults.serverUrl.node_company + '/get/certificate/' + res.data;
           }else{
             this.$parent.swal('Error!', res.data.message, 'error');
           }

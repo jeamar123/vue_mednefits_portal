@@ -108,7 +108,7 @@ let createTeamBenefitsTier = {
             plan_tier_id : this.tierDetials.plan_tier_id
           }
           this.$parent.showLoading();
-          axios.post( axios.defaults.serverUrl + '/hr/remove_plan_tier', data )
+          axios.post( axios.defaults.serverUrl.node_company + '/hr/remove_plan_tier', data )
             .then(res => {
               this.$parent.hideLoading();
               console.log(res);
@@ -137,7 +137,7 @@ let createTeamBenefitsTier = {
         member_head_count: data.empCount,
         dependent_head_count: data.depCount
       };
-      axios.post( axios.defaults.serverUrl + '/hr/create/plan_tier', add_data )
+      axios.post( axios.defaults.serverUrl.node_company + '/hr/create/plan_tier', add_data )
         .then(res => {
           this.$parent.hideLoading();
           // console.log(res);
@@ -176,7 +176,7 @@ let createTeamBenefitsTier = {
             member_head_count: data.empCount,
             dependent_head_count: data.depCount
           };
-          axios.post( axios.defaults.serverUrl + '/hr/update_plan_tier', add_data )
+          axios.post( axios.defaults.serverUrl.node_company + '/hr/update_plan_tier', add_data )
             .then(res => {
               this.$parent.hideLoading();
               // console.log(res);
@@ -197,7 +197,7 @@ let createTeamBenefitsTier = {
     },
     getTierList(){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/get_plan_tiers' )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/get_plan_tiers' )
         .then(res => {
           this.$parent.hideLoading();
           // console.log(res);

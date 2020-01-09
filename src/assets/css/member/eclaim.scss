@@ -505,3 +505,49 @@
   display: inline-block;
   width: 30px;
 }
+@media (max-width: 991px) {
+  .eclaim-container {
+    padding: 150px 15px 20px 15px;
+  }
+  .eclaim-body-container {
+    margin: 50px 0;
+  }
+}
+@media (max-width: 783px) {
+  .eclaim-form-wrapper .form-div label {
+    flex: 1.5;
+  }
+}
+@media (max-width: 767px) {
+  .eclaim-container {
+    padding: 120px 15px 20px 15px;
+  }
+  .eclaim-body-container {
+    grid-template-columns: 1fr;
+  }
+  .eclaim-steps-wrapper {
+    display: none;
+  }
+  .eclaim-title {
+    display: block;
+  }
+  .eclaim-title p {
+    font-size: 14px;
+    font-weight: 700;
+    color: #999;
+    margin: 10px 0 30px;
+    text-align: center;
+  }
+}
+@media (max-width: 450px) {
+  .eclaim-form-wrapper .form-div {
+    display: block;
+  }
+  .eclaim-input-wrapper .btn-medical {
+    margin-right: 10px;
+  }
+  .eclaim-form-wrapper .form-div label {
+    margin-bottom: 5px;
+    display: block;
+  }
+}

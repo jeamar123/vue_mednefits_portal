@@ -35,7 +35,7 @@
 		methods: {
 			getDetails( ){
 	    	this.$parent.showLoading();
-				axios.get( axios.defaults.serverUrl + "/employee/get/user_details/" + this.$parent.user_id)
+				axios.get( axios.defaults.serverUrl.node_member + "/employee/get/user_details/" + this.$parent.user_id)
 					.then(res => {
 						// console.log( res );
 						this.user_details = res.data.data;
@@ -53,7 +53,7 @@
 	    		start : moment(this.start_date).format('YYYY-MM-DD'),
 	    		end : moment(this.end_date).format('YYYY-MM-DD'),
 	    	}
-				axios.post( axios.defaults.serverUrl + "/employee/search_eclaim_activity/" + this.$parent.user_id, data)
+				axios.post( axios.defaults.serverUrl.node_member + "/employee/search_eclaim_activity/" + this.$parent.user_id, data)
 					.then(res => {
 						// console.log( res );
 						this.activity_results = res.data;
@@ -106,7 +106,7 @@
 	    	console.log( formData );
 				this.$parent.showLoading();
 				axios.post( 
-					axios.defaults.serverUrl + "/employee/create/transaction_receipt/" + this.$parent.user_id, 
+					axios.defaults.serverUrl.node_member + "/employee/create/transaction_receipt/" + this.$parent.user_id, 
 					formData, 
 					{ headers: { 'Content-Type': 'multipart/form-data' } })
 					.then(res => {
@@ -130,7 +130,7 @@
 					});
 			},
 			downloadMednefitsReceipt( id ){
-				window.open( axios.defaults.serverUrl + '/download/transaction_receipt/' + id );
+				window.open( axios.defaults.serverUrl.node_member + '/download/transaction_receipt/' + id );
 			},
 			downloadReceipt( files ){
 				// files.map(function(value, key) {

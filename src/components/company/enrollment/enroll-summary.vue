@@ -24,6 +24,10 @@ let enrollSumamary = {
       isAllChecked: false, 
       isChecked: [], 
       selected_emp: [], 
+      formats: {
+				input: ["DD/MM/YYYY"],
+				data: ["DD/MM/YYYY"]
+			}
     };
   },
   created(){
@@ -83,19 +87,19 @@ let enrollSumamary = {
         this.$parent.swal( 'Error!', 'First name is required!', 'error' );
         return false;
       }
-      if( !data.last_name ){
-        this.$parent.swal( 'Error!', 'Last name is required!', 'error' );
-        return false;
-      }
-      if( !data.nric ){
-        this.$parent.swal( 'Error!', 'NRIC/FIN is required!', 'error' );
-        return false;
-      }else{
-        if( this.checkNRIC( data.nric ) == false ){
-          this.$parent.swal( 'Error!', 'Invalid NRIC!', 'error' );
-          return false;
-        }
-      }
+      // if( !data.last_name ){
+      //   this.$parent.swal( 'Error!', 'Last name is required!', 'error' );
+      //   return false;
+      // }
+      // if( !data.nric ){
+      //   this.$parent.swal( 'Error!', 'NRIC/FIN is required!', 'error' );
+      //   return false;
+      // }else{
+      //   if( this.checkNRIC( data.nric ) == false ){
+      //     this.$parent.swal( 'Error!', 'Invalid NRIC!', 'error' );
+      //     return false;
+      //   }
+      // }
       if( !data.dob ){
         this.$parent.swal( 'Error!', 'Date of Birth is required!', 'error' );
         return false;
@@ -117,19 +121,19 @@ let enrollSumamary = {
         this.$parent.swal( 'Error!', 'First name is required!', 'error' );
         return false;
       }
-      if( !data.lname ){
-        this.$parent.swal( 'Error!', 'Last name is required!', 'error' );
-        return false;
-      }
-      if( !data.nricFinNo ){
-        this.$parent.swal( 'Error!', 'NRIC/FIN is required!', 'error' );
-        return false;
-      }else{
-        if( this.checkNRIC( data.nricFinNo ) == false ){
-          this.$parent.swal( 'Error!', 'Invalid NRIC!', 'error' );
-          return false;
-        }
-      }
+      // if( !data.lname ){
+      //   this.$parent.swal( 'Error!', 'Last name is required!', 'error' );
+      //   return false;
+      // }
+      // if( !data.nricFinNo ){
+      //   this.$parent.swal( 'Error!', 'NRIC/FIN is required!', 'error' );
+      //   return false;
+      // }else{
+      //   if( this.checkNRIC( data.nricFinNo ) == false ){
+      //     this.$parent.swal( 'Error!', 'Invalid NRIC!', 'error' );
+      //     return false;
+      //   }
+      // }
       if( !data.dob ){
         this.$parent.swal( 'Error!', 'Date of Birth is required!', 'error' );
         return false;
@@ -161,10 +165,10 @@ let enrollSumamary = {
       }
       return true; 
     },
-    checkNRIC( value ){
-      var nric_pattern = new RegExp('^[stfgSTFG]{1}[0-9]{7}[a-zA-z]{1}$');
-      return nric_pattern.test( value );
-    },
+    // checkNRIC( value ){
+    //   var nric_pattern = new RegExp('^[stfgSTFG]{1}[0-9]{7}[a-zA-z]{1}$');
+    //   return nric_pattern.test( value );
+    // },
     checkEmail( value ){
       var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
       return regex.test( value );
@@ -182,7 +186,7 @@ let enrollSumamary = {
       }).then(result => {
         if (result.value) {
           for( var i = 0; i < this.employeeStorage.length; i++ ){
-            axios.get( axios.defaults.serverUrl + '/remove/temp_enrollee/' + this.employeeStorage[i].employee.temp_enrollment_id )
+            axios.get( axios.defaults.serverUrl.node_company + '/remove/temp_enrollee/' + this.employeeStorage[i].employee.temp_enrollment_id )
               .then(res => {
                 this.$parent.hideLoading();
                 // console.log(res);
@@ -219,8 +223,8 @@ let enrollSumamary = {
       if (x === "edit") {
         this.employeeDetails = {
           fname: this.employeeStorage[index].employee.first_name,
-          lname: this.employeeStorage[index].employee.last_name,
-          nricFinNo: this.employeeStorage[index].employee.nric,
+          // lname: this.employeeStorage[index].employee.last_name,
+          // nricFinNo: this.employeeStorage[index].employee.nric,
           dob: new Date( moment( this.employeeStorage[index].employee.dob, ['DD/MM/YYYY', 'YYYY-MM-DD'] ) ),
           email: this.employeeStorage[index].employee.email,
           mNumber: this.employeeStorage[index].employee.mobile,
@@ -254,7 +258,7 @@ let enrollSumamary = {
         temp_enrollment_id : value.employee.temp_enrollment_id
       }
       this.$parent.showLoading();
-      axios.post( axios.defaults.serverUrl + '/hr/create/employee_user', data)
+      axios.post( axios.defaults.serverUrl.node_company + '/hr/create/employee_user', data)
         .then(res => {
           // console.log(res);
           value.loading = false;
@@ -321,8 +325,8 @@ let enrollSumamary = {
       var data = {
         temp_enrollment_id : this.employeeStorage[this.indexData].employee.temp_enrollment_id,
         first_name: this.employeeDetails.fname,
-        last_name: this.employeeDetails.lname,
-        nric: this.employeeDetails.nricFinNo,
+        last_name: this.employeeDetails.fname, // to remove
+        nric: 'S0249945B', //to remove
         dob: moment(this.employeeDetails.dob, [ 'YYYY-MM-DDTHH:mm:ss.SSSSZ', 'DD/MM/YYYY', 'YYYY-MM-DD' ]).format('DD/MM/YYYY'),
         // dob: moment(this.employeeDetails.dob).format('YYYY-MM-DD'),
         email: this.employeeDetails.email,
@@ -336,7 +340,7 @@ let enrollSumamary = {
         mobile_area_code: this.employeeDetails.mAreaCode
       }
       this.$parent.showLoading();
-      axios.post( axios.defaults.serverUrl + '/hr/update/tier_employee_enrollee_details', data )
+      axios.post( axios.defaults.serverUrl.node_company + '/hr/update/tier_employee_enrollee_details', data )
         .then(res => {
           this.$parent.hideLoading();
           // console.log(res);
@@ -363,14 +367,14 @@ let enrollSumamary = {
         var data = {
           dependent_temp_id : this.employeeDetails.dependents[i].enrollee.dependent_temp_id,
           first_name : this.employeeDetails.dependents[i].enrollee.first_name,
-          last_name : this.employeeDetails.dependents[i].enrollee.last_name,
-          nric : this.employeeDetails.dependents[i].enrollee.nric,
+          // last_name : this.employeeDetails.dependents[i].enrollee.last_name,
+          // nric : this.employeeDetails.dependents[i].enrollee.nric,
           dob : moment(this.employeeDetails.dependents[i].enrollee.dob, [ 'YYYY-MM-DDTHH:mm:ss.SSSSZ', 'DD/MM/YYYY', 'YYYY-MM-DD' ]).format('YYYY-MM-DD'),
           plan_start : moment(this.employeeDetails.dependents[i].enrollee.plan_start, [ 'YYYY-MM-DDTHH:mm:ss.SSSSZ', 'DD/MM/YYYY', 'YYYY-MM-DD' ]).format('YYYY-MM-DD'),
           relationship : this.employeeDetails.dependents[i].enrollee.relationship,
         } 
         this.$parent.showLoading();
-        axios.post( axios.defaults.serverUrl + '/hr/update_tier_dependent_enrollee_details', data )
+        axios.post( axios.defaults.serverUrl.node_company + '/hr/update_tier_dependent_enrollee_details', data )
           .then(res => {
             this.$parent.hideLoading();
             // console.log(res);
@@ -402,7 +406,7 @@ let enrollSumamary = {
       }).then(result => {
         if (result.value) {
           this.$parent.showLoading();
-          axios.get( axios.defaults.serverUrl + '/remove/temp_enrollee/' + id )
+          axios.get( axios.defaults.serverUrl.node_company + '/remove/temp_enrollee/' + id )
             .then(res => {
               this.$parent.hideLoading();
               // console.log(res);
@@ -435,7 +439,7 @@ let enrollSumamary = {
       }).then(result => {
         if (result.value) {
           for( var i = 0; i < this.selected_emp.length; i++ ){
-            axios.get( axios.defaults.serverUrl + '/remove/temp_enrollee/' + this.selected_emp[i] )
+            axios.get( axios.defaults.serverUrl.node_company + '/remove/temp_enrollee/' + this.selected_emp[i] )
               .then(res => {
                 this.$parent.hideLoading();
                 // console.log(res);
@@ -459,7 +463,7 @@ let enrollSumamary = {
     },
     getTempEmployees(){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/get/plan_tier_enrolless' )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/get/plan_tier_enrolless' )
         .then(res => {
           this.$parent.hideLoading();
           // console.log(res);
@@ -484,7 +488,7 @@ let enrollSumamary = {
     },
     getCompanyEnrollmentCountStatus(){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/enrollment_progress' )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/enrollment_progress' )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);

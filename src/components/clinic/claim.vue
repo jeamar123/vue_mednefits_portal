@@ -12,10 +12,29 @@
 	        verifyUser: false,
 	        manualClaims: false,
 	        eCardModal: false,
-	        checkClaims: false,
-	      },
+					checkClaims: false,
+				},
+				manualClaimData: {},
+				serviceDropdown: false,
 			}
 		},
+		methods: {
+			handleSelectService(){ //show hide dropdown sa service input
+				this.serviceDropdown = !this.serviceDropdown;
+			},
+			handleSelectedDropdown(source, data) { //pili ug data sa dropdown para display sa input
+				if( source == 'service') {
+					this.manualClaimData.service = data;
+					this.handleSelectService();
+				}
+			},
+			handleDelete(source) {
+				if (source == 'service') {
+					this.manualClaimData.service = undefined;
+					this.handleSelectService();
+				}
+			}
+		}
 		
 	
 	}

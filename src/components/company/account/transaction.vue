@@ -64,29 +64,29 @@ let transaction = {
     },
     downDepedentInvoice( id ){
 
-      window.open( axios.defaults.serverUrl + '/hr/download_dependent_invoice?dependent_plan_id=' + id + '&token=' + this.download_token );
+      window.open( axios.defaults.serverUrl.node_company + '/hr/download_dependent_invoice?dependent_plan_id=' + id + '&token=' + this.download_token );
     },
     downloadSpendingReceipt( data ){
       if(this.download_token.live == true) {
         window.open(this.download_token.download_link + "/spending_receipt_download?id=" + data.statement_id + '&token=' + this.download_token);
       } else {
-        window.open(axios.defaults.serverUrl + '/hr/download_spending_receipt?statement_id=' + data.statement_id + '&token=' + this.download_token);
+        window.open(axios.defaults.serverUrl.node_company + '/hr/download_spending_receipt?statement_id=' + data.statement_id + '&token=' + this.download_token);
       }
     },
     downloadSpendingInvoice( data ){
       if(this.download_token.live == true) {
         window.open(this.download_token.download_link + "/spending_invoice_download?id=" + data.statement_id + '&token=' + this.download_token);
       } else {
-        window.open(axios.defaults.serverUrl + '/hr/statement_download?id=' + data.statement_id + '&token=' + this.download_token);
+        window.open(axios.defaults.serverUrl.node_company + '/hr/statement_download?id=' + data.statement_id + '&token=' + this.download_token);
       }
     },
     downloadSpendingDeposit( id ){
 
-      window.open( axios.defaults.serverUrl + '/hr/spending_desposit?id=' + id + '&token=' + this.download_token);
+      window.open( axios.defaults.serverUrl.node_company + '/hr/spending_desposit?id=' + id + '&token=' + this.download_token);
     },
     downloadRefund( id ){
 
-      window.open( axios.defaults.serverUrl + '/hr/get_cancellation_details?id=' + id + '&token=' + this.download_token);
+      window.open( axios.defaults.serverUrl.node_company + '/hr/get_cancellation_details?id=' + id + '&token=' + this.download_token);
     },
     transactionsNextPrev( isNext ){
       if( isNext ){
@@ -114,7 +114,7 @@ let transaction = {
     },
     getTransactions( page ){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/transactions?page=' + page )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/transactions?page=' + page )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);
@@ -133,7 +133,7 @@ let transaction = {
     },
     getBenefitsSpendingTransactions( page ){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/benefits_spending_invoice_transactions?page=' + page )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/benefits_spending_invoice_transactions?page=' + page )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);
@@ -152,7 +152,7 @@ let transaction = {
     },
     getSpendingDeposits( page ){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/get_spending_deposits?page=' + page )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/get_spending_deposits?page=' + page )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);
@@ -171,7 +171,7 @@ let transaction = {
     },
     getRefunds( ){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/get_refunds' )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/get_refunds' )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);
@@ -189,7 +189,7 @@ let transaction = {
     },
     getUsersRefund( data ){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/get_runded_lists/' + data.payment_refund_id )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/get_runded_lists/' + data.payment_refund_id )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);

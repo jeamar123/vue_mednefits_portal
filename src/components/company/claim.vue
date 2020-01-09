@@ -165,7 +165,7 @@ let claim = {
       if( this.selected_user_id != null ){
         data.user_id = this.selected_user_id;
       }
-      var api_url = axios.defaults.serverUrl + "/hr/download_out_of_network_csv?token=" + data.token + "&start=" + data.start + "&end=" + data.end + "&spending_type=" + data.spending_type + "&status=" + data.status;
+      var api_url = axios.defaults.serverUrl.node_company + "/hr/download_out_of_network_csv?token=" + data.token + "&start=" + data.start + "&end=" + data.end + "&spending_type=" + data.spending_type + "&status=" + data.status;
       if( data.user_id ){
         api_url += ("&user_id=" + data.user_id);
       }
@@ -239,7 +239,7 @@ let claim = {
         rejected_reason : list.reason
       }
       this.$parent.showLoading();
-      axios.post( axios.defaults.serverUrl + '/hr/e_claim_update_status', data )
+      axios.post( axios.defaults.serverUrl.node_company + '/hr/e_claim_update_status', data )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);
@@ -289,7 +289,7 @@ let claim = {
           e_claim_id : list.trans_id
         }
         this.$parent.showLoading();
-        axios.post( axios.defaults.serverUrl + '/hr/revert_pending_e_claim', data )
+        axios.post( axios.defaults.serverUrl.node_company + '/hr/revert_pending_e_claim', data )
           .then(res => {
             this.$parent.hideLoading();
             console.log(res);
@@ -312,7 +312,7 @@ let claim = {
     },
     getSession(){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/get-hr-session' )
+      axios.get( axios.defaults.serverUrl.node_company + '/get-hr-session' )
         .then(res => {
           // this.$parent.hideLoading();
           console.log(res);
@@ -331,7 +331,7 @@ let claim = {
     },
     getEmployeeLists(){
       // this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/employee_lists' )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/employee_lists' )
         .then(res => {
           // this.$parent.hideLoading();
           console.log(res);
@@ -350,7 +350,7 @@ let claim = {
     },
     getCompanyDetails(){
       // this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/details' )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/details' )
         .then(res => {
           // this.$parent.hideLoading();
           console.log(res);
@@ -376,7 +376,7 @@ let claim = {
       }
       this.isActiveSearch = false;
       this.$parent.showLoading();
-      axios.post( axios.defaults.serverUrl + '/hr/search_employee_e_claim_activity', data)
+      axios.post( axios.defaults.serverUrl.node_company + '/hr/search_employee_e_claim_activity', data)
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);
@@ -400,7 +400,7 @@ let claim = {
         spending_type : this.eclaimSpendingType.text,
       }
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/e_claim_activity?page=' + data.page + '&start=' + data.start + '&end=' + data.end + '&spending_type=' + data.spending_type )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/e_claim_activity?page=' + data.page + '&start=' + data.start + '&end=' + data.end + '&spending_type=' + data.spending_type )
         .then(res => {
           
           console.log(res);

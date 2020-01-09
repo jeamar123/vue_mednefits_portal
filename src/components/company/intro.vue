@@ -9,19 +9,26 @@ let intro = {
     };
   },
   created() {
-		this.getCompanyStatus();
-		console.log( axios.defaults.headers );
+  	setTimeout(() => {
+			this.getCompanyStatus();
+    }, 500);
 	},
   methods: {
   	getCompanyStatus(){
   		this.$parent.showLoading();
-    	axios.get( axios.defaults.serverUrl + '/hr/check_plan' )
+    	axios.get( axios.defaults.serverUrl.node_company + '/hr/check_plan' )
 				.then(res => {
-					this.$parent.hideLoading();
 					console.log(res);
 					if( res.data.status ){
 						this.introData = res.data.data;
+						if( this.introData.checks == true ){
+							this.$router.push({ name: 'CompanyHome' });
+							this.$parent.hideLoading();
+						} else {
+							this.$parent.hideLoading();
+						}
 					}else{
+						this.$parent.hideLoading();
 						this.$parent.swal('Error!', res.data.message, 'error');
 					}
 				})

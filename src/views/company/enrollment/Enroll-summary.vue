@@ -12,9 +12,9 @@
                   <th>
                     <input type="checkbox" v-model="isAllChecked" v-on:change="checkAll( isAllChecked )">
                   </th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>NRIC/FIN</th>
+                  <th>Full Name</th>
+                  <!-- <th>Last Name</th> -->
+                  <!-- <th>NRIC/FIN</th> -->
                   <th>Date of Birth</th>
                   <th>Work Email</th>
                   <th>Mobile</th>
@@ -22,9 +22,9 @@
                   <th>Wellness Credits</th>
                   <template v-show="maxDep != 0">
                     <template v-for="depHead in maxDep">
-                      <th :key="depHead.id">Dependent {{depHead}} First Name</th>
-                      <th :key="depHead.id">Dependent {{depHead}} Last Name</th>
-                      <th :key="depHead.id"> Dependent {{depHead}} NRIC/FIN Name</th>
+                      <th :key="depHead.id">Dependent {{depHead}} Full Name</th>
+                      <!-- <th :key="depHead.id">Dependent {{depHead}} Last Name</th> -->
+                      <!-- <th :key="depHead.id"> Dependent {{depHead}} NRIC/FIN </th> -->
                       <th :key="depHead.id">Dependent {{depHead}} Date of Birth</th>
                       <th :key="depHead.id">Dependent {{depHead}} Relationship</th>
                     </template>
@@ -50,8 +50,8 @@
                     </div>
                   </td>
                   <!-- <td>{{enroll.lname}}</td> -->
-                  <td>{{enroll.employee.last_name}}</td>
-                  <td>{{enroll.employee.nric}}</td>
+                  <!-- <td>{{enroll.employee.last_name}}</td> -->
+                  <!-- <td>{{enroll.employee.nric}}</td> -->
                   <td>{{enroll.employee.dob | formatDate}}</td>
                   <td>{{enroll.employee.email}}</td>
                   <td>{{enroll.employee.format_mobile}}</td>
@@ -61,13 +61,11 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
                   </template>
                   <template v-for="depDetails in enroll.dependents">
                     <td :key="depDetails.id">{{depDetails.enrollee.first_name}}</td>
-                    <td :key="depDetails.id">{{depDetails.enrollee.last_name}}</td>
-                    <td :key="depDetails.id">{{depDetails.enrollee.nric}}</td>
+                    <!-- <td :key="depDetails.id">{{depDetails.enrollee.last_name}}</td> -->
+                    <!-- <td :key="depDetails.id">{{depDetails.enrollee.nric}}</td> -->
                     <td :key="depDetails.id">{{depDetails.enrollee.dob | formatDate}}</td>
                     <td :key="depDetails.id">{{depDetails.enrollee.relationship}}</td>
                   </template>
@@ -100,27 +98,27 @@
           <div slot="body">
             <form>
               <div class="modal-input-wrapper">
-                <label>First Name</label>
+                <label>Full Name</label>
                 <input type="text" v-model="employeeDetails.fname">
                 <span class="err-msg">{{ employeeDetails.errors.first_name_message }}</span>
               </div>
-              <div class="modal-input-wrapper">
+              <!-- <div class="modal-input-wrapper">
                 <label>Last Name</label>
                 <input type="text" v-model="employeeDetails.lname">
                 <span class="err-msg">{{ employeeDetails.errors.last_name_message }}</span>
-              </div>
-              <div class="modal-input-wrapper">
+              </div> -->
+              <!-- <div class="modal-input-wrapper">
                 <label>NRIC/FIN</label>
                 <input type="text" v-model="employeeDetails.nricFinNo">
                 <span class="err-msg">{{ employeeDetails.errors.nric_message }}</span>
-              </div>
+              </div> -->
               <div class="modal-input-wrapper">
                 <label>Date of Birth</label>
                 <v-date-picker
                   popoverDirection="top"
                   :max-date="new Date()"
-                  v-model="employeeDetails.dob"
-                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                  :formats ='formats'
+                  :input-props='{class: "vDatepicker", placeholder: "DD/MM/YYYY", readonly: true, }'
                   popover-visibility="focus"
                 ></v-date-picker>
                 <span class="err-msg">{{ employeeDetails.errors.dob_message }}</span>
@@ -132,12 +130,12 @@
               </div>
               <div class="modal-input-wrapper">
                 <label>Mobile</label>
-                <input type="text" v-model="employeeDetails.mNumber">
+                <input type="number" v-model="employeeDetails.mNumber">
                 <span class="err-msg">{{ employeeDetails.errors.mobile_message }}</span>
               </div>
               <div class="modal-input-wrapper">
                 <label>Mobile Area Code</label>
-                <input type="text" v-model="employeeDetails.mAreaCode">
+                <input type="number" v-model="employeeDetails.mAreaCode">
                 <span class="err-msg"></span>
                 <!-- <span class="err-msg">{{ employeeDetails.errors.mobile_area_code_message }}</span> -->
               </div>
@@ -156,8 +154,9 @@
                 <v-date-picker
                   popoverDirection="top"
                   :date="new Date()"
+                  :formats ='formats'
                   v-model="employeeDetails.startDate"
-                  :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                  :input-props='{class: "vDatepicker", placeholder: "DD/MM/YYYY", readonly: true, }'
                   popover-visibility="focus"
                 ></v-date-picker>
                 <span class="err-msg">{{ employeeDetails.errors.start_date_message }}</span>
@@ -165,27 +164,28 @@
               <template v-for="list in employeeDetails.dependents">
                 <p class="dependent-text">Dependent 1</p>
                 <div class="modal-input-wrapper">
-                  <label>First Name</label>
+                  <label>Full Name</label>
                   <input type="text" v-model="list.enrollee.first_name">
                   <span class="err-msg">{{ list.error_logs.first_name_message }}</span>
                 </div>
-                <div class="modal-input-wrapper">
+                <!-- <div class="modal-input-wrapper">
                   <label>Last Name</label>
                   <input type="text" v-model="list.enrollee.last_name">
                   <span class="err-msg">{{ list.error_logs.last_name_message }}</span>
-                </div>
-                <div class="modal-input-wrapper">
+                </div> -->
+                <!-- <div class="modal-input-wrapper">
                   <label>NRIC/FIN</label>
                   <input type="text" v-model="list.enrollee.nric">
                   <span class="err-msg">{{ list.error_logs.nric_message }}</span>
-                </div>
+                </div> -->
                 <div class="modal-input-wrapper">
                   <label>Date of Birth</label>
                   <v-date-picker
                     popoverDirection="top"
                     :max-date="new Date()"
                     v-model="list.enrollee.dob"
-                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                    :formats ='formats'
+                    :input-props='{class: "vDatepicker", placeholder: "DD/MM/YYYY", readonly: true, }'
                     popover-visibility="focus"
                   ></v-date-picker>
                   <span class="err-msg">{{ list.error_logs.dob_message }}</span>
@@ -206,7 +206,8 @@
                     popoverDirection="top"
                     :date="new Date()"
                     v-model="list.enrollee.plan_start"
-                    :input-props='{class: "vDatepicker", placeholder: "MM/DD/YYYY", readonly: true, }'
+                    :formats ='formats'
+                    :input-props='{class: "vDatepicker", placeholder: "DD/MM/YYYY", readonly: true, }'
                     popover-visibility="focus"
                   ></v-date-picker>
                   <span class="err-msg">{{ list.error_logs.start_date_message }}</span>

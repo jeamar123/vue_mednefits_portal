@@ -40,7 +40,7 @@
 		methods: {
 			getPackages ( ) {
 	    	this.$parent.showLoading();
-				axios.get( axios.defaults.serverUrl + '/employee_care_package/' + this.$parent.user_id)
+				axios.get( axios.defaults.serverUrl.node_member + '/employee_care_package/' + this.$parent.user_id)
 					.then(res => {
 						console.log( res );
 						this.user_data = res.data;
@@ -54,7 +54,7 @@
 			},
 			getCurrentActivityMedical ( ) {
 	    	this.$parent.showLoading();
-				axios.get( axios.defaults.serverUrl + '/employee/get_current_spending/' + this.$parent.user_id)
+				axios.get( axios.defaults.serverUrl.node_member + '/employee/get_current_spending/' + this.$parent.user_id)
 					.then(res => {
 						// console.log( res );
 						this.spending_data = res.data;
@@ -68,7 +68,7 @@
 			},
 			getCurrentActivityWellness ( ) {
 	    	this.$parent.showLoading();
-				axios.get( axios.defaults.serverUrl + '/employee/get_current_wellness_spending/' + this.$parent.user_id)
+				axios.get( axios.defaults.serverUrl.node_member + '/employee/get_current_wellness_spending/' + this.$parent.user_id)
 					.then(res => {
 						// console.log( res );
 						this.spending_data = res.data;

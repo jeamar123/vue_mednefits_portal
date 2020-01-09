@@ -70,7 +70,7 @@
 					oldpassword: data.current_password ,
 					password: data.new_password
 				}
-				axios.post( axios.defaults.serverUrl + '/employee/change_password', pass)
+				axios.post( axios.defaults.serverUrl.node_member + '/employee/change_password', pass)
 					.then(res => {
 						// console.log( res );
 						if( res.data.status ){
@@ -88,7 +88,7 @@
       },
       logout( ){
       	this.showLoading();
-				axios.get( axios.defaults.serverUrl + '/app/e_claim/logout')
+				axios.get( axios.defaults.serverUrl.node_member + '/app/e_claim/logout')
 					.then(res => {
 						console.log( res );
 						this.hideLoading();

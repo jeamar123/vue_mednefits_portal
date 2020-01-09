@@ -54,16 +54,16 @@ let accountPayments = {
       // end Accounts & payment
     },
     activePlanDownloadInvoice( id ){
-      window.open( axios.defaults.serverUrl + '/benefits/invoice?invoice_id=' + id );
+      window.open( axios.defaults.serverUrl.node_company + '/benefits/invoice?invoice_id=' + id );
     },
     activePlanDownloadReceipt( id ){
-      window.open( axios.defaults.serverUrl + '/benefits/receipt?invoice_id=' + id );
+      window.open( axios.defaults.serverUrl.node_company + '/benefits/receipt?invoice_id=' + id );
     },
     dependentPlanDownloadInvoice( data ){
-      window.open( axios.defaults.serverUrl + '/hr/download_dependent_invoice?dependent_plan_id=' + data.dependent_plan_id + '&token=' + this.download_token );
+      window.open( axios.defaults.serverUrl.node_company + '/hr/download_dependent_invoice?dependent_plan_id=' + data.dependent_plan_id + '&token=' + this.download_token );
     },
     downloadSpendingDeposit( data ){
-      window.open( axios.defaults.serverUrl + '/hr/spending_desposit?id=' + data.deposit_id + '&token=' + this.download_token );
+      window.open( axios.defaults.serverUrl.node_company + '/hr/spending_desposit?id=' + data.deposit_id + '&token=' + this.download_token );
     },
     goToEmpOverview(){
 
@@ -93,7 +93,7 @@ let accountPayments = {
             new_password : update_data.new_password
           }
           this.$parent.showLoading();
-          axios.post( axios.defaults.serverUrl + '/hr/update_password', data )
+          axios.post( axios.defaults.serverUrl.node_company + '/hr/update_password', data )
             .then(res => {
               this.$parent.hideLoading();
               console.log(res);
@@ -118,7 +118,7 @@ let accountPayments = {
     },
     getActivePlanDetails( data ){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/active_plan_details/' + data.customer_active_plan_id )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/active_plan_details/' + data.customer_active_plan_id )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);
@@ -137,7 +137,7 @@ let accountPayments = {
     },
     getCompanyContactsData(  ){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/company_contacts' )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/company_contacts' )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);
@@ -155,7 +155,7 @@ let accountPayments = {
     },
     getBillingList(  ){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/account_billing' )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/account_billing' )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);
@@ -173,7 +173,7 @@ let accountPayments = {
     },
     getPlanSubscriptions(  ){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/get_company_plan_status' )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/get_company_plan_status' )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);
@@ -191,7 +191,7 @@ let accountPayments = {
     },
     getCompActivePlans(  ){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/company_active_plans' )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/company_active_plans' )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);

@@ -67,7 +67,7 @@ let benefitsTier = {
     },
     updateTier( data ){
       this.$parent.showLoading();
-      axios.post( axios.defaults.serverUrl + '/hr/update_plan_tier', data )
+      axios.post( axios.defaults.serverUrl.node_company + '/hr/update_plan_tier', data )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);
@@ -86,7 +86,7 @@ let benefitsTier = {
     },
     addTier( data ){
       this.$parent.showLoading();
-      axios.post( axios.defaults.serverUrl + '/hr/create/plan_tier', data )
+      axios.post( axios.defaults.serverUrl.node_company + '/hr/create/plan_tier', data )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);
@@ -118,7 +118,7 @@ let benefitsTier = {
           var data = {
             plan_tier_id : this.add_tier_data.plan_tier_id
           }
-          axios.post( axios.defaults.serverUrl + '/hr/remove_plan_tier', data )
+          axios.post( axios.defaults.serverUrl.node_company + '/hr/remove_plan_tier', data )
             .then(res => {
               this.$parent.hideLoading();
               console.log(res);
@@ -138,7 +138,7 @@ let benefitsTier = {
       });
     },
     getTiers(){
-      axios.get( axios.defaults.serverUrl + '/hr/get_plan_tiers' )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/get_plan_tiers' )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);

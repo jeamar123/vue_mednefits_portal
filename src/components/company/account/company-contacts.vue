@@ -57,7 +57,7 @@ let accountCompany = {
     },
     getCompanyContactsData(  ){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/company_contacts' )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/company_contacts' )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);
@@ -90,7 +90,7 @@ let accountCompany = {
             postal  : update_data.postal_code,
           }
           this.$parent.showLoading();
-          axios.post( axios.defaults.serverUrl + '/hr/update/business_information', data )
+          axios.post( axios.defaults.serverUrl.node_company + '/hr/update/business_information', data )
             .then(res => {
               this.$parent.hideLoading();
               console.log(res);
@@ -129,7 +129,7 @@ let accountCompany = {
             job_title : update_data.job_title,
           }
           this.$parent.showLoading();
-          axios.post( axios.defaults.serverUrl + '/hr/update/business_contact', data )
+          axios.post( axios.defaults.serverUrl.node_company + '/hr/update/business_contact', data )
             .then(res => {
               this.$parent.hideLoading();
               console.log(res);
@@ -166,7 +166,7 @@ let accountCompany = {
             work_email  : update_data.work_email,
           }
           this.$parent.showLoading();
-          axios.post( axios.defaults.serverUrl + '/hr/update/billing_contact', data )
+          axios.post( axios.defaults.serverUrl.node_company + '/hr/update/billing_contact', data )
             .then(res => {
               this.$parent.hideLoading();
               console.log(res);
@@ -202,7 +202,7 @@ let accountCompany = {
             postal  : this.companyContactsData.billing_contact.postal,
           }
           this.$parent.showLoading();
-          axios.post( axios.defaults.serverUrl + '/hr/update/billing_address', data )
+          axios.post( axios.defaults.serverUrl.node_company + '/hr/update/billing_address', data )
             .then(res => {
               this.$parent.hideLoading();
               console.log(res);
