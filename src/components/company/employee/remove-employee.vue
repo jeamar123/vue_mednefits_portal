@@ -201,7 +201,7 @@ let removeEmployee = {
     //API calls
     getSession() {
       axios
-        .get(`${axios.defaults.serverUrl}/get-hr-session`)
+        .get(`${axios.defaults.serverUrl.node_company}/get-hr-session`)
         .then(res => {
           this.removeData.customer_id = res.data.customer_buy_start_id;
           this.$parent.hideLoading();
@@ -222,7 +222,7 @@ let removeEmployee = {
 
       axios
         .get(
-          `${axios.defaults.serverUrl}/hr/get_employee_spending_account_summary?employee_id=${emp_id}&customer_id=${customer_id}&last_date_of_coverage=${last_day}`
+          `${axios.defaults.serverUrl.node_company}/hr/get_employee_spending_account_summary?employee_id=${emp_id}&customer_id=${customer_id}&last_date_of_coverage=${last_day}`
         )
         .then(res => {
           console.log(res);
@@ -240,7 +240,7 @@ let removeEmployee = {
     updateWalletMember(emp_id, customer_id, last_day) {
       axios
         .get(
-          `${axios.defaults.serverUrl}/hr/get_employee_spending_account_summary?employee_id=${emp_id}&customer_id=${customer_id}&last_date_of_coverage=${last_day}&calibrate_wellness=true&calibrate_medical=true`
+          `${axios.defaults.serverUrl.node_company}/hr/get_employee_spending_account_summary?employee_id=${emp_id}&customer_id=${customer_id}&last_date_of_coverage=${last_day}&calibrate_wellness=true&calibrate_medical=true`
         )
         .then(res => {
           if (res.data.status) {
@@ -274,7 +274,7 @@ let removeEmployee = {
       ];
 
       axios
-        .post(`${axios.defaults.serverUrl}/hr/employees/withdraw`, {
+        .post(`${axios.defaults.serverUrl.node_company}/hr/employees/withdraw`, {
           users: users
         })
         .then(res => {
@@ -306,7 +306,7 @@ let removeEmployee = {
       this.$parent.showLoading();
       axios
         .post(
-          `${axios.defaults.serverUrl}/hr/create_employee_replace_seat`,
+          `${axios.defaults.serverUrl.node_company}/hr/create_employee_replace_seat`,
           data
         )
         .then(res => {
@@ -360,7 +360,7 @@ let removeEmployee = {
       };
 
       axios
-        .post(`${axios.defaults.serverUrl}/hr/employee/replace`, newData)
+        .post(`${axios.defaults.serverUrl.node_company}/hr/employee/replace`, newData)
         .then(res => {
           this.$parent.hideLoading();
 
@@ -394,7 +394,7 @@ let removeEmployee = {
 
       axios
         .post(
-          `${axios.defaults.serverUrl}/hr/create_dependent_replace_seat`,
+          `${axios.defaults.serverUrl.node_company}/hr/create_dependent_replace_seat`,
           data
         )
         .then(res => {
@@ -431,7 +431,7 @@ let removeEmployee = {
               user_id: this.removeData.dependentInfo.user_id
             };
 
-            axios.post(`${axios.defaults.serverUrl}/hr/with_draw_dependent`, data)
+            axios.post(`${axios.defaults.serverUrl.node_company}/hr/with_draw_dependent`, data)
               .then(res => {
                 this.$parent.hideLoading();
 

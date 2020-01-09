@@ -6,7 +6,11 @@ axios.defaults.baseURL = process.env.BASE_URL;
 // axios.defaults.serverUrl = 'http://staging.medicloud.sg';
 // axios.defaults.serverUrl = 'http://medicloud.local';
 // axios.defaults.serverUrl = 'http://api-hr.medicloud.sg';
-axios.defaults.serverUrl = 'http://localhost:5000';
+axios.defaults.serverUrl =  {
+  node_company: 'http://localhost:5000',
+  node_clinlic: 'http://localhost:4040',
+  node_member: 'http://localhost:6000',
+}
 axios.defaults.user_id = null;
 
 

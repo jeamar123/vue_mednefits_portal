@@ -648,7 +648,7 @@ let webInput = {
 				employees: this.employeeStorage,
 				plan_tier_id: this.isTiering ? this.activeTier.plan_tier_id : null
 			}
-			axios.post(axios.defaults.serverUrl + '/hr/create/employee_enrollment', data)
+			axios.post(axios.defaults.serverUrl.node_company + '/hr/create/employee_enrollment', data)
 				.then(res => {
 					this.$parent.hideLoading();
 					console.log(res);
@@ -679,7 +679,7 @@ let webInput = {
 		},
 		getCompanyEnrollmentCountStatus() {
 			this.$parent.showLoading();
-			axios.get(axios.defaults.serverUrl + '/hr/enrollment_progress')
+			axios.get(axios.defaults.serverUrl.node_company + '/hr/enrollment_progress')
 				.then(res => {
 					this.$parent.hideLoading();
 					console.log(res);
@@ -698,7 +698,7 @@ let webInput = {
 		},
 		getDependentCountStatus() {
 			this.$parent.showLoading();
-			axios.get(axios.defaults.serverUrl + '/hr/get_dependent_status')
+			axios.get(axios.defaults.serverUrl.node_company + '/hr/get_dependent_status')
 				.then(res => {
 					this.$parent.hideLoading();
 					console.log(res);
@@ -717,7 +717,7 @@ let webInput = {
 		},
 		getCompanyPaymentStatus() {
 			this.$parent.showLoading();
-			axios.get(axios.defaults.serverUrl + '/hr/check_plan')
+			axios.get(axios.defaults.serverUrl.node_company + '/hr/check_plan')
 				.then(res => {
 					this.$parent.hideLoading();
 					console.log(res);

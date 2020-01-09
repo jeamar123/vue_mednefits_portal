@@ -80,7 +80,7 @@ let employee = {
 			this.getEmployeeList();
 		},
 		getTotalMembers() {
-			axios.get(`${axios.defaults.serverUrl}/hr/get_total_members`)
+			axios.get(`${axios.defaults.serverUrl.node_company}/hr/get_total_members`)
 				.then(res => {
 					// console.log( res );
 					this.member_count = res.data.total_members;
@@ -95,7 +95,7 @@ let employee = {
 			this.$parent.showLoading();
 			let num = this.page_ctr;
 			let page = this.page_active;
-			axios.get(`${axios.defaults.serverUrl}/hr/employee_lists/?page=${page}&limit=${num}`)
+			axios.get(`${axios.defaults.serverUrl.node_company}/hr/employee_lists/?page=${page}&limit=${num}`)
 				.then(res => {
 
 					this.employees = res.data;
@@ -138,7 +138,7 @@ let employee = {
 				};
 
 				console.log('data sa search', data);
-				axios.post(`${axios.defaults.serverUrl}/hr/search/employee`, data)
+				axios.post(`${axios.defaults.serverUrl.node_company}/hr/search/employee`, data)
 					.then(res => {
 						this.employees = res.data;
 						this.$parent.hideLoading();

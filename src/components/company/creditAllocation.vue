@@ -69,7 +69,7 @@ let creditAllocation = {
 					password: pass
 				}
 				this.submitState = 'Checking...';
-				axios.post(`${axios.defaults.serverUrl}/hr/password`, data)
+				axios.post(`${axios.defaults.serverUrl.node_company}/hr/password`, data)
 					.then(res => {
 						if (res.data.status == false) {
 							this.err_mess = res.data.message;
@@ -94,7 +94,7 @@ let creditAllocation = {
 			};
 			this.isSearch = true;
 
-			axios.post(`${axios.defaults.serverUrl}/hr/search/employee`, data)
+			axios.post(`${axios.defaults.serverUrl.node_company}/hr/search/employee`, data)
 				// hrSettings.searchCompanyEmployeeCredits(scope.search)
 				.then(res => {
 					// console.log(res);
@@ -141,7 +141,7 @@ let creditAllocation = {
 			let num = this.page_ctr;
 			let page = this.page_active;
 
-			axios.get(`${axios.defaults.serverUrl}/hr/employee/list/${num}?page=${page}`)
+			axios.get(`${axios.defaults.serverUrl.node_company}/hr/employee/list/${num}?page=${page}`)
 				.then(res => {
 					this.employees = res.data.data;
 					this.emp_last_page = res.data.last_page;
@@ -180,7 +180,7 @@ let creditAllocation = {
 				});
 		},
 		userCompanyCreditsAllocated() {
-			axios.get(`${axios.defaults.serverUrl}/hr/company_allocation`)
+			axios.get(`${axios.defaults.serverUrl.node_company}/hr/company_allocation`)
 				.then(res => {
 					// console.log(res);
 					this.company_properties = res.data;
@@ -202,7 +202,7 @@ let creditAllocation = {
 						allocation_type: 'add'
 					}
 					// console.log(data);
-					axios.post(`${axios.defaults.serverUrl}/hr/employee/allocate_credits`, data)
+					axios.post(`${axios.defaults.serverUrl.node_company}/hr/employee/allocate_credits`, data)
 						.then(res => {
 							// console.log(res);
 							if (!res.data.status) {
@@ -235,7 +235,7 @@ let creditAllocation = {
 						allocation_type: 'deduct'
 					}
 					// console.log(data);
-					axios.post(`${axios.defaults.serverUrl}/hr/employee/deduct_credits`, data)
+					axios.post(`${axios.defaults.serverUrl.node_company}/hr/employee/deduct_credits`, data)
 						.then(res => {
 							if (!res.data.status) {
 								emp.failed = true;

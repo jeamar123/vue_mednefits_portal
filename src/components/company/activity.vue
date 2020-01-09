@@ -291,7 +291,7 @@ let activity = {
 		//api calls
 		getSession() {
 			axios
-				.get(`${axios.defaults.serverUrl}/get-hr-session`)
+				.get(`${axios.defaults.serverUrl.node_company}/get-hr-session`)
 				.then(res => {
 					this.selected_customer_id = res.data.customer_buy_start_id;
 					this.$parent.hideLoading();
@@ -308,7 +308,7 @@ let activity = {
 				end: date.end
 			}
 			this.$parent.showLoading();
-			axios.get(`${axios.defaults.serverUrl}/hr/total_credits_allocation?start=${data.start}&end=${data.end}`)
+			axios.get(`${axios.defaults.serverUrl.node_company}/hr/total_credits_allocation?start=${data.start}&end=${data.end}`)
 				.then(res => {
 					this.total_allocation = res.data;
 					let activity_search = {
@@ -340,7 +340,7 @@ let activity = {
 				from: 0,
 				to: 0
 			}
-			axios.get(`${axios.defaults.serverUrl}/hr/get_activity?page=${data.page}&start=${data.start}&end=${data.end}&spending_type=${data.spending_type}`)
+			axios.get(`${axios.defaults.serverUrl.node_company}/hr/get_activity?page=${data.page}&start=${data.start}&end=${data.end}&spending_type=${data.spending_type}`)
 				.then(res => {
 
 					if (res.status == 200) {
@@ -396,7 +396,7 @@ let activity = {
 			activity_search.spending_type = this.spendingType.text;
 			this.search.close = true;
 
-			axios.post(`${axios.defaults.serverUrl}/hr/search_employee_activity`, activity_search)
+			axios.post(`${axios.defaults.serverUrl.node_company}/hr/search_employee_activity`, activity_search)
 				.then(res => {
 					if (res.status == 200) {
 						this.activity_title = `${res.data.employee} Benefits Cost`;
@@ -463,7 +463,7 @@ let activity = {
 				data.user_id = this.search.user_id;
 			}
 
-			axios.get(`${axios.defaults.serverUrl}/hr/get_activity_in_network_transactions?page=${data.page}&per_page=${data.per_page}&start=${data.start}&end=${data.end}&spending_type=${data.spending_type}&customer_id=${data.customer_id}`)
+			axios.get(`${axios.defaults.serverUrl.node_company}/hr/get_activity_in_network_transactions?page=${data.page}&per_page=${data.per_page}&start=${data.start}&end=${data.end}&spending_type=${data.spending_type}&customer_id=${data.customer_id}`)
 				.then(res => {
 					this.inNetwork_pagination = res.data;
 					//console.log('getInNetworkPagination', res.data);
@@ -490,7 +490,7 @@ let activity = {
 				data.user_id = this.search.user_id;
 			}
 
-			axios.get(`${axios.defaults.serverUrl}/hr/get_activity_out_network_transactions?page=${data.page}&per_page=${data.per_page}&start=${data.start}&end=${data.end}&spending_type=${data.spending_type}&customer_id=${data.customer_id}`)
+			axios.get(`${axios.defaults.serverUrl.node_company}/hr/get_activity_out_network_transactions?page=${data.page}&per_page=${data.per_page}&start=${data.start}&end=${data.end}&spending_type=${data.spending_type}&customer_id=${data.customer_id}`)
 				.then(res => {
 					this.outNetwork_pagination = res.data;
 
@@ -506,7 +506,7 @@ let activity = {
 			this.currentPage = this.currentPage + 1;
 			data.page = this.currentPage;
 
-			axios.get(`${axios.defaults.serverUrl}/hr/get_activity?page=${data.page}&start=${data.start}&end=${data.end}&spending_type=${data.spending_type}`)
+			axios.get(`${axios.defaults.serverUrl.node_company}/hr/get_activity?page=${data.page}&start=${data.start}&end=${data.end}&spending_type=${data.spending_type}`)
 				.then(res => {
 					if (res.status == 200) {
 						this.fetching_data = {
@@ -558,7 +558,7 @@ let activity = {
 				});
 		},
 		dashCredits() {
-			axios.get(`${axios.defaults.serverUrl}/hr/check_balance`)
+			axios.get(`${axios.defaults.serverUrl.node_company}/hr/check_balance`)
 				.then(res => {
 					//console.log(res);
 					this.credits = res.data;
@@ -566,7 +566,7 @@ let activity = {
 				});
 		},
 		searchedEmployee() {
-			axios.get(`${axios.defaults.serverUrl}/hr/employee_lists`)
+			axios.get(`${axios.defaults.serverUrl.node_company}/hr/employee_lists`)
 				.then(res => {
 					this.searchRes = res.data.data;
 					console.log('searchRes', this.searchRes);

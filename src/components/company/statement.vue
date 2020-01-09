@@ -120,7 +120,7 @@ let statement = {
       if(this.download_token.live == true) {
         window.open(this.download_token.download_link + "/spending_invoice_download?id=" + data.statement_id + '&token=' + this.download_token.token);
       } else {
-        window.open(axios.defaults.serverUrl + '/hr/statement_download?id=' + data.statement_id + '&token=' + window.localStorage.getItem('vue_hr_session'));
+        window.open(axios.defaults.serverUrl.node_company + '/hr/statement_download?id=' + data.statement_id + '&token=' + window.localStorage.getItem('vue_hr_session'));
       }
     },
     downloadReceipt( receipt, list ){
@@ -239,7 +239,7 @@ let statement = {
       formData.append('e_claim_id', list.transaction_id);
       this.$parent.showLoading();
       axios.post( 
-        axios.defaults.serverUrl + "/hr/upload_e_claim_receipt", 
+        axios.defaults.serverUrl.node_company + "/hr/upload_e_claim_receipt", 
         formData, 
         { headers: { 'Content-Type': 'multipart/form-data' } })
         .then(res => {
@@ -264,7 +264,7 @@ let statement = {
     },
     getDownloadToken(){
       // this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/get_download_token' )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/get_download_token' )
         .then(res => {
           // this.$parent.hideLoading();
           console.log(res);
@@ -282,7 +282,7 @@ let statement = {
     },
     getSession(){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/get-hr-session' )
+      axios.get( axios.defaults.serverUrl.node_company + '/get-hr-session' )
         .then(res => {
           // this.$parent.hideLoading();
           console.log(res);
@@ -301,7 +301,7 @@ let statement = {
     },
     getEmployeeLists(){
       // this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/employee_lists' )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/employee_lists' )
         .then(res => {
           // this.$parent.hideLoading();
           console.log(res);
@@ -327,7 +327,7 @@ let statement = {
       }
       this.$parent.showLoading();
       this.isActiveSearch = false;
-      axios.post( axios.defaults.serverUrl + '/hr/search_employee_statement', data )
+      axios.post( axios.defaults.serverUrl.node_company + '/hr/search_employee_statement', data )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);
@@ -352,7 +352,7 @@ let statement = {
         end : moment(this.end_date).format('YYYY-MM-DD'),
       }
       this.$parent.showLoading();
-      axios.post( axios.defaults.serverUrl + '/hr/get_statement', data )
+      axios.post( axios.defaults.serverUrl.node_company + '/hr/get_statement', data )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);

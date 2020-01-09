@@ -16,7 +16,7 @@ let intro = {
   methods: {
   	getCompanyStatus(){
   		this.$parent.showLoading();
-    	axios.get( axios.defaults.serverUrl + '/hr/check_plan' )
+    	axios.get( axios.defaults.serverUrl.node_company + '/hr/check_plan' )
 				.then(res => {
 					console.log(res);
 					if( res.data.status ){

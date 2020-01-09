@@ -77,7 +77,7 @@ let localNetwork = {
 		//API Calls
 
 		getSession() {
-			axios.get(`${axios.defaults.serverUrl}/get-hr-session`)
+			axios.get(`${axios.defaults.serverUrl.node_company}/get-hr-session`)
 				.then(res => {
 					this.options.accessibility = res.data.accessibility;
 					console.log('getSession()', this.options.accessibility);
@@ -85,7 +85,7 @@ let localNetwork = {
 		},
 
 		getLocalNet() {
-			axios.get(`${axios.defaults.serverUrl}/list/local_network`)
+			axios.get(`${axios.defaults.serverUrl.node_company}/list/local_network`)
 				.then(res => {
 					this.local_networks = res.data;
 					this.getLocalNetPart(this.local_networks[0].local_network_id, 0, this.local_networks[0], 'central');
@@ -93,7 +93,7 @@ let localNetwork = {
 				})
 		},
 		getLocalNetworkPartners(id, index) {
-			axios.get(`${axios.defaults.serverUrl}/list/local_network_partners/${id}`)
+			axios.get(`${axios.defaults.serverUrl.node_company}/list/local_network_partners/${id}`)
 				.then(res => {
 					this.local_partners = res.data;
 					console.log('getLocalNetworkPartners()', this.local_partners);

@@ -37,7 +37,7 @@ let overview = {
 	},
   methods: {
     goToNewEmployee( data ){
-      window.open( axios.defaults.serverUrl + '/company-benefits-dashboard/#/vacant-seat-enrollment?vacant_id=' + data.replacement_seat_id + '&type=' + data.user_type );
+      window.open( axios.defaults.serverUrl.node_company + '/company-benefits-dashboard/#/vacant-seat-enrollment?vacant_id=' + data.replacement_seat_id + '&type=' + data.user_type );
     },
     spendType(value, text) {
       //spending either medical or wellness
@@ -69,7 +69,7 @@ let overview = {
     },
     getCompanyIntroMessage() { //company intro api
       this.$parent.showLoading();
-      axios.get( `${axios.defaults.serverUrl}/hr/get_intro_overview `)
+      axios.get( `${axios.defaults.serverUrl.node_company}/hr/get_intro_overview `)
       .then(res => {
         // console.log(res);
         if(res.data.status) {
@@ -87,7 +87,7 @@ let overview = {
     },
     getTaskList() { // task list api
       this.$parent.showLoading();
-      axios.get( `${axios.defaults.serverUrl}/hr/task_list`)
+      axios.get( `${axios.defaults.serverUrl.node_company}/hr/task_list`)
       .then(res => {
         // console.log(res);
 			 	this.task_lists = res.data;
@@ -101,7 +101,7 @@ let overview = {
     },
     getDashCredits () { //// credits api 
       this.$parent.showLoading();
-      axios.get( `${axios.defaults.serverUrl}/hr/check_balance`)
+      axios.get( `${axios.defaults.serverUrl.node_company}/hr/check_balance`)
       .then(res => {
 			 	this.credits = res.data;
         this.$parent.hideLoading();
@@ -114,7 +114,7 @@ let overview = {
     },
     getProgress() { //progress api
       this.$parent.showLoading();
-      axios.get( `${axios.defaults.serverUrl}/hr/enrollment_progress`)
+      axios.get( `${axios.defaults.serverUrl.node_company}/hr/enrollment_progress`)
       .then(res => {
         // console.log(res);
 			 	this.progress.employees = res.data.data;
@@ -126,7 +126,7 @@ let overview = {
         this.$parent.swal('Error!', err,'error');
       });
 
-      axios.get( `${axios.defaults.serverUrl}/hr/get_dependent_status`)
+      axios.get( `${axios.defaults.serverUrl.node_company}/hr/get_dependent_status`)
       .then(res => {
         // console.log(res);
 			 	this.progress.dependents = res.data;
@@ -141,7 +141,7 @@ let overview = {
     getBillingStatus() { //billing status api
       //for total_plan_due
       this.$parent.showLoading();
-      axios.get( `${axios.defaults.serverUrl}/hr/get_current_plan_total_due`)
+      axios.get( `${axios.defaults.serverUrl.node_company}/hr/get_current_plan_total_due`)
       .then(res => {
          if ( res.data.status) {
            this.billing_status.total_plan_due = res.data.total_due;
@@ -155,7 +155,7 @@ let overview = {
       });
 
       //for total_spending
-      axios.get( `${axios.defaults.serverUrl}/hr/get_current_spending_total_due`)
+      axios.get( `${axios.defaults.serverUrl.node_company}/hr/get_current_spending_total_due`)
       .then(res => {
          if ( res.data.status) {
            this.billing_status.total_spending = res.data;

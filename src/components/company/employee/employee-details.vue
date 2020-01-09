@@ -366,7 +366,7 @@ let employeeDetails = {
 		},
 		getSession() {
 			axios
-				.get(`${axios.defaults.serverUrl}/hr/get_hr_session`)
+				.get(`${axios.defaults.serverUrl.node_company}/hr/get_hr_session`)
 				.then(res => {
 					this.customer_id = res.data.customer_buy_start_id;
 					this.$parent.hideLoading();
@@ -381,7 +381,7 @@ let employeeDetails = {
 			//Get API
 			axios
 				.get(
-					`${axios.defaults.serverUrl}/hr/get_employee_plan_covers?employee_id=${this.id}`
+					`${axios.defaults.serverUrl.node_company}/hr/get_employee_plan_covers?employee_id=${this.id}`
 				)
 				.then(res => {
 					this.employees.plan_list = res.data;
@@ -400,7 +400,7 @@ let employeeDetails = {
 			//Get API
 			axios
 				.get(
-					`${axios.defaults.serverUrl}/hr/get_employee_dependents?employee_id=${this.id}`
+					`${axios.defaults.serverUrl.node_company}/hr/get_employee_dependents?employee_id=${this.id}`
 				)
 				.then(res => {
 					this.selected_emp_dependents = res.data.dependents;
@@ -425,7 +425,7 @@ let employeeDetails = {
 			let page = this.page_active;
 
 			axios
-				.get(`${axios.defaults.serverUrl}/hr/employee_lists/?page=${page}&limit=${num}`)
+				.get(`${axios.defaults.serverUrl.node_company}/hr/employee_lists/?page=${page}&limit=${num}`)
 				.then(res => {
 					this.employees = res.data;
 
@@ -475,7 +475,7 @@ let employeeDetails = {
 		postEmployee(data) {
 			//POST API
 			axios
-				.put(`${axios.defaults.serverUrl}/hr/update_employee_details`, data)
+				.put(`${axios.defaults.serverUrl.node_company}/hr/update_employee_details`, data)
 				.then(res => {
 					this.$parent.hideLoading();
 					this.getEmployeeList();
@@ -489,7 +489,7 @@ let employeeDetails = {
 		postDependent(data) {
 			//POST API
 			axios
-				.post(`${axios.defaults.serverUrl}/hr/update_dependent_details`, data)
+				.post(`${axios.defaults.serverUrl.node_company}/hr/update_dependent_details`, data)
 				.then(res => {
 					this.$parent.hideLoading();
 					this.getEmpDependents(this.id);
@@ -501,7 +501,7 @@ let employeeDetails = {
 				});
 		},
 		companyDependents() {
-			axios.get(`${axios.defaults.serverUrl}/hr/get_dependent_status`)
+			axios.get(`${axios.defaults.serverUrl.node_company}/hr/get_dependent_status`)
 				.then(res => {
 					this.dependents = res.data;
 					this.overall_dep_count = this.dependents.occupied_seats + 1;
@@ -517,7 +517,7 @@ let employeeDetails = {
 		},
 		addDependentForEmployee(data) {
 			axios
-				.post(`${axios.defaults.serverUrl}/hr/create_dependent_accounts`, data)
+				.post(`${axios.defaults.serverUrl.node_company}/hr/create_dependent_accounts`, data)
 				.then(res => {
 					this.$parent.hideLoading();
 					console.log(res);

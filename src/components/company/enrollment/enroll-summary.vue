@@ -186,7 +186,7 @@ let enrollSumamary = {
       }).then(result => {
         if (result.value) {
           for( var i = 0; i < this.employeeStorage.length; i++ ){
-            axios.get( axios.defaults.serverUrl + '/remove/temp_enrollee/' + this.employeeStorage[i].employee.temp_enrollment_id )
+            axios.get( axios.defaults.serverUrl.node_company + '/remove/temp_enrollee/' + this.employeeStorage[i].employee.temp_enrollment_id )
               .then(res => {
                 this.$parent.hideLoading();
                 // console.log(res);
@@ -258,7 +258,7 @@ let enrollSumamary = {
         temp_enrollment_id : value.employee.temp_enrollment_id
       }
       this.$parent.showLoading();
-      axios.post( axios.defaults.serverUrl + '/hr/create/employee_user', data)
+      axios.post( axios.defaults.serverUrl.node_company + '/hr/create/employee_user', data)
         .then(res => {
           // console.log(res);
           value.loading = false;
@@ -340,7 +340,7 @@ let enrollSumamary = {
         mobile_area_code: this.employeeDetails.mAreaCode
       }
       this.$parent.showLoading();
-      axios.post( axios.defaults.serverUrl + '/hr/update/tier_employee_enrollee_details', data )
+      axios.post( axios.defaults.serverUrl.node_company + '/hr/update/tier_employee_enrollee_details', data )
         .then(res => {
           this.$parent.hideLoading();
           // console.log(res);
@@ -374,7 +374,7 @@ let enrollSumamary = {
           relationship : this.employeeDetails.dependents[i].enrollee.relationship,
         } 
         this.$parent.showLoading();
-        axios.post( axios.defaults.serverUrl + '/hr/update_tier_dependent_enrollee_details', data )
+        axios.post( axios.defaults.serverUrl.node_company + '/hr/update_tier_dependent_enrollee_details', data )
           .then(res => {
             this.$parent.hideLoading();
             // console.log(res);
@@ -406,7 +406,7 @@ let enrollSumamary = {
       }).then(result => {
         if (result.value) {
           this.$parent.showLoading();
-          axios.get( axios.defaults.serverUrl + '/remove/temp_enrollee/' + id )
+          axios.get( axios.defaults.serverUrl.node_company + '/remove/temp_enrollee/' + id )
             .then(res => {
               this.$parent.hideLoading();
               // console.log(res);
@@ -439,7 +439,7 @@ let enrollSumamary = {
       }).then(result => {
         if (result.value) {
           for( var i = 0; i < this.selected_emp.length; i++ ){
-            axios.get( axios.defaults.serverUrl + '/remove/temp_enrollee/' + this.selected_emp[i] )
+            axios.get( axios.defaults.serverUrl.node_company + '/remove/temp_enrollee/' + this.selected_emp[i] )
               .then(res => {
                 this.$parent.hideLoading();
                 // console.log(res);
@@ -463,7 +463,7 @@ let enrollSumamary = {
     },
     getTempEmployees(){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/get/plan_tier_enrolless' )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/get/plan_tier_enrolless' )
         .then(res => {
           this.$parent.hideLoading();
           // console.log(res);
@@ -488,7 +488,7 @@ let enrollSumamary = {
     },
     getCompanyEnrollmentCountStatus(){
       this.$parent.showLoading();
-      axios.get( axios.defaults.serverUrl + '/hr/enrollment_progress' )
+      axios.get( axios.defaults.serverUrl.node_company + '/hr/enrollment_progress' )
         .then(res => {
           this.$parent.hideLoading();
           console.log(res);

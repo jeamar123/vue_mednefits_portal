@@ -36,7 +36,7 @@ let excel = {
       }
       this.$refs.receiptUploader.value = null;
       axios.post( 
-        axios.defaults.serverUrl + "/upload/excel_enrollment", 
+        axios.defaults.serverUrl.node_company + "/upload/excel_enrollment", 
         formData, 
         { headers: { 'Content-Type': 'multipart/form-data' } })
         .then(res => {
@@ -65,9 +65,9 @@ let excel = {
     },
     downloadTemplate(){
       if( this.empType == 'empOnly' ){
-        window.open( axios.defaults.serverUrl + '/excel/Employee Enrollment Listing.xlsx' );
+        window.open( axios.defaults.serverUrl.node_company + '/excel/Employee Enrollment Listing.xlsx' );
       }else{
-        window.open( axios.defaults.serverUrl + '/excel/Employees and Dependents.xlsx' );
+        window.open( axios.defaults.serverUrl.node_company + '/excel/Employees and Dependents.xlsx' );
       }
     },
     checkReviewBoxes(){
