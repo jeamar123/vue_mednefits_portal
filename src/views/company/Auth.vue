@@ -126,7 +126,7 @@
           password: this.login_data.password,
           stay_signed_in: this.login_data.stay_signed_in == true ? true : false,
       	}
-      	axios.post( axios.defaults.serverUrl + '/auth/signin', data)
+      	axios.post( axios.defaults.serverUrl.node_company + '/auth/signin', data)
 					.then(res => {
 						
 						console.log(res);
